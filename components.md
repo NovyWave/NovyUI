@@ -1,344 +1,476 @@
 # NovyUI Components
 
 ## Accordion
-- Single
-- Multiple
-- With icons
+- Id: Accordion
+- Variants:
+  - Single
+  - Multiple
+  - With icons
 
 ## Alert
-- Success
-- Error
-- Warning
-- Info
-- Dismissible
+- Id: Alert
+- Variants:
+  - Success
+  - Error
+  - Warning
+  - Info
+  - Dismissible
 
 ## Avatar
-- Image
-- Initials
-- With status
-- Group
+- Id: Avatar
+- Variants:
+  - Image
+  - Initials
+  - With status
+  - Group
 
 ## Badge
-- Solid
-- Outline
-- Dot
-- With icon
-- With count
+- Id: Badge
+- Variants:
+  - Solid
+  - Outline
+  - Dot
+  - With icon
+  - With count
 
 ## Blockquote
-- With author
-- Simple
+- Id: Blockquote
+- Variants:
+  - With author
+  - Simple
 
 ## Breadcrumbs
-- Basic
-- With icons
-- Collapsible/overflow
+- Id: Breadcrumbs
+- Variants:
+  - Basic
+  - With icons
+  - Collapsible/overflow
 
 ## Button
-- Primary
-- Secondary
-- Outline
-- Ghost
-- Icon
-- Loading
-- Group
-- Social login
+- Id: Button
+- Variants:
+  - Primary
+  - Secondary
+  - Outline
+  - Ghost
+  - Icon
+  - Loading
+  - Group
+  - Social login
 
 ## Calendar
-- Month view
-- Week view
-- With events
+- Id: Calendar
+- Variants:
+  - Month view
+  - Week view
+  - With events
 
 ## Card
-- With image
-- With actions
-- Simple
+- Id: Card
+- Variants:
+  - With image
+  - With actions
+  - Simple
 
 ## Checkbox
-- Basic
-- Indeterminate
-- With label
+- Id: Checkbox
+- Variants:
+  - Basic
+  - Indeterminate
+  - With label
 
 ## Chips
-- Selectable
-- Removable
-- With icons
+- Id: Chips
+- Variants:
+  - Selectable
+  - Removable
+  - With icons
 
 ## Collapse
-- Basic
-- With animation
-- Panel
-- Nested panels
+- Id: Collapse
+- Variants:
+  - Basic
+  - With animation
+  - Panel
+  - Nested panels
 
 ## Color Input
-- Color picker
-- Swatch
-- EyeDropper
-- Palette
+- Id: ColorInput
+- Variants:
+  - Color picker
+  - Swatch
+  - EyeDropper
+  - Palette
 
 ## Combobox / Autocomplete
-- Autocomplete
-- Multiselect
-- Creatable
-- Tags input
-- Typeahead
+- Id: ComboboxAutocomplete
+- Variants:
+  - Autocomplete
+  - Multiselect
+  - Creatable
+  - Tags input
+  - Typeahead
 
 ## Command
-- Command palette
-- Searchable actions
-- Command menu
+- Id: Command
+- Variants:
+  - Command palette
+  - Searchable actions
+  - Command menu
 
 ## Context Menu
-- Right-click menu
-- With icons
-- With actions
+- Id: ContextMenu
+- Variants:
+  - Right-click menu
+  - With icons
+  - With actions
 
 ## Data Table / Grid
-- Basic
-- Filtering
-- Sorting
-- Pagination
-- Row selection
-- With actions
-- Sortable
-- Advanced table
+- Id: DataTableGrid
+- Variants:
+  - Basic
+  - Filtering
+  - Sorting
+  - Pagination
+  - Row selection
+  - With actions
+  - Sortable
+  - Advanced table
 
 ## Date/Time Picker
-- Date picker
-- Date range picker
-- Time input
+- Id: DateTimePicker
+- Variants:
+  - Date picker
+  - Date range picker
+  - Time input
 
 ## Dialog / Modal
-- Centered
-- Fullscreen
-- With form
-- Nested dialogs
+- Id: DialogModal
+- Variants:
+  - Centered
+  - Fullscreen
+  - With form
+  - Nested dialogs
 
 ## Divider / Separator
-- Horizontal
-- Vertical
+- Id: DividerSeparator
+- Variants:
+  - Horizontal
+  - Vertical
 
 ## Drawer / Sheet / Offcanvas
-- Side panel
-- Slide-over
-- With form
-- With actions
-- Mobile navigation
+- Id: DrawerSheetOffcanvas
+- Variants:
+  - Side panel
+  - Slide-over
+  - With form
+  - With actions
+  - Mobile navigation
 
 ## Dropzone / Upload
-- Single file
-- Multiple files
-- With preview
-- With file type restrictions
-- With upload progress
-- Drag-and-drop
+- Id: DropzoneUpload
+- Variants:
+  - Single file
+  - Multiple files
+  - With preview
+  - With file type restrictions
+  - With upload progress
+  - Drag-and-drop
 
 ## File Input
-- Single file
-- Multiple files
-- File preview
+- Id: FileInput
+- Variants:
+  - Single file
+  - Multiple files
+  - File preview
 
 ## Input
-- Basic
-- With icon
-- With button
+- Id: Input
+- Variants:
+  - Basic
+  - With icon
+  - With button
 
 ## Textarea
-- Basic
-- Autosize
-- With character count
+- Id: Textarea
+- Variants:
+  - Basic
+  - Autosize
+  - With character count
 
 ## Select
-- Basic
-- Multi-select
-- With search
+- Id: Select
+- Variants:
+  - Basic
+  - Multi-select
+  - With search
 
 ## Radio
-- Basic
-- With label
+- Id: Radio
+- Variants:
+  - Basic
+  - With label
 
 ## Switch/Toggle
-- With label
-- With icons
+- Id: SwitchToggle
+- Variants:
+  - With label
+  - With icons
 
 ## Slider
-- Single value
-- Range
+- Id: Slider
+- Variants:
+  - Single value
+  - Range
 
 ## Number Input
-- With controls
-- Without controls
+- Id: NumberInput
+- Variants:
+  - With controls
+  - Without controls
 
 ## Password Input
-- With visibility toggle
+- Id: PasswordInput
+- Variants:
+  - With visibility toggle
 
 ## Pin Input
-- 4-digit
-- 6-digit
+- Id: PinInput
+- Variants:
+  - 4-digit
+  - 6-digit
 
 ## Input Group
-- Input with button
-- Input with icon
+- Id: InputGroup
+- Variants:
+  - Input with button
+  - Input with icon
 
 ## Form Validation/Error Message
-- Inline error
-- Tooltip error
+- Id: FormValidationErrorMessage
+- Variants:
+  - Inline error
+  - Tooltip error
 
 ## Hover Card
-- Appears on hover
-- With actions
+- Id: HoverCard
+- Variants:
+  - Appears on hover
+  - With actions
 
 ## Image
-- Responsive
-- With caption
-- Gallery (grid, carousel)
+- Id: Image
+- Variants:
+  - Responsive
+  - With caption
+  - Gallery (grid, carousel)
 
 ## List
-- Ordered
-- Unordered
-- Description
-- With actions
-- With avatars
+- Id: List
+- Variants:
+  - Ordered
+  - Unordered
+  - Description
+  - With actions
+  - With avatars
 
 ## Loading
-- Spinner
-- Overlay (fullscreen, partial)
-- Skeleton (text, avatar, card, variants)
+- Id: Loading
+- Variants:
+  - Spinner
+  - Overlay (fullscreen, partial)
+  - Skeleton (text, avatar, card, variants)
 
 ## Map / Location Picker
-- Basic
-- With search
+- Id: MapLocationPicker
+- Variants:
+  - Basic
+  - With search
 
 ## Menubar
-- Horizontal menu
-- With icons
-- With dropdowns
+- Id: Menubar
+- Variants:
+  - Horizontal menu
+  - With icons
+  - With dropdowns
 
 ## Notification / Toast / Snackbar
-- Success
-- Error
-- Info
-- Warning
-- Custom icon
-- With actions
-- Temporary (snackbar)
-- Stacking
-- Bottom position
+- Id: NotificationToastSnackbar
+- Variants:
+  - Success
+  - Error
+  - Info
+  - Warning
+  - Custom icon
+  - With actions
+  - Temporary (snackbar)
+  - Stacking
+  - Bottom position
 
 ## Pagination
-- Simple
-- With icons
-- Jump to page
-- Page size selector
+- Id: Pagination
+- Variants:
+  - Simple
+  - With icons
+  - Jump to page
+  - Page size selector
 
 ## Popconfirm
-- Confirmation popover
+- Id: Popconfirm
+- Variants:
+  - Confirmation popover
 
 ## Popover
-- Basic
-- With menu
-- With form
+- Id: Popover
+- Variants:
+  - Basic
+  - With menu
+  - With form
 
 ## Progress
-- Linear
-- Circular (progress circle, indeterminate)
+- Id: Progress
+- Variants:
+  - Linear
+  - Circular (progress circle, indeterminate)
 
 ## QR Code
-- Display QR codes
+- Id: QRCode
+- Variants:
+  - Display QR codes
 
 ## Rating
-- Stars
-- Custom icons
-- Read-only
+- Id: Rating
+- Variants:
+  - Stars
+  - Custom icons
+  - Read-only
 
 ## Resizable Panel
-- Horizontal
-- Vertical
-- With content
+- Id: ResizablePanel
+- Variants:
+  - Horizontal
+  - Vertical
+  - With content
 
 ## Rich Text Editor
-- Toolbar options (bold, italic, underline, etc.)
+- Id: RichTextEditor
+- Variants:
+  - Toolbar options (bold, italic, underline, etc.)
 
 ## Scroll Area
-- Custom scrollbars
-- Scrollable content
+- Id: ScrollArea
+- Variants:
+  - Custom scrollbars
+  - Scrollable content
 
 ## Scrollspy
-- Navigation highlights on scroll
+- Id: Scrollspy
+- Variants:
+  - Navigation highlights on scroll
 
 ## Search / Spotlight
-- Command palette
-- Searchable
+- Id: SearchSpotlight
+- Variants:
+  - Command palette
+  - Searchable
 
 ## Statistic
-- Number with label
-- Trend
-- Icon
+- Id: Statistic
+- Variants:
+  - Number with label
+  - Trend
+  - Icon
 
 ## Stepper
-- Horizontal
-- Vertical
-- With icons
-- With progress
+- Id: Stepper
+- Variants:
+  - Horizontal
+  - Vertical
+  - With icons
+  - With progress
 
 ## Switch
-- With label
-- Without label
-- With icons
+- Id: Switch
+- Variants:
+  - With label
+  - Without label
+  - With icons
 
 ## Tabs
-- Horizontal
-- Vertical
-- With icons
+- Id: Tabs
+- Variants:
+  - Horizontal
+  - Vertical
+  - With icons
 
 ## Tag Input
-- Create/remove tags
-- With suggestions
+- Id: TagInput
+- Variants:
+  - Create/remove tags
+  - With suggestions
 
 ## Theme Toggle
-- Light/Dark switch
+- Id: ThemeToggle
+- Variants:
+  - Light/Dark switch
 
 ## Timeline
-- Vertical
-- Horizontal
-- With icons
-- With images
-
-## Toast (see Notification)
+- Id: Timeline
+- Variants:
+  - Vertical
+  - Horizontal
+  - With icons
+  - With images
 
 ## Tooltip
-- Top
-- Bottom
-- Left
-- Right
-- Rich content
+- Id: Tooltip
+- Variants:
+  - Top
+  - Bottom
+  - Left
+  - Right
+  - Rich content
 
 ## Transfer List
-- Move items between lists
+- Id: TransferList
+- Variants:
+  - Move items between lists
 
 ## Tree View / Tree Select
-- Basic
-- With checkboxes
-- With icons
-- Expand/collapse all
-- Tree structure dropdown
+- Id: TreeViewTreeSelect
+- Variants:
+  - Basic
+  - With checkboxes
+  - With icons
+  - Expand/collapse all
+  - Tree structure dropdown
 
 ## Typography
-- Headings
-- Paragraphs
-- Blockquotes
-- Lists
-- Code block
-- Highlight/Callout
+- Id: Typography
+- Variants:
+  - Headings
+  - Paragraphs
+  - Blockquotes
+  - Lists
+  - Code block
+  - Highlight/Callout
 
 ## Countdown
-- Timer
+- Id: Countdown
+- Variants:
+  - Timer
 
 ## Cascader
-- Multi-level dropdown
+- Id: Cascader
+- Variants:
+  - Multi-level dropdown
 
 ## Affix
-- Sticky/fixed on scroll
+- Id: Affix
+- Variants:
+  - Sticky/fixed on scroll
 
 ## Anchor Navigation
-- Sticky section links
+- Id: AnchorNavigation
+- Variants:
+  - Sticky section links
