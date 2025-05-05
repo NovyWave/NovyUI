@@ -1,146 +1,321 @@
 # NovyUI Blocks
 
 ## Hero
-- Basic hero
-- With image
-- With actions
-- Centered
-- Split
-- Minimal
+- Variants:
+  - Basic hero
+  - With image
+  - With actions
+  - Centered
+  - Split
+  - Minimal
+- Components:
+  - Heading
+  - Paragraph
+  - Button
+  - Image
+  - Container
+  - Icon (optional)
 
 ## Features Section
-- Grid
-- With icons
-- With images
-- Steps
-- List
+- Variants:
+  - Grid
+  - With icons
+  - With images
+  - Steps
+  - List
+- Components:
+  - Heading
+  - Icon
+  - Card
+  - List
+  - Button (optional)
+  - Grid
 
 ## Authentication
-- Login
-- Register
-- Forgot password
-- Reset password
+- Variants:
+  - Login
+  - Register
+  - Forgot password
+  - Reset password
+- Components:
+  - Input
+  - Password Input
+  - Button
+  - Checkbox
+  - Alert
+  - Link
+  - Form Validation/Error Message
 
 ## Frequently Asked Questions
-- Simple list
-- Accordion
-- With search
-- With categories
+- Variants:
+  - Simple list
+  - Accordion
+  - With search
+  - With categories
+- Components:
+  - Accordion
+  - Input (search)
+  - List
+  - Heading
 
 ## Contact Card/Section
-- With map
-- With social links
+- Variants:
+  - With map
+  - With social links
+- Components:
+  - Input
+  - Textarea
+  - Button
+  - Icon
+  - Map/Location Picker
+  - Alert
 
 ## Banners
-- Announcement
-- Promo
-- Warning
+- Variants:
+  - Announcement
+  - Promo
+  - Warning
+- Components:
+  - Alert
+  - Button
+  - Icon
+  - Typography
 
 ## Article Cards
-- Basic
-- With image
-- With author
-- With tags
-- Featured
-- Compact
-- List
+- Variants:
+  - Basic
+  - With image
+  - With author
+  - With tags
+  - Featured
+  - Compact
+  - List
+- Components:
+  - Card
+  - Image
+  - Avatar
+  - Chips
+  - Button
+  - Typography
 
 ## Table of Contents
-- Simple
-- Sticky
+- Variants:
+  - Simple
+  - Sticky
+- Components:
+  - List
+  - Link
+  - Heading
 
 ## Comments
-- Basic
-- Threaded
+- Variants:
+  - Basic
+  - Threaded
+- Components:
+  - Avatar
+  - Input
+  - Textarea
+  - Button
+  - List
+  - Card
+  - Typography
 
 ## Navbars
-- Basic
-- With user info
-- With search
-- With menu
-- Collapsible
-- Vertical
-- Horizontal
+- Variants:
+  - Basic
+  - With user info
+  - With search
+  - With menu
+  - Collapsible
+  - Vertical
+  - Horizontal
+- Components:
+  - Button
+  - Icon
+  - Avatar
+  - Dropdown
+  - Link
+  - Badge
+  - Input (search)
 
 ## Headers
-- Basic
-- With actions
-- With breadcrumbs
-- With search
-- With avatar
-- Sticky
+- Variants:
+  - Basic
+  - With actions
+  - With breadcrumbs
+  - With search
+  - With avatar
+  - Sticky
+- Components:
+  - Heading
+  - Breadcrumbs
+  - Button
+  - Avatar
+  - Icon
+  - Input (search)
 
 ## Footers
-- Simple
-- With links
-- With social icons
-- With newsletter
+- Variants:
+  - Simple
+  - With links
+  - With social icons
+  - With newsletter
+- Components:
+  - Link
+  - Icon
+  - Button
+  - Input
+  - Typography
 
 ## Carousels
-- Image carousel
-- Card carousel
+- Variants:
+  - Image carousel
+  - Card carousel
+- Components:
+  - Carousel
+  - Image
+  - Card
+  - Button
+  - Icon
 
 ## Mega Menu
-- With images
-- With columns
+- Variants:
+  - With images
+  - With columns
+- Components:
+  - Dropdown
+  - Link
+  - Icon
+  - Image
+  - Grid
 
 ## Stats
-- Stat grid
-- Stat with icon
-- Stat with progress
-- Stat card
-- Stat list
-- Stat with chart
-- Stat with description
-- Stat with actions
-- Stat with avatar
-- Stat with badge
+- Variants:
+  - Stat grid
+  - Stat with icon
+  - Stat with progress
+  - Stat card
+  - Stat list
+  - Stat with chart
+  - Stat with description
+  - Stat with actions
+  - Stat with avatar
+  - Stat with badge
+- Components:
+  - Statistic
+  - Icon
+  - Card
+  - Progress
+  - Badge
 
 ## User Info and Controls
-- Profile menu
-- User card
-- User dropdown
-- User avatar with status
-- User settings
-- User stats
-- User switcher
-- User badge
-- User list
+- Variants:
+  - Profile menu
+  - User card
+  - User dropdown
+  - User avatar with status
+  - User settings
+  - User stats
+  - User switcher
+  - User badge
+  - User list
+- Components:
+  - Avatar
+  - Dropdown
+  - Button
+  - List
+  - Badge
+  - Card
+  - Switch
 
 ## Group/Layout
-- Stack
-- Grid
-- Flex
+- Variants:
+  - Stack
+  - Grid
+  - Flex
+- Components:
+  - Container
+  - Grid
+  - Flexbox Layouts
 
 ## Drag'n'Drop
-- Sortable list
-- Sortable grid
-- File upload (sortable)
+- Variants:
+  - Sortable list
+  - Sortable grid
+  - File upload (sortable)
+- Components:
+  - List
+  - Card
+  - Icon (drag handle)
+  - Dropzone
 
 ## Container
-- Responsive wrapper for page content
+- Variants:
+  - Responsive wrapper for page content
+- Components:
+  - Container
 
 ## Grid
-- Responsive grid layouts for arranging content
+- Variants:
+  - Responsive grid layouts for arranging content
+- Components:
+  - Grid
 
 ## Flexbox Layouts
-- Flexible row/column arrangements
+- Variants:
+  - Flexible row/column arrangements
+- Components:
+  - Flexbox Layouts
 
 ## Sidebar
-- Vertical navigation or content area
+- Variants:
+  - Vertical navigation or content area
+- Components:
+  - List
+  - Link
+  - Icon
+  - Button
+  - Avatar
 
 ## Section
-- Themed or separated page areas (with background, with divider)
+- Variants:
+  - Themed or separated page areas (with background, with divider)
+- Components:
+  - Container
+  - Heading
+  - Typography
+  - Divider
 
 ## Split Layout
-- Side-by-side content, e.g., image + text
+- Variants:
+  - Side-by-side content, e.g., image + text
+- Components:
+  - Container
+  - Grid
+  - Image
+  - Typography
+  - Button
 
 ## Responsive Columns
-- Multi-column layouts that adapt to screen size
+- Variants:
+  - Multi-column layouts that adapt to screen size
+- Components:
+  - Grid
+  - Card
+  - Typography
 
 ## Page Wrapper
-- Main layout container for the whole page
+- Variants:
+  - Main layout container for the whole page
+- Components:
+  - Container
 
 ## Cookie Consent Banner
-- Consent options
-- Dismiss button
+- Variants:
+  - Consent options
+  - Dismiss button
+- Components:
+  - Alert
+  - Button
+  - Typography
+  - Link
