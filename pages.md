@@ -1,107 +1,230 @@
 # NovyUI Pages
 
 ## Dashboard
-- Overview
-- Analytics
-- Sales
-- User activity
+- Id: Dashboard
+- Variants:
+  - Overview
+  - Analytics
+  - Sales
+  - User activity
+- Blocks:
+  - Navbars
+  - Headers
+  - Stats
+  - TableOfContents
+  - ArticleCards
+  - ActivityFeed
+  - Footers
 
 ## Authentication
-- Login
-- Register
-- Forgot password
-- Reset password
+- Id: Authentication
+- Variants:
+  - Login
+  - Register
+  - Forgot password
+  - Reset password
+- Blocks:
+  - Authentication
+  - Footers
 
 ## Profile
-- User profile
-- Edit profile
-- Account settings
+- Id: Profile
+- Variants:
+  - User profile
+  - Edit profile
+  - Account settings
+- Blocks:
+  - Headers
+  - UserInfoAndControls
+  - ArticleCards
+  - Footers
 
 ## Settings
-- General settings
-- Security
-- Notifications
-- Billing
+- Id: Settings
+- Variants:
+  - General settings
+  - Security
+  - Notifications
+  - Billing
+- Blocks:
+  - Headers
+  - UserInfoAndControls
+  - Footers
 
 ## E-commerce
-- Product listing
-- Product details
-- Cart
-- Checkout
-- Order history
-- Wishlist
+- Id: ECommerce
+- Variants:
+  - Product listing
+  - Product details
+  - Cart
+  - Checkout
+  - Order history
+  - Wishlist
+- Blocks:
+  - Navbars
+  - Headers
+  - ArticleCards
+  - TableOfContents
+  - Footers
 
 ## Blog
-- Blog home
-- Article/post
-- Author profile
-- Categories/tags
-- Comments
+- Id: Blog
+- Variants:
+  - Blog home
+  - Article/post
+  - Author profile
+  - Categories/tags
+  - Comments
+- Blocks:
+  - Navbars
+  - Headers
+  - ArticleCards
+  - TableOfContents
+  - Comments
+  - Footers
 
 ## Landing
-- Marketing homepage
-- Features
-- Pricing
-- Testimonials
-- Call to action
+- Id: Landing
+- Variants:
+  - Marketing homepage
+  - Features
+  - Pricing
+  - Testimonials
+  - Call to action
+- Blocks:
+  - Hero
+  - FeaturesSection
+  - Banners
+  - Testimonials
+  - PricingTable
+  - CallToActionSection
+  - Footers
 
 ## Error
-- 404 Not Found
-- 500 Internal Error
-- Maintenance
-- Access Denied
-- Coming Soon
+- Id: Error
+- Variants:
+  - 404 Not Found
+  - 500 Internal Error
+  - Maintenance
+  - Access Denied
+  - Coming Soon
+- Blocks:
+  - ErrorPages
+  - Footers
 
 ## Contact
-- Contact form
-- With map
-- Support/help
+- Id: Contact
+- Variants:
+  - Contact form
+  - With map
+  - Support/help
+- Blocks:
+  - ContactCardSection
+  - Footers
 
 ## FAQ
-- Frequently asked questions
-- Searchable FAQ
+- Id: FAQ
+- Variants:
+  - Frequently asked questions
+  - Searchable FAQ
+- Blocks:
+  - FrequentlyAskedQuestions
+  - Footers
 
 ## Onboarding
-- Welcome
-- Step-by-step guide
-- Completion
+- Id: Onboarding
+- Variants:
+  - Welcome
+  - Step-by-step guide
+  - Completion
+- Blocks:
+  - OnboardingSteps
+  - Footers
 
 ## Portfolio
-- Projects grid
-- Project details
+- Id: Portfolio
+- Variants:
+  - Projects grid
+  - Project details
+- Blocks:
+  - Hero
+  - ArticleCards
+  - Footers
 
 ## Team
-- Team members
-- Member profile
+- Id: Team
+- Variants:
+  - Team members
+  - Member profile
+- Blocks:
+  - TeamSection
+  - Footers
 
 ## App Shell
-- Sidebar layout
-- Topbar layout
-- Responsive shell
+- Id: AppShell
+- Variants:
+  - Sidebar layout
+  - Topbar layout
+  - Responsive shell
+- Blocks:
+  - Navbars
+  - Sidebar
+  - PageWrapper
+  - Footers
 
 ## Table/List
-- Data table
-- List with actions
-- Filterable/sortable table
+- Id: TableList
+- Variants:
+  - Data table
+  - List with actions
+  - Filterable/sortable table
+- Blocks:
+  - TableOfContents
+  - ArticleCards
+  - Footers
 
 ## Calendar
-- Month view
-- Week view
-- Event details
+- Id: CalendarPage
+- Variants:
+  - Month view
+  - Week view
+  - Event details
+- Blocks:
+  - Calendar
+  - Footers
 
 ## Activity
-- Activity feed
-- Notifications
+- Id: Activity
+- Variants:
+  - Activity feed
+  - Notifications
+- Blocks:
+  - ActivityFeed
+  - Footers
 
 ## Roadmap
-- Timeline
-- Milestones
+- Id: Roadmap
+- Variants:
+  - Timeline
+  - Milestones
+- Blocks:
+  - Roadmap
+  - Footers
 
 ## Download
-- App download
-- Resources
+- Id: Download
+- Variants:
+  - App download
+  - Resources
+- Blocks:
+  - AppDownloadSection
+  - Footers
 
 ## Legal
-- Privacy policy
-- Terms of service
+- Id: Legal
+- Variants:
+  - Privacy policy
+  - Terms of service
+- Blocks:
+  - Footers
 

@@ -1,6 +1,7 @@
 # NovyUI Blocks
 
 ## Hero
+- Id: Hero
 - Variants:
   - Basic hero
   - With image
@@ -17,6 +18,7 @@
   - Icon (optional)
 
 ## Features Section
+- Id: FeaturesSection
 - Variants:
   - Grid
   - With icons
@@ -32,6 +34,7 @@
   - Grid
 
 ## Authentication
+- Id: Authentication
 - Variants:
   - Login
   - Register
@@ -39,14 +42,15 @@
   - Reset password
 - Components:
   - Input
-  - Password Input
+  - PasswordInput
   - Button
   - Checkbox
   - Alert
   - Link
-  - Form Validation/Error Message
+  - FormValidationErrorMessage
 
 ## Frequently Asked Questions
+- Id: FrequentlyAskedQuestions
 - Variants:
   - Simple list
   - Accordion
@@ -59,6 +63,7 @@
   - Heading
 
 ## Contact Card/Section
+- Id: ContactCardSection
 - Variants:
   - With map
   - With social links
@@ -67,10 +72,11 @@
   - Textarea
   - Button
   - Icon
-  - Map/Location Picker
+  - MapLocationPicker
   - Alert
 
 ## Banners
+- Id: Banners
 - Variants:
   - Announcement
   - Promo
@@ -82,6 +88,7 @@
   - Typography
 
 ## Article Cards
+- Id: ArticleCards
 - Variants:
   - Basic
   - With image
@@ -99,6 +106,7 @@
   - Typography
 
 ## Table of Contents
+- Id: TableOfContents
 - Variants:
   - Simple
   - Sticky
@@ -108,6 +116,7 @@
   - Heading
 
 ## Comments
+- Id: Comments
 - Variants:
   - Basic
   - Threaded
@@ -121,6 +130,7 @@
   - Typography
 
 ## Navbars
+- Id: Navbars
 - Variants:
   - Basic
   - With user info
@@ -139,6 +149,7 @@
   - Input (search)
 
 ## Headers
+- Id: Headers
 - Variants:
   - Basic
   - With actions
@@ -155,6 +166,7 @@
   - Input (search)
 
 ## Footers
+- Id: Footers
 - Variants:
   - Simple
   - With links
@@ -168,6 +180,7 @@
   - Typography
 
 ## Carousels
+- Id: Carousels
 - Variants:
   - Image carousel
   - Card carousel
@@ -179,6 +192,7 @@
   - Icon
 
 ## Mega Menu
+- Id: MegaMenu
 - Variants:
   - With images
   - With columns
@@ -190,6 +204,7 @@
   - Grid
 
 ## Stats
+- Id: Stats
 - Variants:
   - Stat grid
   - Stat with icon
@@ -209,6 +224,7 @@
   - Badge
 
 ## User Info and Controls
+- Id: UserInfoAndControls
 - Variants:
   - Profile menu
   - User card
@@ -229,6 +245,7 @@
   - Switch
 
 ## Group/Layout
+- Id: GroupLayout
 - Variants:
   - Stack
   - Grid
@@ -236,9 +253,10 @@
 - Components:
   - Container
   - Grid
-  - Flexbox Layouts
+  - FlexboxLayouts
 
 ## Drag'n'Drop
+- Id: DragNDrop
 - Variants:
   - Sortable list
   - Sortable grid
@@ -247,27 +265,31 @@
   - List
   - Card
   - Icon (drag handle)
-  - Dropzone
+  - DropzoneUpload
 
 ## Container
+- Id: Container
 - Variants:
   - Responsive wrapper for page content
 - Components:
   - Container
 
 ## Grid
+- Id: Grid
 - Variants:
   - Responsive grid layouts for arranging content
 - Components:
   - Grid
 
 ## Flexbox Layouts
+- Id: FlexboxLayouts
 - Variants:
   - Flexible row/column arrangements
 - Components:
-  - Flexbox Layouts
+  - FlexboxLayouts
 
 ## Sidebar
+- Id: Sidebar
 - Variants:
   - Vertical navigation or content area
 - Components:
@@ -278,15 +300,17 @@
   - Avatar
 
 ## Section
+- Id: Section
 - Variants:
   - Themed or separated page areas (with background, with divider)
 - Components:
   - Container
   - Heading
   - Typography
-  - Divider
+  - DividerSeparator
 
 ## Split Layout
+- Id: SplitLayout
 - Variants:
   - Side-by-side content, e.g., image + text
 - Components:
@@ -297,6 +321,7 @@
   - Button
 
 ## Responsive Columns
+- Id: ResponsiveColumns
 - Variants:
   - Multi-column layouts that adapt to screen size
 - Components:
@@ -305,12 +330,14 @@
   - Typography
 
 ## Page Wrapper
+- Id: PageWrapper
 - Variants:
   - Main layout container for the whole page
 - Components:
   - Container
 
 ## Cookie Consent Banner
+- Id: CookieConsentBanner
 - Variants:
   - Consent options
   - Dismiss button
