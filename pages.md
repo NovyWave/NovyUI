@@ -49,7 +49,6 @@ A structural layout providing navigation, sidebar, and main content area for app
 - **Blocks:**
   - [Navbars](blocks.md#navbars)
   - [Sidebar](blocks.md#sidebar)
-  - [PageWrapper](blocks.md#page-wrapper)
   - [Footers](blocks.md#footers)
 ### Variants
 #### Sidebar layout

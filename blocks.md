@@ -14,16 +14,13 @@ This document provides an overview of all UI blocks available in NovyUI. Each bl
 - [Checkout](#checkout)
 - [Comments](#comments)
 - [Contact Card](#contact-card)
-- [Container](#container)
 - [Cookie Consent Banner](#cookie-consent-banner)
 - [Data Table](#data-table)
 - [Drag And Drop](#drag-and-drop)
 - [Error](#error)
 - [FAQ](#faq)
 - [Features Section](#features-section)
-- [Flexbox Layouts](#flexbox-layouts)
 - [Footers](#footers)
-- [Grid](#grid)
 - [Group Layout](#group-layout)
 - [Headers](#headers)
 - [Hero](#hero)
@@ -32,7 +29,6 @@ This document provides an overview of all UI blocks available in NovyUI. Each bl
 - [Navbars](#navbars)
 - [Onboarding Steps](#onboarding-steps)
 - [Order History](#order-history)
-- [Page Wrapper](#page-wrapper)
 - [Pricing Table](#pricing-table)
 - [Product Details](#product-details)
 - [Responsive Columns](#responsive-columns)
@@ -277,19 +273,6 @@ A section providing contact information and/or a form for users to reach out.
     - **Appearance:** Includes icons or links for social/contact methods.
     - **Behavior:** Social/contact links are clickable and may open external apps or sites.
 
-## Container
-A responsive wrapper that centers and constrains content width for consistent layouts.
-- **Id:** Container
-- **Appearance:** A responsive wrapper that centers and constrains content width. May include padding and background.
-- **Behavior:** Static. Adjusts size based on screen width and breakpoints.
-- **Components:**
-  - [Container](components.md#container)
-### Variants
-  - Responsive wrapper for page content
-    - **Id:** ResponsiveWrapper
-    - **Appearance:** Centers and constrains content with responsive width.
-    - **Behavior:** Adjusts layout responsively.
-
 ## Cookie Consent Banner
 A banner that informs users about cookie usage and requests their consent.
 - **Id:** CookieConsentBanner
@@ -400,19 +383,6 @@ A section that highlights key features, benefits, or selling points, often arran
     - **Appearance:** Features are listed vertically with minimal layout.
     - **Behavior:** Static; may support click to expand details.
 
-## Flexbox Layouts
-A layout system arranging children in a row or column with flexible sizing and alignment.
-- **Id:** FlexboxLayouts
-- **Appearance:** A layout system arranging children in a row or column with flexible sizing and alignment. May wrap or justify content.
-- **Behavior:** Static. Children are arranged according to flexbox rules. Supports responsive direction and alignment.
-- **Components:**
-  - [FlexboxLayouts](components.md#flexboxlayouts)
-### Variants
-  - Flexible row/column arrangements
-    - **Id:** FlexibleRowColumnArrangements
-    - **Appearance:** Children arranged in flexible rows or columns.
-    - **Behavior:** Layout adapts to available space.
-
 ## Footers
 A section at the bottom of a page containing links, copyright, and additional information.
 - **Id:** Footers
@@ -441,19 +411,6 @@ A section at the bottom of a page containing links, copyright, and additional in
     - **Id:** WithNewsletter
     - **Appearance:** Includes a newsletter signup form.
     - **Behavior:** Form submits email for newsletter subscription.
-
-## Grid
-A layout system dividing content into columns and rows with consistent spacing.
-- **Id:** Grid
-- **Appearance:** A layout system dividing content into columns and rows with consistent spacing. May be responsive and support gaps.
-- **Behavior:** Static. Children are placed in grid cells. Adjusts layout based on screen size.
-- **Components:**
-  - [Grid](components.md#grid)
-### Variants
-  - Responsive grid layouts for arranging content
-    - **Id:** ResponsiveGridLayouts
-    - **Appearance:** Content arranged in a responsive grid.
-    - **Behavior:** Grid adapts to screen size.
 
 ## Group Layout
 A container for arranging child elements in a stack, grid, or flexible layout.
@@ -647,19 +604,6 @@ A block for listing past orders and their details.
   - [TableOfContents](components.md#table-of-contents)
   - [Typography](components.md#typography)
   - [Button](components.md#button)
-
-## Page Wrapper
-A top-level container that wraps the entire page, providing background, padding, and layout constraints.
-- **Id:** PageWrapper
-- **Appearance:** A top-level container for the entire page, providing background, padding, and layout constraints.
-- **Behavior:** Static. Wraps all page content and ensures consistent spacing.
-- **Components:**
-  - [Container](components.md#container)
-### Variants
-  - Main layout container for the whole page
-    - **Id:** MainLayoutContainer
-    - **Appearance:** Full-page wrapper with consistent padding and background.
-    - **Behavior:** Static, wraps all content.
 
 ## Pricing Table
 A block for showing pricing plans and features.
