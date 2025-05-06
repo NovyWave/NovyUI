@@ -45,32 +45,32 @@ A grid or list of cards showcasing articles, blog posts, or news items.
 ### Variants
 #### Basic
 - **Id:** Basic
-- **Appearance Difference:** Minimal card with title and excerpt only.
-- **Behavior Difference:** Static display, no interactivity.
+- **Appearance:** Minimal card with title and excerpt only.
+- **Behavior:** Static display, no interactivity.
 #### With image
 - **Id:** WithImage
-- **Appearance Difference:** Card includes a featured image at the top or side.
-- **Behavior Difference:** Image may be clickable or open in a lightbox.
+- **Appearance:** Card includes a featured image at the top or side.
+- **Behavior:** Image may be clickable or open in a lightbox.
 #### With author
 - **Id:** WithAuthor
-- **Appearance Difference:** Card displays author avatar and name.
-- **Behavior Difference:** Author info may link to profile or filter by author.
+- **Appearance:** Card displays author avatar and name.
+- **Behavior:** Author info may link to profile or filter by author.
 #### With tags
 - **Id:** WithTags
-- **Appearance Difference:** Card displays tags or categories as chips.
-- **Behavior Difference:** Tags may be clickable to filter articles.
+- **Appearance:** Card displays tags or categories as chips.
+- **Behavior:** Tags may be clickable to filter articles.
 #### Featured
 - **Id:** Featured
-- **Appearance Difference:** Highlighted styling, larger or more prominent card.
-- **Behavior Difference:** May be prioritized in layout or carousel.
+- **Appearance:** Highlighted styling, larger or more prominent card.
+- **Behavior:** May be prioritized in layout or carousel.
 #### Compact
 - **Id:** Compact
-- **Appearance Difference:** Smaller card with condensed content.
-- **Behavior Difference:** Static, optimized for dense layouts.
+- **Appearance:** Smaller card with condensed content.
+- **Behavior:** Static, optimized for dense layouts.
 #### List
 - **Id:** List
-- **Appearance Difference:** Cards are arranged in a vertical list rather than a grid.
-- **Behavior Difference:** May support drag-and-drop or reordering.
+- **Appearance:** Cards are arranged in a vertical list rather than a grid.
+- **Behavior:** May support drag-and-drop or reordering.
 
 ## Authentication
 A block containing forms for user login, registration, or password management.
@@ -91,20 +91,20 @@ A block containing forms for user login, registration, or password management.
 ### Variants
 #### Login
 - **Id:** Login
-- **Appearance Difference:** Shows username/email and password fields, login button, and optional 'forgot password' link.
-- **Behavior Difference:** Submits credentials for authentication.
+- **Appearance:** Shows username/email and password fields, login button, and optional 'forgot password' link.
+- **Behavior:** Submits credentials for authentication.
 #### Register
 - **Id:** Register
-- **Appearance Difference:** Shows fields for new account creation (e.g., name, email, password, confirm password).
-- **Behavior Difference:** Submits registration data to create a new account.
+- **Appearance:** Shows fields for new account creation (e.g., name, email, password, confirm password).
+- **Behavior:** Submits registration data to create a new account.
 #### Forgot password
 - **Id:** ForgotPassword
-- **Appearance Difference:** Shows email input and submit button for password reset request.
-- **Behavior Difference:** Sends password reset instructions to email.
+- **Appearance:** Shows email input and submit button for password reset request.
+- **Behavior:** Sends password reset instructions to email.
 #### Reset password
 - **Id:** ResetPassword
-- **Appearance Difference:** Shows new password and confirm password fields.
-- **Behavior Difference:** Submits new password to reset account credentials.
+- **Appearance:** Shows new password and confirm password fields.
+- **Behavior:** Submits new password to reset account credentials.
 
 ## Banners
 A horizontal bar or box used to display important messages, promotions, or alerts.
@@ -119,16 +119,16 @@ A horizontal bar or box used to display important messages, promotions, or alert
 ### Variants
 #### Announcement
 - **Id:** Announcement
-- **Appearance Difference:** Neutral or info color, message text, and optional icon.
-- **Behavior Difference:** Static or may auto-dismiss after a timeout.
+- **Appearance:** Neutral or info color, message text, and optional icon.
+- **Behavior:** Static or may auto-dismiss after a timeout.
 #### Promo
 - **Id:** Promo
-- **Appearance Difference:** Highlighted with promotional color or style, may include call-to-action button.
-- **Behavior Difference:** May be clickable or dismissible.
+- **Appearance:** Highlighted with promotional color or style, may include call-to-action button.
+- **Behavior:** May be clickable or dismissible.
 #### Warning
 - **Id:** Warning
-- **Appearance Difference:** Warning color (e.g., yellow/orange), warning icon, and message.
-- **Behavior Difference:** May require user dismissal or action.
+- **Appearance:** Warning color (e.g., yellow/orange), warning icon, and message.
+- **Behavior:** May require user dismissal or action.
 
 ## Carousels
 A horizontally scrollable area for showcasing images, cards, or featured content.
@@ -144,12 +144,12 @@ A horizontally scrollable area for showcasing images, cards, or featured content
 ### Variants
 #### Image carousel
 - **Id:** ImageCarousel
-- **Appearance Difference:** Displays a series of images with navigation controls.
-- **Behavior Difference:** Users can scroll or swipe through images; may auto-advance.
+- **Appearance:** Displays a series of images with navigation controls.
+- **Behavior:** Users can scroll or swipe through images; may auto-advance.
 #### Card carousel
 - **Id:** CardCarousel
-- **Appearance Difference:** Displays cards (with text, images, or actions) in a carousel layout.
-- **Behavior Difference:** Users can scroll or swipe through cards; may support card actions.
+- **Appearance:** Displays cards (with text, images, or actions) in a carousel layout.
+- **Behavior:** Users can scroll or swipe through cards; may support card actions.
 
 ## Comments
 A section for displaying and submitting user comments, often with threading and moderation features.
@@ -167,12 +167,12 @@ A section for displaying and submitting user comments, often with threading and 
 ### Variants
   - Basic
     - **Id:** Basic
-    - **Appearance Difference:** Flat list of comments, no nesting.
-    - **Behavior Difference:** Users can add, edit, or delete their own comments.
+    - **Appearance:** Flat list of comments, no nesting.
+    - **Behavior:** Users can add, edit, or delete their own comments.
   - Threaded
     - **Id:** Threaded
-    - **Appearance Difference:** Comments can be nested to show replies.
-    - **Behavior Difference:** Users can reply to comments, creating threads.
+    - **Appearance:** Comments can be nested to show replies.
+    - **Behavior:** Users can reply to comments, creating threads.
 
 ## Contact Card/Section
 A section providing contact information and/or a form for users to reach out.
@@ -189,12 +189,12 @@ A section providing contact information and/or a form for users to reach out.
 ### Variants
   - With map
     - **Id:** WithMap
-    - **Appearance Difference:** Includes an embedded map next to or below the form.
-    - **Behavior Difference:** Map is interactive; user can select or view location.
+    - **Appearance:** Includes an embedded map next to or below the form.
+    - **Behavior:** Map is interactive; user can select or view location.
   - With social links
     - **Id:** WithSocialLinks
-    - **Appearance Difference:** Includes icons or links for social/contact methods.
-    - **Behavior Difference:** Social/contact links are clickable and may open external apps or sites.
+    - **Appearance:** Includes icons or links for social/contact methods.
+    - **Behavior:** Social/contact links are clickable and may open external apps or sites.
 
 ## Container
 A responsive wrapper that centers and constrains content width for consistent layouts.
@@ -206,8 +206,8 @@ A responsive wrapper that centers and constrains content width for consistent la
 ### Variants
   - Responsive wrapper for page content
     - **Id:** ResponsiveWrapper
-    - **Appearance Difference:** Centers and constrains content with responsive width.
-    - **Behavior Difference:** Adjusts layout responsively.
+    - **Appearance:** Centers and constrains content with responsive width.
+    - **Behavior:** Adjusts layout responsively.
 
 ## Cookie Consent Banner
 A banner that informs users about cookie usage and requests their consent.
@@ -222,12 +222,12 @@ A banner that informs users about cookie usage and requests their consent.
 ### Variants
   - Consent options
     - **Id:** ConsentOptions
-    - **Appearance Difference:** Banner with multiple consent choices (e.g., accept, reject, customize).
-    - **Behavior Difference:** User can select consent level; stores choice.
+    - **Appearance:** Banner with multiple consent choices (e.g., accept, reject, customize).
+    - **Behavior:** User can select consent level; stores choice.
   - Dismiss button
     - **Id:** DismissButton
-    - **Appearance Difference:** Banner with a single dismiss/accept button.
-    - **Behavior Difference:** User can dismiss banner with one click.
+    - **Appearance:** Banner with a single dismiss/accept button.
+    - **Behavior:** User can dismiss banner with one click.
 
 ## Drag and Drop
 A block enabling drag-and-drop sorting, reordering, or file uploads within a list or grid.
@@ -242,16 +242,16 @@ A block enabling drag-and-drop sorting, reordering, or file uploads within a lis
 ### Variants
   - Sortable list
     - **Id:** SortableList
-    - **Appearance Difference:** List of items with drag handles.
-    - **Behavior Difference:** Items can be reordered by dragging.
+    - **Appearance:** List of items with drag handles.
+    - **Behavior:** Items can be reordered by dragging.
   - Sortable grid
     - **Id:** SortableGrid
-    - **Appearance Difference:** Grid of items with drag handles.
-    - **Behavior Difference:** Items can be reordered by dragging in a grid layout.
+    - **Appearance:** Grid of items with drag handles.
+    - **Behavior:** Items can be reordered by dragging in a grid layout.
   - File upload (sortable)
     - **Id:** FileUploadSortable
-    - **Appearance Difference:** List or grid of uploaded files, each with drag handle.
-    - **Behavior Difference:** Files can be reordered by dragging; supports file upload actions.
+    - **Appearance:** List or grid of uploaded files, each with drag handle.
+    - **Behavior:** Files can be reordered by dragging; supports file upload actions.
 
 ## Features Section
 A section that highlights key features, benefits, or selling points, often arranged in a grid or list.
@@ -268,24 +268,24 @@ A section that highlights key features, benefits, or selling points, often arran
 ### Variants
   - Grid
     - **Id:** Grid
-    - **Appearance Difference:** Features are arranged in a grid layout.
-    - **Behavior Difference:** Static; may support responsive rearrangement.
+    - **Appearance:** Features are arranged in a grid layout.
+    - **Behavior:** Static; may support responsive rearrangement.
   - With icons
     - **Id:** WithIcons
-    - **Appearance Difference:** Each feature includes an icon.
-    - **Behavior Difference:** Icons visually reinforce feature meaning.
+    - **Appearance:** Each feature includes an icon.
+    - **Behavior:** Icons visually reinforce feature meaning.
   - With images
     - **Id:** WithImages
-    - **Appearance Difference:** Each feature includes an image or illustration.
-    - **Behavior Difference:** Images may be static or support lightbox/zoom.
+    - **Appearance:** Each feature includes an image or illustration.
+    - **Behavior:** Images may be static or support lightbox/zoom.
   - Steps
     - **Id:** Steps
-    - **Appearance Difference:** Features are presented as a numbered or sequential process.
-    - **Behavior Difference:** May highlight current step or animate transitions.
+    - **Appearance:** Features are presented as a numbered or sequential process.
+    - **Behavior:** May highlight current step or animate transitions.
   - List
     - **Id:** List
-    - **Appearance Difference:** Features are listed vertically with minimal layout.
-    - **Behavior Difference:** Static; may support click to expand details.
+    - **Appearance:** Features are listed vertically with minimal layout.
+    - **Behavior:** Static; may support click to expand details.
 
 ## Flexbox Layouts
 A layout system arranging children in a row or column with flexible sizing and alignment.
@@ -297,8 +297,8 @@ A layout system arranging children in a row or column with flexible sizing and a
 ### Variants
   - Flexible row/column arrangements
     - **Id:** FlexibleRowColumnArrangements
-    - **Appearance Difference:** Children arranged in flexible rows or columns.
-    - **Behavior Difference:** Layout adapts to available space.
+    - **Appearance:** Children arranged in flexible rows or columns.
+    - **Behavior:** Layout adapts to available space.
 
 ## Footers
 A section at the bottom of a page containing links, copyright, and additional information.
@@ -314,20 +314,20 @@ A section at the bottom of a page containing links, copyright, and additional in
 ### Variants
   - Simple
     - **Id:** Simple
-    - **Appearance Difference:** Minimal layout with just copyright and a few links.
-    - **Behavior Difference:** Static, no interactive elements except links.
+    - **Appearance:** Minimal layout with just copyright and a few links.
+    - **Behavior:** Static, no interactive elements except links.
   - With links
     - **Id:** WithLinks
-    - **Appearance Difference:** Includes additional navigation or resource links.
-    - **Behavior Difference:** Links are clickable for navigation.
+    - **Appearance:** Includes additional navigation or resource links.
+    - **Behavior:** Links are clickable for navigation.
   - With social icons
     - **Id:** WithSocialIcons
-    - **Appearance Difference:** Displays social media icons.
-    - **Behavior Difference:** Icons link to social profiles.
+    - **Appearance:** Displays social media icons.
+    - **Behavior:** Icons link to social profiles.
   - With newsletter
     - **Id:** WithNewsletter
-    - **Appearance Difference:** Includes a newsletter signup form.
-    - **Behavior Difference:** Form submits email for newsletter subscription.
+    - **Appearance:** Includes a newsletter signup form.
+    - **Behavior:** Form submits email for newsletter subscription.
 
 ## Grid
 A layout system dividing content into columns and rows with consistent spacing.
@@ -339,8 +339,8 @@ A layout system dividing content into columns and rows with consistent spacing.
 ### Variants
   - Responsive grid layouts for arranging content
     - **Id:** ResponsiveGridLayouts
-    - **Appearance Difference:** Content arranged in a responsive grid.
-    - **Behavior Difference:** Grid adapts to screen size.
+    - **Appearance:** Content arranged in a responsive grid.
+    - **Behavior:** Grid adapts to screen size.
 
 ## Group Layout
 A container for arranging child elements in a stack, grid, or flexible layout.
@@ -354,16 +354,16 @@ A container for arranging child elements in a stack, grid, or flexible layout.
 ### Variants
   - Stack
     - **Id:** Stack
-    - **Appearance Difference:** Children are arranged vertically with spacing.
-    - **Behavior Difference:** Static vertical layout.
+    - **Appearance:** Children are arranged vertically with spacing.
+    - **Behavior:** Static vertical layout.
   - Grid
     - **Id:** Grid
-    - **Appearance Difference:** Children are arranged in a grid with rows and columns.
-    - **Behavior Difference:** Static grid layout.
+    - **Appearance:** Children are arranged in a grid with rows and columns.
+    - **Behavior:** Static grid layout.
   - Flex
     - **Id:** Flex
-    - **Appearance Difference:** Children are arranged in a row or column with flexible sizing.
-    - **Behavior Difference:** Static flexbox layout.
+    - **Appearance:** Children are arranged in a row or column with flexible sizing.
+    - **Behavior:** Static flexbox layout.
 
 ## Headers
 A section at the top of a page or card, typically containing a title, actions, and navigation aids.
@@ -380,28 +380,28 @@ A section at the top of a page or card, typically containing a title, actions, a
 ### Variants
   - Basic
     - **Id:** Basic
-    - **Appearance Difference:** Simple header with title only.
-    - **Behavior Difference:** Static, no actions or navigation.
+    - **Appearance:** Simple header with title only.
+    - **Behavior:** Static, no actions or navigation.
   - With actions
     - **Id:** WithActions
-    - **Appearance Difference:** Includes action buttons (e.g., add, edit, delete).
-    - **Behavior Difference:** Actions trigger navigation or open dialogs.
+    - **Appearance:** Includes action buttons (e.g., add, edit, delete).
+    - **Behavior:** Actions trigger navigation or open dialogs.
   - With breadcrumbs
     - **Id:** WithBreadcrumbs
-    - **Appearance Difference:** Includes breadcrumb navigation below or beside the title.
-    - **Behavior Difference:** Breadcrumbs are clickable for navigation.
+    - **Appearance:** Includes breadcrumb navigation below or beside the title.
+    - **Behavior:** Breadcrumbs are clickable for navigation.
   - With search
     - **Id:** WithSearch
-    - **Appearance Difference:** Includes a search input field.
-    - **Behavior Difference:** Allows searching from the header.
+    - **Appearance:** Includes a search input field.
+    - **Behavior:** Allows searching from the header.
   - With avatar
     - **Id:** WithAvatar
-    - **Appearance Difference:** Includes user avatar or profile picture.
-    - **Behavior Difference:** Avatar may open a user menu or profile.
+    - **Appearance:** Includes user avatar or profile picture.
+    - **Behavior:** Avatar may open a user menu or profile.
   - Sticky
     - **Id:** Sticky
-    - **Appearance Difference:** Header remains fixed at the top of the page when scrolling.
-    - **Behavior Difference:** Always visible during scroll.
+    - **Appearance:** Header remains fixed at the top of the page when scrolling.
+    - **Behavior:** Always visible during scroll.
 
 ## Hero
 A prominent section at the top of a page, typically featuring a headline, supporting text, and a call-to-action.
@@ -418,28 +418,28 @@ A prominent section at the top of a page, typically featuring a headline, suppor
 ### Variants
   - Basic hero
     - **Id:** BasicHero
-    - **Appearance Difference:** Standard layout with heading, text, and button, no image or special styling.
-    - **Behavior Difference:** Static, no animation or interactivity beyond button action.
+    - **Appearance:** Standard layout with heading, text, and button, no image or special styling.
+    - **Behavior:** Static, no animation or interactivity beyond button action.
   - With image
     - **Id:** WithImage
-    - **Appearance Difference:** Includes a prominent image or illustration alongside text.
-    - **Behavior Difference:** Image may animate or be interactive (e.g., lightbox), otherwise static.
+    - **Appearance:** Includes a prominent image or illustration alongside text.
+    - **Behavior:** Image may animate or be interactive (e.g., lightbox), otherwise static.
   - With actions
     - **Id:** WithActions
-    - **Appearance Difference:** Includes multiple call-to-action buttons or links.
-    - **Behavior Difference:** Multiple actions can be triggered from the hero.
+    - **Appearance:** Includes multiple call-to-action buttons or links.
+    - **Behavior:** Multiple actions can be triggered from the hero.
   - Centered
     - **Id:** Centered
-    - **Appearance Difference:** Content is centered both vertically and horizontally.
-    - **Behavior Difference:** No behavioral difference, just layout.
+    - **Appearance:** Content is centered both vertically and horizontally.
+    - **Behavior:** No behavioral difference, just layout.
   - Split
     - **Id:** Split
-    - **Appearance Difference:** Content and image are split into two columns.
-    - **Behavior Difference:** Responsive stacking on small screens.
+    - **Appearance:** Content and image are split into two columns.
+    - **Behavior:** Responsive stacking on small screens.
   - Minimal
     - **Id:** Minimal
-    - **Appearance Difference:** Reduced styling, minimal text and elements.
-    - **Behavior Difference:** No behavioral difference, just minimal appearance.
+    - **Appearance:** Reduced styling, minimal text and elements.
+    - **Behavior:** No behavioral difference, just minimal appearance.
 
 ## Mega Menu
 A large dropdown menu with multiple columns, categories, and rich content for site navigation.
@@ -455,12 +455,12 @@ A large dropdown menu with multiple columns, categories, and rich content for si
 ### Variants
   - With images
     - **Id:** WithImages
-    - **Appearance Difference:** Includes images or illustrations in menu columns.
-    - **Behavior Difference:** Images may be clickable or static.
+    - **Appearance:** Includes images or illustrations in menu columns.
+    - **Behavior:** Images may be clickable or static.
   - With columns
     - **Id:** WithColumns
-    - **Appearance Difference:** Menu is organized into multiple columns for categories or sections.
-    - **Behavior Difference:** Columns group related links for easier navigation.
+    - **Appearance:** Menu is organized into multiple columns for categories or sections.
+    - **Behavior:** Columns group related links for easier navigation.
 
 ## Navbars
 A horizontal or vertical navigation bar providing links to main sections of a site or app.
@@ -478,32 +478,32 @@ A horizontal or vertical navigation bar providing links to main sections of a si
 ### Variants
   - Basic
     - **Id:** Basic
-    - **Appearance Difference:** Simple bar with links and logo only.
-    - **Behavior Difference:** Static navigation, no dropdowns or user info.
+    - **Appearance:** Simple bar with links and logo only.
+    - **Behavior:** Static navigation, no dropdowns or user info.
   - With user info
     - **Id:** WithUserInfo
-    - **Appearance Difference:** Includes user avatar and name.
-    - **Behavior Difference:** User info may open a dropdown or menu.
+    - **Appearance:** Includes user avatar and name.
+    - **Behavior:** User info may open a dropdown or menu.
   - With search
     - **Id:** WithSearch
-    - **Appearance Difference:** Includes a search input field.
-    - **Behavior Difference:** Allows searching from the navbar.
+    - **Appearance:** Includes a search input field.
+    - **Behavior:** Allows searching from the navbar.
   - With menu
     - **Id:** WithMenu
-    - **Appearance Difference:** Includes dropdown or mega menu.
-    - **Behavior Difference:** Dropdown/mega menu opens on click/hover.
+    - **Appearance:** Includes dropdown or mega menu.
+    - **Behavior:** Dropdown/mega menu opens on click/hover.
   - Collapsible
     - **Id:** Collapsible
-    - **Appearance Difference:** Collapses into a hamburger menu on small screens.
-    - **Behavior Difference:** Menu toggles open/close on mobile.
+    - **Appearance:** Collapses into a hamburger menu on small screens.
+    - **Behavior:** Menu toggles open/close on mobile.
   - Vertical
     - **Id:** Vertical
-    - **Appearance Difference:** Arranged vertically on the side of the page.
-    - **Behavior Difference:** Navigation links stack vertically.
+    - **Appearance:** Arranged vertically on the side of the page.
+    - **Behavior:** Navigation links stack vertically.
   - Horizontal
     - **Id:** Horizontal
-    - **Appearance Difference:** Arranged horizontally at the top of the page.
-    - **Behavior Difference:** Navigation links align in a row.
+    - **Appearance:** Arranged horizontally at the top of the page.
+    - **Behavior:** Navigation links align in a row.
 
 ## Page Wrapper
 A top-level container that wraps the entire page, providing background, padding, and layout constraints.
@@ -515,8 +515,8 @@ A top-level container that wraps the entire page, providing background, padding,
 ### Variants
   - Main layout container for the whole page
     - **Id:** MainLayoutContainer
-    - **Appearance Difference:** Full-page wrapper with consistent padding and background.
-    - **Behavior Difference:** Static, wraps all content.
+    - **Appearance:** Full-page wrapper with consistent padding and background.
+    - **Behavior:** Static, wraps all content.
 
 ## Responsive Columns
 A multi-column layout that adapts to screen size, stacking columns vertically on small screens.
@@ -530,8 +530,8 @@ A multi-column layout that adapts to screen size, stacking columns vertically on
 ### Variants
   - Multi-column layouts that adapt to screen size
     - **Id:** MultiColumnLayouts
-    - **Appearance Difference:** Multiple columns that stack on small screens.
-    - **Behavior Difference:** Columns rearrange responsively.
+    - **Appearance:** Multiple columns that stack on small screens.
+    - **Behavior:** Columns rearrange responsively.
 
 ## Section
 A content area used to separate and organize different parts of a page.
@@ -546,8 +546,8 @@ A content area used to separate and organize different parts of a page.
 ### Variants
   - Themed or separated page areas (with background, with divider)
     - **Id:** ThemedOrSeparatedPageAreas
-    - **Appearance Difference:** Section with themed background or divider.
-    - **Behavior Difference:** Static or may support expand/collapse.
+    - **Appearance:** Section with themed background or divider.
+    - **Behavior:** Static or may support expand/collapse.
 
 ## Sidebar
 A vertical panel providing navigation links, actions, or additional content alongside the main area.
@@ -563,8 +563,8 @@ A vertical panel providing navigation links, actions, or additional content alon
 ### Variants
   - Vertical navigation or content area
     - **Id:** VerticalNavigationOrContentArea
-    - **Appearance Difference:** Vertical panel with navigation links and content.
-    - **Behavior Difference:** Navigation links stack vertically; may expand/collapse.
+    - **Appearance:** Vertical panel with navigation links and content.
+    - **Behavior:** Navigation links stack vertically; may expand/collapse.
 
 ## Split Layout
 A layout dividing content into two or more columns, often with image and text side by side.
@@ -580,8 +580,8 @@ A layout dividing content into two or more columns, often with image and text si
 ### Variants
   - Side-by-side content, e.g., image + text
     - **Id:** SideBySideContent
-    - **Appearance Difference:** Two columns, one with image, one with text.
-    - **Behavior Difference:** Columns stack on small screens.
+    - **Appearance:** Two columns, one with image, one with text.
+    - **Behavior:** Columns stack on small screens.
 
 ## Stats
 A section displaying key metrics, statistics, or trends, often in a grid or card layout.
@@ -597,44 +597,44 @@ A section displaying key metrics, statistics, or trends, often in a grid or card
 ### Variants
   - Stat grid
     - **Id:** StatGrid
-    - **Appearance Difference:** Statistics are arranged in a grid layout.
-    - **Behavior Difference:** Static or may animate numbers.
+    - **Appearance:** Statistics are arranged in a grid layout.
+    - **Behavior:** Static or may animate numbers.
   - Stat with icon
     - **Id:** StatWithIcon
-    - **Appearance Difference:** Each stat includes an icon.
-    - **Behavior Difference:** Icon visually reinforces the stat meaning.
+    - **Appearance:** Each stat includes an icon.
+    - **Behavior:** Icon visually reinforces the stat meaning.
   - Stat with progress
     - **Id:** StatWithProgress
-    - **Appearance Difference:** Includes a progress bar or indicator.
-    - **Behavior Difference:** Progress bar animates to show value.
+    - **Appearance:** Includes a progress bar or indicator.
+    - **Behavior:** Progress bar animates to show value.
   - Stat card
     - **Id:** StatCard
-    - **Appearance Difference:** Each stat is displayed in a card with border or shadow.
-    - **Behavior Difference:** Card may be clickable for more details.
+    - **Appearance:** Each stat is displayed in a card with border or shadow.
+    - **Behavior:** Card may be clickable for more details.
   - Stat list
     - **Id:** StatList
-    - **Appearance Difference:** Statistics are listed vertically.
-    - **Behavior Difference:** Static, no interactivity.
+    - **Appearance:** Statistics are listed vertically.
+    - **Behavior:** Static, no interactivity.
   - Stat with chart
     - **Id:** StatWithChart
-    - **Appearance Difference:** Includes a small chart or sparkline.
-    - **Behavior Difference:** Chart animates or updates with data.
+    - **Appearance:** Includes a small chart or sparkline.
+    - **Behavior:** Chart animates or updates with data.
   - Stat with description
     - **Id:** StatWithDescription
-    - **Appearance Difference:** Includes a descriptive text below the stat.
-    - **Behavior Difference:** Static, provides additional context.
+    - **Appearance:** Includes a descriptive text below the stat.
+    - **Behavior:** Static, provides additional context.
   - Stat with actions
     - **Id:** StatWithActions
-    - **Appearance Difference:** Includes action buttons or links.
-    - **Behavior Difference:** Actions trigger navigation or updates.
+    - **Appearance:** Includes action buttons or links.
+    - **Behavior:** Actions trigger navigation or updates.
   - Stat with avatar
     - **Id:** StatWithAvatar
-    - **Appearance Difference:** Includes an avatar or user image.
-    - **Behavior Difference:** Avatar may link to user profile.
+    - **Appearance:** Includes an avatar or user image.
+    - **Behavior:** Avatar may link to user profile.
   - Stat with badge
     - **Id:** StatWithBadge
-    - **Appearance Difference:** Includes a badge to indicate status or change.
-    - **Behavior Difference:** Badge updates dynamically with status.
+    - **Appearance:** Includes a badge to indicate status or change.
+    - **Behavior:** Badge updates dynamically with status.
 
 ## Table of Contents
 A navigational block listing links to sections within a page for easy access.
@@ -648,12 +648,12 @@ A navigational block listing links to sections within a page for easy access.
 ### Variants
   - Simple
     - **Id:** Simple
-    - **Appearance Difference:** Basic list of links, no sticky or advanced styling.
-    - **Behavior Difference:** Static navigation, no highlight or sticky behavior.
+    - **Appearance:** Basic list of links, no sticky or advanced styling.
+    - **Behavior:** Static navigation, no highlight or sticky behavior.
   - Sticky
     - **Id:** Sticky
-    - **Appearance Difference:** List is fixed to the viewport as user scrolls.
-    - **Behavior Difference:** Remains visible while scrolling, may highlight active section.
+    - **Appearance:** List is fixed to the viewport as user scrolls.
+    - **Behavior:** Remains visible while scrolling, may highlight active section.
 
 ## TeamSection
 A section showcasing team members, their roles, and contact information.
@@ -670,12 +670,12 @@ A section showcasing team members, their roles, and contact information.
 ### Variants
   - Grid
     - **Id:** Grid
-    - **Appearance Difference:** Team members are arranged in a grid layout.
-    - **Behavior Difference:** Static; may support responsive rearrangement.
+    - **Appearance:** Team members are arranged in a grid layout.
+    - **Behavior:** Static; may support responsive rearrangement.
   - List
     - **Id:** List
-    - **Appearance Difference:** Team members are listed vertically.
-    - **Behavior Difference:** Static; may support click to expand details.
+    - **Appearance:** Team members are listed vertically.
+    - **Behavior:** Static; may support click to expand details.
 
 ## User Info and Controls
 A block presenting user profile information and related actions or settings.
@@ -694,37 +694,37 @@ A block presenting user profile information and related actions or settings.
 ### Variants
   - Profile menu
     - **Id:** ProfileMenu
-    - **Appearance Difference:** Dropdown or menu with user actions (profile, logout, etc.).
-    - **Behavior Difference:** Menu opens on click; actions trigger navigation or dialogs.
+    - **Appearance:** Dropdown or menu with user actions (profile, logout, etc.).
+    - **Behavior:** Menu opens on click; actions trigger navigation or dialogs.
   - User card
     - **Id:** UserCard
-    - **Appearance Difference:** Card layout with user info and controls.
-    - **Behavior Difference:** Card may be clickable or support inline actions.
+    - **Appearance:** Card layout with user info and controls.
+    - **Behavior:** Card may be clickable or support inline actions.
   - User dropdown
     - **Id:** UserDropdown
-    - **Appearance Difference:** Dropdown with user info and settings.
-    - **Behavior Difference:** Dropdown opens on click; settings/actions available.
+    - **Appearance:** Dropdown with user info and settings.
+    - **Behavior:** Dropdown opens on click; settings/actions available.
   - User avatar with status
     - **Id:** UserAvatarWithStatus
-    - **Appearance Difference:** Avatar includes a status indicator (dot, color, etc.).
-    - **Behavior Difference:** Status updates in real time.
+    - **Appearance:** Avatar includes a status indicator (dot, color, etc.).
+    - **Behavior:** Status updates in real time.
   - User settings
     - **Id:** UserSettings
-    - **Appearance Difference:** Section or modal for user preferences/settings.
-    - **Behavior Difference:** Allows updating and saving settings.
+    - **Appearance:** Section or modal for user preferences/settings.
+    - **Behavior:** Allows updating and saving settings.
   - User stats
     - **Id:** UserStats
-    - **Appearance Difference:** Displays user-related statistics (posts, followers, etc.).
-    - **Behavior Difference:** Stats update dynamically.
+    - **Appearance:** Displays user-related statistics (posts, followers, etc.).
+    - **Behavior:** Stats update dynamically.
   - User switcher
     - **Id:** UserSwitcher
-    - **Appearance Difference:** Control to switch between multiple users/accounts.
-    - **Behavior Difference:** Changes active user context.
+    - **Appearance:** Control to switch between multiple users/accounts.
+    - **Behavior:** Changes active user context.
   - User badge
     - **Id:** UserBadge
-    - **Appearance Difference:** Badge or label indicating user role/status.
-    - **Behavior Difference:** Badge updates with user status/role.
+    - **Appearance:** Badge or label indicating user role/status.
+    - **Behavior:** Badge updates with user status/role.
   - User list
     - **Id:** UserList
-    - **Appearance Difference:** List of users with avatars and names.
-    - **Behavior Difference:** List may be selectable or support actions.
+    - **Appearance:** List of users with avatars and names.
+    - **Behavior:** List may be selectable or support actions.

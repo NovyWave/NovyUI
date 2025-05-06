@@ -34,12 +34,12 @@ A feed page showing recent activity, notifications, or events, often with filter
 ### Variants
 #### Activity feed
 - **Id:** ActivityFeed
-- **Appearance Difference:** List of recent activities with timestamps.
-- **Behavior Difference:** Updates dynamically with new activity.
+- **Appearance:** List of recent activities with timestamps.
+- **Behavior:** Updates dynamically with new activity.
 #### Notifications
 - **Id:** Notifications
-- **Appearance Difference:** List of notifications with timestamps.
-- **Behavior Difference:** Supports marking notifications as read.
+- **Appearance:** List of notifications with timestamps.
+- **Behavior:** Supports marking notifications as read.
 
 ## App Shell
 A structural layout providing navigation, sidebar, and main content area for app-like experiences.
@@ -54,16 +54,16 @@ A structural layout providing navigation, sidebar, and main content area for app
 ### Variants
 #### Sidebar layout
 - **Id:** SidebarLayout
-- **Appearance Difference:** Layout with a collapsible sidebar and main content area.
-- **Behavior Difference:** Sidebar can be collapsed or expanded.
+- **Appearance:** Layout with a collapsible sidebar and main content area.
+- **Behavior:** Sidebar can be collapsed or expanded.
 #### Topbar layout
 - **Id:** TopbarLayout
-- **Appearance Difference:** Layout with a topbar and main content area.
-- **Behavior Difference:** Topbar contains navigation links and user info.
+- **Appearance:** Layout with a topbar and main content area.
+- **Behavior:** Topbar contains navigation links and user info.
 #### Responsive shell
 - **Id:** ResponsiveShell
-- **Appearance Difference:** Responsive layout that adapts to different screen sizes.
-- **Behavior Difference:** Supports responsive design and navigation.
+- **Appearance:** Responsive layout that adapts to different screen sizes.
+- **Behavior:** Supports responsive design and navigation.
 
 ## Authentication
 A page for user login, registration, and password management, providing secure access to the application.
@@ -76,20 +76,20 @@ A page for user login, registration, and password management, providing secure a
 ### Variants
 #### Login
 - **Id:** Login
-- **Appearance Difference:** Standard login form with email/username and password fields.
-- **Behavior Difference:** Validates credentials and redirects on success.
+- **Appearance:** Standard login form with email/username and password fields.
+- **Behavior:** Validates credentials and redirects on success.
 #### Register
 - **Id:** Register
-- **Appearance Difference:** Registration form with additional fields for user details.
-- **Behavior Difference:** Validates input, creates account, and may send confirmation email.
+- **Appearance:** Registration form with additional fields for user details.
+- **Behavior:** Validates input, creates account, and may send confirmation email.
 #### Forgot password
 - **Id:** ForgotPassword
-- **Appearance Difference:** Form to enter email for password reset link.
-- **Behavior Difference:** Sends password reset link to the provided email.
+- **Appearance:** Form to enter email for password reset link.
+- **Behavior:** Sends password reset link to the provided email.
 #### Reset password
 - **Id:** ResetPassword
-- **Appearance Difference:** Form to enter new password after clicking reset link.
-- **Behavior Difference:** Validates and updates the password.
+- **Appearance:** Form to enter new password after clicking reset link.
+- **Behavior:** Validates and updates the password.
 
 ## Blog
 A content-driven page listing articles, with support for reading, commenting, and filtering posts.
@@ -106,24 +106,24 @@ A content-driven page listing articles, with support for reading, commenting, an
 ### Variants
 #### Blog home
 - **Id:** BlogHome
-- **Appearance Difference:** List or grid of articles with images and excerpts.
-- **Behavior Difference:** Allows filtering and pagination.
+- **Appearance:** List or grid of articles with images and excerpts.
+- **Behavior:** Allows filtering and pagination.
 #### Article Detail
 - **Id:** ArticleDetail
-- **Appearance Difference:** Full content of a single article with comments section.
-- **Behavior Difference:** Allows commenting and sharing.
+- **Appearance:** Full content of a single article with comments section.
+- **Behavior:** Allows commenting and sharing.
 #### Author profile
 - **Id:** AuthorProfile
-- **Appearance Difference:** Profile of the author with bio and list of articles.
-- **Behavior Difference:** Static display of author information only.
+- **Appearance:** Profile of the author with bio and list of articles.
+- **Behavior:** Static display of author information only.
 #### Categories and Tags
 - **Id:** CategoriesAndTags
-- **Appearance Difference:** List of categories or tags for filtering articles.
-- **Behavior Difference:** Allows filtering articles by category or tag.
+- **Appearance:** List of categories or tags for filtering articles.
+- **Behavior:** Allows filtering articles by category or tag.
 #### Comments
 - **Id:** Comments
-- **Appearance Difference:** List of comments with input field for new comments.
-- **Behavior Difference:** Allows adding and replying to comments.
+- **Appearance:** List of comments with input field for new comments.
+- **Behavior:** Allows adding and replying to comments.
 
 ## Calendar Page
 A scheduling page with calendar views, event lists, and event management features.
@@ -136,16 +136,16 @@ A scheduling page with calendar views, event lists, and event management feature
 ### Variants
 #### Month view
 - **Id:** MonthView
-- **Appearance Difference:** Calendar view showing the entire month.
-- **Behavior Difference:** Allows viewing and adding events.
+- **Appearance:** Calendar view showing the entire month.
+- **Behavior:** Allows viewing and adding events.
 #### Week view
 - **Id:** WeekView
-- **Appearance Difference:** Calendar view showing the week.
-- **Behavior Difference:** Allows viewing and adding events.
+- **Appearance:** Calendar view showing the week.
+- **Behavior:** Allows viewing and adding events.
 #### Event details
 - **Id:** EventDetails
-- **Appearance Difference:** Detailed view of a single event.
-- **Behavior Difference:** Allows editing and deleting events.
+- **Appearance:** Detailed view of a single event.
+- **Behavior:** Allows editing and deleting events.
 
 ## Contact
 A page for users to get in touch, featuring a contact form, details, and optional map or links.
@@ -158,16 +158,16 @@ A page for users to get in touch, featuring a contact form, details, and optiona
 ### Variants
 #### Contact form
 - **Id:** ContactForm
-- **Appearance Difference:** Standard contact form with input fields.
-- **Behavior Difference:** Submits form data and shows validation messages.
+- **Appearance:** Standard contact form with input fields.
+- **Behavior:** Submits form data and shows validation messages.
 #### With map
 - **Id:** WithMap
-- **Appearance Difference:** Contact form with an embedded map.
-- **Behavior Difference:** Submits form data and shows validation messages.
+- **Appearance:** Contact form with an embedded map.
+- **Behavior:** Submits form data and shows validation messages.
 #### Support/help
 - **Id:** SupportHelp
-- **Appearance Difference:** Contact form with additional fields for support queries.
-- **Behavior Difference:** Submits form data and shows validation messages.
+- **Appearance:** Contact form with additional fields for support queries.
+- **Behavior:** Submits form data and shows validation messages.
 
 ## Dashboard
 A summary page displaying key metrics, charts, and recent activity for quick insights and navigation.
@@ -185,20 +185,20 @@ A summary page displaying key metrics, charts, and recent activity for quick ins
 ### Variants
 #### Overview
 - **Id:** Overview
-- **Appearance Difference:** Shows a summary of key metrics and widgets in a grid or card layout.
-- **Behavior Difference:** Static display or periodically refreshed; provides a high-level snapshot only.
+- **Appearance:** Shows a summary of key metrics and widgets in a grid or card layout.
+- **Behavior:** Static display or periodically refreshed; provides a high-level snapshot only.
 #### Analytics
 - **Id:** Analytics
-- **Appearance Difference:** Focuses on charts, graphs, and data visualizations.
-- **Behavior Difference:** Interactive charts with filtering and drill-down capabilities.
+- **Appearance:** Focuses on charts, graphs, and data visualizations.
+- **Behavior:** Interactive charts with filtering and drill-down capabilities.
 #### Sales
 - **Id:** Sales
-- **Appearance Difference:** Highlights sales figures, revenue, and related KPIs in a dedicated section.
-- **Behavior Difference:** Includes sales filters, time range selectors, and dynamic updates.
+- **Appearance:** Highlights sales figures, revenue, and related KPIs in a dedicated section.
+- **Behavior:** Includes sales filters, time range selectors, and dynamic updates.
 #### User activity
 - **Id:** UserActivity
-- **Appearance Difference:** Displays recent user actions, activity feeds, or engagement stats.
-- **Behavior Difference:** Updates in real time or on refresh; supports filtering by user or type.
+- **Appearance:** Displays recent user actions, activity feeds, or engagement stats.
+- **Behavior:** Updates in real time or on refresh; supports filtering by user or type.
 
 ## Data Table
 A data-centric page for displaying tables or lists with filtering, sorting, and actions.
@@ -212,16 +212,16 @@ A data-centric page for displaying tables or lists with filtering, sorting, and 
 ### Variants
 #### Data table
 - **Id:** DataTable
-- **Appearance Difference:** Table with rows and columns of data.
-- **Behavior Difference:** Supports sorting and filtering of data.
+- **Appearance:** Table with rows and columns of data.
+- **Behavior:** Supports sorting and filtering of data.
 #### List with actions
 - **Id:** ListWithActions
-- **Appearance Difference:** List of items with action buttons.
-- **Behavior Difference:** Supports inline actions on list items.
+- **Appearance:** List of items with action buttons.
+- **Behavior:** Supports inline actions on list items.
 #### Filterable and Sortable Table
 - **Id:** FilterableAndSortableTable
-- **Appearance Difference:** Table with filters and sorting options.
-- **Behavior Difference:** Supports filtering and sorting of data.
+- **Appearance:** Table with filters and sorting options.
+- **Behavior:** Supports filtering and sorting of data.
 
 ## Download
 A page offering downloads for apps or resources, with links, QR codes, and instructions.
@@ -234,12 +234,12 @@ A page offering downloads for apps or resources, with links, QR codes, and instr
 ### Variants
 #### App download
 - **Id:** AppDownload
-- **Appearance Difference:** List of download links or buttons for apps.
-- **Behavior Difference:** Clicking a button starts the download.
+- **Appearance:** List of download links or buttons for apps.
+- **Behavior:** Clicking a button starts the download.
 #### Resources
 - **Id:** Resources
-- **Appearance Difference:** List of downloadable resources with descriptions.
-- **Behavior Difference:** Clicking a link starts the download.
+- **Appearance:** List of downloadable resources with descriptions.
+- **Behavior:** Clicking a link starts the download.
 
 ## E-commerce
 A set of pages for browsing products, viewing details, managing a cart, and completing purchases.
@@ -255,28 +255,28 @@ A set of pages for browsing products, viewing details, managing a cart, and comp
 ### Variants
 #### Product listing
 - **Id:** ProductListing
-- **Appearance Difference:** Grid of products with images, prices, and action buttons.
-- **Behavior Difference:** Allows filtering and sorting of products.
+- **Appearance:** Grid of products with images, prices, and action buttons.
+- **Behavior:** Allows filtering and sorting of products.
 #### Product details
 - **Id:** ProductDetails
-- **Appearance Difference:** Detailed view of a single product with images and descriptions.
-- **Behavior Difference:** Allows adding product to cart.
+- **Appearance:** Detailed view of a single product with images and descriptions.
+- **Behavior:** Allows adding product to cart.
 #### Cart
 - **Id:** Cart
-- **Appearance Difference:** List of items in the cart with quantities and prices.
-- **Behavior Difference:** Allows updating quantities and removing items from the cart.
+- **Appearance:** List of items in the cart with quantities and prices.
+- **Behavior:** Allows updating quantities and removing items from the cart.
 #### Checkout
 - **Id:** Checkout
-- **Appearance Difference:** Form for entering shipping and payment information.
-- **Behavior Difference:** Completes the purchase process and validates input.
+- **Appearance:** Form for entering shipping and payment information.
+- **Behavior:** Completes the purchase process and validates input.
 #### Order history
 - **Id:** OrderHistory
-- **Appearance Difference:** List of past orders with details.
-- **Behavior Difference:** Allows viewing order details only.
+- **Appearance:** List of past orders with details.
+- **Behavior:** Allows viewing order details only.
 #### Wishlist
 - **Id:** Wishlist
-- **Appearance Difference:** List of saved products for future purchase.
-- **Behavior Difference:** Allows adding/removing items from the wishlist.
+- **Appearance:** List of saved products for future purchase.
+- **Behavior:** Allows adding/removing items from the wishlist.
 
 ## Error
 A page for displaying error messages, such as 404 or 500, with navigation options for recovery.
@@ -289,24 +289,24 @@ A page for displaying error messages, such as 404 or 500, with navigation option
 ### Variants
 #### 404 Not Found
 - **Id:** NotFound
-- **Appearance Difference:** Large "404 Not Found" message with navigation options.
-- **Behavior Difference:** Static display with possible auto-redirect.
+- **Appearance:** Large "404 Not Found" message with navigation options.
+- **Behavior:** Static display with possible auto-redirect.
 #### 500 Internal Error
 - **Id:** InternalError
-- **Appearance Difference:** Large "500 Internal Error" message with navigation options.
-- **Behavior Difference:** Static display with possible auto-redirect.
+- **Appearance:** Large "500 Internal Error" message with navigation options.
+- **Behavior:** Static display with possible auto-redirect.
 #### Maintenance
 - **Id:** Maintenance
-- **Appearance Difference:** Message indicating the site is under maintenance.
-- **Behavior Difference:** Static display with possible auto-redirect.
+- **Appearance:** Message indicating the site is under maintenance.
+- **Behavior:** Static display with possible auto-redirect.
 #### Access Denied
 - **Id:** AccessDenied
-- **Appearance Difference:** Message indicating access is denied.
-- **Behavior Difference:** Static display with possible auto-redirect.
+- **Appearance:** Message indicating access is denied.
+- **Behavior:** Static display with possible auto-redirect.
 #### Coming Soon
 - **Id:** ComingSoon
-- **Appearance Difference:** Message indicating the feature is coming soon.
-- **Behavior Difference:** Static display with possible auto-redirect.
+- **Appearance:** Message indicating the feature is coming soon.
+- **Behavior:** Static display with possible auto-redirect.
 
 ## FAQ
 A page presenting frequently asked questions and answers, often with search and categories.
@@ -319,12 +319,12 @@ A page presenting frequently asked questions and answers, often with search and 
 ### Variants
 #### Frequently asked questions
 - **Id:** FrequentlyAskedQuestions
-- **Appearance Difference:** List or accordion of questions and answers.
-- **Behavior Difference:** Allows expanding/collapsing answers.
+- **Appearance:** List or accordion of questions and answers.
+- **Behavior:** Allows expanding/collapsing answers.
 #### Searchable FAQ
 - **Id:** SearchableFAQ
-- **Appearance Difference:** FAQ with a search bar for filtering questions.
-- **Behavior Difference:** Allows searching and filtering questions.
+- **Appearance:** FAQ with a search bar for filtering questions.
+- **Behavior:** Allows searching and filtering questions.
 
 ## Landing
 A marketing page designed to introduce a product or service, highlight features, and drive conversions.
@@ -342,24 +342,24 @@ A marketing page designed to introduce a product or service, highlight features,
 ### Variants
 #### Marketing homepage
 - **Id:** MarketingHomepage
-- **Appearance Difference:** Hero section with bold visuals and clear messaging.
-- **Behavior Difference:** Static display with navigation buttons.
+- **Appearance:** Hero section with bold visuals and clear messaging.
+- **Behavior:** Static display with navigation buttons.
 #### Features
 - **Id:** Features
-- **Appearance Difference:** List or grid of features with icons and descriptions.
-- **Behavior Difference:** Static display of features only.
+- **Appearance:** List or grid of features with icons and descriptions.
+- **Behavior:** Static display of features only.
 #### Pricing
 - **Id:** Pricing
-- **Appearance Difference:** Pricing table with different plans and features.
-- **Behavior Difference:** Static display of pricing information only.
+- **Appearance:** Pricing table with different plans and features.
+- **Behavior:** Static display of pricing information only.
 #### Testimonials
 - **Id:** Testimonials
-- **Appearance Difference:** List of testimonials with user photos and quotes.
-- **Behavior Difference:** Static display of testimonials only.
+- **Appearance:** List of testimonials with user photos and quotes.
+- **Behavior:** Static display of testimonials only.
 #### Call to action
 - **Id:** CallToAction
-- **Appearance Difference:** Section with a strong call-to-action button.
-- **Behavior Difference:** Button triggers navigation or action.
+- **Appearance:** Section with a strong call-to-action button.
+- **Behavior:** Button triggers navigation or action.
 
 ## Legal
 A page for legal documents such as privacy policy or terms of service, with headings and navigation.
@@ -371,12 +371,12 @@ A page for legal documents such as privacy policy or terms of service, with head
 ### Variants
 #### Privacy policy
 - **Id:** PrivacyPolicy
-- **Appearance Difference:** Legal text with headings and links.
-- **Behavior Difference:** Static display of privacy policy only.
+- **Appearance:** Legal text with headings and links.
+- **Behavior:** Static display of privacy policy only.
 #### Terms of service
 - **Id:** TermsOfService
-- **Appearance Difference:** Legal text with headings and links.
-- **Behavior Difference:** Static display of terms of service only.
+- **Appearance:** Legal text with headings and links.
+- **Behavior:** Static display of terms of service only.
 
 ## Onboarding
 A multi-step guide or wizard to help new users get started with the application.
@@ -389,16 +389,16 @@ A multi-step guide or wizard to help new users get started with the application.
 ### Variants
 #### Welcome
 - **Id:** Welcome
-- **Appearance Difference:** Introduction screen with welcome message and instructions.
-- **Behavior Difference:** Static display with navigation to next step.
+- **Appearance:** Introduction screen with welcome message and instructions.
+- **Behavior:** Static display with navigation to next step.
 #### Step-by-step guide
 - **Id:** StepByStepGuide
-- **Appearance Difference:** Multi-step form with progress indicator.
-- **Behavior Difference:** Validates input and navigates between steps.
+- **Appearance:** Multi-step form with progress indicator.
+- **Behavior:** Validates input and navigates between steps.
 #### Completion
 - **Id:** Completion
-- **Appearance Difference:** Final screen with completion message and next steps.
-- **Behavior Difference:** Static display with possible navigation options.
+- **Appearance:** Final screen with completion message and next steps.
+- **Behavior:** Static display with possible navigation options.
 
 ## Portfolio
 A showcase page for projects or work samples, with filtering and detailed views.
@@ -412,12 +412,12 @@ A showcase page for projects or work samples, with filtering and detailed views.
 ### Variants
 #### Projects grid
 - **Id:** ProjectsGrid
-- **Appearance Difference:** Grid of projects with images and titles.
-- **Behavior Difference:** Allows filtering and sorting of projects.
+- **Appearance:** Grid of projects with images and titles.
+- **Behavior:** Allows filtering and sorting of projects.
 #### Project details
 - **Id:** ProjectDetails
-- **Appearance Difference:** Detailed view of a single project with images and descriptions.
-- **Behavior Difference:** Static display of project details only.
+- **Appearance:** Detailed view of a single project with images and descriptions.
+- **Behavior:** Static display of project details only.
 
 ## Profile
 A user-focused page showing personal details, avatar, and editable profile information.
@@ -432,16 +432,16 @@ A user-focused page showing personal details, avatar, and editable profile infor
 ### Variants
 #### User profile
 - **Id:** UserProfile
-- **Appearance Difference:** Displays user information and avatar in a static layout.
-- **Behavior Difference:** Static display of user details only.
+- **Appearance:** Displays user information and avatar in a static layout.
+- **Behavior:** Static display of user details only.
 #### Edit profile
 - **Id:** EditProfile
-- **Appearance Difference:** Editable fields for user information, with save/cancel controls.
-- **Behavior Difference:** Allows updating and saving profile details.
+- **Appearance:** Editable fields for user information, with save/cancel controls.
+- **Behavior:** Allows updating and saving profile details.
 #### Account settings
 - **Id:** AccountSettings
-- **Appearance Difference:** Tabs or sections for different account settings.
-- **Behavior Difference:** Allows updating settings and saving changes.
+- **Appearance:** Tabs or sections for different account settings.
+- **Behavior:** Allows updating settings and saving changes.
 
 ## Roadmap
 A timeline or milestone page outlining planned features, releases, or project progress.
@@ -454,12 +454,12 @@ A timeline or milestone page outlining planned features, releases, or project pr
 ### Variants
 #### Timeline
 - **Id:** Timeline
-- **Appearance Difference:** Timeline view of milestones and releases.
-- **Behavior Difference:** Static display with possible animations.
+- **Appearance:** Timeline view of milestones and releases.
+- **Behavior:** Static display with possible animations.
 #### Milestones
 - **Id:** Milestones
-- **Appearance Difference:** List of milestones with dates and descriptions.
-- **Behavior Difference:** Static display with possible animations.
+- **Appearance:** List of milestones with dates and descriptions.
+- **Behavior:** Static display with possible animations.
 
 ## Settings
 A page for managing user or application preferences, grouped into categories like general, security, and notifications.
@@ -473,20 +473,20 @@ A page for managing user or application preferences, grouped into categories lik
 ### Variants
 #### General settings
 - **Id:** GeneralSettings
-- **Appearance Difference:** General settings form with various input fields.
-- **Behavior Difference:** Allows updating general settings and saving changes.
+- **Appearance:** General settings form with various input fields.
+- **Behavior:** Allows updating general settings and saving changes.
 #### Security
 - **Id:** Security
-- **Appearance Difference:** Security settings form with password and 2FA options.
-- **Behavior Difference:** Allows updating security settings and saving changes.
+- **Appearance:** Security settings form with password and 2FA options.
+- **Behavior:** Allows updating security settings and saving changes.
 #### Notifications
 - **Id:** Notifications
-- **Appearance Difference:** Notification settings form with toggles for different notifications.
-- **Behavior Difference:** Allows updating notification preferences and saving changes.
+- **Appearance:** Notification settings form with toggles for different notifications.
+- **Behavior:** Allows updating notification preferences and saving changes.
 #### Billing
 - **Id:** Billing
-- **Appearance Difference:** Billing settings form with payment method and billing info.
-- **Behavior Difference:** Allows updating billing information and saving changes.
+- **Appearance:** Billing settings form with payment method and billing info.
+- **Behavior:** Allows updating billing information and saving changes.
 
 ## Team
 A page introducing team members, their roles, and profiles, often with photos and bios.
@@ -499,10 +499,10 @@ A page introducing team members, their roles, and profiles, often with photos an
 ### Variants
 #### Team members
 - **Id:** TeamMembers
-- **Appearance Difference:** List of team members with avatars and roles.
-- **Behavior Difference:** Static display of team member information only.
+- **Appearance:** List of team members with avatars and roles.
+- **Behavior:** Static display of team member information only.
 #### Member profile
 - **Id:** MemberProfile
-- **Appearance Difference:** Detailed profile of a team member with bio and contact info.
-- **Behavior Difference:** Static display of member profile only.
+- **Appearance:** Detailed profile of a team member with bio and contact info.
+- **Behavior:** Static display of member profile only.
 

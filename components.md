@@ -81,16 +81,16 @@ A vertically stacked set of expandable/collapsible items, used to show and hide 
 ### Variants
 #### Single
 - **Id:** Single
-- **Appearance Difference:** Only one item is visually expanded at a time; others are collapsed.
-- **Behavior Difference:** Expanding a new item automatically collapses the previously open item.
+- **Appearance:** Only one item is visually expanded at a time; others are collapsed.
+- **Behavior:** Expanding a new item automatically collapses the previously open item.
 #### Multiple
 - **Id:** Multiple
-- **Appearance Difference:** Multiple items can be visually expanded at once.
-- **Behavior Difference:** Each item can be expanded or collapsed independently; no auto-collapse.
+- **Appearance:** Multiple items can be visually expanded at once.
+- **Behavior:** Each item can be expanded or collapsed independently; no auto-collapse.
 #### With icons
 - **Id:** WithIcons
-- **Appearance Difference:** Each header includes an icon that rotates or changes to indicate expanded/collapsed state.
-- **Behavior Difference:** Icon state updates in sync with expansion/collapse; otherwise, behavior matches selected mode (single/multiple).
+- **Appearance:** Each header includes an icon that rotates or changes to indicate expanded/collapsed state.
+- **Behavior:** Icon state updates in sync with expansion/collapse; otherwise, behavior matches selected mode (single/multiple).
 
 ## Affix
 A component that fixes an element to a specific position as the user scrolls.
@@ -100,8 +100,8 @@ A component that fixes an element to a specific position as the user scrolls.
 ### Variants
 #### Sticky and Fixed on Scroll
 - **Id:** StickyAndFixedOnScroll
-- **Appearance Difference:** Fixed position.
-- **Behavior Difference:** Sticks on scroll.
+- **Appearance:** Fixed position.
+- **Behavior:** Sticks on scroll.
 
 ## Alert
 A message box used to display important information, feedback, or status updates to the user.
@@ -111,24 +111,24 @@ A message box used to display important information, feedback, or status updates
 ### Variants
 #### Success
 - **Id:** Success
-- **Appearance Difference:** Green color and success icon.
-- **Behavior Difference:** Indicates a successful action or event.
+- **Appearance:** Green color and success icon.
+- **Behavior:** Indicates a successful action or event.
 #### Error
 - **Id:** Error
-- **Appearance Difference:** Red color and error icon.
-- **Behavior Difference:** Indicates an error or failure.
+- **Appearance:** Red color and error icon.
+- **Behavior:** Indicates an error or failure.
 #### Warning
 - **Id:** Warning
-- **Appearance Difference:** Yellow color and warning icon.
-- **Behavior Difference:** Indicates a warning or caution.
+- **Appearance:** Yellow color and warning icon.
+- **Behavior:** Indicates a warning or caution.
 #### Info
 - **Id:** Info
-- **Appearance Difference:** Blue color and info icon.
-- **Behavior Difference:** Provides informational message.
+- **Appearance:** Blue color and info icon.
+- **Behavior:** Provides informational message.
 #### Dismissible
 - **Id:** Dismissible
-- **Appearance Difference:** Includes a close button.
-- **Behavior Difference:** Can be dismissed by the user.
+- **Appearance:** Includes a close button.
+- **Behavior:** Can be dismissed by the user.
 
 ## Anchor Navigation
 A navigation aid that links to and highlights sections within a page as the user scrolls.
@@ -138,8 +138,8 @@ A navigation aid that links to and highlights sections within a page as the user
 ### Variants
 #### Sticky section links
 - **Id:** StickySectionLinks
-- **Appearance Difference:** Sticky links.
-- **Behavior Difference:** Highlights active section.
+- **Appearance:** Sticky links.
+- **Behavior:** Highlights active section.
 
 ## Avatar
 A visual representation of a user or entity, typically shown as an image, initials, or icon.
@@ -149,20 +149,20 @@ A visual representation of a user or entity, typically shown as an image, initia
 ### Variants
 #### Image
 - **Id:** Image
-- **Appearance Difference:** Displays a user image.
-- **Behavior Difference:** Shows the user's image.
+- **Appearance:** Displays a user image.
+- **Behavior:** Shows the user's image.
 #### Initials
 - **Id:** Initials
-- **Appearance Difference:** Displays user initials.
-- **Behavior Difference:** Shows the user's initials.
+- **Appearance:** Displays user initials.
+- **Behavior:** Shows the user's initials.
 #### With status
 - **Id:** WithStatus
-- **Appearance Difference:** Includes a small status indicator.
-- **Behavior Difference:** Status indicator updates in real time.
+- **Appearance:** Includes a small status indicator.
+- **Behavior:** Status indicator updates in real time.
 #### Group
 - **Id:** Group
-- **Appearance Difference:** Displays multiple avatars in a group.
-- **Behavior Difference:** Grouped avatars overlap or are displayed in a row.
+- **Appearance:** Displays multiple avatars in a group.
+- **Behavior:** Grouped avatars overlap or are displayed in a row.
 
 ## Badge
 A small indicator used to display status, count, or highlight information on another element.
@@ -172,24 +172,24 @@ A small indicator used to display status, count, or highlight information on ano
 ### Variants
 #### Solid
 - **Id:** Solid
-- **Appearance Difference:** Solid color background.
-- **Behavior Difference:** Static display.
+- **Appearance:** Solid color background.
+- **Behavior:** Static display.
 #### Outline
 - **Id:** Outline
-- **Appearance Difference:** Outline border with transparent background.
-- **Behavior Difference:** Static display.
+- **Appearance:** Outline border with transparent background.
+- **Behavior:** Static display.
 #### Dot
 - **Id:** Dot
-- **Appearance Difference:** Small dot indicator.
-- **Behavior Difference:** Indicates status or notification.
+- **Appearance:** Small dot indicator.
+- **Behavior:** Indicates status or notification.
 #### With icon
 - **Id:** WithIcon
-- **Appearance Difference:** Includes an icon.
-- **Behavior Difference:** Icon indicates status or category.
+- **Appearance:** Includes an icon.
+- **Behavior:** Icon indicates status or category.
 #### With count
 - **Id:** WithCount
-- **Appearance Difference:** Displays a number.
-- **Behavior Difference:** Indicates count or quantity.
+- **Appearance:** Displays a number.
+- **Behavior:** Indicates count or quantity.
 
 ## Blockquote
 A styled container for displaying quoted text or citations within content.
@@ -199,12 +199,12 @@ A styled container for displaying quoted text or citations within content.
 ### Variants
 #### With author
 - **Id:** WithAuthor
-- **Appearance Difference:** Includes citation or author.
-- **Behavior Difference:** Displays author information.
+- **Appearance:** Includes citation or author.
+- **Behavior:** Displays author information.
 #### Simple
 - **Id:** Simple
-- **Appearance Difference:** Basic indented quote.
-- **Behavior Difference:** Static display.
+- **Appearance:** Basic indented quote.
+- **Behavior:** Static display.
 
 ## Breadcrumbs
 A navigation aid that displays the user's current location within a site hierarchy.
@@ -214,16 +214,16 @@ A navigation aid that displays the user's current location within a site hierarc
 ### Variants
 #### Basic
 - **Id:** Basic
-- **Appearance Difference:** Simple horizontal list.
-- **Behavior Difference:** Static navigation.
+- **Appearance:** Simple horizontal list.
+- **Behavior:** Static navigation.
 #### With icons
 - **Id:** WithIcons
-- **Appearance Difference:** Includes icons in each breadcrumb.
-- **Behavior Difference:** Icons indicate type or category.
+- **Appearance:** Includes icons in each breadcrumb.
+- **Behavior:** Icons indicate type or category.
 #### Collapsible and Overflow
 - **Id:** CollapsibleAndOverflow
-- **Appearance Difference:** Collapses into a dropdown for long paths.
-- **Behavior Difference:** Supports long navigation paths.
+- **Appearance:** Collapses into a dropdown for long paths.
+- **Behavior:** Supports long navigation paths.
 
 ## Button
 A clickable element used to trigger actions, submit forms, or navigate.
@@ -233,36 +233,36 @@ A clickable element used to trigger actions, submit forms, or navigate.
 ### Variants
 #### Primary
 - **Id:** Primary
-- **Appearance Difference:** Solid color background.
-- **Behavior Difference:** Primary action button.
+- **Appearance:** Solid color background.
+- **Behavior:** Primary action button.
 #### Secondary
 - **Id:** Secondary
-- **Appearance Difference:** Outline border.
-- **Behavior Difference:** Secondary action button.
+- **Appearance:** Outline border.
+- **Behavior:** Secondary action button.
 #### Outline
 - **Id:** Outline
-- **Appearance Difference:** Outline border with transparent background.
-- **Behavior Difference:** Secondary action button.
+- **Appearance:** Outline border with transparent background.
+- **Behavior:** Secondary action button.
 #### Ghost
 - **Id:** Ghost
-- **Appearance Difference:** Transparent background with minimal styling.
-- **Behavior Difference:** Secondary action button.
+- **Appearance:** Transparent background with minimal styling.
+- **Behavior:** Secondary action button.
 #### Icon
 - **Id:** Icon
-- **Appearance Difference:** Icon only, no text.
-- **Behavior Difference:** Icon button.
+- **Appearance:** Icon only, no text.
+- **Behavior:** Icon button.
 #### Loading
 - **Id:** Loading
-- **Appearance Difference:** Includes loading spinner.
-- **Behavior Difference:** Indicates loading state.
+- **Appearance:** Includes loading spinner.
+- **Behavior:** Indicates loading state.
 #### Group
 - **Id:** Group
-- **Appearance Difference:** Group of buttons.
-- **Behavior Difference:** Grouped button actions.
+- **Appearance:** Group of buttons.
+- **Behavior:** Grouped button actions.
 #### Social login
 - **Id:** SocialLogin
-- **Appearance Difference:** Includes social media icon.
-- **Behavior Difference:** Social login button.
+- **Appearance:** Includes social media icon.
+- **Behavior:** Social login button.
 
 ## Calendar
 A visual grid for selecting dates, viewing months, or displaying scheduled events.
@@ -272,16 +272,16 @@ A visual grid for selecting dates, viewing months, or displaying scheduled event
 ### Variants
 #### Month view
 - **Id:** MonthView
-- **Appearance Difference:** Displays a full month.
-- **Behavior Difference:** Month navigation.
+- **Appearance:** Displays a full month.
+- **Behavior:** Month navigation.
 #### Week view
 - **Id:** WeekView
-- **Appearance Difference:** Displays a week.
-- **Behavior Difference:** Week navigation.
+- **Appearance:** Displays a week.
+- **Behavior:** Week navigation.
 #### With events
 - **Id:** WithEvents
-- **Appearance Difference:** Includes event markers.
-- **Behavior Difference:** Displays events or availability.
+- **Appearance:** Includes event markers.
+- **Behavior:** Displays events or availability.
 
 ## Card
 A container that groups related information, actions, or media in a visually distinct block.
@@ -291,16 +291,16 @@ A container that groups related information, actions, or media in a visually dis
 ### Variants
 #### With image
 - **Id:** WithImage
-- **Appearance Difference:** Includes an image.
-- **Behavior Difference:** Displays image content.
+- **Appearance:** Includes an image.
+- **Behavior:** Displays image content.
 #### With actions
 - **Id:** WithActions
-- **Appearance Difference:** Includes action buttons.
-- **Behavior Difference:** Supports interactive actions.
+- **Appearance:** Includes action buttons.
+- **Behavior:** Supports interactive actions.
 #### Simple
 - **Id:** Simple
-- **Appearance Difference:** Basic card.
-- **Behavior Difference:** Static display.
+- **Appearance:** Basic card.
+- **Behavior:** Static display.
 
 ## Cascader
 A multi-level dropdown for selecting options from hierarchical data.
@@ -310,8 +310,8 @@ A multi-level dropdown for selecting options from hierarchical data.
 ### Variants
 #### Multi-level dropdown
 - **Id:** MultiLevelDropdown
-- **Appearance Difference:** Hierarchical options.
-- **Behavior Difference:** Displays multi-level options.
+- **Appearance:** Hierarchical options.
+- **Behavior:** Displays multi-level options.
 
 ## Checkbox
 A control that allows users to select one or more options from a set.
@@ -321,16 +321,16 @@ A control that allows users to select one or more options from a set.
 ### Variants
 #### Basic
 - **Id:** Basic
-- **Appearance Difference:** Simple checkbox.
-- **Behavior Difference:** Basic toggle.
+- **Appearance:** Simple checkbox.
+- **Behavior:** Basic toggle.
 #### Indeterminate
 - **Id:** Indeterminate
-- **Appearance Difference:** Includes indeterminate state.
-- **Behavior Difference:** Supports indeterminate state.
+- **Appearance:** Includes indeterminate state.
+- **Behavior:** Supports indeterminate state.
 #### With label
 - **Id:** WithLabel
-- **Appearance Difference:** Includes a label.
-- **Behavior Difference:** Displays label text.
+- **Appearance:** Includes a label.
+- **Behavior:** Displays label text.
 
 ## Chips
 Compact elements representing tags, selections, or actions, often removable or selectable.
@@ -340,16 +340,16 @@ Compact elements representing tags, selections, or actions, often removable or s
 ### Variants
 #### Selectable
 - **Id:** Selectable
-- **Appearance Difference:** Selectable styling.
-- **Behavior Difference:** Can be selected.
+- **Appearance:** Selectable styling.
+- **Behavior:** Can be selected.
 #### Removable
 - **Id:** Removable
-- **Appearance Difference:** Includes remove icon.
-- **Behavior Difference:** Can be removed.
+- **Appearance:** Includes remove icon.
+- **Behavior:** Can be removed.
 #### With icons
 - **Id:** WithIcons
-- **Appearance Difference:** Includes icons.
-- **Behavior Difference:** Displays icon content.
+- **Appearance:** Includes icons.
+- **Behavior:** Displays icon content.
 
 ## Collapse
 A container that can expand or collapse to show or hide its content.
@@ -359,20 +359,20 @@ A container that can expand or collapse to show or hide its content.
 ### Variants
 #### Basic
 - **Id:** Basic
-- **Appearance Difference:** Simple collapse.
-- **Behavior Difference:** Basic toggle.
+- **Appearance:** Simple collapse.
+- **Behavior:** Basic toggle.
 #### With animation
 - **Id:** WithAnimation
-- **Appearance Difference:** Includes animation.
-- **Behavior Difference:** Smooth transitions.
+- **Appearance:** Includes animation.
+- **Behavior:** Smooth transitions.
 #### Panel
 - **Id:** Panel
-- **Appearance Difference:** Panel styling.
-- **Behavior Difference:** Panel toggle.
+- **Appearance:** Panel styling.
+- **Behavior:** Panel toggle.
 #### Nested panels
 - **Id:** NestedPanels
-- **Appearance Difference:** Nested panel styling.
-- **Behavior Difference:** Nested panel toggle.
+- **Appearance:** Nested panel styling.
+- **Behavior:** Nested panel toggle.
 
 ## Color Input
 An input field for selecting or entering color values, often with a color picker UI.
@@ -382,20 +382,20 @@ An input field for selecting or entering color values, often with a color picker
 ### Variants
 #### Color picker
 - **Id:** ColorPicker
-- **Appearance Difference:** Includes color picker dialog.
-- **Behavior Difference:** Opens color picker.
+- **Appearance:** Includes color picker dialog.
+- **Behavior:** Opens color picker.
 #### Swatch
 - **Id:** Swatch
-- **Appearance Difference:** Displays color swatch.
-- **Behavior Difference:** Shows selected color.
+- **Appearance:** Displays color swatch.
+- **Behavior:** Shows selected color.
 #### EyeDropper
 - **Id:** EyeDropper
-- **Appearance Difference:** Includes eyedropper tool.
-- **Behavior Difference:** Selects color from screen.
+- **Appearance:** Includes eyedropper tool.
+- **Behavior:** Selects color from screen.
 #### Palette
 - **Id:** Palette
-- **Appearance Difference:** Includes color palette.
-- **Behavior Difference:** Selects color from palette.
+- **Appearance:** Includes color palette.
+- **Behavior:** Selects color from palette.
 
 ## Combobox
 A component that combines an input field with a dropdown list of options that filters as the user types.
@@ -405,24 +405,24 @@ A component that combines an input field with a dropdown list of options that fi
 ### Variants
 #### Autocomplete
 - **Id:** Autocomplete
-- **Appearance Difference:** Filters options as user types.
-- **Behavior Difference:** Autocompletes input.
+- **Appearance:** Filters options as user types.
+- **Behavior:** Autocompletes input.
 #### Multiselect
 - **Id:** Multiselect
-- **Appearance Difference:** Supports multiple selections.
-- **Behavior Difference:** Allows multiple selections.
+- **Appearance:** Supports multiple selections.
+- **Behavior:** Allows multiple selections.
 #### Creatable
 - **Id:** Creatable
-- **Appearance Difference:** Allows option creation.
-- **Behavior Difference:** Creates new options.
+- **Appearance:** Allows option creation.
+- **Behavior:** Creates new options.
 #### Tags input
 - **Id:** TagsInput
-- **Appearance Difference:** Displays tags.
-- **Behavior Difference:** Adds tags to input.
+- **Appearance:** Displays tags.
+- **Behavior:** Adds tags to input.
 #### Typeahead
 - **Id:** Typeahead
-- **Appearance Difference:** Filters options as user types.
-- **Behavior Difference:** Typeahead input.
+- **Appearance:** Filters options as user types.
+- **Behavior:** Typeahead input.
 
 ## Command
 A modal or dropdown for searching and executing actions or commands quickly.
@@ -432,16 +432,16 @@ A modal or dropdown for searching and executing actions or commands quickly.
 ### Variants
 #### Command palette
 - **Id:** CommandPalette
-- **Appearance Difference:** Displays command palette.
-- **Behavior Difference:** Filters commands.
+- **Appearance:** Displays command palette.
+- **Behavior:** Filters commands.
 #### Searchable actions
 - **Id:** SearchableActions
-- **Appearance Difference:** Displays searchable actions.
-- **Behavior Difference:** Searches actions.
+- **Appearance:** Displays searchable actions.
+- **Behavior:** Searches actions.
 #### Command menu
 - **Id:** CommandMenu
-- **Appearance Difference:** Displays command menu.
-- **Behavior Difference:** Filters commands.
+- **Appearance:** Displays command menu.
+- **Behavior:** Filters commands.
 
 ## Context Menu
 A menu that appears on right-click or long-press, offering context-specific actions.
@@ -451,16 +451,16 @@ A menu that appears on right-click or long-press, offering context-specific acti
 ### Variants
 #### Right-click menu
 - **Id:** RightClickMenu
-- **Appearance Difference:** Opens on right-click.
-- **Behavior Difference:** Displays context menu.
+- **Appearance:** Opens on right-click.
+- **Behavior:** Displays context menu.
 #### With icons
 - **Id:** WithIcons
-- **Appearance Difference:** Includes icons.
-- **Behavior Difference:** Displays icon content.
+- **Appearance:** Includes icons.
+- **Behavior:** Displays icon content.
 #### With actions
 - **Id:** WithActions
-- **Appearance Difference:** Includes actions.
-- **Behavior Difference:** Displays action items.
+- **Appearance:** Includes actions.
+- **Behavior:** Displays action items.
 
 ## Countdown
 A timer that counts down to a specific time or event, often used for deadlines or launches.
@@ -470,8 +470,8 @@ A timer that counts down to a specific time or event, often used for deadlines o
 ### Variants
 #### Timer
 - **Id:** Timer
-- **Appearance Difference:** Digital timer.
-- **Behavior Difference:** Counts down time.
+- **Appearance:** Digital timer.
+- **Behavior:** Counts down time.
 
 ## Data Table
 A component for displaying and interacting with tabular data in rows and columns.
@@ -481,36 +481,36 @@ A component for displaying and interacting with tabular data in rows and columns
 ### Variants
 #### Basic
 - **Id:** Basic
-- **Appearance Difference:** Simple table.
-- **Behavior Difference:** Basic table display.
+- **Appearance:** Simple table.
+- **Behavior:** Basic table display.
 #### Filtering
 - **Id:** Filtering
-- **Appearance Difference:** Includes filter controls.
-- **Behavior Difference:** Filters table data.
+- **Appearance:** Includes filter controls.
+- **Behavior:** Filters table data.
 #### Sorting
 - **Id:** Sorting
-- **Appearance Difference:** Includes sorting icons.
-- **Behavior Difference:** Sorts table data.
+- **Appearance:** Includes sorting icons.
+- **Behavior:** Sorts table data.
 #### Pagination
 - **Id:** Pagination
-- **Appearance Difference:** Includes pagination controls.
-- **Behavior Difference:** Paginates table data.
+- **Appearance:** Includes pagination controls.
+- **Behavior:** Paginates table data.
 #### Row selection
 - **Id:** RowSelection
-- **Appearance Difference:** Supports row selection.
-- **Behavior Difference:** Selects table rows.
+- **Appearance:** Supports row selection.
+- **Behavior:** Selects table rows.
 #### With actions
 - **Id:** WithActions
-- **Appearance Difference:** Includes action buttons.
-- **Behavior Difference:** Supports inline actions.
+- **Appearance:** Includes action buttons.
+- **Behavior:** Supports inline actions.
 #### Sortable
 - **Id:** Sortable
-- **Appearance Difference:** Supports column sorting.
-- **Behavior Difference:** Sorts table columns.
+- **Appearance:** Supports column sorting.
+- **Behavior:** Sorts table columns.
 #### Advanced table
 - **Id:** AdvancedTable
-- **Appearance Difference:** Advanced table features.
-- **Behavior Difference:** Supports advanced table interactions.
+- **Appearance:** Advanced table features.
+- **Behavior:** Supports advanced table interactions.
 
 ## Date Picker
 A calendar input for selecting a single date.
@@ -520,8 +520,8 @@ A calendar input for selecting a single date.
 ### Variants
 #### Basic
 - **Id:** Basic
-- **Appearance Difference:** Standard date picker.
-- **Behavior Difference:** Selects a single date.
+- **Appearance:** Standard date picker.
+- **Behavior:** Selects a single date.
 
 ## Date Range Picker
 An input for selecting a range of dates.
@@ -531,8 +531,8 @@ An input for selecting a range of dates.
 ### Variants
 #### Basic
 - **Id:** Basic
-- **Appearance Difference:** Standard date range picker.
-- **Behavior Difference:** Selects a date range.
+- **Appearance:** Standard date range picker.
+- **Behavior:** Selects a date range.
 
 ## Dialog
 A popup overlay that displays content or actions requiring user attention.
@@ -542,20 +542,20 @@ A popup overlay that displays content or actions requiring user attention.
 ### Variants
 #### Centered
 - **Id:** Centered
-- **Appearance Difference:** Centered overlay.
-- **Behavior Difference:** Centered modal.
+- **Appearance:** Centered overlay.
+- **Behavior:** Centered modal.
 #### Fullscreen
 - **Id:** Fullscreen
-- **Appearance Difference:** Fullscreen overlay.
-- **Behavior Difference:** Fullscreen modal.
+- **Appearance:** Fullscreen overlay.
+- **Behavior:** Fullscreen modal.
 #### With form
 - **Id:** WithForm
-- **Appearance Difference:** Includes form elements.
-- **Behavior Difference:** Supports form submission.
+- **Appearance:** Includes form elements.
+- **Behavior:** Supports form submission.
 #### Nested dialogs
 - **Id:** NestedDialogs
-- **Appearance Difference:** Supports nested dialogs.
-- **Behavior Difference:** Nested modal interactions.
+- **Appearance:** Supports nested dialogs.
+- **Behavior:** Nested modal interactions.
 
 ## Divider
 A visual line or space used to separate content into distinct sections.
@@ -565,12 +565,12 @@ A visual line or space used to separate content into distinct sections.
 ### Variants
 #### Horizontal
 - **Id:** Horizontal
-- **Appearance Difference:** Horizontal line.
-- **Behavior Difference:** Static separator.
+- **Appearance:** Horizontal line.
+- **Behavior:** Static separator.
 #### Vertical
 - **Id:** Vertical
-- **Appearance Difference:** Vertical line.
-- **Behavior Difference:** Static separator.
+- **Appearance:** Vertical line.
+- **Behavior:** Static separator.
 
 ## Drawer
 A panel that slides in from the edge of the screen to display additional content or actions.
@@ -580,24 +580,24 @@ A panel that slides in from the edge of the screen to display additional content
 ### Variants
 #### Side panel
 - **Id:** SidePanel
-- **Appearance Difference:** Slides in from the side.
-- **Behavior Difference:** Side panel interaction.
+- **Appearance:** Slides in from the side.
+- **Behavior:** Side panel interaction.
 #### Slide-over
 - **Id:** SlideOver
-- **Appearance Difference:** Slides over content.
-- **Behavior Difference:** Slide-over interaction.
+- **Appearance:** Slides over content.
+- **Behavior:** Slide-over interaction.
 #### With form
 - **Id:** WithForm
-- **Appearance Difference:** Includes form elements.
-- **Behavior Difference:** Supports form submission.
+- **Appearance:** Includes form elements.
+- **Behavior:** Supports form submission.
 #### With actions
 - **Id:** WithActions
-- **Appearance Difference:** Includes action buttons.
-- **Behavior Difference:** Supports interactive actions.
+- **Appearance:** Includes action buttons.
+- **Behavior:** Supports interactive actions.
 #### Mobile navigation
 - **Id:** MobileNavigation
-- **Appearance Difference:** Mobile-friendly design.
-- **Behavior Difference:** Mobile navigation panel.
+- **Appearance:** Mobile-friendly design.
+- **Behavior:** Mobile navigation panel.
 
 ## Dropzone
 A component for uploading files via drag-and-drop or file selection.
@@ -607,28 +607,28 @@ A component for uploading files via drag-and-drop or file selection.
 ### Variants
 #### Single file
 - **Id:** SingleFile
-- **Appearance Difference:** Supports single file upload.
-- **Behavior Difference:** Uploads single file.
+- **Appearance:** Supports single file upload.
+- **Behavior:** Uploads single file.
 #### Multiple files
 - **Id:** MultipleFiles
-- **Appearance Difference:** Supports multiple file uploads.
-- **Behavior Difference:** Uploads multiple files.
+- **Appearance:** Supports multiple file uploads.
+- **Behavior:** Uploads multiple files.
 #### With preview
 - **Id:** WithPreview
-- **Appearance Difference:** Includes file previews.
-- **Behavior Difference:** Displays file previews.
+- **Appearance:** Includes file previews.
+- **Behavior:** Displays file previews.
 #### With file type restrictions
 - **Id:** WithFileTypeRestrictions
-- **Appearance Difference:** Restricts file types.
-- **Behavior Difference:** Validates file types.
+- **Appearance:** Restricts file types.
+- **Behavior:** Validates file types.
 #### With upload progress
 - **Id:** WithUploadProgress
-- **Appearance Difference:** Includes progress bars.
-- **Behavior Difference:** Displays upload progress.
+- **Appearance:** Includes progress bars.
+- **Behavior:** Displays upload progress.
 #### Drag-and-drop
 - **Id:** DragAndDrop
-- **Appearance Difference:** Supports drag-and-drop.
-- **Behavior Difference:** Drag-and-drop file upload.
+- **Appearance:** Supports drag-and-drop.
+- **Behavior:** Drag-and-drop file upload.
 
 ## File Input
 An input field for selecting one or more files from the user's device.
@@ -638,16 +638,16 @@ An input field for selecting one or more files from the user's device.
 ### Variants
 #### Single file
 - **Id:** SingleFile
-- **Appearance Difference:** Supports single file selection.
-- **Behavior Difference:** Selects single file.
+- **Appearance:** Supports single file selection.
+- **Behavior:** Selects single file.
 #### Multiple files
 - **Id:** MultipleFiles
-- **Appearance Difference:** Supports multiple file selection.
-- **Behavior Difference:** Selects multiple files.
+- **Appearance:** Supports multiple file selection.
+- **Behavior:** Selects multiple files.
 #### File preview
 - **Id:** FilePreview
-- **Appearance Difference:** Includes file previews.
-- **Behavior Difference:** Displays file previews.
+- **Appearance:** Includes file previews.
+- **Behavior:** Displays file previews.
 
 ## Form Error Message
 A message or indicator that displays validation errors or feedback for form fields.
@@ -657,12 +657,12 @@ A message or indicator that displays validation errors or feedback for form fiel
 ### Variants
 #### Inline error
 - **Id:** InlineError
-- **Appearance Difference:** Inline error message.
-- **Behavior Difference:** Displays inline error.
+- **Appearance:** Inline error message.
+- **Behavior:** Displays inline error.
 #### Tooltip error
 - **Id:** TooltipError
-- **Appearance Difference:** Tooltip error message.
-- **Behavior Difference:** Displays tooltip error.
+- **Appearance:** Tooltip error message.
+- **Behavior:** Displays tooltip error.
 
 ## Hover Card
 A floating card that appears when hovering over an element, showing additional information or actions.
@@ -672,12 +672,12 @@ A floating card that appears when hovering over an element, showing additional i
 ### Variants
 #### Appears on hover
 - **Id:** AppearsOnHover
-- **Appearance Difference:** Appears on hover.
-- **Behavior Difference:** Displays hover card.
+- **Appearance:** Appears on hover.
+- **Behavior:** Displays hover card.
 #### With actions
 - **Id:** WithActions
-- **Appearance Difference:** Includes actions.
-- **Behavior Difference:** Supports interactive actions.
+- **Appearance:** Includes actions.
+- **Behavior:** Supports interactive actions.
 
 ## Image
 A component for displaying images with optional styling, captions, or overlays.
@@ -687,16 +687,16 @@ A component for displaying images with optional styling, captions, or overlays.
 ### Variants
 #### Responsive
 - **Id:** Responsive
-- **Appearance Difference:** Responsive design.
-- **Behavior Difference:** Adjusts to container size.
+- **Appearance:** Responsive design.
+- **Behavior:** Adjusts to container size.
 #### With caption
 - **Id:** WithCaption
-- **Appearance Difference:** Includes caption.
-- **Behavior Difference:** Displays caption text.
+- **Appearance:** Includes caption.
+- **Behavior:** Displays caption text.
 #### Gallery (Grid and Carousel)
 - **Id:** GalleryGridAndCarousel
-- **Appearance Difference:** Grid or carousel layout.
-- **Behavior Difference:** Displays image gallery.
+- **Appearance:** Grid or carousel layout.
+- **Behavior:** Displays image gallery.
 
 ## Input
 A field for entering and editing a single line of text or data.
@@ -706,16 +706,16 @@ A field for entering and editing a single line of text or data.
 ### Variants
 #### Basic
 - **Id:** Basic
-- **Appearance Difference:** Simple input field.
-- **Behavior Difference:** Basic text input.
+- **Appearance:** Simple input field.
+- **Behavior:** Basic text input.
 #### With icon
 - **Id:** WithIcon
-- **Appearance Difference:** Includes icon.
-- **Behavior Difference:** Displays icon content.
+- **Appearance:** Includes icon.
+- **Behavior:** Displays icon content.
 #### With button
 - **Id:** WithButton
-- **Appearance Difference:** Includes button.
-- **Behavior Difference:** Supports button actions.
+- **Appearance:** Includes button.
+- **Behavior:** Supports button actions.
 
 ## Input Group
 A combination of input fields and add-ons grouped together for related data entry.
@@ -725,12 +725,12 @@ A combination of input fields and add-ons grouped together for related data entr
 ### Variants
 #### Input with button
 - **Id:** InputWithButton
-- **Appearance Difference:** Includes button.
-- **Behavior Difference:** Supports button actions.
+- **Appearance:** Includes button.
+- **Behavior:** Supports button actions.
 #### Input with icon
 - **Id:** InputWithIcon
-- **Appearance Difference:** Includes icon.
-- **Behavior Difference:** Displays icon content.
+- **Appearance:** Includes icon.
+- **Behavior:** Displays icon content.
 
 ## Keyboard Key
 A component for displaying keyboard input or shortcuts in documentation or UI hints.
@@ -740,12 +740,12 @@ A component for displaying keyboard input or shortcuts in documentation or UI hi
 ### Variants
 #### Single key
 - **Id:** SingleKey
-- **Appearance Difference:** Displays a single key (e.g., "Esc").
-- **Behavior Difference:** Static display.
+- **Appearance:** Displays a single key (e.g., "Esc").
+- **Behavior:** Static display.
 #### Key combination
 - **Id:** KeyCombination
-- **Appearance Difference:** Displays a combination of keys (e.g., "Ctrl + S").
-- **Behavior Difference:** Static display.
+- **Appearance:** Displays a combination of keys (e.g., "Ctrl + S").
+- **Behavior:** Static display.
 
 ## List
 A vertical or horizontal arrangement of items, often with icons, avatars, or actions.
@@ -755,24 +755,24 @@ A vertical or horizontal arrangement of items, often with icons, avatars, or act
 ### Variants
 #### Ordered
 - **Id:** Ordered
-- **Appearance Difference:** Numbered list.
-- **Behavior Difference:** Ordered list items.
+- **Appearance:** Numbered list.
+- **Behavior:** Ordered list items.
 #### Unordered
 - **Id:** Unordered
-- **Appearance Difference:** Bulleted list.
-- **Behavior Difference:** Unordered list items.
+- **Appearance:** Bulleted list.
+- **Behavior:** Unordered list items.
 #### Description
 - **Id:** Description
-- **Appearance Difference:** Description list.
-- **Behavior Difference:** Displays descriptions.
+- **Appearance:** Description list.
+- **Behavior:** Displays descriptions.
 #### With actions
 - **Id:** WithActions
-- **Appearance Difference:** Includes actions.
-- **Behavior Difference:** Supports interactive actions.
+- **Appearance:** Includes actions.
+- **Behavior:** Supports interactive actions.
 #### With avatars
 - **Id:** WithAvatars
-- **Appearance Difference:** Includes avatars.
-- **Behavior Difference:** Displays avatar content.
+- **Appearance:** Includes avatars.
+- **Behavior:** Displays avatar content.
 
 ## Loading
 A visual indicator that content is loading or a process is in progress.
@@ -782,16 +782,16 @@ A visual indicator that content is loading or a process is in progress.
 ### Variants
 #### Spinner
 - **Id:** Spinner
-- **Appearance Difference:** Rotating icon.
-- **Behavior Difference:** Indicates loading state.
+- **Appearance:** Rotating icon.
+- **Behavior:** Indicates loading state.
 #### Overlay (fullscreen, partial)
 - **Id:** Overlay
-- **Appearance Difference:** Dimmed background.
-- **Behavior Difference:** Blocks interaction.
+- **Appearance:** Dimmed background.
+- **Behavior:** Blocks interaction.
 #### Skeleton (text, avatar, card, variants)
 - **Id:** Skeleton
-- **Appearance Difference:** Gray placeholder shapes.
-- **Behavior Difference:** Indicates loading state.
+- **Appearance:** Gray placeholder shapes.
+- **Behavior:** Indicates loading state.
 
 ## Map
 A component for selecting or displaying a geographic location on an interactive map.
@@ -801,12 +801,12 @@ A component for selecting or displaying a geographic location on an interactive 
 ### Variants
 #### Basic
 - **Id:** Basic
-- **Appearance Difference:** Simple map.
-- **Behavior Difference:** Basic map interaction.
+- **Appearance:** Simple map.
+- **Behavior:** Basic map interaction.
 #### With search
 - **Id:** WithSearch
-- **Appearance Difference:** Includes search input.
-- **Behavior Difference:** Searches location.
+- **Appearance:** Includes search input.
+- **Behavior:** Searches location.
 
 ## Menubar
 A horizontal or vertical bar containing navigation menus and actions.
@@ -816,16 +816,16 @@ A horizontal or vertical bar containing navigation menus and actions.
 ### Variants
 #### Horizontal menu
 - **Id:** HorizontalMenu
-- **Appearance Difference:** Horizontal layout.
-- **Behavior Difference:** Displays horizontal menu.
+- **Appearance:** Horizontal layout.
+- **Behavior:** Displays horizontal menu.
 #### With icons
 - **Id:** WithIcons
-- **Appearance Difference:** Includes icons.
-- **Behavior Difference:** Displays icon content.
+- **Appearance:** Includes icons.
+- **Behavior:** Displays icon content.
 #### With dropdowns
 - **Id:** WithDropdowns
-- **Appearance Difference:** Includes dropdowns.
-- **Behavior Difference:** Displays dropdown menus.
+- **Appearance:** Includes dropdowns.
+- **Behavior:** Displays dropdown menus.
 
 ## Notification
 A temporary message that appears to inform the user of an event or status.
@@ -835,40 +835,40 @@ A temporary message that appears to inform the user of an event or status.
 ### Variants
 #### Success
 - **Id:** Success
-- **Appearance Difference:** Green color and success icon.
-- **Behavior Difference:** Indicates a successful action or event.
+- **Appearance:** Green color and success icon.
+- **Behavior:** Indicates a successful action or event.
 #### Error
 - **Id:** Error
-- **Appearance Difference:** Red color and error icon.
-- **Behavior Difference:** Indicates an error or failure.
+- **Appearance:** Red color and error icon.
+- **Behavior:** Indicates an error or failure.
 #### Info
 - **Id:** Info
-- **Appearance Difference:** Blue color and info icon.
-- **Behavior Difference:** Provides informational message.
+- **Appearance:** Blue color and info icon.
+- **Behavior:** Provides informational message.
 #### Warning
 - **Id:** Warning
-- **Appearance Difference:** Yellow color and warning icon.
-- **Behavior Difference:** Indicates a warning or caution.
+- **Appearance:** Yellow color and warning icon.
+- **Behavior:** Indicates a warning or caution.
 #### Custom icon
 - **Id:** CustomIcon
-- **Appearance Difference:** Includes custom icon.
-- **Behavior Difference:** Displays custom icon.
+- **Appearance:** Includes custom icon.
+- **Behavior:** Displays custom icon.
 #### With actions
 - **Id:** WithActions
-- **Appearance Difference:** Includes action button.
-- **Behavior Difference:** Supports interactive actions.
+- **Appearance:** Includes action button.
+- **Behavior:** Supports interactive actions.
 #### Temporary (snackbar)
 - **Id:** Temporary
-- **Appearance Difference:** Temporary display.
-- **Behavior Difference:** Auto-dismisses after timeout.
+- **Appearance:** Temporary display.
+- **Behavior:** Auto-dismisses after timeout.
 #### Stacking
 - **Id:** Stacking
-- **Appearance Difference:** Supports stacking.
-- **Behavior Difference:** Stacks notifications.
+- **Appearance:** Supports stacking.
+- **Behavior:** Stacks notifications.
 #### Bottom position
 - **Id:** BottomPosition
-- **Appearance Difference:** Displays at bottom.
-- **Behavior Difference:** Bottom position display.
+- **Appearance:** Displays at bottom.
+- **Behavior:** Bottom position display.
 
 ## Number Input
 An input field for entering numeric values, often with increment/decrement controls.
@@ -878,12 +878,12 @@ An input field for entering numeric values, often with increment/decrement contr
 ### Variants
 #### With controls
 - **Id:** WithControls
-- **Appearance Difference:** Includes up/down arrow buttons.
-- **Behavior Difference:** Adjusts value with controls.
+- **Appearance:** Includes up/down arrow buttons.
+- **Behavior:** Adjusts value with controls.
 #### Without controls
 - **Id:** WithoutControls
-- **Appearance Difference:** No arrow buttons.
-- **Behavior Difference:** Adjusts value without controls.
+- **Appearance:** No arrow buttons.
+- **Behavior:** Adjusts value without controls.
 
 ## Pagination
 A navigation control for dividing content into discrete pages and moving between them.
@@ -893,20 +893,20 @@ A navigation control for dividing content into discrete pages and moving between
 ### Variants
 #### Simple
 - **Id:** Simple
-- **Appearance Difference:** Simple pagination.
-- **Behavior Difference:** Basic page navigation.
+- **Appearance:** Simple pagination.
+- **Behavior:** Basic page navigation.
 #### With icons
 - **Id:** WithIcons
-- **Appearance Difference:** Includes icons.
-- **Behavior Difference:** Displays icon content.
+- **Appearance:** Includes icons.
+- **Behavior:** Displays icon content.
 #### Jump to page
 - **Id:** JumpToPage
-- **Appearance Difference:** Includes jump controls.
-- **Behavior Difference:** Jumps to specific page.
+- **Appearance:** Includes jump controls.
+- **Behavior:** Jumps to specific page.
 #### Page size selector
 - **Id:** PageSizeSelector
-- **Appearance Difference:** Includes page size controls.
-- **Behavior Difference:** Selects page size.
+- **Appearance:** Includes page size controls.
+- **Behavior:** Selects page size.
 
 ## Password Input
 A text input that hides entered characters, used for sensitive information like passwords.
@@ -916,8 +916,8 @@ A text input that hides entered characters, used for sensitive information like 
 ### Variants
 #### With visibility toggle
 - **Id:** WithVisibilityToggle
-- **Appearance Difference:** Includes visibility toggle button.
-- **Behavior Difference:** Toggles password visibility.
+- **Appearance:** Includes visibility toggle button.
+- **Behavior:** Toggles password visibility.
 
 ## Pin Input
 A set of input fields for entering a fixed-length code, such as a PIN or verification code.
@@ -927,12 +927,12 @@ A set of input fields for entering a fixed-length code, such as a PIN or verific
 ### Variants
 #### 4-digit
 - **Id:** FourDigit
-- **Appearance Difference:** Four input boxes.
-- **Behavior Difference:** Accepts 4-digit code.
+- **Appearance:** Four input boxes.
+- **Behavior:** Accepts 4-digit code.
 #### 6-digit
 - **Id:** SixDigit
-- **Appearance Difference:** Six input boxes.
-- **Behavior Difference:** Accepts 6-digit code.
+- **Appearance:** Six input boxes.
+- **Behavior:** Accepts 6-digit code.
 
 ## Popconfirm
 A confirmation popup that asks the user to verify an action before proceeding.
@@ -942,8 +942,8 @@ A confirmation popup that asks the user to verify an action before proceeding.
 ### Variants
 #### Confirmation popover
 - **Id:** ConfirmationPopover
-- **Appearance Difference:** Confirmation message.
-- **Behavior Difference:** Confirms or cancels action.
+- **Appearance:** Confirmation message.
+- **Behavior:** Confirms or cancels action.
 
 ## Popover
 A floating panel anchored to a trigger element, used for displaying additional content or actions.
@@ -953,16 +953,16 @@ A floating panel anchored to a trigger element, used for displaying additional c
 ### Variants
 #### Basic
 - **Id:** Basic
-- **Appearance Difference:** Simple popover.
-- **Behavior Difference:** Basic popover interaction.
+- **Appearance:** Simple popover.
+- **Behavior:** Basic popover interaction.
 #### With menu
 - **Id:** WithMenu
-- **Appearance Difference:** Includes menu.
-- **Behavior Difference:** Displays menu content.
+- **Appearance:** Includes menu.
+- **Behavior:** Displays menu content.
 #### With form
 - **Id:** WithForm
-- **Appearance Difference:** Includes form elements.
-- **Behavior Difference:** Supports form submission.
+- **Appearance:** Includes form elements.
+- **Behavior:** Supports form submission.
 
 ## Progress
 A visual indicator of task completion or ongoing activity, such as a bar or spinner.
@@ -972,12 +972,12 @@ A visual indicator of task completion or ongoing activity, such as a bar or spin
 ### Variants
 #### Linear
 - **Id:** Linear
-- **Appearance Difference:** Horizontal bar.
-- **Behavior Difference:** Indicates linear progress.
+- **Appearance:** Horizontal bar.
+- **Behavior:** Indicates linear progress.
 #### Circular (progress circle, indeterminate)
 - **Id:** Circular
-- **Appearance Difference:** Circular indicator.
-- **Behavior Difference:** Indicates circular progress.
+- **Appearance:** Circular indicator.
+- **Behavior:** Indicates circular progress.
 
 ## QR Code
 A component for generating and displaying QR codes that encode data for scanning.
@@ -987,8 +987,8 @@ A component for generating and displaying QR codes that encode data for scanning
 ### Variants
 #### Display QR codes
 - **Id:** DisplayQRCodes
-- **Appearance Difference:** Displays QR codes.
-- **Behavior Difference:** Scannable QR codes.
+- **Appearance:** Displays QR codes.
+- **Behavior:** Scannable QR codes.
 
 ## Radio
 A control for selecting a single option from a set of mutually exclusive choices.
@@ -998,12 +998,12 @@ A control for selecting a single option from a set of mutually exclusive choices
 ### Variants
 #### Basic
 - **Id:** Basic
-- **Appearance Difference:** Simple radio button.
-- **Behavior Difference:** Basic selection.
+- **Appearance:** Simple radio button.
+- **Behavior:** Basic selection.
 #### With label
 - **Id:** WithLabel
-- **Appearance Difference:** Includes label.
-- **Behavior Difference:** Displays label text.
+- **Appearance:** Includes label.
+- **Behavior:** Displays label text.
 
 ## Rating
 A control for displaying or collecting user ratings, typically with stars or icons.
@@ -1013,16 +1013,16 @@ A control for displaying or collecting user ratings, typically with stars or ico
 ### Variants
 #### Stars
 - **Id:** Stars
-- **Appearance Difference:** Star icons.
-- **Behavior Difference:** Indicates rating with stars.
+- **Appearance:** Star icons.
+- **Behavior:** Indicates rating with stars.
 #### Custom icons
 - **Id:** CustomIcons
-- **Appearance Difference:** Custom icons.
-- **Behavior Difference:** Indicates rating with custom icons.
+- **Appearance:** Custom icons.
+- **Behavior:** Indicates rating with custom icons.
 #### Read-only
 - **Id:** ReadOnly
-- **Appearance Difference:** Read-only display.
-- **Behavior Difference:** Static rating display.
+- **Appearance:** Read-only display.
+- **Behavior:** Static rating display.
 
 ## Resizable Panel
 A container that can be resized by the user, often via a drag handle or border.
@@ -1032,16 +1032,16 @@ A container that can be resized by the user, often via a drag handle or border.
 ### Variants
 #### Horizontal
 - **Id:** Horizontal
-- **Appearance Difference:** Horizontal layout.
-- **Behavior Difference:** Resizes horizontally.
+- **Appearance:** Horizontal layout.
+- **Behavior:** Resizes horizontally.
 #### Vertical
 - **Id:** Vertical
-- **Appearance Difference:** Vertical layout.
-- **Behavior Difference:** Resizes vertically.
+- **Appearance:** Vertical layout.
+- **Behavior:** Resizes vertically.
 #### With content
 - **Id:** WithContent
-- **Appearance Difference:** Includes content.
-- **Behavior Difference:** Displays panel content.
+- **Appearance:** Includes content.
+- **Behavior:** Displays panel content.
 
 ## Rich Text Editor
 A text input area with formatting controls for creating styled content.
@@ -1051,8 +1051,8 @@ A text input area with formatting controls for creating styled content.
 ### Variants
 #### Toolbar options (bold, italic, underline, etc.)
 - **Id:** ToolbarOptions
-- **Appearance Difference:** Includes formatting toolbar.
-- **Behavior Difference:** Supports text formatting.
+- **Appearance:** Includes formatting toolbar.
+- **Behavior:** Supports text formatting.
 
 ## Scroll Area
 A container with custom scrollbars for overflowing content.
@@ -1062,12 +1062,12 @@ A container with custom scrollbars for overflowing content.
 ### Variants
 #### Custom scrollbars
 - **Id:** CustomScrollbars
-- **Appearance Difference:** Custom scrollbar design.
-- **Behavior Difference:** Custom scroll interaction.
+- **Appearance:** Custom scrollbar design.
+- **Behavior:** Custom scroll interaction.
 #### Scrollable content
 - **Id:** ScrollableContent
-- **Appearance Difference:** Scrollable container.
-- **Behavior Difference:** Scrolls content.
+- **Appearance:** Scrollable container.
+- **Behavior:** Scrolls content.
 
 ## Scrollspy
 A navigation aid that highlights links based on the user's scroll position in the page.
@@ -1077,8 +1077,8 @@ A navigation aid that highlights links based on the user's scroll position in th
 ### Variants
 #### Navigation highlights on scroll
 - **Id:** NavigationHighlights
-- **Appearance Difference:** Highlights active link.
-- **Behavior Difference:** Updates highlight on scroll.
+- **Appearance:** Highlights active link.
+- **Behavior:** Updates highlight on scroll.
 
 ## Searchbox
 A modal or dropdown for searching content or navigating quickly within an app.
@@ -1088,12 +1088,12 @@ A modal or dropdown for searching content or navigating quickly within an app.
 ### Variants
 #### Command palette
 - **Id:** CommandPalette
-- **Appearance Difference:** Displays command palette.
-- **Behavior Difference:** Filters commands.
+- **Appearance:** Displays command palette.
+- **Behavior:** Filters commands.
 #### Searchable
 - **Id:** Searchable
-- **Appearance Difference:** Search input.
-- **Behavior Difference:** Filters search results.
+- **Appearance:** Search input.
+- **Behavior:** Filters search results.
 
 ## Select
 A dropdown input for choosing one or more options from a list.
@@ -1103,16 +1103,16 @@ A dropdown input for choosing one or more options from a list.
 ### Variants
 #### Basic
 - **Id:** Basic
-- **Appearance Difference:** Simple select field.
-- **Behavior Difference:** Basic dropdown.
+- **Appearance:** Simple select field.
+- **Behavior:** Basic dropdown.
 #### Multi-select
 - **Id:** MultiSelect
-- **Appearance Difference:** Supports multiple selections.
-- **Behavior Difference:** Allows multiple selections.
+- **Appearance:** Supports multiple selections.
+- **Behavior:** Allows multiple selections.
 #### With search
 - **Id:** WithSearch
-- **Appearance Difference:** Includes search input.
-- **Behavior Difference:** Searches options.
+- **Appearance:** Includes search input.
+- **Behavior:** Searches options.
 
 ## Slider
 A control for selecting a value or range by sliding a handle along a track.
@@ -1122,12 +1122,12 @@ A control for selecting a value or range by sliding a handle along a track.
 ### Variants
 #### Single value
 - **Id:** SingleValue
-- **Appearance Difference:** Single value slider.
-- **Behavior Difference:** Adjusts single value.
+- **Appearance:** Single value slider.
+- **Behavior:** Adjusts single value.
 #### Range
 - **Id:** Range
-- **Appearance Difference:** Range slider.
-- **Behavior Difference:** Adjusts range of values.
+- **Appearance:** Range slider.
+- **Behavior:** Adjusts range of values.
 
 ## Statistic
 A component for displaying key metrics, numbers, or trends in a visually prominent way.
@@ -1137,16 +1137,16 @@ A component for displaying key metrics, numbers, or trends in a visually promine
 ### Variants
 #### Number with label
 - **Id:** NumberWithLabel
-- **Appearance Difference:** Includes label.
-- **Behavior Difference:** Displays number with label.
+- **Appearance:** Includes label.
+- **Behavior:** Displays number with label.
 #### Trend
 - **Id:** Trend
-- **Appearance Difference:** Includes trend indicator.
-- **Behavior Difference:** Displays trend data.
+- **Appearance:** Includes trend indicator.
+- **Behavior:** Displays trend data.
 #### Icon
 - **Id:** Icon
-- **Appearance Difference:** Includes icon.
-- **Behavior Difference:** Displays icon content.
+- **Appearance:** Includes icon.
+- **Behavior:** Displays icon content.
 
 ## Stepper
 A sequence of steps or stages, often used for multi-step forms or processes.
@@ -1156,20 +1156,20 @@ A sequence of steps or stages, often used for multi-step forms or processes.
 ### Variants
 #### Horizontal
 - **Id:** Horizontal
-- **Appearance Difference:** Horizontal layout.
-- **Behavior Difference:** Displays horizontal steps.
+- **Appearance:** Horizontal layout.
+- **Behavior:** Displays horizontal steps.
 #### Vertical
 - **Id:** Vertical
-- **Appearance Difference:** Vertical layout.
-- **Behavior Difference:** Displays vertical steps.
+- **Appearance:** Vertical layout.
+- **Behavior:** Displays vertical steps.
 #### With icons
 - **Id:** WithIcons
-- **Appearance Difference:** Includes icons.
-- **Behavior Difference:** Displays icon content.
+- **Appearance:** Includes icons.
+- **Behavior:** Displays icon content.
 #### With progress
 - **Id:** WithProgress
-- **Appearance Difference:** Includes progress indicator.
-- **Behavior Difference:** Displays step progress.
+- **Appearance:** Includes progress indicator.
+- **Behavior:** Displays step progress.
 
 ## Switch
 A toggle control for switching between two states, such as on/off or enabled/disabled.
@@ -1179,16 +1179,16 @@ A toggle control for switching between two states, such as on/off or enabled/dis
 ### Variants
 #### With label
 - **Id:** WithLabel
-- **Appearance Difference:** Includes label.
-- **Behavior Difference:** Displays label text.
+- **Appearance:** Includes label.
+- **Behavior:** Displays label text.
 #### Without label
 - **Id:** WithoutLabel
-- **Appearance Difference:** No label.
-- **Behavior Difference:** Basic toggle switch.
+- **Appearance:** No label.
+- **Behavior:** Basic toggle switch.
 #### With icons
 - **Id:** WithIcons
-- **Appearance Difference:** Includes icons.
-- **Behavior Difference:** Displays icon content.
+- **Appearance:** Includes icons.
+- **Behavior:** Displays icon content.
 
 ## Tabs
 A set of tabbed buttons for switching between different views or content sections.
@@ -1198,16 +1198,16 @@ A set of tabbed buttons for switching between different views or content section
 ### Variants
 #### Horizontal
 - **Id:** Horizontal
-- **Appearance Difference:** Horizontal layout.
-- **Behavior Difference:** Displays horizontal tabs.
+- **Appearance:** Horizontal layout.
+- **Behavior:** Displays horizontal tabs.
 #### Vertical
 - **Id:** Vertical
-- **Appearance Difference:** Vertical layout.
-- **Behavior Difference:** Displays vertical tabs.
+- **Appearance:** Vertical layout.
+- **Behavior:** Displays vertical tabs.
 #### With icons
 - **Id:** WithIcons
-- **Appearance Difference:** Includes icons.
-- **Behavior Difference:** Displays icon content.
+- **Appearance:** Includes icons.
+- **Behavior:** Displays icon content.
 
 ## Tag Input
 An input field for entering and managing tags, often displayed as removable chips.
@@ -1217,12 +1217,12 @@ An input field for entering and managing tags, often displayed as removable chip
 ### Variants
 #### Create and Remove Tags
 - **Id:** CreateAndRemoveTags
-- **Appearance Difference:** Supports tag creation/removal.
-- **Behavior Difference:** Adds/removes tags.
+- **Appearance:** Supports tag creation/removal.
+- **Behavior:** Adds/removes tags.
 #### With suggestions
 - **Id:** WithSuggestions
-- **Appearance Difference:** Includes suggestions dropdown.
-- **Behavior Difference:** Displays tag suggestions.
+- **Appearance:** Includes suggestions dropdown.
+- **Behavior:** Displays tag suggestions.
 
 ## Textarea
 A multi-line input field for entering larger amounts of text.
@@ -1232,16 +1232,16 @@ A multi-line input field for entering larger amounts of text.
 ### Variants
 #### Basic
 - **Id:** Basic
-- **Appearance Difference:** Simple textarea.
-- **Behavior Difference:** Basic multi-line input.
+- **Appearance:** Simple textarea.
+- **Behavior:** Basic multi-line input.
 #### Autosize
 - **Id:** Autosize
-- **Appearance Difference:** Auto-resizes to fit content.
-- **Behavior Difference:** Auto-resizing textarea.
+- **Appearance:** Auto-resizes to fit content.
+- **Behavior:** Auto-resizing textarea.
 #### With character count
 - **Id:** WithCharacterCount
-- **Appearance Difference:** Includes character count.
-- **Behavior Difference:** Displays character count.
+- **Appearance:** Includes character count.
+- **Behavior:** Displays character count.
 
 ## Theme Toggle
 A control for switching between light and dark (or other) visual themes.
@@ -1251,8 +1251,8 @@ A control for switching between light and dark (or other) visual themes.
 ### Variants
 #### Light and Dark Switch
 - **Id:** LightAndDarkSwitch
-- **Appearance Difference:** Sun/moon icons.
-- **Behavior Difference:** Toggles light/dark theme.
+- **Appearance:** Sun/moon icons.
+- **Behavior:** Toggles light/dark theme.
 
 ## Timeline
 A vertical or horizontal display of events in chronological order.
@@ -1262,20 +1262,20 @@ A vertical or horizontal display of events in chronological order.
 ### Variants
 #### Vertical
 - **Id:** Vertical
-- **Appearance Difference:** Vertical layout.
-- **Behavior Difference:** Displays vertical timeline.
+- **Appearance:** Vertical layout.
+- **Behavior:** Displays vertical timeline.
 #### Horizontal
 - **Id:** Horizontal
-- **Appearance Difference:** Horizontal layout.
-- **Behavior Difference:** Displays horizontal timeline.
+- **Appearance:** Horizontal layout.
+- **Behavior:** Displays horizontal timeline.
 #### With icons
 - **Id:** WithIcons
-- **Appearance Difference:** Includes icons.
-- **Behavior Difference:** Displays icon content.
+- **Appearance:** Includes icons.
+- **Behavior:** Displays icon content.
 #### With images
 - **Id:** WithImages
-- **Appearance Difference:** Includes images.
-- **Behavior Difference:** Displays image content.
+- **Appearance:** Includes images.
+- **Behavior:** Displays image content.
 
 ## Time Input
 An input for selecting a time value.
@@ -1285,8 +1285,8 @@ An input for selecting a time value.
 ### Variants
 #### Basic
 - **Id:** Basic
-- **Appearance Difference:** Standard time input.
-- **Behavior Difference:** Selects a time value.
+- **Appearance:** Standard time input.
+- **Behavior:** Selects a time value.
 
 ## Toggle
 A control for switching between two states, such as on/off or enabled/disabled.
@@ -1296,12 +1296,12 @@ A control for switching between two states, such as on/off or enabled/disabled.
 ### Variants
 #### With label
 - **Id:** WithLabel
-- **Appearance Difference:** Includes label.
-- **Behavior Difference:** Displays label text.
+- **Appearance:** Includes label.
+- **Behavior:** Displays label text.
 #### With icons
 - **Id:** WithIcons
-- **Appearance Difference:** Includes icons.
-- **Behavior Difference:** Displays icon content.
+- **Appearance:** Includes icons.
+- **Behavior:** Displays icon content.
 
 ## Tooltip
 A small popup that provides additional information when hovering or focusing on an element.
@@ -1311,24 +1311,24 @@ A small popup that provides additional information when hovering or focusing on 
 ### Variants
 #### Top
 - **Id:** Top
-- **Appearance Difference:** Appears above target.
-- **Behavior Difference:** Displays tooltip above.
+- **Appearance:** Appears above target.
+- **Behavior:** Displays tooltip above.
 #### Bottom
 - **Id:** Bottom
-- **Appearance Difference:** Appears below target.
-- **Behavior Difference:** Displays tooltip below.
+- **Appearance:** Appears below target.
+- **Behavior:** Displays tooltip below.
 #### Left
 - **Id:** Left
-- **Appearance Difference:** Appears to the left of target.
-- **Behavior Difference:** Displays tooltip to the left.
+- **Appearance:** Appears to the left of target.
+- **Behavior:** Displays tooltip to the left.
 #### Right
 - **Id:** Right
-- **Appearance Difference:** Appears to the right of target.
-- **Behavior Difference:** Displays tooltip to the right.
+- **Appearance:** Appears to the right of target.
+- **Behavior:** Displays tooltip to the right.
 #### Rich content
 - **Id:** RichContent
-- **Appearance Difference:** Includes rich content.
-- **Behavior Difference:** Displays rich content.
+- **Appearance:** Includes rich content.
+- **Behavior:** Displays rich content.
 
 ## Transfer List
 A dual-list component for moving items between two lists, often with selection and search.
@@ -1338,8 +1338,8 @@ A dual-list component for moving items between two lists, often with selection a
 ### Variants
 #### Move items between lists
 - **Id:** MoveItems
-- **Appearance Difference:** Supports item transfer.
-- **Behavior Difference:** Moves items between lists.
+- **Appearance:** Supports item transfer.
+- **Behavior:** Moves items between lists.
 
 ## Tree View
 A hierarchical list for displaying and selecting nested items or categories.
@@ -1349,24 +1349,24 @@ A hierarchical list for displaying and selecting nested items or categories.
 ### Variants
 #### Basic
 - **Id:** Basic
-- **Appearance Difference:** Simple tree view.
-- **Behavior Difference:** Basic tree interaction.
+- **Appearance:** Simple tree view.
+- **Behavior:** Basic tree interaction.
 #### With checkboxes
 - **Id:** WithCheckboxes
-- **Appearance Difference:** Includes checkboxes.
-- **Behavior Difference:** Supports checkbox selection.
+- **Appearance:** Includes checkboxes.
+- **Behavior:** Supports checkbox selection.
 #### With icons
 - **Id:** WithIcons
-- **Appearance Difference:** Includes icons.
-- **Behavior Difference:** Displays icon content.
+- **Appearance:** Includes icons.
+- **Behavior:** Displays icon content.
 #### Expand and Collapse All
 - **Id:** ExpandAndCollapseAll
-- **Appearance Difference:** Expand/collapse controls.
-- **Behavior Difference:** Expands/collapses all nodes.
+- **Appearance:** Expand/collapse controls.
+- **Behavior:** Expands/collapses all nodes.
 #### Tree structure dropdown
 - **Id:** TreeStructureDropdown
-- **Appearance Difference:** Dropdown layout.
-- **Behavior Difference:** Displays tree structure.
+- **Appearance:** Dropdown layout.
+- **Behavior:** Displays tree structure.
 
 ## Typography
 A set of styled text elements for headings, paragraphs, lists, and more.
@@ -1376,25 +1376,25 @@ A set of styled text elements for headings, paragraphs, lists, and more.
 ### Variants
 #### Headings
 - **Id:** Headings
-- **Appearance Difference:** Styled as headings.
-- **Behavior Difference:** Displays heading text.
+- **Appearance:** Styled as headings.
+- **Behavior:** Displays heading text.
 #### Paragraphs
 - **Id:** Paragraphs
-- **Appearance Difference:** Styled as paragraphs.
-- **Behavior Difference:** Displays paragraph text.
+- **Appearance:** Styled as paragraphs.
+- **Behavior:** Displays paragraph text.
 #### Blockquotes
 - **Id:** Blockquotes
-- **Appearance Difference:** Styled as blockquotes.
-- **Behavior Difference:** Displays blockquote text.
+- **Appearance:** Styled as blockquotes.
+- **Behavior:** Displays blockquote text.
 #### Lists
 - **Id:** Lists
-- **Appearance Difference:** Styled as lists.
-- **Behavior Difference:** Displays list items.
+- **Appearance:** Styled as lists.
+- **Behavior:** Displays list items.
 #### Code block
 - **Id:** CodeBlock
-- **Appearance Difference:** Styled as code blocks.
-- **Behavior Difference:** Displays code content.
+- **Appearance:** Styled as code blocks.
+- **Behavior:** Displays code content.
 #### Highlight and Callout
 - **Id:** HighlightAndCallout
-- **Appearance Difference:** Highlighted text.
-- **Behavior Difference:** Displays highlighted text.
+- **Appearance:** Highlighted text.
+- **Behavior:** Displays highlighted text.
