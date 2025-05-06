@@ -7,7 +7,7 @@ This document provides an overview of all UI blocks available in NovyUI. Each bl
 - [Banners](#banners)
 - [Carousels](#carousels)
 - [Comments](#comments)
-- [Contact Card/Section](#contact-cardsection)
+- [Contact Card](#contact-card)
 - [Container](#container)
 - [Cookie Consent Banner](#cookie-consent-banner)
 - [Drag and Drop](#drag-and-drop)
@@ -36,12 +36,12 @@ A grid or list of cards showcasing articles, blog posts, or news items.
 - **Appearance:** A card layout for articles or blog posts, including image, title, excerpt, author avatar, tags, and action button(s).
 - **Behavior:** Static by default. May be clickable, support hover effects, or include actions (e.g., share, bookmark).
 - **Components:**
-  - Card
-  - Image
-  - Avatar
-  - Chips
-  - Button
-  - Typography
+  - [Card](components.md#card)
+  - [Image](components.md#image)
+  - [Avatar](components.md#avatar)
+  - [Chips](components.md#chips)
+  - [Button](components.md#button)
+  - [Typography](components.md#typography)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -78,16 +78,16 @@ A block containing forms for user login, registration, or password management.
 - **Appearance:** A form for user login, registration, or password reset. Includes input fields, labels, buttons, and optional links (e.g., forgot password). May be centered on the page or in a card.
 - **Behavior:** Submits user credentials or registration info. Shows validation errors and loading state. May redirect or show success message on completion.
 - **Components:**
-  - Input
-  - PasswordInput
-  - Button
-  - Checkbox
-  - Alert
-  - Link
-  - FormErrorMessage
-  - DatePicker
-  - DateRangePicker
-  - TimeInput
+  - [Input](components.md#input)
+  - [PasswordInput](components.md#passwordinput)
+  - [Button](components.md#button)
+  - [Checkbox](components.md#checkbox)
+  - [Alert](components.md#alert)
+  - [Link](components.md#link)
+  - [FormErrorMessage](components.md#formerrormessage)
+  - [DatePicker](components.md#datepicker)
+  - [DateRangePicker](components.md#daterangepicker)
+  - [TimeInput](components.md#timeinput)
 ### Variants
 #### Login
 - **Id:** Login
@@ -112,10 +112,10 @@ A horizontal bar or box used to display important messages, promotions, or alert
 - **Appearance:** A horizontal bar or box with a message, icon, and optional action button. May be colored to indicate importance or type (e.g., warning, promo).
 - **Behavior:** Static or dismissible. May animate in/out or auto-dismiss after a timeout.
 - **Components:**
-  - Alert
-  - Button
-  - Icon
-  - Typography
+  - [Alert](components.md#alert)
+  - [Button](components.md#button)
+  - [Icon](components.md#icon)
+  - [Typography](components.md#typography)
 ### Variants
 #### Announcement
 - **Id:** Announcement
@@ -136,11 +136,11 @@ A horizontally scrollable area for showcasing images, cards, or featured content
 - **Appearance:** A horizontally scrollable area with images or cards, navigation arrows, and indicators. May auto-advance or loop.
 - **Behavior:** Users can scroll, swipe, or click arrows to navigate. Supports autoplay, pause on hover, and responsive layout.
 - **Components:**
-  - Carousel
-  - Image
-  - Card
-  - Button
-  - Icon
+  - [Carousel](components.md#carousel)
+  - [Image](components.md#image)
+  - [Card](components.md#card)
+  - [Button](components.md#button)
+  - [Icon](components.md#icon)
 ### Variants
 #### Image carousel
 - **Id:** ImageCarousel
@@ -157,13 +157,13 @@ A section for displaying and submitting user comments, often with threading and 
 - **Appearance:** A list of user comments, each with avatar, author, timestamp, and content. May support threading (nested replies).
 - **Behavior:** Users can add, reply, or delete comments. Supports keyboard navigation, editing, and moderation actions.
 - **Components:**
-  - Avatar
-  - Input
-  - Textarea
-  - Button
-  - List
-  - Card
-  - Typography
+  - [Avatar](components.md#avatar)
+  - [Input](components.md#input)
+  - [Textarea](components.md#textarea)
+  - [Button](components.md#button)
+  - [List](components.md#list)
+  - [Card](components.md#card)
+  - [Typography](components.md#typography)
 ### Variants
   - Basic
     - **Id:** Basic
@@ -174,18 +174,18 @@ A section for displaying and submitting user comments, often with threading and 
     - **Appearance:** Comments can be nested to show replies.
     - **Behavior:** Users can reply to comments, creating threads.
 
-## Contact Card/Section
+## Contact Card
 A section providing contact information and/or a form for users to reach out.
-- **Id:** ContactCardSection
+- **Id:** ContactCard
 - **Appearance:** A section with a contact form (inputs, textarea, button), contact details, and optional map or icons for communication methods.
 - **Behavior:** Submits form data, shows validation and success/error messages. May include interactive map or clickable contact links.
 - **Components:**
-  - Input
-  - Textarea
-  - Button
-  - Icon
-  - MapLocationPicker
-  - Alert
+  - [Input](components.md#input)
+  - [Textarea](components.md#textarea)
+  - [Button](components.md#button)
+  - [Icon](components.md#icon)
+  - [MapLocationPicker](components.md#maplocationpicker)
+  - [Alert](components.md#alert)
 ### Variants
   - With map
     - **Id:** WithMap
@@ -202,7 +202,7 @@ A responsive wrapper that centers and constrains content width for consistent la
 - **Appearance:** A responsive wrapper that centers and constrains content width. May include padding and background.
 - **Behavior:** Static. Adjusts size based on screen width and breakpoints.
 - **Components:**
-  - Container
+  - [Container](components.md#container)
 ### Variants
   - Responsive wrapper for page content
     - **Id:** ResponsiveWrapper
@@ -215,10 +215,10 @@ A banner that informs users about cookie usage and requests their consent.
 - **Appearance:** A horizontal banner at the bottom or top of the page, with message, action buttons, and optional link to privacy policy.
 - **Behavior:** Appears on first visit or when required. Dismisses on button click. May store consent in cookies/local storage.
 - **Components:**
-  - Alert
-  - Button
-  - Typography
-  - Link
+  - [Alert](components.md#alert)
+  - [Button](components.md#button)
+  - [Typography](components.md#typography)
+  - [Link](components.md#link)
 ### Variants
   - Consent options
     - **Id:** ConsentOptions
@@ -235,10 +235,10 @@ A block enabling drag-and-drop sorting, reordering, or file uploads within a lis
 - **Appearance:** A list or grid of items with drag handles. Items may be cards, images, or list elements. Dropzone highlights on drag.
 - **Behavior:** Items can be reordered or moved between lists by dragging. Supports keyboard and mouse interaction, and drop feedback.
 - **Components:**
-  - List
-  - Card
-  - Icon (drag handle)
-  - Dropzone
+  - [List](components.md#list)
+  - [Card](components.md#card)
+  - [Icon](components.md#icon)
+  - [Dropzone](components.md#dropzone)
 ### Variants
   - Sortable list
     - **Id:** SortableList
@@ -259,12 +259,12 @@ A section that highlights key features, benefits, or selling points, often arran
 - **Appearance:** A section highlighting key features or benefits, often arranged in a grid or list. Each feature may include an icon, heading, and description.
 - **Behavior:** Static by default. May include hover effects, reveal animations, or clickable features for more details.
 - **Components:**
-  - Heading
-  - Icon
-  - Card
-  - List
-  - Button (optional)
-  - Grid
+  - [Heading](components.md#heading)
+  - [Icon](components.md#icon)
+  - [Card](components.md#card)
+  - [List](components.md#list)
+  - [Button](components.md#button)
+  - [Grid](components.md#grid)
 ### Variants
   - Grid
     - **Id:** Grid
@@ -293,7 +293,7 @@ A layout system arranging children in a row or column with flexible sizing and a
 - **Appearance:** A layout system arranging children in a row or column with flexible sizing and alignment. May wrap or justify content.
 - **Behavior:** Static. Children are arranged according to flexbox rules. Supports responsive direction and alignment.
 - **Components:**
-  - FlexboxLayouts
+  - [FlexboxLayouts](components.md#flexboxlayouts)
 ### Variants
   - Flexible row/column arrangements
     - **Id:** FlexibleRowColumnArrangements
@@ -306,11 +306,11 @@ A section at the bottom of a page containing links, copyright, and additional in
 - **Appearance:** A section at the bottom of a page with links, copyright, social icons, and optional newsletter signup. May be simple or multi-column.
 - **Behavior:** Static by default. Newsletter form submits email. Social icons and links are clickable.
 - **Components:**
-  - Link
-  - Icon
-  - Button
-  - Input
-  - Typography
+  - [Link](components.md#link)
+  - [Icon](components.md#icon)
+  - [Button](components.md#button)
+  - [Input](components.md#input)
+  - [Typography](components.md#typography)
 ### Variants
   - Simple
     - **Id:** Simple
@@ -335,7 +335,7 @@ A layout system dividing content into columns and rows with consistent spacing.
 - **Appearance:** A layout system dividing content into columns and rows with consistent spacing. May be responsive and support gaps.
 - **Behavior:** Static. Children are placed in grid cells. Adjusts layout based on screen size.
 - **Components:**
-  - Grid
+  - [Grid](components.md#grid)
 ### Variants
   - Responsive grid layouts for arranging content
     - **Id:** ResponsiveGridLayouts
@@ -348,9 +348,9 @@ A container for arranging child elements in a stack, grid, or flexible layout.
 - **Appearance:** A container for arranging child elements in a stack, grid, or flex layout. May include spacing, alignment, and responsive behavior.
 - **Behavior:** Static by default. Children are arranged according to layout rules. May support drag-and-drop or reordering.
 - **Components:**
-  - Container
-  - Grid
-  - FlexboxLayouts
+  - [Container](components.md#container)
+  - [Grid](components.md#grid)
+  - [FlexboxLayouts](components.md#flexboxlayouts)
 ### Variants
   - Stack
     - **Id:** Stack
@@ -371,12 +371,12 @@ A section at the top of a page or card, typically containing a title, actions, a
 - **Appearance:** A section at the top of a page or card, with title, breadcrumbs, actions, and optional avatar or search. May include background or divider.
 - **Behavior:** Static by default. Actions trigger navigation or open menus. Breadcrumbs are clickable.
 - **Components:**
-  - Heading
-  - Breadcrumbs
-  - Button
-  - Avatar
-  - Icon
-  - Searchbox
+  - [Heading](components.md#heading)
+  - [Breadcrumbs](components.md#breadcrumbs)
+  - [Button](components.md#button)
+  - [Avatar](components.md#avatar)
+  - [Icon](components.md#icon)
+  - [Searchbox](components.md#searchbox)
 ### Variants
   - Basic
     - **Id:** Basic
@@ -409,12 +409,12 @@ A prominent section at the top of a page, typically featuring a headline, suppor
 - **Appearance:** A prominent section at the top of a page, typically with a large heading, supporting text, call-to-action button(s), and an image or illustration. May have a background color, gradient, or image.
 - **Behavior:** Static by default. Buttons trigger navigation or actions. May include animation or parallax effects.
 - **Components:**
-  - Heading
-  - Paragraph
-  - Button
-  - Image
-  - Container
-  - Icon (optional)
+  - [Heading](components.md#heading)
+  - [Paragraph](components.md#paragraphs)
+  - [Button](components.md#button)
+  - [Image](components.md#image)
+  - [Container](components.md#container)
+  - [Icon](components.md#icon)
 ### Variants
   - Basic hero
     - **Id:** BasicHero
@@ -447,11 +447,11 @@ A large dropdown menu with multiple columns, categories, and rich content for si
 - **Appearance:** A large dropdown menu with multiple columns, links, icons, and images. Appears below or beside a navigation item.
 - **Behavior:** Opens on click or hover. Supports keyboard navigation and responsive layout. Clicking links navigates to pages.
 - **Components:**
-  - Dropdown
-  - Link
-  - Icon
-  - Image
-  - Grid
+  - [Dropdown](components.md#dropdown)
+  - [Link](components.md#link)
+  - [Icon](components.md#icon)
+  - [Image](components.md#image)
+  - [Grid](components.md#grid)
 ### Variants
   - With images
     - **Id:** WithImages
@@ -468,13 +468,13 @@ A horizontal or vertical navigation bar providing links to main sections of a si
 - **Appearance:** A horizontal or vertical bar with navigation links, logo, and optional user avatar, search, or menu. May be fixed or sticky.
 - **Behavior:** Clicking links navigates to pages. Dropdowns open on click/hover. Responsive to screen size (collapsible on mobile).
 - **Components:**
-  - Button
-  - Icon
-  - Avatar
-  - Dropdown
-  - Link
-  - Badge
-  - Searchbox
+  - [Button](components.md#button)
+  - [Icon](components.md#icon)
+  - [Avatar](components.md#avatar)
+  - [Dropdown](components.md#dropdown)
+  - [Link](components.md#link)
+  - [Badge](components.md#badge)
+  - [Searchbox](components.md#searchbox)
 ### Variants
   - Basic
     - **Id:** Basic
@@ -511,7 +511,7 @@ A top-level container that wraps the entire page, providing background, padding,
 - **Appearance:** A top-level container for the entire page, providing background, padding, and layout constraints.
 - **Behavior:** Static. Wraps all page content and ensures consistent spacing.
 - **Components:**
-  - Container
+  - [Container](components.md#container)
 ### Variants
   - Main layout container for the whole page
     - **Id:** MainLayoutContainer
@@ -524,9 +524,9 @@ A multi-column layout that adapts to screen size, stacking columns vertically on
 - **Appearance:** A multi-column layout that adapts to screen size, stacking columns vertically on small screens.
 - **Behavior:** Static. Columns adjust or stack responsively. May support equal or variable widths.
 - **Components:**
-  - Grid
-  - Card
-  - Typography
+  - [Grid](components.md#grid)
+  - [Card](components.md#card)
+  - [Typography](components.md#typography)
 ### Variants
   - Multi-column layouts that adapt to screen size
     - **Id:** MultiColumnLayouts
@@ -539,10 +539,10 @@ A content area used to separate and organize different parts of a page.
 - **Appearance:** A content area with optional heading, divider, and background. Used to separate page content into logical parts.
 - **Behavior:** Static. May support show/hide or expand/collapse for content.
 - **Components:**
-  - Container
-  - Heading
-  - Typography
-  - DividerSeparator
+  - [Container](components.md#container)
+  - [Heading](components.md#heading)
+  - [Typography](components.md#typography)
+  - [DividerSeparator](components.md#dividerseparator)
 ### Variants
   - Themed or separated page areas (with background, with divider)
     - **Id:** ThemedOrSeparatedPageAreas
@@ -555,11 +555,11 @@ A vertical panel providing navigation links, actions, or additional content alon
 - **Appearance:** A vertical panel with navigation links, icons, and optional avatar or actions. May be collapsible or fixed.
 - **Behavior:** Clicking links navigates to sections. May expand/collapse on toggle. Supports keyboard navigation.
 - **Components:**
-  - List
-  - Link
-  - Icon
-  - Button
-  - Avatar
+  - [List](components.md#list)
+  - [Link](components.md#link)
+  - [Icon](components.md#icon)
+  - [Button](components.md#button)
+  - [Avatar](components.md#avatar)
 ### Variants
   - Vertical navigation or content area
     - **Id:** VerticalNavigationOrContentArea
@@ -572,11 +572,11 @@ A layout dividing content into two or more columns, often with image and text si
 - **Appearance:** A layout with two or more columns, typically with image on one side and text on the other. May be responsive and stack on small screens.
 - **Behavior:** Static. Columns adjust or stack based on screen size. May support animation or reveal effects.
 - **Components:**
-  - Container
-  - Grid
-  - Image
-  - Typography
-  - Button
+  - [Container](components.md#container)
+  - [Grid](components.md#grid)
+  - [Image](components.md#image)
+  - [Typography](components.md#typography)
+  - [Button](components.md#button)
 ### Variants
   - Side-by-side content, e.g., image + text
     - **Id:** SideBySideContent
@@ -589,11 +589,11 @@ A section displaying key metrics, statistics, or trends, often in a grid or card
 - **Appearance:** A section with one or more statistic cards, each showing a number, label, icon, and optional trend or progress bar.
 - **Behavior:** Numbers may animate on load. Cards may be clickable for more details. Updates dynamically with data.
 - **Components:**
-  - Statistic
-  - Icon
-  - Card
-  - Progress
-  - Badge
+  - [Statistic](components.md#statistic)
+  - [Icon](components.md#icon)
+  - [Card](components.md#card)
+  - [Progress](components.md#progress)
+  - [Badge](components.md#badge)
 ### Variants
   - Stat grid
     - **Id:** StatGrid
@@ -642,9 +642,9 @@ A navigational block listing links to sections within a page for easy access.
 - **Appearance:** A vertical or horizontal list of links to sections of a page. May be styled as a sidebar or sticky element.
 - **Behavior:** Clicking a link scrolls to the section. Highlights the active section as user scrolls. May collapse/expand for long lists.
 - **Components:**
-  - List
-  - Link
-  - Heading
+  - [List](components.md#list)
+  - [Link](components.md#link)
+  - [Heading](components.md#heading)
 ### Variants
   - Simple
     - **Id:** Simple
@@ -661,12 +661,12 @@ A section showcasing team members, their roles, and contact information.
 - **Appearance:** A section with team member profiles, including avatar, name, role, and contact links. May be arranged in a grid or list.
 - **Behavior:** Static by default. Profiles may be clickable or support hover effects. Contact links open email or social profiles.
 - **Components:**
-  - Avatar
-  - Card
-  - Grid
-  - List
-  - Link
-  - Typography
+  - [Avatar](components.md#avatar)
+  - [Card](components.md#card)
+  - [Grid](components.md#grid)
+  - [List](components.md#list)
+  - [Link](components.md#link)
+  - [Typography](components.md#typography)
 ### Variants
   - Grid
     - **Id:** Grid
@@ -683,14 +683,14 @@ A block presenting user profile information and related actions or settings.
 - **Appearance:** A section or card with user avatar, name, status, and controls (dropdown, toggle, actions). May include stats or settings.
 - **Behavior:** Controls trigger actions (e.g., switch user, open menu). Status updates in real time. Supports keyboard navigation.
 - **Components:**
-  - Avatar
-  - Dropdown
-  - Button
-  - List
-  - Badge
-  - Card
-  - Toggle
-  - Collapse
+  - [Avatar](components.md#avatar)
+  - [Dropdown](components.md#dropdown)
+  - [Button](components.md#button)
+  - [List](components.md#list)
+  - [Badge](components.md#badge)
+  - [Card](components.md#card)
+  - [Toggle](components.md#toggle)
+  - [Collapse](components.md#collapse)
 ### Variants
   - Profile menu
     - **Id:** ProfileMenu

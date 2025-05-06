@@ -29,8 +29,8 @@ A feed page showing recent activity, notifications, or events, often with filter
 - **Appearance:** A page with a feed of recent activity, notifications, or events. May include filters and grouping by date.
 - **Behavior:** Updates dynamically with new activity. Supports marking as read, filtering, and navigation to details.
 - **Blocks:**
-  - ActivityFeed
-  - Footers
+  - [ActivityFeed](blocks.md#activityfeed)
+  - [Footers](blocks.md#footers)
 ### Variants
 #### Activity feed
 - **Id:** ActivityFeed
@@ -47,10 +47,10 @@ A structural layout providing navigation, sidebar, and main content area for app
 - **Appearance:** A layout with sidebar, topbar, and main content area. May include navigation, user info, and responsive design.
 - **Behavior:** Sidebar may collapse/expand. Navigation links update main content. Supports keyboard navigation and accessibility.
 - **Blocks:**
-  - Navbars
-  - Sidebar
-  - PageWrapper
-  - Footers
+  - [Navbars](blocks.md#navbars)
+  - [Sidebar](blocks.md#sidebar)
+  - [PageWrapper](blocks.md#page-wrapper)
+  - [Footers](blocks.md#footers)
 ### Variants
 #### Sidebar layout
 - **Id:** SidebarLayout
@@ -71,8 +71,8 @@ A page for user login, registration, and password management, providing secure a
 - **Appearance:** A page with a centered card or form for login, registration, or password reset. Includes input fields, buttons, and links for navigation between forms.
 - **Behavior:** Submits user credentials or registration info. Shows validation errors and loading state. May redirect or show success message on completion.
 - **Blocks:**
-  - Authentication
-  - Footers
+  - [Authentication](blocks.md#authentication)
+  - [Footers](blocks.md#footers)
 ### Variants
 #### Login
 - **Id:** Login
@@ -97,12 +97,12 @@ A content-driven page listing articles, with support for reading, commenting, an
 - **Appearance:** A page with a list or grid of articles, each with image, title, excerpt, and author. Article page shows full content, comments, and related posts.
 - **Behavior:** Clicking an article opens the full post. Supports pagination, filtering, and commenting.
 - **Blocks:**
-  - Navbars
-  - Headers
-  - ArticleCards
-  - TableOfContents
-  - Comments
-  - Footers
+  - [Navbars](blocks.md#navbars)
+  - [Headers](blocks.md#headers)
+  - [ArticleCards](blocks.md#article-cards)
+  - [TableOfContents](blocks.md#table-of-contents)
+  - [Comments](blocks.md#comments)
+  - [Footers](blocks.md#footers)
 ### Variants
 #### Blog home
 - **Id:** BlogHome
@@ -131,8 +131,8 @@ A scheduling page with calendar views, event lists, and event management feature
 - **Appearance:** A page with a calendar view (month, week), event list, and event details. May include filters and add event button.
 - **Behavior:** Clicking a date or event shows details. Supports adding, editing, and deleting events. Responsive layout.
 - **Blocks:**
-  - Calendar
-  - Footers
+  - [Calendar](blocks.md#calendar)
+  - [Footers](blocks.md#footers)
 ### Variants
 #### Month view
 - **Id:** MonthView
@@ -153,8 +153,8 @@ A page for users to get in touch, featuring a contact form, details, and optiona
 - **Appearance:** A page with a contact form, contact details, and optional map or social links. May be split into form and info sections.
 - **Behavior:** Submits form data, shows validation and success/error messages. Contact links are clickable.
 - **Blocks:**
-  - ContactCardSection
-  - Footers
+  - [ContactCard](blocks.md#contact-card)
+  - [Footers](blocks.md#footers)
 ### Variants
 #### Contact form
 - **Id:** ContactForm
@@ -175,13 +175,13 @@ A summary page displaying key metrics, charts, and recent activity for quick ins
 - **Appearance:** A page with a navigation bar, header, and a grid or cards showing key metrics, charts, recent activity, and quick links. May include tables, stats, and notifications.
 - **Behavior:** Widgets update dynamically with data. Cards and charts may be interactive (clickable, filterable). Supports responsive layout and navigation.
 - **Blocks:**
-  - Navbars
-  - Headers
-  - Stats
-  - TableOfContents
-  - ArticleCards
-  - ActivityFeed
-  - Footers
+  - [Navbars](blocks.md#navbars)
+  - [Headers](blocks.md#headers)
+  - [Stats](blocks.md#stats)
+  - [TableOfContents](blocks.md#table-of-contents)
+  - [ArticleCards](blocks.md#article-cards)
+  - [ActivityFeed](blocks.md#activityfeed)
+  - [Footers](blocks.md#footers)
 ### Variants
 #### Overview
 - **Id:** Overview
@@ -206,9 +206,9 @@ A data-centric page for displaying tables or lists with filtering, sorting, and 
 - **Appearance:** A page with a data table or list, filters, and actions. May include pagination, search, and bulk actions.
 - **Behavior:** Supports sorting, filtering, selection, and inline actions. Responsive layout for mobile.
 - **Blocks:**
-  - TableOfContents
-  - ArticleCards
-  - Footers
+  - [TableOfContents](blocks.md#table-of-contents)
+  - [ArticleCards](blocks.md#article-cards)
+  - [Footers](blocks.md#footers)
 ### Variants
 #### Data table
 - **Id:** DataTable
@@ -229,8 +229,8 @@ A page offering downloads for apps or resources, with links, QR codes, and instr
 - **Appearance:** A page with download links or buttons for apps/resources. May include QR codes, platform icons, and instructions.
 - **Behavior:** Clicking a button starts download or opens app store. May track downloads or show version info.
 - **Blocks:**
-  - AppDownloadSection
-  - Footers
+  - [AppDownloadSection](blocks.md#appdownloadsection)
+  - [Footers](blocks.md#footers)
 ### Variants
 #### App download
 - **Id:** AppDownload
@@ -247,11 +247,11 @@ A set of pages for browsing products, viewing details, managing a cart, and comp
 - **Appearance:** Product listing grid, product detail pages, cart, and checkout forms. Includes images, prices, filters, and action buttons.
 - **Behavior:** Add/remove items to cart, update quantities, filter/sort products, and complete checkout. Supports responsive layout and navigation.
 - **Blocks:**
-  - Navbars
-  - Headers
-  - ArticleCards
-  - TableOfContents
-  - Footers
+  - [Navbars](blocks.md#navbars)
+  - [Headers](blocks.md#headers)
+  - [ArticleCards](blocks.md#article-cards)
+  - [TableOfContents](blocks.md#table-of-contents)
+  - [Footers](blocks.md#footers)
 ### Variants
 #### Product listing
 - **Id:** ProductListing
@@ -284,8 +284,7 @@ A page for displaying error messages, such as 404 or 500, with navigation option
 - **Appearance:** A page with a large error code/message, icon or illustration, and navigation options (e.g., back to home). May be minimal or branded.
 - **Behavior:** Static. May auto-redirect after a timeout or provide links for user action.
 - **Blocks:**
-  - ErrorPages
-  - Footers
+  - [Footers](blocks.md#footers)
 ### Variants
 #### 404 Not Found
 - **Id:** NotFound
@@ -314,8 +313,7 @@ A page presenting frequently asked questions and answers, often with search and 
 - **Appearance:** A page with a list or accordion of frequently asked questions and answers. May include search and categories.
 - **Behavior:** Clicking a question expands/collapses the answer. Supports search/filter and navigation.
 - **Blocks:**
-  - FrequentlyAskedQuestions
-  - Footers
+  - [Footers](blocks.md#footers)
 ### Variants
 #### Frequently asked questions
 - **Id:** FrequentlyAskedQuestions
@@ -332,13 +330,13 @@ A marketing page designed to introduce a product or service, highlight features,
 - **Appearance:** A marketing-focused page with hero, features, testimonials, pricing, and call-to-action sections. Uses bold visuals and clear messaging.
 - **Behavior:** Static by default. Buttons trigger navigation or actions. May include animations or interactive elements.
 - **Blocks:**
-  - Hero
-  - FeaturesSection
-  - Banners
-  - Testimonials
-  - PricingTable
-  - CallToActionSection
-  - Footers
+  - [Hero](blocks.md#hero)
+  - [FeaturesSection](blocks.md#features-section)
+  - [Banners](blocks.md#banners)
+  - [Testimonials](blocks.md#testimonials)
+  - [PricingTable](blocks.md#pricingtable)
+  - [CallToActionSection](blocks.md#calltoactionsection)
+  - [Footers](blocks.md#footers)
 ### Variants
 #### Marketing homepage
 - **Id:** MarketingHomepage
@@ -367,7 +365,7 @@ A page for legal documents such as privacy policy or terms of service, with head
 - **Appearance:** A page with legal text, such as privacy policy or terms of service. May include headings, links, and last updated date.
 - **Behavior:** Static. May support search or navigation within the document.
 - **Blocks:**
-  - Footers
+  - [Footers](blocks.md#footers)
 ### Variants
 #### Privacy policy
 - **Id:** PrivacyPolicy
@@ -384,8 +382,8 @@ A multi-step guide or wizard to help new users get started with the application.
 - **Appearance:** A multi-step guide or wizard with progress indicator, instructions, and forms. May include illustrations or checklists.
 - **Behavior:** Navigates between steps, validates input, and shows completion message. Supports back/next navigation.
 - **Blocks:**
-  - OnboardingSteps
-  - Footers
+  - [OnboardingSteps](blocks.md#onboardingsteps)
+  - [Footers](blocks.md#footers)
 ### Variants
 #### Welcome
 - **Id:** Welcome
@@ -406,9 +404,9 @@ A showcase page for projects or work samples, with filtering and detailed views.
 - **Appearance:** A grid or list of projects, each with image, title, and description. Project detail page shows full info and images.
 - **Behavior:** Clicking a project opens details. Supports filtering, sorting, and responsive layout.
 - **Blocks:**
-  - Hero
-  - ArticleCards
-  - Footers
+  - [Hero](blocks.md#hero)
+  - [ArticleCards](blocks.md#article-cards)
+  - [Footers](blocks.md#footers)
 ### Variants
 #### Projects grid
 - **Id:** ProjectsGrid
@@ -425,10 +423,10 @@ A user-focused page showing personal details, avatar, and editable profile infor
 - **Appearance:** A page showing user avatar, name, profile details, and editable fields. May include tabs for account, settings, and activity.
 - **Behavior:** Allows editing and saving profile info. Supports avatar upload, validation, and navigation between sections.
 - **Blocks:**
-  - Headers
-  - UserInfoAndControls
-  - ArticleCards
-  - Footers
+  - [Headers](blocks.md#headers)
+  - [UserInfoAndControls](blocks.md#user-info-and-controls)
+  - [ArticleCards](blocks.md#article-cards)
+  - [Footers](blocks.md#footers)
 ### Variants
 #### User profile
 - **Id:** UserProfile
@@ -449,8 +447,8 @@ A timeline or milestone page outlining planned features, releases, or project pr
 - **Appearance:** A timeline or list of milestones, releases, or planned features. May include dates, status, and descriptions.
 - **Behavior:** Static or interactive (expand/collapse, filter by status). May animate on scroll.
 - **Blocks:**
-  - Roadmap
-  - Footers
+  - [Roadmap](blocks.md#roadmap)
+  - [Footers](blocks.md#footers)
 ### Variants
 #### Timeline
 - **Id:** Timeline
@@ -467,9 +465,9 @@ A page for managing user or application preferences, grouped into categories lik
 - **Appearance:** A page with grouped settings forms, toggles, and inputs. May use tabs or sections for categories (general, security, notifications, billing).
 - **Behavior:** Allows updating settings, toggling switches, and saving changes. Shows validation and success/error messages.
 - **Blocks:**
-  - Headers
-  - UserInfoAndControls
-  - Footers
+  - [Headers](blocks.md#headers)
+  - [UserInfoAndControls](blocks.md#user-info-and-controls)
+  - [Footers](blocks.md#footers)
 ### Variants
 #### General settings
 - **Id:** GeneralSettings
@@ -494,8 +492,8 @@ A page introducing team members, their roles, and profiles, often with photos an
 - **Appearance:** A page with profiles of team members, each with avatar, name, role, and bio. May include group photo or sections by team.
 - **Behavior:** Static by default. Clicking a member may show more details or profile page.
 - **Blocks:**
-  - TeamSection
-  - Footers
+  - [TeamSection](blocks.md#teamsection)
+  - [Footers](blocks.md#footers)
 ### Variants
 #### Team members
 - **Id:** TeamMembers
