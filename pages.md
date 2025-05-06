@@ -6,29 +6,29 @@ This document provides an overview of all page templates and layouts available i
 - [App Shell](#app-shell)
 - [Authentication](#authentication)
 - [Blog](#blog)
-- [Calendar](#calendarpage)
+- [Calendar Page](#calendar-page)
 - [Contact](#contact)
 - [Dashboard](#dashboard)
-- [Data Table](#datatable)
+- [Data Table](#data-table)
 - [Download](#download)
-- [E-commerce](#e-commerce)
+- [E-Commerce Checkout](#e-commerce-checkout)
+- [E-Commerce](#e-commerce)
+- [Editor](#editor)
 - [Error](#error)
 - [FAQ](#faq)
+- [File Management](#file-management)
 - [Landing](#landing)
 - [Legal](#legal)
+- [Login & Security](#login--security)
+- [Messaging](#messaging)
 - [Onboarding](#onboarding)
 - [Portfolio](#portfolio)
+- [Product Page](#product-page)
 - [Profile](#profile)
 - [Roadmap](#roadmap)
 - [Settings](#settings)
 - [Team](#team)
-- [Login & Security](#login--security)
 - [User Profile](#user-profile)
-- [Product Page](#product-page)
-- [Editor](#editor)
-- [File Management](#file-management)
-- [Messaging](#messaging)
-- [E-Commerce Checkout](#e-commerce-checkout)
 
 ## Activity
 A feed page showing recent activity, notifications, or events, often with filters and grouping.
@@ -249,7 +249,16 @@ A page offering downloads for apps or resources, with links, QR codes, and instr
 - **Appearance:** List of downloadable resources with descriptions.
 - **Behavior:** Clicking a link starts the download.
 
-## E-commerce
+## E-Commerce Checkout
+A page for checkout with sticky cart summary and loading overlay.
+- **Id:** ECommerceCheckout
+- **Appearance:** Checkout form, sticky cart summary, and loading overlay during processing.
+- **Blocks:**
+  - [Checkout](blocks.md#checkout)
+  - [StickyCartSummary](blocks.md#sticky-cart-summary)
+  - [PageLoaderOverlay](blocks.md#page-loader-overlay)
+
+## E-Commerce
 A set of pages for browsing products, viewing details, managing a cart, and completing purchases.
 - **Id:** ECommerce
 - **Appearance:** Product listing grid, product detail pages, cart, and checkout forms. Includes images, prices, filters, and action buttons.
@@ -285,6 +294,15 @@ A set of pages for browsing products, viewing details, managing a cart, and comp
 - **Id:** Wishlist
 - **Appearance:** List of saved products for future purchase.
 - **Behavior:** Allows adding/removing items from the wishlist.
+
+## Editor
+A page for writing and formatting blog posts with tags and a formatting toolbar.
+- **Id:** Editor
+- **Appearance:** Rich text editor, tag input, and formatting menubar.
+- **Blocks:**
+  - [BlogPostEditor](blocks.md#blog-post-editor)
+  - [BlogPostTagging](blocks.md#blog-post-tagging)
+  - [TextEditorToolbar](blocks.md#text-editor-toolbar)
 
 ## Error
 A page for displaying error messages, such as 404 or 500, with navigation options for recovery.
@@ -333,6 +351,15 @@ A page presenting frequently asked questions and answers, often with search and 
 - **Id:** SearchableFAQ
 - **Appearance:** FAQ with a search bar for filtering questions.
 - **Behavior:** Allows searching and filtering questions.
+
+## File Management
+A page for browsing files, assigning roles, and file actions.
+- **Id:** FileManagement
+- **Appearance:** File explorer, user role assignment, and context menu for file actions.
+- **Blocks:**
+  - [FileExplorer](blocks.md#file-explorer)
+  - [UserRoleAssignment](blocks.md#user-role-assignment)
+  - [FileActionsContextMenu](blocks.md#file-actions-context-menu)
 
 ## Landing
 A marketing page designed to introduce a product or service, highlight features, and drive conversions.
@@ -387,6 +414,22 @@ A page for legal documents such as privacy policy or terms of service, with head
 - **Appearance:** Legal text with headings and links.
 - **Behavior:** Static display of terms of service only.
 
+## Login & Security
+A page for user authentication, including two-factor verification.
+- **Id:** LoginSecurity
+- **Appearance:** Login form with optional two-factor authentication step.
+- **Blocks:**
+  - [Authentication](blocks.md#authentication)
+  - [TwoFactorAuthentication](blocks.md#two-factor-authentication)
+
+## Messaging
+A page for chat with scrollable message list and user popovers.
+- **Id:** Messaging
+- **Appearance:** Chat message list and user profile popover on avatar hover.
+- **Blocks:**
+  - [ChatMessageList](blocks.md#chat-message-list)
+  - [UserProfilePopover](blocks.md#user-profile-popover)
+
 ## Onboarding
 A multi-step guide or wizard to help new users get started with the application.
 - **Id:** Onboarding
@@ -427,6 +470,14 @@ A showcase page for projects or work samples, with filtering and detailed views.
 - **Id:** ProjectDetails
 - **Appearance:** Detailed view of a single project with images and descriptions.
 - **Behavior:** Static display of project details only.
+
+## Product Page
+A page for viewing product details and submitting reviews.
+- **Id:** ProductPage
+- **Appearance:** Product info, reviews, and review submission form.
+- **Blocks:**
+  - [ProductDetails](blocks.md#product-details)
+  - [ProductReview](blocks.md#product-review)
 
 ## Profile
 A user-focused page showing personal details, avatar, and editable profile information.
@@ -518,14 +569,6 @@ A page introducing team members, their roles, and profiles, often with photos an
 - **Appearance:** Detailed profile of a team member with bio and contact info.
 - **Behavior:** Static display of member profile only.
 
-## Login & Security
-A page for user authentication, including two-factor verification.
-- **Id:** LoginSecurity
-- **Appearance:** Login form with optional two-factor authentication step.
-- **Blocks:**
-  - [Authentication](blocks.md#authentication)
-  - [TwoFactorAuthentication](blocks.md#two-factor-authentication)
-
 ## User Profile
 A page for managing user profile, theme, and notification preferences.
 - **Id:** UserProfile
@@ -534,47 +577,4 @@ A page for managing user profile, theme, and notification preferences.
   - [UserInfoAndControls](blocks.md#user-info-and-controls)
   - [ProfileThemeCustomization](blocks.md#profile-theme-customization)
   - [NotificationPreferences](blocks.md#notification-preferences)
-
-## Product Page
-A page for viewing product details and submitting reviews.
-- **Id:** ProductPage
-- **Appearance:** Product info, reviews, and review submission form.
-- **Blocks:**
-  - [ProductDetails](blocks.md#product-details)
-  - [ProductReview](blocks.md#product-review)
-
-## Editor
-A page for writing and formatting blog posts with tags and a formatting toolbar.
-- **Id:** Editor
-- **Appearance:** Rich text editor, tag input, and formatting menubar.
-- **Blocks:**
-  - [BlogPostEditor](blocks.md#blog-post-editor)
-  - [BlogPostTagging](blocks.md#blog-post-tagging)
-  - [TextEditorToolbar](blocks.md#text-editor-toolbar)
-
-## File Management
-A page for browsing files, assigning roles, and file actions.
-- **Id:** FileManagement
-- **Appearance:** File explorer, user role assignment, and context menu for file actions.
-- **Blocks:**
-  - [FileExplorer](blocks.md#file-explorer)
-  - [UserRoleAssignment](blocks.md#user-role-assignment)
-  - [FileActionsContextMenu](blocks.md#file-actions-context-menu)
-
-## Messaging
-A page for chat with scrollable message list and user popovers.
-- **Id:** Messaging
-- **Appearance:** Chat message list and user profile popover on avatar hover.
-- **Blocks:**
-  - [ChatMessageList](blocks.md#chat-message-list)
-  - [UserProfilePopover](blocks.md#user-profile-popover)
-
-## E-Commerce Checkout
-A page for checkout with sticky cart summary and loading overlay.
-- **Id:** ECommerceCheckout
-- **Appearance:** Checkout form, sticky cart summary, and loading overlay during processing.
-- **Blocks:**
-  - [Checkout](blocks.md#checkout)
-  - [StickyCartSummary](blocks.md#sticky-cart-summary)
-  - [PageLoaderOverlay](blocks.md#page-loader-overlay)
 

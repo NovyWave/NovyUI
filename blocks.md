@@ -7,10 +7,13 @@ This document provides an overview of all UI blocks available in NovyUI. Each bl
 - [Article Cards](#article-cards)
 - [Authentication](#authentication)
 - [Banners](#banners)
+- [Blog Post Editor](#blog-post-editor)
+- [Blog Post Tagging](#blog-post-tagging)
 - [Call To Action Section](#call-to-action-section)
 - [Calendar](#calendar)
 - [Cart](#cart)
 - [Carousels](#carousels)
+- [Chat Message List](#chat-message-list)
 - [Checkout](#checkout)
 - [Comments](#comments)
 - [Contact Card](#contact-card)
@@ -20,47 +23,44 @@ This document provides an overview of all UI blocks available in NovyUI. Each bl
 - [Error](#error)
 - [FAQ](#faq)
 - [Features Section](#features-section)
+- [File Actions Context Menu](#file-actions-context-menu)
+- [File Explorer](#file-explorer)
 - [Footers](#footers)
+- [Global Command Palette](#global-command-palette)
 - [Group Layout](#group-layout)
 - [Headers](#headers)
 - [Hero](#hero)
+- [Image Brightness Adjustment](#image-brightness-adjustment)
+- [Keyboard Shortcuts Help](#keyboard-shortcuts-help)
 - [Legal](#legal)
 - [Mega Menu](#mega-menu)
+- [Mobile Navigation Drawer](#mobile-navigation-drawer)
 - [Navbars](#navbars)
+- [Notification Preferences](#notification-preferences)
 - [Onboarding Steps](#onboarding-steps)
 - [Order History](#order-history)
+- [Page Loader Overlay](#page-loader-overlay)
 - [Pricing Table](#pricing-table)
 - [Product Details](#product-details)
+- [Product Review](#product-review)
+- [Profile Theme Customization](#profile-theme-customization)
 - [Responsive Columns](#responsive-columns)
 - [Roadmap](#roadmap)
 - [Section](#section)
+- [Settings Tabs](#settings-tabs)
 - [Sidebar](#sidebar)
 - [Split Layout](#split-layout)
 - [Stats](#stats)
+- [Sticky Cart Summary](#sticky-cart-summary)
 - [Table Of Contents](#table-of-contents)
 - [Team Section](#team-section)
 - [Testimonials](#testimonials)
-- [User Info And Controls](#user-info-and-controls)
-- [Wishlist](#wishlist)
-- [Two-Factor Authentication](#two-factor-authentication)
-- [Profile Theme Customization](#profile-theme-customization)
-- [Product Review](#product-review)
-- [Global Command Palette](#global-command-palette)
-- [Mobile Navigation Drawer](#mobile-navigation-drawer)
 - [Text Editor Toolbar](#text-editor-toolbar)
-- [Blog Post Editor](#blog-post-editor)
-- [File Explorer](#file-explorer)
-- [User Role Assignment](#user-role-assignment)
-- [File Actions Context Menu](#file-actions-context-menu)
-- [Chat Message List](#chat-message-list)
+- [Two-Factor Authentication](#two-factor-authentication)
+- [User Info And Controls](#user-info-and-controls)
 - [User Profile Popover](#user-profile-popover)
-- [Sticky Cart Summary](#sticky-cart-summary)
-- [Keyboard Shortcuts Help](#keyboard-shortcuts-help)
-- [Page Loader Overlay](#page-loader-overlay)
-- [Image Brightness Adjustment](#image-brightness-adjustment)
-- [Settings Tabs](#settings-tabs)
-- [Blog Post Tagging](#blog-post-tagging)
-- [Notification Preferences](#notification-preferences)
+- [User Role Assignment](#user-role-assignment)
+- [Wishlist](#wishlist)
 
 ## Activity Feed
 A block for displaying a feed of recent activity, notifications, or events.
@@ -184,6 +184,22 @@ A horizontal bar or box used to display important messages, promotions, or alert
 - **Appearance:** Warning color (e.g., yellow/orange), warning icon, and message.
 - **Behavior:** May require user dismissal or action.
 
+## Blog Post Editor
+A block for writing and formatting blog posts with rich text.
+- **Id:** BlogPostEditor
+- **Appearance:** A rich text editor with formatting toolbar and content area.
+- **Behavior:** Supports text formatting, images, and links.
+- **Components:**
+  - [RichTextEditor](components.md#rich-text-editor)
+
+## Blog Post Tagging
+A block for adding/removing tags to a blog post.
+- **Id:** BlogPostTagging
+- **Appearance:** An input for adding tags, displayed as chips.
+- **Behavior:** Users can add/remove tags.
+- **Components:**
+  - [TagInput](components.md#tag-input)
+
 ## Call To Action Section
 A block for a prominent call-to-action area.
 - **Id:** CallToActionSection
@@ -235,6 +251,14 @@ A horizontally scrollable area for showcasing images, cards, or featured content
 - **Id:** CardCarousel
 - **Appearance:** Displays cards (with text, images, or actions) in a carousel layout.
 - **Behavior:** Users can scroll or swipe through cards; may support card actions.
+
+## Chat Message List
+A block for displaying a scrollable list of chat messages.
+- **Id:** ChatMessageList
+- **Appearance:** A vertically scrollable area with chat bubbles/messages.
+- **Behavior:** Scrolls to newest message, supports infinite scroll.
+- **Components:**
+  - [ScrollArea](components.md#scroll-area)
 
 ## Checkout
 A block for the checkout process, including forms for shipping and payment.
@@ -402,6 +426,22 @@ A section that highlights key features, benefits, or selling points, often arran
     - **Appearance:** Features are listed vertically with minimal layout.
     - **Behavior:** Static; may support click to expand details.
 
+## File Actions Context Menu
+A block for file management actions (rename, delete, etc.) via right-click context menu.
+- **Id:** FileActionsContextMenu
+- **Appearance:** A file list with right-click context menu for actions.
+- **Behavior:** Opens menu on right-click, executes selected action.
+- **Components:**
+  - [ContextMenu](components.md#context-menu)
+
+## File Explorer
+A block for browsing and managing files/folders in a tree structure.
+- **Id:** FileExplorer
+- **Appearance:** A sidebar with expandable/collapsible folders and files.
+- **Behavior:** Allows navigation, selection, and file actions.
+- **Components:**
+  - [TreeView](components.md#tree-view)
+
 ## Footers
 A section at the bottom of a page containing links, copyright, and additional information.
 - **Id:** Footers
@@ -430,6 +470,14 @@ A section at the bottom of a page containing links, copyright, and additional in
     - **Id:** WithNewsletter
     - **Appearance:** Includes a newsletter signup form.
     - **Behavior:** Form submits email for newsletter subscription.
+
+## Global Command Palette
+A block for searching and executing global app actions, inspired by VS Code and Slack.
+- **Id:** GlobalCommandPalette
+- **Appearance:** A modal with a search input and list of commands.
+- **Behavior:** Opens with a keyboard shortcut, filters commands as you type.
+- **Components:**
+  - [Command](components.md#command)
 
 ## Group Layout
 A container for arranging child elements in a stack, grid, or flexible layout.
@@ -530,6 +578,23 @@ A prominent section at the top of a page, typically featuring a headline, suppor
     - **Appearance:** Reduced styling, minimal text and elements.
     - **Behavior:** No behavioral difference, just minimal appearance.
 
+## Image Brightness Adjustment
+A block for adjusting image brightness with a slider.
+- **Id:** ImageBrightnessAdjustment
+- **Appearance:** An image preview with a slider to adjust brightness.
+- **Behavior:** Updates image brightness in real time.
+- **Components:**
+  - [Slider](components.md#slider)
+  - [Image](components.md#image)
+
+## Keyboard Shortcuts Help
+A block for displaying available keyboard shortcuts in the app.
+- **Id:** KeyboardShortcutsHelp
+- **Appearance:** A modal or section listing keyboard shortcuts with visual keys.
+- **Behavior:** Static or searchable list for user reference.
+- **Components:**
+  - [KeyboardKey](components.md#keyboard-key)
+
 ## Legal
 A block for displaying legal documents such as privacy policy or terms of service.
 - **Id:** Legal
@@ -559,6 +624,15 @@ A large dropdown menu with multiple columns, categories, and rich content for si
     - **Id:** WithColumns
     - **Appearance:** Menu is organized into multiple columns for categories or sections.
     - **Behavior:** Columns group related links for easier navigation.
+
+## Mobile Navigation Drawer
+A block for mobile navigation, sliding in from the side.
+- **Id:** MobileNavigationDrawer
+- **Appearance:** A hamburger menu button that opens a drawer with navigation links.
+- **Behavior:** Drawer opens/closes, links navigate to sections.
+- **Components:**
+  - [Drawer](components.md#drawer)
+  - [Button](components.md#button)
 
 ## Navbars
 A horizontal or vertical navigation bar providing links to main sections of a site or app.
@@ -603,6 +677,14 @@ A horizontal or vertical navigation bar providing links to main sections of a si
     - **Appearance:** Arranged horizontally at the top of the page.
     - **Behavior:** Navigation links align in a row.
 
+## Notification Preferences
+A block for toggling notification settings.
+- **Id:** NotificationPreferences
+- **Appearance:** A list of notification options with switches to enable/disable.
+- **Behavior:** Toggles notification preferences.
+- **Components:**
+  - [Switch](components.md#switch)
+
 ## Onboarding Steps
 A block for multi-step onboarding or setup flows.
 - **Id:** OnboardingSteps
@@ -623,6 +705,14 @@ A block for listing past orders and their details.
   - [TableOfContents](components.md#table-of-contents)
   - [Typography](components.md#typography)
   - [Button](components.md#button)
+
+## Page Loader Overlay
+A block for showing a loading overlay while the page or data is loading.
+- **Id:** PageLoaderOverlay
+- **Appearance:** A fullscreen overlay with a loading spinner or skeleton.
+- **Behavior:** Appears during loading, disappears when ready.
+- **Components:**
+  - [Loading](components.md#loading)
 
 ## Pricing Table
 A block for showing pricing plans and features.
@@ -645,6 +735,25 @@ A block for showing detailed information about a product.
   - [Button](components.md#button)
   - [Typography](components.md#typography)
   - [List](components.md#list)
+
+## Product Review
+A block for submitting and displaying product ratings and reviews.
+- **Id:** ProductReview
+- **Appearance:** A rating input, text area for review, and submit button.
+- **Behavior:** Collects and displays user ratings and reviews.
+- **Components:**
+  - [Rating](components.md#rating)
+  - [Textarea](components.md#textarea)
+  - [Button](components.md#button)
+
+## Profile Theme Customization
+A block for letting users pick a profile or dashboard color theme.
+- **Id:** ProfileThemeCustomization
+- **Appearance:** A color picker input and preview area.
+- **Behavior:** Updates the user’s theme color in real time.
+- **Components:**
+  - [ColorInput](components.md#color-input)
+  - [Button](components.md#button)
 
 ## Responsive Columns
 A multi-column layout that adapts to screen size, stacking columns vertically on small screens.
@@ -686,6 +795,14 @@ A content area used to separate and organize different parts of a page.
     - **Id:** ThemedOrSeparatedPageAreas
     - **Appearance:** Section with themed background or divider.
     - **Behavior:** Static or may support expand/collapse.
+
+## Settings Tabs
+A block for organizing settings into tabbed sections.
+- **Id:** SettingsTabs
+- **Appearance:** Tabs for different settings categories (Profile, Security, etc.).
+- **Behavior:** Clicking a tab shows its content.
+- **Components:**
+  - [Tabs](components.md#tabs)
 
 ## Sidebar
 A vertical panel providing navigation links, actions, or additional content alongside the main area.
@@ -774,6 +891,15 @@ A section displaying key metrics, statistics, or trends, often in a grid or card
     - **Appearance:** Includes a badge to indicate status or change.
     - **Behavior:** Badge updates dynamically with status.
 
+## Sticky Cart Summary
+A block for keeping the cart summary visible during checkout.
+- **Id:** StickyCartSummary
+- **Appearance:** A cart summary box affixed to the side or bottom of the viewport.
+- **Behavior:** Remains visible as user scrolls.
+- **Components:**
+  - [Affix](components.md#affix)
+  - [Card](components.md#card)
+
 ## Table Of Contents
 A navigational block listing links to sections within a page for easy access.
 - **Id:** TableOfContents
@@ -825,6 +951,23 @@ A block for displaying user testimonials or reviews.
   - [Avatar](components.md#avatar)
   - [Typography](components.md#typography)
   - [Carousel](components.md#carousel)
+
+## Text Editor Toolbar
+A block for formatting text in a document or email editor.
+- **Id:** TextEditorToolbar
+- **Appearance:** A horizontal menubar with formatting options (bold, italic, etc.).
+- **Behavior:** Clicking icons applies formatting to selected text.
+- **Components:**
+  - [Menubar](components.md#menubar)
+
+## Two-Factor Authentication
+A block for entering a verification code sent to the user, as part of login or sensitive actions.
+- **Id:** TwoFactorAuthentication
+- **Appearance:** A form with a PinInput for entering a code, and a submit button.
+- **Behavior:** Validates the code and submits for verification.
+- **Components:**
+  - [PinInput](components.md#pin-input)
+  - [Button](components.md#button)
 
 ## User Info And Controls
 A block presenting user profile information and related actions or settings.
@@ -878,6 +1021,23 @@ A block presenting user profile information and related actions or settings.
     - **Appearance:** List of users with avatars and names.
     - **Behavior:** List may be selectable or support actions.
 
+## User Profile Popover
+A block for showing user info and actions in a popover on hover/click.
+- **Id:** UserProfilePopover
+- **Appearance:** Avatar or username that opens a popover with profile info and actions.
+- **Behavior:** Opens on hover/click, closes on outside click.
+- **Components:**
+  - [Popover](components.md#popover)
+  - [Avatar](components.md#avatar)
+
+## User Role Assignment
+A block for assigning users to roles or groups using a transfer list.
+- **Id:** UserRoleAssignment
+- **Appearance:** Two lists (available users, assigned users) with controls to move users between them.
+- **Behavior:** Select and transfer users between lists.
+- **Components:**
+  - [TransferList](components.md#transfer-list)
+
 ## Wishlist
 A block for displaying products saved for future purchase.
 - **Id:** Wishlist
@@ -888,162 +1048,4 @@ A block for displaying products saved for future purchase.
   - [Button](components.md#button)
   - [Typography](components.md#typography)
 
-## Two-Factor Authentication
-A block for entering a verification code sent to the user, as part of login or sensitive actions.
-- **Id:** TwoFactorAuthentication
-- **Appearance:** A form with a PinInput for entering a code, and a submit button.
-- **Behavior:** Validates the code and submits for verification.
-- **Components:**
-  - [PinInput](components.md#pin-input)
-  - [Button](components.md#button)
-
-## Profile Theme Customization
-A block for letting users pick a profile or dashboard color theme.
-- **Id:** ProfileThemeCustomization
-- **Appearance:** A color picker input and preview area.
-- **Behavior:** Updates the user’s theme color in real time.
-- **Components:**
-  - [ColorInput](components.md#color-input)
-  - [Button](components.md#button)
-
-## Product Review
-A block for submitting and displaying product ratings and reviews.
-- **Id:** ProductReview
-- **Appearance:** A rating input, text area for review, and submit button.
-- **Behavior:** Collects and displays user ratings and reviews.
-- **Components:**
-  - [Rating](components.md#rating)
-  - [Textarea](components.md#textarea)
-  - [Button](components.md#button)
-
-## Global Command Palette
-A block for searching and executing global app actions, inspired by VS Code and Slack.
-- **Id:** GlobalCommandPalette
-- **Appearance:** A modal with a search input and list of commands.
-- **Behavior:** Opens with a keyboard shortcut, filters commands as you type.
-- **Components:**
-  - [Command](components.md#command)
-
-## Mobile Navigation Drawer
-A block for mobile navigation, sliding in from the side.
-- **Id:** MobileNavigationDrawer
-- **Appearance:** A hamburger menu button that opens a drawer with navigation links.
-- **Behavior:** Drawer opens/closes, links navigate to sections.
-- **Components:**
-  - [Drawer](components.md#drawer)
-  - [Button](components.md#button)
-
-## Text Editor Toolbar
-A block for formatting text in a document or email editor.
-- **Id:** TextEditorToolbar
-- **Appearance:** A horizontal menubar with formatting options (bold, italic, etc.).
-- **Behavior:** Clicking icons applies formatting to selected text.
-- **Components:**
-  - [Menubar](components.md#menubar)
-
-## Blog Post Editor
-A block for writing and formatting blog posts with rich text.
-- **Id:** BlogPostEditor
-- **Appearance:** A rich text editor with formatting toolbar and content area.
-- **Behavior:** Supports text formatting, images, and links.
-- **Components:**
-  - [RichTextEditor](components.md#rich-text-editor)
-
-## File Explorer
-A block for browsing and managing files/folders in a tree structure.
-- **Id:** FileExplorer
-- **Appearance:** A sidebar with expandable/collapsible folders and files.
-- **Behavior:** Allows navigation, selection, and file actions.
-- **Components:**
-  - [TreeView](components.md#tree-view)
-
-## User Role Assignment
-A block for assigning users to roles or groups using a transfer list.
-- **Id:** UserRoleAssignment
-- **Appearance:** Two lists (available users, assigned users) with controls to move users between them.
-- **Behavior:** Select and transfer users between lists.
-- **Components:**
-  - [TransferList](components.md#transfer-list)
-
-## File Actions Context Menu
-A block for file management actions (rename, delete, etc.) via right-click context menu.
-- **Id:** FileActionsContextMenu
-- **Appearance:** A file list with right-click context menu for actions.
-- **Behavior:** Opens menu on right-click, executes selected action.
-- **Components:**
-  - [ContextMenu](components.md#context-menu)
-
-## Chat Message List
-A block for displaying a scrollable list of chat messages.
-- **Id:** ChatMessageList
-- **Appearance:** A vertically scrollable area with chat bubbles/messages.
-- **Behavior:** Scrolls to newest message, supports infinite scroll.
-- **Components:**
-  - [ScrollArea](components.md#scroll-area)
-
-## User Profile Popover
-A block for showing user info and actions in a popover on hover/click.
-- **Id:** UserProfilePopover
-- **Appearance:** Avatar or username that opens a popover with profile info and actions.
-- **Behavior:** Opens on hover/click, closes on outside click.
-- **Components:**
-  - [Popover](components.md#popover)
-  - [Avatar](components.md#avatar)
-
-## Sticky Cart Summary
-A block for keeping the cart summary visible during checkout.
-- **Id:** StickyCartSummary
-- **Appearance:** A cart summary box affixed to the side or bottom of the viewport.
-- **Behavior:** Remains visible as user scrolls.
-- **Components:**
-  - [Affix](components.md#affix)
-  - [Card](components.md#card)
-
-## Keyboard Shortcuts Help
-A block for displaying available keyboard shortcuts in the app.
-- **Id:** KeyboardShortcutsHelp
-- **Appearance:** A modal or section listing keyboard shortcuts with visual keys.
-- **Behavior:** Static or searchable list for user reference.
-- **Components:**
-  - [KeyboardKey](components.md#keyboard-key)
-
-## Page Loader Overlay
-A block for showing a loading overlay while the page or data is loading.
-- **Id:** PageLoaderOverlay
-- **Appearance:** A fullscreen overlay with a loading spinner or skeleton.
-- **Behavior:** Appears during loading, disappears when ready.
-- **Components:**
-  - [Loading](components.md#loading)
-
-## Image Brightness Adjustment
-A block for adjusting image brightness with a slider.
-- **Id:** ImageBrightnessAdjustment
-- **Appearance:** An image preview with a slider to adjust brightness.
-- **Behavior:** Updates image brightness in real time.
-- **Components:**
-  - [Slider](components.md#slider)
-  - [Image](components.md#image)
-
-## Settings Tabs
-A block for organizing settings into tabbed sections.
-- **Id:** SettingsTabs
-- **Appearance:** Tabs for different settings categories (Profile, Security, etc.).
-- **Behavior:** Clicking a tab shows its content.
-- **Components:**
-  - [Tabs](components.md#tabs)
-
-## Blog Post Tagging
-A block for adding/removing tags to a blog post.
-- **Id:** BlogPostTagging
-- **Appearance:** An input for adding tags, displayed as chips.
-- **Behavior:** Users can add/remove tags.
-- **Components:**
-  - [TagInput](components.md#tag-input)
-
-## Notification Preferences
-A block for toggling notification settings.
-- **Id:** NotificationPreferences
-- **Appearance:** A list of notification options with switches to enable/disable.
-- **Behavior:** Toggles notification preferences.
-- **Components:**
-  - [Switch](components.md#switch)
+// All block sections above are sorted alphabetically by block name
