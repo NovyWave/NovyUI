@@ -72,6 +72,15 @@ A block for displaying a feed of recent activity, notifications, or events.
   - [Avatar](components.md#avatar)
   - [Icon](components.md#icon)
   - [Typography](components.md#typography)
+### Variants
+#### Basic
+- **Id:** Basic
+- **Appearance:** Simple activity feed with list of items.
+- **Behavior:** Static or updates in real time.
+#### With filters
+- **Id:** WithFilters
+- **Appearance:** Activity feed with filter controls (e.g., by type or date).
+- **Behavior:** User can filter activity items.
 
 ## App Download Section
 A block for presenting app download links, QR codes, and instructions.
@@ -83,6 +92,15 @@ A block for presenting app download links, QR codes, and instructions.
   - [QRCode](components.md#qrcode)
   - [Icon](components.md#icon)
   - [Typography](components.md#typography)
+### Variants
+#### With QR code
+- **Id:** WithQRCode
+- **Appearance:** Includes QR code for mobile download.
+- **Behavior:** User can scan QR code to download app.
+#### Platform buttons
+- **Id:** PlatformButtons
+- **Appearance:** Download buttons for multiple platforms (iOS, Android, etc.).
+- **Behavior:** Buttons link to respective app stores.
 
 ## Article Cards
 A grid or list of cards showcasing articles, blog posts, or news items.
@@ -191,6 +209,15 @@ A block for writing and formatting blog posts with rich text.
 - **Behavior:** Supports text formatting, images, and links.
 - **Components:**
   - [RichTextEditor](components.md#rich-text-editor)
+### Variants
+#### Basic
+- **Id:** Basic
+- **Appearance:** Simple editor with formatting toolbar.
+- **Behavior:** Supports basic text formatting.
+#### With preview
+- **Id:** WithPreview
+- **Appearance:** Editor with live preview pane.
+- **Behavior:** Shows formatted content as you type.
 
 ## Blog Post Tagging
 A block for adding/removing tags to a blog post.
@@ -199,6 +226,15 @@ A block for adding/removing tags to a blog post.
 - **Behavior:** Users can add/remove tags.
 - **Components:**
   - [TagInput](components.md#tag-input)
+### Variants
+#### Basic
+- **Id:** Basic
+- **Appearance:** Tag input with add/remove functionality.
+- **Behavior:** Users can add or remove tags.
+#### With suggestions
+- **Id:** WithSuggestions
+- **Appearance:** Tag input with dropdown suggestions.
+- **Behavior:** Suggests tags as user types.
 
 ## Call To Action Section
 A block for a prominent call-to-action area.
@@ -209,6 +245,15 @@ A block for a prominent call-to-action area.
   - [Button](components.md#button)
   - [Typography](components.md#typography)
   - [Image](components.md#image)
+### Variants
+#### Basic
+- **Id:** Basic
+- **Appearance:** Single call-to-action button with headline.
+- **Behavior:** Button triggers main action.
+#### With background image
+- **Id:** WithBackgroundImage
+- **Appearance:** CTA section with background image or illustration.
+- **Behavior:** More visually prominent, same action.
 
 ## Calendar
 A block for displaying a calendar view and managing events.
@@ -219,6 +264,15 @@ A block for displaying a calendar view and managing events.
   - [Calendar](components.md#calendar)
   - [Button](components.md#button)
   - [Icon](components.md#icon)
+### Variants
+#### Month view
+- **Id:** MonthView
+- **Appearance:** Calendar shows a full month.
+- **Behavior:** User can select dates and view events for the month.
+#### Week view
+- **Id:** WeekView
+- **Appearance:** Calendar shows a single week.
+- **Behavior:** User can select dates and view events for the week.
 
 ## Cart
 A block for displaying and managing items in a shopping cart.
@@ -230,6 +284,15 @@ A block for displaying and managing items in a shopping cart.
   - [Button](components.md#button)
   - [Input](components.md#input)
   - [Typography](components.md#typography)
+### Variants
+#### Basic
+- **Id:** Basic
+- **Appearance:** Simple list of products with quantity and price.
+- **Behavior:** Static display, no interactivity.
+#### With images
+- **Id:** WithImages
+- **Appearance:** Includes product images in the list.
+- **Behavior:** Images may be clickable to view product details.
 
 ## Carousels
 A horizontally scrollable area for showcasing images, cards, or featured content.
@@ -259,6 +322,15 @@ A block for displaying a scrollable list of chat messages.
 - **Behavior:** Scrolls to newest message, supports infinite scroll.
 - **Components:**
   - [ScrollArea](components.md#scroll-area)
+### Variants
+#### Basic
+- **Id:** Basic
+- **Appearance:** Simple list of chat messages.
+- **Behavior:** Static display, no interactivity.
+#### With avatars
+- **Id:** WithAvatars
+- **Appearance:** Includes user avatars next to messages.
+- **Behavior:** Avatars may link to user profiles.
 
 ## Checkout
 A block for the checkout process, including forms for shipping and payment.
@@ -270,6 +342,15 @@ A block for the checkout process, including forms for shipping and payment.
   - [Button](components.md#button)
   - [Form Error Message](components.md#form-error-message)
   - [Typography](components.md#typography)
+### Variants
+#### Basic
+- **Id:** Basic
+- **Appearance:** Simple checkout form with address and payment fields.
+- **Behavior:** Static display, no interactivity.
+#### With order summary
+- **Id:** WithOrderSummary
+- **Appearance:** Includes an order summary section.
+- **Behavior:** Displays a summary of the order with total price.
 
 ## Comments
 A section for displaying and submitting user comments, often with threading and moderation features.
@@ -285,14 +366,14 @@ A section for displaying and submitting user comments, often with threading and 
   - [Card](components.md#card)
   - [Typography](components.md#typography)
 ### Variants
-  - Basic
-    - **Id:** Basic
-    - **Appearance:** Flat list of comments, no nesting.
-    - **Behavior:** Users can add, edit, or delete their own comments.
-  - Threaded
-    - **Id:** Threaded
-    - **Appearance:** Comments can be nested to show replies.
-    - **Behavior:** Users can reply to comments, creating threads.
+#### Basic
+- **Id:** Basic
+- **Appearance:** Flat list of comments, no nesting.
+- **Behavior:** Users can add, edit, or delete their own comments.
+#### Threaded
+- **Id:** Threaded
+- **Appearance:** Comments can be nested to show replies.
+- **Behavior:** Users can reply to comments, creating threads.
 
 ## Contact Card
 A section providing contact information and/or a form for users to reach out.
@@ -307,14 +388,14 @@ A section providing contact information and/or a form for users to reach out.
   - [MapLocationPicker](components.md#maplocationpicker)
   - [Alert](components.md#alert)
 ### Variants
-  - With map
-    - **Id:** WithMap
-    - **Appearance:** Includes an embedded map next to or below the form.
-    - **Behavior:** Map is interactive; user can select or view location.
-  - With social links
-    - **Id:** WithSocialLinks
-    - **Appearance:** Includes icons or links for social/contact methods.
-    - **Behavior:** Social/contact links are clickable and may open external apps or sites.
+#### With map
+- **Id:** WithMap
+- **Appearance:** Includes an embedded map next to or below the form.
+- **Behavior:** Map is interactive; user can select or view location.
+#### With social links
+- **Id:** WithSocialLinks
+- **Appearance:** Includes icons or links for social/contact methods.
+- **Behavior:** Social/contact links are clickable and may open external apps or sites.
 
 ## Cookie Consent Banner
 A banner that informs users about cookie usage and requests their consent.
@@ -327,14 +408,14 @@ A banner that informs users about cookie usage and requests their consent.
   - [Typography](components.md#typography)
   - [Link](components.md#link)
 ### Variants
-  - Consent options
-    - **Id:** ConsentOptions
-    - **Appearance:** Banner with multiple consent choices (e.g., accept, reject, customize).
-    - **Behavior:** User can select consent level; stores choice.
-  - Dismiss button
-    - **Id:** DismissButton
-    - **Appearance:** Banner with a single dismiss/accept button.
-    - **Behavior:** User can dismiss banner with one click.
+#### Consent options
+- **Id:** ConsentOptions
+- **Appearance:** Banner with multiple consent choices (e.g., accept, reject, customize).
+- **Behavior:** User can select consent level; stores choice.
+#### Dismiss button
+- **Id:** DismissButton
+- **Appearance:** Banner with a single dismiss/accept button.
+- **Behavior:** User can dismiss banner with one click.
 
 ## Data Table
 A block for displaying and interacting with tabular data.
@@ -346,6 +427,15 @@ A block for displaying and interacting with tabular data.
   - [Button](components.md#button)
   - [Input](components.md#input)
   - [Pagination](components.md#pagination)
+### Variants
+#### Basic
+- **Id:** Basic
+- **Appearance:** Simple table with rows and columns.
+- **Behavior:** Static display, no interactivity.
+#### With filters
+- **Id:** WithFilters
+- **Appearance:** Table includes filter controls.
+- **Behavior:** User can filter table data.
 
 ## Drag And Drop
 A block enabling drag-and-drop sorting, reordering, or file uploads within a list or grid.
@@ -358,18 +448,18 @@ A block enabling drag-and-drop sorting, reordering, or file uploads within a lis
   - [Icon](components.md#icon)
   - [Dropzone](components.md#dropzone)
 ### Variants
-  - Sortable list
-    - **Id:** SortableList
-    - **Appearance:** List of items with drag handles.
-    - **Behavior:** Items can be reordered by dragging.
-  - Sortable grid
-    - **Id:** SortableGrid
-    - **Appearance:** Grid of items with drag handles.
-    - **Behavior:** Items can be reordered by dragging in a grid layout.
-  - File upload (sortable)
-    - **Id:** FileUploadSortable
-    - **Appearance:** List or grid of uploaded files, each with drag handle.
-    - **Behavior:** Files can be reordered by dragging; supports file upload actions.
+#### Sortable list
+- **Id:** SortableList
+- **Appearance:** List of items with drag handles.
+- **Behavior:** Items can be reordered by dragging.
+#### Sortable grid
+- **Id:** SortableGrid
+- **Appearance:** Grid of items with drag handles.
+- **Behavior:** Items can be reordered by dragging in a grid layout.
+#### File upload (sortable)
+- **Id:** FileUploadSortable
+- **Appearance:** List or grid of uploaded files, each with drag handle.
+- **Behavior:** Files can be reordered by dragging; supports file upload actions.
 
 ## Error
 A block for displaying error messages, codes, and navigation options.
@@ -381,6 +471,15 @@ A block for displaying error messages, codes, and navigation options.
   - [Button](components.md#button)
   - [Typography](components.md#typography)
   - [Image](components.md#image)
+### Variants
+#### Basic
+- **Id:** Basic
+- **Appearance:** Simple error message with code and description.
+- **Behavior:** Static display, no interactivity.
+#### With navigation
+- **Id:** WithNavigation
+- **Appearance:** Error message includes navigation buttons.
+- **Behavior:** Buttons provide options to navigate away from error.
 
 ## FAQ
 A block for displaying frequently asked questions and answers.
@@ -391,6 +490,15 @@ A block for displaying frequently asked questions and answers.
   - [Collapse](components.md#collapse)
   - [Input](components.md#input)
   - [Typography](components.md#typography)
+### Variants
+#### Basic
+- **Id:** Basic
+- **Appearance:** Simple list of questions and answers.
+- **Behavior:** Static display, no interactivity.
+#### With search
+- **Id:** WithSearch
+- **Appearance:** Includes a search input for filtering questions.
+- **Behavior:** User can search and filter questions.
 
 ## Features Section
 A section that highlights key features, benefits, or selling points, often arranged in a grid or list.
@@ -405,26 +513,26 @@ A section that highlights key features, benefits, or selling points, often arran
   - [Button](components.md#button)
   - [Grid](components.md#grid)
 ### Variants
-  - Grid
-    - **Id:** Grid
-    - **Appearance:** Features are arranged in a grid layout.
-    - **Behavior:** Static; may support responsive rearrangement.
-  - With icons
-    - **Id:** WithIcons
-    - **Appearance:** Each feature includes an icon.
-    - **Behavior:** Icons visually reinforce feature meaning.
-  - With images
-    - **Id:** WithImages
-    - **Appearance:** Each feature includes an image or illustration.
-    - **Behavior:** Images may be static or support lightbox/zoom.
-  - Steps
-    - **Id:** Steps
-    - **Appearance:** Features are presented as a numbered or sequential process.
-    - **Behavior:** May highlight current step or animate transitions.
-  - List
-    - **Id:** List
-    - **Appearance:** Features are listed vertically with minimal layout.
-    - **Behavior:** Static; may support click to expand details.
+#### Grid
+- **Id:** Grid
+- **Appearance:** Features are arranged in a grid layout.
+- **Behavior:** Static; may support responsive rearrangement.
+#### With icons
+- **Id:** WithIcons
+- **Appearance:** Each feature includes an icon.
+- **Behavior:** Icons visually reinforce feature meaning.
+#### With images
+- **Id:** WithImages
+- **Appearance:** Each feature includes an image or illustration.
+- **Behavior:** Images may be static or support lightbox/zoom.
+#### Steps
+- **Id:** Steps
+- **Appearance:** Features are presented as a numbered or sequential process.
+- **Behavior:** May highlight current step or animate transitions.
+#### List
+- **Id:** List
+- **Appearance:** Features are listed vertically with minimal layout.
+- **Behavior:** Static; may support click to expand details.
 
 ## File Actions Context Menu
 A block for file management actions (rename, delete, etc.) via right-click context menu.
@@ -433,6 +541,15 @@ A block for file management actions (rename, delete, etc.) via right-click conte
 - **Behavior:** Opens menu on right-click, executes selected action.
 - **Components:**
   - [ContextMenu](components.md#context-menu)
+### Variants
+#### Basic
+- **Id:** Basic
+- **Appearance:** Simple context menu with basic actions.
+- **Behavior:** Static display, no interactivity.
+#### With icons
+- **Id:** WithIcons
+- **Appearance:** Context menu includes icons for actions.
+- **Behavior:** Icons visually reinforce action meaning.
 
 ## File Explorer
 A block for browsing and managing files/folders in a tree structure.
@@ -441,6 +558,15 @@ A block for browsing and managing files/folders in a tree structure.
 - **Behavior:** Allows navigation, selection, and file actions.
 - **Components:**
   - [TreeView](components.md#tree-view)
+### Variants
+#### Basic
+- **Id:** Basic
+- **Appearance:** Simple file explorer with expandable folders.
+- **Behavior:** Static display, no interactivity.
+#### With actions
+- **Id:** WithActions
+- **Appearance:** File explorer includes action buttons (e.g., add, delete).
+- **Behavior:** Actions trigger file management operations.
 
 ## Footers
 A section at the bottom of a page containing links, copyright, and additional information.
@@ -454,22 +580,22 @@ A section at the bottom of a page containing links, copyright, and additional in
   - [Input](components.md#input)
   - [Typography](components.md#typography)
 ### Variants
-  - Simple
-    - **Id:** Simple
-    - **Appearance:** Minimal layout with just copyright and a few links.
-    - **Behavior:** Static, no interactive elements except links.
-  - With links
-    - **Id:** WithLinks
-    - **Appearance:** Includes additional navigation or resource links.
-    - **Behavior:** Links are clickable for navigation.
-  - With social icons
-    - **Id:** WithSocialIcons
-    - **Appearance:** Displays social media icons.
-    - **Behavior:** Icons link to social profiles.
-  - With newsletter
-    - **Id:** WithNewsletter
-    - **Appearance:** Includes a newsletter signup form.
-    - **Behavior:** Form submits email for newsletter subscription.
+#### Simple
+- **Id:** Simple
+- **Appearance:** Minimal layout with just copyright and a few links.
+- **Behavior:** Static, no interactive elements except links.
+#### With links
+- **Id:** WithLinks
+- **Appearance:** Includes additional navigation or resource links.
+- **Behavior:** Links are clickable for navigation.
+#### With social icons
+- **Id:** WithSocialIcons
+- **Appearance:** Displays social media icons.
+- **Behavior:** Icons link to social profiles.
+#### With newsletter
+- **Id:** WithNewsletter
+- **Appearance:** Includes a newsletter signup form.
+- **Behavior:** Form submits email for newsletter subscription.
 
 ## Global Command Palette
 A block for searching and executing global app actions, inspired by VS Code and Slack.
@@ -478,6 +604,15 @@ A block for searching and executing global app actions, inspired by VS Code and 
 - **Behavior:** Opens with a keyboard shortcut, filters commands as you type.
 - **Components:**
   - [Command](components.md#command)
+### Variants
+#### Basic
+- **Id:** Basic
+- **Appearance:** Simple command palette with search input.
+- **Behavior:** Static display, no interactivity.
+#### With categories
+- **Id:** WithCategories
+- **Appearance:** Command palette includes categories for commands.
+- **Behavior:** Commands are grouped by category for easier navigation.
 
 ## Group Layout
 A container for arranging child elements in a stack, grid, or flexible layout.
@@ -489,18 +624,18 @@ A container for arranging child elements in a stack, grid, or flexible layout.
   - [Grid](components.md#grid)
   - [FlexboxLayouts](components.md#flexboxlayouts)
 ### Variants
-  - Stack
-    - **Id:** Stack
-    - **Appearance:** Children are arranged vertically with spacing.
-    - **Behavior:** Static vertical layout.
-  - Grid
-    - **Id:** Grid
-    - **Appearance:** Children are arranged in a grid with rows and columns.
-    - **Behavior:** Static grid layout.
-  - Flex
-    - **Id:** Flex
-    - **Appearance:** Children are arranged in a row or column with flexible sizing.
-    - **Behavior:** Static flexbox layout.
+#### Stack
+- **Id:** Stack
+- **Appearance:** Children are arranged vertically with spacing.
+- **Behavior:** Static vertical layout.
+#### Grid
+- **Id:** Grid
+- **Appearance:** Children are arranged in a grid with rows and columns.
+- **Behavior:** Static grid layout.
+#### Flex
+- **Id:** Flex
+- **Appearance:** Children are arranged in a row or column with flexible sizing.
+- **Behavior:** Static flexbox layout.
 
 ## Headers
 A section at the top of a page or card, typically containing a title, actions, and navigation aids.
@@ -515,30 +650,30 @@ A section at the top of a page or card, typically containing a title, actions, a
   - [Icon](components.md#icon)
   - [Searchbox](components.md#searchbox)
 ### Variants
-  - Basic
-    - **Id:** Basic
-    - **Appearance:** Simple header with title only.
-    - **Behavior:** Static, no actions or navigation.
-  - With actions
-    - **Id:** WithActions
-    - **Appearance:** Includes action buttons (e.g., add, edit, delete).
-    - **Behavior:** Actions trigger navigation or open dialogs.
-  - With breadcrumbs
-    - **Id:** WithBreadcrumbs
-    - **Appearance:** Includes breadcrumb navigation below or beside the title.
-    - **Behavior:** Breadcrumbs are clickable for navigation.
-  - With search
-    - **Id:** WithSearch
-    - **Appearance:** Includes a search input field.
-    - **Behavior:** Allows searching from the header.
-  - With avatar
-    - **Id:** WithAvatar
-    - **Appearance:** Includes user avatar or profile picture.
-    - **Behavior:** Avatar may open a user menu or profile.
-  - Sticky
-    - **Id:** Sticky
-    - **Appearance:** Header remains fixed at the top of the page when scrolling.
-    - **Behavior:** Always visible during scroll.
+#### Basic
+- **Id:** Basic
+- **Appearance:** Simple header with title only.
+- **Behavior:** Static, no actions or navigation.
+#### With actions
+- **Id:** WithActions
+- **Appearance:** Includes action buttons (e.g., add, edit, delete).
+- **Behavior:** Actions trigger navigation or open dialogs.
+#### With breadcrumbs
+- **Id:** WithBreadcrumbs
+- **Appearance:** Includes breadcrumb navigation below or beside the title.
+- **Behavior:** Breadcrumbs are clickable for navigation.
+#### With search
+- **Id:** WithSearch
+- **Appearance:** Includes a search input field.
+- **Behavior:** Allows searching from the header.
+#### With avatar
+- **Id:** WithAvatar
+- **Appearance:** Includes user avatar or profile picture.
+- **Behavior:** Avatar may open a user menu or profile.
+#### Sticky
+- **Id:** Sticky
+- **Appearance:** Header remains fixed at the top of the page when scrolling.
+- **Behavior:** Always visible during scroll.
 
 ## Hero
 A prominent section at the top of a page, typically featuring a headline, supporting text, and a call-to-action.
@@ -553,30 +688,30 @@ A prominent section at the top of a page, typically featuring a headline, suppor
   - [Container](components.md#container)
   - [Icon](components.md#icon)
 ### Variants
-  - Basic hero
-    - **Id:** BasicHero
-    - **Appearance:** Standard layout with heading, text, and button, no image or special styling.
-    - **Behavior:** Static, no animation or interactivity beyond button action.
-  - With image
-    - **Id:** WithImage
-    - **Appearance:** Includes a prominent image or illustration alongside text.
-    - **Behavior:** Image may animate or be interactive (e.g., lightbox), otherwise static.
-  - With actions
-    - **Id:** WithActions
-    - **Appearance:** Includes multiple call-to-action buttons or links.
-    - **Behavior:** Multiple actions can be triggered from the hero.
-  - Centered
-    - **Id:** Centered
-    - **Appearance:** Content is centered both vertically and horizontally.
-    - **Behavior:** No behavioral difference, just layout.
-  - Split
-    - **Id:** Split
-    - **Appearance:** Content and image are split into two columns.
-    - **Behavior:** Responsive stacking on small screens.
-  - Minimal
-    - **Id:** Minimal
-    - **Appearance:** Reduced styling, minimal text and elements.
-    - **Behavior:** No behavioral difference, just minimal appearance.
+#### Basic hero
+- **Id:** BasicHero
+- **Appearance:** Standard layout with heading, text, and button, no image or special styling.
+- **Behavior:** Static, no animation or interactivity beyond button action.
+#### With image
+- **Id:** WithImage
+- **Appearance:** Includes a prominent image or illustration alongside text.
+- **Behavior:** Image may animate or be interactive (e.g., lightbox), otherwise static.
+#### With actions
+- **Id:** WithActions
+- **Appearance:** Includes multiple call-to-action buttons or links.
+- **Behavior:** Multiple actions can be triggered from the hero.
+#### Centered
+- **Id:** Centered
+- **Appearance:** Content is centered both vertically and horizontally.
+- **Behavior:** No behavioral difference, just layout.
+#### Split
+- **Id:** Split
+- **Appearance:** Content and image are split into two columns.
+- **Behavior:** Responsive stacking on small screens.
+#### Minimal
+- **Id:** Minimal
+- **Appearance:** Reduced styling, minimal text and elements.
+- **Behavior:** No behavioral difference, just minimal appearance.
 
 ## Image Brightness Adjustment
 A block for adjusting image brightness with a slider.
@@ -586,6 +721,15 @@ A block for adjusting image brightness with a slider.
 - **Components:**
   - [Slider](components.md#slider)
   - [Image](components.md#image)
+### Variants
+#### Basic
+- **Id:** Basic
+- **Appearance:** Simple slider for brightness adjustment.
+- **Behavior:** Static display, no interactivity.
+#### With preview
+- **Id:** WithPreview
+- **Appearance:** Includes a live preview of the adjusted image.
+- **Behavior:** Updates preview in real time.
 
 ## Keyboard Shortcuts Help
 A block for displaying available keyboard shortcuts in the app.
@@ -594,6 +738,15 @@ A block for displaying available keyboard shortcuts in the app.
 - **Behavior:** Static or searchable list for user reference.
 - **Components:**
   - [KeyboardKey](components.md#keyboard-key)
+### Variants
+#### Basic
+- **Id:** Basic
+- **Appearance:** Simple list of keyboard shortcuts.
+- **Behavior:** Static display, no interactivity.
+#### With search
+- **Id:** WithSearch
+- **Appearance:** Includes a search input for filtering shortcuts.
+- **Behavior:** User can search and filter shortcuts.
 
 ## Legal
 A block for displaying legal documents such as privacy policy or terms of service.
@@ -603,6 +756,15 @@ A block for displaying legal documents such as privacy policy or terms of servic
 - **Components:**
   - [Typography](components.md#typography)
   - [Link](components.md#link)
+### Variants
+#### Basic
+- **Id:** Basic
+- **Appearance:** Simple text content with headings and links.
+- **Behavior:** Static display, no interactivity.
+#### With search
+- **Id:** WithSearch
+- **Appearance:** Includes a search input for finding specific terms.
+- **Behavior:** User can search and filter document content.
 
 ## Mega Menu
 A large dropdown menu with multiple columns, categories, and rich content for site navigation.
@@ -616,14 +778,14 @@ A large dropdown menu with multiple columns, categories, and rich content for si
   - [Image](components.md#image)
   - [Grid](components.md#grid)
 ### Variants
-  - With images
-    - **Id:** WithImages
-    - **Appearance:** Includes images or illustrations in menu columns.
-    - **Behavior:** Images may be clickable or static.
-  - With columns
-    - **Id:** WithColumns
-    - **Appearance:** Menu is organized into multiple columns for categories or sections.
-    - **Behavior:** Columns group related links for easier navigation.
+#### With images
+- **Id:** WithImages
+- **Appearance:** Includes images or illustrations in menu columns.
+- **Behavior:** Images may be clickable or static.
+#### With columns
+- **Id:** WithColumns
+- **Appearance:** Menu is organized into multiple columns for categories or sections.
+- **Behavior:** Columns group related links for easier navigation.
 
 ## Mobile Navigation Drawer
 A block for mobile navigation, sliding in from the side.
@@ -633,6 +795,15 @@ A block for mobile navigation, sliding in from the side.
 - **Components:**
   - [Drawer](components.md#drawer)
   - [Button](components.md#button)
+### Variants
+#### Basic
+- **Id:** Basic
+- **Appearance:** Simple drawer with navigation links.
+- **Behavior:** Static display, no interactivity.
+#### With user info
+- **Id:** WithUserInfo
+- **Appearance:** Drawer includes user avatar and name.
+- **Behavior:** User info may open a dropdown or menu.
 
 ## Navbars
 A horizontal or vertical navigation bar providing links to main sections of a site or app.
@@ -648,34 +819,34 @@ A horizontal or vertical navigation bar providing links to main sections of a si
   - [Badge](components.md#badge)
   - [Searchbox](components.md#searchbox)
 ### Variants
-  - Basic
-    - **Id:** Basic
-    - **Appearance:** Simple bar with links and logo only.
-    - **Behavior:** Static navigation, no dropdowns or user info.
-  - With user info
-    - **Id:** WithUserInfo
-    - **Appearance:** Includes user avatar and name.
-    - **Behavior:** User info may open a dropdown or menu.
-  - With search
-    - **Id:** WithSearch
-    - **Appearance:** Includes a search input field.
-    - **Behavior:** Allows searching from the navbar.
-  - With menu
-    - **Id:** WithMenu
-    - **Appearance:** Includes dropdown or mega menu.
-    - **Behavior:** Dropdown/mega menu opens on click/hover.
-  - Collapsible
-    - **Id:** Collapsible
-    - **Appearance:** Collapses into a hamburger menu on small screens.
-    - **Behavior:** Menu toggles open/close on mobile.
-  - Vertical
-    - **Id:** Vertical
-    - **Appearance:** Arranged vertically on the side of the page.
-    - **Behavior:** Navigation links stack vertically.
-  - Horizontal
-    - **Id:** Horizontal
-    - **Appearance:** Arranged horizontally at the top of the page.
-    - **Behavior:** Navigation links align in a row.
+#### Basic
+- **Id:** Basic
+- **Appearance:** Simple bar with links and logo only.
+- **Behavior:** Static navigation, no dropdowns or user info.
+#### With user info
+- **Id:** WithUserInfo
+- **Appearance:** Includes user avatar and name.
+- **Behavior:** User info may open a dropdown or menu.
+#### With search
+- **Id:** WithSearch
+- **Appearance:** Includes a search input field.
+- **Behavior:** Allows searching from the navbar.
+#### With menu
+- **Id:** WithMenu
+- **Appearance:** Includes dropdown or mega menu.
+- **Behavior:** Dropdown/mega menu opens on click/hover.
+#### Collapsible
+- **Id:** Collapsible
+- **Appearance:** Collapses into a hamburger menu on small screens.
+- **Behavior:** Menu toggles open/close on mobile.
+#### Vertical
+- **Id:** Vertical
+- **Appearance:** Arranged vertically on the side of the page.
+- **Behavior:** Navigation links stack vertically.
+#### Horizontal
+- **Id:** Horizontal
+- **Appearance:** Arranged horizontally at the top of the page.
+- **Behavior:** Navigation links align in a row.
 
 ## Notification Preferences
 A block for toggling notification settings.
@@ -684,6 +855,15 @@ A block for toggling notification settings.
 - **Behavior:** Toggles notification preferences.
 - **Components:**
   - [Switch](components.md#switch)
+### Variants
+#### Basic
+- **Id:** Basic
+- **Appearance:** Simple list of notification options with switches.
+- **Behavior:** Static display, no interactivity.
+#### With categories
+- **Id:** WithCategories
+- **Appearance:** Notification options are grouped by category.
+- **Behavior:** User can toggle notifications by category.
 
 ## Onboarding Steps
 A block for multi-step onboarding or setup flows.
@@ -695,6 +875,15 @@ A block for multi-step onboarding or setup flows.
   - [Form Error Message](components.md#form-error-message)
   - [Button](components.md#button)
   - [Input](components.md#input)
+### Variants
+#### Basic
+- **Id:** Basic
+- **Appearance:** Simple onboarding steps with progress indicator.
+- **Behavior:** Static display, no interactivity.
+#### With video
+- **Id:** WithVideo
+- **Appearance:** Includes video instructions for each step.
+- **Behavior:** Videos play as user progresses through steps.
 
 ## Order History
 A block for listing past orders and their details.
@@ -705,6 +894,15 @@ A block for listing past orders and their details.
   - [TableOfContents](components.md#table-of-contents)
   - [Typography](components.md#typography)
   - [Button](components.md#button)
+### Variants
+#### Basic
+- **Id:** Basic
+- **Appearance:** Simple list of past orders with dates and status.
+- **Behavior:** Static display, no interactivity.
+#### With filters
+- **Id:** WithFilters
+- **Appearance:** Includes filter controls for order status and date range.
+- **Behavior:** User can filter orders by status and date.
 
 ## Page Loader Overlay
 A block for showing a loading overlay while the page or data is loading.
@@ -713,6 +911,15 @@ A block for showing a loading overlay while the page or data is loading.
 - **Behavior:** Appears during loading, disappears when ready.
 - **Components:**
   - [Loading](components.md#loading)
+### Variants
+#### Basic
+- **Id:** Basic
+- **Appearance:** Simple loading overlay with spinner.
+- **Behavior:** Static display, no interactivity.
+#### With progress bar
+- **Id:** WithProgressBar
+- **Appearance:** Loading overlay includes a progress bar.
+- **Behavior:** Progress bar updates as loading progresses.
 
 ## Pricing Table
 A block for showing pricing plans and features.
@@ -724,6 +931,15 @@ A block for showing pricing plans and features.
   - [Button](components.md#button)
   - [List](components.md#list)
   - [Typography](components.md#typography)
+### Variants
+#### Basic
+- **Id:** Basic
+- **Appearance:** Simple pricing table with plan name and price.
+- **Behavior:** Static display, no interactivity.
+#### With features
+- **Id:** WithFeatures
+- **Appearance:** Pricing table includes a list of features for each plan.
+- **Behavior:** User can view features for each plan.
 
 ## Product Details
 A block for showing detailed information about a product.
@@ -735,6 +951,15 @@ A block for showing detailed information about a product.
   - [Button](components.md#button)
   - [Typography](components.md#typography)
   - [List](components.md#list)
+### Variants
+#### Basic
+- **Id:** Basic
+- **Appearance:** Simple product details with image and description.
+- **Behavior:** Static display, no interactivity.
+#### With reviews
+- **Id:** WithReviews
+- **Appearance:** Includes a section for user reviews and ratings.
+- **Behavior:** User can read and submit reviews.
 
 ## Product Review
 A block for submitting and displaying product ratings and reviews.
@@ -745,6 +970,15 @@ A block for submitting and displaying product ratings and reviews.
   - [Rating](components.md#rating)
   - [Textarea](components.md#textarea)
   - [Button](components.md#button)
+### Variants
+#### Basic
+- **Id:** Basic
+- **Appearance:** Simple review form with rating and text area.
+- **Behavior:** Static display, no interactivity.
+#### With images
+- **Id:** WithImages
+- **Appearance:** Review form includes an option to upload images.
+- **Behavior:** User can attach images to their review.
 
 ## Profile Theme Customization
 A block for letting users pick a profile or dashboard color theme.
@@ -754,6 +988,15 @@ A block for letting users pick a profile or dashboard color theme.
 - **Components:**
   - [ColorInput](components.md#color-input)
   - [Button](components.md#button)
+### Variants
+#### Basic
+- **Id:** Basic
+- **Appearance:** Simple color picker for theme customization.
+- **Behavior:** Static display, no interactivity.
+#### With presets
+- **Id:** WithPresets
+- **Appearance:** Includes preset color themes for quick selection.
+- **Behavior:** User can choose from preset themes.
 
 ## Responsive Columns
 A multi-column layout that adapts to screen size, stacking columns vertically on small screens.
@@ -765,10 +1008,10 @@ A multi-column layout that adapts to screen size, stacking columns vertically on
   - [Card](components.md#card)
   - [Typography](components.md#typography)
 ### Variants
-  - Multi-column layouts that adapt to screen size
-    - **Id:** MultiColumnLayouts
-    - **Appearance:** Multiple columns that stack on small screens.
-    - **Behavior:** Columns rearrange responsively.
+#### Multi-column layouts that adapt to screen size
+- **Id:** MultiColumnLayouts
+- **Appearance:** Multiple columns that stack on small screens.
+- **Behavior:** Columns rearrange responsively.
 
 ## Roadmap
 A block for displaying a timeline or list of milestones and planned features.
@@ -779,6 +1022,15 @@ A block for displaying a timeline or list of milestones and planned features.
   - [Timeline](components.md#timeline)
   - [Card](components.md#card)
   - [Typography](components.md#typography)
+### Variants
+#### Basic
+- **Id:** Basic
+- **Appearance:** Simple timeline with milestones and dates.
+- **Behavior:** Static display, no interactivity.
+#### With filters
+- **Id:** WithFilters
+- **Appearance:** Timeline includes filter controls for milestones.
+- **Behavior:** User can filter milestones by status or date.
 
 ## Section
 A content area used to separate and organize different parts of a page.
@@ -791,10 +1043,10 @@ A content area used to separate and organize different parts of a page.
   - [Typography](components.md#typography)
   - [Divider](components.md#divider)
 ### Variants
-  - Themed or separated page areas (with background, with divider)
-    - **Id:** ThemedOrSeparatedPageAreas
-    - **Appearance:** Section with themed background or divider.
-    - **Behavior:** Static or may support expand/collapse.
+#### Themed or separated page areas (with background, with divider)
+- **Id:** ThemedOrSeparatedPageAreas
+- **Appearance:** Section with themed background or divider.
+- **Behavior:** Static or may support expand/collapse.
 
 ## Settings Tabs
 A block for organizing settings into tabbed sections.
@@ -803,6 +1055,15 @@ A block for organizing settings into tabbed sections.
 - **Behavior:** Clicking a tab shows its content.
 - **Components:**
   - [Tabs](components.md#tabs)
+### Variants
+#### Basic
+- **Id:** Basic
+- **Appearance:** Simple tabs for settings categories.
+- **Behavior:** Static display, no interactivity.
+#### With icons
+- **Id:** WithIcons
+- **Appearance:** Tabs include icons for each category.
+- **Behavior:** Icons visually reinforce category meaning.
 
 ## Sidebar
 A vertical panel providing navigation links, actions, or additional content alongside the main area.
@@ -816,10 +1077,10 @@ A vertical panel providing navigation links, actions, or additional content alon
   - [Button](components.md#button)
   - [Avatar](components.md#avatar)
 ### Variants
-  - Vertical navigation or content area
-    - **Id:** VerticalNavigationOrContentArea
-    - **Appearance:** Vertical panel with navigation links and content.
-    - **Behavior:** Navigation links stack vertically; may expand/collapse.
+#### Vertical navigation or content area
+- **Id:** VerticalNavigationOrContentArea
+- **Appearance:** Vertical panel with navigation links and content.
+- **Behavior:** Navigation links stack vertically; may expand/collapse.
 
 ## Split Layout
 A layout dividing content into two or more columns, often with image and text side by side.
@@ -833,10 +1094,10 @@ A layout dividing content into two or more columns, often with image and text si
   - [Typography](components.md#typography)
   - [Button](components.md#button)
 ### Variants
-  - Side-by-side content, e.g., image + text
-    - **Id:** SideBySideContent
-    - **Appearance:** Two columns, one with image, one with text.
-    - **Behavior:** Columns stack on small screens.
+#### Side-by-side content, e.g., image + text
+- **Id:** SideBySideContent
+- **Appearance:** Two columns, one with image, one with text.
+- **Behavior:** Columns stack on small screens.
 
 ## Stats
 A section displaying key metrics, statistics, or trends, often in a grid or card layout.
@@ -850,46 +1111,46 @@ A section displaying key metrics, statistics, or trends, often in a grid or card
   - [Progress](components.md#progress)
   - [Badge](components.md#badge)
 ### Variants
-  - Stat grid
-    - **Id:** StatGrid
-    - **Appearance:** Statistics are arranged in a grid layout.
-    - **Behavior:** Static or may animate numbers.
-  - Stat with icon
-    - **Id:** StatWithIcon
-    - **Appearance:** Each stat includes an icon.
-    - **Behavior:** Icon visually reinforces the stat meaning.
-  - Stat with progress
-    - **Id:** StatWithProgress
-    - **Appearance:** Includes a progress bar or indicator.
-    - **Behavior:** Progress bar animates to show value.
-  - Stat card
-    - **Id:** StatCard
-    - **Appearance:** Each stat is displayed in a card with border or shadow.
-    - **Behavior:** Card may be clickable for more details.
-  - Stat list
-    - **Id:** StatList
-    - **Appearance:** Statistics are listed vertically.
-    - **Behavior:** Static, no interactivity.
-  - Stat with chart
-    - **Id:** StatWithChart
-    - **Appearance:** Includes a small chart or sparkline.
-    - **Behavior:** Chart animates or updates with data.
-  - Stat with description
-    - **Id:** StatWithDescription
-    - **Appearance:** Includes a descriptive text below the stat.
-    - **Behavior:** Static, provides additional context.
-  - Stat with actions
-    - **Id:** StatWithActions
-    - **Appearance:** Includes action buttons or links.
-    - **Behavior:** Actions trigger navigation or updates.
-  - Stat with avatar
-    - **Id:** StatWithAvatar
-    - **Appearance:** Includes an avatar or user image.
-    - **Behavior:** Avatar may link to user profile.
-  - Stat with badge
-    - **Id:** StatWithBadge
-    - **Appearance:** Includes a badge to indicate status or change.
-    - **Behavior:** Badge updates dynamically with status.
+#### Stat grid
+- **Id:** StatGrid
+- **Appearance:** Statistics are arranged in a grid layout.
+- **Behavior:** Static or may animate numbers.
+#### Stat with icon
+- **Id:** StatWithIcon
+- **Appearance:** Each stat includes an icon.
+- **Behavior:** Icon visually reinforces the stat meaning.
+#### Stat with progress
+- **Id:** StatWithProgress
+- **Appearance:** Includes a progress bar or indicator.
+- **Behavior:** Progress bar animates to show value.
+#### Stat card
+- **Id:** StatCard
+- **Appearance:** Each stat is displayed in a card with border or shadow.
+- **Behavior:** Card may be clickable for more details.
+#### Stat list
+- **Id:** StatList
+- **Appearance:** Statistics are listed vertically.
+- **Behavior:** Static, no interactivity.
+#### Stat with chart
+- **Id:** StatWithChart
+- **Appearance:** Includes a small chart or sparkline.
+- **Behavior:** Chart animates or updates with data.
+#### Stat with description
+- **Id:** StatWithDescription
+- **Appearance:** Includes a descriptive text below the stat.
+- **Behavior:** Static, provides additional context.
+#### Stat with actions
+- **Id:** StatWithActions
+- **Appearance:** Includes action buttons or links.
+- **Behavior:** Actions trigger navigation or updates.
+#### Stat with avatar
+- **Id:** StatWithAvatar
+- **Appearance:** Includes an avatar or user image.
+- **Behavior:** Avatar may link to user profile.
+#### Stat with badge
+- **Id:** StatWithBadge
+- **Appearance:** Includes a badge to indicate status or change.
+- **Behavior:** Badge updates dynamically with status.
 
 ## Sticky Cart Summary
 A block for keeping the cart summary visible during checkout.
@@ -899,6 +1160,15 @@ A block for keeping the cart summary visible during checkout.
 - **Components:**
   - [Affix](components.md#affix)
   - [Card](components.md#card)
+### Variants
+#### Basic
+- **Id:** Basic
+- **Appearance:** Simple cart summary box.
+- **Behavior:** Static display, no interactivity.
+#### With order details
+- **Id:** WithOrderDetails
+- **Appearance:** Cart summary includes detailed order information.
+- **Behavior:** Displays a summary of the order with total price.
 
 ## Table Of Contents
 A navigational block listing links to sections within a page for easy access.
@@ -910,14 +1180,14 @@ A navigational block listing links to sections within a page for easy access.
   - [Link](components.md#link)
   - [Heading](components.md#heading)
 ### Variants
-  - Simple
-    - **Id:** Simple
-    - **Appearance:** Basic list of links, no sticky or advanced styling.
-    - **Behavior:** Static navigation, no highlight or sticky behavior.
-  - Sticky
-    - **Id:** Sticky
-    - **Appearance:** List is fixed to the viewport as user scrolls.
-    - **Behavior:** Remains visible while scrolling, may highlight active section.
+#### Simple
+- **Id:** Simple
+- **Appearance:** Basic list of links, no sticky or advanced styling.
+- **Behavior:** Static navigation, no highlight or sticky behavior.
+#### Sticky
+- **Id:** Sticky
+- **Appearance:** List is fixed to the viewport as user scrolls.
+- **Behavior:** Remains visible while scrolling, may highlight active section.
 
 ## Team Section
 A section showcasing team members, their roles, and contact information.
@@ -932,14 +1202,14 @@ A section showcasing team members, their roles, and contact information.
   - [Link](components.md#link)
   - [Typography](components.md#typography)
 ### Variants
-  - Grid
-    - **Id:** Grid
-    - **Appearance:** Team members are arranged in a grid layout.
-    - **Behavior:** Static; may support responsive rearrangement.
-  - List
-    - **Id:** List
-    - **Appearance:** Team members are listed vertically.
-    - **Behavior:** Static; may support click to expand details.
+#### Grid
+- **Id:** Grid
+- **Appearance:** Team members are arranged in a grid layout.
+- **Behavior:** Static; may support responsive rearrangement.
+#### List
+- **Id:** List
+- **Appearance:** Team members are listed vertically.
+- **Behavior:** Static; may support click to expand details.
 
 ## Testimonials
 A block for displaying user testimonials or reviews.
@@ -951,6 +1221,15 @@ A block for displaying user testimonials or reviews.
   - [Avatar](components.md#avatar)
   - [Typography](components.md#typography)
   - [Carousel](components.md#carousel)
+### Variants
+#### Basic
+- **Id:** Basic
+- **Appearance:** Simple list of testimonials.
+- **Behavior:** Static display, no interactivity.
+#### With images
+- **Id:** WithImages
+- **Appearance:** Testimonials include user images.
+- **Behavior:** Images may be clickable to view user profiles.
 
 ## Text Editor Toolbar
 A block for formatting text in a document or email editor.
@@ -959,6 +1238,15 @@ A block for formatting text in a document or email editor.
 - **Behavior:** Clicking icons applies formatting to selected text.
 - **Components:**
   - [Menubar](components.md#menubar)
+### Variants
+#### Basic
+- **Id:** Basic
+- **Appearance:** Simple menubar with basic formatting options.
+- **Behavior:** Static display, no interactivity.
+#### With advanced options
+- **Id:** WithAdvancedOptions
+- **Appearance:** Menubar includes advanced formatting options (e.g., tables, images).
+- **Behavior:** Advanced options provide more formatting capabilities.
 
 ## Two-Factor Authentication
 A block for entering a verification code sent to the user, as part of login or sensitive actions.
@@ -968,6 +1256,15 @@ A block for entering a verification code sent to the user, as part of login or s
 - **Components:**
   - [PinInput](components.md#pin-input)
   - [Button](components.md#button)
+### Variants
+#### Basic
+- **Id:** Basic
+- **Appearance:** Simple form with PinInput and submit button.
+- **Behavior:** Static display, no interactivity.
+#### With backup codes
+- **Id:** WithBackupCodes
+- **Appearance:** Includes an option to enter backup codes.
+- **Behavior:** User can enter backup codes if primary method fails.
 
 ## User Info And Controls
 A block presenting user profile information and related actions or settings.
@@ -984,42 +1281,42 @@ A block presenting user profile information and related actions or settings.
   - [Toggle](components.md#toggle)
   - [Collapse](components.md#collapse)
 ### Variants
-  - Profile menu
-    - **Id:** ProfileMenu
-    - **Appearance:** Dropdown or menu with user actions (profile, logout, etc.).
-    - **Behavior:** Menu opens on click; actions trigger navigation or dialogs.
-  - User card
-    - **Id:** UserCard
-    - **Appearance:** Card layout with user info and controls.
-    - **Behavior:** Card may be clickable or support inline actions.
-  - User dropdown
-    - **Id:** UserDropdown
-    - **Appearance:** Dropdown with user info and settings.
-    - **Behavior:** Dropdown opens on click; settings/actions available.
-  - User avatar with status
-    - **Id:** UserAvatarWithStatus
-    - **Appearance:** Avatar includes a status indicator (dot, color, etc.).
-    - **Behavior:** Status updates in real time.
-  - User settings
-    - **Id:** UserSettings
-    - **Appearance:** Section or modal for user preferences/settings.
-    - **Behavior:** Allows updating and saving settings.
-  - User stats
-    - **Id:** UserStats
-    - **Appearance:** Displays user-related statistics (posts, followers, etc.).
-    - **Behavior:** Stats update dynamically.
-  - User switcher
-    - **Id:** UserSwitcher
-    - **Appearance:** Control to switch between multiple users/accounts.
-    - **Behavior:** Changes active user context.
-  - User badge
-    - **Id:** UserBadge
-    - **Appearance:** Badge or label indicating user role/status.
-    - **Behavior:** Badge updates with user status/role.
-  - User list
-    - **Id:** UserList
-    - **Appearance:** List of users with avatars and names.
-    - **Behavior:** List may be selectable or support actions.
+#### Profile menu
+- **Id:** ProfileMenu
+- **Appearance:** Dropdown or menu with user actions (profile, logout, etc.).
+- **Behavior:** Menu opens on click; actions trigger navigation or dialogs.
+#### User card
+- **Id:** UserCard
+- **Appearance:** Card layout with user info and controls.
+- **Behavior:** Card may be clickable or support inline actions.
+#### User dropdown
+- **Id:** UserDropdown
+- **Appearance:** Dropdown with user info and settings.
+- **Behavior:** Dropdown opens on click; settings/actions available.
+#### User avatar with status
+- **Id:** UserAvatarWithStatus
+- **Appearance:** Avatar includes a status indicator (dot, color, etc.).
+- **Behavior:** Status updates in real time.
+#### User settings
+- **Id:** UserSettings
+- **Appearance:** Section or modal for user preferences/settings.
+- **Behavior:** Allows updating and saving settings.
+#### User stats
+- **Id:** UserStats
+- **Appearance:** Displays user-related statistics (posts, followers, etc.).
+- **Behavior:** Stats update dynamically.
+#### User switcher
+- **Id:** UserSwitcher
+- **Appearance:** Control to switch between multiple users/accounts.
+- **Behavior:** Changes active user context.
+#### User badge
+- **Id:** UserBadge
+- **Appearance:** Badge or label indicating user role/status.
+- **Behavior:** Badge updates with user status/role.
+#### User list
+- **Id:** UserList
+- **Appearance:** List of users with avatars and names.
+- **Behavior:** List may be selectable or support actions.
 
 ## User Profile Popover
 A block for showing user info and actions in a popover on hover/click.
@@ -1029,6 +1326,15 @@ A block for showing user info and actions in a popover on hover/click.
 - **Components:**
   - [Popover](components.md#popover)
   - [Avatar](components.md#avatar)
+### Variants
+#### Basic
+- **Id:** Basic
+- **Appearance:** Simple popover with user info and actions.
+- **Behavior:** Static display, no interactivity.
+#### With actions
+- **Id:** WithActions
+- **Appearance:** Popover includes action buttons (e.g., message, follow).
+- **Behavior:** Actions trigger navigation or updates.
 
 ## User Role Assignment
 A block for assigning users to roles or groups using a transfer list.
@@ -1037,6 +1343,15 @@ A block for assigning users to roles or groups using a transfer list.
 - **Behavior:** Select and transfer users between lists.
 - **Components:**
   - [TransferList](components.md#transfer-list)
+### Variants
+#### Basic
+- **Id:** Basic
+- **Appearance:** Simple transfer list for user roles.
+- **Behavior:** Static display, no interactivity.
+#### With search
+- **Id:** WithSearch
+- **Appearance:** Includes a search input for finding users.
+- **Behavior:** User can search and filter users in the lists.
 
 ## Wishlist
 A block for displaying products saved for future purchase.
@@ -1047,5 +1362,12 @@ A block for displaying products saved for future purchase.
   - [Card](components.md#card)
   - [Button](components.md#button)
   - [Typography](components.md#typography)
-
-// All block sections above are sorted alphabetically by block name
+### Variants
+#### Basic
+- **Id:** Basic
+- **Appearance:** Simple list of products with add-to-cart and remove options.
+- **Behavior:** Static display, no interactivity.
+#### With images
+- **Id:** WithImages
+- **Appearance:** Includes product images in the list.
+- **Behavior:** Images may be clickable to view product details.

@@ -257,6 +257,11 @@ A page for checkout with sticky cart summary and loading overlay.
   - [Checkout](blocks.md#checkout)
   - [StickyCartSummary](blocks.md#sticky-cart-summary)
   - [PageLoaderOverlay](blocks.md#page-loader-overlay)
+### Variants
+#### Standard Checkout
+- **Id:** StandardCheckout
+- **Appearance:** Checkout form with cart summary and loading overlay.
+- **Behavior:** User completes purchase with real-time feedback.
 
 ## E-Commerce
 A set of pages for browsing products, viewing details, managing a cart, and completing purchases.
@@ -303,6 +308,11 @@ A page for writing and formatting blog posts with tags and a formatting toolbar.
   - [BlogPostEditor](blocks.md#blog-post-editor)
   - [BlogPostTagging](blocks.md#blog-post-tagging)
   - [TextEditorToolbar](blocks.md#text-editor-toolbar)
+### Variants
+#### Blog Post Editor
+- **Id:** BlogPostEditor
+- **Appearance:** Editor for writing and formatting blog posts.
+- **Behavior:** Supports text formatting, tagging, and preview.
 
 ## Error
 A page for displaying error messages, such as 404 or 500, with navigation options for recovery.
@@ -360,6 +370,11 @@ A page for browsing files, assigning roles, and file actions.
   - [FileExplorer](blocks.md#file-explorer)
   - [UserRoleAssignment](blocks.md#user-role-assignment)
   - [FileActionsContextMenu](blocks.md#file-actions-context-menu)
+### Variants
+#### File Explorer
+- **Id:** FileExplorer
+- **Appearance:** File browser with folder tree and file actions.
+- **Behavior:** Allows navigation, selection, and file management.
 
 ## Landing
 A marketing page designed to introduce a product or service, highlight features, and drive conversions.
@@ -421,6 +436,11 @@ A page for user authentication, including two-factor verification.
 - **Blocks:**
   - [Authentication](blocks.md#authentication)
   - [TwoFactorAuthentication](blocks.md#two-factor-authentication)
+### Variants
+#### Login with 2FA
+- **Id:** LoginWith2FA
+- **Appearance:** Login form followed by two-factor authentication step.
+- **Behavior:** User logs in and verifies with a code.
 
 ## Messaging
 A page for chat with scrollable message list and user popovers.
@@ -429,6 +449,11 @@ A page for chat with scrollable message list and user popovers.
 - **Blocks:**
   - [ChatMessageList](blocks.md#chat-message-list)
   - [UserProfilePopover](blocks.md#user-profile-popover)
+### Variants
+#### Direct Messages
+- **Id:** DirectMessages
+- **Appearance:** One-on-one chat with message list and user popover.
+- **Behavior:** Real-time messaging and user info on hover.
 
 ## Onboarding
 A multi-step guide or wizard to help new users get started with the application.
@@ -478,6 +503,11 @@ A page for viewing product details and submitting reviews.
 - **Blocks:**
   - [ProductDetails](blocks.md#product-details)
   - [ProductReview](blocks.md#product-review)
+### Variants
+#### Product Details
+- **Id:** ProductDetails
+- **Appearance:** Product information with reviews and add-to-cart.
+- **Behavior:** User can view details, submit reviews, and add to cart.
 
 ## Profile
 A user-focused page showing personal details, avatar, and editable profile information.
@@ -577,4 +607,9 @@ A page for managing user profile, theme, and notification preferences.
   - [UserInfoAndControls](blocks.md#user-info-and-controls)
   - [ProfileThemeCustomization](blocks.md#profile-theme-customization)
   - [NotificationPreferences](blocks.md#notification-preferences)
+### Variants
+#### Profile Overview
+- **Id:** ProfileOverview
+- **Appearance:** User profile with theme and notification settings.
+- **Behavior:** User can update profile info, theme, and preferences.
 
