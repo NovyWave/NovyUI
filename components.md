@@ -559,7 +559,7 @@ A popup overlay that displays content or actions requiring user attention.
 
 ## Divider
 A visual line or space used to separate content into distinct sections.
-- **Id:** DividerSeparator
+- **Id:** Divider
 - **Appearance:** A thin horizontal or vertical line, sometimes with text or icon in the center. Used to separate content.
 - **Behavior:** Static visual separator. May be interactive if used as a drag handle.
 ### Variants

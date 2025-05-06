@@ -2,15 +2,24 @@
 
 This document provides an overview of all UI blocks available in NovyUI. Each block is a higher-level composition of components, designed to address common page sections and layouts. Use this file to explore, plan, or implement blocks in your project. Each section includes a brief one-line description to help you quickly understand the block's role.
 
+- [Activity Feed](#activity-feed)
+- [App Download Section](#app-download-section)
 - [Article Cards](#article-cards)
 - [Authentication](#authentication)
 - [Banners](#banners)
+- [Call To Action Section](#call-to-action-section)
+- [Calendar](#calendar)
+- [Cart](#cart)
 - [Carousels](#carousels)
+- [Checkout](#checkout)
 - [Comments](#comments)
 - [Contact Card](#contact-card)
 - [Container](#container)
 - [Cookie Consent Banner](#cookie-consent-banner)
-- [Drag and Drop](#drag-and-drop)
+- [Data Table](#data-table)
+- [Drag And Drop](#drag-and-drop)
+- [Error](#error)
+- [FAQ](#faq)
 - [Features Section](#features-section)
 - [Flexbox Layouts](#flexbox-layouts)
 - [Footers](#footers)
@@ -18,17 +27,47 @@ This document provides an overview of all UI blocks available in NovyUI. Each bl
 - [Group Layout](#group-layout)
 - [Headers](#headers)
 - [Hero](#hero)
+- [Legal](#legal)
 - [Mega Menu](#mega-menu)
 - [Navbars](#navbars)
+- [Onboarding Steps](#onboarding-steps)
+- [Order History](#order-history)
 - [Page Wrapper](#page-wrapper)
+- [Pricing Table](#pricing-table)
+- [Product Details](#product-details)
 - [Responsive Columns](#responsive-columns)
+- [Roadmap](#roadmap)
 - [Section](#section)
 - [Sidebar](#sidebar)
 - [Split Layout](#split-layout)
 - [Stats](#stats)
-- [Table of Contents](#table-of-contents)
-- [TeamSection](#teamsection)
-- [User Info and Controls](#user-info-and-controls)
+- [Table Of Contents](#table-of-contents)
+- [Team Section](#team-section)
+- [Testimonials](#testimonials)
+- [User Info And Controls](#user-info-and-controls)
+- [Wishlist](#wishlist)
+
+## Activity Feed
+A block for displaying a feed of recent activity, notifications, or events.
+- **Id:** ActivityFeed
+- **Appearance:** A vertical list of activity items, each with icon, description, and timestamp.
+- **Behavior:** Updates dynamically with new activity. Supports filtering and marking as read.
+- **Components:**
+  - [List](components.md#list)
+  - [Avatar](components.md#avatar)
+  - [Icon](components.md#icon)
+  - [Typography](components.md#typography)
+
+## App Download Section
+A block for presenting app download links, QR codes, and instructions.
+- **Id:** AppDownloadSection
+- **Appearance:** A section with download buttons, platform icons, and QR codes.
+- **Behavior:** Clicking a button starts download or opens app store. May show version info.
+- **Components:**
+  - [Button](components.md#button)
+  - [QRCode](components.md#qrcode)
+  - [Icon](components.md#icon)
+  - [Typography](components.md#typography)
 
 ## Article Cards
 A grid or list of cards showcasing articles, blog posts, or news items.
@@ -130,6 +169,37 @@ A horizontal bar or box used to display important messages, promotions, or alert
 - **Appearance:** Warning color (e.g., yellow/orange), warning icon, and message.
 - **Behavior:** May require user dismissal or action.
 
+## Call To Action Section
+A block for a prominent call-to-action area.
+- **Id:** CallToActionSection
+- **Appearance:** A highlighted section with headline, supporting text, and a primary action button.
+- **Behavior:** Button triggers navigation or action. May include background image or color.
+- **Components:**
+  - [Button](components.md#button)
+  - [Typography](components.md#typography)
+  - [Image](components.md#image)
+
+## Calendar
+A block for displaying a calendar view and managing events.
+- **Id:** Calendar
+- **Appearance:** A grid of days with event markers, navigation controls, and today highlight.
+- **Behavior:** Allows date selection, event display, and navigation between months/weeks.
+- **Components:**
+  - [Calendar](components.md#calendar)
+  - [Button](components.md#button)
+  - [Icon](components.md#icon)
+
+## Cart
+A block for displaying and managing items in a shopping cart.
+- **Id:** Cart
+- **Appearance:** A list or table of products with quantity, price, and remove buttons.
+- **Behavior:** Allows updating quantities, removing items, and proceeding to checkout.
+- **Components:**
+  - [List](components.md#list)
+  - [Button](components.md#button)
+  - [Input](components.md#input)
+  - [Typography](components.md#typography)
+
 ## Carousels
 A horizontally scrollable area for showcasing images, cards, or featured content.
 - **Id:** Carousels
@@ -150,6 +220,17 @@ A horizontally scrollable area for showcasing images, cards, or featured content
 - **Id:** CardCarousel
 - **Appearance:** Displays cards (with text, images, or actions) in a carousel layout.
 - **Behavior:** Users can scroll or swipe through cards; may support card actions.
+
+## Checkout
+A block for the checkout process, including forms for shipping and payment.
+- **Id:** Checkout
+- **Appearance:** Forms for address, payment, and order summary.
+- **Behavior:** Validates input, processes payment, and completes purchase.
+- **Components:**
+  - [Input](components.md#input)
+  - [Button](components.md#button)
+  - [Form Error Message](components.md#form-error-message)
+  - [Typography](components.md#typography)
 
 ## Comments
 A section for displaying and submitting user comments, often with threading and moderation features.
@@ -229,7 +310,18 @@ A banner that informs users about cookie usage and requests their consent.
     - **Appearance:** Banner with a single dismiss/accept button.
     - **Behavior:** User can dismiss banner with one click.
 
-## Drag and Drop
+## Data Table
+A block for displaying and interacting with tabular data.
+- **Id:** DataTable
+- **Appearance:** A table with rows, columns, headers, and optional filters, pagination, and actions.
+- **Behavior:** Supports sorting, filtering, pagination, selection, and inline actions.
+- **Components:**
+  - [Data Table](components.md#data-table)
+  - [Button](components.md#button)
+  - [Input](components.md#input)
+  - [Pagination](components.md#pagination)
+
+## Drag And Drop
 A block enabling drag-and-drop sorting, reordering, or file uploads within a list or grid.
 - **Id:** DragAndDrop
 - **Appearance:** A list or grid of items with drag handles. Items may be cards, images, or list elements. Dropzone highlights on drag.
@@ -252,6 +344,27 @@ A block enabling drag-and-drop sorting, reordering, or file uploads within a lis
     - **Id:** FileUploadSortable
     - **Appearance:** List or grid of uploaded files, each with drag handle.
     - **Behavior:** Files can be reordered by dragging; supports file upload actions.
+
+## Error
+A block for displaying error messages, codes, and navigation options.
+- **Id:** Error
+- **Appearance:** Large error code/message, icon or illustration, and navigation buttons.
+- **Behavior:** Static or may auto-redirect or provide links for user action.
+- **Components:**
+  - [Alert](components.md#alert)
+  - [Button](components.md#button)
+  - [Typography](components.md#typography)
+  - [Image](components.md#image)
+
+## FAQ
+A block for displaying frequently asked questions and answers.
+- **Id:** FAQ
+- **Appearance:** List or accordion of questions and answers, with optional search.
+- **Behavior:** Allows expanding/collapsing answers, searching/filtering questions.
+- **Components:**
+  - [Collapse](components.md#collapse)
+  - [Input](components.md#input)
+  - [Typography](components.md#typography)
 
 ## Features Section
 A section that highlights key features, benefits, or selling points, often arranged in a grid or list.
@@ -410,7 +523,7 @@ A prominent section at the top of a page, typically featuring a headline, suppor
 - **Behavior:** Static by default. Buttons trigger navigation or actions. May include animation or parallax effects.
 - **Components:**
   - [Heading](components.md#heading)
-  - [Paragraph](components.md#paragraphs)
+  - [Paragraphs](components.md#paragraphs)
   - [Button](components.md#button)
   - [Image](components.md#image)
   - [Container](components.md#container)
@@ -440,6 +553,15 @@ A prominent section at the top of a page, typically featuring a headline, suppor
     - **Id:** Minimal
     - **Appearance:** Reduced styling, minimal text and elements.
     - **Behavior:** No behavioral difference, just minimal appearance.
+
+## Legal
+A block for displaying legal documents such as privacy policy or terms of service.
+- **Id:** Legal
+- **Appearance:** Text content with headings, links, and last updated date.
+- **Behavior:** Static display, may support search or navigation within the document.
+- **Components:**
+  - [Typography](components.md#typography)
+  - [Link](components.md#link)
 
 ## Mega Menu
 A large dropdown menu with multiple columns, categories, and rich content for site navigation.
@@ -505,6 +627,27 @@ A horizontal or vertical navigation bar providing links to main sections of a si
     - **Appearance:** Arranged horizontally at the top of the page.
     - **Behavior:** Navigation links align in a row.
 
+## Onboarding Steps
+A block for multi-step onboarding or setup flows.
+- **Id:** OnboardingSteps
+- **Appearance:** A sequence of steps with progress indicator, instructions, and forms.
+- **Behavior:** Navigates between steps, validates input, and shows completion message.
+- **Components:**
+  - [Stepper](components.md#stepper)
+  - [Form Error Message](components.md#form-error-message)
+  - [Button](components.md#button)
+  - [Input](components.md#input)
+
+## Order History
+A block for listing past orders and their details.
+- **Id:** OrderHistory
+- **Appearance:** A list or table of previous orders with dates, status, and details link.
+- **Behavior:** Allows viewing order details and status.
+- **Components:**
+  - [TableOfContents](components.md#table-of-contents)
+  - [Typography](components.md#typography)
+  - [Button](components.md#button)
+
 ## Page Wrapper
 A top-level container that wraps the entire page, providing background, padding, and layout constraints.
 - **Id:** PageWrapper
@@ -517,6 +660,28 @@ A top-level container that wraps the entire page, providing background, padding,
     - **Id:** MainLayoutContainer
     - **Appearance:** Full-page wrapper with consistent padding and background.
     - **Behavior:** Static, wraps all content.
+
+## Pricing Table
+A block for showing pricing plans and features.
+- **Id:** PricingTable
+- **Appearance:** A table or grid of pricing cards, each with plan name, price, features, and action button.
+- **Behavior:** Highlights recommended plan. Action button triggers signup or purchase.
+- **Components:**
+  - [Card](components.md#card)
+  - [Button](components.md#button)
+  - [List](components.md#list)
+  - [Typography](components.md#typography)
+
+## Product Details
+A block for showing detailed information about a product.
+- **Id:** ProductDetails
+- **Appearance:** Product image, title, description, price, and add-to-cart button.
+- **Behavior:** Allows adding product to cart, viewing images, and reading details.
+- **Components:**
+  - [Image](components.md#image)
+  - [Button](components.md#button)
+  - [Typography](components.md#typography)
+  - [List](components.md#list)
 
 ## Responsive Columns
 A multi-column layout that adapts to screen size, stacking columns vertically on small screens.
@@ -533,6 +698,16 @@ A multi-column layout that adapts to screen size, stacking columns vertically on
     - **Appearance:** Multiple columns that stack on small screens.
     - **Behavior:** Columns rearrange responsively.
 
+## Roadmap
+A block for displaying a timeline or list of milestones and planned features.
+- **Id:** Roadmap
+- **Appearance:** A vertical or horizontal timeline with milestones, dates, and descriptions.
+- **Behavior:** Static or interactive (expand/collapse, filter by status). May animate on scroll.
+- **Components:**
+  - [Timeline](components.md#timeline)
+  - [Card](components.md#card)
+  - [Typography](components.md#typography)
+
 ## Section
 A content area used to separate and organize different parts of a page.
 - **Id:** Section
@@ -542,7 +717,7 @@ A content area used to separate and organize different parts of a page.
   - [Container](components.md#container)
   - [Heading](components.md#heading)
   - [Typography](components.md#typography)
-  - [DividerSeparator](components.md#dividerseparator)
+  - [Divider](components.md#divider)
 ### Variants
   - Themed or separated page areas (with background, with divider)
     - **Id:** ThemedOrSeparatedPageAreas
@@ -636,7 +811,7 @@ A section displaying key metrics, statistics, or trends, often in a grid or card
     - **Appearance:** Includes a badge to indicate status or change.
     - **Behavior:** Badge updates dynamically with status.
 
-## Table of Contents
+## Table Of Contents
 A navigational block listing links to sections within a page for easy access.
 - **Id:** TableOfContents
 - **Appearance:** A vertical or horizontal list of links to sections of a page. May be styled as a sidebar or sticky element.
@@ -655,7 +830,7 @@ A navigational block listing links to sections within a page for easy access.
     - **Appearance:** List is fixed to the viewport as user scrolls.
     - **Behavior:** Remains visible while scrolling, may highlight active section.
 
-## TeamSection
+## Team Section
 A section showcasing team members, their roles, and contact information.
 - **Id:** TeamSection
 - **Appearance:** A section with team member profiles, including avatar, name, role, and contact links. May be arranged in a grid or list.
@@ -677,7 +852,18 @@ A section showcasing team members, their roles, and contact information.
     - **Appearance:** Team members are listed vertically.
     - **Behavior:** Static; may support click to expand details.
 
-## User Info and Controls
+## Testimonials
+A block for displaying user testimonials or reviews.
+- **Id:** Testimonials
+- **Appearance:** A carousel or grid of testimonial cards, each with user photo, quote, and name.
+- **Behavior:** Static or auto-advancing carousel. May support navigation arrows.
+- **Components:**
+  - [Card](components.md#card)
+  - [Avatar](components.md#avatar)
+  - [Typography](components.md#typography)
+  - [Carousel](components.md#carousel)
+
+## User Info And Controls
 A block presenting user profile information and related actions or settings.
 - **Id:** UserInfoAndControls
 - **Appearance:** A section or card with user avatar, name, status, and controls (dropdown, toggle, actions). May include stats or settings.
@@ -728,3 +914,13 @@ A block presenting user profile information and related actions or settings.
     - **Id:** UserList
     - **Appearance:** List of users with avatars and names.
     - **Behavior:** List may be selectable or support actions.
+
+## Wishlist
+A block for displaying products saved for future purchase.
+- **Id:** Wishlist
+- **Appearance:** A grid or list of products with add-to-cart and remove options.
+- **Behavior:** Allows moving items to cart or removing from wishlist.
+- **Components:**
+  - [Card](components.md#card)
+  - [Button](components.md#button)
+  - [Typography](components.md#typography)

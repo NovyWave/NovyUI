@@ -284,6 +284,7 @@ A page for displaying error messages, such as 404 or 500, with navigation option
 - **Appearance:** A page with a large error code/message, icon or illustration, and navigation options (e.g., back to home). May be minimal or branded.
 - **Behavior:** Static. May auto-redirect after a timeout or provide links for user action.
 - **Blocks:**
+  - [Error](blocks.md#error)
   - [Footers](blocks.md#footers)
 ### Variants
 #### 404 Not Found
@@ -313,6 +314,7 @@ A page presenting frequently asked questions and answers, often with search and 
 - **Appearance:** A page with a list or accordion of frequently asked questions and answers. May include search and categories.
 - **Behavior:** Clicking a question expands/collapses the answer. Supports search/filter and navigation.
 - **Blocks:**
+  - [FAQ](blocks.md#faq)
   - [Footers](blocks.md#footers)
 ### Variants
 #### Frequently asked questions
@@ -365,6 +367,7 @@ A page for legal documents such as privacy policy or terms of service, with head
 - **Appearance:** A page with legal text, such as privacy policy or terms of service. May include headings, links, and last updated date.
 - **Behavior:** Static. May support search or navigation within the document.
 - **Blocks:**
+  - [Legal](blocks.md#legal)
   - [Footers](blocks.md#footers)
 ### Variants
 #### Privacy policy
