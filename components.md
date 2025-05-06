@@ -15,15 +15,17 @@ Welcome to the NovyUI Components reference. This document provides an overview o
 - [Chips](#chips)
 - [Collapse](#collapse)
 - [Color Input](#color-input)
-- [Combobox / Autocomplete](#combobox--autocomplete)
+- [Combobox](#combobox)
 - [Command](#command)
 - [Context Menu](#context-menu)
-- [Data Table / Grid](#data-table--grid)
-- [Date/Time Picker](#datetime-picker)
-- [Dialog / Modal](#dialog--modal)
-- [Divider / Separator](#divider--separator)
-- [Drawer / Sheet / Offcanvas](#drawer--sheet--offcanvas)
-- [Dropzone / Upload](#dropzone--upload)
+- [Data Table](#data-table)
+- [Date Picker](#date-picker)
+- [Date Range Picker](#date-range-picker)
+- [Time Input](#time-input)
+- [Dialog](#dialog)
+- [Divider](#divider)
+- [Drawer](#drawer)
+- [Dropzone](#dropzone)
 - [File Input](#file-input)
 - [Input](#input)
 - [Textarea](#textarea)
@@ -35,14 +37,14 @@ Welcome to the NovyUI Components reference. This document provides an overview o
 - [Password Input](#password-input)
 - [Pin Input](#pin-input)
 - [Input Group](#input-group)
-- [Form Validation/Error Message](#form-validationerror-message)
+- [Form Error Message](#form-error-message)
 - [Hover Card](#hover-card)
 - [Image](#image)
 - [List](#list)
 - [Loading](#loading)
-- [Map / Location Picker](#map--location-picker)
+- [Map](#map)
 - [Menubar](#menubar)
-- [Notification / Toast / Snackbar](#notification--toast--snackbar)
+- [Notification](#notification)
 - [Pagination](#pagination)
 - [Popconfirm](#popconfirm)
 - [Popover](#popover)
@@ -53,7 +55,7 @@ Welcome to the NovyUI Components reference. This document provides an overview o
 - [Rich Text Editor](#rich-text-editor)
 - [Scroll Area](#scroll-area)
 - [Scrollspy](#scrollspy)
-- [Search / Spotlight](#search--spotlight)
+- [Search](#search)
 - [Statistic](#statistic)
 - [Stepper](#stepper)
 - [Switch](#switch)
@@ -63,7 +65,7 @@ Welcome to the NovyUI Components reference. This document provides an overview o
 - [Timeline](#timeline)
 - [Tooltip](#tooltip)
 - [Transfer List](#transfer-list)
-- [Tree View / Tree Select](#tree-view--tree-select)
+- [Tree View](#tree-view)
 - [Typography](#typography)
 - [Countdown](#countdown)
 - [Cascader](#cascader)
@@ -465,24 +467,38 @@ A component for displaying and interacting with tabular data in rows and columns
     - **Appearance Difference:** Advanced table features.
     - **Behavior Difference:** Supports advanced table interactions.
 
-## Date/Time Picker
-An input for selecting dates and/or times, often with a calendar or clock popup.
-- **Id:** DateTimePicker
-- **Appearance:** An input field with a calendar or clock popup. Calendar shows days, months, or years; clock shows hours and minutes. Selected value is shown in the input.
-- **Behavior:** Clicking input opens picker. Selecting a date/time updates the value. Supports keyboard navigation, range selection, and validation.
+## Date Picker
+A calendar input for selecting a single date.
+- **Id:** DatePicker
+- **Appearance:** An input field with a calendar popup for picking a date.
+- **Behavior:** Clicking input opens calendar. Selecting a date updates the value.
 - **Variants:**
-  - Date picker
-    - **Id:** DatePicker
-    - **Appearance Difference:** Includes calendar popup.
-    - **Behavior Difference:** Selects date.
-  - Date range picker
-    - **Id:** DateRangePicker
-    - **Appearance Difference:** Includes range selection.
-    - **Behavior Difference:** Selects date range.
-  - Time input
-    - **Id:** TimeInput
-    - **Appearance Difference:** Includes clock popup.
-    - **Behavior Difference:** Selects time.
+  - Basic
+    - **Id:** Basic
+    - **Appearance Difference:** Standard date picker.
+    - **Behavior Difference:** Selects a single date.
+
+## Date Range Picker
+An input for selecting a range of dates.
+- **Id:** DateRangePicker
+- **Appearance:** An input field with a calendar popup for picking a start and end date.
+- **Behavior:** Clicking input opens calendar. Selecting two dates sets the range.
+- **Variants:**
+  - Basic
+    - **Id:** Basic
+    - **Appearance Difference:** Standard date range picker.
+    - **Behavior Difference:** Selects a date range.
+
+## Time Input
+An input for selecting a time value.
+- **Id:** TimeInput
+- **Appearance:** An input field with a clock popup for picking a time.
+- **Behavior:** Clicking input opens time picker. Selecting a time updates the value.
+- **Variants:**
+  - Basic
+    - **Id:** Basic
+    - **Appearance Difference:** Standard time input.
+    - **Behavior Difference:** Selects a time value.
 
 ## Dialog / Modal
 A popup overlay that displays content or actions requiring user attention.
@@ -757,9 +773,9 @@ A combination of input fields and add-ons grouped together for related data entr
     - **Appearance Difference:** Includes icon.
     - **Behavior Difference:** Displays icon content.
 
-## Form Validation/Error Message
+## Form Error Message
 A message or indicator that displays validation errors or feedback for form fields.
-- **Id:** FormValidationErrorMessage
+- **Id:** FormErrorMessage
 - **Appearance:** A small text message below or beside a form field, often colored red or with an error icon.
 - **Behavior:** Appears when validation fails. May disappear on correction or after a timeout. Supports accessibility roles.
 - **Variants:**

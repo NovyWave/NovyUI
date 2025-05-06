@@ -131,7 +131,10 @@ A block containing forms for user login, registration, or password management.
   - Checkbox
   - Alert
   - Link
-  - FormValidationErrorMessage
+  - FormErrorMessage
+  - DatePicker
+  - DateRangePicker
+  - TimeInput
 
 ## Frequently Asked Questions
 A section presenting common questions and answers, often using an accordion or list format.
