@@ -1,4 +1,7 @@
-# Table of Contents
+# NovyUI Blocks
+
+This document provides an overview of all UI blocks available in NovyUI. Each block is a higher-level composition of components, designed to address common page sections and layouts. Use this file to explore, plan, or implement blocks in your project. Each section includes a brief one-line description to help you quickly understand the block's role.
+
 - [Hero](#hero)
 - [Features Section](#features-section)
 - [Authentication](#authentication)
@@ -27,9 +30,8 @@
 - [Page Wrapper](#page-wrapper)
 - [Cookie Consent Banner](#cookie-consent-banner)
 
-# NovyUI Blocks
-
 ## Hero
+A prominent section at the top of a page, typically featuring a headline, supporting text, and a call-to-action.
 - **Id:** Hero
 - **Appearance:** A prominent section at the top of a page, typically with a large heading, supporting text, call-to-action button(s), and an image or illustration. May have a background color, gradient, or image.
 - **Behavior:** Static by default. Buttons trigger navigation or actions. May include animation or parallax effects.
@@ -67,6 +69,7 @@
   - Icon (optional)
 
 ## Features Section
+A section that highlights key features, benefits, or selling points, often arranged in a grid or list.
 - **Id:** FeaturesSection
 - **Appearance:** A section highlighting key features or benefits, often arranged in a grid or list. Each feature may include an icon, heading, and description.
 - **Behavior:** Static by default. May include hover effects, reveal animations, or clickable features for more details.
@@ -100,6 +103,7 @@
   - Grid
 
 ## Authentication
+A block containing forms for user login, registration, or password management.
 - **Id:** Authentication
 - **Appearance:** A form for user login, registration, or password reset. Includes input fields, labels, buttons, and optional links (e.g., forgot password). May be centered on the page or in a card.
 - **Behavior:** Submits user credentials or registration info. Shows validation errors and loading state. May redirect or show success message on completion.
@@ -130,6 +134,7 @@
   - FormValidationErrorMessage
 
 ## Frequently Asked Questions
+A section presenting common questions and answers, often using an accordion or list format.
 - **Id:** FrequentlyAskedQuestions
 - **Appearance:** A list or accordion of questions and answers. Each question is a clickable header that reveals the answer below.
 - **Behavior:** Clicking a question expands/collapses the answer. May support search/filter and categories. Supports keyboard navigation.
@@ -157,6 +162,7 @@
   - Heading
 
 ## Contact Card/Section
+A section providing contact information and/or a form for users to reach out.
 - **Id:** ContactCardSection
 - **Appearance:** A section with a contact form (inputs, textarea, button), contact details, and optional map or icons for communication methods.
 - **Behavior:** Submits form data, shows validation and success/error messages. May include interactive map or clickable contact links.
@@ -178,6 +184,7 @@
   - Alert
 
 ## Banners
+A horizontal bar or box used to display important messages, promotions, or alerts.
 - **Id:** Banners
 - **Appearance:** A horizontal bar or box with a message, icon, and optional action button. May be colored to indicate importance or type (e.g., warning, promo).
 - **Behavior:** Static or dismissible. May animate in/out or auto-dismiss after a timeout.
@@ -201,6 +208,7 @@
   - Typography
 
 ## Article Cards
+A grid or list of cards showcasing articles, blog posts, or news items.
 - **Id:** ArticleCards
 - **Appearance:** A card layout for articles or blog posts, including image, title, excerpt, author avatar, tags, and action button(s).
 - **Behavior:** Static by default. May be clickable, support hover effects, or include actions (e.g., share, bookmark).
@@ -242,6 +250,7 @@
   - Typography
 
 ## Table of Contents
+A navigational block listing links to sections within a page for easy access.
 - **Id:** TableOfContents
 - **Appearance:** A vertical or horizontal list of links to sections of a page. May be styled as a sidebar or sticky element.
 - **Behavior:** Clicking a link scrolls to the section. Highlights the active section as user scrolls. May collapse/expand for long lists.
@@ -260,6 +269,7 @@
   - Heading
 
 ## Comments
+A section for displaying and submitting user comments, often with threading and moderation features.
 - **Id:** Comments
 - **Appearance:** A list of user comments, each with avatar, author, timestamp, and content. May support threading (nested replies).
 - **Behavior:** Users can add, reply, or delete comments. Supports keyboard navigation, editing, and moderation actions.
@@ -282,6 +292,7 @@
   - Typography
 
 ## Navbars
+A horizontal or vertical navigation bar providing links to main sections of a site or app.
 - **Id:** Navbars
 - **Appearance:** A horizontal or vertical bar with navigation links, logo, and optional user avatar, search, or menu. May be fixed or sticky.
 - **Behavior:** Clicking links navigates to pages. Dropdowns open on click/hover. Responsive to screen size (collapsible on mobile).
@@ -324,6 +335,7 @@
   - SearchSpotlight
 
 ## Headers
+A section at the top of a page or card, typically containing a title, actions, and navigation aids.
 - **Id:** Headers
 - **Appearance:** A section at the top of a page or card, with title, breadcrumbs, actions, and optional avatar or search. May include background or divider.
 - **Behavior:** Static by default. Actions trigger navigation or open menus. Breadcrumbs are clickable.
@@ -361,6 +373,7 @@
   - SearchSpotlight
 
 ## Footers
+A section at the bottom of a page containing links, copyright, and additional information.
 - **Id:** Footers
 - **Appearance:** A section at the bottom of a page with links, copyright, social icons, and optional newsletter signup. May be simple or multi-column.
 - **Behavior:** Static by default. Newsletter form submits email. Social icons and links are clickable.
@@ -389,6 +402,7 @@
   - Typography
 
 ## Carousels
+A horizontally scrollable area for showcasing images, cards, or featured content.
 - **Id:** Carousels
 - **Appearance:** A horizontally scrollable area with images or cards, navigation arrows, and indicators. May auto-advance or loop.
 - **Behavior:** Users can scroll, swipe, or click arrows to navigate. Supports autoplay, pause on hover, and responsive layout.
@@ -409,6 +423,7 @@
   - Icon
 
 ## Mega Menu
+A large dropdown menu with multiple columns, categories, and rich content for site navigation.
 - **Id:** MegaMenu
 - **Appearance:** A large dropdown menu with multiple columns, links, icons, and images. Appears below or beside a navigation item.
 - **Behavior:** Opens on click or hover. Supports keyboard navigation and responsive layout. Clicking links navigates to pages.
@@ -429,6 +444,7 @@
   - Grid
 
 ## Stats
+A section displaying key metrics, statistics, or trends, often in a grid or card layout.
 - **Id:** Stats
 - **Appearance:** A section with one or more statistic cards, each showing a number, label, icon, and optional trend or progress bar.
 - **Behavior:** Numbers may animate on load. Cards may be clickable for more details. Updates dynamically with data.
@@ -481,8 +497,9 @@
   - Badge
 
 ## User Info and Controls
+A block presenting user profile information and related actions or settings.
 - **Id:** UserInfoAndControls
-- **Appearance:** A section or card with user avatar, name, status, and controls (dropdown, switch, actions). May include stats or settings.
+- **Appearance:** A section or card with user avatar, name, status, and controls (dropdown, toggle, actions). May include stats or settings.
 - **Behavior:** Controls trigger actions (e.g., switch user, open menu). Status updates in real time. Supports keyboard navigation.
 - **Variants:**
   - Profile menu
@@ -528,9 +545,10 @@
   - List
   - Badge
   - Card
-  - Switch
+  - Toggle
 
 ## Group/Layout
+A container for arranging child elements in a stack, grid, or flexible layout.
 - **Id:** GroupLayout
 - **Appearance:** A container for arranging child elements in a stack, grid, or flex layout. May include spacing, alignment, and responsive behavior.
 - **Behavior:** Static by default. Children are arranged according to layout rules. May support drag-and-drop or reordering.
@@ -553,6 +571,7 @@
   - FlexboxLayouts
 
 ## Drag'n'Drop
+A block enabling drag-and-drop sorting, reordering, or file uploads within a list or grid.
 - **Id:** DragNDrop
 - **Appearance:** A list or grid of items with drag handles. Items may be cards, images, or list elements. Dropzone highlights on drag.
 - **Behavior:** Items can be reordered or moved between lists by dragging. Supports keyboard and mouse interaction, and drop feedback.
@@ -576,6 +595,7 @@
   - DropzoneUpload
 
 ## Container
+A responsive wrapper that centers and constrains content width for consistent layouts.
 - **Id:** Container
 - **Appearance:** A responsive wrapper that centers and constrains content width. May include padding and background.
 - **Behavior:** Static. Adjusts size based on screen width and breakpoints.
@@ -588,6 +608,7 @@
   - Container
 
 ## Grid
+A layout system dividing content into columns and rows with consistent spacing.
 - **Id:** Grid
 - **Appearance:** A layout system dividing content into columns and rows with consistent spacing. May be responsive and support gaps.
 - **Behavior:** Static. Children are placed in grid cells. Adjusts layout based on screen size.
@@ -600,6 +621,7 @@
   - Grid
 
 ## Flexbox Layouts
+A layout system arranging children in a row or column with flexible sizing and alignment.
 - **Id:** FlexboxLayouts
 - **Appearance:** A layout system arranging children in a row or column with flexible sizing and alignment. May wrap or justify content.
 - **Behavior:** Static. Children are arranged according to flexbox rules. Supports responsive direction and alignment.
@@ -612,6 +634,7 @@
   - FlexboxLayouts
 
 ## Sidebar
+A vertical panel providing navigation links, actions, or additional content alongside the main area.
 - **Id:** Sidebar
 - **Appearance:** A vertical panel with navigation links, icons, and optional avatar or actions. May be collapsible or fixed.
 - **Behavior:** Clicking links navigates to sections. May expand/collapse on toggle. Supports keyboard navigation.
@@ -628,6 +651,7 @@
   - Avatar
 
 ## Section
+A content area used to separate and organize different parts of a page.
 - **Id:** Section
 - **Appearance:** A content area with optional heading, divider, and background. Used to separate page content into logical parts.
 - **Behavior:** Static. May support show/hide or expand/collapse for content.
@@ -643,6 +667,7 @@
   - DividerSeparator
 
 ## Split Layout
+A layout dividing content into two or more columns, often with image and text side by side.
 - **Id:** SplitLayout
 - **Appearance:** A layout with two or more columns, typically with image on one side and text on the other. May be responsive and stack on small screens.
 - **Behavior:** Static. Columns adjust or stack based on screen size. May support animation or reveal effects.
@@ -659,6 +684,7 @@
   - Button
 
 ## Responsive Columns
+A multi-column layout that adapts to screen size, stacking columns vertically on small screens.
 - **Id:** ResponsiveColumns
 - **Appearance:** A multi-column layout that adapts to screen size, stacking columns vertically on small screens.
 - **Behavior:** Static. Columns adjust or stack responsively. May support equal or variable widths.
@@ -673,6 +699,7 @@
   - Typography
 
 ## Page Wrapper
+A top-level container that wraps the entire page, providing background, padding, and layout constraints.
 - **Id:** PageWrapper
 - **Appearance:** A top-level container for the entire page, providing background, padding, and layout constraints.
 - **Behavior:** Static. Wraps all page content and ensures consistent spacing.
@@ -685,6 +712,7 @@
   - Container
 
 ## Cookie Consent Banner
+A banner that informs users about cookie usage and requests their consent.
 - **Id:** CookieConsentBanner
 - **Appearance:** A horizontal banner at the bottom or top of the page, with message, action buttons, and optional link to privacy policy.
 - **Behavior:** Appears on first visit or when required. Dismisses on button click. May store consent in cookies/local storage.

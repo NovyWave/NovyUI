@@ -1,4 +1,7 @@
-# Table of Contents
+# NovyUI Pages
+
+This document provides an overview of all page templates and layouts available in NovyUI. Each page combines blocks and components to address common application and website needs. Use this file to explore, plan, or implement pages in your project. Each section includes a brief one-line description to help you quickly understand the page's role.
+
 - [Dashboard](#dashboard)
 - [Authentication](#authentication)
 - [Profile](#profile)
@@ -20,9 +23,8 @@
 - [Download](#download)
 - [Legal](#legal)
 
-# NovyUI Pages
-
 ## Dashboard
+A summary page displaying key metrics, charts, and recent activity for quick insights and navigation.
 - **Id:** Dashboard
 - **Appearance:** A page with a navigation bar, header, and a grid or cards showing key metrics, charts, recent activity, and quick links. May include tables, stats, and notifications.
 - **Behavior:** Widgets update dynamically with data. Cards and charts may be interactive (clickable, filterable). Supports responsive layout and navigation.
@@ -53,6 +55,7 @@
   - Footers
 
 ## Authentication
+A page for user login, registration, and password management, providing secure access to the application.
 - **Id:** Authentication
 - **Appearance:** A page with a centered card or form for login, registration, or password reset. Includes input fields, buttons, and links for navigation between forms.
 - **Behavior:** Submits user credentials or registration info. Shows validation errors and loading state. May redirect or show success message on completion.
@@ -78,6 +81,7 @@
   - Footers
 
 ## Profile
+A user-focused page showing personal details, avatar, and editable profile information.
 - **Id:** Profile
 - **Appearance:** A page showing user avatar, name, profile details, and editable fields. May include tabs for account, settings, and activity.
 - **Behavior:** Allows editing and saving profile info. Supports avatar upload, validation, and navigation between sections.
@@ -101,6 +105,7 @@
   - Footers
 
 ## Settings
+A page for managing user or application preferences, grouped into categories like general, security, and notifications.
 - **Id:** Settings
 - **Appearance:** A page with grouped settings forms, toggles, and inputs. May use tabs or sections for categories (general, security, notifications, billing).
 - **Behavior:** Allows updating settings, toggling switches, and saving changes. Shows validation and success/error messages.
@@ -127,6 +132,7 @@
   - Footers
 
 ## E-commerce
+A set of pages for browsing products, viewing details, managing a cart, and completing purchases.
 - **Id:** ECommerce
 - **Appearance:** Product listing grid, product detail pages, cart, and checkout forms. Includes images, prices, filters, and action buttons.
 - **Behavior:** Add/remove items to cart, update quantities, filter/sort products, and complete checkout. Supports responsive layout and navigation.
@@ -163,6 +169,7 @@
   - Footers
 
 ## Blog
+A content-driven page listing articles, with support for reading, commenting, and filtering posts.
 - **Id:** Blog
 - **Appearance:** A page with a list or grid of articles, each with image, title, excerpt, and author. Article page shows full content, comments, and related posts.
 - **Behavior:** Clicking an article opens the full post. Supports pagination, filtering, and commenting.
@@ -196,6 +203,7 @@
   - Footers
 
 ## Landing
+A marketing page designed to introduce a product or service, highlight features, and drive conversions.
 - **Id:** Landing
 - **Appearance:** A marketing-focused page with hero, features, testimonials, pricing, and call-to-action sections. Uses bold visuals and clear messaging.
 - **Behavior:** Static by default. Buttons trigger navigation or actions. May include animations or interactive elements.
@@ -230,6 +238,7 @@
   - Footers
 
 ## Error
+A page for displaying error messages, such as 404 or 500, with navigation options for recovery.
 - **Id:** Error
 - **Appearance:** A page with a large error code/message, icon or illustration, and navigation options (e.g., back to home). May be minimal or branded.
 - **Behavior:** Static. May auto-redirect after a timeout or provide links for user action.
@@ -259,6 +268,7 @@
   - Footers
 
 ## Contact
+A page for users to get in touch, featuring a contact form, details, and optional map or links.
 - **Id:** Contact
 - **Appearance:** A page with a contact form, contact details, and optional map or social links. May be split into form and info sections.
 - **Behavior:** Submits form data, shows validation and success/error messages. Contact links are clickable.
@@ -280,6 +290,7 @@
   - Footers
 
 ## FAQ
+A page presenting frequently asked questions and answers, often with search and categories.
 - **Id:** FAQ
 - **Appearance:** A page with a list or accordion of frequently asked questions and answers. May include search and categories.
 - **Behavior:** Clicking a question expands/collapses the answer. Supports search/filter and navigation.
@@ -297,6 +308,7 @@
   - Footers
 
 ## Onboarding
+A multi-step guide or wizard to help new users get started with the application.
 - **Id:** Onboarding
 - **Appearance:** A multi-step guide or wizard with progress indicator, instructions, and forms. May include illustrations or checklists.
 - **Behavior:** Navigates between steps, validates input, and shows completion message. Supports back/next navigation.
@@ -318,6 +330,7 @@
   - Footers
 
 ## Portfolio
+A showcase page for projects or work samples, with filtering and detailed views.
 - **Id:** Portfolio
 - **Appearance:** A grid or list of projects, each with image, title, and description. Project detail page shows full info and images.
 - **Behavior:** Clicking a project opens details. Supports filtering, sorting, and responsive layout.
@@ -336,6 +349,7 @@
   - Footers
 
 ## Team
+A page introducing team members, their roles, and profiles, often with photos and bios.
 - **Id:** Team
 - **Appearance:** A page with profiles of team members, each with avatar, name, role, and bio. May include group photo or sections by team.
 - **Behavior:** Static by default. Clicking a member may show more details or profile page.
@@ -353,6 +367,7 @@
   - Footers
 
 ## App Shell
+A structural layout providing navigation, sidebar, and main content area for app-like experiences.
 - **Id:** AppShell
 - **Appearance:** A layout with sidebar, topbar, and main content area. May include navigation, user info, and responsive design.
 - **Behavior:** Sidebar may collapse/expand. Navigation links update main content. Supports keyboard navigation and accessibility.
@@ -376,6 +391,7 @@
   - Footers
 
 ## Table/List
+A data-centric page for displaying tables or lists with filtering, sorting, and actions.
 - **Id:** TableList
 - **Appearance:** A page with a data table or list, filters, and actions. May include pagination, search, and bulk actions.
 - **Behavior:** Supports sorting, filtering, selection, and inline actions. Responsive layout for mobile.
@@ -398,6 +414,7 @@
   - Footers
 
 ## Calendar
+A scheduling page with calendar views, event lists, and event management features.
 - **Id:** CalendarPage
 - **Appearance:** A page with a calendar view (month, week), event list, and event details. May include filters and add event button.
 - **Behavior:** Clicking a date or event shows details. Supports adding, editing, and deleting events. Responsive layout.
@@ -419,6 +436,7 @@
   - Footers
 
 ## Activity
+A feed page showing recent activity, notifications, or events, often with filters and grouping.
 - **Id:** Activity
 - **Appearance:** A page with a feed of recent activity, notifications, or events. May include filters and grouping by date.
 - **Behavior:** Updates dynamically with new activity. Supports marking as read, filtering, and navigation to details.
@@ -436,6 +454,7 @@
   - Footers
 
 ## Roadmap
+A timeline or milestone page outlining planned features, releases, or project progress.
 - **Id:** Roadmap
 - **Appearance:** A timeline or list of milestones, releases, or planned features. May include dates, status, and descriptions.
 - **Behavior:** Static or interactive (expand/collapse, filter by status). May animate on scroll.
@@ -453,6 +472,7 @@
   - Footers
 
 ## Download
+A page offering downloads for apps or resources, with links, QR codes, and instructions.
 - **Id:** Download
 - **Appearance:** A page with download links or buttons for apps/resources. May include QR codes, platform icons, and instructions.
 - **Behavior:** Clicking a button starts download or opens app store. May track downloads or show version info.
@@ -470,6 +490,7 @@
   - Footers
 
 ## Legal
+A page for legal documents such as privacy policy or terms of service, with headings and navigation.
 - **Id:** Legal
 - **Appearance:** A page with legal text, such as privacy policy or terms of service. May include headings, links, and last updated date.
 - **Behavior:** Static. May support search or navigation within the document.
