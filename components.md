@@ -71,6 +71,7 @@ Welcome to the NovyUI Components reference. This document provides an overview o
 - [Cascader](#cascader)
 - [Affix](#affix)
 - [Anchor Navigation](#anchor-navigation)
+- [Keyboard Key](#keyboard-key)
 
 ## Accordion
 A vertically stacked set of expandable/collapsible items, used to show and hide sections of related content.
@@ -1382,3 +1383,18 @@ A navigation aid that links to and highlights sections within a page as the user
     - **Id:** StickySectionLinks
     - **Appearance Difference:** Sticky links.
     - **Behavior Difference:** Highlights active section.
+
+## Keyboard Key
+A component for displaying keyboard input or shortcuts in documentation or UI hints.
+- **Id:** KeyboardKey
+- **Appearance:** Inline element styled to look like a keyboard key or combination (e.g., Ctrl, Cmd+C). Typically uses a monospace font, border, and subtle background.
+- **Behavior:** Static display. Used for documentation, tooltips, or UI hints to indicate keyboard shortcuts or keys to press.
+- **Variants:**
+  - Single key
+    - **Id:** SingleKey
+    - **Appearance Difference:** Displays a single key (e.g., "Esc").
+    - **Behavior Difference:** Static display.
+  - Key combination
+    - **Id:** KeyCombination
+    - **Appearance Difference:** Displays a combination of keys (e.g., "Ctrl + S").
+    - **Behavior Difference:** Static display.
