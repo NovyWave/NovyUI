@@ -55,7 +55,7 @@ Welcome to the NovyUI Components reference. This document provides an overview o
 - [Rich Text Editor](#rich-text-editor)
 - [Scroll Area](#scroll-area)
 - [Scrollspy](#scrollspy)
-- [Search](#search)
+- [Searchbox](#searchbox)
 - [Select](#select)
 - [Slider](#slider)
 - [Statistic](#statistic)
@@ -92,6 +92,17 @@ A vertically stacked set of expandable/collapsible items, used to show and hide 
     - **Appearance Difference:** Each header includes an icon that rotates or changes to indicate expanded/collapsed state.
     - **Behavior Difference:** Icon state updates in sync with expansion/collapse; otherwise, behavior matches selected mode (single/multiple).
 
+## Affix
+A component that fixes an element to a specific position as the user scrolls.
+- **Id:** Affix
+- **Appearance:** An element that remains fixed to the top, bottom, or side of the viewport as the user scrolls.
+- **Behavior:** Sticks to position when scrolling past a threshold. Releases when scrolling back.
+- **Variants:**
+  - Sticky and Fixed on Scroll
+    - **Id:** StickyAndFixedOnScroll
+    - **Appearance Difference:** Fixed position.
+    - **Behavior Difference:** Sticks on scroll.
+
 ## Alert
 A message box used to display important information, feedback, or status updates to the user.
 - **Id:** Alert
@@ -118,6 +129,17 @@ A message box used to display important information, feedback, or status updates
     - **Id:** Dismissible
     - **Appearance Difference:** Includes a close button.
     - **Behavior Difference:** Can be dismissed by the user.
+
+## Anchor Navigation
+A navigation aid that links to and highlights sections within a page as the user scrolls.
+- **Id:** AnchorNavigation
+- **Appearance:** A vertical or horizontal list of links to page sections. Highlights the active section as user scrolls.
+- **Behavior:** Clicking a link scrolls to the section. Updates highlight as user scrolls. Supports smooth scroll and offset.
+- **Variants:**
+  - Sticky section links
+    - **Id:** StickySectionLinks
+    - **Appearance Difference:** Sticky links.
+    - **Behavior Difference:** Highlights active section.
 
 ## Avatar
 A visual representation of a user or entity, typically shown as an image, initials, or icon.
@@ -198,8 +220,8 @@ A navigation aid that displays the user's current location within a site hierarc
     - **Id:** WithIcons
     - **Appearance Difference:** Includes icons in each breadcrumb.
     - **Behavior Difference:** Icons indicate type or category.
-  - Collapsible/overflow
-    - **Id:** CollapsibleOverflow
+  - Collapsible and Overflow
+    - **Id:** CollapsibleAndOverflow
     - **Appearance Difference:** Collapses into a dropdown for long paths.
     - **Behavior Difference:** Supports long navigation paths.
 
@@ -279,6 +301,17 @@ A container that groups related information, actions, or media in a visually dis
     - **Id:** Simple
     - **Appearance Difference:** Basic card.
     - **Behavior Difference:** Static display.
+
+## Cascader
+A multi-level dropdown for selecting options from hierarchical data.
+- **Id:** Cascader
+- **Appearance:** An input with a dropdown showing hierarchical options. Selecting a parent reveals child options in a new column or menu.
+- **Behavior:** Clicking selects option and reveals next level. Supports keyboard navigation and search.
+- **Variants:**
+  - Multi-level dropdown
+    - **Id:** MultiLevelDropdown
+    - **Appearance Difference:** Hierarchical options.
+    - **Behavior Difference:** Displays multi-level options.
 
 ## Checkbox
 A control that allows users to select one or more options from a set.
@@ -364,9 +397,9 @@ An input field for selecting or entering color values, often with a color picker
     - **Appearance Difference:** Includes color palette.
     - **Behavior Difference:** Selects color from palette.
 
-## Combobox / Autocomplete
-An input field with a dropdown list of options that filters as the user types.
-- **Id:** ComboboxAutocomplete
+## Combobox
+A component that combines an input field with a dropdown list of options that filters as the user types.
+- **Id:** Combobox
 - **Appearance:** An input field with a dropdown list of options that filters as the user types. May include clear button, icons, and tags for multi-select. Dropdown appears below input and highlights matching text.
 - **Behavior:** Typing filters options. Selecting an option adds it to the input (single or multiple). Supports keyboard navigation, option creation, and async loading.
 - **Variants:**
@@ -429,9 +462,20 @@ A menu that appears on right-click or long-press, offering context-specific acti
     - **Appearance Difference:** Includes actions.
     - **Behavior Difference:** Displays action items.
 
-## Data Table / Grid
+## Countdown
+A timer that counts down to a specific time or event, often used for deadlines or launches.
+- **Id:** Countdown
+- **Appearance:** A numeric or digital timer showing time remaining. May include labels for days, hours, minutes, seconds.
+- **Behavior:** Counts down in real time. Triggers event or changes appearance when complete.
+- **Variants:**
+  - Timer
+    - **Id:** Timer
+    - **Appearance Difference:** Digital timer.
+    - **Behavior Difference:** Counts down time.
+
+## Data Table
 A component for displaying and interacting with tabular data in rows and columns.
-- **Id:** DataTableGrid
+- **Id:** DataTable
 - **Appearance:** A table with rows and columns, headers, and optional borders or stripes. May include sorting icons, filters, pagination controls, and action buttons.
 - **Behavior:** Displays tabular data. Supports sorting, filtering, pagination, row selection, and inline actions. Columns may be resizable or reorderable.
 - **Variants:**
@@ -490,20 +534,9 @@ An input for selecting a range of dates.
     - **Appearance Difference:** Standard date range picker.
     - **Behavior Difference:** Selects a date range.
 
-## Time Input
-An input for selecting a time value.
-- **Id:** TimeInput
-- **Appearance:** An input field with a clock popup for picking a time.
-- **Behavior:** Clicking input opens time picker. Selecting a time updates the value.
-- **Variants:**
-  - Basic
-    - **Id:** Basic
-    - **Appearance Difference:** Standard time input.
-    - **Behavior Difference:** Selects a time value.
-
-## Dialog / Modal
+## Dialog
 A popup overlay that displays content or actions requiring user attention.
-- **Id:** DialogModal
+- **Id:** Dialog
 - **Appearance:** A centered overlay with a box containing title, content, and actions. Background is dimmed. May include close button and icon.
 - **Behavior:** Opens in response to user action. Can be closed by button, overlay click, or escape key. Traps focus and disables background interaction.
 - **Variants:**
@@ -524,7 +557,7 @@ A popup overlay that displays content or actions requiring user attention.
     - **Appearance Difference:** Supports nested dialogs.
     - **Behavior Difference:** Nested modal interactions.
 
-## Divider / Separator
+## Divider
 A visual line or space used to separate content into distinct sections.
 - **Id:** DividerSeparator
 - **Appearance:** A thin horizontal or vertical line, sometimes with text or icon in the center. Used to separate content.
@@ -539,9 +572,9 @@ A visual line or space used to separate content into distinct sections.
     - **Appearance Difference:** Vertical line.
     - **Behavior Difference:** Static separator.
 
-## Drawer / Sheet / Offcanvas
+## Drawer
 A panel that slides in from the edge of the screen to display additional content or actions.
-- **Id:** DrawerSheetOffcanvas
+- **Id:** Drawer
 - **Appearance:** A panel that slides in from the edge of the screen, overlaying content. Contains title, content, and actions. May include close button.
 - **Behavior:** Opens in response to user action. Can be closed by button, overlay click, or escape key. Traps focus and disables background interaction.
 - **Variants:**
@@ -566,9 +599,9 @@ A panel that slides in from the edge of the screen to display additional content
     - **Appearance Difference:** Mobile-friendly design.
     - **Behavior Difference:** Mobile navigation panel.
 
-## Dropzone / Upload
+## Dropzone
 A component for uploading files via drag-and-drop or file selection.
-- **Id:** DropzoneUpload
+- **Id:** Dropzone
 - **Appearance:** A bordered area with an icon and prompt text. Shows file previews or list of uploaded files. May include progress bars and remove buttons.
 - **Behavior:** Dragging files over highlights the area. Dropping or selecting files uploads them. Supports multiple files, file type restrictions, and progress display.
 - **Variants:**
@@ -616,164 +649,6 @@ An input field for selecting one or more files from the user's device.
     - **Appearance Difference:** Includes file previews.
     - **Behavior Difference:** Displays file previews.
 
-## Input
-A field for entering and editing a single line of text or data.
-- **Id:** Input
-- **Appearance:** A rectangular or pill-shaped text field with optional label, icon, or button. Shows placeholder text when empty.
-- **Behavior:** Accepts user text input. Supports focus, disabled, and error states. May include clear or reveal button.
-- **Variants:**
-  - Basic
-    - **Id:** Basic
-    - **Appearance Difference:** Simple input field.
-    - **Behavior Difference:** Basic text input.
-  - With icon
-    - **Id:** WithIcon
-    - **Appearance Difference:** Includes icon.
-    - **Behavior Difference:** Displays icon content.
-  - With button
-    - **Id:** WithButton
-    - **Appearance Difference:** Includes button.
-    - **Behavior Difference:** Supports button actions.
-
-## Textarea
-A multi-line input field for entering larger amounts of text.
-- **Id:** Textarea
-- **Appearance:** A multi-line text input box with optional label and placeholder. May show character count.
-- **Behavior:** Accepts multi-line text input. Supports focus, disabled, and error states. May auto-resize to fit content.
-- **Variants:**
-  - Basic
-    - **Id:** Basic
-    - **Appearance Difference:** Simple textarea.
-    - **Behavior Difference:** Basic multi-line input.
-  - Autosize
-    - **Id:** Autosize
-    - **Appearance Difference:** Auto-resizes to fit content.
-    - **Behavior Difference:** Auto-resizing textarea.
-  - With character count
-    - **Id:** WithCharacterCount
-    - **Appearance Difference:** Includes character count.
-    - **Behavior Difference:** Displays character count.
-
-## Select
-A dropdown input for choosing one or more options from a list.
-- **Id:** Select
-- **Appearance:** An input field with a dropdown arrow. Clicking shows a list of options. Selected option is shown in the field.
-- **Behavior:** Clicking opens dropdown. Selecting an option updates the value. Supports keyboard navigation, search, and multi-select.
-- **Variants:**
-  - Basic
-    - **Id:** Basic
-    - **Appearance Difference:** Simple select field.
-    - **Behavior Difference:** Basic dropdown.
-  - Multi-select
-    - **Id:** MultiSelect
-    - **Appearance Difference:** Supports multiple selections.
-    - **Behavior Difference:** Allows multiple selections.
-  - With search
-    - **Id:** WithSearch
-    - **Appearance Difference:** Includes search input.
-    - **Behavior Difference:** Searches options.
-
-## Radio
-A control for selecting a single option from a set of mutually exclusive choices.
-- **Id:** Radio
-- **Appearance:** A small circular button with a label. Selected state is indicated by a filled dot. Used in groups for single selection.
-- **Behavior:** Clicking selects the radio and deselects others in the group. Supports keyboard navigation and disabled state.
-- **Variants:**
-  - Basic
-    - **Id:** Basic
-    - **Appearance Difference:** Simple radio button.
-    - **Behavior Difference:** Basic selection.
-  - With label
-    - **Id:** WithLabel
-    - **Appearance Difference:** Includes label.
-    - **Behavior Difference:** Displays label text.
-
-## Switch/Toggle
-A control for switching between two states, such as on/off or enabled/disabled.
-- **Id:** Toggle
-- **Appearance:** A horizontal slider with a thumb that moves between on and off positions. May include labels or icons for each state.
-- **Behavior:** Clicking or dragging toggles the state. Supports keyboard navigation and disabled state. May animate thumb movement.
-- **Variants:**
-  - With label
-    - **Id:** WithLabel
-    - **Appearance Difference:** Includes label.
-    - **Behavior Difference:** Displays label text.
-  - With icons
-    - **Id:** WithIcons
-    - **Appearance Difference:** Includes icons.
-    - **Behavior Difference:** Displays icon content.
-
-## Slider
-A control for selecting a value or range by sliding a handle along a track.
-- **Id:** Slider
-- **Appearance:** A horizontal or vertical track with a draggable thumb. May show value, min/max labels, and ticks.
-- **Behavior:** Dragging the thumb or clicking the track changes the value. Supports keyboard navigation, range selection, and disabled state.
-- **Variants:**
-  - Single value
-    - **Id:** SingleValue
-    - **Appearance Difference:** Single value slider.
-    - **Behavior Difference:** Adjusts single value.
-  - Range
-    - **Id:** Range
-    - **Appearance Difference:** Range slider.
-    - **Behavior Difference:** Adjusts range of values.
-
-## Number Input
-An input field for entering numeric values, often with increment/decrement controls.
-- **Id:** NumberInput
-- **Appearance:** An input field for numbers, often with up/down arrow buttons. May show min/max and step values.
-- **Behavior:** Accepts numeric input. Arrow buttons increment/decrement value. Supports validation, min/max, and disabled state.
-- **Variants:**
-  - With controls
-    - **Id:** WithControls
-    - **Appearance Difference:** Includes up/down arrow buttons.
-    - **Behavior Difference:** Adjusts value with controls.
-  - Without controls
-    - **Id:** WithoutControls
-    - **Appearance Difference:** No arrow buttons.
-    - **Behavior Difference:** Adjusts value without controls.
-
-## Password Input
-A text input that hides entered characters, used for sensitive information like passwords.
-- **Id:** PasswordInput
-- **Appearance:** An input field with obscured text (dots or asterisks). Includes a button to toggle visibility.
-- **Behavior:** Accepts password input. Toggle button reveals/hides text. Supports validation and error state.
-- **Variants:**
-  - With visibility toggle
-    - **Id:** WithVisibilityToggle
-    - **Appearance Difference:** Includes visibility toggle button.
-    - **Behavior Difference:** Toggles password visibility.
-
-## Pin Input
-A set of input fields for entering a fixed-length code, such as a PIN or verification code.
-- **Id:** PinInput
-- **Appearance:** A row of small input boxes for entering a fixed-length numeric or alphanumeric code.
-- **Behavior:** Typing moves focus to next box. Supports paste, backspace, and validation. May mask input for security.
-- **Variants:**
-  - 4-digit
-    - **Id:** FourDigit
-    - **Appearance Difference:** Four input boxes.
-    - **Behavior Difference:** Accepts 4-digit code.
-  - 6-digit
-    - **Id:** SixDigit
-    - **Appearance Difference:** Six input boxes.
-    - **Behavior Difference:** Accepts 6-digit code.
-
-## Input Group
-A combination of input fields and add-ons grouped together for related data entry.
-- **Id:** InputGroup
-- **Appearance:** A combination of input fields and buttons/icons grouped together in a single row. May include add-ons before or after the input.
-- **Behavior:** All elements are visually and functionally grouped. Supports focus, disabled, and error states.
-- **Variants:**
-  - Input with button
-    - **Id:** InputWithButton
-    - **Appearance Difference:** Includes button.
-    - **Behavior Difference:** Supports button actions.
-  - Input with icon
-    - **Id:** InputWithIcon
-    - **Appearance Difference:** Includes icon.
-    - **Behavior Difference:** Displays icon content.
-
 ## Form Error Message
 A message or indicator that displays validation errors or feedback for form fields.
 - **Id:** FormErrorMessage
@@ -818,10 +693,59 @@ A component for displaying images with optional styling, captions, or overlays.
     - **Id:** WithCaption
     - **Appearance Difference:** Includes caption.
     - **Behavior Difference:** Displays caption text.
-  - Gallery (grid, carousel)
-    - **Id:** Gallery
+  - Gallery (Grid and Carousel)
+    - **Id:** GalleryGridAndCarousel
     - **Appearance Difference:** Grid or carousel layout.
     - **Behavior Difference:** Displays image gallery.
+
+## Input
+A field for entering and editing a single line of text or data.
+- **Id:** Input
+- **Appearance:** A rectangular or pill-shaped text field with optional label, icon, or button. Shows placeholder text when empty.
+- **Behavior:** Accepts user text input. Supports focus, disabled, and error states. May include clear or reveal button.
+- **Variants:**
+  - Basic
+    - **Id:** Basic
+    - **Appearance Difference:** Simple input field.
+    - **Behavior Difference:** Basic text input.
+  - With icon
+    - **Id:** WithIcon
+    - **Appearance Difference:** Includes icon.
+    - **Behavior Difference:** Displays icon content.
+  - With button
+    - **Id:** WithButton
+    - **Appearance Difference:** Includes button.
+    - **Behavior Difference:** Supports button actions.
+
+## Input Group
+A combination of input fields and add-ons grouped together for related data entry.
+- **Id:** InputGroup
+- **Appearance:** A combination of input fields and buttons/icons grouped together in a single row. May include add-ons before or after the input.
+- **Behavior:** All elements are visually and functionally grouped. Supports focus, disabled, and error states.
+- **Variants:**
+  - Input with button
+    - **Id:** InputWithButton
+    - **Appearance Difference:** Includes button.
+    - **Behavior Difference:** Supports button actions.
+  - Input with icon
+    - **Id:** InputWithIcon
+    - **Appearance Difference:** Includes icon.
+    - **Behavior Difference:** Displays icon content.
+
+## Keyboard Key
+A component for displaying keyboard input or shortcuts in documentation or UI hints.
+- **Id:** KeyboardKey
+- **Appearance:** Inline element styled to look like a keyboard key or combination (e.g., Ctrl, Cmd+C). Typically uses a monospace font, border, and subtle background.
+- **Behavior:** Static display. Used for documentation, tooltips, or UI hints to indicate keyboard shortcuts or keys to press.
+- **Variants:**
+  - Single key
+    - **Id:** SingleKey
+    - **Appearance Difference:** Displays a single key (e.g., "Esc").
+    - **Behavior Difference:** Static display.
+  - Key combination
+    - **Id:** KeyCombination
+    - **Appearance Difference:** Displays a combination of keys (e.g., "Ctrl + S").
+    - **Behavior Difference:** Static display.
 
 ## List
 A vertical or horizontal arrangement of items, often with icons, avatars, or actions.
@@ -869,7 +793,7 @@ A visual indicator that content is loading or a process is in progress.
     - **Appearance Difference:** Gray placeholder shapes.
     - **Behavior Difference:** Indicates loading state.
 
-## Map / Location Picker
+## Map
 A component for selecting or displaying a geographic location on an interactive map.
 - **Id:** MapLocationPicker
 - **Appearance:** An interactive map with a marker or pin. May include search input, zoom controls, and address display.
@@ -903,7 +827,7 @@ A horizontal or vertical bar containing navigation menus and actions.
     - **Appearance Difference:** Includes dropdowns.
     - **Behavior Difference:** Displays dropdown menus.
 
-## Notification / Toast / Snackbar
+## Notification
 A temporary message that appears to inform the user of an event or status.
 - **Id:** NotificationToastSnackbar
 - **Appearance:** A small box that appears temporarily, usually at the corner or bottom of the screen. Shows message, icon, and optional action button.
@@ -946,6 +870,21 @@ A temporary message that appears to inform the user of an event or status.
     - **Appearance Difference:** Displays at bottom.
     - **Behavior Difference:** Bottom position display.
 
+## Number Input
+An input field for entering numeric values, often with increment/decrement controls.
+- **Id:** NumberInput
+- **Appearance:** An input field for numbers, often with up/down arrow buttons. May show min/max and step values.
+- **Behavior:** Accepts numeric input. Arrow buttons increment/decrement value. Supports validation, min/max, and disabled state.
+- **Variants:**
+  - With controls
+    - **Id:** WithControls
+    - **Appearance Difference:** Includes up/down arrow buttons.
+    - **Behavior Difference:** Adjusts value with controls.
+  - Without controls
+    - **Id:** WithoutControls
+    - **Appearance Difference:** No arrow buttons.
+    - **Behavior Difference:** Adjusts value without controls.
+
 ## Pagination
 A navigation control for dividing content into discrete pages and moving between them.
 - **Id:** Pagination
@@ -968,6 +907,32 @@ A navigation control for dividing content into discrete pages and moving between
     - **Id:** PageSizeSelector
     - **Appearance Difference:** Includes page size controls.
     - **Behavior Difference:** Selects page size.
+
+## Password Input
+A text input that hides entered characters, used for sensitive information like passwords.
+- **Id:** PasswordInput
+- **Appearance:** An input field with obscured text (dots or asterisks). Includes a button to toggle visibility.
+- **Behavior:** Accepts password input. Toggle button reveals/hides text. Supports validation and error state.
+- **Variants:**
+  - With visibility toggle
+    - **Id:** WithVisibilityToggle
+    - **Appearance Difference:** Includes visibility toggle button.
+    - **Behavior Difference:** Toggles password visibility.
+
+## Pin Input
+A set of input fields for entering a fixed-length code, such as a PIN or verification code.
+- **Id:** PinInput
+- **Appearance:** A row of small input boxes for entering a fixed-length numeric or alphanumeric code.
+- **Behavior:** Typing moves focus to next box. Supports paste, backspace, and validation. May mask input for security.
+- **Variants:**
+  - 4-digit
+    - **Id:** FourDigit
+    - **Appearance Difference:** Four input boxes.
+    - **Behavior Difference:** Accepts 4-digit code.
+  - 6-digit
+    - **Id:** SixDigit
+    - **Appearance Difference:** Six input boxes.
+    - **Behavior Difference:** Accepts 6-digit code.
 
 ## Popconfirm
 A confirmation popup that asks the user to verify an action before proceeding.
@@ -1024,6 +989,21 @@ A component for generating and displaying QR codes that encode data for scanning
     - **Id:** DisplayQRCodes
     - **Appearance Difference:** Displays QR codes.
     - **Behavior Difference:** Scannable QR codes.
+
+## Radio
+A control for selecting a single option from a set of mutually exclusive choices.
+- **Id:** Radio
+- **Appearance:** A small circular button with a label. Selected state is indicated by a filled dot. Used in groups for single selection.
+- **Behavior:** Clicking selects the radio and deselects others in the group. Supports keyboard navigation and disabled state.
+- **Variants:**
+  - Basic
+    - **Id:** Basic
+    - **Appearance Difference:** Simple radio button.
+    - **Behavior Difference:** Basic selection.
+  - With label
+    - **Id:** WithLabel
+    - **Appearance Difference:** Includes label.
+    - **Behavior Difference:** Displays label text.
 
 ## Rating
 A control for displaying or collecting user ratings, typically with stars or icons.
@@ -1100,9 +1080,9 @@ A navigation aid that highlights links based on the user's scroll position in th
     - **Appearance Difference:** Highlights active link.
     - **Behavior Difference:** Updates highlight on scroll.
 
-## Search / Spotlight
+## Searchbox
 A modal or dropdown for searching content or navigating quickly within an app.
-- **Id:** SearchSpotlight
+- **Id:** Searchbox
 - **Appearance:** A modal or dropdown with a search input and list of results. May include icons, categories, and keyboard shortcuts.
 - **Behavior:** Opens with shortcut or button. Typing filters results. Selecting an item triggers navigation or action.
 - **Variants:**
@@ -1114,6 +1094,40 @@ A modal or dropdown for searching content or navigating quickly within an app.
     - **Id:** Searchable
     - **Appearance Difference:** Search input.
     - **Behavior Difference:** Filters search results.
+
+## Select
+A dropdown input for choosing one or more options from a list.
+- **Id:** Select
+- **Appearance:** An input field with a dropdown arrow. Clicking shows a list of options. Selected option is shown in the field.
+- **Behavior:** Clicking opens dropdown. Selecting an option updates the value. Supports keyboard navigation, search, and multi-select.
+- **Variants:**
+  - Basic
+    - **Id:** Basic
+    - **Appearance Difference:** Simple select field.
+    - **Behavior Difference:** Basic dropdown.
+  - Multi-select
+    - **Id:** MultiSelect
+    - **Appearance Difference:** Supports multiple selections.
+    - **Behavior Difference:** Allows multiple selections.
+  - With search
+    - **Id:** WithSearch
+    - **Appearance Difference:** Includes search input.
+    - **Behavior Difference:** Searches options.
+
+## Slider
+A control for selecting a value or range by sliding a handle along a track.
+- **Id:** Slider
+- **Appearance:** A horizontal or vertical track with a draggable thumb. May show value, min/max labels, and ticks.
+- **Behavior:** Dragging the thumb or clicking the track changes the value. Supports keyboard navigation, range selection, and disabled state.
+- **Variants:**
+  - Single value
+    - **Id:** SingleValue
+    - **Appearance Difference:** Single value slider.
+    - **Behavior Difference:** Adjusts single value.
+  - Range
+    - **Id:** Range
+    - **Appearance Difference:** Range slider.
+    - **Behavior Difference:** Adjusts range of values.
 
 ## Statistic
 A component for displaying key metrics, numbers, or trends in a visually prominent way.
@@ -1201,8 +1215,8 @@ An input field for entering and managing tags, often displayed as removable chip
 - **Appearance:** An input field with tags displayed as chips. May include add/remove buttons and suggestions dropdown.
 - **Behavior:** Typing adds tags. Tags can be removed by clicking or keyboard. Supports validation and suggestions.
 - **Variants:**
-  - Create/remove tags
-    - **Id:** CreateRemoveTags
+  - Create and Remove Tags
+    - **Id:** CreateAndRemoveTags
     - **Appearance Difference:** Supports tag creation/removal.
     - **Behavior Difference:** Adds/removes tags.
   - With suggestions
@@ -1210,14 +1224,33 @@ An input field for entering and managing tags, often displayed as removable chip
     - **Appearance Difference:** Includes suggestions dropdown.
     - **Behavior Difference:** Displays tag suggestions.
 
+## Textarea
+A multi-line input field for entering larger amounts of text.
+- **Id:** Textarea
+- **Appearance:** A multi-line text input box with optional label and placeholder. May show character count.
+- **Behavior:** Accepts multi-line text input. Supports focus, disabled, and error states. May auto-resize to fit content.
+- **Variants:**
+  - Basic
+    - **Id:** Basic
+    - **Appearance Difference:** Simple textarea.
+    - **Behavior Difference:** Basic multi-line input.
+  - Autosize
+    - **Id:** Autosize
+    - **Appearance Difference:** Auto-resizes to fit content.
+    - **Behavior Difference:** Auto-resizing textarea.
+  - With character count
+    - **Id:** WithCharacterCount
+    - **Appearance Difference:** Includes character count.
+    - **Behavior Difference:** Displays character count.
+
 ## Theme Toggle
 A control for switching between light and dark (or other) visual themes.
 - **Id:** ThemeToggle
 - **Appearance:** A button or switch with sun/moon or light/dark icons. Indicates current theme.
 - **Behavior:** Clicking toggles between light and dark themes. May animate icon or background.
 - **Variants:**
-  - Light/Dark switch
-    - **Id:** LightDarkSwitch
+  - Light and Dark Switch
+    - **Id:** LightAndDarkSwitch
     - **Appearance Difference:** Sun/moon icons.
     - **Behavior Difference:** Toggles light/dark theme.
 
@@ -1243,6 +1276,32 @@ A vertical or horizontal display of events in chronological order.
     - **Id:** WithImages
     - **Appearance Difference:** Includes images.
     - **Behavior Difference:** Displays image content.
+
+## Time Input
+An input for selecting a time value.
+- **Id:** TimeInput
+- **Appearance:** An input field with a clock popup for picking a time.
+- **Behavior:** Clicking input opens time picker. Selecting a time updates the value.
+- **Variants:**
+  - Basic
+    - **Id:** Basic
+    - **Appearance Difference:** Standard time input.
+    - **Behavior Difference:** Selects a time value.
+
+## Toggle
+A control for switching between two states, such as on/off or enabled/disabled.
+- **Id:** Toggle
+- **Appearance:** A horizontal slider with a thumb that moves between on and off positions. May include labels or icons for each state.
+- **Behavior:** Clicking or dragging toggles the state. Supports keyboard navigation and disabled state. May animate thumb movement.
+- **Variants:**
+  - With label
+    - **Id:** WithLabel
+    - **Appearance Difference:** Includes label.
+    - **Behavior Difference:** Displays label text.
+  - With icons
+    - **Id:** WithIcons
+    - **Appearance Difference:** Includes icons.
+    - **Behavior Difference:** Displays icon content.
 
 ## Tooltip
 A small popup that provides additional information when hovering or focusing on an element.
@@ -1282,9 +1341,9 @@ A dual-list component for moving items between two lists, often with selection a
     - **Appearance Difference:** Supports item transfer.
     - **Behavior Difference:** Moves items between lists.
 
-## Tree View / Tree Select
+## Tree View
 A hierarchical list for displaying and selecting nested items or categories.
-- **Id:** TreeViewTreeSelect
+- **Id:** TreeView
 - **Appearance:** A hierarchical list with expandable/collapsible nodes. Each node may have a checkbox, icon, or label.
 - **Behavior:** Clicking expands/collapses nodes. Selecting a node updates value. Supports keyboard navigation and multi-select.
 - **Variants:**
@@ -1300,8 +1359,8 @@ A hierarchical list for displaying and selecting nested items or categories.
     - **Id:** WithIcons
     - **Appearance Difference:** Includes icons.
     - **Behavior Difference:** Displays icon content.
-  - Expand/collapse all
-    - **Id:** ExpandCollapseAll
+  - Expand and Collapse All
+    - **Id:** ExpandAndCollapseAll
     - **Appearance Difference:** Expand/collapse controls.
     - **Behavior Difference:** Expands/collapses all nodes.
   - Tree structure dropdown
@@ -1335,66 +1394,7 @@ A set of styled text elements for headings, paragraphs, lists, and more.
     - **Id:** CodeBlock
     - **Appearance Difference:** Styled as code blocks.
     - **Behavior Difference:** Displays code content.
-  - Highlight/Callout
-    - **Id:** HighlightCallout
+  - Highlight and Callout
+    - **Id:** HighlightAndCallout
     - **Appearance Difference:** Highlighted text.
     - **Behavior Difference:** Displays highlighted text.
-
-## Countdown
-A timer that counts down to a specific time or event, often used for deadlines or launches.
-- **Id:** Countdown
-- **Appearance:** A numeric or digital timer showing time remaining. May include labels for days, hours, minutes, seconds.
-- **Behavior:** Counts down in real time. Triggers event or changes appearance when complete.
-- **Variants:**
-  - Timer
-    - **Id:** Timer
-    - **Appearance Difference:** Digital timer.
-    - **Behavior Difference:** Counts down time.
-
-## Cascader
-A multi-level dropdown for selecting options from hierarchical data.
-- **Id:** Cascader
-- **Appearance:** An input with a dropdown showing hierarchical options. Selecting a parent reveals child options in a new column or menu.
-- **Behavior:** Clicking selects option and reveals next level. Supports keyboard navigation and search.
-- **Variants:**
-  - Multi-level dropdown
-    - **Id:** MultiLevelDropdown
-    - **Appearance Difference:** Hierarchical options.
-    - **Behavior Difference:** Displays multi-level options.
-
-## Affix
-A component that fixes an element to a specific position as the user scrolls.
-- **Id:** Affix
-- **Appearance:** An element that remains fixed to the top, bottom, or side of the viewport as the user scrolls.
-- **Behavior:** Sticks to position when scrolling past a threshold. Releases when scrolling back.
-- **Variants:**
-  - Sticky/fixed on scroll
-    - **Id:** StickyFixedOnScroll
-    - **Appearance Difference:** Fixed position.
-    - **Behavior Difference:** Sticks on scroll.
-
-## Anchor Navigation
-A navigation aid that links to and highlights sections within a page as the user scrolls.
-- **Id:** AnchorNavigation
-- **Appearance:** A vertical or horizontal list of links to page sections. Highlights the active section as user scrolls.
-- **Behavior:** Clicking a link scrolls to the section. Updates highlight as user scrolls. Supports smooth scroll and offset.
-- **Variants:**
-  - Sticky section links
-    - **Id:** StickySectionLinks
-    - **Appearance Difference:** Sticky links.
-    - **Behavior Difference:** Highlights active section.
-
-## Keyboard Key
-A component for displaying keyboard input or shortcuts in documentation or UI hints.
-- **Id:** KeyboardKey
-- **Appearance:** Inline element styled to look like a keyboard key or combination (e.g., Ctrl, Cmd+C). Typically uses a monospace font, border, and subtle background.
-- **Behavior:** Static display. Used for documentation, tooltips, or UI hints to indicate keyboard shortcuts or keys to press.
-- **Variants:**
-  - Single key
-    - **Id:** SingleKey
-    - **Appearance Difference:** Displays a single key (e.g., "Esc").
-    - **Behavior Difference:** Static display.
-  - Key combination
-    - **Id:** KeyCombination
-    - **Appearance Difference:** Displays a combination of keys (e.g., "Ctrl + S").
-    - **Behavior Difference:** Static display.

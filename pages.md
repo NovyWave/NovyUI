@@ -9,6 +9,7 @@ This document provides an overview of all page templates and layouts available i
 - [Calendar](#calendarpage)
 - [Contact](#contact)
 - [Dashboard](#dashboard)
+- [Data Table](#datatable)
 - [Download](#download)
 - [E-commerce](#e-commerce)
 - [Error](#error)
@@ -20,7 +21,6 @@ This document provides an overview of all page templates and layouts available i
 - [Profile](#profile)
 - [Roadmap](#roadmap)
 - [Settings](#settings)
-- [Table/List](#tablelist)
 - [Team](#team)
 
 ## Activity
@@ -101,16 +101,16 @@ A content-driven page listing articles, with support for reading, commenting, an
     - **Id:** BlogHome
     - **Appearance Difference:** List or grid of articles with images and excerpts.
     - **Behavior Difference:** Allows filtering and pagination.
-  - Article/post
-    - **Id:** ArticlePost
+  - Article Detail
+    - **Id:** ArticleDetail
     - **Appearance Difference:** Full content of a single article with comments section.
     - **Behavior Difference:** Allows commenting and sharing.
   - Author profile
     - **Id:** AuthorProfile
     - **Appearance Difference:** Profile of the author with bio and list of articles.
     - **Behavior Difference:** Static display of author information only.
-  - Categories/tags
-    - **Id:** CategoriesTags
+  - Categories and Tags
+    - **Id:** CategoriesAndTags
     - **Appearance Difference:** List of categories or tags for filtering articles.
     - **Behavior Difference:** Allows filtering articles by category or tag.
   - Comments
@@ -125,7 +125,7 @@ A content-driven page listing articles, with support for reading, commenting, an
   - Comments
   - Footers
 
-## Calendar
+## Calendar Page
 A scheduling page with calendar views, event lists, and event management features.
 - **Id:** CalendarPage
 - **Appearance:** A page with a calendar view (month, week), event list, and event details. May include filters and add event button.
@@ -200,6 +200,29 @@ A summary page displaying key metrics, charts, and recent activity for quick ins
   - ActivityFeed
   - Footers
 
+## Data Table
+A data-centric page for displaying tables or lists with filtering, sorting, and actions.
+- **Id:** DataTable
+- **Appearance:** A page with a data table or list, filters, and actions. May include pagination, search, and bulk actions.
+- **Behavior:** Supports sorting, filtering, selection, and inline actions. Responsive layout for mobile.
+- **Variants:**
+  - Data table
+    - **Id:** DataTable
+    - **Appearance Difference:** Table with rows and columns of data.
+    - **Behavior Difference:** Supports sorting and filtering of data.
+  - List with actions
+    - **Id:** ListWithActions
+    - **Appearance Difference:** List of items with action buttons.
+    - **Behavior Difference:** Supports inline actions on list items.
+  - Filterable and Sortable Table
+    - **Id:** FilterableAndSortableTable
+    - **Appearance Difference:** Table with filters and sorting options.
+    - **Behavior Difference:** Supports filtering and sorting of data.
+- **Blocks:**
+  - TableOfContents
+  - ArticleCards
+  - Footers
+
 ## Download
 A page offering downloads for apps or resources, with links, QR codes, and instructions.
 - **Id:** Download
@@ -218,7 +241,7 @@ A page offering downloads for apps or resources, with links, QR codes, and instr
   - AppDownloadSection
   - Footers
 
-## E-commerce
+## ECommerce
 A set of pages for browsing products, viewing details, managing a cart, and completing purchases.
 - **Id:** ECommerce
 - **Appearance:** Product listing grid, product detail pages, cart, and checkout forms. Includes images, prices, filters, and action buttons.
@@ -463,29 +486,6 @@ A page for managing user or application preferences, grouped into categories lik
 - **Blocks:**
   - Headers
   - UserInfoAndControls
-  - Footers
-
-## Table/List
-A data-centric page for displaying tables or lists with filtering, sorting, and actions.
-- **Id:** TableList
-- **Appearance:** A page with a data table or list, filters, and actions. May include pagination, search, and bulk actions.
-- **Behavior:** Supports sorting, filtering, selection, and inline actions. Responsive layout for mobile.
-- **Variants:**
-  - Data table
-    - **Id:** DataTable
-    - **Appearance Difference:** Table with rows and columns of data.
-    - **Behavior Difference:** Supports sorting and filtering of data.
-  - List with actions
-    - **Id:** ListWithActions
-    - **Appearance Difference:** List of items with action buttons.
-    - **Behavior Difference:** Supports inline actions on list items.
-  - Filterable/sortable table
-    - **Id:** FilterableSortableTable
-    - **Appearance Difference:** Table with filters and sorting options.
-    - **Behavior Difference:** Supports filtering and sorting of data.
-- **Blocks:**
-  - TableOfContents
-  - ArticleCards
   - Footers
 
 ## Team

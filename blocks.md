@@ -10,12 +10,12 @@ This document provides an overview of all UI blocks available in NovyUI. Each bl
 - [Contact Card/Section](#contact-cardsection)
 - [Container](#container)
 - [Cookie Consent Banner](#cookie-consent-banner)
-- [Drag'n'Drop](#dragndrop)
+- [Drag and Drop](#drag-and-drop)
 - [Features Section](#features-section)
 - [Flexbox Layouts](#flexbox-layouts)
 - [Footers](#footers)
 - [Grid](#grid)
-- [Group/Layout](#grouplayout)
+- [Group Layout](#group-layout)
 - [Headers](#headers)
 - [Hero](#hero)
 - [Mega Menu](#mega-menu)
@@ -229,9 +229,9 @@ A banner that informs users about cookie usage and requests their consent.
   - Typography
   - Link
 
-## Drag'n'Drop
+## Drag and Drop
 A block enabling drag-and-drop sorting, reordering, or file uploads within a list or grid.
-- **Id:** DragNDrop
+- **Id:** DragAndDrop
 - **Appearance:** A list or grid of items with drag handles. Items may be cards, images, or list elements. Dropzone highlights on drag.
 - **Behavior:** Items can be reordered or moved between lists by dragging. Supports keyboard and mouse interaction, and drop feedback.
 - **Variants:**
@@ -251,7 +251,7 @@ A block enabling drag-and-drop sorting, reordering, or file uploads within a lis
   - List
   - Card
   - Icon (drag handle)
-  - DropzoneUpload
+  - Dropzone
 
 ## Features Section
 A section that highlights key features, benefits, or selling points, often arranged in a grid or list.
@@ -342,7 +342,7 @@ A layout system dividing content into columns and rows with consistent spacing.
 - **Components:**
   - Grid
 
-## Group/Layout
+## Group Layout
 A container for arranging child elements in a stack, grid, or flexible layout.
 - **Id:** GroupLayout
 - **Appearance:** A container for arranging child elements in a stack, grid, or flex layout. May include spacing, alignment, and responsive behavior.
@@ -401,7 +401,7 @@ A section at the top of a page or card, typically containing a title, actions, a
   - Button
   - Avatar
   - Icon
-  - SearchSpotlight
+  - Searchbox
 
 ## Hero
 A prominent section at the top of a page, typically featuring a headline, supporting text, and a call-to-action.
@@ -503,7 +503,7 @@ A horizontal or vertical navigation bar providing links to main sections of a si
   - Dropdown
   - Link
   - Badge
-  - SearchSpotlight
+  - Searchbox
 
 ## Page Wrapper
 A top-level container that wraps the entire page, providing background, padding, and layout constraints.
@@ -727,3 +727,4 @@ A block presenting user profile information and related actions or settings.
   - Badge
   - Card
   - Toggle
+  - Collapse
