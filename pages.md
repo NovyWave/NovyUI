@@ -22,6 +22,13 @@ This document provides an overview of all page templates and layouts available i
 - [Roadmap](#roadmap)
 - [Settings](#settings)
 - [Team](#team)
+- [Login & Security](#login--security)
+- [User Profile](#user-profile)
+- [Product Page](#product-page)
+- [Editor](#editor)
+- [File Management](#file-management)
+- [Messaging](#messaging)
+- [E-Commerce Checkout](#e-commerce-checkout)
 
 ## Activity
 A feed page showing recent activity, notifications, or events, often with filters and grouping.
@@ -50,6 +57,8 @@ A structural layout providing navigation, sidebar, and main content area for app
   - [Navbars](blocks.md#navbars)
   - [Sidebar](blocks.md#sidebar)
   - [Footers](blocks.md#footers)
+  - [GlobalCommandPalette](blocks.md#global-command-palette)
+  - [MobileNavigationDrawer](blocks.md#mobile-navigation-drawer)
 ### Variants
 #### Sidebar layout
 - **Id:** SidebarLayout
@@ -470,6 +479,9 @@ A page for managing user or application preferences, grouped into categories lik
   - [Headers](blocks.md#headers)
   - [UserInfoAndControls](blocks.md#user-info-and-controls)
   - [Footers](blocks.md#footers)
+  - [SettingsTabs](blocks.md#settings-tabs)
+  - [KeyboardShortcutsHelp](blocks.md#keyboard-shortcuts-help)
+  - [ImageBrightnessAdjustment](blocks.md#image-brightness-adjustment)
 ### Variants
 #### General settings
 - **Id:** GeneralSettings
@@ -505,4 +517,64 @@ A page introducing team members, their roles, and profiles, often with photos an
 - **Id:** MemberProfile
 - **Appearance:** Detailed profile of a team member with bio and contact info.
 - **Behavior:** Static display of member profile only.
+
+## Login & Security
+A page for user authentication, including two-factor verification.
+- **Id:** LoginSecurity
+- **Appearance:** Login form with optional two-factor authentication step.
+- **Blocks:**
+  - [Authentication](blocks.md#authentication)
+  - [TwoFactorAuthentication](blocks.md#two-factor-authentication)
+
+## User Profile
+A page for managing user profile, theme, and notification preferences.
+- **Id:** UserProfile
+- **Appearance:** Profile info, theme color picker, and notification toggles.
+- **Blocks:**
+  - [UserInfoAndControls](blocks.md#user-info-and-controls)
+  - [ProfileThemeCustomization](blocks.md#profile-theme-customization)
+  - [NotificationPreferences](blocks.md#notification-preferences)
+
+## Product Page
+A page for viewing product details and submitting reviews.
+- **Id:** ProductPage
+- **Appearance:** Product info, reviews, and review submission form.
+- **Blocks:**
+  - [ProductDetails](blocks.md#product-details)
+  - [ProductReview](blocks.md#product-review)
+
+## Editor
+A page for writing and formatting blog posts with tags and a formatting toolbar.
+- **Id:** Editor
+- **Appearance:** Rich text editor, tag input, and formatting menubar.
+- **Blocks:**
+  - [BlogPostEditor](blocks.md#blog-post-editor)
+  - [BlogPostTagging](blocks.md#blog-post-tagging)
+  - [TextEditorToolbar](blocks.md#text-editor-toolbar)
+
+## File Management
+A page for browsing files, assigning roles, and file actions.
+- **Id:** FileManagement
+- **Appearance:** File explorer, user role assignment, and context menu for file actions.
+- **Blocks:**
+  - [FileExplorer](blocks.md#file-explorer)
+  - [UserRoleAssignment](blocks.md#user-role-assignment)
+  - [FileActionsContextMenu](blocks.md#file-actions-context-menu)
+
+## Messaging
+A page for chat with scrollable message list and user popovers.
+- **Id:** Messaging
+- **Appearance:** Chat message list and user profile popover on avatar hover.
+- **Blocks:**
+  - [ChatMessageList](blocks.md#chat-message-list)
+  - [UserProfilePopover](blocks.md#user-profile-popover)
+
+## E-Commerce Checkout
+A page for checkout with sticky cart summary and loading overlay.
+- **Id:** ECommerceCheckout
+- **Appearance:** Checkout form, sticky cart summary, and loading overlay during processing.
+- **Blocks:**
+  - [Checkout](blocks.md#checkout)
+  - [StickyCartSummary](blocks.md#sticky-cart-summary)
+  - [PageLoaderOverlay](blocks.md#page-loader-overlay)
 

@@ -79,6 +79,7 @@ A vertically stacked set of expandable/collapsible items, used to show and hide 
 - **Appearance:** A vertically stacked list of items, each with a header. Clicking a header expands or collapses its content. Optionally, headers may include icons indicating state (expanded/collapsed).
 - **Behavior:** Only one (single) or multiple (multiple) items can be open at a time. Clicking a header toggles its content. Supports keyboard navigation and smooth transitions.
 - **Used in blocks:**
+  - [AccordionDemo](blocks.md#accordiondemo)
 ### Variants
 #### Single
 - **Id:** Single
@@ -99,6 +100,7 @@ A component that fixes an element to a specific position as the user scrolls.
 - **Appearance:** An element that remains fixed to the top, bottom, or side of the viewport as the user scrolls.
 - **Behavior:** Sticks to position when scrolling past a threshold. Releases when scrolling back.
 - **Used in blocks:**
+  - [AffixBanner](blocks.md#affixbanner)
 ### Variants
 #### Sticky and Fixed on Scroll
 - **Id:** StickyAndFixedOnScroll
@@ -144,6 +146,7 @@ A navigation aid that links to and highlights sections within a page as the user
 - **Appearance:** A vertical or horizontal list of links to page sections. Highlights the active section as user scrolls.
 - **Behavior:** Clicking a link scrolls to the section. Updates highlight as user scrolls. Supports smooth scroll and offset.
 - **Used in blocks:**
+  - [AnchorNavigationBlock](blocks.md#anchor-navigation-block)
 ### Variants
 #### Sticky section links
 - **Id:** StickySectionLinks
@@ -221,6 +224,7 @@ A styled container for displaying quoted text or citations within content.
 - **Appearance:** A visually distinct section for quoting text. Typically indented, with a vertical line or different background. May include citation or author below or beside the quote.
 - **Behavior:** Static display. May support copy-to-clipboard or expandable/collapsible for long quotes.
 - **Used in blocks:**
+  - [BlockquoteSection](blocks.md#blockquote-section)
 ### Variants
 #### With author
 - **Id:** WithAuthor
@@ -383,6 +387,7 @@ A multi-level dropdown for selecting options from hierarchical data.
 - **Appearance:** An input with a dropdown showing hierarchical options. Selecting a parent reveals child options in a new column or menu.
 - **Behavior:** Clicking selects option and reveals next level. Supports keyboard navigation and search.
 - **Used in blocks:**
+  - [CascaderFilter](blocks.md#cascader-filter)
 ### Variants
 #### Multi-level dropdown
 - **Id:** MultiLevelDropdown
@@ -463,6 +468,7 @@ An input field for selecting or entering color values, often with a color picker
 - **Appearance:** An input field with a color swatch. May include a color picker dialog, palette, or eyedropper tool. Shows selected color as background or border.
 - **Behavior:** Clicking opens a color picker or palette. Selecting a color updates the value and swatch. May support manual hex/RGB input and validation.
 - **Used in blocks:**
+  - [ColorPickerSection](blocks.md#color-picker-section)
 ### Variants
 #### Color picker
 - **Id:** ColorPicker
@@ -487,6 +493,7 @@ A component that combines an input field with a dropdown list of options that fi
 - **Appearance:** An input field with a dropdown list of options that filters as the user types. May include clear button, icons, and tags for multi-select. Dropdown appears below input and highlights matching text.
 - **Behavior:** Typing filters options. Selecting an option adds it to the input (single or multiple). Supports keyboard navigation, option creation, and async loading.
 - **Used in blocks:**
+  - [ComboboxFilter](blocks.md#combobox-filter)
 ### Variants
 #### Autocomplete
 - **Id:** Autocomplete
@@ -515,6 +522,7 @@ A modal or dropdown for searching and executing actions or commands quickly.
 - **Appearance:** A modal or dropdown with a search input and a list of actions or commands. Each item may include an icon, description, and keyboard shortcut.
 - **Behavior:** Opens with a shortcut or button. Typing filters commands. Selecting an item triggers its action. Supports keyboard navigation and grouping.
 - **Used in blocks:**
+  - [GlobalCommandPalette](blocks.md#global-command-palette)
 ### Variants
 #### Command palette
 - **Id:** CommandPalette
@@ -535,6 +543,7 @@ A menu that appears on right-click or long-press, offering context-specific acti
 - **Appearance:** A floating menu that appears on right-click or long-press. Contains a vertical list of actions, each with optional icon and shortcut.
 - **Behavior:** Opens at cursor position. Selecting an item triggers its action. Supports nested submenus and keyboard navigation.
 - **Used in blocks:**
+  - [FileActionsContextMenu](blocks.md#file-actions-context-menu)
 ### Variants
 #### Right-click menu
 - **Id:** RightClickMenu
@@ -555,6 +564,7 @@ A timer that counts down to a specific time or event, often used for deadlines o
 - **Appearance:** A numeric or digital timer showing time remaining. May include labels for days, hours, minutes, seconds.
 - **Behavior:** Counts down in real time. Triggers event or changes appearance when complete.
 - **Used in blocks:**
+  - [CountdownTimerBlock](blocks.md#countdown-timer-block)
 ### Variants
 #### Timer
 - **Id:** Timer
@@ -634,6 +644,7 @@ A popup overlay that displays content or actions requiring user attention.
 - **Appearance:** A centered overlay with a box containing title, content, and actions. Background is dimmed. May include close button and icon.
 - **Behavior:** Opens in response to user action. Can be closed by button, overlay click, or escape key. Traps focus and disables background interaction.
 - **Used in blocks:**
+  - [DialogModalBlock](blocks.md#dialog-modal-block)
 ### Variants
 #### Centered
 - **Id:** Centered
@@ -675,6 +686,7 @@ A panel that slides in from the edge of the screen to display additional content
 - **Appearance:** A panel that slides in from the edge of the screen, overlaying content. Contains title, content, and actions. May include close button.
 - **Behavior:** Opens in response to user action. Can be closed by button, overlay click, or escape key. Traps focus and disables background interaction.
 - **Used in blocks:**
+  - [MobileNavigationDrawer](blocks.md#mobile-navigation-drawer)
 ### Variants
 #### Side panel
 - **Id:** SidePanel
@@ -736,6 +748,7 @@ An input field for selecting one or more files from the user's device.
 - **Appearance:** An input field with a button to select files. May show selected file name(s) and a clear button.
 - **Behavior:** Clicking button opens file picker. Selecting files updates the value. Supports multiple files and file type restrictions.
 - **Used in blocks:**
+  - [FileUploadBlock](blocks.md#file-upload-block)
 ### Variants
 #### Single file
 - **Id:** SingleFile
@@ -775,6 +788,7 @@ A floating card that appears when hovering over an element, showing additional i
 - **Appearance:** A floating card that appears when hovering over a target element. Contains text, image, or actions. May have an arrow pointing to the target.
 - **Behavior:** Appears on hover or focus. Disappears on mouse leave or blur. Supports delay and interactive content.
 - **Used in blocks:**
+  - [HoverCardBlock](blocks.md#hover-card-block)
 ### Variants
 #### Appears on hover
 - **Id:** AppearsOnHover
@@ -847,6 +861,7 @@ A combination of input fields and add-ons grouped together for related data entr
 - **Appearance:** A combination of input fields and buttons/icons grouped together in a single row. May include add-ons before or after the input.
 - **Behavior:** All elements are visually and functionally grouped. Supports focus, disabled, and error states.
 - **Used in blocks:**
+  - [InputGroupBlock](blocks.md#input-group-block)
 ### Variants
 #### Input with button
 - **Id:** InputWithButton
@@ -863,6 +878,7 @@ A component for displaying keyboard input or shortcuts in documentation or UI hi
 - **Appearance:** Inline element styled to look like a keyboard key or combination (e.g., Ctrl, Cmd+C). Typically uses a monospace font, border, and subtle background.
 - **Behavior:** Static display. Used for documentation, tooltips, or UI hints to indicate keyboard shortcuts or keys to press.
 - **Used in blocks:**
+  - [KeyboardShortcutsHelp](blocks.md#keyboard-shortcuts-help)
 ### Variants
 #### Single key
 - **Id:** SingleKey
@@ -918,6 +934,7 @@ A visual indicator that content is loading or a process is in progress.
 - **Appearance:** Spinner (rotating icon), skeleton (gray placeholder shapes), or overlay (dimmed background with loader). Indicates loading state.
 - **Behavior:** Appears while content is loading. Disappears when loading completes. May block interaction (overlay) or show progress.
 - **Used in blocks:**
+  - [PageLoaderOverlay](blocks.md#page-loader-overlay)
 ### Variants
 #### Spinner
 - **Id:** Spinner
@@ -955,6 +972,7 @@ A horizontal or vertical bar containing navigation menus and actions.
 - **Appearance:** A horizontal bar with menu items, each optionally with an icon or dropdown. May be styled as tabs or buttons.
 - **Behavior:** Clicking or hovering opens dropdowns. Supports keyboard navigation and active state indication.
 - **Used in blocks:**
+  - [MenubarBlock](blocks.md#menubar-block)
 ### Variants
 #### Horizontal menu
 - **Id:** HorizontalMenu
@@ -975,6 +993,7 @@ A temporary message that appears to inform the user of an event or status.
 - **Appearance:** A small box that appears temporarily, usually at the corner or bottom of the screen. Shows message, icon, and optional action button.
 - **Behavior:** Appears in response to events. Auto-dismisses after timeout or can be dismissed manually. Supports stacking and different types (success, error, etc.).
 - **Used in blocks:**
+  - [NotificationCenterBlock](blocks.md#notification-center-block)
 ### Variants
 #### Success
 - **Id:** Success
@@ -1019,6 +1038,7 @@ An input field for entering numeric values, often with increment/decrement contr
 - **Appearance:** An input field for numbers, often with up/down arrow buttons. May show min/max and step values.
 - **Behavior:** Accepts numeric input. Arrow buttons increment/decrement value. Supports validation, min/max, and disabled state.
 - **Used in blocks:**
+  - [NumberInputBlock](blocks.md#number-input-block)
 ### Variants
 #### With controls
 - **Id:** WithControls
@@ -1073,6 +1093,7 @@ A set of input fields for entering a fixed-length code, such as a PIN or verific
 - **Appearance:** A row of small input boxes for entering a fixed-length numeric or alphanumeric code.
 - **Behavior:** Typing moves focus to next box. Supports paste, backspace, and validation. May mask input for security.
 - **Used in blocks:**
+  - [TwoFactorAuthentication](blocks.md#two-factor-authentication)
 ### Variants
 #### 4-digit
 - **Id:** FourDigit
@@ -1089,6 +1110,7 @@ A confirmation popup that asks the user to verify an action before proceeding.
 - **Appearance:** A small popup with a message and confirm/cancel buttons. Appears near the triggering element.
 - **Behavior:** Appears on action (e.g., delete). Confirms or cancels the action. Disappears on selection or outside click.
 - **Used in blocks:**
+  - [PopconfirmBlock](blocks.md#popconfirm-block)
 ### Variants
 #### Confirmation popover
 - **Id:** ConfirmationPopover
@@ -1101,6 +1123,7 @@ A floating panel anchored to a trigger element, used for displaying additional c
 - **Appearance:** A floating panel anchored to a trigger element. Contains content, actions, or forms. May have an arrow pointing to the trigger.
 - **Behavior:** Opens on click, hover, or focus. Closes on outside click or escape. Supports interactive content and keyboard navigation.
 - **Used in blocks:**
+  - [UserProfilePopover](blocks.md#user-profile-popover)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -1151,6 +1174,7 @@ A control for selecting a single option from a set of mutually exclusive choices
 - **Appearance:** A small circular button with a label. Selected state is indicated by a filled dot. Used in groups for single selection.
 - **Behavior:** Clicking selects the radio and deselects others in the group. Supports keyboard navigation and disabled state.
 - **Used in blocks:**
+  - [RadioGroupBlock](blocks.md#radio-group-block)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -1167,6 +1191,7 @@ A control for displaying or collecting user ratings, typically with stars or ico
 - **Appearance:** A row of stars or custom icons, filled to indicate value. May show numeric value or label.
 - **Behavior:** Clicking or hovering sets the rating. Supports read-only and interactive modes. May allow half or custom increments.
 - **Used in blocks:**
+  - [ProductReview](blocks.md#product-review)
 ### Variants
 #### Stars
 - **Id:** Stars
@@ -1187,6 +1212,7 @@ A container that can be resized by the user, often via a drag handle or border.
 - **Appearance:** A container with a visible drag handle or border. Can be horizontal or vertical.
 - **Behavior:** User drags handle to resize panel. Supports min/max size and snapping. May animate resize.
 - **Used in blocks:**
+  - [ResizablePanelBlock](blocks.md#resizable-panel-block)
 ### Variants
 #### Horizontal
 - **Id:** Horizontal
@@ -1207,6 +1233,7 @@ A text input area with formatting controls for creating styled content.
 - **Appearance:** A text input area with a toolbar for formatting (bold, italic, lists, etc.). Shows styled content as user types.
 - **Behavior:** User applies formatting via toolbar or shortcuts. Supports undo/redo, links, images, and HTML output.
 - **Used in blocks:**
+  - [BlogPostEditor](blocks.md#blog-post-editor)
 ### Variants
 #### Toolbar options (bold, italic, underline, etc.)
 - **Id:** ToolbarOptions
@@ -1219,6 +1246,7 @@ A container with custom scrollbars for overflowing content.
 - **Appearance:** A container with custom scrollbars. May show only when needed or always visible.
 - **Behavior:** Scrolls content horizontally or vertically. Supports keyboard and mouse interaction. May auto-scroll or snap.
 - **Used in blocks:**
+  - [ScrollAreaBlock](blocks.md#scroll-area-block)
 ### Variants
 #### Custom scrollbars
 - **Id:** CustomScrollbars
@@ -1235,6 +1263,7 @@ A navigation aid that highlights links based on the user's scroll position in th
 - **Appearance:** A vertical or horizontal list of links. Highlights the link corresponding to the visible section.
 - **Behavior:** Updates highlight as user scrolls. Clicking a link scrolls to the section. Supports smooth scroll and active state.
 - **Used in blocks:**
+  - [ScrollspyNavigationBlock](blocks.md#scrollspy-navigation-block)
 ### Variants
 #### Navigation highlights on scroll
 - **Id:** NavigationHighlights
@@ -1265,6 +1294,7 @@ A dropdown input for choosing one or more options from a list.
 - **Appearance:** An input field with a dropdown arrow. Clicking shows a list of options. Selected option is shown in the field.
 - **Behavior:** Clicking opens dropdown. Selecting an option updates the value. Supports keyboard navigation, search, and multi-select.
 - **Used in blocks:**
+  - [SelectFilterBlock](blocks.md#select-filter-block)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -1285,6 +1315,7 @@ A control for selecting a value or range by sliding a handle along a track.
 - **Appearance:** A horizontal or vertical track with a draggable thumb. May show value, min/max labels, and ticks.
 - **Behavior:** Dragging the thumb or clicking the track changes the value. Supports keyboard navigation, range selection, and disabled state.
 - **Used in blocks:**
+  - [SliderInputBlock](blocks.md#slider-input-block)
 ### Variants
 #### Single value
 - **Id:** SingleValue
@@ -1347,6 +1378,7 @@ A toggle control for switching between two states, such as on/off or enabled/dis
 - **Appearance:** A toggle switch with a sliding thumb. May include labels or icons for on/off states.
 - **Behavior:** Clicking or dragging toggles state. Supports keyboard navigation and disabled state. May animate thumb.
 - **Used in blocks:**
+  - [SwitchToggleBlock](blocks.md#switch-toggle-block)
 ### Variants
 #### With label
 - **Id:** WithLabel
@@ -1367,6 +1399,7 @@ A set of tabbed buttons for switching between different views or content section
 - **Appearance:** A row or column of tab buttons with an active indicator. Each tab displays different content.
 - **Behavior:** Clicking a tab shows its content. Supports keyboard navigation, icons, and orientation.
 - **Used in blocks:**
+  - [SettingsTabs](blocks.md#settings-tabs)
 ### Variants
 #### Horizontal
 - **Id:** Horizontal
@@ -1387,6 +1420,7 @@ An input field for entering and managing tags, often displayed as removable chip
 - **Appearance:** An input field with tags displayed as chips. May include add/remove buttons and suggestions dropdown.
 - **Behavior:** Typing adds tags. Tags can be removed by clicking or keyboard. Supports validation and suggestions.
 - **Used in blocks:**
+  - [BlogPostTagging](blocks.md#blog-post-tagging)
 ### Variants
 #### Create and Remove Tags
 - **Id:** CreateAndRemoveTags
@@ -1425,6 +1459,7 @@ A control for switching between light and dark (or other) visual themes.
 - **Appearance:** A button or switch with sun/moon or light/dark icons. Indicates current theme.
 - **Behavior:** Clicking toggles between light and dark themes. May animate icon or background.
 - **Used in blocks:**
+  - [ProfileThemeCustomization](blocks.md#profile-theme-customization)
 ### Variants
 #### Light and Dark Switch
 - **Id:** LightAndDarkSwitch
@@ -1520,6 +1555,7 @@ A dual-list component for moving items between two lists, often with selection a
 - **Appearance:** Two lists side by side with buttons to move items between them. May include search and selection checkboxes.
 - **Behavior:** Selecting items and clicking buttons moves them between lists. Supports keyboard navigation and bulk actions.
 - **Used in blocks:**
+  - [TransferListBlock](blocks.md#transfer-list-block)
 ### Variants
 #### Move items between lists
 - **Id:** MoveItems
@@ -1532,6 +1568,7 @@ A hierarchical list for displaying and selecting nested items or categories.
 - **Appearance:** A hierarchical list with expandable/collapsible nodes. Each node may have a checkbox, icon, or label.
 - **Behavior:** Clicking expands/collapses nodes. Selecting a node updates value. Supports keyboard navigation and multi-select.
 - **Used in blocks:**
+  - [UserRoleAssignment](blocks.md#user-role-assignment)
 ### Variants
 #### Basic
 - **Id:** Basic
