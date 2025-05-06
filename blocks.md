@@ -1,3 +1,32 @@
+# Table of Contents
+- [Hero](#hero)
+- [Features Section](#features-section)
+- [Authentication](#authentication)
+- [Frequently Asked Questions](#frequently-asked-questions)
+- [Contact Card/Section](#contact-cardsection)
+- [Banners](#banners)
+- [Article Cards](#article-cards)
+- [Table of Contents](#table-of-contents)
+- [Comments](#comments)
+- [Navbars](#navbars)
+- [Headers](#headers)
+- [Footers](#footers)
+- [Carousels](#carousels)
+- [Mega Menu](#mega-menu)
+- [Stats](#stats)
+- [User Info and Controls](#user-info-and-controls)
+- [Group/Layout](#grouplayout)
+- [Drag'n'Drop](#dragndrop)
+- [Container](#container)
+- [Grid](#grid)
+- [Flexbox Layouts](#flexbox-layouts)
+- [Sidebar](#sidebar)
+- [Section](#section)
+- [Split Layout](#split-layout)
+- [Responsive Columns](#responsive-columns)
+- [Page Wrapper](#page-wrapper)
+- [Cookie Consent Banner](#cookie-consent-banner)
+
 # NovyUI Blocks
 
 ## Hero

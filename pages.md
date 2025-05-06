@@ -1,3 +1,25 @@
+# Table of Contents
+- [Dashboard](#dashboard)
+- [Authentication](#authentication)
+- [Profile](#profile)
+- [Settings](#settings)
+- [E-commerce](#e-commerce)
+- [Blog](#blog)
+- [Landing](#landing)
+- [Error](#error)
+- [Contact](#contact)
+- [FAQ](#faq)
+- [Onboarding](#onboarding)
+- [Portfolio](#portfolio)
+- [Team](#team)
+- [App Shell](#app-shell)
+- [Table/List](#tablelist)
+- [Calendar](#calendarpage)
+- [Activity](#activity)
+- [Roadmap](#roadmap)
+- [Download](#download)
+- [Legal](#legal)
+
 # NovyUI Pages
 
 ## Dashboard
@@ -8,19 +30,19 @@
   - Overview
     - **Id:** Overview
     - **Appearance Difference:** Shows a summary of key metrics and widgets in a grid or card layout.
-    - **Behavior Difference:** Static or periodically refreshed; provides a high-level snapshot.
+    - **Behavior Difference:** Static display or periodically refreshed; provides a high-level snapshot only.
   - Analytics
     - **Id:** Analytics
     - **Appearance Difference:** Focuses on charts, graphs, and data visualizations.
-    - **Behavior Difference:** Interactive charts, filtering, and drill-down capabilities.
+    - **Behavior Difference:** Interactive charts with filtering and drill-down capabilities.
   - Sales
     - **Id:** Sales
-    - **Appearance Difference:** Highlights sales figures, revenue, and related KPIs.
-    - **Behavior Difference:** May include sales filters, time range selectors, and dynamic updates.
+    - **Appearance Difference:** Highlights sales figures, revenue, and related KPIs in a dedicated section.
+    - **Behavior Difference:** Includes sales filters, time range selectors, and dynamic updates.
   - User activity
     - **Id:** UserActivity
     - **Appearance Difference:** Displays recent user actions, activity feeds, or engagement stats.
-    - **Behavior Difference:** Updates in real time or on refresh; may support filtering by user or type.
+    - **Behavior Difference:** Updates in real time or on refresh; supports filtering by user or type.
 - **Blocks:**
   - Navbars
   - Headers
@@ -62,11 +84,11 @@
 - **Variants:**
   - User profile
     - **Id:** UserProfile
-    - **Appearance Difference:** Displays user information and avatar.
-    - **Behavior Difference:** Static display of user details.
+    - **Appearance Difference:** Displays user information and avatar in a static layout.
+    - **Behavior Difference:** Static display of user details only.
   - Edit profile
     - **Id:** EditProfile
-    - **Appearance Difference:** Editable fields for user information.
+    - **Appearance Difference:** Editable fields for user information, with save/cancel controls.
     - **Behavior Difference:** Allows updating and saving profile details.
   - Account settings
     - **Id:** AccountSettings
@@ -86,19 +108,19 @@
   - General settings
     - **Id:** GeneralSettings
     - **Appearance Difference:** General settings form with various input fields.
-    - **Behavior Difference:** Allows updating general settings.
+    - **Behavior Difference:** Allows updating general settings and saving changes.
   - Security
     - **Id:** Security
     - **Appearance Difference:** Security settings form with password and 2FA options.
-    - **Behavior Difference:** Allows updating security settings.
+    - **Behavior Difference:** Allows updating security settings and saving changes.
   - Notifications
     - **Id:** Notifications
     - **Appearance Difference:** Notification settings form with toggles for different notifications.
-    - **Behavior Difference:** Allows updating notification preferences.
+    - **Behavior Difference:** Allows updating notification preferences and saving changes.
   - Billing
     - **Id:** Billing
     - **Appearance Difference:** Billing settings form with payment method and billing info.
-    - **Behavior Difference:** Allows updating billing information.
+    - **Behavior Difference:** Allows updating billing information and saving changes.
 - **Blocks:**
   - Headers
   - UserInfoAndControls
@@ -120,15 +142,15 @@
   - Cart
     - **Id:** Cart
     - **Appearance Difference:** List of items in the cart with quantities and prices.
-    - **Behavior Difference:** Allows updating quantities and removing items.
+    - **Behavior Difference:** Allows updating quantities and removing items from the cart.
   - Checkout
     - **Id:** Checkout
     - **Appearance Difference:** Form for entering shipping and payment information.
-    - **Behavior Difference:** Completes the purchase process.
+    - **Behavior Difference:** Completes the purchase process and validates input.
   - Order history
     - **Id:** OrderHistory
     - **Appearance Difference:** List of past orders with details.
-    - **Behavior Difference:** Allows viewing order details.
+    - **Behavior Difference:** Allows viewing order details only.
   - Wishlist
     - **Id:** Wishlist
     - **Appearance Difference:** List of saved products for future purchase.
@@ -151,12 +173,12 @@
     - **Behavior Difference:** Allows filtering and pagination.
   - Article/post
     - **Id:** ArticlePost
-    - **Appearance Difference:** Full content of a single article with comments.
+    - **Appearance Difference:** Full content of a single article with comments section.
     - **Behavior Difference:** Allows commenting and sharing.
   - Author profile
     - **Id:** AuthorProfile
     - **Appearance Difference:** Profile of the author with bio and list of articles.
-    - **Behavior Difference:** Static display of author information.
+    - **Behavior Difference:** Static display of author information only.
   - Categories/tags
     - **Id:** CategoriesTags
     - **Appearance Difference:** List of categories or tags for filtering articles.
@@ -181,19 +203,19 @@
   - Marketing homepage
     - **Id:** MarketingHomepage
     - **Appearance Difference:** Hero section with bold visuals and clear messaging.
-    - **Behavior Difference:** Static with navigation buttons.
+    - **Behavior Difference:** Static display with navigation buttons.
   - Features
     - **Id:** Features
     - **Appearance Difference:** List or grid of features with icons and descriptions.
-    - **Behavior Difference:** Static display of features.
+    - **Behavior Difference:** Static display of features only.
   - Pricing
     - **Id:** Pricing
     - **Appearance Difference:** Pricing table with different plans and features.
-    - **Behavior Difference:** Static display of pricing information.
+    - **Behavior Difference:** Static display of pricing information only.
   - Testimonials
     - **Id:** Testimonials
     - **Appearance Difference:** List of testimonials with user photos and quotes.
-    - **Behavior Difference:** Static display of testimonials.
+    - **Behavior Difference:** Static display of testimonials only.
   - Call to action
     - **Id:** CallToAction
     - **Appearance Difference:** Section with a strong call-to-action button.
@@ -307,7 +329,7 @@
   - Project details
     - **Id:** ProjectDetails
     - **Appearance Difference:** Detailed view of a single project with images and descriptions.
-    - **Behavior Difference:** Static display of project details.
+    - **Behavior Difference:** Static display of project details only.
 - **Blocks:**
   - Hero
   - ArticleCards
@@ -321,11 +343,11 @@
   - Team members
     - **Id:** TeamMembers
     - **Appearance Difference:** List of team members with avatars and roles.
-    - **Behavior Difference:** Static display of team member information.
+    - **Behavior Difference:** Static display of team member information only.
   - Member profile
     - **Id:** MemberProfile
     - **Appearance Difference:** Detailed profile of a team member with bio and contact info.
-    - **Behavior Difference:** Static display of member profile.
+    - **Behavior Difference:** Static display of member profile only.
 - **Blocks:**
   - TeamSection
   - Footers
@@ -455,11 +477,11 @@
   - Privacy policy
     - **Id:** PrivacyPolicy
     - **Appearance Difference:** Legal text with headings and links.
-    - **Behavior Difference:** Static display of privacy policy.
+    - **Behavior Difference:** Static display of privacy policy only.
   - Terms of service
     - **Id:** TermsOfService
     - **Appearance Difference:** Legal text with headings and links.
-    - **Behavior Difference:** Static display of terms of service.
+    - **Behavior Difference:** Static display of terms of service only.
 - **Blocks:**
   - Footers
 
