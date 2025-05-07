@@ -39,11 +39,11 @@ A feed page showing recent activity, notifications, or events, often with filter
   - [ActivityFeed](blocks.md#activityfeed)
   - [Footers](blocks.md#footers)
 ### Variants
-#### Activity feed
+#### Activity - **Activity feed**
 - **Id:** ActivityFeed
 - **Appearance:** Simple activity feed with list of items and timestamps.
 - **Behavior:** Static or updates in real time.
-#### Notifications
+#### Activity - **Notifications**
 - **Id:** Notifications
 - **Appearance:** List of notifications with timestamps.
 - **Behavior:** Supports marking notifications as read.
@@ -61,15 +61,15 @@ A structural layout providing navigation, sidebar, and main content area for app
   - [MobileNavigationDrawer](blocks.md#mobile-navigation-drawer)
   - [MegaMenu](blocks.md#mega-menu)
 ### Variants
-#### Sidebar layout
+#### App Shell - **Sidebar layout**
 - **Id:** SidebarLayout
 - **Appearance:** Layout with a collapsible sidebar and main content area.
 - **Behavior:** Sidebar can be collapsed or expanded.
-#### Topbar layout
+#### App Shell - **Topbar layout**
 - **Id:** TopbarLayout
 - **Appearance:** Layout with a topbar and main content area.
 - **Behavior:** Topbar contains navigation links and user info.
-#### Responsive shell
+#### App Shell - **Responsive shell**
 - **Id:** ResponsiveShell
 - **Appearance:** Responsive layout that adapts to different screen sizes.
 - **Behavior:** Supports responsive design and navigation.
@@ -83,19 +83,19 @@ A page for user login, registration, and password management, providing secure a
   - [Authentication](blocks.md#authentication)
   - [Footers](blocks.md#footers)
 ### Variants
-#### Login
+#### Authentication - **Login**
 - **Id:** Login
 - **Appearance:** Shows username/email and password fields, login button, and optional 'forgot password' link.
 - **Behavior:** Submits credentials for authentication.
-#### Register
+#### Authentication - **Register**
 - **Id:** Register
 - **Appearance:** Shows fields for new account creation (e.g., name, email, password, confirm password).
 - **Behavior:** Submits registration data to create a new account.
-#### Forgot password
+#### Authentication - **Forgot password**
 - **Id:** ForgotPassword
 - **Appearance:** Shows email input and submit button for password reset request.
 - **Behavior:** Sends password reset instructions to email.
-#### Reset password
+#### Authentication - **Reset password**
 - **Id:** ResetPassword
 - **Appearance:** Shows new password and confirm password fields.
 - **Behavior:** Submits new password to reset account credentials.
@@ -114,23 +114,23 @@ A content-driven page listing articles, with support for reading, commenting, an
   - [Footers](blocks.md#footers)
   - [Section](blocks.md#section)
 ### Variants
-#### Blog home
+#### Blog - **Blog home**
 - **Id:** BlogHome
 - **Appearance:** List or grid of articles with images, excerpts, author, and tags.
 - **Behavior:** Allows filtering, pagination, and navigation to article details.
-#### Article Detail
+#### Blog - **Article Detail**
 - **Id:** ArticleDetail
 - **Appearance:** Full content of a single article with comments section and table of contents.
 - **Behavior:** Allows commenting, sharing, and navigation within the article.
-#### Author profile
+#### Blog - **Author profile**
 - **Id:** AuthorProfile
 - **Appearance:** Profile of the author with bio, avatar, and list of articles.
 - **Behavior:** Static display of author information only.
-#### Categories and Tags
+#### Blog - **Categories and Tags**
 - **Id:** CategoriesAndTags
 - **Appearance:** List of categories or tags for filtering articles.
 - **Behavior:** Allows filtering articles by category or tag.
-#### Comments
+#### Blog - **Comments**
 - **Id:** Comments
 - **Appearance:** List of comments with input field for new comments, may be threaded.
 - **Behavior:** Allows adding, replying, editing, and moderating comments.
@@ -144,15 +144,15 @@ A scheduling page with calendar views, event lists, and event management feature
   - [Calendar](blocks.md#calendar)
   - [Footers](blocks.md#footers)
 ### Variants
-#### Month view
+#### Calendar Page - **Month view**
 - **Id:** MonthView
 - **Appearance:** Calendar shows a full month with event markers.
 - **Behavior:** User can select dates and view events for the month.
-#### Week view
+#### Calendar Page - **Week view**
 - **Id:** WeekView
 - **Appearance:** Calendar shows a single week with event markers.
 - **Behavior:** User can select dates and view events for the week.
-#### Event details
+#### Calendar Page - **Event details**
 - **Id:** EventDetails
 - **Appearance:** Detailed view of a single event with all info.
 - **Behavior:** Allows editing and deleting events.
@@ -166,15 +166,15 @@ A page for users to get in touch, featuring a contact form, details, and optiona
   - [ContactCard](blocks.md#contact-card)
   - [Footers](blocks.md#footers)
 ### Variants
-#### Contact form
+#### Contact - **Contact form**
 - **Id:** ContactForm
 - **Appearance:** Standard contact form with input fields.
 - **Behavior:** Submits form data and shows validation messages.
-#### With map
+#### Contact - **With map**
 - **Id:** WithMap
 - **Appearance:** Contact form with an embedded map next to or below the form.
 - **Behavior:** Map is interactive; user can select or view location. Submits form data and shows validation messages.
-#### Support/help
+#### Contact - **Support/help**
 - **Id:** SupportHelp
 - **Appearance:** Contact form with additional fields for support queries.
 - **Behavior:** Submits form data and shows validation messages.
@@ -195,19 +195,19 @@ A summary page displaying key metrics, charts, and recent activity for quick ins
   - [GroupLayout](blocks.md#group-layout)
   - [ResponsiveColumns](blocks.md#responsive-columns)
 ### Variants
-#### Overview
+#### Dashboard - **Overview**
 - **Id:** Overview
 - **Appearance:** Shows a summary of key metrics and widgets in a grid or card layout.
 - **Behavior:** Static display or periodically refreshed; provides a high-level snapshot only.
-#### Analytics
+#### Dashboard - **Analytics**
 - **Id:** Analytics
 - **Appearance:** Focuses on charts, graphs, and data visualizations.
 - **Behavior:** Interactive charts with filtering and drill-down capabilities.
-#### Sales
+#### Dashboard - **Sales**
 - **Id:** Sales
 - **Appearance:** Highlights sales figures, revenue, and related KPIs in a dedicated section.
 - **Behavior:** Includes sales filters, time range selectors, and dynamic updates.
-#### User activity
+#### Dashboard - **User activity**
 - **Id:** UserActivity
 - **Appearance:** Displays recent user actions, activity feeds, or engagement stats.
 - **Behavior:** Updates in real time or on refresh; supports filtering by user or type.
@@ -222,15 +222,15 @@ A data-centric page for displaying tables or lists with filtering, sorting, and 
   - [ArticleCards](blocks.md#article-cards)
   - [Footers](blocks.md#footers)
 ### Variants
-#### Data table
+#### Data Table - **Data table**
 - **Id:** DataTable
 - **Appearance:** Table with rows and columns of data, may include filters and actions.
 - **Behavior:** Supports sorting and filtering of data.
-#### List with actions
+#### Data Table - **List with actions**
 - **Id:** ListWithActions
 - **Appearance:** List of items with action buttons.
 - **Behavior:** Supports inline actions on list items.
-#### Filterable and Sortable Table
+#### Data Table - **Filterable and Sortable Table**
 - **Id:** FilterableAndSortableTable
 - **Appearance:** Table with filters and sorting options.
 - **Behavior:** Supports filtering and sorting of data.
@@ -244,11 +244,11 @@ A page offering downloads for apps or resources, with links, QR codes, and instr
   - [AppDownloadSection](blocks.md#appdownloadsection)
   - [Footers](blocks.md#footers)
 ### Variants
-#### App download
+#### Download - **App download**
 - **Id:** AppDownload
 - **Appearance:** List of download links or buttons for apps, may include QR codes and platform icons.
 - **Behavior:** Clicking a button starts the download or opens the app store.
-#### Resources
+#### Download - **Resources**
 - **Id:** Resources
 - **Appearance:** List of downloadable resources with descriptions.
 - **Behavior:** Clicking a link starts the download.
@@ -263,7 +263,7 @@ A page for checkout with sticky cart summary and loading overlay.
   - [StickyCartSummary](blocks.md#sticky-cart-summary)
   - [PageLoaderOverlay](blocks.md#page-loader-overlay)
 ### Variants
-#### Standard Checkout
+#### E-Commerce Checkout - **Standard Checkout**
 - **Id:** StandardCheckout
 - **Appearance:** Checkout form with cart summary and loading overlay.
 - **Behavior:** User completes purchase with real-time feedback. Cart summary is sticky during checkout.
@@ -282,27 +282,27 @@ A set of pages for browsing products, viewing details, managing a cart, and comp
   - [OrderHistory](blocks.md#order-history)
   - [Wishlist](blocks.md#wishlist)
 ### Variants
-#### Product listing
+#### E-Commerce - **Product listing**
 - **Id:** ProductListing
 - **Appearance:** Grid of products with images, prices, and action buttons.
 - **Behavior:** Allows filtering and sorting of products.
-#### Product details
+#### E-Commerce - **Product details**
 - **Id:** ProductDetails
 - **Appearance:** Detailed view of a single product with images and descriptions.
 - **Behavior:** Allows adding product to cart.
-#### Cart
+#### E-Commerce - **Cart**
 - **Id:** Cart
 - **Appearance:** List or table of items in the cart with quantities and prices.
 - **Behavior:** Allows updating quantities and removing items from the cart.
-#### Checkout
+#### E-Commerce - **Checkout**
 - **Id:** Checkout
 - **Appearance:** Form for entering shipping and payment information.
 - **Behavior:** Completes the purchase process and validates input.
-#### Order history
+#### E-Commerce - **Order history**
 - **Id:** OrderHistory
 - **Appearance:** List or table of past orders with dates, status, and details link.
 - **Behavior:** Allows viewing order details and status. May include filters for status/date.
-#### Wishlist
+#### E-Commerce - **Wishlist**
 - **Id:** Wishlist
 - **Appearance:** List or grid of saved products for future purchase.
 - **Behavior:** Allows adding/removing items from the wishlist and moving items to cart.
@@ -317,7 +317,7 @@ A page for writing and formatting blog posts with tags and a formatting toolbar.
   - [BlogPostTagging](blocks.md#blog-post-tagging)
   - [TextEditorToolbar](blocks.md#text-editor-toolbar)
 ### Variants
-#### Blog Post Editor
+#### Editor - **Blog Post Editor**
 - **Id:** BlogPostEditor
 - **Appearance:** Editor for writing and formatting blog posts, with tag input and formatting toolbar.
 - **Behavior:** Supports text formatting, tagging, and preview.
@@ -331,23 +331,23 @@ A page for displaying error messages, such as 404 or 500, with navigation option
   - [Error](blocks.md#error)
   - [Footers](blocks.md#footers)
 ### Variants
-#### 404 Not Found
+#### Error - **404 Not Found**
 - **Id:** NotFound
 - **Appearance:** Large "404 Not Found" message with navigation options.
 - **Behavior:** Static display with possible auto-redirect.
-#### 500 Internal Error
+#### Error - **500 Internal Error**
 - **Id:** InternalError
 - **Appearance:** Large "500 Internal Error" message with navigation options.
 - **Behavior:** Static display with possible auto-redirect.
-#### Maintenance
+#### Error - **Maintenance**
 - **Id:** Maintenance
 - **Appearance:** Message indicating the site is under maintenance.
 - **Behavior:** Static display with possible auto-redirect.
-#### Access Denied
+#### Error - **Access Denied**
 - **Id:** AccessDenied
 - **Appearance:** Message indicating access is denied.
 - **Behavior:** Static display with possible auto-redirect.
-#### Coming Soon
+#### Error - **Coming Soon**
 - **Id:** ComingSoon
 - **Appearance:** Message indicating the feature is coming soon.
 - **Behavior:** Static display with possible auto-redirect.
@@ -361,11 +361,11 @@ A page presenting frequently asked questions and answers, often with search and 
   - [FAQ](blocks.md#faq)
   - [Footers](blocks.md#footers)
 ### Variants
-#### Frequently asked questions
+#### FAQ - **Frequently asked questions**
 - **Id:** FrequentlyAskedQuestions
 - **Appearance:** Simple list or accordion of questions and answers.
 - **Behavior:** Static display, no interactivity.
-#### Searchable FAQ
+#### FAQ - **Searchable FAQ**
 - **Id:** SearchableFAQ
 - **Appearance:** FAQ with a search bar for filtering questions.
 - **Behavior:** User can search and filter questions.
@@ -381,7 +381,7 @@ A page for browsing files, assigning roles, and file actions.
   - [FileActionsContextMenu](blocks.md#file-actions-context-menu)
   - [DragAndDrop](blocks.md#drag-and-drop)
 ### Variants
-#### File Explorer
+#### File Management - **File Explorer**
 - **Id:** FileExplorer
 - **Appearance:** File browser with folder tree, file actions, and drag handles.
 - **Behavior:** Allows navigation, selection, file management, and drag-and-drop sorting.
@@ -402,23 +402,23 @@ A marketing page designed to introduce a product or service, highlight features,
   - [Carousels](blocks.md#carousels)
   - [CookieConsentBanner](blocks.md#cookie-consent-banner)
 ### Variants
-#### Marketing homepage
+#### Landing - **Marketing homepage**
 - **Id:** MarketingHomepage
 - **Appearance:** Hero section with bold visuals and clear messaging.
 - **Behavior:** Static display with navigation buttons.
-#### Features
+#### Landing - **Features**
 - **Id:** Features
 - **Appearance:** List or grid of features with icons and descriptions.
 - **Behavior:** Static display of features only.
-#### Pricing
+#### Landing - **Pricing**
 - **Id:** Pricing
 - **Appearance:** Pricing table with different plans and features.
 - **Behavior:** Static display of pricing information only.
-#### Testimonials
+#### Landing - **Testimonials**
 - **Id:** Testimonials
 - **Appearance:** List or carousel of testimonials with user photos and quotes.
 - **Behavior:** Static display or auto-advancing carousel.
-#### Call to action
+#### Landing - **Call to action**
 - **Id:** CallToAction
 - **Appearance:** Section with a strong call-to-action button.
 - **Behavior:** Button triggers navigation or action.
@@ -432,11 +432,11 @@ A page for legal documents such as privacy policy or terms of service, with head
   - [Legal](blocks.md#legal)
   - [Footers](blocks.md#footers)
 ### Variants
-#### Privacy policy
+#### Legal - **Privacy policy**
 - **Id:** PrivacyPolicy
 - **Appearance:** Legal text with headings and links.
 - **Behavior:** Static display of privacy policy only.
-#### Terms of service
+#### Legal - **Terms of service**
 - **Id:** TermsOfService
 - **Appearance:** Legal text with headings and links.
 - **Behavior:** Static display of terms of service only.
@@ -450,7 +450,7 @@ A page for user authentication, including two-factor verification.
   - [Authentication](blocks.md#authentication)
   - [TwoFactorAuthentication](blocks.md#two-factor-authentication)
 ### Variants
-#### Login with 2FA
+#### Login and Security - **Login with 2FA**
 - **Id:** LoginWith2FA
 - **Appearance:** Login form followed by two-factor authentication step with PinInput.
 - **Behavior:** User logs in and verifies with a code.
@@ -464,7 +464,7 @@ A page for chat with scrollable message list and user popovers.
   - [ChatMessageList](blocks.md#chat-message-list)
   - [UserProfilePopover](blocks.md#user-profile-popover)
 ### Variants
-#### Direct Messages
+#### Messaging - **Direct Messages**
 - **Id:** DirectMessages
 - **Appearance:** One-on-one chat with message list and user popover.
 - **Behavior:** Real-time messaging and user info on hover/click.
@@ -478,15 +478,15 @@ A multi-step guide or wizard to help new users get started with the application.
   - [OnboardingSteps](blocks.md#onboardingsteps)
   - [Footers](blocks.md#footers)
 ### Variants
-#### Welcome
+#### Onboarding - **Welcome**
 - **Id:** Welcome
 - **Appearance:** Introduction screen with welcome message and instructions.
 - **Behavior:** Static display with navigation to next step.
-#### Step-by-step guide
+#### Onboarding - **Step-by-step guide**
 - **Id:** StepByStepGuide
 - **Appearance:** Multi-step form with progress indicator. May include video instructions.
 - **Behavior:** Validates input and navigates between steps.
-#### Completion
+#### Onboarding - **Completion**
 - **Id:** Completion
 - **Appearance:** Final screen with completion message and next steps.
 - **Behavior:** Static display with possible navigation options.
@@ -503,11 +503,11 @@ A showcase page for projects or work samples, with filtering and detailed views.
   - [Carousels](blocks.md#carousels)
   - [SplitLayout](blocks.md#split-layout)
 ### Variants
-#### Projects grid
+#### Portfolio - **Projects grid**
 - **Id:** ProjectsGrid
 - **Appearance:** Grid of projects with images and titles.
 - **Behavior:** Allows filtering and sorting of projects.
-#### Project details
+#### Portfolio - **Project details**
 - **Id:** ProjectDetails
 - **Appearance:** Detailed view of a single project with images, descriptions, and carousel.
 - **Behavior:** Static display of project details only.
@@ -521,7 +521,7 @@ A page for viewing product details and submitting reviews.
   - [ProductDetails](blocks.md#product-details)
   - [ProductReview](blocks.md#product-review)
 ### Variants
-#### Product Details
+#### Product Page - **Product Details**
 - **Id:** ProductDetails
 - **Appearance:** Product information with reviews, add-to-cart, and review images.
 - **Behavior:** User can view details, submit reviews (with images), and add to cart.
@@ -537,15 +537,15 @@ A user-focused page showing personal details, avatar, and editable profile infor
   - [ArticleCards](blocks.md#article-cards)
   - [Footers](blocks.md#footers)
 ### Variants
-#### User profile
+#### Profile - **User profile**
 - **Id:** UserProfile
 - **Appearance:** Displays user information and avatar in a static layout.
 - **Behavior:** Static display of user details only.
-#### Edit profile
+#### Profile - **Edit profile**
 - **Id:** EditProfile
 - **Appearance:** Editable fields for user information, with save/cancel controls.
 - **Behavior:** Allows updating and saving profile details.
-#### Account settings
+#### Profile - **Account settings**
 - **Id:** AccountSettings
 - **Appearance:** Tabs or sections for different account settings.
 - **Behavior:** Allows updating settings and saving changes.
@@ -559,11 +559,11 @@ A timeline or milestone page outlining planned features, releases, or project pr
   - [Roadmap](blocks.md#roadmap)
   - [Footers](blocks.md#footers)
 ### Variants
-#### Timeline
+#### Roadmap - **Timeline**
 - **Id:** Timeline
 - **Appearance:** Timeline view of milestones and releases.
 - **Behavior:** Static display with possible animations.
-#### Milestones
+#### Roadmap - **Milestones**
 - **Id:** Milestones
 - **Appearance:** List of milestones with dates and descriptions.
 - **Behavior:** Static display with possible animations.
@@ -581,19 +581,19 @@ A page for managing user or application preferences, grouped into categories lik
   - [KeyboardShortcutsHelp](blocks.md#keyboard-shortcuts-help)
   - [ImageBrightnessAdjustment](blocks.md#image-brightness-adjustment)
 ### Variants
-#### General settings
+#### Settings - **General settings**
 - **Id:** GeneralSettings
 - **Appearance:** General settings form with various input fields.
 - **Behavior:** Allows updating general settings and saving changes.
-#### Security
+#### Settings - **Security**
 - **Id:** Security
 - **Appearance:** Security settings form with password and 2FA options.
 - **Behavior:** Allows updating security settings and saving changes.
-#### Notifications
+#### Settings - **Notifications**
 - **Id:** Notifications
 - **Appearance:** Notification settings form with toggles for different notifications.
 - **Behavior:** Allows updating notification preferences and saving changes.
-#### Billing
+#### Settings - **Billing**
 - **Id:** Billing
 - **Appearance:** Billing settings form with payment method and billing info.
 - **Behavior:** Allows updating billing information and saving changes.
@@ -607,11 +607,11 @@ A page introducing team members, their roles, and profiles, often with photos an
   - [TeamSection](blocks.md#teamsection)
   - [Footers](blocks.md#footers)
 ### Variants
-#### Team members
+#### Team - **Team members**
 - **Id:** TeamMembers
 - **Appearance:** List or grid of team members with avatars and roles.
 - **Behavior:** Static display of team member information only.
-#### Member profile
+#### Team - **Member profile**
 - **Id:** MemberProfile
 - **Appearance:** Detailed profile of a team member with bio and contact info.
 - **Behavior:** Static display of member profile only.
@@ -626,7 +626,7 @@ A page for managing user profile, theme, and notification preferences.
   - [ProfileThemeCustomization](blocks.md#profile-theme-customization)
   - [NotificationPreferences](blocks.md#notification-preferences)
 ### Variants
-#### Profile Overview
+#### User Profile - **Profile Overview**
 - **Id:** ProfileOverview
 - **Appearance:** User profile with theme and notification settings.
 - **Behavior:** User can update profile info, theme, and preferences.
