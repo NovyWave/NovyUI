@@ -59,6 +59,7 @@ A structural layout providing navigation, sidebar, and main content area for app
   - [Footers](blocks.md#footers)
   - [GlobalCommandPalette](blocks.md#global-command-palette)
   - [MobileNavigationDrawer](blocks.md#mobile-navigation-drawer)
+  - [MegaMenu](blocks.md#mega-menu)
 ### Variants
 #### Sidebar layout
 - **Id:** SidebarLayout
@@ -111,6 +112,7 @@ A content-driven page listing articles, with support for reading, commenting, an
   - [TableOfContents](blocks.md#table-of-contents)
   - [Comments](blocks.md#comments)
   - [Footers](blocks.md#footers)
+  - [Section](blocks.md#section)
 ### Variants
 #### Blog home
 - **Id:** BlogHome
@@ -190,6 +192,8 @@ A summary page displaying key metrics, charts, and recent activity for quick ins
   - [ArticleCards](blocks.md#article-cards)
   - [ActivityFeed](blocks.md#activityfeed)
   - [Footers](blocks.md#footers)
+  - [GroupLayout](blocks.md#group-layout)
+  - [ResponsiveColumns](blocks.md#responsive-columns)
 ### Variants
 #### Overview
 - **Id:** Overview
@@ -274,6 +278,8 @@ A set of pages for browsing products, viewing details, managing a cart, and comp
   - [ArticleCards](blocks.md#article-cards)
   - [TableOfContents](blocks.md#table-of-contents)
   - [Footers](blocks.md#footers)
+  - [OrderHistory](blocks.md#order-history)
+  - [Wishlist](blocks.md#wishlist)
 ### Variants
 #### Product listing
 - **Id:** ProductListing
@@ -370,6 +376,7 @@ A page for browsing files, assigning roles, and file actions.
   - [FileExplorer](blocks.md#file-explorer)
   - [UserRoleAssignment](blocks.md#user-role-assignment)
   - [FileActionsContextMenu](blocks.md#file-actions-context-menu)
+  - [DragAndDrop](blocks.md#drag-and-drop)
 ### Variants
 #### File Explorer
 - **Id:** FileExplorer
@@ -389,6 +396,8 @@ A marketing page designed to introduce a product or service, highlight features,
   - [PricingTable](blocks.md#pricingtable)
   - [CallToActionSection](blocks.md#calltoactionsection)
   - [Footers](blocks.md#footers)
+  - [Carousels](blocks.md#carousels)
+  - [CookieConsentBanner](blocks.md#cookie-consent-banner)
 ### Variants
 #### Marketing homepage
 - **Id:** MarketingHomepage
@@ -486,6 +495,8 @@ A showcase page for projects or work samples, with filtering and detailed views.
   - [Hero](blocks.md#hero)
   - [ArticleCards](blocks.md#article-cards)
   - [Footers](blocks.md#footers)
+  - [Carousels](blocks.md#carousels)
+  - [SplitLayout](blocks.md#split-layout)
 ### Variants
 #### Projects grid
 - **Id:** ProjectsGrid

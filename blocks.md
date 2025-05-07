@@ -72,6 +72,9 @@ A block for displaying a feed of recent activity, notifications, or events.
   - [Avatar](components.md#avatar)
   - [Icon](components.md#icon)
   - [Typography](components.md#typography)
+- **Used in pages:**
+  - [Activity](pages.md#activity)
+  - [Dashboard](pages.md#dashboard)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -92,6 +95,8 @@ A block for presenting app download links, QR codes, and instructions.
   - [QRCode](components.md#qrcode)
   - [Icon](components.md#icon)
   - [Typography](components.md#typography)
+- **Used in pages:**
+  - [Download](pages.md#download)
 ### Variants
 #### With QR code
 - **Id:** WithQRCode
@@ -114,6 +119,13 @@ A grid or list of cards showcasing articles, blog posts, or news items.
   - [Chips](components.md#chips)
   - [Button](components.md#button)
   - [Typography](components.md#typography)
+- **Used in pages:**
+  - [Blog](pages.md#blog)
+  - [Dashboard](pages.md#dashboard)
+  - [DataTable](pages.md#data-table)
+  - [ECommerce](pages.md#e-commerce)
+  - [Portfolio](pages.md#portfolio)
+  - [Profile](pages.md#profile)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -160,6 +172,9 @@ A block containing forms for user login, registration, or password management.
   - [DatePicker](components.md#datepicker)
   - [DateRangePicker](components.md#daterangepicker)
   - [TimeInput](components.md#timeinput)
+- **Used in pages:**
+  - [Authentication](pages.md#authentication)
+  - [LoginSecurity](pages.md#login-security)
 ### Variants
 #### Login
 - **Id:** Login
@@ -188,6 +203,8 @@ A horizontal bar or box used to display important messages, promotions, or alert
   - [Button](components.md#button)
   - [Icon](components.md#icon)
   - [Typography](components.md#typography)
+- **Used in pages:**
+  - [Landing](pages.md#landing)
 ### Variants
 #### Announcement
 - **Id:** Announcement
@@ -209,6 +226,8 @@ A block for writing and formatting blog posts with rich text.
 - **Behavior:** Supports text formatting, images, and links.
 - **Components:**
   - [RichTextEditor](components.md#rich-text-editor)
+- **Used in pages:**
+  - [Editor](pages.md#editor)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -226,6 +245,8 @@ A block for adding/removing tags to a blog post.
 - **Behavior:** Users can add/remove tags.
 - **Components:**
   - [TagInput](components.md#tag-input)
+- **Used in pages:**
+  - [Editor](pages.md#editor)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -245,6 +266,8 @@ A block for a prominent call-to-action area.
   - [Button](components.md#button)
   - [Typography](components.md#typography)
   - [Image](components.md#image)
+- **Used in pages:**
+  - [Landing](pages.md#landing)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -264,6 +287,8 @@ A block for displaying a calendar view and managing events.
   - [Calendar](components.md#calendar)
   - [Button](components.md#button)
   - [Icon](components.md#icon)
+- **Used in pages:**
+  - [CalendarPage](pages.md#calendar-page)
 ### Variants
 #### Month view
 - **Id:** MonthView
@@ -284,6 +309,8 @@ A block for displaying and managing items in a shopping cart.
   - [Button](components.md#button)
   - [Input](components.md#input)
   - [Typography](components.md#typography)
+- **Used in pages:**
+  - [ECommerce](pages.md#e-commerce)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -305,6 +332,9 @@ A horizontally scrollable area for showcasing images, cards, or featured content
   - [Card](components.md#card)
   - [Button](components.md#button)
   - [Icon](components.md#icon)
+- **Used in pages:**
+  - [Portfolio](pages.md#portfolio)
+  - [Landing](pages.md#landing)
 ### Variants
 #### Image carousel
 - **Id:** ImageCarousel
@@ -322,6 +352,8 @@ A block for displaying a scrollable list of chat messages.
 - **Behavior:** Scrolls to newest message, supports infinite scroll.
 - **Components:**
   - [ScrollArea](components.md#scroll-area)
+- **Used in pages:**
+  - [Messaging](pages.md#messaging)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -342,6 +374,8 @@ A block for the checkout process, including forms for shipping and payment.
   - [Button](components.md#button)
   - [Form Error Message](components.md#form-error-message)
   - [Typography](components.md#typography)
+- **Used in pages:**
+  - [ECommerceCheckout](pages.md#e-commerce-checkout)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -365,6 +399,8 @@ A section for displaying and submitting user comments, often with threading and 
   - [List](components.md#list)
   - [Card](components.md#card)
   - [Typography](components.md#typography)
+- **Used in pages:**
+  - [Blog](pages.md#blog)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -387,6 +423,8 @@ A section providing contact information and/or a form for users to reach out.
   - [Icon](components.md#icon)
   - [MapLocationPicker](components.md#maplocationpicker)
   - [Alert](components.md#alert)
+- **Used in pages:**
+  - [Contact](pages.md#contact)
 ### Variants
 #### With map
 - **Id:** WithMap
@@ -407,6 +445,8 @@ A banner that informs users about cookie usage and requests their consent.
   - [Button](components.md#button)
   - [Typography](components.md#typography)
   - [Link](components.md#link)
+- **Used in pages:**
+  - [Landing](pages.md#landing)
 ### Variants
 #### Consent options
 - **Id:** ConsentOptions
@@ -427,6 +467,8 @@ A block for displaying and interacting with tabular data.
   - [Button](components.md#button)
   - [Input](components.md#input)
   - [Pagination](components.md#pagination)
+- **Used in pages:**
+  - [DataTable](pages.md#data-table)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -447,6 +489,8 @@ A block enabling drag-and-drop sorting, reordering, or file uploads within a lis
   - [Card](components.md#card)
   - [Icon](components.md#icon)
   - [Dropzone](components.md#dropzone)
+- **Used in pages:**
+  - [FileManagement](pages.md#file-management)
 ### Variants
 #### Sortable list
 - **Id:** SortableList
@@ -471,6 +515,8 @@ A block for displaying error messages, codes, and navigation options.
   - [Button](components.md#button)
   - [Typography](components.md#typography)
   - [Image](components.md#image)
+- **Used in pages:**
+  - [Error](pages.md#error)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -490,6 +536,8 @@ A block for displaying frequently asked questions and answers.
   - [Collapse](components.md#collapse)
   - [Input](components.md#input)
   - [Typography](components.md#typography)
+- **Used in pages:**
+  - [FAQ](pages.md#faq)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -512,6 +560,8 @@ A section that highlights key features, benefits, or selling points, often arran
   - [List](components.md#list)
   - [Button](components.md#button)
   - [Grid](components.md#grid)
+- **Used in pages:**
+  - [Landing](pages.md#landing)
 ### Variants
 #### Grid
 - **Id:** Grid
@@ -541,6 +591,8 @@ A block for file management actions (rename, delete, etc.) via right-click conte
 - **Behavior:** Opens menu on right-click, executes selected action.
 - **Components:**
   - [ContextMenu](components.md#context-menu)
+- **Used in pages:**
+  - [FileManagement](pages.md#file-management)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -558,6 +610,8 @@ A block for browsing and managing files/folders in a tree structure.
 - **Behavior:** Allows navigation, selection, and file actions.
 - **Components:**
   - [TreeView](components.md#tree-view)
+- **Used in pages:**
+  - [FileManagement](pages.md#file-management)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -579,6 +633,27 @@ A section at the bottom of a page containing links, copyright, and additional in
   - [Button](components.md#button)
   - [Input](components.md#input)
   - [Typography](components.md#typography)
+- **Used in pages:**
+  - [Activity](pages.md#activity)
+  - [AppShell](pages.md#app-shell)
+  - [Blog](pages.md#blog)
+  - [CalendarPage](pages.md#calendar-page)
+  - [Contact](pages.md#contact)
+  - [Dashboard](pages.md#dashboard)
+  - [DataTable](pages.md#data-table)
+  - [Download](pages.md#download)
+  - [ECommerce](pages.md#e-commerce)
+  - [Editor](pages.md#editor)
+  - [Error](pages.md#error)
+  - [FAQ](pages.md#faq)
+  - [Landing](pages.md#landing)
+  - [Legal](pages.md#legal)
+  - [Onboarding](pages.md#onboarding)
+  - [Portfolio](pages.md#portfolio)
+  - [Profile](pages.md#profile)
+  - [Roadmap](pages.md#roadmap)
+  - [Settings](pages.md#settings)
+  - [Team](pages.md#team)
 ### Variants
 #### Simple
 - **Id:** Simple
@@ -604,6 +679,8 @@ A block for searching and executing global app actions, inspired by VS Code and 
 - **Behavior:** Opens with a keyboard shortcut, filters commands as you type.
 - **Components:**
   - [Command](components.md#command)
+- **Used in pages:**
+  - [AppShell](pages.md#app-shell)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -622,7 +699,8 @@ A container for arranging child elements in a stack, grid, or flexible layout.
 - **Components:**
   - [Container](components.md#container)
   - [Grid](components.md#grid)
-  - [FlexboxLayouts](components.md#flexboxlayouts)
+- **Used in pages:**
+  - [Dashboard](pages.md#dashboard)
 ### Variants
 #### Stack
 - **Id:** Stack
@@ -649,6 +727,10 @@ A section at the top of a page or card, typically containing a title, actions, a
   - [Avatar](components.md#avatar)
   - [Icon](components.md#icon)
   - [Searchbox](components.md#searchbox)
+- **Used in pages:**
+  - [Blog](pages.md#blog)
+  - [Dashboard](pages.md#dashboard)
+  - [ECommerce](pages.md#e-commerce)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -687,6 +769,9 @@ A prominent section at the top of a page, typically featuring a headline, suppor
   - [Image](components.md#image)
   - [Container](components.md#container)
   - [Icon](components.md#icon)
+- **Used in pages:**
+  - [Landing](pages.md#landing)
+  - [Portfolio](pages.md#portfolio)
 ### Variants
 #### Basic hero
 - **Id:** BasicHero
@@ -721,6 +806,8 @@ A block for adjusting image brightness with a slider.
 - **Components:**
   - [Slider](components.md#slider)
   - [Image](components.md#image)
+- **Used in pages:**
+  - [Settings](pages.md#settings)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -738,6 +825,8 @@ A block for displaying available keyboard shortcuts in the app.
 - **Behavior:** Static or searchable list for user reference.
 - **Components:**
   - [KeyboardKey](components.md#keyboard-key)
+- **Used in pages:**
+  - [Settings](pages.md#settings)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -756,6 +845,8 @@ A block for displaying legal documents such as privacy policy or terms of servic
 - **Components:**
   - [Typography](components.md#typography)
   - [Link](components.md#link)
+- **Used in pages:**
+  - [Legal](pages.md#legal)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -777,6 +868,8 @@ A large dropdown menu with multiple columns, categories, and rich content for si
   - [Icon](components.md#icon)
   - [Image](components.md#image)
   - [Grid](components.md#grid)
+- **Used in pages:**
+  - [AppShell](pages.md#app-shell)
 ### Variants
 #### With images
 - **Id:** WithImages
@@ -795,6 +888,8 @@ A block for mobile navigation, sliding in from the side.
 - **Components:**
   - [Drawer](components.md#drawer)
   - [Button](components.md#button)
+- **Used in pages:**
+  - [AppShell](pages.md#app-shell)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -818,6 +913,10 @@ A horizontal or vertical navigation bar providing links to main sections of a si
   - [Link](components.md#link)
   - [Badge](components.md#badge)
   - [Searchbox](components.md#searchbox)
+- **Used in pages:**
+  - [AppShell](pages.md#app-shell)
+  - [Blog](pages.md#blog)
+  - [ECommerce](pages.md#e-commerce)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -855,6 +954,8 @@ A block for toggling notification settings.
 - **Behavior:** Toggles notification preferences.
 - **Components:**
   - [Switch](components.md#switch)
+- **Used in pages:**
+  - [UserProfile](pages.md#user-profile)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -875,6 +976,8 @@ A block for multi-step onboarding or setup flows.
   - [Form Error Message](components.md#form-error-message)
   - [Button](components.md#button)
   - [Input](components.md#input)
+- **Used in pages:**
+  - [Onboarding](pages.md#onboarding)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -894,6 +997,8 @@ A block for listing past orders and their details.
   - [TableOfContents](components.md#table-of-contents)
   - [Typography](components.md#typography)
   - [Button](components.md#button)
+- **Used in pages:**
+  - [ECommerce](pages.md#e-commerce)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -911,6 +1016,8 @@ A block for showing a loading overlay while the page or data is loading.
 - **Behavior:** Appears during loading, disappears when ready.
 - **Components:**
   - [Loading](components.md#loading)
+- **Used in pages:**
+  - [ECommerceCheckout](pages.md#e-commerce-checkout)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -931,6 +1038,8 @@ A block for showing pricing plans and features.
   - [Button](components.md#button)
   - [List](components.md#list)
   - [Typography](components.md#typography)
+- **Used in pages:**
+  - [Landing](pages.md#landing)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -951,6 +1060,8 @@ A block for showing detailed information about a product.
   - [Button](components.md#button)
   - [Typography](components.md#typography)
   - [List](components.md#list)
+- **Used in pages:**
+  - [ProductPage](pages.md#product-page)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -970,6 +1081,8 @@ A block for submitting and displaying product ratings and reviews.
   - [Rating](components.md#rating)
   - [Textarea](components.md#textarea)
   - [Button](components.md#button)
+- **Used in pages:**
+  - [ProductPage](pages.md#product-page)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -988,6 +1101,8 @@ A block for letting users pick a profile or dashboard color theme.
 - **Components:**
   - [ColorInput](components.md#color-input)
   - [Button](components.md#button)
+- **Used in pages:**
+  - [UserProfile](pages.md#user-profile)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -1007,6 +1122,8 @@ A multi-column layout that adapts to screen size, stacking columns vertically on
   - [Grid](components.md#grid)
   - [Card](components.md#card)
   - [Typography](components.md#typography)
+- **Used in pages:**
+  - [Dashboard](pages.md#dashboard)
 ### Variants
 #### Multi-column layouts that adapt to screen size
 - **Id:** MultiColumnLayouts
@@ -1022,6 +1139,8 @@ A block for displaying a timeline or list of milestones and planned features.
   - [Timeline](components.md#timeline)
   - [Card](components.md#card)
   - [Typography](components.md#typography)
+- **Used in pages:**
+  - [Roadmap](pages.md#roadmap)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -1042,6 +1161,8 @@ A content area used to separate and organize different parts of a page.
   - [Heading](components.md#heading)
   - [Typography](components.md#typography)
   - [Divider](components.md#divider)
+- **Used in pages:**
+  - [Blog](pages.md#blog)
 ### Variants
 #### Themed or separated page areas (with background, with divider)
 - **Id:** ThemedOrSeparatedPageAreas
@@ -1055,6 +1176,8 @@ A block for organizing settings into tabbed sections.
 - **Behavior:** Clicking a tab shows its content.
 - **Components:**
   - [Tabs](components.md#tabs)
+- **Used in pages:**
+  - [Settings](pages.md#settings)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -1076,6 +1199,8 @@ A vertical panel providing navigation links, actions, or additional content alon
   - [Icon](components.md#icon)
   - [Button](components.md#button)
   - [Avatar](components.md#avatar)
+- **Used in pages:**
+  - [AppShell](pages.md#app-shell)
 ### Variants
 #### Vertical navigation or content area
 - **Id:** VerticalNavigationOrContentArea
@@ -1093,6 +1218,8 @@ A layout dividing content into two or more columns, often with image and text si
   - [Image](components.md#image)
   - [Typography](components.md#typography)
   - [Button](components.md#button)
+- **Used in pages:**
+  - [Portfolio](pages.md#portfolio)
 ### Variants
 #### Side-by-side content, e.g., image + text
 - **Id:** SideBySideContent
@@ -1110,6 +1237,8 @@ A section displaying key metrics, statistics, or trends, often in a grid or card
   - [Card](components.md#card)
   - [Progress](components.md#progress)
   - [Badge](components.md#badge)
+- **Used in pages:**
+  - [Dashboard](pages.md#dashboard)
 ### Variants
 #### Stat grid
 - **Id:** StatGrid
@@ -1160,6 +1289,8 @@ A block for keeping the cart summary visible during checkout.
 - **Components:**
   - [Affix](components.md#affix)
   - [Card](components.md#card)
+- **Used in pages:**
+  - [ECommerceCheckout](pages.md#e-commerce-checkout)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -1179,6 +1310,11 @@ A navigational block listing links to sections within a page for easy access.
   - [List](components.md#list)
   - [Link](components.md#link)
   - [Heading](components.md#heading)
+- **Used in pages:**
+  - [Blog](pages.md#blog)
+  - [Dashboard](pages.md#dashboard)
+  - [ECommerce](pages.md#e-commerce)
+  - [DataTable](pages.md#data-table)
 ### Variants
 #### Simple
 - **Id:** Simple
@@ -1201,6 +1337,8 @@ A section showcasing team members, their roles, and contact information.
   - [List](components.md#list)
   - [Link](components.md#link)
   - [Typography](components.md#typography)
+- **Used in pages:**
+  - [Team](pages.md#team)
 ### Variants
 #### Grid
 - **Id:** Grid
@@ -1221,6 +1359,8 @@ A block for displaying user testimonials or reviews.
   - [Avatar](components.md#avatar)
   - [Typography](components.md#typography)
   - [Carousel](components.md#carousel)
+- **Used in pages:**
+  - [Landing](pages.md#landing)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -1238,6 +1378,8 @@ A block for formatting text in a document or email editor.
 - **Behavior:** Clicking icons applies formatting to selected text.
 - **Components:**
   - [Menubar](components.md#menubar)
+- **Used in pages:**
+  - [Editor](pages.md#editor)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -1256,6 +1398,8 @@ A block for entering a verification code sent to the user, as part of login or s
 - **Components:**
   - [PinInput](components.md#pin-input)
   - [Button](components.md#button)
+- **Used in pages:**
+  - [LoginSecurity](pages.md#login-security)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -1280,6 +1424,10 @@ A block presenting user profile information and related actions or settings.
   - [Card](components.md#card)
   - [Toggle](components.md#toggle)
   - [Collapse](components.md#collapse)
+- **Used in pages:**
+  - [Profile](pages.md#profile)
+  - [Settings](pages.md#settings)
+  - [UserProfile](pages.md#user-profile)
 ### Variants
 #### Profile menu
 - **Id:** ProfileMenu
@@ -1326,6 +1474,8 @@ A block for showing user info and actions in a popover on hover/click.
 - **Components:**
   - [Popover](components.md#popover)
   - [Avatar](components.md#avatar)
+- **Used in pages:**
+  - [Messaging](pages.md#messaging)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -1343,6 +1493,8 @@ A block for assigning users to roles or groups using a transfer list.
 - **Behavior:** Select and transfer users between lists.
 - **Components:**
   - [TransferList](components.md#transfer-list)
+- **Used in pages:**
+  - [FileManagement](pages.md#file-management)
 ### Variants
 #### Basic
 - **Id:** Basic
@@ -1362,6 +1514,8 @@ A block for displaying products saved for future purchase.
   - [Card](components.md#card)
   - [Button](components.md#button)
   - [Typography](components.md#typography)
+- **Used in pages:**
+  - [ECommerce](pages.md#e-commerce)
 ### Variants
 #### Basic
 - **Id:** Basic
