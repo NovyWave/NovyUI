@@ -80,6 +80,12 @@ A vertically stacked set of expandable/collapsible items, used to show and hide 
 - **Behavior:** Only one (single) or multiple (multiple) items can be open at a time. Clicking a header toggles its content. Supports keyboard navigation and smooth transitions.
 - **Used in blocks:**
   - [AccordionDemo](blocks.md#accordiondemo)
+### Accessibility
+- Uses appropriate ARIA roles (`region`, `button`, `aria-expanded`, `aria-controls`) for headers and panels.
+- Supports keyboard navigation: users can move between headers with arrow keys and toggle with Enter/Space.
+- Focus is managed so that only one header is tab-focusable at a time (roving tabindex pattern).
+- Content panels are accessible to screen readers and hidden panels are not focusable.
+
 ### Variants
 #### Accordion - **Single**
 - **Id:** Single
@@ -101,6 +107,11 @@ A component that fixes an element to a specific position as the user scrolls.
 - **Behavior:** Sticks to position when scrolling past a threshold. Releases when scrolling back.
 - **Used in blocks:**
   - [AffixBanner](blocks.md#affixbanner)
+### Accessibility
+- Should not obscure important content when fixed.
+- Ensure focusable elements within the affixed area remain accessible via keyboard.
+- Use `aria-live` if affixed content updates dynamically.
+
 ### Variants
 #### Affix - **Sticky and Fixed on Scroll**
 - **Id:** StickyAndFixedOnScroll
@@ -118,6 +129,11 @@ A message box used to display important information, feedback, or status updates
   - [CookieConsentBanner](blocks.md#cookie-consent-banner)
   - [ContactCard](blocks.md#contact-card)
   - [Error](blocks.md#error)
+### Accessibility
+- Uses `role="alert"` or `role="status"` for screen reader announcement.
+- Should be focusable if interactive (e.g., dismiss button).
+- Ensure sufficient color contrast for text and icons.
+
 ### Variants
 #### Alert - **Success**
 - **Id:** Success
@@ -147,6 +163,11 @@ A navigation aid that links to and highlights sections within a page as the user
 - **Behavior:** Clicking a link scrolls to the section. Updates highlight as user scrolls. Supports smooth scroll and offset.
 - **Used in blocks:**
   - [AnchorNavigationBlock](blocks.md#anchor-navigation-block)
+### Accessibility
+- Uses semantic navigation elements (`<nav>`, `<a>`).
+- Highlights active section for screen readers (e.g., `aria-current`).
+- Supports keyboard navigation between links.
+
 ### Variants
 #### Anchor Navigation - **Sticky section links**
 - **Id:** StickySectionLinks
@@ -169,6 +190,11 @@ A visual representation of a user or entity, typically shown as an image, initia
   - [TeamSection](blocks.md#team-section)
   - [Testimonials](blocks.md#testimonials)
   - [UserInfoAndControls](blocks.md#user-info-and-controls)
+### Accessibility
+- Provide `alt` text for images or use `aria-label` for initials/icons.
+- Status indicators should have accessible labels (e.g., `aria-label="Online"`).
+- Grouped avatars should be described for screen readers.
+
 ### Variants
 #### Avatar - **Image**
 - **Id:** Image
@@ -196,6 +222,11 @@ A small indicator used to display status, count, or highlight information on ano
   - [Navbars](blocks.md#navbars)
   - [Stats](blocks.md#stats)
   - [UserInfoAndControls](blocks.md#user-info-and-controls)
+### Accessibility
+- Use `aria-label` or `aria-describedby` to describe badge meaning.
+- Ensure badges with dynamic content use `aria-live` if important.
+- Maintain color contrast for visibility.
+
 ### Variants
 #### Badge - **Solid**
 - **Id:** Solid
@@ -225,6 +256,11 @@ A styled container for displaying quoted text or citations within content.
 - **Behavior:** Static display. May support copy-to-clipboard or expandable/collapsible for long quotes.
 - **Used in blocks:**
   - [BlockquoteSection](blocks.md#blockquote-section)
+### Accessibility
+- Use semantic `<blockquote>` element.
+- Provide citation or author information if available.
+- Ensure sufficient contrast for quoted text.
+
 ### Variants
 #### Blockquote - **With author**
 - **Id:** WithAuthor
@@ -242,6 +278,11 @@ A navigation aid that displays the user's current location within a site hierarc
 - **Behavior:** Clicking a breadcrumb navigates to that page/section. Supports keyboard navigation. May collapse into a dropdown for long paths.
 - **Used in blocks:**
   - [Headers](blocks.md#headers)
+### Accessibility
+- Use `nav` with `aria-label="breadcrumb"`.
+- Mark current page with `aria-current="page"`.
+- Ensure links are keyboard accessible.
+
 ### Variants
 #### Breadcrumbs - **Basic**
 - **Id:** Basic
@@ -294,6 +335,12 @@ A clickable element used to trigger actions, submit forms, or navigate.
   - [Testimonials](blocks.md#testimonials)
   - [UserInfoAndControls](blocks.md#user-info-and-controls)
   - [Wishlist](blocks.md#wishlist)
+### Accessibility
+- Use `<button>` element or `role="button"` if not native.
+- Provide accessible labels (`aria-label`) for icon-only buttons.
+- Ensure focus and active states are visible.
+- Support keyboard activation (Enter/Space).
+
 ### Variants
 #### Button - **Primary**
 - **Id:** Primary
@@ -335,6 +382,11 @@ A visual grid for selecting dates, viewing months, or displaying scheduled event
 - **Behavior:** Allows date selection (single, range, or multiple). Supports navigation between months/years. May display events or availability. Keyboard and mouse interaction supported.
 - **Used in blocks:**
   - [Calendar](blocks.md#calendar)
+### Accessibility
+- Use appropriate ARIA roles (`grid`, `gridcell`, `row`, `columnheader`).
+- Announce selected and focused dates to screen readers.
+- Support keyboard navigation for date selection.
+
 ### Variants
 #### Calendar - **Month view**
 - **Id:** MonthView
@@ -367,6 +419,11 @@ A container that groups related information, actions, or media in a visually dis
   - [Testimonials](blocks.md#testimonials)
   - [UserInfoAndControls](blocks.md#user-info-and-controls)
   - [Wishlist](blocks.md#wishlist)
+### Accessibility
+- Ensure interactive elements inside cards are keyboard accessible.
+- Use semantic elements for content (e.g., headings, lists).
+- Provide alt text for images.
+
 ### Variants
 #### Card - **With image**
 - **Id:** WithImage
@@ -388,6 +445,11 @@ A multi-level dropdown for selecting options from hierarchical data.
 - **Behavior:** Clicking selects option and reveals next level. Supports keyboard navigation and search.
 - **Used in blocks:**
   - [CascaderFilter](blocks.md#cascader-filter)
+### Accessibility
+- Use ARIA roles (`menu`, `menuitem`, `tree`, `treeitem`) as appropriate.
+- Announce expanded/collapsed state with `aria-expanded`.
+- Support keyboard navigation between levels.
+
 ### Variants
 #### Cascader - **Multi-level dropdown**
 - **Id:** MultiLevelDropdown
@@ -401,6 +463,12 @@ A control that allows users to select one or more options from a set.
 - **Behavior:** Clicking toggles between checked, unchecked, and (if supported) indeterminate. Supports keyboard navigation and focus. Can be disabled.
 - **Used in blocks:**
   - [Authentication](blocks.md#authentication)
+### Accessibility
+- Use native `<input type="checkbox">` or `role="checkbox"`.
+- Announce checked/unchecked/indeterminate state with `aria-checked`.
+- Support keyboard toggle (Space key).
+- Ensure label is associated with checkbox.
+
 ### Variants
 #### Checkbox - **Basic**
 - **Id:** Basic
@@ -422,6 +490,11 @@ Compact elements representing tags, selections, or actions, often removable or s
 - **Behavior:** Can be static or interactive (selectable, removable, or clickable). Supports keyboard navigation. May be used in groups for multi-select.
 - **Used in blocks:**
   - [ArticleCards](blocks.md#article-cards)
+### Accessibility
+- Use `role="listbox"` and `role="option"` for selectable chips.
+- Removable chips should have accessible remove buttons (`aria-label`).
+- Support keyboard navigation and selection.
+
 ### Variants
 #### Chips - **Selectable**
 - **Id:** Selectable
@@ -444,6 +517,11 @@ A container that can expand or collapse to show or hide its content.
 - **Used in blocks:**
   - [FAQ](blocks.md#faq)
   - [UserInfoAndControls](blocks.md#user-info-and-controls)
+### Accessibility
+- Use ARIA roles (`button`, `region`, `aria-expanded`, `aria-controls`).
+- Announce expanded/collapsed state to screen readers.
+- Support keyboard toggle and focus management.
+
 ### Variants
 #### Collapse - **Basic**
 - **Id:** Basic
@@ -469,6 +547,11 @@ An input field for selecting or entering color values, often with a color picker
 - **Behavior:** Clicking opens a color picker or palette. Selecting a color updates the value and swatch. May support manual hex/RGB input and validation.
 - **Used in blocks:**
   - [ColorPickerSection](blocks.md#color-picker-section)
+### Accessibility
+- Use `aria-label` to describe the color input.
+- Ensure color picker dialog is keyboard accessible.
+- Provide text alternatives for color values.
+
 ### Variants
 #### Color Input - **Color picker**
 - **Id:** ColorPicker
@@ -494,6 +577,11 @@ A component that combines an input field with a dropdown list of options that fi
 - **Behavior:** Typing filters options. Selecting an option adds it to the input (single or multiple). Supports keyboard navigation, option creation, and async loading.
 - **Used in blocks:**
   - [ComboboxFilter](blocks.md#combobox-filter)
+### Accessibility
+- Use ARIA roles (`combobox`, `listbox`, `option`).
+- Announce filtered options and selection to screen readers.
+- Support keyboard navigation and selection.
+
 ### Variants
 #### Combobox - **Autocomplete**
 - **Id:** Autocomplete
@@ -523,6 +611,11 @@ A modal or dropdown for searching and executing actions or commands quickly.
 - **Behavior:** Opens with a shortcut or button. Typing filters commands. Selecting an item triggers its action. Supports keyboard navigation and grouping.
 - **Used in blocks:**
   - [GlobalCommandPalette](blocks.md#global-command-palette)
+### Accessibility
+- Use `role="dialog"` or `role="menu"` as appropriate.
+- Announce search results and focused items.
+- Support keyboard navigation and shortcuts.
+
 ### Variants
 #### Command - **Command palette**
 - **Id:** CommandPalette
@@ -544,6 +637,11 @@ A menu that appears on right-click or long-press, offering context-specific acti
 - **Behavior:** Opens at cursor position. Selecting an item triggers its action. Supports nested submenus and keyboard navigation.
 - **Used in blocks:**
   - [FileActionsContextMenu](blocks.md#file-actions-context-menu)
+### Accessibility
+- Use ARIA roles (`menu`, `menuitem`).
+- Announce menu open/close to screen readers.
+- Support keyboard navigation (arrow keys, Esc to close).
+
 ### Variants
 #### Context Menu - **Right-click menu**
 - **Id:** RightClickMenu
@@ -565,6 +663,10 @@ A timer that counts down to a specific time or event, often used for deadlines o
 - **Behavior:** Counts down in real time. Triggers event or changes appearance when complete.
 - **Used in blocks:**
   - [CountdownTimerBlock](blocks.md#countdown-timer-block)
+### Accessibility
+- Use `aria-live` to announce countdown changes if important.
+- Ensure timer is readable and distinguishable.
+
 ### Variants
 #### Countdown - **Timer**
 - **Id:** Timer
@@ -578,6 +680,12 @@ A component for displaying and interacting with tabular data in rows and columns
 - **Behavior:** Displays tabular data. Supports sorting, filtering, pagination, row selection, and inline actions. Columns may be resizable or reorderable.
 - **Used in blocks:**
   - [DataTable](blocks.md#data-table)
+### Accessibility
+- Use semantic `<table>`, `<th>`, `<tr>`, `<td>` elements.
+- Provide table captions and summaries.
+- Support keyboard navigation for rows and cells.
+- Announce sorting/filtering changes.
+
 ### Variants
 #### Data Table - **Basic**
 - **Id:** Basic
@@ -619,6 +727,11 @@ A calendar input for selecting a single date.
 - **Behavior:** Clicking input opens calendar. Selecting a date updates the value.
 - **Used in blocks:**
   - [Authentication](blocks.md#authentication)
+### Accessibility
+- Use ARIA roles (`dialog`, `grid`, `gridcell`).
+- Announce selected and focused dates.
+- Support keyboard navigation for date selection.
+
 ### Variants
 #### Date Picker - **Basic**
 - **Id:** Basic
@@ -632,6 +745,11 @@ An input for selecting a range of dates.
 - **Behavior:** Clicking input opens calendar. Selecting two dates sets the range.
 - **Used in blocks:**
   - [Authentication](blocks.md#authentication)
+### Accessibility
+- Use ARIA roles (`dialog`, `grid`, `gridcell`).
+- Announce start and end date selection.
+- Support keyboard navigation for range selection.
+
 ### Variants
 #### Date Range Picker - **Basic**
 - **Id:** Basic
@@ -645,6 +763,12 @@ A popup overlay that displays content or actions requiring user attention.
 - **Behavior:** Opens in response to user action. Can be closed by button, overlay click, or escape key. Traps focus and disables background interaction.
 - **Used in blocks:**
   - [DialogModalBlock](blocks.md#dialog-modal-block)
+### Accessibility
+- Use `role="dialog"` and `aria-modal="true"`.
+- Trap focus within dialog while open.
+- Announce dialog title and content to screen readers.
+- Support closing with Esc key.
+
 ### Variants
 #### Dialog - **Centered**
 - **Id:** Centered
@@ -670,6 +794,10 @@ A visual line or space used to separate content into distinct sections.
 - **Behavior:** Static visual separator. May be interactive if used as a drag handle.
 - **Used in blocks:**
   - [Section](blocks.md#section)
+### Accessibility
+- Use semantic `<hr>` for horizontal dividers.
+- Ensure dividers do not interfere with screen reader flow.
+
 ### Variants
 #### Divider - **Horizontal**
 - **Id:** Horizontal
@@ -687,6 +815,12 @@ A panel that slides in from the edge of the screen to display additional content
 - **Behavior:** Opens in response to user action. Can be closed by button, overlay click, or escape key. Traps focus and disables background interaction.
 - **Used in blocks:**
   - [MobileNavigationDrawer](blocks.md#mobile-navigation-drawer)
+### Accessibility
+- Use `role="dialog"` or `role="complementary"`.
+- Trap focus within drawer while open.
+- Announce drawer title and content.
+- Support closing with Esc key.
+
 ### Variants
 #### Drawer - **Side panel**
 - **Id:** SidePanel
@@ -716,6 +850,11 @@ A component for uploading files via drag-and-drop or file selection.
 - **Behavior:** Dragging files over highlights the area. Dropping or selecting files uploads them. Supports multiple files, file type restrictions, and progress display.
 - **Used in blocks:**
   - [DragAndDrop](blocks.md#drag-and-drop)
+### Accessibility
+- Use `aria-label` to describe dropzone purpose.
+- Announce file selection and upload progress.
+- Support keyboard file selection.
+
 ### Variants
 #### Dropzone - **Single file**
 - **Id:** SingleFile
@@ -749,6 +888,11 @@ An input field for selecting one or more files from the user's device.
 - **Behavior:** Clicking button opens file picker. Selecting files updates the value. Supports multiple files and file type restrictions.
 - **Used in blocks:**
   - [FileUploadBlock](blocks.md#file-upload-block)
+### Accessibility
+- Use native `<input type="file">` for best accessibility.
+- Provide clear labels and instructions.
+- Announce selected files to screen readers.
+
 ### Variants
 #### File Input - **Single file**
 - **Id:** SingleFile
@@ -772,6 +916,11 @@ A message or indicator that displays validation errors or feedback for form fiel
   - [Authentication](blocks.md#authentication)
   - [Checkout](blocks.md#checkout)
   - [OnboardingSteps](blocks.md#onboarding-steps)
+### Accessibility
+- Use `role="alert"` for error messages.
+- Associate error message with form field using `aria-describedby`.
+- Ensure error text is clear and specific.
+
 ### Variants
 #### Form Error Message - **Inline error**
 - **Id:** InlineError
@@ -789,6 +938,11 @@ A floating card that appears when hovering over an element, showing additional i
 - **Behavior:** Appears on hover or focus. Disappears on mouse leave or blur. Supports delay and interactive content.
 - **Used in blocks:**
   - [HoverCardBlock](blocks.md#hover-card-block)
+### Accessibility
+- Ensure hover card content is accessible via keyboard (focus/focusin events).
+- Use `aria-describedby` to link trigger and card.
+- Dismiss card on Esc key.
+
 ### Variants
 #### Hover Card - **Appears on hover**
 - **Id:** AppearsOnHover
@@ -813,6 +967,11 @@ A component for displaying images with optional styling, captions, or overlays.
   - [ProductDetails](blocks.md#product-details)
   - [SplitLayout](blocks.md#split-layout)
   - [Testimonials](blocks.md#testimonials)
+### Accessibility
+- Provide descriptive `alt` text for images.
+- Use captions for additional context.
+- Ensure images are responsive and do not cause layout shifts.
+
 ### Variants
 #### Image - **Responsive**
 - **Id:** Responsive
@@ -841,6 +1000,12 @@ A field for entering and editing a single line of text or data.
   - [DataTable](blocks.md#data-table)
   - [FAQ](blocks.md#faq)
   - [OnboardingSteps](blocks.md#onboarding-steps)
+### Accessibility
+- Use native `<input>` element.
+- Provide associated label for input.
+- Announce validation errors with `aria-describedby`.
+- Support keyboard and screen reader interaction.
+
 ### Variants
 #### Input - **Basic**
 - **Id:** Basic
@@ -862,6 +1027,10 @@ A combination of input fields and add-ons grouped together for related data entr
 - **Behavior:** All elements are visually and functionally grouped. Supports focus, disabled, and error states.
 - **Used in blocks:**
   - [InputGroupBlock](blocks.md#input-group-block)
+### Accessibility
+- Group related inputs with `fieldset` and `legend` if appropriate.
+- Ensure all controls are labeled and keyboard accessible.
+
 ### Variants
 #### Input Group - **Input with button**
 - **Id:** InputWithButton
@@ -879,6 +1048,10 @@ A component for displaying keyboard input or shortcuts in documentation or UI hi
 - **Behavior:** Static display. Used for documentation, tooltips, or UI hints to indicate keyboard shortcuts or keys to press.
 - **Used in blocks:**
   - [KeyboardShortcutsHelp](blocks.md#keyboard-shortcuts-help)
+### Accessibility
+- Use `<kbd>` element for semantic meaning.
+- Provide text alternatives for complex shortcuts.
+
 ### Variants
 #### Keyboard Key - **Single key**
 - **Id:** SingleKey
@@ -906,6 +1079,11 @@ A vertical or horizontal arrangement of items, often with icons, avatars, or act
   - [TableOfContents](blocks.md#table-of-contents)
   - [TeamSection](blocks.md#team-section)
   - [UserInfoAndControls](blocks.md#user-info-and-controls)
+### Accessibility
+- Use semantic list elements (`<ul>`, `<ol>`, `<li>`).
+- Ensure interactive list items are keyboard accessible.
+- Announce selection or focus changes.
+
 ### Variants
 #### List - **Ordered**
 - **Id:** Ordered
@@ -935,6 +1113,10 @@ A visual indicator that content is loading or a process is in progress.
 - **Behavior:** Appears while content is loading. Disappears when loading completes. May block interaction (overlay) or show progress.
 - **Used in blocks:**
   - [PageLoaderOverlay](blocks.md#page-loader-overlay)
+### Accessibility
+- Use `aria-busy` or `aria-live` to announce loading state.
+- Provide text alternative for loading indicators.
+
 ### Variants
 #### Loading - **Spinner**
 - **Id:** Spinner
@@ -956,6 +1138,11 @@ A component for selecting or displaying a geographic location on an interactive 
 - **Behavior:** User can move marker, search for location, or click map to select. Updates value and may show address or coordinates.
 - **Used in blocks:**
   - [ContactCard](blocks.md#contact-card)
+### Accessibility
+- Provide text alternatives for map content.
+- Ensure controls (zoom, search) are keyboard accessible.
+- Announce location changes to screen readers.
+
 ### Variants
 #### Map - **Basic**
 - **Id:** Basic
@@ -973,6 +1160,11 @@ A horizontal or vertical bar containing navigation menus and actions.
 - **Behavior:** Clicking or hovering opens dropdowns. Supports keyboard navigation and active state indication.
 - **Used in blocks:**
   - [MenubarBlock](blocks.md#menubar-block)
+### Accessibility
+- Use ARIA roles (`menubar`, `menuitem`).
+- Support keyboard navigation (arrow keys, Enter, Esc).
+- Announce active menu and items.
+
 ### Variants
 #### Menubar - **Horizontal menu**
 - **Id:** HorizontalMenu
@@ -994,6 +1186,11 @@ A temporary message that appears to inform the user of an event or status.
 - **Behavior:** Appears in response to events. Auto-dismisses after timeout or can be dismissed manually. Supports stacking and different types (success, error, etc.).
 - **Used in blocks:**
   - [NotificationCenterBlock](blocks.md#notification-center-block)
+### Accessibility
+- Use `role="status"` or `role="alert"` for notifications.
+- Announce new notifications to screen readers.
+- Ensure dismiss buttons are keyboard accessible.
+
 ### Variants
 #### Notification - **Success**
 - **Id:** Success
@@ -1039,6 +1236,11 @@ An input field for entering numeric values, often with increment/decrement contr
 - **Behavior:** Accepts numeric input. Arrow buttons increment/decrement value. Supports validation, min/max, and disabled state.
 - **Used in blocks:**
   - [NumberInputBlock](blocks.md#number-input-block)
+### Accessibility
+- Use native `<input type="number">`.
+- Provide associated label and instructions.
+- Announce value changes to screen readers.
+
 ### Variants
 #### Number Input - **With controls**
 - **Id:** WithControls
@@ -1056,6 +1258,11 @@ A navigation control for dividing content into discrete pages and moving between
 - **Behavior:** Clicking a number or arrow navigates to that page. Supports keyboard navigation and dynamic page range.
 - **Used in blocks:**
   - [DataTable](blocks.md#data-table)
+### Accessibility
+- Use `nav` with `aria-label="pagination"`.
+- Ensure all controls are keyboard accessible.
+- Announce current page to screen readers.
+
 ### Variants
 #### Pagination - **Simple**
 - **Id:** Simple
@@ -1081,6 +1288,11 @@ A text input that hides entered characters, used for sensitive information like 
 - **Behavior:** Accepts password input. Toggle button reveals/hides text. Supports validation and error state.
 - **Used in blocks:**
   - [Authentication](blocks.md#authentication)
+### Accessibility
+- Use native `<input type="password">`.
+- Provide label and instructions for visibility toggle.
+- Announce validation errors and state changes.
+
 ### Variants
 #### Password Input - **With visibility toggle**
 - **Id:** WithVisibilityToggle
@@ -1094,6 +1306,11 @@ A set of input fields for entering a fixed-length code, such as a PIN or verific
 - **Behavior:** Typing moves focus to next box. Supports paste, backspace, and validation. May mask input for security.
 - **Used in blocks:**
   - [TwoFactorAuthentication](blocks.md#two-factor-authentication)
+### Accessibility
+- Use `aria-label` for each input box.
+- Announce focus and value changes.
+- Support keyboard navigation and paste.
+
 ### Variants
 #### Pin Input - **4-digit**
 - **Id:** FourDigit
@@ -1111,6 +1328,11 @@ A confirmation popup that asks the user to verify an action before proceeding.
 - **Behavior:** Appears on action (e.g., delete). Confirms or cancels the action. Disappears on selection or outside click.
 - **Used in blocks:**
   - [PopconfirmBlock](blocks.md#popconfirm-block)
+### Accessibility
+- Use `role="dialog"` for the popup.
+- Trap focus within the popconfirm while open.
+- Announce confirmation message and options.
+
 ### Variants
 #### Popconfirm - **Confirmation popover**
 - **Id:** ConfirmationPopover
@@ -1124,6 +1346,11 @@ A floating panel anchored to a trigger element, used for displaying additional c
 - **Behavior:** Opens on click, hover, or focus. Closes on outside click or escape. Supports interactive content and keyboard navigation.
 - **Used in blocks:**
   - [UserProfilePopover](blocks.md#user-profile-popover)
+### Accessibility
+- Use ARIA roles (`dialog`, `tooltip`, `menu`) as appropriate.
+- Announce popover content to screen readers.
+- Support keyboard navigation and dismissal.
+
 ### Variants
 #### Popover - **Basic**
 - **Id:** Basic
@@ -1145,6 +1372,11 @@ A visual indicator of task completion or ongoing activity, such as a bar or spin
 - **Behavior:** Fills or animates to indicate progress. Can be determinate (fixed value) or indeterminate (loading).
 - **Used in blocks:**
   - [Stats](blocks.md#stats)
+### Accessibility
+- Use `aria-valuenow`, `aria-valuemax`, `aria-valuemin` for progress bars.
+- Announce progress changes to screen readers.
+- Provide text alternative for indeterminate progress.
+
 ### Variants
 #### Progress - **Linear**
 - **Id:** Linear
@@ -1162,6 +1394,10 @@ A component for generating and displaying QR codes that encode data for scanning
 - **Behavior:** Static image or canvas. Scannable by devices. Updates when data changes.
 - **Used in blocks:**
   - [AppDownloadSection](blocks.md#app-download-section)
+### Accessibility
+- Provide text alternative describing QR code purpose.
+- Ensure QR code is large enough to be scanned.
+
 ### Variants
 #### QR Code - **Display QR codes**
 - **Id:** DisplayQRCodes
@@ -1175,6 +1411,12 @@ A control for selecting a single option from a set of mutually exclusive choices
 - **Behavior:** Clicking selects the radio and deselects others in the group. Supports keyboard navigation and disabled state.
 - **Used in blocks:**
   - [RadioGroupBlock](blocks.md#radio-group-block)
+### Accessibility
+- Use native `<input type="radio">` or `role="radio"`.
+- Announce checked state with `aria-checked`.
+- Group radios with `role="radiogroup"` and label.
+- Support keyboard navigation (arrow keys).
+
 ### Variants
 #### Radio - **Basic**
 - **Id:** Basic
@@ -1192,6 +1434,11 @@ A control for displaying or collecting user ratings, typically with stars or ico
 - **Behavior:** Clicking or hovering sets the rating. Supports read-only and interactive modes. May allow half or custom increments.
 - **Used in blocks:**
   - [ProductReview](blocks.md#product-review)
+### Accessibility
+- Use `role="radiogroup"` and `role="radio"` for stars/icons.
+- Announce selected rating to screen readers.
+- Support keyboard navigation and selection.
+
 ### Variants
 #### Rating - **Stars**
 - **Id:** Stars
@@ -1213,6 +1460,11 @@ A container that can be resized by the user, often via a drag handle or border.
 - **Behavior:** User drags handle to resize panel. Supports min/max size and snapping. May animate resize.
 - **Used in blocks:**
   - [ResizablePanelBlock](blocks.md#resizable-panel-block)
+### Accessibility
+- Use `aria-label` to describe panel purpose.
+- Ensure drag handles are keyboard accessible.
+- Announce size changes to screen readers if relevant.
+
 ### Variants
 #### Resizable Panel - **Horizontal**
 - **Id:** Horizontal
@@ -1234,6 +1486,11 @@ A text input area with formatting controls for creating styled content.
 - **Behavior:** User applies formatting via toolbar or shortcuts. Supports undo/redo, links, images, and HTML output.
 - **Used in blocks:**
   - [BlogPostEditor](blocks.md#blog-post-editor)
+### Accessibility
+- Use ARIA roles (`textbox`, `toolbar`, `button`).
+- Announce formatting changes and selection.
+- Support keyboard shortcuts for formatting.
+
 ### Variants
 #### Rich Text Editor - **Toolbar options (bold, italic, underline, etc.)**
 - **Id:** ToolbarOptions
@@ -1247,6 +1504,11 @@ A container with custom scrollbars for overflowing content.
 - **Behavior:** Scrolls content horizontally or vertically. Supports keyboard and mouse interaction. May auto-scroll or snap.
 - **Used in blocks:**
   - [ScrollAreaBlock](blocks.md#scroll-area-block)
+### Accessibility
+- Ensure scrollable area is keyboard accessible.
+- Announce scroll position if important.
+- Provide visible focus for scrollable content.
+
 ### Variants
 #### Scroll Area - **Custom scrollbars**
 - **Id:** CustomScrollbars
@@ -1264,6 +1526,11 @@ A navigation aid that highlights links based on the user's scroll position in th
 - **Behavior:** Updates highlight as user scrolls. Clicking a link scrolls to the section. Supports smooth scroll and active state.
 - **Used in blocks:**
   - [ScrollspyNavigationBlock](blocks.md#scrollspy-navigation-block)
+### Accessibility
+- Use semantic navigation elements.
+- Announce active section to screen readers.
+- Support keyboard navigation between links.
+
 ### Variants
 #### Scrollspy - **Navigation highlights on scroll**
 - **Id:** NavigationHighlights
@@ -1278,6 +1545,11 @@ A modal or dropdown for searching content or navigating quickly within an app.
 - **Used in blocks:**
   - [Headers](blocks.md#headers)
   - [Navbars](blocks.md#navbars)
+### Accessibility
+- Use `role="search"` or `role="dialog"` as appropriate.
+- Announce search results and focused items.
+- Support keyboard navigation and shortcuts.
+
 ### Variants
 #### Searchbox - **Command palette**
 - **Id:** CommandPalette
@@ -1295,6 +1567,11 @@ A dropdown input for choosing one or more options from a list.
 - **Behavior:** Clicking opens dropdown. Selecting an option updates the value. Supports keyboard navigation, search, and multi-select.
 - **Used in blocks:**
   - [SelectFilterBlock](blocks.md#select-filter-block)
+### Accessibility
+- Use ARIA roles (`listbox`, `option`).
+- Announce selected and focused options.
+- Support keyboard navigation and selection.
+
 ### Variants
 #### Select - **Basic**
 - **Id:** Basic
@@ -1316,6 +1593,11 @@ A control for selecting a value or range by sliding a handle along a track.
 - **Behavior:** Dragging the thumb or clicking the track changes the value. Supports keyboard navigation, range selection, and disabled state.
 - **Used in blocks:**
   - [SliderInputBlock](blocks.md#slider-input-block)
+### Accessibility
+- Use `role="slider"` with `aria-valuenow`, `aria-valuemax`, `aria-valuemin`.
+- Announce value changes to screen readers.
+- Support keyboard and mouse interaction.
+
 ### Variants
 #### Slider - **Single value**
 - **Id:** SingleValue
@@ -1333,6 +1615,10 @@ A component for displaying key metrics, numbers, or trends in a visually promine
 - **Behavior:** Updates dynamically to reflect data changes. May animate value changes.
 - **Used in blocks:**
   - [Stats](blocks.md#stats)
+### Accessibility
+- Ensure numbers and trends are described for screen readers.
+- Use `aria-live` if values update dynamically.
+
 ### Variants
 #### Statistic - **Number with label**
 - **Id:** NumberWithLabel
@@ -1354,6 +1640,11 @@ A sequence of steps or stages, often used for multi-step forms or processes.
 - **Behavior:** Clicking a step navigates to it. Supports linear or non-linear progression, validation, and completion state.
 - **Used in blocks:**
   - [OnboardingSteps](blocks.md#onboarding-steps)
+### Accessibility
+- Use ARIA roles (`list`, `listitem`, `progressbar`).
+- Announce current step and progress.
+- Support keyboard navigation between steps.
+
 ### Variants
 #### Stepper - **Horizontal**
 - **Id:** Horizontal
@@ -1379,6 +1670,11 @@ A toggle control for switching between two states, such as on/off or enabled/dis
 - **Behavior:** Clicking or dragging toggles state. Supports keyboard navigation and disabled state. May animate thumb.
 - **Used in blocks:**
   - [SwitchToggleBlock](blocks.md#switch-toggle-block)
+### Accessibility
+- Use `role="switch"` with `aria-checked`.
+- Announce state changes to screen readers.
+- Support keyboard toggle (Space key).
+
 ### Variants
 #### Switch - **With label**
 - **Id:** WithLabel
@@ -1400,6 +1696,11 @@ A set of tabbed buttons for switching between different views or content section
 - **Behavior:** Clicking a tab shows its content. Supports keyboard navigation, icons, and orientation.
 - **Used in blocks:**
   - [SettingsTabs](blocks.md#settings-tabs)
+### Accessibility
+- Use ARIA roles (`tablist`, `tab`, `tabpanel`).
+- Announce active tab and panel.
+- Support keyboard navigation (arrow keys, Home/End).
+
 ### Variants
 #### Tabs - **Horizontal**
 - **Id:** Horizontal
@@ -1421,6 +1722,11 @@ An input field for entering and managing tags, often displayed as removable chip
 - **Behavior:** Typing adds tags. Tags can be removed by clicking or keyboard. Supports validation and suggestions.
 - **Used in blocks:**
   - [BlogPostTagging](blocks.md#blog-post-tagging)
+### Accessibility
+- Use ARIA roles (`listbox`, `option`).
+- Announce tag addition/removal.
+- Support keyboard navigation and removal.
+
 ### Variants
 #### Tag Input - **Create and Remove Tags**
 - **Id:** CreateAndRemoveTags
@@ -1439,6 +1745,11 @@ A multi-line input field for entering larger amounts of text.
 - **Used in blocks:**
   - [Comments](blocks.md#comments)
   - [ContactCard](blocks.md#contact-card)
+### Accessibility
+- Use native `<textarea>` element.
+- Provide associated label and instructions.
+- Announce validation errors with `aria-describedby`.
+
 ### Variants
 #### Textarea - **Basic**
 - **Id:** Basic
@@ -1460,6 +1771,11 @@ A control for switching between light and dark (or other) visual themes.
 - **Behavior:** Clicking toggles between light and dark themes. May animate icon or background.
 - **Used in blocks:**
   - [ProfileThemeCustomization](blocks.md#profile-theme-customization)
+### Accessibility
+- Use `aria-label` to describe the toggle purpose.
+- Announce theme changes to screen readers.
+- Support keyboard toggle.
+
 ### Variants
 #### Theme Toggle - **Light and Dark Switch**
 - **Id:** LightAndDarkSwitch
@@ -1473,6 +1789,11 @@ A vertical or horizontal display of events in chronological order.
 - **Behavior:** Static or interactive (expand/collapse, click for details). May animate on scroll or highlight current event.
 - **Used in blocks:**
   - [Roadmap](blocks.md#roadmap)
+### Accessibility
+- Use semantic list or timeline markup.
+- Announce current event to screen readers.
+- Ensure events are keyboard accessible.
+
 ### Variants
 #### Timeline - **Vertical**
 - **Id:** Vertical
@@ -1498,6 +1819,11 @@ An input for selecting a time value.
 - **Behavior:** Clicking input opens time picker. Selecting a time updates the value.
 - **Used in blocks:**
   - [Authentication](blocks.md#authentication)
+### Accessibility
+- Use native `<input type="time">` if possible.
+- Provide label and instructions.
+- Announce selected time to screen readers.
+
 ### Variants
 #### Time Input - **Basic**
 - **Id:** Basic
@@ -1511,6 +1837,11 @@ A control for switching between two states, such as on/off or enabled/disabled.
 - **Behavior:** Clicking or dragging toggles the state. Supports keyboard navigation and disabled state. May animate thumb movement.
 - **Used in blocks:**
   - [UserInfoAndControls](blocks.md#user-info-and-controls)
+### Accessibility
+- Use `role="switch"` with `aria-checked`.
+- Announce state changes to screen readers.
+- Support keyboard toggle (Space key).
+
 ### Variants
 #### Toggle - **With label**
 - **Id:** WithLabel
@@ -1527,6 +1858,11 @@ A small popup that provides additional information when hovering or focusing on 
 - **Appearance:** A small floating box with text, appearing near a target element. May have an arrow pointing to the target.
 - **Behavior:** Appears on hover or focus. Disappears on mouse leave or blur. Supports delay, rich content, and positioning.
 - **Used in blocks:**
+### Accessibility
+- Use `role="tooltip"` and link trigger with `aria-describedby`.
+- Ensure tooltip content is accessible via keyboard (focus/focusin).
+- Dismiss tooltip on Esc key.
+
 ### Variants
 #### Tooltip - **Top**
 - **Id:** Top
@@ -1556,6 +1892,11 @@ A dual-list component for moving items between two lists, often with selection a
 - **Behavior:** Selecting items and clicking buttons moves them between lists. Supports keyboard navigation and bulk actions.
 - **Used in blocks:**
   - [TransferListBlock](blocks.md#transfer-list-block)
+### Accessibility
+- Use ARIA roles (`listbox`, `option`).
+- Announce item transfer and selection changes.
+- Support keyboard navigation and selection.
+
 ### Variants
 #### Transfer List - **Move items between lists**
 - **Id:** MoveItems
@@ -1569,6 +1910,11 @@ A hierarchical list for displaying and selecting nested items or categories.
 - **Behavior:** Clicking expands/collapses nodes. Selecting a node updates value. Supports keyboard navigation and multi-select.
 - **Used in blocks:**
   - [UserRoleAssignment](blocks.md#user-role-assignment)
+### Accessibility
+- Use ARIA roles (`tree`, `treeitem`).
+- Announce expanded/collapsed state and selection.
+- Support keyboard navigation (arrow keys, Home/End).
+
 ### Variants
 #### Tree View - **Basic**
 - **Id:** Basic
@@ -1622,6 +1968,10 @@ A set of styled text elements for headings, paragraphs, lists, and more.
   - [TeamSection](blocks.md#team-section)
   - [Testimonials](blocks.md#testimonials)
   - [Wishlist](blocks.md#wishlist)
+### Accessibility
+- Use semantic HTML elements for text (e.g., `<h1>`, `<p>`, `<ul>`, `<blockquote>`).
+- Ensure sufficient color contrast and readable font sizes.
+
 ### Variants
 #### Typography - **Headings**
 - **Id:** Headings
