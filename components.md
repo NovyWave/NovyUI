@@ -2,79 +2,79 @@
 
 Welcome to the NovyUI Components reference. This document provides an overview of all UI components available in NovyUI, including their purpose, appearance, behavior, and available variants. Use this file to explore, plan, or implement components in your project. Each section includes a brief description to help you quickly understand the component's role.
 
-- [Accordion](#accordion)
-- [Affix](#affix)
-- [Alert](#alert)
-- [Anchor Navigation](#anchor-navigation)
-- [Avatar](#avatar)
-- [Badge](#badge)
-- [Blockquote](#blockquote)
-- [Breadcrumbs](#breadcrumbs)
-- [Button](#button)
-- [Calendar](#calendar)
-- [Card](#card)
-- [Cascader](#cascader)
-- [Checkbox](#checkbox)
-- [Chips](#chips)
-- [Collapse](#collapse)
-- [Color Input](#color-input)
-- [Combobox](#combobox)
-- [Command](#command)
-- [Context Menu](#context-menu)
-- [Countdown](#countdown)
-- [Data Table](#data-table)
-- [Date Picker](#date-picker)
-- [Date Range Picker](#date-range-picker)
-- [Dialog](#dialog)
-- [Divider](#divider)
-- [Drawer](#drawer)
-- [Dropzone](#dropzone)
-- [File Input](#file-input)
-- [Form Error Message](#form-error-message)
-- [Hover Card](#hover-card)
-- [Image](#image)
-- [Input](#input)
-- [Input Group](#input-group)
-- [Keyboard Key](#keyboard-key)
-- [List](#list)
-- [Loading](#loading)
-- [Map](#map)
-- [Menubar](#menubar)
-- [Notification](#notification)
-- [Number Input](#number-input)
-- [Pagination](#pagination)
-- [Password Input](#password-input)
-- [Pin Input](#pin-input)
-- [Popconfirm](#popconfirm)
-- [Popover](#popover)
-- [Progress](#progress)
-- [QR Code](#qr-code)
-- [Radio](#radio)
-- [Rating](#rating)
-- [Resizable Panel](#resizable-panel)
-- [Rich Text Editor](#rich-text-editor)
-- [Scroll Area](#scroll-area)
-- [Scrollspy](#scrollspy)
-- [Searchbox](#searchbox)
-- [Select](#select)
-- [Slider](#slider)
-- [Statistic](#statistic)
-- [Stepper](#stepper)
-- [Switch](#switch)
-- [Tabs](#tabs)
-- [Tag Input](#tag-input)
-- [Textarea](#textarea)
-- [Theme Toggle](#theme-toggle)
-- [Timeline](#timeline)
-- [Time Input](#time-input)
-- [Toggle](#toggle)
-- [Tooltip](#tooltip)
-- [Transfer List](#transfer-list)
-- [Tree View](#tree-view)
-- [Typography](#typography)
+- [🔽 Accordion](#accordion)
+- [📌 Affix](#affix)
+- [⚠️ Alert](#alert)
+- [🔗 Anchor Navigation](#anchor-navigation)
+- [👤 Avatar](#avatar)
+- [🏷️ Badge](#badge)
+- [💬 Blockquote](#blockquote)
+- [🍞 Breadcrumbs](#breadcrumbs)
+- [🆗 Button](#button)
+- [📅 Calendar](#calendar)
+- [🗂️ Card](#card)
+- [🌲 Cascader](#cascader)
+- [☑️ Checkbox](#checkbox)
+- [🏷️ Chips](#chips)
+- [➖ Collapse](#collapse)
+- [🎨 Color Input](#color-input)
+- [🧰 Combobox](#combobox)
+- [⌨️ Command](#command)
+- [📋 Context Menu](#context-menu)
+- [⏳ Countdown](#countdown)
+- [📊 Data Table](#data-table)
+- [📆 Date Picker](#date-picker)
+- [🗓️ Date Range Picker](#date-range-picker)
+- [🗨️ Dialog](#dialog)
+- [🟰 Divider](#divider)
+- [🗄️ Drawer](#drawer)
+- [🗃️ Dropzone](#dropzone)
+- [📤 File Input](#file-input)
+- [❗ Form Error Message](#form-error-message)
+- [🪧 Hover Card](#hover-card)
+- [🖼️ Image](#image)
+- [📝 Input](#input)
+- [👥 Input Group](#input-group)
+- [⌨️ Keyboard Key](#keyboard-key)
+- [📋 List](#list)
+- [⏳ Loading](#loading)
+- [🗺️ Map](#map)
+- [🍔 Menubar](#menubar)
+- [🔔 Notification](#notification)
+- [🔢 Number Input](#number-input)
+- [📄 Pagination](#pagination)
+- [🔒 Password Input](#password-input)
+- [🔑 Pin Input](#pin-input)
+- [❓ Popconfirm](#popconfirm)
+- [💬 Popover](#popover)
+- [📈 Progress](#progress)
+- [🔳 QR Code](#qr-code)
+- [🔘 Radio](#radio)
+- [⭐ Rating](#rating)
+- [↔️ Resizable Panel](#resizable-panel)
+- [📝 Rich Text Editor](#rich-text-editor)
+- [🖱️ Scroll Area](#scroll-area)
+- [🕵️ Scrollspy](#scrollspy)
+- [🔍 Searchbox](#searchbox)
+- [🗳️ Select](#select)
+- [🎚️ Slider](#slider)
+- [📊 Statistic](#statistic)
+- [🪜 Stepper](#stepper)
+- [🔀 Switch](#switch)
+- [🗂️ Tabs](#tabs)
+- [🏷️ Tag Input](#tag-input)
+- [📝 Textarea](#textarea)
+- [🌗 Theme Toggle](#theme-toggle)
+- [🕒 Timeline](#timeline)
+- [⏰ Time Input](#time-input)
+- [🔁 Toggle](#toggle)
+- [💡 Tooltip](#tooltip)
+- [🔄 Transfer List](#transfer-list)
+- [🌳 Tree View](#tree-view)
+- [🔤 Typography](#typography)
 
-## Accordion
-A vertically stacked set of expandable/collapsible items, used to show and hide sections of related content.
+## Accordion 
+🔽 A vertically stacked set of expandable/collapsible items, used to show and hide sections of related content.
 - **Id:** Accordion
 - **Appearance:** A vertically stacked list of items, each with a header. Clicking a header expands or collapses its content. Optionally, headers may include icons indicating state (expanded/collapsed).
 - **Behavior:** Only one (single) or multiple (multiple) items can be open at a time. Clicking a header toggles its content. Supports keyboard navigation and smooth transitions.
@@ -101,7 +101,7 @@ A vertically stacked set of expandable/collapsible items, used to show and hide 
 - **Behavior:** Icon state updates in sync with expansion/collapse; otherwise, behavior matches selected mode (single/multiple).
 
 ## Affix
-A component that fixes an element to a specific position as the user scrolls.
+📌 A component that fixes an element to a specific position as the user scrolls.
 - **Id:** Affix
 - **Appearance:** An element that remains fixed to the top, bottom, or side of the viewport as the user scrolls.
 - **Behavior:** Sticks to position when scrolling past a threshold. Releases when scrolling back.
@@ -119,7 +119,7 @@ A component that fixes an element to a specific position as the user scrolls.
 - **Behavior:** Sticks on scroll.
 
 ## Alert
-A message box used to display important information, feedback, or status updates to the user.
+⚠️ A message box used to display important information, feedback, or status updates to the user.
 - **Id:** Alert
 - **Appearance:** A colored box with an icon and message text. Color and icon reflect the alert type (e.g., green for success, red for error). May include a close (dismiss) button.
 - **Behavior:** Appears in response to events or actions. Dismissible alerts can be closed by the user. May auto-dismiss after a timeout.
@@ -157,7 +157,7 @@ A message box used to display important information, feedback, or status updates
 - **Behavior:** Can be dismissed by the user.
 
 ## Anchor Navigation
-A navigation aid that links to and highlights sections within a page as the user scrolls.
+🔗 A navigation aid that links to and highlights sections within a page as the user scrolls.
 - **Id:** AnchorNavigation
 - **Appearance:** A vertical or horizontal list of links to page sections. Highlights the active section as user scrolls.
 - **Behavior:** Clicking a link scrolls to the section. Updates highlight as user scrolls. Supports smooth scroll and offset.
@@ -175,7 +175,7 @@ A navigation aid that links to and highlights sections within a page as the user
 - **Behavior:** Highlights active section.
 
 ## Avatar
-A visual representation of a user or entity, typically shown as an image, initials, or icon.
+👤 A visual representation of a user or entity, typically shown as an image, initials, or icon.
 - **Id:** Avatar
 - **Appearance:** A circular or rounded image, initials, or icon representing a user. Can include a small status indicator (dot) or be grouped with other avatars.
 - **Behavior:** Displays user image or fallback (initials/icon). Status indicator updates in real time. Grouped avatars overlap or are displayed in a row.
@@ -214,7 +214,7 @@ A visual representation of a user or entity, typically shown as an image, initia
 - **Behavior:** Grouped avatars overlap or are displayed in a row.
 
 ## Badge
-A small indicator used to display status, count, or highlight information on another element.
+🏷️ A small indicator used to display status, count, or highlight information on another element.
 - **Id:** Badge
 - **Appearance:** A small, rounded or pill-shaped label. Can display a number, icon, or short text. Often colored to indicate status or category (e.g., red for error, green for success). May be attached to another element (e.g., avatar, button) or stand alone.
 - **Behavior:** Static by default. If used as a notification badge, updates dynamically to reflect changes (e.g., unread count). Can be interactive if used as a filter or tag (clickable/removable).
@@ -250,7 +250,7 @@ A small indicator used to display status, count, or highlight information on ano
 - **Behavior:** Indicates count or quantity.
 
 ## Blockquote
-A styled container for displaying quoted text or citations within content.
+💬 A styled container for displaying quoted text or citations within content.
 - **Id:** Blockquote
 - **Appearance:** A visually distinct section for quoting text. Typically indented, with a vertical line or different background. May include citation or author below or beside the quote.
 - **Behavior:** Static display. May support copy-to-clipboard or expandable/collapsible for long quotes.
@@ -272,7 +272,7 @@ A styled container for displaying quoted text or citations within content.
 - **Behavior:** Static display.
 
 ## Breadcrumbs
-A navigation aid that displays the user's current location within a site hierarchy.
+🍞 A navigation aid that displays the user's current location within a site hierarchy.
 - **Id:** Breadcrumbs
 - **Appearance:** A horizontal list of links separated by chevrons or slashes, representing the user's navigation path. Each item is a clickable link except the last, which is the current page and styled as inactive.
 - **Behavior:** Clicking a breadcrumb navigates to that page/section. Supports keyboard navigation. May collapse into a dropdown for long paths.
@@ -298,7 +298,7 @@ A navigation aid that displays the user's current location within a site hierarc
 - **Behavior:** Supports long navigation paths.
 
 ## Button
-A clickable element used to trigger actions, submit forms, or navigate.
+🆗 A clickable element used to trigger actions, submit forms, or navigate.
 - **Id:** Button
 - **Appearance:** A rectangular or pill-shaped clickable element with text and/or icon. Visual style (color, border, shadow) changes based on variant and state (hover, active, disabled). May include loading spinner or icon.
 - **Behavior:** Triggers an action when clicked or activated via keyboard. Supports disabled and loading states. May show focus ring for accessibility.
@@ -376,7 +376,7 @@ A clickable element used to trigger actions, submit forms, or navigate.
 - **Behavior:** Social login button.
 
 ## Calendar
-A visual grid for selecting dates, viewing months, or displaying scheduled events.
+📅 A visual grid for selecting dates, viewing months, or displaying scheduled events.
 - **Id:** Calendar
 - **Appearance:** A grid of days for a month or week, with headers for days of the week. May include navigation arrows, today highlight, and event markers. Selected date(s) are visually distinct.
 - **Behavior:** Allows date selection (single, range, or multiple). Supports navigation between months/years. May display events or availability. Keyboard and mouse interaction supported.
@@ -402,7 +402,7 @@ A visual grid for selecting dates, viewing months, or displaying scheduled event
 - **Behavior:** Displays events or availability.
 
 ## Card
-A container that groups related information, actions, or media in a visually distinct block.
+🗂️ A container that groups related information, actions, or media in a visually distinct block.
 - **Id:** Card
 - **Appearance:** A rectangular container with optional shadow, border, or background. Can include image, title, description, actions, and footer. Used to group related content.
 - **Behavior:** Static by default. May be clickable, expandable, or support hover effects. Can contain interactive elements (buttons, links).
@@ -439,7 +439,7 @@ A container that groups related information, actions, or media in a visually dis
 - **Behavior:** Static display.
 
 ## Cascader
-A multi-level dropdown for selecting options from hierarchical data.
+🌲 A multi-level dropdown for selecting options from hierarchical data.
 - **Id:** Cascader
 - **Appearance:** An input with a dropdown showing hierarchical options. Selecting a parent reveals child options in a new column or menu.
 - **Behavior:** Clicking selects option and reveals next level. Supports keyboard navigation and search.
@@ -457,7 +457,7 @@ A multi-level dropdown for selecting options from hierarchical data.
 - **Behavior:** Displays multi-level options.
 
 ## Checkbox
-A control that allows users to select one or more options from a set.
+☑️ A control that allows users to select one or more options from a set.
 - **Id:** Checkbox
 - **Appearance:** A small square box that can be checked or unchecked. May include a label and an optional indeterminate state (horizontal line). Checked state is indicated by a checkmark or filled box.
 - **Behavior:** Clicking toggles between checked, unchecked, and (if supported) indeterminate. Supports keyboard navigation and focus. Can be disabled.
@@ -484,7 +484,7 @@ A control that allows users to select one or more options from a set.
 - **Behavior:** Displays label text.
 
 ## Chips
-Compact elements representing tags, selections, or actions, often removable or selectable.
+🏷️ Compact elements representing tags, selections, or actions, often removable or selectable.
 - **Id:** Chips
 - **Appearance:** Small, rounded rectangles with text and/or icon. Often used for tags, filters, or selections. May include a close (remove) icon.
 - **Behavior:** Can be static or interactive (selectable, removable, or clickable). Supports keyboard navigation. May be used in groups for multi-select.
@@ -510,7 +510,7 @@ Compact elements representing tags, selections, or actions, often removable or s
 - **Behavior:** Displays icon content.
 
 ## Collapse
-A container that can expand or collapse to show or hide its content.
+➖ A container that can expand or collapse to show or hide its content.
 - **Id:** Collapse
 - **Appearance:** A container with a header and hidden or visible content. Header may include an icon indicating expanded/collapsed state. Content area animates open/closed.
 - **Behavior:** Clicking the header toggles visibility of the content. Supports smooth transitions and keyboard navigation. Can be used standalone or in groups.
@@ -541,7 +541,7 @@ A container that can expand or collapse to show or hide its content.
 - **Behavior:** Nested panel toggle.
 
 ## Color Input
-An input field for selecting or entering color values, often with a color picker UI.
+🎨 An input field for selecting or entering color values, often with a color picker UI.
 - **Id:** ColorInput
 - **Appearance:** An input field with a color swatch. May include a color picker dialog, palette, or eyedropper tool. Shows selected color as background or border.
 - **Behavior:** Clicking opens a color picker or palette. Selecting a color updates the value and swatch. May support manual hex/RGB input and validation.
@@ -571,7 +571,7 @@ An input field for selecting or entering color values, often with a color picker
 - **Behavior:** Selects color from palette.
 
 ## Combobox
-A component that combines an input field with a dropdown list of options that filters as the user types.
+🧰 A component that combines an input field with a dropdown list of options that filters as the user types.
 - **Id:** Combobox
 - **Appearance:** An input field with a dropdown list of options that filters as the user types. May include clear button, icons, and tags for multi-select. Dropdown appears below input and highlights matching text.
 - **Behavior:** Typing filters options. Selecting an option adds it to the input (single or multiple). Supports keyboard navigation, option creation, and async loading.
@@ -605,7 +605,7 @@ A component that combines an input field with a dropdown list of options that fi
 - **Behavior:** Typeahead input.
 
 ## Command
-A modal or dropdown for searching and executing actions or commands quickly.
+⌨️ A modal or dropdown for searching and executing actions or commands quickly.
 - **Id:** Command
 - **Appearance:** A modal or dropdown with a search input and a list of actions or commands. Each item may include an icon, description, and keyboard shortcut.
 - **Behavior:** Opens with a shortcut or button. Typing filters commands. Selecting an item triggers its action. Supports keyboard navigation and grouping.
@@ -631,7 +631,7 @@ A modal or dropdown for searching and executing actions or commands quickly.
 - **Behavior:** Filters commands.
 
 ## Context Menu
-A menu that appears on right-click or long-press, offering context-specific actions.
+📋 A menu that appears on right-click or long-press, offering context-specific actions.
 - **Id:** ContextMenu
 - **Appearance:** A floating menu that appears on right-click or long-press. Contains a vertical list of actions, each with optional icon and shortcut.
 - **Behavior:** Opens at cursor position. Selecting an item triggers its action. Supports nested submenus and keyboard navigation.
@@ -657,7 +657,7 @@ A menu that appears on right-click or long-press, offering context-specific acti
 - **Behavior:** Displays action items.
 
 ## Countdown
-A timer that counts down to a specific time or event, often used for deadlines or launches.
+⏳ A timer that counts down to a specific time or event, often used for deadlines or launches.
 - **Id:** Countdown
 - **Appearance:** A numeric or digital timer showing time remaining. May include labels for days, hours, minutes, seconds.
 - **Behavior:** Counts down in real time. Triggers event or changes appearance when complete.
@@ -674,7 +674,7 @@ A timer that counts down to a specific time or event, often used for deadlines o
 - **Behavior:** Counts down time.
 
 ## Data Table
-A component for displaying and interacting with tabular data in rows and columns.
+📊 A component for displaying and interacting with tabular data in rows and columns.
 - **Id:** DataTable
 - **Appearance:** A table with rows and columns, headers, and optional borders or stripes. May include sorting icons, filters, pagination controls, and action buttons.
 - **Behavior:** Displays tabular data. Supports sorting, filtering, pagination, row selection, and inline actions. Columns may be resizable or reorderable.
@@ -721,7 +721,7 @@ A component for displaying and interacting with tabular data in rows and columns
 - **Behavior:** Supports advanced table interactions.
 
 ## Date Picker
-A calendar input for selecting a single date.
+📆 A calendar input for selecting a single date.
 - **Id:** DatePicker
 - **Appearance:** An input field with a calendar popup for picking a date.
 - **Behavior:** Clicking input opens calendar. Selecting a date updates the value.
@@ -739,7 +739,7 @@ A calendar input for selecting a single date.
 - **Behavior:** Selects a single date.
 
 ## Date Range Picker
-An input for selecting a range of dates.
+🗓️ An input for selecting a range of dates.
 - **Id:** DateRangePicker
 - **Appearance:** An input field with a calendar popup for picking a start and end date.
 - **Behavior:** Clicking input opens calendar. Selecting two dates sets the range.
@@ -757,7 +757,7 @@ An input for selecting a range of dates.
 - **Behavior:** Selects a date range.
 
 ## Dialog
-A popup overlay that displays content or actions requiring user attention.
+🗨️ A popup overlay that displays content or actions requiring user attention.
 - **Id:** Dialog
 - **Appearance:** A centered overlay with a box containing title, content, and actions. Background is dimmed. May include close button and icon.
 - **Behavior:** Opens in response to user action. Can be closed by button, overlay click, or escape key. Traps focus and disables background interaction.
@@ -788,7 +788,7 @@ A popup overlay that displays content or actions requiring user attention.
 - **Behavior:** Nested modal interactions.
 
 ## Divider
-A visual line or space used to separate content into distinct sections.
+🟰 A visual line or space used to separate content into distinct sections.
 - **Id:** Divider
 - **Appearance:** A thin horizontal or vertical line, sometimes with text or icon in the center. Used to separate content.
 - **Behavior:** Static visual separator. May be interactive if used as a drag handle.
@@ -809,7 +809,7 @@ A visual line or space used to separate content into distinct sections.
 - **Behavior:** Static separator.
 
 ## Drawer
-A panel that slides in from the edge of the screen to display additional content or actions.
+🗄️ A panel that slides in from the edge of the screen to display additional content or actions.
 - **Id:** Drawer
 - **Appearance:** A panel that slides in from the edge of the screen, overlaying content. Contains title, content, and actions. May include close button.
 - **Behavior:** Opens in response to user action. Can be closed by button, overlay click, or escape key. Traps focus and disables background interaction.
@@ -844,7 +844,7 @@ A panel that slides in from the edge of the screen to display additional content
 - **Behavior:** Mobile navigation panel.
 
 ## Dropzone
-A component for uploading files via drag-and-drop or file selection.
+🗃️ A component for uploading files via drag-and-drop or file selection.
 - **Id:** Dropzone
 - **Appearance:** A bordered area with an icon and prompt text. Shows file previews or list of uploaded files. May include progress bars and remove buttons.
 - **Behavior:** Dragging files over highlights the area. Dropping or selecting files uploads them. Supports multiple files, file type restrictions, and progress display.
@@ -882,7 +882,7 @@ A component for uploading files via drag-and-drop or file selection.
 - **Behavior:** Drag-and-drop file upload.
 
 ## File Input
-An input field for selecting one or more files from the user's device.
+📤 An input field for selecting one or more files from the user's device.
 - **Id:** FileInput
 - **Appearance:** An input field with a button to select files. May show selected file name(s) and a clear button.
 - **Behavior:** Clicking button opens file picker. Selecting files updates the value. Supports multiple files and file type restrictions.
@@ -908,7 +908,7 @@ An input field for selecting one or more files from the user's device.
 - **Behavior:** Displays file previews.
 
 ## Form Error Message
-A message or indicator that displays validation errors or feedback for form fields.
+❗ A message or indicator that displays validation errors or feedback for form fields.
 - **Id:** FormErrorMessage
 - **Appearance:** A small text message below or beside a form field, often colored red or with an error icon.
 - **Behavior:** Appears when validation fails. May disappear on correction or after a timeout. Supports accessibility roles.
@@ -932,7 +932,7 @@ A message or indicator that displays validation errors or feedback for form fiel
 - **Behavior:** Displays tooltip error.
 
 ## Hover Card
-A floating card that appears when hovering over an element, showing additional information or actions.
+🪧 A floating card that appears when hovering over an element, showing additional information or actions.
 - **Id:** HoverCard
 - **Appearance:** A floating card that appears when hovering over a target element. Contains text, image, or actions. May have an arrow pointing to the target.
 - **Behavior:** Appears on hover or focus. Disappears on mouse leave or blur. Supports delay and interactive content.
@@ -954,7 +954,7 @@ A floating card that appears when hovering over an element, showing additional i
 - **Behavior:** Supports interactive actions.
 
 ## Image
-A component for displaying images with optional styling, captions, or overlays.
+🖼️ A component for displaying images with optional styling, captions, or overlays.
 - **Id:** Image
 - **Appearance:** Displays an image with optional border, shadow, or rounded corners. May include caption or overlay.
 - **Behavior:** Static by default. May support zoom, lazy loading, or click to enlarge. Responsive to container size.
@@ -987,7 +987,7 @@ A component for displaying images with optional styling, captions, or overlays.
 - **Behavior:** Displays image gallery.
 
 ## Input
-A field for entering and editing a single line of text or data.
+📝 A field for entering and editing a single line of text or data.
 - **Id:** Input
 - **Appearance:** A rectangular or pill-shaped text field with optional label, icon, or button. Shows placeholder text when empty.
 - **Behavior:** Accepts user text input. Supports focus, disabled, and error states. May include clear or reveal button.
@@ -1021,7 +1021,7 @@ A field for entering and editing a single line of text or data.
 - **Behavior:** Supports button actions.
 
 ## Input Group
-A combination of input fields and add-ons grouped together for related data entry.
+👥 A combination of input fields and add-ons grouped together for related data entry.
 - **Id:** InputGroup
 - **Appearance:** A combination of input fields and buttons/icons grouped together in a single row. May include add-ons before or after the input.
 - **Behavior:** All elements are visually and functionally grouped. Supports focus, disabled, and error states.
@@ -1042,7 +1042,7 @@ A combination of input fields and add-ons grouped together for related data entr
 - **Behavior:** Displays icon content.
 
 ## Keyboard Key
-A component for displaying keyboard input or shortcuts in documentation or UI hints.
+⌨️ A component for displaying keyboard input or shortcuts in documentation or UI hints.
 - **Id:** KeyboardKey
 - **Appearance:** Inline element styled to look like a keyboard key or combination (e.g., Ctrl, Cmd+C). Typically uses a monospace font, border, and subtle background.
 - **Behavior:** Static display. Used for documentation, tooltips, or UI hints to indicate keyboard shortcuts or keys to press.
@@ -1063,7 +1063,7 @@ A component for displaying keyboard input or shortcuts in documentation or UI hi
 - **Behavior:** Static display.
 
 ## List
-A vertical or horizontal arrangement of items, often with icons, avatars, or actions.
+📋 A vertical or horizontal arrangement of items, often with icons, avatars, or actions.
 - **Id:** List
 - **Appearance:** A vertical stack of items, each with text and optional icon or avatar. May be ordered (numbered) or unordered (bulleted).
 - **Behavior:** Static or interactive (clickable, selectable, or reorderable). Supports keyboard navigation and nested lists.
@@ -1107,7 +1107,7 @@ A vertical or horizontal arrangement of items, often with icons, avatars, or act
 - **Behavior:** Displays avatar content.
 
 ## Loading
-A visual indicator that content is loading or a process is in progress.
+⏳ A visual indicator that content is loading or a process is in progress.
 - **Id:** Loading
 - **Appearance:** Spinner (rotating icon), skeleton (gray placeholder shapes), or overlay (dimmed background with loader). Indicates loading state.
 - **Behavior:** Appears while content is loading. Disappears when loading completes. May block interaction (overlay) or show progress.
@@ -1132,7 +1132,7 @@ A visual indicator that content is loading or a process is in progress.
 - **Behavior:** Indicates loading state.
 
 ## Map
-A component for selecting or displaying a geographic location on an interactive map.
+🗺️ A component for selecting or displaying a geographic location on an interactive map.
 - **Id:** MapLocationPicker
 - **Appearance:** An interactive map with a marker or pin. May include search input, zoom controls, and address display.
 - **Behavior:** User can move marker, search for location, or click map to select. Updates value and may show address or coordinates.
@@ -1154,7 +1154,7 @@ A component for selecting or displaying a geographic location on an interactive 
 - **Behavior:** Searches location.
 
 ## Menubar
-A horizontal or vertical bar containing navigation menus and actions.
+🍔 A horizontal or vertical bar containing navigation menus and actions.
 - **Id:** Menubar
 - **Appearance:** A horizontal bar with menu items, each optionally with an icon or dropdown. May be styled as tabs or buttons.
 - **Behavior:** Clicking or hovering opens dropdowns. Supports keyboard navigation and active state indication.
@@ -1180,7 +1180,7 @@ A horizontal or vertical bar containing navigation menus and actions.
 - **Behavior:** Displays dropdown menus.
 
 ## Notification
-A temporary message that appears to inform the user of an event or status.
+🔔 A temporary message that appears to inform the user of an event or status.
 - **Id:** NotificationToastSnackbar
 - **Appearance:** A small box that appears temporarily, usually at the corner or bottom of the screen. Shows message, icon, and optional action button.
 - **Behavior:** Appears in response to events. Auto-dismisses after timeout or can be dismissed manually. Supports stacking and different types (success, error, etc.).
@@ -1230,7 +1230,7 @@ A temporary message that appears to inform the user of an event or status.
 - **Behavior:** Bottom position display.
 
 ## Number Input
-An input field for entering numeric values, often with increment/decrement controls.
+🔢 An input field for entering numeric values, often with increment/decrement controls.
 - **Id:** NumberInput
 - **Appearance:** An input field for numbers, often with up/down arrow buttons. May show min/max and step values.
 - **Behavior:** Accepts numeric input. Arrow buttons increment/decrement value. Supports validation, min/max, and disabled state.
@@ -1252,7 +1252,7 @@ An input field for entering numeric values, often with increment/decrement contr
 - **Behavior:** Adjusts value without controls.
 
 ## Pagination
-A navigation control for dividing content into discrete pages and moving between them.
+📄 A navigation control for dividing content into discrete pages and moving between them.
 - **Id:** Pagination
 - **Appearance:** A horizontal row of page numbers, arrows, and optional jump or page size controls. Current page is highlighted.
 - **Behavior:** Clicking a number or arrow navigates to that page. Supports keyboard navigation and dynamic page range.
@@ -1282,7 +1282,7 @@ A navigation control for dividing content into discrete pages and moving between
 - **Behavior:** Selects page size.
 
 ## Password Input
-A text input that hides entered characters, used for sensitive information like passwords.
+🔒 A text input that hides entered characters, used for sensitive information like passwords.
 - **Id:** PasswordInput
 - **Appearance:** An input field with obscured text (dots or asterisks). Includes a button to toggle visibility.
 - **Behavior:** Accepts password input. Toggle button reveals/hides text. Supports validation and error state.
@@ -1300,7 +1300,7 @@ A text input that hides entered characters, used for sensitive information like 
 - **Behavior:** Toggles password visibility.
 
 ## Pin Input
-A set of input fields for entering a fixed-length code, such as a PIN or verification code.
+🔑 A set of input fields for entering a fixed-length code, such as a PIN or verification code.
 - **Id:** PinInput
 - **Appearance:** A row of small input boxes for entering a fixed-length numeric or alphanumeric code.
 - **Behavior:** Typing moves focus to next box. Supports paste, backspace, and validation. May mask input for security.
@@ -1322,7 +1322,7 @@ A set of input fields for entering a fixed-length code, such as a PIN or verific
 - **Behavior:** Accepts 6-digit code.
 
 ## Popconfirm
-A confirmation popup that asks the user to verify an action before proceeding.
+❓ A confirmation popup that asks the user to verify an action before proceeding.
 - **Id:** Popconfirm
 - **Appearance:** A small popup with a message and confirm/cancel buttons. Appears near the triggering element.
 - **Behavior:** Appears on action (e.g., delete). Confirms or cancels the action. Disappears on selection or outside click.
@@ -1340,7 +1340,7 @@ A confirmation popup that asks the user to verify an action before proceeding.
 - **Behavior:** Confirms or cancels action.
 
 ## Popover
-A floating panel anchored to a trigger element, used for displaying additional content or actions.
+💬 A floating panel anchored to a trigger element, used for displaying additional content or actions.
 - **Id:** Popover
 - **Appearance:** A floating panel anchored to a trigger element. Contains content, actions, or forms. May have an arrow pointing to the trigger.
 - **Behavior:** Opens on click, hover, or focus. Closes on outside click or escape. Supports interactive content and keyboard navigation.
@@ -1366,7 +1366,7 @@ A floating panel anchored to a trigger element, used for displaying additional c
 - **Behavior:** Supports form submission.
 
 ## Progress
-A visual indicator of task completion or ongoing activity, such as a bar or spinner.
+📈 A visual indicator of task completion or ongoing activity, such as a bar or spinner.
 - **Id:** Progress
 - **Appearance:** A horizontal bar or circular indicator showing completion percentage. May include label or value.
 - **Behavior:** Fills or animates to indicate progress. Can be determinate (fixed value) or indeterminate (loading).
@@ -1388,7 +1388,7 @@ A visual indicator of task completion or ongoing activity, such as a bar or spin
 - **Behavior:** Indicates circular progress.
 
 ## QR Code
-A component for generating and displaying QR codes that encode data for scanning.
+🔳 A component for generating and displaying QR codes that encode data for scanning.
 - **Id:** QRCode
 - **Appearance:** A square grid of black and white modules encoding data. May include a label or logo in the center.
 - **Behavior:** Static image or canvas. Scannable by devices. Updates when data changes.
@@ -1405,7 +1405,7 @@ A component for generating and displaying QR codes that encode data for scanning
 - **Behavior:** Scannable QR codes.
 
 ## Radio
-A control for selecting a single option from a set of mutually exclusive choices.
+🔘 A control for selecting a single option from a set of mutually exclusive choices.
 - **Id:** Radio
 - **Appearance:** A small circular button with a label. Selected state is indicated by a filled dot. Used in groups for single selection.
 - **Behavior:** Clicking selects the radio and deselects others in the group. Supports keyboard navigation and disabled state.
@@ -1428,7 +1428,7 @@ A control for selecting a single option from a set of mutually exclusive choices
 - **Behavior:** Displays label text.
 
 ## Rating
-A control for displaying or collecting user ratings, typically with stars or icons.
+⭐ A control for displaying or collecting user ratings, typically with stars or icons.
 - **Id:** Rating
 - **Appearance:** A row of stars or custom icons, filled to indicate value. May show numeric value or label.
 - **Behavior:** Clicking or hovering sets the rating. Supports read-only and interactive modes. May allow half or custom increments.
@@ -1454,7 +1454,7 @@ A control for displaying or collecting user ratings, typically with stars or ico
 - **Behavior:** Static rating display.
 
 ## Resizable Panel
-A container that can be resized by the user, often via a drag handle or border.
+↔️ A container that can be resized by the user, often via a drag handle or border.
 - **Id:** ResizablePanel
 - **Appearance:** A container with a visible drag handle or border. Can be horizontal or vertical.
 - **Behavior:** User drags handle to resize panel. Supports min/max size and snapping. May animate resize.
@@ -1480,7 +1480,7 @@ A container that can be resized by the user, often via a drag handle or border.
 - **Behavior:** Displays panel content.
 
 ## Rich Text Editor
-A text input area with formatting controls for creating styled content.
+📝 A text input area with formatting controls for creating styled content.
 - **Id:** RichTextEditor
 - **Appearance:** A text input area with a toolbar for formatting (bold, italic, lists, etc.). Shows styled content as user types.
 - **Behavior:** User applies formatting via toolbar or shortcuts. Supports undo/redo, links, images, and HTML output.
@@ -1498,7 +1498,7 @@ A text input area with formatting controls for creating styled content.
 - **Behavior:** Supports text formatting.
 
 ## Scroll Area
-A container with custom scrollbars for overflowing content.
+🖱️ A container with custom scrollbars for overflowing content.
 - **Id:** ScrollArea
 - **Appearance:** A container with custom scrollbars. May show only when needed or always visible.
 - **Behavior:** Scrolls content horizontally or vertically. Supports keyboard and mouse interaction. May auto-scroll or snap.
@@ -1520,7 +1520,7 @@ A container with custom scrollbars for overflowing content.
 - **Behavior:** Scrolls content.
 
 ## Scrollspy
-A navigation aid that highlights links based on the user's scroll position in the page.
+🕵️ A navigation aid that highlights links based on the user's scroll position in the page.
 - **Id:** Scrollspy
 - **Appearance:** A vertical or horizontal list of links. Highlights the link corresponding to the visible section.
 - **Behavior:** Updates highlight as user scrolls. Clicking a link scrolls to the section. Supports smooth scroll and active state.
@@ -1538,7 +1538,7 @@ A navigation aid that highlights links based on the user's scroll position in th
 - **Behavior:** Updates highlight on scroll.
 
 ## Searchbox
-A modal or dropdown for searching content or navigating quickly within an app.
+🔍 A modal or dropdown for searching content or navigating quickly within an app.
 - **Id:** Searchbox
 - **Appearance:** A modal or dropdown with a search input and list of results. May include icons, categories, and keyboard shortcuts.
 - **Behavior:** Opens with shortcut or button. Typing filters results. Selecting an item triggers navigation or action.
@@ -1561,7 +1561,7 @@ A modal or dropdown for searching content or navigating quickly within an app.
 - **Behavior:** Filters search results.
 
 ## Select
-A dropdown input for choosing one or more options from a list.
+🗳️ A dropdown input for choosing one or more options from a list.
 - **Id:** Select
 - **Appearance:** An input field with a dropdown arrow. Clicking shows a list of options. Selected option is shown in the field.
 - **Behavior:** Clicking opens dropdown. Selecting an option updates the value. Supports keyboard navigation, search, and multi-select.
@@ -1587,7 +1587,7 @@ A dropdown input for choosing one or more options from a list.
 - **Behavior:** Searches options.
 
 ## Slider
-A control for selecting a value or range by sliding a handle along a track.
+🎚️ A control for selecting a value or range by sliding a handle along a track.
 - **Id:** Slider
 - **Appearance:** A horizontal or vertical track with a draggable thumb. May show value, min/max labels, and ticks.
 - **Behavior:** Dragging the thumb or clicking the track changes the value. Supports keyboard navigation, range selection, and disabled state.
@@ -1609,7 +1609,7 @@ A control for selecting a value or range by sliding a handle along a track.
 - **Behavior:** Adjusts range of values.
 
 ## Statistic
-A component for displaying key metrics, numbers, or trends in a visually prominent way.
+📊 A component for displaying key metrics, numbers, or trends in a visually prominent way.
 - **Id:** Statistic
 - **Appearance:** A number with label, icon, or trend indicator. May be displayed in a card or grid.
 - **Behavior:** Updates dynamically to reflect data changes. May animate value changes.
@@ -1634,7 +1634,7 @@ A component for displaying key metrics, numbers, or trends in a visually promine
 - **Behavior:** Displays icon content.
 
 ## Stepper
-A sequence of steps or stages, often used for multi-step forms or processes.
+🪜 A sequence of steps or stages, often used for multi-step forms or processes.
 - **Id:** Stepper
 - **Appearance:** A horizontal or vertical sequence of steps, each with a label and icon. Current step is highlighted.
 - **Behavior:** Clicking a step navigates to it. Supports linear or non-linear progression, validation, and completion state.
@@ -1664,7 +1664,7 @@ A sequence of steps or stages, often used for multi-step forms or processes.
 - **Behavior:** Displays step progress.
 
 ## Switch
-A toggle control for switching between two states, such as on/off or enabled/disabled.
+🔀 A toggle control for switching between two states, such as on/off or enabled/disabled.
 - **Id:** Switch
 - **Appearance:** A toggle switch with a sliding thumb. May include labels or icons for on/off states.
 - **Behavior:** Clicking or dragging toggles state. Supports keyboard navigation and disabled state. May animate thumb.
@@ -1690,7 +1690,7 @@ A toggle control for switching between two states, such as on/off or enabled/dis
 - **Behavior:** Displays icon content.
 
 ## Tabs
-A set of tabbed buttons for switching between different views or content sections.
+🗂️ A set of tabbed buttons for switching between different views or content sections.
 - **Id:** Tabs
 - **Appearance:** A row or column of tab buttons with an active indicator. Each tab displays different content.
 - **Behavior:** Clicking a tab shows its content. Supports keyboard navigation, icons, and orientation.
@@ -1716,7 +1716,7 @@ A set of tabbed buttons for switching between different views or content section
 - **Behavior:** Displays icon content.
 
 ## Tag Input
-An input field for entering and managing tags, often displayed as removable chips.
+🏷️ An input field for entering and managing tags, often displayed as removable chips.
 - **Id:** TagInput
 - **Appearance:** An input field with tags displayed as chips. May include add/remove buttons and suggestions dropdown.
 - **Behavior:** Typing adds tags. Tags can be removed by clicking or keyboard. Supports validation and suggestions.
@@ -1738,7 +1738,7 @@ An input field for entering and managing tags, often displayed as removable chip
 - **Behavior:** Displays tag suggestions.
 
 ## Textarea
-A multi-line input field for entering larger amounts of text.
+📝 A multi-line input field for entering larger amounts of text.
 - **Id:** Textarea
 - **Appearance:** A multi-line text input box with optional label and placeholder. May show character count.
 - **Behavior:** Accepts multi-line text input. Supports focus, disabled, and error states. May auto-resize to fit content.
@@ -1765,7 +1765,7 @@ A multi-line input field for entering larger amounts of text.
 - **Behavior:** Displays character count.
 
 ## Theme Toggle
-A control for switching between light and dark (or other) visual themes.
+🌗 A control for switching between light and dark (or other) visual themes.
 - **Id:** ThemeToggle
 - **Appearance:** A button or switch with sun/moon or light/dark icons. Indicates current theme.
 - **Behavior:** Clicking toggles between light and dark themes. May animate icon or background.
@@ -1783,7 +1783,7 @@ A control for switching between light and dark (or other) visual themes.
 - **Behavior:** Toggles light/dark theme.
 
 ## Timeline
-A vertical or horizontal display of events in chronological order.
+🕒 A vertical or horizontal display of events in chronological order.
 - **Id:** Timeline
 - **Appearance:** A vertical or horizontal line with events marked by dots, icons, or cards. Each event includes label, date, and content.
 - **Behavior:** Static or interactive (expand/collapse, click for details). May animate on scroll or highlight current event.
@@ -1813,7 +1813,7 @@ A vertical or horizontal display of events in chronological order.
 - **Behavior:** Displays image content.
 
 ## Time Input
-An input for selecting a time value.
+⏰ An input for selecting a time value.
 - **Id:** TimeInput
 - **Appearance:** An input field with a clock popup for picking a time.
 - **Behavior:** Clicking input opens time picker. Selecting a time updates the value.
@@ -1831,7 +1831,7 @@ An input for selecting a time value.
 - **Behavior:** Selects a time value.
 
 ## Toggle
-A control for switching between two states, such as on/off or enabled/disabled.
+🔁 A control for switching between two states, such as on/off or enabled/disabled.
 - **Id:** Toggle
 - **Appearance:** A horizontal slider with a thumb that moves between on and off positions. May include labels or icons for each state.
 - **Behavior:** Clicking or dragging toggles the state. Supports keyboard navigation and disabled state. May animate thumb movement.
@@ -1853,7 +1853,7 @@ A control for switching between two states, such as on/off or enabled/disabled.
 - **Behavior:** Displays icon content.
 
 ## Tooltip
-A small popup that provides additional information when hovering or focusing on an element.
+💡 A small popup that provides additional information when hovering or focusing on an element.
 - **Id:** Tooltip
 - **Appearance:** A small floating box with text, appearing near a target element. May have an arrow pointing to the target.
 - **Behavior:** Appears on hover or focus. Disappears on mouse leave or blur. Supports delay, rich content, and positioning.
@@ -1886,7 +1886,7 @@ A small popup that provides additional information when hovering or focusing on 
 - **Behavior:** Displays rich content.
 
 ## Transfer List
-A dual-list component for moving items between two lists, often with selection and search.
+🔄 A dual-list component for moving items between two lists, often with selection and search.
 - **Id:** TransferList
 - **Appearance:** Two lists side by side with buttons to move items between them. May include search and selection checkboxes.
 - **Behavior:** Selecting items and clicking buttons moves them between lists. Supports keyboard navigation and bulk actions.
@@ -1904,7 +1904,7 @@ A dual-list component for moving items between two lists, often with selection a
 - **Behavior:** Moves items between lists.
 
 ## Tree View
-A hierarchical list for displaying and selecting nested items or categories.
+🌳 A hierarchical list for displaying and selecting nested items or categories.
 - **Id:** TreeView
 - **Appearance:** A hierarchical list with expandable/collapsible nodes. Each node may have a checkbox, icon, or label.
 - **Behavior:** Clicking expands/collapses nodes. Selecting a node updates value. Supports keyboard navigation and multi-select.
@@ -1938,7 +1938,7 @@ A hierarchical list for displaying and selecting nested items or categories.
 - **Behavior:** Displays tree structure.
 
 ## Typography
-A set of styled text elements for headings, paragraphs, lists, and more.
+🔤 A set of styled text elements for headings, paragraphs, lists, and more.
 - **Id:** Typography
 - **Appearance:** Text elements styled as headings, paragraphs, blockquotes, lists, code, or highlights. Follows design system type scale and spacing.
 - **Behavior:** Static display. May support copy, selection, or inline editing.
