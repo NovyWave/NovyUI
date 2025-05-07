@@ -174,7 +174,7 @@ A block containing forms for user login, registration, or password management.
   - [TimeInput](components.md#timeinput)
 - **Used in pages:**
   - [Authentication](pages.md#authentication)
-  - [LoginSecurity](pages.md#login-security)
+  - [LoginAndSecurity](pages.md#login-and-security)
 ### Variants
 #### Login
 - **Id:** Login
@@ -1399,7 +1399,7 @@ A block for entering a verification code sent to the user, as part of login or s
   - [PinInput](components.md#pin-input)
   - [Button](components.md#button)
 - **Used in pages:**
-  - [LoginSecurity](pages.md#login-security)
+  - [LoginAndSecurity](pages.md#login-and-security)
 ### Variants
 #### Basic
 - **Id:** Basic
