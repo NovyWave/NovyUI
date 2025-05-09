@@ -74,3 +74,9 @@
   ```
 - Keep the list of BlockIds and their paths in the **Blocks:** section up to date.
 - Ensure all references (blocks in pages, components in blocks, etc.) use correct relative paths and are kept in sync.
+
+## Table of Contents Consistency
+- Every block in `/blocks`, page in `/pages`, and component in `/components` must be listed in their respective table of contents file: `blocks.md`, `pages.md`, and `components.md`.
+- Every link in `blocks.md`, `pages.md`, and `components.md` must point to an existing file.
+- The lists of links in `blocks.md`, `pages.md`, and `components.md` must be sorted alphabetically by their display name, ignoring any leading emojis or symbols.
+- The script `scripts/enforce-doc-structure.ts` must implement checks for all rules described in this document.

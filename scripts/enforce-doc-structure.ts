@@ -117,8 +117,75 @@ function checkVariants(content: string): boolean {
   return /### Variants/i.test(content);
 }
 
+// --- Table of Contents Consistency Checks ---
+async function checkTocConsistency(tocPath: string, dirPath: string, tocType: string, errorMap: Record<string, string[]>) {
+  const tocContent = await Deno.readTextFile(tocPath);
+  // Find all links in the TOC file
+  const linkRegex = /\[.*?\]\((.*?)\)/g;
+  const links = Array.from(tocContent.matchAll(linkRegex)).map(m => m[1]);
+  // Find all .md files in the directory (ignore hidden files)
+  const files = [];
+  for await (const entry of Deno.readDir(dirPath)) {
+    if (entry.isFile && entry.name.endsWith('.md') && !entry.name.startsWith('.')) {
+      files.push(entry.name);
+    }
+  }
+  // Check that every file is listed in the TOC
+  for (const file of files) {
+    if (!links.some(link => link.endsWith('/' + file) || link.endsWith('\\' + file))) {
+      if (!errorMap[tocPath]) errorMap[tocPath] = [];
+      errorMap[tocPath].push(`${tocType} TOC missing entry for: ${file}`);
+    }
+  }
+  // Check that every link points to an existing file
+  for (const link of links) {
+    const resolved = resolve(dirname(tocPath), link);
+    try {
+      await Deno.stat(resolved);
+    } catch {
+      if (!errorMap[tocPath]) errorMap[tocPath] = [];
+      errorMap[tocPath].push(`${tocType} TOC has broken link: ${link}`);
+    }
+  }
+}
+
+async function checkTocSorted(tocPath: string, errorMap: Record<string, string[]>) {
+  const tocContent = await Deno.readTextFile(tocPath);
+  // Find all lines that are links
+  const linkLineRegex = /^\s*- \[.*?\]\(.*?\)/gm;
+  const linkLines = tocContent.match(linkLineRegex) || [];
+  // Helper to remove leading emojis and whitespace from display name
+  function stripEmoji(text: string): string {
+    // Remove leading emoji(s) and whitespace
+    // Unicode emoji regex: https://stackoverflow.com/a/41164587/8656352
+    return text.replace(/^([\p{Emoji_Presentation}\p{Extended_Pictographic}]|\uFE0F|\u200D|\s)+/gu, '').trim();
+  }
+  const sorted = [...linkLines].sort((a, b) => {
+    const aNameRaw = a.match(/\[(.*?)\]/)?.[1] || '';
+    const bNameRaw = b.match(/\[(.*?)\]/)?.[1] || '';
+    const aName = stripEmoji(aNameRaw).toLowerCase();
+    const bName = stripEmoji(bNameRaw).toLowerCase();
+    return aName.localeCompare(bName, 'en');
+  });
+  for (let i = 0; i < linkLines.length; i++) {
+    if (linkLines[i] !== sorted[i]) {
+      if (!errorMap[tocPath]) errorMap[tocPath] = [];
+      errorMap[tocPath].push(`TOC links are not sorted alphabetically (first out-of-order: ${linkLines[i]})`);
+      break;
+    }
+  }
+}
+
 async function lintDocs(): Promise<void> {
   const errorMap: Record<string, string[]> = {};
+
+  // Table of Contents Consistency
+  await checkTocConsistency(join(ROOT, 'blocks.md'), BLOCKS_DIR, 'Blocks', errorMap);
+  await checkTocConsistency(join(ROOT, 'components.md'), COMPONENTS_DIR, 'Components', errorMap);
+  await checkTocConsistency(join(ROOT, 'pages.md'), PAGES_DIR, 'Pages', errorMap);
+  await checkTocSorted(join(ROOT, 'blocks.md'), errorMap);
+  await checkTocSorted(join(ROOT, 'components.md'), errorMap);
+  await checkTocSorted(join(ROOT, 'pages.md'), errorMap);
 
   // Components
   for (const file of await getMarkdownFiles(COMPONENTS_DIR)) {
