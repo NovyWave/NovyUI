@@ -3,7 +3,7 @@
 - **Id:** Menubar
 - **Appearance:** A horizontal bar with menu items, each optionally with an icon or dropdown. May be styled as tabs or buttons.
 - **Behavior:** Clicking or hovering opens dropdowns. Supports keyboard navigation and active state indication.
-- **Used in blocks:**
+- **Used in blocks:** [Navbars](../blocks/Navbars.md)
 ### Accessibility
 - Use ARIA roles (`menubar`, `menuitem`).
 - Support keyboard navigation (arrow keys, Enter, Esc).

@@ -2,6 +2,7 @@
 
 This document provides an overview of all UI blocks available in NovyUI. Each block is now documented in its own file under the `blocks/` directory. Use this file as a directory and quick reference: each link below points to a detailed description and variants for that block.
 
+- [Accordion FAQ](blocks/AccordionFAQ.md)
 - [Activity Feed](blocks/ActivityFeed.md)
 - [App Download Section](blocks/AppDownloadSection.md)
 - [Article Cards](blocks/ArticleCards.md)
@@ -19,6 +20,8 @@ This document provides an overview of all UI blocks available in NovyUI. Each bl
 - [Comments](blocks/Comments.md)
 - [Contact Card](blocks/ContactCard.md)
 - [Cookie Consent Banner](blocks/CookieConsentBanner.md)
+- [Countdown Timer](blocks/CountdownTimer.md)
+- [Country Select](blocks/CountrySelect.md)
 - [Data Table](blocks/DataTable.md)
 - [Dialog Modal](blocks/DialogModal.md)
 - [Drag And Drop](blocks/DragAndDrop.md)
@@ -44,10 +47,12 @@ This document provides an overview of all UI blocks available in NovyUI. Each bl
 - [Onboarding Steps](blocks/OnboardingSteps.md)
 - [Order History](blocks/OrderHistory.md)
 - [Page Loader Overlay](blocks/PageLoaderOverlay.md)
+- [Popconfirm Dialog](blocks/PopconfirmDialog.md)
 - [Pricing Table](blocks/PricingTable.md)
 - [Product Details](blocks/ProductDetails.md)
 - [Product Review](blocks/ProductReview.md)
 - [Profile Theme Customization](blocks/ProfileThemeCustomization.md)
+- [Quote Section](blocks/QuoteSection.md)
 - [Responsive Columns](blocks/ResponsiveColumns.md)
 - [Roadmap](blocks/Roadmap.md)
 - [Section](blocks/Section.md)
@@ -56,6 +61,7 @@ This document provides an overview of all UI blocks available in NovyUI. Each bl
 - [Split Layout](blocks/SplitLayout.md)
 - [Stats](blocks/Stats.md)
 - [Sticky Cart Summary](blocks/StickyCartSummary.md)
+- [Sticky Header](blocks/StickyHeader.md)
 - [Table Of Contents](blocks/TableOfContents.md)
 - [Team Section](blocks/TeamSection.md)
 - [Testimonials](blocks/Testimonials.md)

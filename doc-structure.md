@@ -29,6 +29,10 @@
 - The **Used in Blocks:** section must not be empty; every component must be referenced by at least one real block.
 <!-- RULE:component-accessibility-required -->
 - Always document accessibility and keyboard support for all components (Accessibility section is required).
+<!-- RULE:components-used-in-blocks-not-empty -->
+- The **Used in Blocks:** section in every component file must not be empty; each component must be referenced by at least one real block.
+<!-- RULE:accessibility-section-required -->
+- Every component file must include a `### Accessibility` section describing accessibility and keyboard support.
 
 ## Block
 <!-- RULE:block-dir -->
@@ -63,6 +67,8 @@
 - Keep the list of PageIds and their paths in the **Used in Pages:** section up to date.
 <!-- RULE:block-used-in-pages-not-empty -->
 - The **Used in Pages:** section must not be empty; every block must be referenced by at least one real page.
+<!-- RULE:blocks-used-in-pages-not-empty -->
+- The **Used in Pages:** section in every block file must not be empty; each block must be referenced by at least one real page.
 
 ## Page
 <!-- RULE:page-dir -->

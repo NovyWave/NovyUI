@@ -3,7 +3,7 @@
 - **Id:** Slider
 - **Appearance:** A horizontal or vertical track with a draggable thumb. May show value, min/max labels, and ticks.
 - **Behavior:** Dragging the thumb or clicking the track changes the value. Supports keyboard navigation, range selection, and disabled state.
-- **Used in blocks:**
+- **Used in blocks:** [Stats](../blocks/Stats.md)
 ### Accessibility
 - Use `role="slider"` with `aria-valuenow`, `aria-valuemax`, `aria-valuemin`.
 - Announce value changes to screen readers.

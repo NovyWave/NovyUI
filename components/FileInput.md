@@ -3,7 +3,7 @@
 - **Id:** FileInput
 - **Appearance:** An input field with a button to select files. May show selected file name(s) and a clear button.
 - **Behavior:** Clicking button opens file picker. Selecting files updates the value. Supports multiple files and file type restrictions.
-- **Used in blocks:**
+- **Used in blocks:** [File Actions Context Menu](../blocks/FileActionsContextMenu.md)
 ### Accessibility
 - Use native `<input type="file">` for best accessibility.
 - Provide clear labels and instructions.

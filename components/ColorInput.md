@@ -4,6 +4,7 @@
 - **Appearance:** An input field with a color swatch. May include a color picker dialog, palette, or eyedropper tool. Shows selected color as background or border.
 - **Behavior:** Clicking opens a color picker or palette. Selecting a color updates the value and swatch. May support manual hex/RGB input and validation.
 - **Used in blocks:**
+  - [ProfileThemeCustomization](../blocks/ProfileThemeCustomization.md)
 ### Accessibility
 - Use `aria-label` to describe the color input.
 - Ensure color picker dialog is keyboard accessible.

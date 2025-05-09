@@ -3,7 +3,7 @@
 - **Id:** Popconfirm
 - **Appearance:** A small popup with a message and confirm/cancel buttons. Appears near the triggering element.
 - **Behavior:** Appears on action (e.g., delete). Confirms or cancels the action. Disappears on selection or outside click.
-- **Used in blocks:**
+- **Used in blocks:** [Popconfirm Dialog](../blocks/PopconfirmDialog.md)
 
 ### Accessibility
 - Use `role="dialog"` for the popup.

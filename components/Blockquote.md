@@ -4,6 +4,7 @@
 - **Appearance:** A visually distinct section for quoting text. Typically indented, with a vertical line or different background. May include citation or author below or beside the quote.
 - **Behavior:** Static display. May support copy-to-clipboard or expandable/collapsible for long quotes.
 - **Used in blocks:**
+  - [QuoteSection](../blocks/QuoteSection.md)
 ### Accessibility
 - Use semantic `<blockquote>` element.
 - Provide citation or author information if available.

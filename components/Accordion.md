@@ -4,6 +4,7 @@
 - **Appearance:** A vertically stacked list of items, each with a header. Clicking a header expands or collapses its content. Optionally, headers may include icons indicating state (expanded/collapsed).
 - **Behavior:** Only one (single) or multiple (multiple) items can be open at a time. Clicking a header toggles its content. Supports keyboard navigation and smooth transitions.
 - **Used in blocks:**
+  - [AccordionFAQ](../blocks/AccordionFAQ.md)
 
 ### Accessibility
 - Uses appropriate ARIA roles (`region`, `button`, `aria-expanded`, `aria-controls`) for headers and panels.

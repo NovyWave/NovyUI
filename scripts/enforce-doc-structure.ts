@@ -380,6 +380,43 @@ async function lintDocs(): Promise<void> {
     }
   }
 
+  // RULE:component-dir
+  // Check that all component markdown files are in the components directory, but skip meta-files
+  for (const file of await getMarkdownFiles(ROOT)) {
+    const base = basename(file);
+    if ((base === "README.md" || base === "doc-structure.md" || base === "LICENSE")) continue;
+    if (file.endsWith('.md') && !file.includes('components/') && !file.includes('blocks/') && !file.includes('pages/')) {
+      if ((await Deno.readTextFile(file)).includes('**Id:**')) {
+        if (!errorMap[file]) errorMap[file] = [];
+        errorMap[file].push(`Component file '${file}' is not in the components directory.`);
+      }
+    }
+  }
+  // RULE:block-dir
+  // Check that all block markdown files are in the blocks directory, but skip meta-files
+  for (const file of await getMarkdownFiles(ROOT)) {
+    const base = basename(file);
+    if ((base === "README.md" || base === "doc-structure.md" || base === "LICENSE")) continue;
+    if (file.endsWith('.md') && !file.includes('blocks/') && !file.includes('components/') && !file.includes('pages/')) {
+      if ((await Deno.readTextFile(file)).includes('## ') && (await Deno.readTextFile(file)).toLowerCase().includes('block')) {
+        if (!errorMap[file]) errorMap[file] = [];
+        errorMap[file].push(`Block file '${file}' is not in the blocks directory.`);
+      }
+    }
+  }
+  // RULE:page-dir
+  // Check that all page markdown files are in the pages directory, but skip meta-files
+  for (const file of await getMarkdownFiles(ROOT)) {
+    const base = basename(file);
+    if ((base === "README.md" || base === "doc-structure.md" || base === "LICENSE")) continue;
+    if (file.endsWith('.md') && !file.includes('pages/') && !file.includes('components/') && !file.includes('blocks/')) {
+      if ((await Deno.readTextFile(file)).includes('## ') && (await Deno.readTextFile(file)).toLowerCase().includes('page')) {
+        if (!errorMap[file]) errorMap[file] = [];
+        errorMap[file].push(`Page file '${file}' is not in the pages directory.`);
+      }
+    }
+  }
+
   // Print errors
   const errorFiles = Object.keys(errorMap);
   if (errorFiles.length) {
@@ -391,7 +428,7 @@ async function lintDocs(): Promise<void> {
     }
     Deno.exit(1);
   } else {
-    console.log("All documentation files follow the structure rules.");
+    console.log("✅ All documentation files follow the structure rules.");
   }
 }
 

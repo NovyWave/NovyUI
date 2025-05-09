@@ -3,7 +3,7 @@
 - **Id:** NumberInput
 - **Appearance:** An input field for numbers, often with up/down arrow buttons. May show min/max and step values.
 - **Behavior:** Accepts numeric input. Arrow buttons increment/decrement value. Supports validation, min/max, and disabled state.
-- **Used in blocks:**
+- **Used in blocks:** [Order History](../blocks/OrderHistory.md)
 ### Accessibility
 - Use native `<input type="number">`.
 - Provide associated label and instructions.

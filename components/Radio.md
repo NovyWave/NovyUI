@@ -3,7 +3,7 @@
 - **Id:** Radio
 - **Appearance:** A small circular button with a label. Selected state is indicated by a filled dot. Used in groups for single selection.
 - **Behavior:** Clicking selects the radio and deselects others in the group. Supports keyboard navigation and disabled state.
-- **Used in blocks:**
+- **Used in blocks:** [FAQ](../blocks/FAQ.md)
 ### Accessibility
 - Use native `<input type="radio">` or `role="radio"`.
 - Announce checked state with `aria-checked`.
