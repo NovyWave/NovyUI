@@ -4,9 +4,9 @@ A block for formatting text in a document or email editor.
 - **Appearance:** A horizontal menubar with formatting options (bold, italic, etc.).
 - **Behavior:** Clicking icons applies formatting to selected text.
 - **Components:**
-  - [Menubar](components.md#menubar)
+  - [Menubar](../components/Menubar.md)
 - **Used in pages:**
-  - [Editor](pages.md#editor)
+  - [Editor](../pages/Editor.md)
 ### Variants
 #### Text Editor Toolbar - **Basic**
 - **Id:** Basic

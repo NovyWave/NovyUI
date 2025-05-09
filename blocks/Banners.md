@@ -4,12 +4,12 @@ A horizontal bar or box used to display important messages, promotions, or alert
 - **Appearance:** A horizontal bar or box with a message, icon, and optional action button. May be colored to indicate importance or type (e.g., warning, promo).
 - **Behavior:** Static or dismissible. May animate in/out or auto-dismiss after a timeout.
 - **Components:**
-  - [Alert](components.md#alert)
-  - [Button](components.md#button)
-  - [Icon](components.md#icon)
-  - [Typography](components.md#typography)
+  - [Alert](../components/Alert.md)
+  - [Button](../components/Button.md)
+  - [Icon](../components/Icon.md)
+  - [Typography](../components/Typography.md)
 - **Used in pages:**
-  - [Landing](pages.md#landing)
+  - [Landing](../pages/Landing.md)
 ### Variants
 #### Banners - **Announcement**
 - **Id:** Announcement

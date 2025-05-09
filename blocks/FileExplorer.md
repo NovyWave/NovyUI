@@ -4,9 +4,9 @@ A block for browsing and managing files/folders in a tree structure.
 - **Appearance:** A sidebar with expandable/collapsible folders and files.
 - **Behavior:** Allows navigation, selection, and file actions.
 - **Components:**
-  - [TreeView](components.md#tree-view)
+  - [TreeView](../components/TreeView.md)
 - **Used in pages:**
-  - [FileManagement](pages.md#file-management)
+  - [FileManagement](../pages/FileManagement.md)
 ### Variants
 #### File Explorer - **Basic**
 - **Id:** Basic

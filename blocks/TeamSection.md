@@ -4,14 +4,14 @@ A section showcasing team members, their roles, and contact information.
 - **Appearance:** A section with team member profiles, including avatar, name, role, and contact links. May be arranged in a grid or list.
 - **Behavior:** Static by default. Profiles may be clickable or support hover effects. Contact links open email or social profiles.
 - **Components:**
-  - [Avatar](components.md#avatar)
-  - [Card](components.md#card)
-  - [Grid](components.md#grid)
-  - [List](components.md#list)
-  - [Link](components.md#link)
-  - [Typography](components.md#typography)
+  - [Avatar](../components/Avatar.md)
+  - [Card](../components/Card.md)
+  - [Grid](../components/Grid.md)
+  - [List](../components/List.md)
+  - [Link](../components/Link.md)
+  - [Typography](../components/Typography.md)
 - **Used in pages:**
-  - [Team](pages.md#team)
+  - [Team](../pages/Team.md)
 ### Variants
 #### Team Section - **Grid**
 - **Id:** Grid

@@ -4,11 +4,11 @@ A block for listing past orders and their details.
 - **Appearance:** A list or table of previous orders with dates, status, and details link.
 - **Behavior:** Allows viewing order details and status.
 - **Components:**
-  - [TableOfContents](components.md#table-of-contents)
-  - [Typography](components.md#typography)
-  - [Button](components.md#button)
+  - [TableOfContents](../components/TableOfContents.md)
+  - [Typography](../components/Typography.md)
+  - [Button](../components/Button.md)
 - **Used in pages:**
-  - [ECommerce](pages.md#e-commerce)
+  - [ECommerce](../pages/ECommerce.md)
 ### Variants
 #### Order History - **Basic**
 - **Id:** Basic

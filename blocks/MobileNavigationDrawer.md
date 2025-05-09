@@ -4,10 +4,10 @@ A block for mobile navigation, sliding in from the side.
 - **Appearance:** A hamburger menu button that opens a drawer with navigation links.
 - **Behavior:** Drawer opens/closes, links navigate to sections.
 - **Components:**
-  - [Drawer](components.md#drawer)
-  - [Button](components.md#button)
+  - [Drawer](../components/Drawer.md)
+  - [Button](../components/Button.md)
 - **Used in pages:**
-  - [AppShell](pages.md#app-shell)
+  - [AppShell](../pages/AppShell.md)
 ### Variants
 #### Mobile Navigation Drawer - **Basic**
 - **Id:** Basic

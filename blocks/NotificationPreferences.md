@@ -4,9 +4,9 @@ A block for toggling notification settings.
 - **Appearance:** A list of notification options with switches to enable/disable.
 - **Behavior:** Toggles notification preferences.
 - **Components:**
-  - [Switch](components.md#switch)
+  - [Switch](../components/Switch.md)
 - **Used in pages:**
-  - [UserProfile](pages.md#user-profile)
+  - [UserProfile](../pages/UserProfile.md)
 ### Variants
 #### Notification Preferences - **Basic**
 - **Id:** Basic

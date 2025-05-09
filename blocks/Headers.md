@@ -4,16 +4,16 @@ A section at the top of a page or card, typically containing a title, actions, a
 - **Appearance:** A section at the top of a page or card, with title, breadcrumbs, actions, and optional avatar or search. May include background or divider.
 - **Behavior:** Static by default. Actions trigger navigation or open menus. Breadcrumbs are clickable.
 - **Components:**
-  - [Heading](components.md#heading)
-  - [Breadcrumbs](components.md#breadcrumbs)
-  - [Button](components.md#button)
-  - [Avatar](components.md#avatar)
-  - [Icon](components.md#icon)
-  - [Searchbox](components.md#searchbox)
+  - [Heading](../components/Heading.md)
+  - [Breadcrumbs](../components/Breadcrumbs.md)
+  - [Button](../components/Button.md)
+  - [Avatar](../components/Avatar.md)
+  - [Icon](../components/Icon.md)
+  - [Searchbox](../components/Searchbox.md)
 - **Used in pages:**
-  - [Blog](pages.md#blog)
-  - [Dashboard](pages.md#dashboard)
-  - [ECommerce](pages.md#e-commerce)
+  - [Blog](../pages/Blog.md)
+  - [Dashboard](../pages/Dashboard.md)
+  - [ECommerce](../pages/ECommerce.md)
 ### Variants
 #### Headers - **Basic**
 - **Id:** Basic

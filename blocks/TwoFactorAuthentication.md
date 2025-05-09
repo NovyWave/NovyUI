@@ -4,11 +4,11 @@ A block for entering and verifying a two-factor authentication code.
 - **Appearance:** Input fields for entering a verification code, with submit button and optional resend link.
 - **Behavior:** Validates and submits the code. May show error or success messages, and allow resending the code.
 - **Components:**
-  - [PinInput](components.md#pininput)
-  - [Button](components.md#button)
-  - [Alert](components.md#alert)
+  - [PinInput](../components/Pininput.md)
+  - [Button](../components/Button.md)
+  - [Alert](../components/Alert.md)
 - **Used in pages:**
-  - [LoginAndSecurity](pages.md#login-and-security)
+  - [LoginAndSecurity](../pages/LoginAndSecurity.md)
 ### Variants
 #### Two-Factor Authentication - **Basic**
 - **Id:** Basic

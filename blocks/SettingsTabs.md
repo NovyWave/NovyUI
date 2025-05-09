@@ -4,9 +4,9 @@ A block for organizing settings into tabbed sections.
 - **Appearance:** Tabs for different settings categories (Profile, Security, etc.).
 - **Behavior:** Clicking a tab shows its content.
 - **Components:**
-  - [Tabs](components.md#tabs)
+  - [Tabs](../components/Tabs.md)
 - **Used in pages:**
-  - [Settings](pages.md#settings)
+  - [Settings](../pages/Settings.md)
 ### Variants
 #### Settings Tabs - **Basic**
 - **Id:** Basic

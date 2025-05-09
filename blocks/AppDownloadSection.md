@@ -4,12 +4,12 @@ A block for presenting app download links, QR codes, and instructions.
 - **Appearance:** A section with download buttons, platform icons, and QR codes.
 - **Behavior:** Clicking a button starts download or opens app store. May show version info.
 - **Components:**
-  - [Button](components.md#button)
-  - [QRCode](components.md#qrcode)
-  - [Icon](components.md#icon)
-  - [Typography](components.md#typography)
+  - [Button](../components/Button.md)
+  - [QRCode](../components/Qrcode.md)
+  - [Icon](../components/Icon.md)
+  - [Typography](../components/Typography.md)
 - **Used in pages:**
-  - [Download](pages.md#download)
+  - [Download](../pages/Download.md)
 ### Variants
 #### App Download Section - **With QR code**
 - **Id:** WithQRCode

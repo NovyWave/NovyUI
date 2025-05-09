@@ -4,10 +4,10 @@ A block for adjusting image brightness with a slider.
 - **Appearance:** An image preview with a slider to adjust brightness.
 - **Behavior:** Updates image brightness in real time.
 - **Components:**
-  - [Slider](components.md#slider)
-  - [Image](components.md#image)
+  - [Slider](../components/Slider.md)
+  - [Image](../components/Image.md)
 - **Used in pages:**
-  - [Settings](pages.md#settings)
+  - [Settings](../pages/Settings.md)
 ### Variants
 #### Image Brightness Adjustment - **Basic**
 - **Id:** Basic

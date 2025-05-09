@@ -4,11 +4,11 @@ A block for submitting and displaying product ratings and reviews.
 - **Appearance:** A rating input, text area for review, and submit button.
 - **Behavior:** Collects and displays user ratings and reviews.
 - **Components:**
-  - [Rating](components.md#rating)
-  - [Textarea](components.md#textarea)
-  - [Button](components.md#button)
+  - [Rating](../components/Rating.md)
+  - [Textarea](../components/Textarea.md)
+  - [Button](../components/Button.md)
 - **Used in pages:**
-  - [ProductPage](pages.md#product-page)
+  - [ProductPage](../pages/ProductPage.md)
 ### Variants
 #### Product Review - **Basic**
 - **Id:** Basic

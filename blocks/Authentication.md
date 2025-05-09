@@ -4,19 +4,19 @@ A block containing forms for user login, registration, or password management.
 - **Appearance:** A form for user login, registration, or password reset. Includes input fields, labels, buttons, and optional links (e.g., forgot password). May be centered on the page or in a card.
 - **Behavior:** Submits user credentials or registration info. Shows validation errors and loading state. May redirect or show success message on completion.
 - **Components:**
-  - [Input](components.md#input)
-  - [PasswordInput](components.md#passwordinput)
-  - [Button](components.md#button)
-  - [Checkbox](components.md#checkbox)
-  - [Alert](components.md#alert)
-  - [Link](components.md#link)
-  - [FormErrorMessage](components.md#formerrormessage)
-  - [DatePicker](components.md#datepicker)
-  - [DateRangePicker](components.md#daterangepicker)
-  - [TimeInput](components.md#timeinput)
+  - [Input](../components/Input.md)
+  - [PasswordInput](../components/Passwordinput.md)
+  - [Button](../components/Button.md)
+  - [Checkbox](../components/Checkbox.md)
+  - [Alert](../components/Alert.md)
+  - [Link](../components/Link.md)
+  - [FormErrorMessage](../components/Formerrormessage.md)
+  - [DatePicker](../components/Datepicker.md)
+  - [DateRangePicker](../components/Daterangepicker.md)
+  - [TimeInput](../components/Timeinput.md)
 - **Used in pages:**
-  - [Authentication](pages.md#authentication)
-  - [LoginAndSecurity](pages.md#login-and-security)
+  - [Authentication](../pages/Authentication.md)
+  - [LoginAndSecurity](../pages/LoginAndSecurity.md)
 ### Variants
 #### Authentication - **Login**
 - **Id:** Login

@@ -4,12 +4,12 @@ A block for displaying user testimonials or reviews.
 - **Appearance:** A carousel or grid of testimonial cards, each with user photo, quote, and name.
 - **Behavior:** Static or auto-advancing carousel. May support navigation arrows.
 - **Components:**
-  - [Card](components.md#card)
-  - [Avatar](components.md#avatar)
-  - [Typography](components.md#typography)
-  - [Carousel](components.md#carousel)
+  - [Card](../components/Card.md)
+  - [Avatar](../components/Avatar.md)
+  - [Typography](../components/Typography.md)
+  - [Carousel](../components/Carousel.md)
 - **Used in pages:**
-  - [Landing](pages.md#landing)
+  - [Landing](../pages/Landing.md)
 ### Variants
 #### Testimonials - **Basic**
 - **Id:** Basic

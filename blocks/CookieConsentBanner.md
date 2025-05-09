@@ -4,12 +4,12 @@ A banner that informs users about cookie usage and requests their consent.
 - **Appearance:** A horizontal banner at the bottom or top of the page, with message, action buttons, and optional link to privacy policy.
 - **Behavior:** Appears on first visit or when required. Dismisses on button click. May store consent in cookies/local storage.
 - **Components:**
-  - [Alert](components.md#alert)
-  - [Button](components.md#button)
-  - [Typography](components.md#typography)
-  - [Link](components.md#link)
+  - [Alert](../components/Alert.md)
+  - [Button](../components/Button.md)
+  - [Typography](../components/Typography.md)
+  - [Link](../components/Link.md)
 - **Used in pages:**
-  - [Landing](pages.md#landing)
+  - [Landing](../pages/Landing.md)
 ### Variants
 #### Cookie Consent Banner - **Consent options**
 - **Id:** ConsentOptions

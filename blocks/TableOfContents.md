@@ -4,14 +4,14 @@ A navigational block listing links to sections within a page for easy access.
 - **Appearance:** A vertical or horizontal list of links to sections of a page. May be styled as a sidebar or sticky element.
 - **Behavior:** Clicking a link scrolls to the section. Highlights the active section as user scrolls. May collapse/expand for long lists.
 - **Components:**
-  - [List](components.md#list)
-  - [Link](components.md#link)
-  - [Heading](components.md#heading)
+  - [List](../components/List.md)
+  - [Link](../components/Link.md)
+  - [Heading](../components/Heading.md)
 - **Used in pages:**
-  - [Blog](pages.md#blog)
-  - [Dashboard](pages.md#dashboard)
-  - [ECommerce](pages.md#e-commerce)
-  - [DataTable](pages.md#data-table)
+  - [Blog](../pages/Blog.md)
+  - [Dashboard](../pages/Dashboard.md)
+  - [ECommerce](../pages/ECommerce.md)
+  - [DataTable](../pages/DataTable.md)
 ### Variants
 #### Table Of Contents - **Simple**
 - **Id:** Simple

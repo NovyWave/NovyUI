@@ -4,9 +4,9 @@ A block for file management actions (rename, delete, etc.) via right-click conte
 - **Appearance:** A file list with right-click context menu for actions.
 - **Behavior:** Opens menu on right-click, executes selected action.
 - **Components:**
-  - [ContextMenu](components.md#context-menu)
+  - [ContextMenu](../components/ContextMenu.md)
 - **Used in pages:**
-  - [FileManagement](pages.md#file-management)
+  - [FileManagement](../pages/FileManagement.md)
 ### Variants
 #### File Actions Context Menu - **Basic**
 - **Id:** Basic

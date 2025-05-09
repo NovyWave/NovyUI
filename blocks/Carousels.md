@@ -4,14 +4,14 @@ A horizontally scrollable area for showcasing images, cards, or featured content
 - **Appearance:** A horizontally scrollable area with images or cards, navigation arrows, and indicators. May auto-advance or loop.
 - **Behavior:** Users can scroll, swipe, or click arrows to navigate. Supports autoplay, pause on hover, and responsive layout.
 - **Components:**
-  - [Carousel](components.md#carousel)
-  - [Image](components.md#image)
-  - [Card](components.md#card)
-  - [Button](components.md#button)
-  - [Icon](components.md#icon)
+  - [Carousel](../components/Carousel.md)
+  - [Image](../components/Image.md)
+  - [Card](../components/Card.md)
+  - [Button](../components/Button.md)
+  - [Icon](../components/Icon.md)
 - **Used in pages:**
-  - [Portfolio](pages.md#portfolio)
-  - [Landing](pages.md#landing)
+  - [Portfolio](../pages/Portfolio.md)
+  - [Landing](../pages/Landing.md)
 ### Variants
 #### Carousels - **Image carousel**
 - **Id:** ImageCarousel

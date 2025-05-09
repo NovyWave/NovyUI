@@ -4,9 +4,9 @@ A block for writing and formatting blog posts with rich text.
 - **Appearance:** A rich text editor with formatting toolbar and content area.
 - **Behavior:** Supports text formatting, images, and links.
 - **Components:**
-  - [RichTextEditor](components.md#rich-text-editor)
+  - [RichTextEditor](../components/RichTextEditor.md)
 - **Used in pages:**
-  - [Editor](pages.md#editor)
+  - [Editor](../pages/Editor.md)
 ### Variants
 #### Blog Post Editor - **Basic**
 - **Id:** Basic

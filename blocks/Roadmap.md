@@ -4,11 +4,11 @@ A block for displaying a timeline or list of milestones and planned features.
 - **Appearance:** A vertical or horizontal timeline with milestones, dates, and descriptions.
 - **Behavior:** Static or interactive (expand/collapse, filter by status). May animate on scroll.
 - **Components:**
-  - [Timeline](components.md#timeline)
-  - [Card](components.md#card)
-  - [Typography](components.md#typography)
+  - [Timeline](../components/Timeline.md)
+  - [Card](../components/Card.md)
+  - [Typography](../components/Typography.md)
 - **Used in pages:**
-  - [Roadmap](pages.md#roadmap)
+  - [Roadmap](../pages/Roadmap.md)
 ### Variants
 #### Roadmap - **Basic**
 - **Id:** Basic

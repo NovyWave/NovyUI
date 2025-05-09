@@ -4,10 +4,10 @@ A block for displaying legal documents such as privacy policy or terms of servic
 - **Appearance:** Text content with headings, links, and last updated date.
 - **Behavior:** Static display, may support search or navigation within the document.
 - **Components:**
-  - [Typography](components.md#typography)
-  - [Link](components.md#link)
+  - [Typography](../components/Typography.md)
+  - [Link](../components/Link.md)
 - **Used in pages:**
-  - [Legal](pages.md#legal)
+  - [Legal](../pages/Legal.md)
 ### Variants
 #### Legal - **Basic**
 - **Id:** Basic

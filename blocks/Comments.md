@@ -4,15 +4,15 @@ A section for displaying and submitting user comments, often with threading and 
 - **Appearance:** A list of user comments, each with avatar, author, timestamp, and content. May support threading (nested replies).
 - **Behavior:** Users can add, reply, or delete comments. Supports keyboard navigation, editing, and moderation actions.
 - **Components:**
-  - [Avatar](components.md#avatar)
-  - [Input](components.md#input)
-  - [Textarea](components.md#textarea)
-  - [Button](components.md#button)
-  - [List](components.md#list)
-  - [Card](components.md#card)
-  - [Typography](components.md#typography)
+  - [Avatar](../components/Avatar.md)
+  - [Input](../components/Input.md)
+  - [Textarea](../components/Textarea.md)
+  - [Button](../components/Button.md)
+  - [List](../components/List.md)
+  - [Card](../components/Card.md)
+  - [Typography](../components/Typography.md)
 - **Used in pages:**
-  - [Blog](pages.md#blog)
+  - [Blog](../pages/Blog.md)
 ### Variants
 #### Comments - **Basic**
 - **Id:** Basic

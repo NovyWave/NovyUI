@@ -4,9 +4,9 @@ A block for searching and executing global app actions, inspired by VS Code and 
 - **Appearance:** A modal with a search input and list of commands.
 - **Behavior:** Opens with a keyboard shortcut, filters commands as you type.
 - **Components:**
-  - [Command](components.md#command)
+  - [Command](../components/Command.md)
 - **Used in pages:**
-  - [AppShell](pages.md#app-shell)
+  - [AppShell](../pages/AppShell.md)
 ### Variants
 #### Global Command Palette - **Basic**
 - **Id:** Basic

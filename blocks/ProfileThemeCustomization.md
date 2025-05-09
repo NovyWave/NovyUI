@@ -4,10 +4,10 @@ A block for letting users pick a profile or dashboard color theme.
 - **Appearance:** A color picker input and preview area.
 - **Behavior:** Updates the user’s theme color in real time.
 - **Components:**
-  - [ColorInput](components.md#color-input)
-  - [Button](components.md#button)
+  - [ColorInput](../components/ColorInput.md)
+  - [Button](../components/Button.md)
 - **Used in pages:**
-  - [UserProfile](pages.md#user-profile)
+  - [UserProfile](../pages/UserProfile.md)
 ### Variants
 #### Profile Theme Customization - **Basic**
 - **Id:** Basic

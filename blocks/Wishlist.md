@@ -4,12 +4,12 @@ A block for displaying a user's saved or favorite items.
 - **Appearance:** A grid or list of products with images, titles, and action buttons (add to cart, remove, etc.).
 - **Behavior:** Allows adding/removing items, moving to cart, and viewing details.
 - **Components:**
-  - [Card](components.md#card)
-  - [Button](components.md#button)
-  - [Image](components.md#image)
-  - [Typography](components.md#typography)
+  - [Card](../components/Card.md)
+  - [Button](../components/Button.md)
+  - [Image](../components/Image.md)
+  - [Typography](../components/Typography.md)
 - **Used in pages:**
-  - [ECommerce](pages.md#e-commerce)
+  - [ECommerce](../pages/ECommerce.md)
 ### Variants
 #### Wishlist - **Basic**
 - **Id:** Basic

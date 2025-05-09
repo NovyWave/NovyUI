@@ -4,11 +4,11 @@ A block for a prominent call-to-action area.
 - **Appearance:** A highlighted section with headline, supporting text, and a primary action button.
 - **Behavior:** Button triggers navigation or action. May include background image or color.
 - **Components:**
-  - [Button](components.md#button)
-  - [Typography](components.md#typography)
-  - [Image](components.md#image)
+  - [Button](../components/Button.md)
+  - [Typography](../components/Typography.md)
+  - [Image](../components/Image.md)
 - **Used in pages:**
-  - [Landing](pages.md#landing)
+  - [Landing](../pages/Landing.md)
 ### Variants
 #### Call To Action Section - **Basic**
 - **Id:** Basic

@@ -4,11 +4,11 @@ A block for displaying frequently asked questions and answers.
 - **Appearance:** List or accordion of questions and answers, with optional search.
 - **Behavior:** Allows expanding/collapsing answers, searching/filtering questions.
 - **Components:**
-  - [Collapse](components.md#collapse)
-  - [Input](components.md#input)
-  - [Typography](components.md#typography)
+  - [Collapse](../components/Collapse.md)
+  - [Input](../components/Input.md)
+  - [Typography](../components/Typography.md)
 - **Used in pages:**
-  - [FAQ](pages.md#faq)
+  - [FAQ](../pages/Faq.md)
 ### Variants
 #### FAQ - **Basic**
 - **Id:** Basic

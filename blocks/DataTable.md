@@ -5,11 +5,11 @@ A block for displaying and interacting with tabular data.
 - **Behavior:** Supports sorting, filtering, pagination, selection, and inline actions.
 - **Components:**
   - [Data Table](components.md#data-table)
-  - [Button](components.md#button)
-  - [Input](components.md#input)
-  - [Pagination](components.md#pagination)
+  - [Button](../components/Button.md)
+  - [Input](../components/Input.md)
+  - [Pagination](../components/Pagination.md)
 - **Used in pages:**
-  - [DataTable](pages.md#data-table)
+  - [DataTable](../pages/DataTable.md)
 ### Variants
 #### Data Table - **Basic**
 - **Id:** Basic

@@ -4,10 +4,10 @@ A block for keeping the cart summary visible during checkout.
 - **Appearance:** A cart summary box affixed to the side or bottom of the viewport.
 - **Behavior:** Remains visible as user scrolls.
 - **Components:**
-  - [Affix](components.md#affix)
-  - [Card](components.md#card)
+  - [Affix](../components/Affix.md)
+  - [Card](../components/Card.md)
 - **Used in pages:**
-  - [ECommerceCheckout](pages.md#e-commerce-checkout)
+  - [ECommerceCheckout](../pages/ECommerceCheckout.md)
 ### Variants
 #### Sticky Cart Summary - **Basic**
 - **Id:** Basic

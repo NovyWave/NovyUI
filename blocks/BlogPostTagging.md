@@ -4,9 +4,9 @@ A block for adding/removing tags to a blog post.
 - **Appearance:** An input for adding tags, displayed as chips.
 - **Behavior:** Users can add/remove tags.
 - **Components:**
-  - [TagInput](components.md#tag-input)
+  - [TagInput](../components/TagInput.md)
 - **Used in pages:**
-  - [Editor](pages.md#editor)
+  - [Editor](../pages/Editor.md)
 ### Variants
 #### Blog Post Tagging - **Basic**
 - **Id:** Basic

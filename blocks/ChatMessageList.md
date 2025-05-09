@@ -4,9 +4,9 @@ A block for displaying a scrollable list of chat messages.
 - **Appearance:** A vertically scrollable area with chat bubbles/messages.
 - **Behavior:** Scrolls to newest message, supports infinite scroll.
 - **Components:**
-  - [ScrollArea](components.md#scroll-area)
+  - [ScrollArea](../components/ScrollArea.md)
 - **Used in pages:**
-  - [Messaging](pages.md#messaging)
+  - [Messaging](../pages/Messaging.md)
 ### Variants
 #### Chat Message List - **Basic**
 - **Id:** Basic

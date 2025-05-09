@@ -4,13 +4,13 @@ A large dropdown menu with multiple columns, categories, and rich content for si
 - **Appearance:** A large dropdown menu with multiple columns, links, icons, and images. Appears below or beside a navigation item.
 - **Behavior:** Opens on click or hover. Supports keyboard navigation and responsive layout. Clicking links navigates to pages.
 - **Components:**
-  - [Dropdown](components.md#dropdown)
-  - [Link](components.md#link)
-  - [Icon](components.md#icon)
-  - [Image](components.md#image)
-  - [Grid](components.md#grid)
+  - [Dropdown](../components/Dropdown.md)
+  - [Link](../components/Link.md)
+  - [Icon](../components/Icon.md)
+  - [Image](../components/Image.md)
+  - [Grid](../components/Grid.md)
 - **Used in pages:**
-  - [AppShell](pages.md#app-shell)
+  - [AppShell](../pages/AppShell.md)
 ### Variants
 #### Mega Menu - **With images**
 - **Id:** WithImages

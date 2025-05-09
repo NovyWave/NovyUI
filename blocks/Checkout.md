@@ -4,12 +4,12 @@ A block for the checkout process, including forms for shipping and payment.
 - **Appearance:** Forms for address, payment, and order summary.
 - **Behavior:** Validates input, processes payment, and completes purchase.
 - **Components:**
-  - [Input](components.md#input)
-  - [Button](components.md#button)
+  - [Input](../components/Input.md)
+  - [Button](../components/Button.md)
   - [Form Error Message](components.md#form-error-message)
-  - [Typography](components.md#typography)
+  - [Typography](../components/Typography.md)
 - **Used in pages:**
-  - [ECommerceCheckout](pages.md#e-commerce-checkout)
+  - [ECommerceCheckout](../pages/ECommerceCheckout.md)
 ### Variants
 #### Checkout - **Basic**
 - **Id:** Basic

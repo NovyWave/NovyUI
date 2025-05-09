@@ -4,12 +4,12 @@ A block for showing detailed information about a product.
 - **Appearance:** Product image, title, description, price, and add-to-cart button.
 - **Behavior:** Allows adding product to cart, viewing images, and reading details.
 - **Components:**
-  - [Image](components.md#image)
-  - [Button](components.md#button)
-  - [Typography](components.md#typography)
-  - [List](components.md#list)
+  - [Image](../components/Image.md)
+  - [Button](../components/Button.md)
+  - [Typography](../components/Typography.md)
+  - [List](../components/List.md)
 - **Used in pages:**
-  - [ProductPage](pages.md#product-page)
+  - [ProductPage](../pages/ProductPage.md)
 ### Variants
 #### Product Details - **Basic**
 - **Id:** Basic

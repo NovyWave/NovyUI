@@ -4,12 +4,12 @@ A block enabling drag-and-drop sorting, reordering, or file uploads within a lis
 - **Appearance:** A list or grid of items with drag handles. Items may be cards, images, or list elements. Dropzone highlights on drag.
 - **Behavior:** Items can be reordered or moved between lists by dragging. Supports keyboard and mouse interaction, and drop feedback.
 - **Components:**
-  - [List](components.md#list)
-  - [Card](components.md#card)
-  - [Icon](components.md#icon)
-  - [Dropzone](components.md#dropzone)
+  - [List](../components/List.md)
+  - [Card](../components/Card.md)
+  - [Icon](../components/Icon.md)
+  - [Dropzone](../components/Dropzone.md)
 - **Used in pages:**
-  - [FileManagement](pages.md#file-management)
+  - [FileManagement](../pages/FileManagement.md)
 ### Variants
 #### Drag And Drop - **Sortable list**
 - **Id:** SortableList

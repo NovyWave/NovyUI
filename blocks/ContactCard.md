@@ -4,14 +4,14 @@ A section providing contact information and/or a form for users to reach out.
 - **Appearance:** A section with a contact form (inputs, textarea, button), contact details, and optional map or icons for communication methods.
 - **Behavior:** Submits form data, shows validation and success/error messages. May include interactive map or clickable contact links.
 - **Components:**
-  - [Input](components.md#input)
-  - [Textarea](components.md#textarea)
-  - [Button](components.md#button)
-  - [Icon](components.md#icon)
-  - [MapLocationPicker](components.md#maplocationpicker)
-  - [Alert](components.md#alert)
+  - [Input](../components/Input.md)
+  - [Textarea](../components/Textarea.md)
+  - [Button](../components/Button.md)
+  - [Icon](../components/Icon.md)
+  - [MapLocationPicker](../components/Maplocationpicker.md)
+  - [Alert](../components/Alert.md)
 - **Used in pages:**
-  - [Contact](pages.md#contact)
+  - [Contact](../pages/Contact.md)
 ### Variants
 #### Contact Card - **With map**
 - **Id:** WithMap

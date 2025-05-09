@@ -4,12 +4,12 @@ A block for displaying error messages, codes, and navigation options.
 - **Appearance:** Large error code/message, icon or illustration, and navigation buttons.
 - **Behavior:** Static or may auto-redirect or provide links for user action.
 - **Components:**
-  - [Alert](components.md#alert)
-  - [Button](components.md#button)
-  - [Typography](components.md#typography)
-  - [Image](components.md#image)
+  - [Alert](../components/Alert.md)
+  - [Button](../components/Button.md)
+  - [Typography](../components/Typography.md)
+  - [Image](../components/Image.md)
 - **Used in pages:**
-  - [Error](pages.md#error)
+  - [Error](../pages/Error.md)
 ### Variants
 #### Error - **Basic**
 - **Id:** Basic

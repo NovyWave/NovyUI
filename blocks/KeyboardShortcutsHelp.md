@@ -4,9 +4,9 @@ A block for displaying available keyboard shortcuts in the app.
 - **Appearance:** A modal or section listing keyboard shortcuts with visual keys.
 - **Behavior:** Static or searchable list for user reference.
 - **Components:**
-  - [KeyboardKey](components.md#keyboard-key)
+  - [KeyboardKey](../components/KeyboardKey.md)
 - **Used in pages:**
-  - [Settings](pages.md#settings)
+  - [Settings](../pages/Settings.md)
 ### Variants
 #### Keyboard Shortcuts Help - **Basic**
 - **Id:** Basic

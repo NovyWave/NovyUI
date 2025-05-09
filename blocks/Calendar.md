@@ -4,11 +4,11 @@ A block for displaying a calendar view and managing events.
 - **Appearance:** A grid of days with event markers, navigation controls, and today highlight.
 - **Behavior:** Allows date selection, event display, and navigation between months/weeks.
 - **Components:**
-  - [Calendar](components.md#calendar)
-  - [Button](components.md#button)
-  - [Icon](components.md#icon)
+  - [Calendar](../components/Calendar.md)
+  - [Button](../components/Button.md)
+  - [Icon](../components/Icon.md)
 - **Used in pages:**
-  - [CalendarPage](pages.md#calendar-page)
+  - [CalendarPage](../pages/CalendarPage.md)
 ### Variants
 #### Calendar - **Month view**
 - **Id:** MonthView

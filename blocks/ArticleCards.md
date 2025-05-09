@@ -4,19 +4,19 @@ A grid or list of cards showcasing articles, blog posts, or news items.
 - **Appearance:** A card layout for articles or blog posts, including image, title, excerpt, author avatar, tags, and action button(s).
 - **Behavior:** Static by default. May be clickable, support hover effects, or include actions (e.g., share, bookmark).
 - **Components:**
-  - [Card](components.md#card)
-  - [Image](components.md#image)
-  - [Avatar](components.md#avatar)
-  - [Chips](components.md#chips)
-  - [Button](components.md#button)
-  - [Typography](components.md#typography)
+  - [Card](../components/Card.md)
+  - [Image](../components/Image.md)
+  - [Avatar](../components/Avatar.md)
+  - [Chips](../components/Chips.md)
+  - [Button](../components/Button.md)
+  - [Typography](../components/Typography.md)
 - **Used in pages:**
-  - [Blog](pages.md#blog)
-  - [Dashboard](pages.md#dashboard)
-  - [DataTable](pages.md#data-table)
-  - [ECommerce](pages.md#e-commerce)
-  - [Portfolio](pages.md#portfolio)
-  - [Profile](pages.md#profile)
+  - [Blog](../pages/Blog.md)
+  - [Dashboard](../pages/Dashboard.md)
+  - [DataTable](../pages/DataTable.md)
+  - [ECommerce](../pages/ECommerce.md)
+  - [Portfolio](../pages/Portfolio.md)
+  - [Profile](../pages/Profile.md)
 ### Variants
 #### Article Cards - **Basic**
 - **Id:** Basic

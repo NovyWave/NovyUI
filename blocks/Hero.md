@@ -4,15 +4,15 @@ A prominent section at the top of a page, typically featuring a headline, suppor
 - **Appearance:** A prominent section at the top of a page, typically with a large heading, supporting text, call-to-action button(s), and an image or illustration. May have a background color, gradient, or image.
 - **Behavior:** Static by default. Buttons trigger navigation or actions. May include animation or parallax effects.
 - **Components:**
-  - [Heading](components.md#heading)
-  - [Paragraphs](components.md#paragraphs)
-  - [Button](components.md#button)
-  - [Image](components.md#image)
-  - [Container](components.md#container)
-  - [Icon](components.md#icon)
+  - [Heading](../components/Heading.md)
+  - [Paragraphs](../components/Paragraphs.md)
+  - [Button](../components/Button.md)
+  - [Image](../components/Image.md)
+  - [Container](../components/Container.md)
+  - [Icon](../components/Icon.md)
 - **Used in pages:**
-  - [Landing](pages.md#landing)
-  - [Portfolio](pages.md#portfolio)
+  - [Landing](../pages/Landing.md)
+  - [Portfolio](../pages/Portfolio.md)
 ### Variants
 #### Hero - **Basic hero**
 - **Id:** BasicHero

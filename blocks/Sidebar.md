@@ -4,13 +4,13 @@ A vertical panel providing navigation links, actions, or additional content alon
 - **Appearance:** A vertical panel with navigation links, icons, and optional avatar or actions. May be collapsible or fixed.
 - **Behavior:** Clicking links navigates to sections. May expand/collapse on toggle. Supports keyboard navigation.
 - **Components:**
-  - [List](components.md#list)
-  - [Link](components.md#link)
-  - [Icon](components.md#icon)
-  - [Button](components.md#button)
-  - [Avatar](components.md#avatar)
+  - [List](../components/List.md)
+  - [Link](../components/Link.md)
+  - [Icon](../components/Icon.md)
+  - [Button](../components/Button.md)
+  - [Avatar](../components/Avatar.md)
 - **Used in pages:**
-  - [AppShell](pages.md#app-shell)
+  - [AppShell](../pages/AppShell.md)
 ### Variants
 #### Sidebar - **Vertical navigation or content area**
 - **Id:** VerticalNavigationOrContentArea

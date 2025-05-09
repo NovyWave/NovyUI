@@ -4,12 +4,12 @@ A block for displaying and managing items in a shopping cart.
 - **Appearance:** A list or table of products with quantity, price, and remove buttons.
 - **Behavior:** Allows updating quantities, removing items, and proceeding to checkout.
 - **Components:**
-  - [List](components.md#list)
-  - [Button](components.md#button)
-  - [Input](components.md#input)
-  - [Typography](components.md#typography)
+  - [List](../components/List.md)
+  - [Button](../components/Button.md)
+  - [Input](../components/Input.md)
+  - [Typography](../components/Typography.md)
 - **Used in pages:**
-  - [ECommerce](pages.md#e-commerce)
+  - [ECommerce](../pages/ECommerce.md)
 ### Variants
 #### Cart - **Basic**
 - **Id:** Basic

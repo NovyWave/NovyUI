@@ -4,12 +4,12 @@ A block for assigning roles or permissions to users.
 - **Appearance:** A list or table of users with role selectors (dropdowns, checkboxes, etc.).
 - **Behavior:** Allows changing user roles, saving changes, and showing success/error messages.
 - **Components:**
-  - [Select](components.md#select)
-  - [Checkbox](components.md#checkbox)
-  - [Button](components.md#button)
-  - [Alert](components.md#alert)
+  - [Select](../components/Select.md)
+  - [Checkbox](../components/Checkbox.md)
+  - [Button](../components/Button.md)
+  - [Alert](../components/Alert.md)
 - **Used in pages:**
-  - [Settings](pages.md#settings)
+  - [Settings](../pages/Settings.md)
 ### Variants
 #### User Role Assignment - **Basic**
 - **Id:** Basic

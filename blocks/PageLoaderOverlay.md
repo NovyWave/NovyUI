@@ -4,9 +4,9 @@ A block for showing a loading overlay while the page or data is loading.
 - **Appearance:** A fullscreen overlay with a loading spinner or skeleton.
 - **Behavior:** Appears during loading, disappears when ready.
 - **Components:**
-  - [Loading](components.md#loading)
+  - [Loading](../components/Loading.md)
 - **Used in pages:**
-  - [ECommerceCheckout](pages.md#e-commerce-checkout)
+  - [ECommerceCheckout](../pages/ECommerceCheckout.md)
 ### Variants
 #### Page Loader Overlay - **Basic**
 - **Id:** Basic

@@ -4,17 +4,17 @@ A horizontal or vertical navigation bar providing links to main sections of a si
 - **Appearance:** A horizontal or vertical bar with navigation links, logo, and optional user avatar, search, or menu. May be fixed or sticky.
 - **Behavior:** Clicking links navigates to pages. Dropdowns open on click/hover. Responsive to screen size (collapsible on mobile).
 - **Components:**
-  - [Button](components.md#button)
-  - [Icon](components.md#icon)
-  - [Avatar](components.md#avatar)
-  - [Dropdown](components.md#dropdown)
-  - [Link](components.md#link)
-  - [Badge](components.md#badge)
-  - [Searchbox](components.md#searchbox)
+  - [Button](../components/Button.md)
+  - [Icon](../components/Icon.md)
+  - [Avatar](../components/Avatar.md)
+  - [Dropdown](../components/Dropdown.md)
+  - [Link](../components/Link.md)
+  - [Badge](../components/Badge.md)
+  - [Searchbox](../components/Searchbox.md)
 - **Used in pages:**
-  - [AppShell](pages.md#app-shell)
-  - [Blog](pages.md#blog)
-  - [ECommerce](pages.md#e-commerce)
+  - [AppShell](../pages/AppShell.md)
+  - [Blog](../pages/Blog.md)
+  - [ECommerce](../pages/ECommerce.md)
 ### Variants
 #### Navbars - **Basic**
 - **Id:** Basic

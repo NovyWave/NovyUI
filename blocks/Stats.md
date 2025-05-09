@@ -4,13 +4,13 @@ A section displaying key metrics, statistics, or trends, often in a grid or card
 - **Appearance:** A section with one or more statistic cards, each showing a number, label, icon, and optional trend or progress bar.
 - **Behavior:** Numbers may animate on load. Cards may be clickable for more details. Updates dynamically with data.
 - **Components:**
-  - [Statistic](components.md#statistic)
-  - [Icon](components.md#icon)
-  - [Card](components.md#card)
-  - [Progress](components.md#progress)
-  - [Badge](components.md#badge)
+  - [Statistic](../components/Statistic.md)
+  - [Icon](../components/Icon.md)
+  - [Card](../components/Card.md)
+  - [Progress](../components/Progress.md)
+  - [Badge](../components/Badge.md)
 - **Used in pages:**
-  - [Dashboard](pages.md#dashboard)
+  - [Dashboard](../pages/Dashboard.md)
 ### Variants
 #### Stats - **Stat grid**
 - **Id:** StatGrid
