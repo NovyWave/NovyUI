@@ -4,7 +4,6 @@
 - **Appearance:** An input field with a dropdown list of options that filters as the user types. May include clear button, icons, and tags for multi-select. Dropdown appears below input and highlights matching text.
 - **Behavior:** Typing filters options. Selecting an option adds it to the input (single or multiple). Supports keyboard navigation, option creation, and async loading.
 - **Used in blocks:**
-  - [ComboboxFilter](../blocks/ComboboxFilter.md)
 ### Accessibility
 - Use ARIA roles (`combobox`, `listbox`, `option`).
 - Announce filtered options and selection to screen readers.

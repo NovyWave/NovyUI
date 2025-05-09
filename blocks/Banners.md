@@ -6,7 +6,6 @@ A horizontal bar or box used to display important messages, promotions, or alert
 - **Components:**
   - [Alert](../components/Alert.md)
   - [Button](../components/Button.md)
-  - [Icon](../components/Icon.md)
   - [Typography](../components/Typography.md)
 - **Used in pages:**
   - [Landing](../pages/Landing.md)

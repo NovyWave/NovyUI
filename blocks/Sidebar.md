@@ -5,8 +5,6 @@ A vertical panel providing navigation links, actions, or additional content alon
 - **Behavior:** Clicking links navigates to sections. May expand/collapse on toggle. Supports keyboard navigation.
 - **Components:**
   - [List](../components/List.md)
-  - [Link](../components/Link.md)
-  - [Icon](../components/Icon.md)
   - [Button](../components/Button.md)
   - [Avatar](../components/Avatar.md)
 - **Used in pages:**

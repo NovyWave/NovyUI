@@ -7,8 +7,6 @@ A section providing contact information and/or a form for users to reach out.
   - [Input](../components/Input.md)
   - [Textarea](../components/Textarea.md)
   - [Button](../components/Button.md)
-  - [Icon](../components/Icon.md)
-  - [MapLocationPicker](../components/Maplocationpicker.md)
   - [Alert](../components/Alert.md)
 - **Used in pages:**
   - [Contact](../pages/Contact.md)

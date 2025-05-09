@@ -5,8 +5,6 @@ A navigational block listing links to sections within a page for easy access.
 - **Behavior:** Clicking a link scrolls to the section. Highlights the active section as user scrolls. May collapse/expand for long lists.
 - **Components:**
   - [List](../components/List.md)
-  - [Link](../components/Link.md)
-  - [Heading](../components/Heading.md)
 - **Used in pages:**
   - [Blog](../pages/Blog.md)
   - [Dashboard](../pages/Dashboard.md)

@@ -4,7 +4,6 @@ A block for listing past orders and their details.
 - **Appearance:** A list or table of previous orders with dates, status, and details link.
 - **Behavior:** Allows viewing order details and status.
 - **Components:**
-  - [TableOfContents](../components/TableOfContents.md)
   - [Typography](../components/Typography.md)
   - [Button](../components/Button.md)
 - **Used in pages:**

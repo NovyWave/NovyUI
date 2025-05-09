@@ -4,9 +4,7 @@ A block for displaying a feed of recent activity, notifications, or events.
 - **Appearance:** A vertical list of activity items, each with icon, description, and timestamp.
 - **Behavior:** Updates dynamically with new activity. Supports filtering and marking as read.
 - **Components:**
-  - [List](../components/List.md)
   - [Avatar](../components/Avatar.md)
-  - [Icon](../components/Icon.md)
   - [Typography](../components/Typography.md)
 - **Used in pages:**
   - [Activity](../pages/Activity.md)

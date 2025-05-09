@@ -5,7 +5,6 @@ A section displaying key metrics, statistics, or trends, often in a grid or card
 - **Behavior:** Numbers may animate on load. Cards may be clickable for more details. Updates dynamically with data.
 - **Components:**
   - [Statistic](../components/Statistic.md)
-  - [Icon](../components/Icon.md)
   - [Card](../components/Card.md)
   - [Progress](../components/Progress.md)
   - [Badge](../components/Badge.md)

@@ -7,7 +7,6 @@ A banner that informs users about cookie usage and requests their consent.
   - [Alert](../components/Alert.md)
   - [Button](../components/Button.md)
   - [Typography](../components/Typography.md)
-  - [Link](../components/Link.md)
 - **Used in pages:**
   - [Landing](../pages/Landing.md)
 ### Variants

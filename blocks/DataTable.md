@@ -4,7 +4,6 @@ A block for displaying and interacting with tabular data.
 - **Appearance:** A table with rows, columns, headers, and optional filters, pagination, and actions.
 - **Behavior:** Supports sorting, filtering, pagination, selection, and inline actions.
 - **Components:**
-  - [Data Table](components.md#data-table)
   - [Button](../components/Button.md)
   - [Input](../components/Input.md)
   - [Pagination](../components/Pagination.md)

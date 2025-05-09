@@ -5,7 +5,6 @@ A block for multi-step onboarding or setup flows.
 - **Behavior:** Navigates between steps, validates input, and shows completion message.
 - **Components:**
   - [Stepper](../components/Stepper.md)
-  - [Form Error Message](components.md#form-error-message)
   - [Button](../components/Button.md)
   - [Input](../components/Input.md)
 - **Used in pages:**

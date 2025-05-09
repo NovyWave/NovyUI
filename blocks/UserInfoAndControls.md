@@ -6,7 +6,6 @@ A block for displaying user avatar, name, and quick access controls (settings, l
 - **Components:**
   - [Avatar](../components/Avatar.md)
   - [Button](../components/Button.md)
-  - [Menu](../components/Menu.md)
   - [Badge](../components/Badge.md)
 - **Used in pages:**
   - [Profile](../pages/Profile.md)

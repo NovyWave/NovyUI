@@ -6,8 +6,6 @@ A block enabling drag-and-drop sorting, reordering, or file uploads within a lis
 - **Components:**
   - [List](../components/List.md)
   - [Card](../components/Card.md)
-  - [Icon](../components/Icon.md)
-  - [Dropzone](../components/Dropzone.md)
 - **Used in pages:**
   - [FileManagement](../pages/FileManagement.md)
 ### Variants

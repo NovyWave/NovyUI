@@ -5,7 +5,6 @@ A block for displaying legal documents such as privacy policy or terms of servic
 - **Behavior:** Static display, may support search or navigation within the document.
 - **Components:**
   - [Typography](../components/Typography.md)
-  - [Link](../components/Link.md)
 - **Used in pages:**
   - [Legal](../pages/Legal.md)
 ### Variants

@@ -4,12 +4,9 @@ A section that highlights key features, benefits, or selling points, often arran
 - **Appearance:** A section highlighting key features or benefits, often arranged in a grid or list. Each feature may include an icon, heading, and description.
 - **Behavior:** Static by default. May include hover effects, reveal animations, or clickable features for more details.
 - **Components:**
-  - [Heading](../components/Heading.md)
-  - [Icon](../components/Icon.md)
   - [Card](../components/Card.md)
   - [List](../components/List.md)
   - [Button](../components/Button.md)
-  - [Grid](../components/Grid.md)
 - **Used in pages:**
   - [Landing](../pages/Landing.md)
 ### Variants

@@ -4,7 +4,6 @@
 - **Appearance:** A vertical or horizontal list of links. Highlights the link corresponding to the visible section.
 - **Behavior:** Updates highlight as user scrolls. Clicking a link scrolls to the section. Supports smooth scroll and active state.
 - **Used in blocks:**
-  - [ScrollspyNavigationBlock](../blocks/ScrollspyNavigationBlock.md)
 ### Accessibility
 - Use semantic navigation elements.
 - Announce active section to screen readers.

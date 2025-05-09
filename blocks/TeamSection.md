@@ -6,9 +6,7 @@ A section showcasing team members, their roles, and contact information.
 - **Components:**
   - [Avatar](../components/Avatar.md)
   - [Card](../components/Card.md)
-  - [Grid](../components/Grid.md)
   - [List](../components/List.md)
-  - [Link](../components/Link.md)
   - [Typography](../components/Typography.md)
 - **Used in pages:**
   - [Team](../pages/Team.md)

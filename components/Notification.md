@@ -1,10 +1,8 @@
 ## Notification
 🔔 A temporary message that appears to inform the user of an event or status.
-- **Id:** NotificationToastSnackbar
+- **Id:** Notification
 - **Appearance:** A small box that appears temporarily, usually at the corner or bottom of the screen. Shows message, icon, and optional action button.
 - **Behavior:** Appears in response to events. Auto-dismisses after timeout or can be dismissed manually. Supports stacking and different types (success, error, etc.).
-- **Used in blocks:**
-  - [NotificationCenterBlock](../blocks/NotificationCenterBlock.md)
 ### Accessibility
 - Use `role="status"` or `role="alert"` for notifications.
 - Announce new notifications to screen readers.
@@ -12,38 +10,38 @@
 
 ### Variants
 #### Notification - **Success**
-- **Id:** Success
+- **Id:** NotificationSuccess
 - **Appearance:** Green color and success icon.
 - **Behavior:** Indicates a successful action or event.
 #### Notification - **Error**
-- **Id:** Error
+- **Id:** NotificationError
 - **Appearance:** Red color and error icon.
 - **Behavior:** Indicates an error or failure.
 #### Notification - **Info**
-- **Id:** Info
+- **Id:** NotificationInfo
 - **Appearance:** Blue color and info icon.
 - **Behavior:** Provides informational message.
 #### Notification - **Warning**
-- **Id:** Warning
+- **Id:** NotificationWarning
 - **Appearance:** Yellow color and warning icon.
 - **Behavior:** Indicates a warning or caution.
 #### Notification - **Custom icon**
-- **Id:** CustomIcon
+- **Id:** NotificationCustomIcon
 - **Appearance:** Includes custom icon.
 - **Behavior:** Displays custom icon.
 #### Notification - **With actions**
-- **Id:** WithActions
+- **Id:** NotificationWithActions
 - **Appearance:** Includes action button.
 - **Behavior:** Supports interactive actions.
 #### Notification - **Temporary (snackbar)**
-- **Id:** Temporary
+- **Id:** NotificationTemporary
 - **Appearance:** Temporary display.
 - **Behavior:** Auto-dismisses after timeout.
 #### Notification - **Stacking**
-- **Id:** Stacking
+- **Id:** NotificationStacking
 - **Appearance:** Supports stacking.
 - **Behavior:** Stacks notifications.
 #### Notification - **Bottom position**
-- **Id:** BottomPosition
+- **Id:** NotificationBottomPosition
 - **Appearance:** Displays at bottom.
 - **Behavior:** Bottom position display.

@@ -4,7 +4,6 @@
 - **Appearance:** An element that remains fixed to the top, bottom, or side of the viewport as the user scrolls.
 - **Behavior:** Sticks to position when scrolling past a threshold. Releases when scrolling back.
 - **Used in blocks:**
-  - [AffixBanner](../blocks/Affixbanner.md)
 ### Accessibility
 - Should not obscure important content when fixed.
 - Ensure focusable elements within the affixed area remain accessible via keyboard.

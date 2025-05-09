@@ -3,8 +3,6 @@
 - **Id:** Tooltip
 - **Appearance:** A small popup with text, appearing near the trigger element. May have an arrow pointing to the trigger.
 - **Behavior:** Appears on hover or focus. Disappears on mouse leave or blur. May have a delay.
-- **Used in blocks:**
-  - [IconTooltips](../blocks/IconTooltips.md)
 ### Accessibility
 - Use `role="tooltip"` and `aria-describedby`.
 - Ensure tooltip content is accessible via keyboard focus.

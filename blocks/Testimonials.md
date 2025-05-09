@@ -7,7 +7,6 @@ A block for displaying user testimonials or reviews.
   - [Card](../components/Card.md)
   - [Avatar](../components/Avatar.md)
   - [Typography](../components/Typography.md)
-  - [Carousel](../components/Carousel.md)
 - **Used in pages:**
   - [Landing](../pages/Landing.md)
 ### Variants

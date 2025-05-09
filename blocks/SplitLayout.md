@@ -4,8 +4,6 @@ A layout dividing content into two or more columns, often with image and text si
 - **Appearance:** A layout with two or more columns, typically with image on one side and text on the other. May be responsive and stack on small screens.
 - **Behavior:** Static. Columns adjust or stack based on screen size. May support animation or reveal effects.
 - **Components:**
-  - [Container](../components/Container.md)
-  - [Grid](../components/Grid.md)
   - [Image](../components/Image.md)
   - [Typography](../components/Typography.md)
   - [Button](../components/Button.md)

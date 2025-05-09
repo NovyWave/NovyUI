@@ -5,8 +5,6 @@ A block for presenting app download links, QR codes, and instructions.
 - **Behavior:** Clicking a button starts download or opens app store. May show version info.
 - **Components:**
   - [Button](../components/Button.md)
-  - [QRCode](../components/Qrcode.md)
-  - [Icon](../components/Icon.md)
   - [Typography](../components/Typography.md)
 - **Used in pages:**
   - [Download](../pages/Download.md)
