@@ -6,7 +6,7 @@ A block for the checkout process, including forms for shipping and payment.
 - **Components:**
   - [Input](../components/Input.md)
   - [Button](../components/Button.md)
-  - [Form Error Message](components.md#form-error-message)
+  - [Form Error Message](../components/FormErrorMessage.md)
   - [Typography](../components/Typography.md)
 - **Used in pages:**
   - [ECommerceCheckout](../pages/ECommerceCheckout.md)
