@@ -1,0 +1,25 @@
+## Banners
+A horizontal bar or box used to display important messages, promotions, or alerts.
+- **Id:** Banners
+- **Appearance:** A horizontal bar or box with a message, icon, and optional action button. May be colored to indicate importance or type (e.g., warning, promo).
+- **Behavior:** Static or dismissible. May animate in/out or auto-dismiss after a timeout.
+- **Components:**
+  - [Alert](components.md#alert)
+  - [Button](components.md#button)
+  - [Icon](components.md#icon)
+  - [Typography](components.md#typography)
+- **Used in pages:**
+  - [Landing](pages.md#landing)
+### Variants
+#### Banners - **Announcement**
+- **Id:** Announcement
+- **Appearance:** Neutral or info color, message text, and optional icon.
+- **Behavior:** Static or may auto-dismiss after a timeout.
+#### Banners - **Promo**
+- **Id:** Promo
+- **Appearance:** Highlighted with promotional color or style, may include call-to-action button.
+- **Behavior:** May be clickable or dismissible.
+#### Banners - **Warning**
+- **Id:** Warning
+- **Appearance:** Warning color (e.g., yellow/orange), warning icon, and message.
+- **Behavior:** May require user dismissal or action.

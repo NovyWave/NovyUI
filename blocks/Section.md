@@ -1,0 +1,17 @@
+## Section
+A content area used to separate and organize different parts of a page.
+- **Id:** Section
+- **Appearance:** A content area with optional heading, divider, and background. Used to separate page content into logical parts.
+- **Behavior:** Static. May support show/hide or expand/collapse for content.
+- **Components:**
+  - [Container](components.md#container)
+  - [Heading](components.md#heading)
+  - [Typography](components.md#typography)
+  - [Divider](components.md#divider)
+- **Used in pages:**
+  - [Blog](pages.md#blog)
+### Variants
+#### Section - **Themed or separated page areas (with background, with divider)**
+- **Id:** ThemedOrSeparatedPageAreas
+- **Appearance:** Section with themed background or divider.
+- **Behavior:** Static or may support expand/collapse.
