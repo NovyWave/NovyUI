@@ -118,6 +118,8 @@ function checkVariants(content: string): boolean {
 }
 
 // --- Table of Contents Consistency Checks ---
+// RULE:toc-listed
+// RULE:toc-links-exist
 async function checkTocConsistency(tocPath: string, dirPath: string, tocType: string, errorMap: Record<string, string[]>) {
   const tocContent = await Deno.readTextFile(tocPath);
   // Find all links in the TOC file
@@ -131,6 +133,7 @@ async function checkTocConsistency(tocPath: string, dirPath: string, tocType: st
     }
   }
   // Check that every file is listed in the TOC
+  // RULE:toc-listed
   for (const file of files) {
     if (!links.some(link => link.endsWith('/' + file) || link.endsWith('\\' + file))) {
       if (!errorMap[tocPath]) errorMap[tocPath] = [];
@@ -138,6 +141,7 @@ async function checkTocConsistency(tocPath: string, dirPath: string, tocType: st
     }
   }
   // Check that every link points to an existing file
+  // RULE:toc-links-exist
   for (const link of links) {
     const resolved = resolve(dirname(tocPath), link);
     try {
@@ -149,6 +153,7 @@ async function checkTocConsistency(tocPath: string, dirPath: string, tocType: st
   }
 }
 
+// RULE:toc-sorted
 async function checkTocSorted(tocPath: string, errorMap: Record<string, string[]>) {
   const tocContent = await Deno.readTextFile(tocPath);
   // Find all lines that are links
@@ -176,13 +181,51 @@ async function checkTocSorted(tocPath: string, errorMap: Record<string, string[]
   }
 }
 
+async function checkReferenceSections(errorMap: Record<string, string[]>) {
+  // Check components
+  for (const file of await getMarkdownFiles(COMPONENTS_DIR)) {
+    const content = await Deno.readTextFile(file);
+    // RULE:components-used-in-blocks-not-empty
+    const usedInBlocksMatch = content.match(/\*\*Used in Blocks:\*\*([\s\S]*?)(?:\n\s*\n|###|$)/i);
+    if (usedInBlocksMatch) {
+      const lines = usedInBlocksMatch[1].split("\n").map((l) => l.trim()).filter(Boolean);
+      if (lines.length === 0) {
+        if (!errorMap[file]) errorMap[file] = [];
+        errorMap[file].push(`Component '${file}' has an empty **Used in Blocks:** section (must reference at least one real block).`);
+      }
+    }
+    // RULE:accessibility-section-required
+    if (!/### Accessibility/i.test(content)) {
+      if (!errorMap[file]) errorMap[file] = [];
+      errorMap[file].push(`Component '${file}' missing required ### Accessibility section.`);
+    }
+  }
+  // Check blocks
+  for (const file of await getMarkdownFiles(BLOCKS_DIR)) {
+    const content = await Deno.readTextFile(file);
+    // RULE:blocks-used-in-pages-not-empty
+    const usedInPagesMatch = content.match(/\*\*Used in Pages:\*\*([\s\S]*?)(?:\n\s*\n|###|$)/i);
+    if (usedInPagesMatch) {
+      const lines = usedInPagesMatch[1].split("\n").map((l) => l.trim()).filter(Boolean);
+      if (lines.length === 0) {
+        if (!errorMap[file]) errorMap[file] = [];
+        errorMap[file].push(`Block '${file}' has an empty **Used in Pages:** section (must reference at least one real page).`);
+      }
+    }
+  }
+  // Check for correct relative paths and that references exist (RULE:relative-paths-synced)
+  // This is already covered by checkReferences and checkAllLinksExist in the main lintDocs loop.
+}
+
 async function lintDocs(): Promise<void> {
   const errorMap: Record<string, string[]> = {};
 
   // Table of Contents Consistency
+  // RULE:toc-listed, RULE:toc-links-exist
   await checkTocConsistency(join(ROOT, 'blocks.md'), BLOCKS_DIR, 'Blocks', errorMap);
   await checkTocConsistency(join(ROOT, 'components.md'), COMPONENTS_DIR, 'Components', errorMap);
   await checkTocConsistency(join(ROOT, 'pages.md'), PAGES_DIR, 'Pages', errorMap);
+  // RULE:toc-sorted
   await checkTocSorted(join(ROOT, 'blocks.md'), errorMap);
   await checkTocSorted(join(ROOT, 'components.md'), errorMap);
   await checkTocSorted(join(ROOT, 'pages.md'), errorMap);
@@ -191,11 +234,13 @@ async function lintDocs(): Promise<void> {
   for (const file of await getMarkdownFiles(COMPONENTS_DIR)) {
     const content = await Deno.readTextFile(file);
     const name = basename(file);
+    // RULE:component-filename
     const idError = await checkIdAndFilename(file, "Component");
     if (idError) {
       if (!errorMap[file]) errorMap[file] = [];
       errorMap[file].push(idError);
     }
+    // RULE:component-template
     if (!checkSection(content, "Appearance")) {
       if (!errorMap[file]) errorMap[file] = [];
       errorMap[file].push(`Component '${name}' missing **Appearance:** section.`);
@@ -212,14 +257,26 @@ async function lintDocs(): Promise<void> {
       if (!errorMap[file]) errorMap[file] = [];
       errorMap[file].push(`Component '${name}' missing ### Variants section.`);
     }
+    // RULE:component-accessibility-required
     if (!checkAccessibilitySection(content)) {
       if (!errorMap[file]) errorMap[file] = [];
       errorMap[file].push(`Component '${name}' missing required ### Accessibility section.`);
     }
+    // RULE:component-used-in-blocks-up-to-date
     for (const err of await checkReferences(content, "Used in Blocks", file)) {
       if (!errorMap[file]) errorMap[file] = [];
       errorMap[file].push(err);
     }
+    // RULE:component-used-in-blocks-not-empty
+    const usedInBlocksMatch = content.match(/\*\*Used in Blocks:\*\*([\s\S]*?)(?:\n\s*\n|###|$)/i);
+    if (usedInBlocksMatch) {
+      const lines = usedInBlocksMatch[1].split("\n").map((l) => l.trim()).filter(Boolean);
+      if (lines.length === 0) {
+        if (!errorMap[file]) errorMap[file] = [];
+        errorMap[file].push(`Component '${file}' has an empty **Used in Blocks:** section (must reference at least one real block).`);
+      }
+    }
+    // RULE:references-synced
     for (const err of await checkAllLinksExist(file, content)) {
       if (!errorMap[file]) errorMap[file] = [];
       errorMap[file].push(err);
@@ -230,11 +287,13 @@ async function lintDocs(): Promise<void> {
   for (const file of await getMarkdownFiles(BLOCKS_DIR)) {
     const content = await Deno.readTextFile(file);
     const name = basename(file);
+    // RULE:block-filename
     const idError = await checkIdAndFilename(file, "Block");
     if (idError) {
       if (!errorMap[file]) errorMap[file] = [];
       errorMap[file].push(idError);
     }
+    // RULE:block-template
     if (!checkSection(content, "Appearance")) {
       if (!errorMap[file]) errorMap[file] = [];
       errorMap[file].push(`Block '${name}' missing **Appearance:** section.`);
@@ -251,7 +310,7 @@ async function lintDocs(): Promise<void> {
       if (!errorMap[file]) errorMap[file] = [];
       errorMap[file].push(`Block '${name}' missing **Used in Pages:** section.`);
     } else {
-      // Enforce that Used in Pages is not empty
+      // RULE:block-used-in-pages-not-empty
       const usedInPagesMatch = content.match(/\*\*Used in Pages:\*\*([\s\S]*?)(?:\n\s*\n|###|$)/i);
       if (usedInPagesMatch) {
         const lines = usedInPagesMatch[1].split("\n").map((l) => l.trim()).filter(Boolean);
@@ -265,14 +324,17 @@ async function lintDocs(): Promise<void> {
       if (!errorMap[file]) errorMap[file] = [];
       errorMap[file].push(`Block '${name}' missing ### Variants section.`);
     }
+    // RULE:block-components-up-to-date
     for (const err of await checkReferences(content, "Components", file)) {
       if (!errorMap[file]) errorMap[file] = [];
       errorMap[file].push(err);
     }
+    // RULE:block-used-in-pages-up-to-date
     for (const err of await checkReferences(content, "Used in Pages", file)) {
       if (!errorMap[file]) errorMap[file] = [];
       errorMap[file].push(err);
     }
+    // RULE:references-synced
     for (const err of await checkAllLinksExist(file, content)) {
       if (!errorMap[file]) errorMap[file] = [];
       errorMap[file].push(err);
@@ -283,11 +345,13 @@ async function lintDocs(): Promise<void> {
   for (const file of await getMarkdownFiles(PAGES_DIR)) {
     const content = await Deno.readTextFile(file);
     const name = basename(file);
+    // RULE:page-filename
     const idError = await checkIdAndFilename(file, "Page");
     if (idError) {
       if (!errorMap[file]) errorMap[file] = [];
       errorMap[file].push(idError);
     }
+    // RULE:page-template
     if (!checkSection(content, "Appearance")) {
       if (!errorMap[file]) errorMap[file] = [];
       errorMap[file].push(`Page '${name}' missing **Appearance:** section.`);
@@ -304,10 +368,12 @@ async function lintDocs(): Promise<void> {
       if (!errorMap[file]) errorMap[file] = [];
       errorMap[file].push(`Page '${name}' missing ### Variants section.`);
     }
+    // RULE:page-blocks-up-to-date
     for (const err of await checkReferences(content, "Blocks", file)) {
       if (!errorMap[file]) errorMap[file] = [];
       errorMap[file].push(err);
     }
+    // RULE:references-synced
     for (const err of await checkAllLinksExist(file, content)) {
       if (!errorMap[file]) errorMap[file] = [];
       errorMap[file].push(err);
@@ -330,3 +396,49 @@ async function lintDocs(): Promise<void> {
 }
 
 await lintDocs();
+
+// --- RULE COVERAGE CHECK ---
+// RULE:enforcement-script
+// This block checks that every RULE id in doc-structure.md is present in this file and vice versa.
+try {
+  const decoder = new TextDecoder();
+  const docStructure = Deno.readFileSync("doc-structure.md");
+  const enforceScript = Deno.readFileSync("scripts/enforce-doc-structure.ts");
+
+  function extractRuleIds(text: string, pattern: RegExp): Set<string> {
+    const ids = new Set<string>();
+    let match;
+    while ((match = pattern.exec(text)) !== null) {
+      ids.add(match[1]);
+    }
+    return ids;
+  }
+
+  const docRulePattern = /<!--\s*RULE:([a-zA-Z0-9_-]+)\s*-->/g;
+  const codeRulePattern = /\/\/\s*RULE:([a-zA-Z0-9_-]+)/g;
+
+  const docIds = extractRuleIds(decoder.decode(docStructure), docRulePattern);
+  const codeIds = extractRuleIds(decoder.decode(enforceScript), codeRulePattern);
+
+  let ok = true;
+  for (const id of docIds) {
+    if (!codeIds.has(id)) {
+      console.error(`❌ Rule '${id}' is in doc-structure.md but not enforced in enforce-doc-structure.ts`);
+      ok = false;
+    }
+  }
+  for (const id of codeIds) {
+    if (!docIds.has(id)) {
+      console.error(`❌ Rule '${id}' is in enforce-doc-structure.ts but not documented in doc-structure.md`);
+      ok = false;
+    }
+  }
+  if (ok) {
+    console.log("✅ All rule IDs are covered in both files.");
+  } else {
+    Deno.exit(1);
+  }
+} catch (e) {
+  console.error("Rule coverage check failed:", e);
+  Deno.exit(1);
+}
