@@ -4,9 +4,9 @@
 - **Appearance:** A small text message below or beside a form field, often colored red or with an error icon.
 - **Behavior:** Appears when validation fails. May disappear on correction or after a timeout. Supports accessibility roles.
 - **Used in blocks:**
-  - [Authentication](blocks.md#authentication)
-  - [Checkout](blocks.md#checkout)
-  - [OnboardingSteps](blocks.md#onboarding-steps)
+  - [Authentication](../blocks/Authentication.md)
+  - [Checkout](../blocks/Checkout.md)
+  - [OnboardingSteps](../blocks/OnboardingSteps.md)
 ### Accessibility
 - Use `role="alert"` for error messages.
 - Associate error message with form field using `aria-describedby`.

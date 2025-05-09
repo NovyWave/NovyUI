@@ -4,7 +4,7 @@
 - **Appearance:** An interactive map with a marker or pin. May include search input, zoom controls, and address display.
 - **Behavior:** User can move marker, search for location, or click map to select. Updates value and may show address or coordinates.
 - **Used in blocks:**
-  - [ContactCard](blocks.md#contact-card)
+  - [ContactCard](../blocks/ContactCard.md)
 ### Accessibility
 - Provide text alternatives for map content.
 - Ensure controls (zoom, search) are keyboard accessible.

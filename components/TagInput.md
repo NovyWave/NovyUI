@@ -4,7 +4,7 @@
 - **Appearance:** An input field with tags displayed as chips. May include add/remove buttons and suggestions dropdown.
 - **Behavior:** Typing adds tags. Tags can be removed by clicking or keyboard. Supports validation and suggestions.
 - **Used in blocks:**
-  - [BlogPostTagging](blocks.md#blog-post-tagging)
+  - [BlogPostTagging](../blocks/BlogPostTagging.md)
 ### Accessibility
 - Use ARIA roles (`listbox`, `option`).
 - Announce tag addition/removal.

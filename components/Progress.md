@@ -4,7 +4,7 @@
 - **Appearance:** A horizontal bar or circular indicator showing completion percentage. May include label or value.
 - **Behavior:** Fills or animates to indicate progress. Can be determinate (fixed value) or indeterminate (loading).
 - **Used in blocks:**
-  - [Stats](blocks.md#stats)
+  - [Stats](../blocks/Stats.md)
 ### Accessibility
 - Use `aria-valuenow`, `aria-valuemax`, `aria-valuemin` for progress bars.
 - Announce progress changes to screen readers.

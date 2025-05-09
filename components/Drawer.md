@@ -4,7 +4,7 @@
 - **Appearance:** A panel that slides in from the edge of the screen, overlaying content. Contains title, content, and actions. May include close button.
 - **Behavior:** Opens in response to user action. Can be closed by button, overlay click, or escape key. Traps focus and disables background interaction.
 - **Used in blocks:**
-  - [MobileNavigationDrawer](blocks.md#mobile-navigation-drawer)
+  - [MobileNavigationDrawer](../blocks/MobileNavigationDrawer.md)
 ### Accessibility
 - Use `role="dialog"` or `role="complementary"`.
 - Trap focus within drawer while open.

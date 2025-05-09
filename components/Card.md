@@ -4,18 +4,18 @@
 - **Appearance:** A rectangular container with optional shadow, border, or background. Can include image, title, description, actions, and footer. Used to group related content.
 - **Behavior:** Static by default. May be clickable, expandable, or support hover effects. Can contain interactive elements (buttons, links).
 - **Used in blocks:**
-  - [ArticleCards](blocks.md#article-cards)
-  - [Carousels](blocks.md#carousels)
-  - [Comments](blocks.md#comments)
-  - [FeaturesSection](blocks.md#features-section)
-  - [ProductDetails](blocks.md#product-details)
-  - [ResponsiveColumns](blocks.md#responsive-columns)
-  - [Roadmap](blocks.md#roadmap)
-  - [Stats](blocks.md#stats)
-  - [TeamSection](blocks.md#team-section)
-  - [Testimonials](blocks.md#testimonials)
-  - [UserInfoAndControls](blocks.md#user-info-and-controls)
-  - [Wishlist](blocks.md#wishlist)
+  - [ArticleCards](../blocks/ArticleCards.md)
+  - [Carousels](../blocks/Carousels.md)
+  - [Comments](../blocks/Comments.md)
+  - [FeaturesSection](../blocks/FeaturesSection.md)
+  - [ProductDetails](../blocks/ProductDetails.md)
+  - [ResponsiveColumns](../blocks/ResponsiveColumns.md)
+  - [Roadmap](../blocks/Roadmap.md)
+  - [Stats](../blocks/Stats.md)
+  - [TeamSection](../blocks/TeamSection.md)
+  - [Testimonials](../blocks/Testimonials.md)
+  - [UserInfoAndControls](../blocks/UserInfoAndControls.md)
+  - [Wishlist](../blocks/Wishlist.md)
 ### Accessibility
 - Ensure interactive elements inside cards are keyboard accessible.
 - Use semantic elements for content (e.g., headings, lists).

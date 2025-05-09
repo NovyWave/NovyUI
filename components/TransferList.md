@@ -4,7 +4,7 @@
 - **Appearance:** Two lists with items that can be transferred between them. Includes transfer buttons in the middle.
 - **Behavior:** Selecting items and clicking transfer buttons moves them between lists. Supports search, filtering, and bulk actions.
 - **Used in blocks:**
-  - [TransferListBlock](blocks.md#transfer-list-block)
+  - [TransferListBlock](../blocks/TransferListBlock.md)
 ### Accessibility
 - Use ARIA roles (`listbox`, `option`, `button`).
 - Announce selection and transfer actions.

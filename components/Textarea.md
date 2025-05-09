@@ -4,8 +4,8 @@
 - **Appearance:** A multi-line text input box with optional label and placeholder. May show character count.
 - **Behavior:** Accepts multi-line text input. Supports focus, disabled, and error states. May auto-resize to fit content.
 - **Used in blocks:**
-  - [Comments](blocks.md#comments)
-  - [ContactCard](blocks.md#contact-card)
+  - [Comments](../blocks/Comments.md)
+  - [ContactCard](../blocks/ContactCard.md)
 ### Accessibility
 - Use native `<textarea>` element.
 - Provide associated label and instructions.

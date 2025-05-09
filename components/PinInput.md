@@ -4,7 +4,7 @@
 - **Appearance:** A row of small input boxes for entering a fixed-length numeric or alphanumeric code.
 - **Behavior:** Typing moves focus to next box. Supports paste, backspace, and validation. May mask input for security.
 - **Used in blocks:**
-  - [TwoFactorAuthentication](blocks.md#two-factor-authentication)
+  - [TwoFactorAuthentication](../blocks/TwoFactorAuthentication.md)
 ### Accessibility
 - Use `aria-label` for each input box.
 - Announce focus and value changes.

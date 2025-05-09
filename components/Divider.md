@@ -4,7 +4,7 @@
 - **Appearance:** A thin horizontal or vertical line, sometimes with text or icon in the center. Used to separate content.
 - **Behavior:** Static visual separator. May be interactive if used as a drag handle.
 - **Used in blocks:**
-  - [Section](blocks.md#section)
+  - [Section](../blocks/Section.md)
 ### Accessibility
 - Use semantic `<hr>` for horizontal dividers.
 - Ensure dividers do not interfere with screen reader flow.

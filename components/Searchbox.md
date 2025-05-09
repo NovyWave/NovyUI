@@ -4,8 +4,8 @@
 - **Appearance:** A modal or dropdown with a search input and list of results. May include icons, categories, and keyboard shortcuts.
 - **Behavior:** Opens with shortcut or button. Typing filters results. Selecting an item triggers navigation or action.
 - **Used in blocks:**
-  - [Headers](blocks.md#headers)
-  - [Navbars](blocks.md#navbars)
+  - [Headers](../blocks/Headers.md)
+  - [Navbars](../blocks/Navbars.md)
 ### Accessibility
 - Use `role="search"` or `role="dialog"` as appropriate.
 - Announce search results and focused items.

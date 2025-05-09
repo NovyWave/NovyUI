@@ -4,7 +4,7 @@
 - **Appearance:** An input field with obscured text (dots or asterisks). Includes a button to toggle visibility.
 - **Behavior:** Accepts password input. Toggle button reveals/hides text. Supports validation and error state.
 - **Used in blocks:**
-  - [Authentication](blocks.md#authentication)
+  - [Authentication](../blocks/Authentication.md)
 ### Accessibility
 - Use native `<input type="password">`.
 - Provide label and instructions for visibility toggle.

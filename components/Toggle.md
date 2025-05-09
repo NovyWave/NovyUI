@@ -4,7 +4,7 @@
 - **Appearance:** A button that can be toggled between active and inactive states. May have different styling for each state.
 - **Behavior:** Clicking toggles between states. Used for simple on/off or active/inactive states.
 - **Used in blocks:**
-  - [ToggleBlock](blocks.md#toggle-block)
+  - [ToggleBlock](../blocks/ToggleBlock.md)
 ### Accessibility
 - Use `aria-pressed` to indicate toggle state.
 - Announce state changes to screen readers.

@@ -4,7 +4,7 @@
 - **Appearance:** A vertical or horizontal line with events marked by dots, icons, or cards. Each event includes label, date, and content.
 - **Behavior:** Static or interactive (expand/collapse, click for details). May animate on scroll or highlight current event.
 - **Used in blocks:**
-  - [Roadmap](blocks.md#roadmap)
+  - [Roadmap](../blocks/Roadmap.md)
 ### Accessibility
 - Use semantic list or timeline markup.
 - Announce current event to screen readers.

@@ -4,7 +4,7 @@
 - **Appearance:** A small box that appears temporarily, usually at the corner or bottom of the screen. Shows message, icon, and optional action button.
 - **Behavior:** Appears in response to events. Auto-dismisses after timeout or can be dismissed manually. Supports stacking and different types (success, error, etc.).
 - **Used in blocks:**
-  - [NotificationCenterBlock](blocks.md#notification-center-block)
+  - [NotificationCenterBlock](../blocks/NotificationCenterBlock.md)
 ### Accessibility
 - Use `role="status"` or `role="alert"` for notifications.
 - Announce new notifications to screen readers.

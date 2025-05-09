@@ -4,7 +4,7 @@
 - **Appearance:** A toggle switch with a sliding thumb. May include labels or icons for on/off states.
 - **Behavior:** Clicking or dragging toggles state. Supports keyboard navigation and disabled state. May animate thumb.
 - **Used in blocks:**
-  - [SwitchToggleBlock](blocks.md#switch-toggle-block)
+  - [SwitchToggleBlock](../blocks/SwitchToggleBlock.md)
 ### Accessibility
 - Use `role="switch"` with `aria-checked`.
 - Announce state changes to screen readers.

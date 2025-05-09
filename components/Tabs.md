@@ -4,7 +4,7 @@
 - **Appearance:** A row or column of tab buttons with an active indicator. Each tab displays different content.
 - **Behavior:** Clicking a tab shows its content. Supports keyboard navigation, icons, and orientation.
 - **Used in blocks:**
-  - [SettingsTabs](blocks.md#settings-tabs)
+  - [SettingsTabs](../blocks/SettingsTabs.md)
 ### Accessibility
 - Use ARIA roles (`tablist`, `tab`, `tabpanel`).
 - Announce active tab and panel.

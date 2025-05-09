@@ -4,7 +4,7 @@
 - **Appearance:** A number with label, icon, or trend indicator. May be displayed in a card or grid.
 - **Behavior:** Updates dynamically to reflect data changes. May animate value changes.
 - **Used in blocks:**
-  - [Stats](blocks.md#stats)
+  - [Stats](../blocks/Stats.md)
 ### Accessibility
 - Ensure numbers and trends are described for screen readers.
 - Use `aria-live` if values update dynamically.

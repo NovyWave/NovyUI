@@ -4,7 +4,7 @@
 - **Appearance:** A button or switch with sun/moon or light/dark icons. Indicates current theme.
 - **Behavior:** Clicking toggles between light and dark themes. May animate icon or background.
 - **Used in blocks:**
-  - [ProfileThemeCustomization](blocks.md#profile-theme-customization)
+  - [ProfileThemeCustomization](../blocks/ProfileThemeCustomization.md)
 ### Accessibility
 - Use `aria-label` to describe the toggle purpose.
 - Announce theme changes to screen readers.

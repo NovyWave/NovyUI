@@ -4,7 +4,7 @@
 - **Appearance:** A text input area with a toolbar for formatting (bold, italic, lists, etc.). Shows styled content as user types.
 - **Behavior:** User applies formatting via toolbar or shortcuts. Supports undo/redo, links, images, and HTML output.
 - **Used in blocks:**
-  - [BlogPostEditor](blocks.md#blog-post-editor)
+  - [BlogPostEditor](../blocks/BlogPostEditor.md)
 ### Accessibility
 - Use ARIA roles (`textbox`, `toolbar`, `button`).
 - Announce formatting changes and selection.

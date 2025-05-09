@@ -4,7 +4,7 @@
 - **Appearance:** A nested list of items, with parent items having expand/collapse controls. May include icons, checkboxes, or badges.
 - **Behavior:** Clicking expands or collapses nodes to show or hide children. Supports selection, drag-and-drop, and keyboard navigation.
 - **Used in blocks:**
-  - [FileExplorer](blocks.md#file-explorer)
+  - [FileExplorer](../blocks/FileExplorer.md)
 ### Accessibility
 - Use ARIA roles (`tree`, `treeitem`, `group`).
 - Announce expanded/collapsed state with `aria-expanded`.

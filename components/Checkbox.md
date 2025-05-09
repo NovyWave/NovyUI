@@ -4,7 +4,7 @@
 - **Appearance:** A small square box that can be checked or unchecked. May include a label and an optional indeterminate state (horizontal line). Checked state is indicated by a checkmark or filled box.
 - **Behavior:** Clicking toggles between checked, unchecked, and (if supported) indeterminate. Supports keyboard navigation and focus. Can be disabled.
 - **Used in blocks:**
-  - [Authentication](blocks.md#authentication)
+  - [Authentication](../blocks/Authentication.md)
 ### Accessibility
 - Use native `<input type="checkbox">` or `role="checkbox"`.
 - Announce checked/unchecked/indeterminate state with `aria-checked`.

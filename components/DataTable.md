@@ -4,7 +4,7 @@
 - **Appearance:** A table with rows and columns, headers, and optional borders or stripes. May include sorting icons, filters, pagination controls, and action buttons.
 - **Behavior:** Displays tabular data. Supports sorting, filtering, pagination, row selection, and inline actions. Columns may be resizable or reorderable.
 - **Used in blocks:**
-  - [DataTable](blocks.md#data-table)
+  - [DataTable](../blocks/DataTable.md)
 ### Accessibility
 - Use semantic `<table>`, `<th>`, `<tr>`, `<td>` elements.
 - Provide table captions and summaries.

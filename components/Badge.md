@@ -4,9 +4,9 @@
 - **Appearance:** A small, rounded or pill-shaped label. Can display a number, icon, or short text. Often colored to indicate status or category (e.g., red for error, green for success). May be attached to another element (e.g., avatar, button) or stand alone.
 - **Behavior:** Static by default. If used as a notification badge, updates dynamically to reflect changes (e.g., unread count). Can be interactive if used as a filter or tag (clickable/removable).
 - **Used in blocks:**
-  - [Navbars](blocks.md#navbars)
-  - [Stats](blocks.md#stats)
-  - [UserInfoAndControls](blocks.md#user-info-and-controls)
+  - [Navbars](../blocks/Navbars.md)
+  - [Stats](../blocks/Stats.md)
+  - [UserInfoAndControls](../blocks/UserInfoAndControls.md)
 ### Accessibility
 - Use `aria-label` or `aria-describedby` to describe badge meaning.
 - Ensure badges with dynamic content use `aria-live` if important.

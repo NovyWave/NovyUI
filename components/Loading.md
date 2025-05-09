@@ -4,7 +4,7 @@
 - **Appearance:** Spinner (rotating icon), skeleton (gray placeholder shapes), or overlay (dimmed background with loader). Indicates loading state.
 - **Behavior:** Appears while content is loading. Disappears when loading completes. May block interaction (overlay) or show progress.
 - **Used in blocks:**
-  - [PageLoaderOverlay](blocks.md#page-loader-overlay)
+  - [PageLoaderOverlay](../blocks/PageLoaderOverlay.md)
 ### Accessibility
 - Use `aria-busy` or `aria-live` to announce loading state.
 - Provide text alternative for loading indicators.

@@ -4,7 +4,7 @@
 - **Appearance:** A horizontal or vertical sequence of steps, each with a label and icon. Current step is highlighted.
 - **Behavior:** Clicking a step navigates to it. Supports linear or non-linear progression, validation, and completion state.
 - **Used in blocks:**
-  - [OnboardingSteps](blocks.md#onboarding-steps)
+  - [OnboardingSteps](../blocks/OnboardingSteps.md)
 ### Accessibility
 - Use ARIA roles (`list`, `listitem`, `progressbar`).
 - Announce current step and progress.

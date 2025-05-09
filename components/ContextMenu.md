@@ -4,7 +4,7 @@
 - **Appearance:** A floating menu that appears on right-click or long-press. Contains a vertical list of actions, each with optional icon and shortcut.
 - **Behavior:** Opens at cursor position. Selecting an item triggers its action. Supports nested submenus and keyboard navigation.
 - **Used in blocks:**
-  - [FileActionsContextMenu](blocks.md#file-actions-context-menu)
+  - [FileActionsContextMenu](../blocks/FileActionsContextMenu.md)
 ### Accessibility
 - Use ARIA roles (`menu`, `menuitem`).
 - Announce menu open/close to screen readers.

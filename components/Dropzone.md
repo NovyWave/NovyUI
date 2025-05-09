@@ -4,7 +4,7 @@
 - **Appearance:** A bordered area with an icon and prompt text. Shows file previews or list of uploaded files. May include progress bars and remove buttons.
 - **Behavior:** Dragging files over highlights the area. Dropping or selecting files uploads them. Supports multiple files, file type restrictions, and progress display.
 - **Used in blocks:**
-  - [DragAndDrop](blocks.md#drag-and-drop)
+  - [DragAndDrop](../blocks/DragAndDrop.md)
 ### Accessibility
 - Use `aria-label` to describe dropzone purpose.
 - Announce file selection and upload progress.

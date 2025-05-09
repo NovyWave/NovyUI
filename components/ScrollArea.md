@@ -4,7 +4,7 @@
 - **Appearance:** A container with custom scrollbars. May show only when needed or always visible.
 - **Behavior:** Scrolls content horizontally or vertically. Supports keyboard and mouse interaction. May auto-scroll or snap.
 - **Used in blocks:**
-  - [ScrollAreaBlock](blocks.md#scroll-area-block)
+  - [ScrollAreaBlock](../blocks/ScrollAreaBlock.md)
 ### Accessibility
 - Ensure scrollable area is keyboard accessible.
 - Announce scroll position if important.

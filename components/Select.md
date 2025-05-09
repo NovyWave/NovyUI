@@ -4,7 +4,7 @@
 - **Appearance:** An input field with a dropdown arrow. Clicking shows a list of options. Selected option is shown in the field.
 - **Behavior:** Clicking opens dropdown. Selecting an option updates the value. Supports keyboard navigation, search, and multi-select.
 - **Used in blocks:**
-  - [SelectFilterBlock](blocks.md#select-filter-block)
+  - [SelectFilterBlock](../blocks/SelectFilterBlock.md)
 ### Accessibility
 - Use ARIA roles (`listbox`, `option`).
 - Announce selected and focused options.

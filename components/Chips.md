@@ -4,7 +4,7 @@
 - **Appearance:** Small, rounded rectangles with text and/or icon. Often used for tags, filters, or selections. May include a close (remove) icon.
 - **Behavior:** Can be static or interactive (selectable, removable, or clickable). Supports keyboard navigation. May be used in groups for multi-select.
 - **Used in blocks:**
-  - [ArticleCards](blocks.md#article-cards)
+  - [ArticleCards](../blocks/ArticleCards.md)
 ### Accessibility
 - Use `role="listbox"` and `role="option"` for selectable chips.
 - Removable chips should have accessible remove buttons (`aria-label`).

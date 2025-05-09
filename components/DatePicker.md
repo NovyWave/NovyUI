@@ -4,7 +4,7 @@
 - **Appearance:** An input field with a calendar popup for picking a date.
 - **Behavior:** Clicking input opens calendar. Selecting a date updates the value.
 - **Used in blocks:**
-  - [Authentication](blocks.md#authentication)
+  - [Authentication](../blocks/Authentication.md)
 ### Accessibility
 - Use ARIA roles (`dialog`, `grid`, `gridcell`).
 - Announce selected and focused dates.

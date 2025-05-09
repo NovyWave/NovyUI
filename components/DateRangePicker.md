@@ -4,7 +4,7 @@
 - **Appearance:** An input field with a calendar popup for picking a start and end date.
 - **Behavior:** Clicking input opens calendar. Selecting two dates sets the range.
 - **Used in blocks:**
-  - [Authentication](blocks.md#authentication)
+  - [Authentication](../blocks/Authentication.md)
 ### Accessibility
 - Use ARIA roles (`dialog`, `grid`, `gridcell`).
 - Announce start and end date selection.

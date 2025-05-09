@@ -4,7 +4,7 @@
 - **Appearance:** A floating panel anchored to a trigger element. Contains content, actions, or forms. May have an arrow pointing to the trigger.
 - **Behavior:** Opens on click, hover, or focus. Closes on outside click or escape. Supports interactive content and keyboard navigation.
 - **Used in blocks:**
-  - [UserProfilePopover](blocks.md#user-profile-popover)
+  - [UserProfilePopover](../blocks/UserProfilePopover.md)
 ### Accessibility
 - Use ARIA roles (`dialog`, `tooltip`, `menu`) as appropriate.
 - Announce popover content to screen readers.

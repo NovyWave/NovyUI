@@ -4,7 +4,7 @@
 - **Appearance:** A container with a visible drag handle or border. Can be horizontal or vertical.
 - **Behavior:** User drags handle to resize panel. Supports min/max size and snapping. May animate resize.
 - **Used in blocks:**
-  - [ResizablePanelBlock](blocks.md#resizable-panel-block)
+  - [ResizablePanelBlock](../blocks/ResizablePanelBlock.md)
 ### Accessibility
 - Use `aria-label` to describe panel purpose.
 - Ensure drag handles are keyboard accessible.

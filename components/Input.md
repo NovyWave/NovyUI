@@ -4,14 +4,14 @@
 - **Appearance:** A rectangular or pill-shaped text field with optional label, icon, or button. Shows placeholder text when empty.
 - **Behavior:** Accepts user text input. Supports focus, disabled, and error states. May include clear or reveal button.
 - **Used in blocks:**
-  - [Authentication](blocks.md#authentication)
-  - [Cart](blocks.md#cart)
-  - [Checkout](blocks.md#checkout)
-  - [Comments](blocks.md#comments)
-  - [ContactCard](blocks.md#contact-card)
-  - [DataTable](blocks.md#data-table)
-  - [FAQ](blocks.md#faq)
-  - [OnboardingSteps](blocks.md#onboarding-steps)
+  - [Authentication](../blocks/Authentication.md)
+  - [Cart](../blocks/Cart.md)
+  - [Checkout](../blocks/Checkout.md)
+  - [Comments](../blocks/Comments.md)
+  - [ContactCard](../blocks/ContactCard.md)
+  - [DataTable](../blocks/DataTable.md)
+  - [FAQ](../blocks/Faq.md)
+  - [OnboardingSteps](../blocks/OnboardingSteps.md)
 ### Accessibility
 - Use native `<input>` element.
 - Provide associated label for input.

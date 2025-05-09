@@ -4,7 +4,7 @@
 - **Appearance:** Inline element styled to look like a keyboard key or combination (e.g., Ctrl, Cmd+C). Typically uses a monospace font, border, and subtle background.
 - **Behavior:** Static display. Used for documentation, tooltips, or UI hints to indicate keyboard shortcuts or keys to press.
 - **Used in blocks:**
-  - [KeyboardShortcutsHelp](blocks.md#keyboard-shortcuts-help)
+  - [KeyboardShortcutsHelp](../blocks/KeyboardShortcutsHelp.md)
 ### Accessibility
 - Use `<kbd>` element for semantic meaning.
 - Provide text alternatives for complex shortcuts.

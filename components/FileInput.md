@@ -4,7 +4,7 @@
 - **Appearance:** An input field with a button to select files. May show selected file name(s) and a clear button.
 - **Behavior:** Clicking button opens file picker. Selecting files updates the value. Supports multiple files and file type restrictions.
 - **Used in blocks:**
-  - [FileUploadBlock](blocks.md#file-upload-block)
+  - [FileUploadBlock](../blocks/FileUploadBlock.md)
 ### Accessibility
 - Use native `<input type="file">` for best accessibility.
 - Provide clear labels and instructions.

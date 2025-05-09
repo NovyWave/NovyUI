@@ -4,16 +4,16 @@
 - **Appearance:** A circular or rounded image, initials, or icon representing a user. Can include a small status indicator (dot) or be grouped with other avatars.
 - **Behavior:** Displays user image or fallback (initials/icon). Status indicator updates in real time. Grouped avatars overlap or are displayed in a row.
 - **Used in blocks:**
-  - [ActivityFeed](blocks.md#activity-feed)
-  - [ArticleCards](blocks.md#article-cards)
-  - [Comments](blocks.md#comments)
-  - [Footers](blocks.md#footers)
-  - [Headers](blocks.md#headers)
-  - [Navbars](blocks.md#navbars)
-  - [Sidebar](blocks.md#sidebar)
-  - [TeamSection](blocks.md#team-section)
-  - [Testimonials](blocks.md#testimonials)
-  - [UserInfoAndControls](blocks.md#user-info-and-controls)
+  - [ActivityFeed](../blocks/ActivityFeed.md)
+  - [ArticleCards](../blocks/ArticleCards.md)
+  - [Comments](../blocks/Comments.md)
+  - [Footers](../blocks/Footers.md)
+  - [Headers](../blocks/Headers.md)
+  - [Navbars](../blocks/Navbars.md)
+  - [Sidebar](../blocks/Sidebar.md)
+  - [TeamSection](../blocks/TeamSection.md)
+  - [Testimonials](../blocks/Testimonials.md)
+  - [UserInfoAndControls](../blocks/UserInfoAndControls.md)
 ### Accessibility
 - Provide `alt` text for images or use `aria-label` for initials/icons.
 - Status indicators should have accessible labels (e.g., `aria-label="Online"`).

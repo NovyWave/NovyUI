@@ -4,7 +4,7 @@
 - **Appearance:** A horizontal row of page numbers, arrows, and optional jump or page size controls. Current page is highlighted.
 - **Behavior:** Clicking a number or arrow navigates to that page. Supports keyboard navigation and dynamic page range.
 - **Used in blocks:**
-  - [DataTable](blocks.md#data-table)
+  - [DataTable](../blocks/DataTable.md)
 ### Accessibility
 - Use `nav` with `aria-label="pagination"`.
 - Ensure all controls are keyboard accessible.

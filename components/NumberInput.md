@@ -4,7 +4,7 @@
 - **Appearance:** An input field for numbers, often with up/down arrow buttons. May show min/max and step values.
 - **Behavior:** Accepts numeric input. Arrow buttons increment/decrement value. Supports validation, min/max, and disabled state.
 - **Used in blocks:**
-  - [NumberInputBlock](blocks.md#number-input-block)
+  - [NumberInputBlock](../blocks/NumberInputBlock.md)
 ### Accessibility
 - Use native `<input type="number">`.
 - Provide associated label and instructions.

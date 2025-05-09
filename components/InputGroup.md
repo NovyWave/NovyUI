@@ -4,7 +4,7 @@
 - **Appearance:** A combination of input fields and buttons/icons grouped together in a single row. May include add-ons before or after the input.
 - **Behavior:** All elements are visually and functionally grouped. Supports focus, disabled, and error states.
 - **Used in blocks:**
-  - [InputGroupBlock](blocks.md#input-group-block)
+  - [InputGroupBlock](../blocks/InputGroupBlock.md)
 ### Accessibility
 - Group related inputs with `fieldset` and `legend` if appropriate.
 - Ensure all controls are labeled and keyboard accessible.

@@ -4,11 +4,11 @@
 - **Appearance:** A colored box with an icon and message text. Color and icon reflect the alert type (e.g., green for success, red for error). May include a close (dismiss) button.
 - **Behavior:** Appears in response to events or actions. Dismissible alerts can be closed by the user. May auto-dismiss after a timeout.
 - **Used in blocks:**
-  - [Authentication](blocks.md#authentication)
-  - [Banners](blocks.md#banners)
-  - [CookieConsentBanner](blocks.md#cookie-consent-banner)
-  - [ContactCard](blocks.md#contact-card)
-  - [Error](blocks.md#error)
+  - [Authentication](../blocks/Authentication.md)
+  - [Banners](../blocks/Banners.md)
+  - [CookieConsentBanner](../blocks/CookieConsentBanner.md)
+  - [ContactCard](../blocks/ContactCard.md)
+  - [Error](../blocks/Error.md)
 ### Accessibility
 - Uses `role="alert"` or `role="status"` for screen reader announcement.
 - Should be focusable if interactive (e.g., dismiss button).
