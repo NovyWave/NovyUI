@@ -11,6 +11,9 @@ A set of pages for browsing products, viewing details, managing a cart, and comp
   - [Footers](../blocks/Footers.md)
   - [OrderHistory](../blocks/OrderHistory.md)
   - [Wishlist](../blocks/Wishlist.md)
+  - [Cart](../blocks/Cart.md)
+  - [Checkout](../blocks/Checkout.md)
+  - [ProductDetails](../blocks/ProductDetails.md)
 ### Variants
 #### E-Commerce - **Product listing**
 - **Id:** ProductListing

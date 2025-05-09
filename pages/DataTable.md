@@ -4,6 +4,7 @@ A data-centric page for displaying tables or lists with filtering, sorting, and 
 - **Appearance:** A page with a data table or list, filters, and actions. May include pagination, search, and bulk actions. Table rows and columns may include action buttons and inline editing.
 - **Behavior:** Supports sorting, filtering, pagination, selection, and inline actions. Responsive layout for mobile.
 - **Blocks:**
+  - [DataTable](../blocks/DataTable.md)
   - [TableOfContents](../blocks/TableOfContents.md)
   - [ArticleCards](../blocks/ArticleCards.md)
   - [Footers](../blocks/Footers.md)
