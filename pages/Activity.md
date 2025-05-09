@@ -1,0 +1,17 @@
+## Activity
+A feed page showing recent activity, notifications, or events, often with filters and grouping.
+- **Id:** Activity
+- **Appearance:** A vertical list of activity items, each with icon, description, and timestamp. May include filters, grouping by date, and navigation to details.
+- **Behavior:** Updates dynamically with new activity. Supports filtering, marking as read, and navigation to details.
+- **Blocks:**
+  - [ActivityFeed](../blocks/ActivityFeed.md)
+  - [Footers](../blocks/Footers.md)
+### Variants
+#### Activity - **Activity feed**
+- **Id:** ActivityFeed
+- **Appearance:** Simple activity feed with list of items and timestamps.
+- **Behavior:** Static or updates in real time.
+#### Activity - **Notifications**
+- **Id:** Notifications
+- **Appearance:** List of notifications with timestamps.
+- **Behavior:** Supports marking notifications as read.
