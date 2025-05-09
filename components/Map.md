@@ -1,6 +1,6 @@
 ## Map
 🗺️ A component for selecting or displaying a geographic location on an interactive map.
-- **Id:** MapLocationPicker
+- **Id:** Map
 - **Appearance:** An interactive map with a marker or pin. May include search input, zoom controls, and address display.
 - **Behavior:** User can move marker, search for location, or click map to select. Updates value and may show address or coordinates.
 - **Used in blocks:**

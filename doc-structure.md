@@ -21,6 +21,7 @@
   - **Behavior:** Description of the variant's behavior.
   ```
 - Keep the list of BlockIds and their paths in the **Used in Blocks:** section up to date.
+- The **Used in Blocks:** section must not be empty; every component must be referenced by at least one real block.
 - Always document accessibility and keyboard support for all components (Accessibility section is required).
 
 ## Block
@@ -49,6 +50,7 @@
   ```
 - Keep the list of ComponentIds and their paths in the **Components:** section up to date.
 - Keep the list of PageIds and their paths in the **Used in Pages:** section up to date.
+- The **Used in Pages:** section must not be empty; every block must be referenced by at least one real page.
 
 ## Page
 - Store page documentation in the `/pages` directory.

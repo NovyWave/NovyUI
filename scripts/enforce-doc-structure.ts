@@ -183,6 +183,16 @@ async function lintDocs(): Promise<void> {
     if (!checkSection(content, "Used in Pages")) {
       if (!errorMap[file]) errorMap[file] = [];
       errorMap[file].push(`Block '${name}' missing **Used in Pages:** section.`);
+    } else {
+      // Enforce that Used in Pages is not empty
+      const usedInPagesMatch = content.match(/\*\*Used in Pages:\*\*([\s\S]*?)(?:\n\s*\n|###|$)/i);
+      if (usedInPagesMatch) {
+        const lines = usedInPagesMatch[1].split("\n").map((l) => l.trim()).filter(Boolean);
+        if (lines.length === 0) {
+          if (!errorMap[file]) errorMap[file] = [];
+          errorMap[file].push(`Block '${name}' has an empty **Used in Pages:** section (must reference at least one real page).`);
+        }
+      }
     }
     if (!checkVariants(content)) {
       if (!errorMap[file]) errorMap[file] = [];

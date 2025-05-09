@@ -3,6 +3,8 @@
 - **Id:** Dialog
 - **Appearance:** A centered overlay with a box containing title, content, and actions. Background is dimmed. May include close button and icon.
 - **Behavior:** Opens in response to user action. Can be closed by button, overlay click, or escape key. Traps focus and disables background interaction.
+- **Used in Blocks:**
+  - [DialogModal](../blocks/DialogModal.md)
 ### Accessibility
 - Use `role="dialog"` and `aria-modal="true"`.
 - Trap focus within dialog while open.
