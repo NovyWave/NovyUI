@@ -62,14 +62,6 @@ Example: `color.primary.7` (the base blue for primary actions)
 - Use higher indices (9–11) for text, icons, and high-contrast needs.
 - Always check color contrast for accessibility.
 
-## Example Token Reference in Components
-
-```yaml
-button.background: color.primary.7
-button.background.hover: color.primary.8
-button.text: color.neutral.11
-```
-
 ---
 
 Document all palettes (primary, neutral, success, warning, error, etc.) in this format, using only OKLCH values. For all other scales (spacing, radii, etc.), use 1–x indexing, with `none` or `full` as special values where appropriate.
