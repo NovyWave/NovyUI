@@ -1,5 +1,11 @@
 # TODO: Update Documentation Structure and Enforcement First
 
+> **IMPORTANT:** Do not edit too many files one by one (e.g., components, pages, blocks) manually. Use scripts to automate bulk changes and enforcement wherever possible, as manual editing is too slow and you have limited usage. Prioritize scriptable automation for all repetitive or large-scale updates.
+
+> **NOTE:** If you are not sure about file content or codebase structure pertaining to the user’s request, use your tools to read files and gather the relevant information: do NOT guess or make up an answer.
+
+> **NOTE:** You MUST plan extensively before each function call, and reflect extensively on the outcomes of the previous function calls. DO NOT do this entire process by making function calls only, as this can impair your ability to solve the problem and think insightfully.
+
 > **Note:** You should create scripts in the `scripts/temp/` folder to automate and enforce many of these tasks. For each todo below, consider if it can be scripted. Mark todos that can be automated with `[scriptable:ID]` for easier tracking and future automation, where `ID` is a unique identifier that will also be used for the TypeScript script filename (e.g., `enforce-token-usage-table.ts`).
 
 - [ ] 1. **Update doc-structure.md** [scriptable:enforce-doc-structure]
