@@ -10,4 +10,10 @@ This file defines the z-index scale for the design system. All values use a 1–
 | z.4           | 10000 | Overlays, tooltips    |
 | z.auto        | auto  | Default stacking      |
 
-> Use only the 1–x scale for z-index. Use `auto` for default stacking context.
+## Usage Guidelines
+- Use `z.1` for base content.
+- Use `z.2` for dropdowns and popovers.
+- Use `z.3` for modals and dialogs.
+- Use `z.4` for overlays, tooltips, and always-on-top elements.
+- Extend with higher values if your UI needs more stacking contexts.
+- Use only the 1–x scale for z-index. Use `auto` for default stacking context.
