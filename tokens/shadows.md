@@ -1,4 +1,3 @@
-<!-- filepath: d:\repos\NovyUI\tokens\shadows.md -->
 # Shadows Tokens
 
 This file defines the shadow scale for the design system. All values use a 1–x scale.

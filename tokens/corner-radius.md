@@ -1,4 +1,3 @@
-<!-- filepath: d:\repos\NovyUI\tokens\corner-radius.md -->
 # Corner Radius Tokens
 
 This file defines the corner radius scale for the design system. All values use a 1–x scale, with `none` and `full` as special values.
