@@ -38,6 +38,8 @@
     - [ ] 1.2.2 Integrate new requirements using the same style and conventions as the rest of the file (e.g., add new rules as `<!-- RULE:... -->` blocks, update templates in-place, etc.).
     - [ ] 1.2.3 If adding new sections, use the same heading and comment conventions as existing sections.
     - [ ] 1.2.4 Review the file after changes to confirm style and structure are consistent.
+  - [ ] 1.3 **Synchronize with Component/Block/Page Templates**
+    - [ ] 1.3.1 Whenever changes are made to documentation structure or templates, ensure corresponding updates are made in both this section and Section 3 (Component/Block/Page Templates), and vice versa. Cross-reference changes and keep both sections in sync. [scriptable:sync-doc-structure-templates]
 
 ---
 
@@ -64,6 +66,10 @@
 ---
 
 ## 3. Component/Block/Page Templates
+
+> **Note:** Any changes to component/block/page documentation requirements or templates must also be reflected in Section 1 (Documentation Structure) to ensure enforcement and automation remain in sync. See related [scriptable:enforce-doc-structure] and [scriptable:enforce-component-template] todos.
+
+This section tracks all requirements and automation tasks for the templates and documentation of components, blocks, and pages. All sub-tasks are scriptable and must be enforced via automation scripts.
 
 - [ ] 3. **Review and Finalize Design Tokens**
   - [ ] 3.1 Ensure all design tokens in `/tokens` are present, consistent, and ready for direct use in Penpot or web development. [scriptable:review-tokens]
@@ -133,6 +139,9 @@
 - [ ] 9. **Final Review**
   - [ ] 9.1 Review all documentation (components, blocks, pages) for token accuracy, completeness, and consistency. [scriptable:enforce-final-review]
   - [ ] 9.2 Cross-reference with `/tokens` to ensure all tokens used are defined and up to date. [scriptable:enforce-final-token-crossref]
+
+- [ ] 10. **Synchronize with Documentation Structure**
+  - [ ] 10.1 Whenever changes are made to component/block/page templates or documentation structure, ensure corresponding updates are made in both this section and Section 1 (Documentation Structure), and vice versa. Cross-reference changes and keep both sections in sync. [scriptable:sync-doc-structure-templates]
 
 ---
 
