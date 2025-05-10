@@ -12,7 +12,7 @@
 2. Enforcement Scripts
 3. Component/Block/Page Templates
 4. Token Management
-5. SvelteKit/Svelte 5 Integration
+5. SvelteKit/Svelte 5 Integration & LLM Instructions
 6. Penpot Export/Mapping
 7. CI & Automation
 8. Script Documentation in README
@@ -145,21 +145,22 @@ This section tracks all requirements and automation tasks for the templates and 
 
 ---
 
-## 4. Token Management
+## 5. SvelteKit/Svelte 5 Integration & LLM Instructions
 
-- [ ] 10. **Penpot Export/Mapping**
-  - [ ] 10.1 For each token file, provide a clear mapping or export format (e.g., JSON, CSS custom properties, or Penpot-compatible format) so tokens can be imported or referenced in Penpot. [scriptable:export-tokens-penpot] (`scripts/export-tokens-penpot.ts`)
-  - [ ] 10.2 Document the process for updating Penpot libraries when tokens change. [scriptable:penpot-library-update-doc]
-  - [ ] 10.3 Add a script to generate Penpot-ready assets (color palettes, typography, etc.) from tokens. [scriptable:generate-penpot-assets] (`scripts/generate-penpot-assets.ts`)
+- [ ] 11. **Svelte LLM Instructions Loading**
+  - [ ] 11.1 Add a script to load Svelte LLM instructions (https://svelte.dev/docs/llms) into memory, maximizing the instruction size within Svelte/SvelteKit/TypeScript limits. [scriptable:load-svelte-llm-instructions] (`scripts/load-svelte-llm-instructions.ts`)
+  - [ ] 11.2 Document any Svelte/SvelteKit/TypeScript configuration or runtime limits that affect instruction size, and provide guidance for maintainers. [scriptable:llm-instructions-limits-doc]
+  - [ ] 11.3 Add a checklist item to review and update the loading logic as Svelte or LLM capabilities evolve. [scriptable:llm-instructions-review]
 
----
+- [ ] 12. **Create SvelteKit App for NovyUI**
+  - [ ] 12.1 Add a script or documented process to scaffold a new SvelteKit app with TypeScript and all required dependencies for NovyUI. [scriptable:create-sveltekit-app] (`scripts/create-sveltekit-app.ts`)
+  - [ ] 12.2 Add todos for configuring SvelteKit for design token usage, LLM instructions, and NovyUI integration. [scriptable:configure-sveltekit]
+  - [ ] 12.3 Document the setup and configuration process in the main README. [scriptable:document-sveltekit-setup]
 
-## 5. SvelteKit/Svelte 5 Integration
-
-- [ ] 11. **SvelteKit/Svelte 5 + TypeScript Integration**
-  - [ ] 11.1 For each token file, provide a code example for consuming the tokens in SvelteKit/Svelte 5 with TypeScript (e.g., as TypeScript modules, SCSS variables, or CSS custom properties). [scriptable:token-svelte-usage-examples]
-  - [ ] 11.2 Add a script to generate Svelte/SvelteKit-compatible token files (TypeScript, JS, SCSS, CSS custom properties). [scriptable:generate-sveltekit-tokens] (`scripts/generate-sveltekit-tokens.ts`)
-  - [ ] 11.3 Document how to keep tokens in sync between design (Penpot) and code (SvelteKit). [scriptable:token-sync-process]
+- [ ] 13. **SvelteKit/Svelte 5 + TypeScript Integration**
+  - [ ] 13.1 For each token file, provide a code example for consuming the tokens in SvelteKit/Svelte 5 with TypeScript (e.g., as TypeScript modules, SCSS variables, or CSS custom properties). [scriptable:token-svelte-usage-examples]
+  - [ ] 13.2 Add a script to generate Svelte/SvelteKit-compatible token files (TypeScript, JS, SCSS, CSS custom properties). [scriptable:generate-sveltekit-tokens] (`scripts/generate-sveltekit-tokens.ts`)
+  - [ ] 13.3 Document how to keep tokens in sync between design (Penpot) and code (SvelteKit). [scriptable:token-sync-process]
 
 ---
 
