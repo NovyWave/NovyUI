@@ -22,8 +22,8 @@
 ---
 
 ### 1. Icons, Fonts, and Asset Tokens & Files
-- [ ] 1.1 Define design tokens for all icons, fonts, and other assets (e.g., icon names, font families, font weights, asset types) in `/tokens` as markdown files with clear tables and usage guidelines. [scriptable:define-asset-tokens]
-- [ ] 1.2 Add or generate the actual icon, font, and asset files in a dedicated `/assets` directory, ensuring all referenced assets are present and versioned. [scriptable:add-asset-files]
+- [x] 1.1 Define design tokens for all icons, fonts, and other assets (e.g., icon names, font families, font weights, asset types) in `/tokens` as markdown files with clear tables and usage guidelines. [scriptable:define-asset-tokens]
+- [x] 1.2 Add or generate the actual icon, font, and asset files in a dedicated `/assets` directory, ensuring all referenced assets are present and versioned. [scriptable:add-asset-files]
 - [ ] 1.3 Document the process for adding new icons, fonts, and assets, including naming conventions, file formats, and update workflow. [scriptable:document-asset-process]
 - [ ] 1.4 Add enforcement scripts to check that all asset tokens have corresponding files and vice versa. [scriptable:enforce-asset-token-file-sync] (`scripts/enforce-asset-token-file-sync.ts`)
 
