@@ -166,11 +166,16 @@ This section tracks all requirements and automation tasks for the templates and 
 
 ## 6. Penpot Export/Mapping
 
-- [ ] 12. **Component/Block/Page Visual Parity & Live Examples**
-  - [ ] 12.1 For each component, block, and page, add a visual reference or Penpot link to the canonical design. [scriptable:add-penpot-link]
-  - [ ] 12.2 Add a checklist item to verify that the SvelteKit implementation matches the Penpot design for all states and variants. [scriptable:visual-parity-check]
-  - [ ] 12.3 For each component, block, and page, provide a live interactive example in the documentation website (SvelteKit). [scriptable:live-example-sveltekit]
-  - [ ] 12.4 Ensure all live examples demonstrate all documented states and variants. [scriptable:live-example-states-variants]
+- [ ] 12. **Penpot File Format & Export/Import Automation**
+  - [ ] 12.1 Review the Penpot source code (https://github.com/penpot/penpot), the Penpot Exporter Figma Plugin (https://github.com/penpot/penpot-exporter-figma-plugin), and the Penpot import/export documentation (https://help.penpot.app/user-guide/import-export/) to understand the .penpot file format. [scriptable:review-penpot-format]
+  - [ ] 12.2 If documentation is insufficient, reverse-engineer the .penpot file format by inspecting manually created Penpot files. [scriptable:reverse-engineer-penpot-format]
+  - [ ] 12.3 Document findings and update automation scripts for Penpot export/import accordingly. [scriptable:document-penpot-format]
+
+- [ ] 13. **Component/Block/Page Visual Parity & Live Examples**
+  - [ ] 13.1 For each component, block, and page, add a visual reference or Penpot link to the canonical design. [scriptable:add-penpot-link]
+  - [ ] 13.2 Add a checklist item to verify that the SvelteKit implementation matches the Penpot design for all states and variants. [scriptable:visual-parity-check]
+  - [ ] 13.3 For each component, block, and page, provide a live interactive example in the documentation website (SvelteKit). [scriptable:live-example-sveltekit]
+  - [ ] 13.4 Ensure all live examples demonstrate all documented states and variants. [scriptable:live-example-states-variants]
 
 ---
 
