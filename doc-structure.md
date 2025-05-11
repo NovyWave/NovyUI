@@ -108,4 +108,4 @@
 
 ## Enforcement
 <!-- RULE:enforcement-script -->
-- The script `scripts/enforce-doc-structure.ts` must implement checks for all rules described in this document.
+- The script `scripts/doc-structure-enforcer.ts` must implement checks for all rules described in this document.

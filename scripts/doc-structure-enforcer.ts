@@ -440,7 +440,7 @@ await lintDocs();
 try {
   const decoder = new TextDecoder();
   const docStructure = Deno.readFileSync("doc-structure.md");
-  const enforceScript = Deno.readFileSync("scripts/enforce-doc-structure.ts");
+  const enforceScript = Deno.readFileSync("scripts/doc-structure-enforcer.ts");
 
   function extractRuleIds(text: string, pattern: RegExp): Set<string> {
     const ids = new Set<string>();
@@ -460,13 +460,13 @@ try {
   let ok = true;
   for (const id of docIds) {
     if (!codeIds.has(id)) {
-      console.error(`❌ Rule '${id}' is in doc-structure.md but not enforced in enforce-doc-structure.ts`);
+      console.error(`❌ Rule '${id}' is in doc-structure.md but not enforced in doc-structure-enforcer.ts`);
       ok = false;
     }
   }
   for (const id of codeIds) {
     if (!docIds.has(id)) {
-      console.error(`❌ Rule '${id}' is in enforce-doc-structure.ts but not documented in doc-structure.md`);
+      console.error(`❌ Rule '${id}' is in doc-structure-enforcer.ts but not documented in doc-structure.md`);
       ok = false;
     }
   }

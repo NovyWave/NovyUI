@@ -30,7 +30,7 @@
   - [ ] 1.3.3 Describe the directory structure for assets (e.g., `/assets/icons`, `/assets/fonts`).
   - [ ] 1.3.4 Outline the workflow for adding, reviewing, and updating assets and tokens (including updating token markdown files).
   - [ ] 1.3.5 Add cross-references to relevant token files and documentation.
-- [ ] 1.4 Add enforcement scripts to check that all asset tokens have corresponding files and vice versa. [scriptable:enforce-asset-token-file-sync] (`scripts/enforce-asset-token-file-sync.ts`)
+- [ ] 1.4 Add enforcement scripts to check that all asset tokens have corresponding files and vice versa. [scriptable:asset-token-file-enforcer] (`scripts/asset-token-file-enforcer.ts`)
 
 ---
 
@@ -66,15 +66,15 @@
 
 - [ ] 2.1 **Update doc-structure.md** [scriptable:enforce-doc-structure]
   - [ ] 2.1.1 Update the documentation rules and templates in `doc-structure.md` to require:
-    - [ ] 2.1.1.1 A "Token Usage" table in every component file, listing all relevant UI parts, the token used, and a short description. [scriptable:enforce-token-usage-table]
-    - [ ] 2.1.1.2 Explicit state/variant token documentation for all components, blocks, and pages. [scriptable:enforce-state-variant-docs]
-    - [ ] 2.1.1.3 An expanded accessibility section for all components, blocks, and pages (keyboard navigation, ARIA, contrast, focus indicators). [scriptable:enforce-accessibility-section]
-    - [ ] 2.1.1.4 Consistent use of tokens for all visual properties (color, spacing, radius, shadow, etc.) in all documentation. [scriptable:enforce-token-consistency]
-    - [ ] 2.1.1.5 No hardcoded values for visual properties in documentation. [scriptable:enforce-no-hardcoded-values]
-    - [ ] 2.1.1.6 (Optional) Token usage table for complex blocks/pages. [scriptable:enforce-block-page-token-table]
-    - [ ] 2.1.1.7 All references (blocks in pages, components in blocks, etc.) must use correct relative paths and be kept in sync. [scriptable:enforce-reference-sync]
-    - [ ] 2.1.1.8 Every item must be listed in its respective table of contents file (`components.md`, `blocks.md`, `pages.md`). [scriptable:enforce-toc-listing]
-    - [ ] 2.1.1.9 The rules must be clear, strict, and enforceable even if not all files are updated yet. [scriptable:enforce-doc-structure-strictness]
+    - [ ] 2.1.1.1 A "Token Usage" table in every component file, listing all relevant UI parts, the token used, and a short description. [scriptable:token-usage-table-enforcer]
+    - [ ] 2.1.1.2 Explicit state/variant token documentation for all components, blocks, and pages. [scriptable:state-variant-docs-enforcer]
+    - [ ] 2.1.1.3 An expanded accessibility section for all components, blocks, and pages (keyboard navigation, ARIA, contrast, focus indicators). [scriptable:accessibility-section-enforcer]
+    - [ ] 2.1.1.4 Consistent use of tokens for all visual properties (color, spacing, radius, shadow, etc.) in all documentation. [scriptable:token-consistency-enforcer]
+    - [ ] 2.1.1.5 No hardcoded values for visual properties in documentation. [scriptable:no-hardcoded-values-enforcer]
+    - [ ] 2.1.1.6 (Optional) Token usage table for complex blocks/pages. [scriptable:block-page-token-table-enforcer]
+    - [ ] 2.1.1.7 All references (blocks in pages, components in blocks, etc.) must use correct relative paths and be kept in sync. [scriptable:reference-sync-enforcer]
+    - [ ] 2.1.1.8 Every item must be listed in its respective table of contents file (`components.md`, `blocks.md`, `pages.md`). [scriptable:toc-listing-enforcer]
+    - [ ] 2.1.1.9 The rules must be clear, strict, and enforceable even if not all files are updated yet. [scriptable:doc-structure-strictness-enforcer]
   - [ ] 2.1.2 **Ensure all changes preserve the existing file style:**
     - [ ] 2.1.2.1 Do not break or remove any `<!-- RULE:... -->` comments, templates, or formatting in `doc-structure.md`.
     - [ ] 2.1.2.2 Integrate new requirements using the same style and conventions as the rest of the file (e.g., add new rules as `<!-- RULE:... -->` blocks, update templates in-place, etc.).
@@ -87,20 +87,20 @@
 
 ## 3. Enforcement Scripts
 
-- [ ] 3.1 **Update scripts/enforce-doc-structure.ts** [scriptable:update-enforcement-script]
+- [ ] 3.1 **Update scripts/doc-structure-enforcer.ts** [scriptable:update-script-enforcer]
   - [ ] 3.1.1 Update the enforcement script to check for the new requirements:
-    - [ ] 3.1.1.1 Presence of a "Token Usage" table in each component file. [scriptable:enforce-token-usage-table]
-    - [ ] 3.1.1.2 Explicit documentation of states and variants with token references in all components, blocks, and pages. [scriptable:enforce-state-variant-docs]
-    - [ ] 3.1.1.3 Expanded accessibility section with required details in all components, blocks, and pages. [scriptable:enforce-accessibility-section]
-    - [ ] 3.1.1.4 Consistent use of tokens for all visual properties (color, spacing, radius, shadow, etc.). [scriptable:enforce-token-consistency]
-    - [ ] 3.1.1.5 No hardcoded values for visual properties in documentation. [scriptable:enforce-no-hardcoded-values]
-    - [ ] 3.1.1.6 (Optional) Token usage table for complex blocks/pages. [scriptable:enforce-block-page-token-table]
-    - [ ] 3.1.1.7 All references (blocks in pages, components in blocks, etc.) must use correct relative paths and be kept in sync. [scriptable:enforce-reference-sync]
-    - [ ] 3.1.1.8 Every item must be listed in its respective table of contents file (`components.md`, `blocks.md`, `pages.md`). [scriptable:enforce-toc-listing]
-    - [ ] 3.1.1.9 The script should be as strict as possible, flagging any files that do not comply, even if not all files are updated yet. [scriptable:enforce-strictness]
-    - [ ] 3.1.1.10 The script should provide clear error messages and suggestions for fixing violations. [scriptable:enforce-error-messages]
+    - [ ] 3.1.1.1 Presence of a "Token Usage" table in each component file. [scriptable:token-usage-table-enforcer]
+    - [ ] 3.1.1.2 Explicit documentation of states and variants with token references in all components, blocks, and pages. [scriptable:state-variant-docs-enforcer]
+    - [ ] 3.1.1.3 Expanded accessibility section with required details in all components, blocks, and pages. [scriptable:accessibility-section-enforcer]
+    - [ ] 3.1.1.4 Consistent use of tokens for all visual properties (color, spacing, radius, shadow, etc.). [scriptable:token-consistency-enforcer]
+    - [ ] 3.1.1.5 No hardcoded values for visual properties in documentation. [scriptable:no-hardcoded-values-enforcer]
+    - [ ] 3.1.1.6 (Optional) Token usage table for complex blocks/pages. [scriptable:block-page-token-table-enforcer]
+    - [ ] 3.1.1.7 All references (blocks in pages, components in blocks, etc.) must use correct relative paths and be kept in sync. [scriptable:reference-sync-enforcer]
+    - [ ] 3.1.1.8 Every item must be listed in its respective table of contents file (`components.md`, `blocks.md`, `pages.md`). [scriptable:toc-listing-enforcer]
+    - [ ] 3.1.1.9 The script should be as strict as possible, flagging any files that do not comply, even if not all files are updated yet. [scriptable:strictness-enforcer]
+    - [ ] 3.1.1.10 The script should provide clear error messages and suggestions for fixing violations. [scriptable:error-messages-enforcer]
   - [ ] 3.1.2 **Ensure all script changes preserve the existing enforcement logic and style:**
-    - [ ] 3.1.2.1 Do not break or remove any existing rule checks, error reporting conventions, or file structure in `enforce-doc-structure.ts`.
+    - [ ] 3.1.2.1 Do not break or remove any existing rule checks, error reporting conventions, or file structure in `doc-structure-enforcer.ts`.
     - [ ] 3.1.2.2 Integrate new checks using the same code style, error message format, and modular structure as the rest of the script.
     - [ ] 3.1.2.3 If adding new checks, use the same naming and organization conventions as existing checks.
     - [ ] 3.1.2.4 Review the script after changes to confirm style and structure are consistent.
@@ -121,8 +121,8 @@ This section tracks all requirements and automation tasks for the templates and 
 
 - [ ] 4.2 **Expand the Component Template**
   - [ ] 4.2.1 For each component markdown file in `/components`, update the documentation template as follows: [scriptable:enforce-component-template]
-    - [ ] 4.2.1.1 Add a "Token Usage" Table after the **Appearance** or before the **Variants** section. [scriptable:enforce-token-usage-table]
-      - [ ] 4.2.1.1.1 The table should list all relevant UI parts, the token used, and a short description. [scriptable:enforce-token-usage-table-structure]
+    - [ ] 4.2.1.1 Add a "Token Usage" Table after the **Appearance** or before the **Variants** section. [scriptable:token-usage-table-enforcer]
+      - [ ] 4.2.1.1.1 The table should list all relevant UI parts, the token used, and a short description. [scriptable:token-usage-table-structure-enforcer]
       - [ ] 4.2.1.1.2 Example:
         | Part        | Token Example      | Description                |
         |-------------|-------------------|----------------------------|
@@ -131,10 +131,10 @@ This section tracks all requirements and automation tasks for the templates and 
         | Border      | color.primary.5   | Border color               |
         | Radius      | radii.2           | Border radius              |
         | Shadow      | shadow.1          | Button shadow              |
-    - [ ] 4.2.1.2 Document States & Variants: [scriptable:enforce-state-variant-docs]
-      - [ ] 4.2.1.2.1 Explicitly list all UI states (default, hover, active, disabled, focus, etc.). [scriptable:enforce-state-listing]
-      - [ ] 4.2.1.2.2 For each state, specify which tokens change and how (e.g., background, border, text color). [scriptable:enforce-state-token-mapping]
-      - [ ] 4.2.1.2.3 For variants, describe how token usage differs from the default. [scriptable:enforce-variant-token-mapping]
+    - [ ] 4.2.1.2 Document States & Variants: [scriptable:state-variant-docs-enforcer]
+      - [ ] 4.2.1.2.1 Explicitly list all UI states (default, hover, active, disabled, focus, etc.). [scriptable:state-listing-enforcer]
+      - [ ] 4.2.1.2.2 For each state, specify which tokens change and how (e.g., background, border, text color). [scriptable:state-token-mapping-enforcer]
+      - [ ] 4.2.1.2.3 For variants, describe how token usage differs from the default. [scriptable:variant-token-mapping-enforcer]
       - [ ] 4.2.1.2.4 Example:
         - **Default:**  
           - Background: `color.primary.7`
@@ -149,38 +149,38 @@ This section tracks all requirements and automation tasks for the templates and 
         - **Outline Variant:**  
           - Border: `color.primary.7`
           - Background: `color.transparent`
-    - [ ] 4.2.1.3 Expand Accessibility Section: [scriptable:enforce-accessibility-section]
+    - [ ] 4.2.1.3 Expand Accessibility Section: [scriptable:accessibility-section-enforcer]
       - [ ] 4.2.1.3.1 Clearly document:
-        - [ ] 4.2.1.3.1.1 Keyboard navigation (tab order, shortcuts, etc.) [scriptable:enforce-accessibility-keyboard]
-        - [ ] 4.2.1.3.1.2 ARIA roles and attributes [scriptable:enforce-accessibility-aria]
-        - [ ] 4.2.1.3.1.3 Color contrast and focus indicators (with token references) [scriptable:enforce-accessibility-contrast-focus]
-        - [ ] 4.2.1.3.1.4 Any additional accessibility considerations [scriptable:enforce-accessibility-other]
-    - [ ] 4.2.1.4 Reference Tokens Consistently: [scriptable:enforce-token-consistency]
-      - [ ] 4.2.1.4.1 Ensure all visual properties (color, spacing, radius, shadow, etc.) are described using tokens from `/tokens`. [scriptable:enforce-token-reference]
-      - [ ] 4.2.1.4.2 Avoid hardcoded values in documentation. [scriptable:enforce-no-hardcoded-values]
-    - [ ] 4.2.1.5 Maintain Template Consistency: [scriptable:enforce-template-consistency]
-      - [ ] 4.2.1.5.1 Ensure all component files follow the same expanded template for clarity and maintainability. [scriptable:enforce-template-uniformity]
+        - [ ] 4.2.1.3.1.1 Keyboard navigation (tab order, shortcuts, etc.) [scriptable:accessibility-keyboard-enforcer]
+        - [ ] 4.2.1.3.1.2 ARIA roles and attributes [scriptable:accessibility-aria-enforcer]
+        - [ ] 4.2.1.3.1.3 Color contrast and focus indicators (with token references) [scriptable:accessibility-contrast-focus-enforcer]
+        - [ ] 4.2.1.3.1.4 Any additional accessibility considerations [scriptable:accessibility-other-enforcer]
+    - [ ] 4.2.1.4 Reference Tokens Consistently: [scriptable:token-consistency-enforcer]
+      - [ ] 4.2.1.4.1 Ensure all visual properties (color, spacing, radius, shadow, etc.) are described using tokens from `/tokens`. [scriptable:token-reference-enforcer]
+      - [ ] 4.2.1.4.2 Avoid hardcoded values in documentation. [scriptable:no-hardcoded-values-enforcer]
+    - [ ] 4.2.1.5 Maintain Template Consistency: [scriptable:template-consistency-enforcer]
+      - [ ] 4.2.1.5.1 Ensure all component files follow the same expanded template for clarity and maintainability. [scriptable:template-uniformity-enforcer]
 
 - [ ] 4.3 **Review and Cross-Reference**
-  - [ ] 4.3.1 After updating, cross-reference each component’s documentation with the relevant tokens in `/tokens` to ensure accuracy. [scriptable:enforce-token-crossref]
-  - [ ] 4.3.2 Make sure all referenced tokens exist and are up to date. [scriptable:enforce-token-exists]
+  - [ ] 4.3.1 After updating, cross-reference each component’s documentation with the relevant tokens in `/tokens` to ensure accuracy. [scriptable:token-crossref-enforcer]
+  - [ ] 4.3.2 Make sure all referenced tokens exist and are up to date. [scriptable:token-exists-enforcer]
 
 - [ ] 4.4 **Prepare for Enforcement**
-  - [ ] 4.4.1 Ensure the new documentation structure aligns with the rules in `doc-structure.md` and can be checked by your enforcement script. [scriptable:enforce-doc-structure-alignment]
+  - [ ] 4.4.1 Ensure the new documentation structure aligns with the rules in `doc-structure.md` and can be checked by your enforcement script. [scriptable:doc-structure-alignment-enforcer]
 
 - [ ] 4.5 **Update Block & Page Documentation**
-  - [ ] 4.5.1 Update all `/blocks` and `/pages` markdown files to: [scriptable:enforce-block-page-template]
-    - [ ] 4.5.1.1 Reference which components/blocks are used. [scriptable:enforce-block-page-references]
-    - [ ] 4.5.1.2 Describe layout, spacing, and responsive behavior using tokens. [scriptable:enforce-block-page-layout-tokens]
-    - [ ] 4.5.1.3 (Optional) Add a token usage table for complex blocks/pages. [scriptable:enforce-block-page-token-table]
-    - [ ] 4.5.1.4 Document states/variants and accessibility where relevant. [scriptable:enforce-block-page-states-accessibility]
+  - [ ] 4.5.1 Update all `/blocks` and `/pages` markdown files to: [scriptable:block-page-template-enforcer]
+    - [ ] 4.5.1.1 Reference which components/blocks are used. [scriptable:block-page-references-enforcer]
+    - [ ] 4.5.1.2 Describe layout, spacing, and responsive behavior using tokens. [scriptable:block-page-layout-tokens-enforcer]
+    - [ ] 4.5.1.3 (Optional) Add a token usage table for complex blocks/pages. [scriptable:block-page-token-table-enforcer]
+    - [ ] 4.5.1.4 Document states/variants and accessibility where relevant. [scriptable:block-page-states-accessibility-enforcer]
 
 - [ ] 4.6 **Review Directory Structure**
-  - [ ] 4.6.1 Ensure your directory structure matches the recommended layout in `design-system.md`. [scriptable:enforce-directory-structure]
+  - [ ] 4.6.1 Ensure your directory structure matches the recommended layout in `design-system.md`. [scriptable:directory-structure-enforcer]
 
 - [ ] 4.7 **Final Review**
-  - [ ] 4.7.1 Review all documentation (components, blocks, pages) for token accuracy, completeness, and consistency. [scriptable:enforce-final-review]
-  - [ ] 4.7.2 Cross-reference with `/tokens` to ensure all tokens used are defined and up to date. [scriptable:enforce-final-token-crossref]
+  - [ ] 4.7.1 Review all documentation (components, blocks, pages) for token accuracy, completeness, and consistency. [scriptable:final-review-enforcer]
+  - [ ] 4.7.2 Cross-reference with `/tokens` to ensure all tokens used are defined and up to date. [scriptable:final-token-crossref-enforcer]
 
 - [ ] 4.8 **Synchronize with Documentation Structure**
   - [ ] 4.8.1 Whenever changes are made to component/block/page templates or documentation structure, ensure corresponding updates are made in both this section and Section 2 (Documentation Structure), and vice versa. Cross-reference changes and keep both sections in sync. [scriptable:sync-doc-structure-templates]
@@ -234,18 +234,18 @@ This section tracks all requirements and automation tasks for the templates and 
 ## 8. CI & Automation
 
 - [ ] 8.1 **Token Coverage & Completeness**
-  - [ ] 8.1.1 Add a script to check that every visual property in every component/block/page is covered by a token (no gaps). [scriptable:enforce-token-coverage] (`scripts/enforce-token-coverage.ts`)
-  - [ ] 8.1.2 Add a script to check for unused tokens and flag them for review. [scriptable:enforce-unused-tokens] (`scripts/enforce-unused-tokens.ts`)
+  - [ ] 8.1.1 Add a script to check that every visual property in every component/block/page is covered by a token (no gaps). [scriptable:token-coverage-enforcer] (`scripts/token-coverage-enforcer.ts`)
+  - [ ] 8.1.2 Add a script to check for unused tokens and flag them for review. [scriptable:unused-tokens-enforcer] (`scripts/unused-tokens-enforcer.ts`)
 
 - [ ] 8.2 **Accessibility Tokens**
-  - [ ] 8.2.1 Ensure that tokens for focus indicators, contrast, and ARIA-related styling are explicitly documented and mapped for both web and Penpot. [scriptable:enforce-accessibility-tokens]
+  - [ ] 8.2.1 Ensure that tokens for focus indicators, contrast, and ARIA-related styling are explicitly documented and mapped for both web and Penpot. [scriptable:accessibility-tokens-enforcer]
 
 - [ ] 8.3 **Design System Versioning**
-  - [ ] 8.3.1 Add a version field to each token file and to the design system documentation. [scriptable:enforce-token-versioning] (`scripts/enforce-token-versioning.ts`)
-  - [ ] 8.3.2 Add a changelog section to each token file and to the design system documentation. [scriptable:enforce-token-changelog] (`scripts/enforce-token-changelog.ts`)
+  - [ ] 8.3.1 Add a version field to each token file and to the design system documentation. [scriptable:token-versioning-enforcer] (`scripts/token-versioning-enforcer.ts`)
+  - [ ] 8.3.2 Add a changelog section to each token file and to the design system documentation. [scriptable:token-changelog-enforcer] (`scripts/token-changelog-enforcer.ts`)
 
 - [ ] 8.4 **Automation & CI**
-  - [ ] 8.4.1 Add a script or CI job to run all enforcement scripts and fail the build if any rule is broken. [scriptable:ci-enforcement] (`scripts/ci-enforcement.ts`)
+  - [ ] 8.4.1 Add a script or CI job to run all enforcement scripts and fail the build if any rule is broken. [scriptable:ci-enforcer] (`scripts/ci-enforcer.ts`)
   - [ ] 8.4.2 Document how to run all enforcement and generation scripts locally and in CI. [scriptable:enforcement-docs]
 
 ---
