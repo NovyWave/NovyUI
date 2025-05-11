@@ -25,7 +25,40 @@
 - [x] 1.1 Define design tokens for all icons, fonts, and other assets (e.g., icon names, font families, font weights, asset types) in `/tokens` as markdown files with clear tables and usage guidelines. [scriptable:define-asset-tokens]
 - [x] 1.2 Add or generate the actual icon, font, and asset files in a dedicated `/assets` directory, ensuring all referenced assets are present and versioned. [scriptable:add-asset-files]
 - [ ] 1.3 Document the process for adding new icons, fonts, and assets, including naming conventions, file formats, and update workflow. [scriptable:document-asset-process]
+  - [ ] 1.3.1 Document naming conventions for all asset types (e.g., kebab-case for icons, font family-weight-style for fonts).
+  - [ ] 1.3.2 Specify required file formats for each asset type (e.g., .svg for icons, .woff2 for fonts).
+  - [ ] 1.3.3 Describe the directory structure for assets (e.g., `/assets/icons`, `/assets/fonts`).
+  - [ ] 1.3.4 Outline the workflow for adding, reviewing, and updating assets and tokens (including updating token markdown files).
+  - [ ] 1.3.5 Add cross-references to relevant token files and documentation.
 - [ ] 1.4 Add enforcement scripts to check that all asset tokens have corresponding files and vice versa. [scriptable:enforce-asset-token-file-sync] (`scripts/enforce-asset-token-file-sync.ts`)
+
+---
+
+### 1.3 Asset Addition & Update Process [scriptable:document-asset-process]
+
+**Adding or Updating Icons, Fonts, and Assets:**
+
+1. **Naming Conventions:**
+   - **Icons:** Use kebab-case (e.g., `arrow-left.svg`).
+   - **Fonts:** Use `family-weight-style` (e.g., `inter-4-normal.woff2`, `jetbrains-mono-7-bold.woff2`).
+   - **Other Assets:** Use descriptive, kebab-case names.
+2. **File Formats:**
+   - **Icons:** `.svg` (preferred), optionally `.png` for raster assets.
+   - **Fonts:** `.woff2` (required), `.woff` (optional fallback).
+   - **Other Assets:** Use open, web-friendly formats (e.g., `.webp`, `.png`).
+3. **Directory Structure:**
+   - Place icons in `/assets/icons/`.
+   - Place fonts in `/assets/fonts/`.
+   - Place other assets in `/assets/` or a relevant subdirectory.
+4. **Token File Updates:**
+   - Add a new row to the relevant token markdown file (`icons.md`, `fonts.md`, etc.) for each new asset.
+   - Ensure the table entry matches the file name and describes the asset.
+   - Update usage guidelines if conventions change.
+5. **Review & Approval:**
+   - All asset additions/updates must be reviewed for naming, format, and documentation compliance.
+   - Use enforcement scripts to check for missing or orphaned assets/tokens.
+6. **Cross-References:**
+   - Reference this process in all relevant token files and documentation.
 
 ---
 
