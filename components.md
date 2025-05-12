@@ -72,3 +72,33 @@ Welcome to the NovyUI Components reference. This document provides an overview o
 - [🔄 Transfer List](components/TransferList.md)
 - [🌳 Tree View](components/TreeView.md)
 - [🔤 Typography](components/Typography.md)
+
+## Instructions
+
+- Every component in `/components` must be listed here, sorted alphabetically by display name (ignoring leading emojis/symbols).
+- Every link must point to an existing file.
+
+- Use the following template for each component:
+  ```md
+  ## [Component Title]
+  A brief description of the component's purpose.
+  - **Id:** [ComponentId]
+  - **Appearance:** Description of the component's layout and visual elements.
+  - **Behavior:** Description of the component's interactive features or logic.
+  - **Used in Blocks:**
+    - [BlockId1](../blocks/BlockId1.md)
+    - [BlockId2](../blocks/BlockId2.md)
+    - ...
+  ### Accessibility
+  - Describe accessibility features, keyboard support, and ARIA usage if relevant.
+  ### Variants
+  #### [Component Title] - **[Variant Name]**
+  - **Id:** [VariantId]
+  - **Appearance:** Description of the variant's layout or features.
+  - **Behavior:** Description of the variant's behavior.
+  ```
+
+- Keep the list of BlockIds and their paths in the **Used in Blocks:** section up to date.
+- The **Used in Blocks:** section must not be empty; every component must be referenced by at least one real block.
+- Always document accessibility and keyboard support for all components (Accessibility section is required).
+- Every component file must include a `### Accessibility` section describing accessibility and keyboard support.

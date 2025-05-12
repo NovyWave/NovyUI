@@ -71,3 +71,34 @@ This document provides an overview of all UI blocks available in NovyUI. Each bl
 - [User Profile Popover](blocks/UserProfilePopover.md)
 - [User Role Assignment](blocks/UserRoleAssignment.md)
 - [Wishlist](blocks/Wishlist.md)
+
+## Instructions
+
+- Every block in `/blocks` must be listed here, sorted alphabetically by display name (ignoring leading emojis/symbols).
+- Every link must point to an existing file.
+
+- Use the following template for each block:
+  ```md
+  ## [Block Title]
+  A brief description of the block's purpose.
+  - **Id:** [BlockId]
+  - **Appearance:** Description of the block's layout and visual elements.
+  - **Behavior:** Description of the block's interactive features or logic.
+  - **Components:**
+    - [ComponentId1](../components/ComponentId1.md)
+    - [ComponentId2](../components/ComponentId2.md)
+    - ...
+  - **Used in Pages:**
+    - [PageId1](../pages/PageId1.md)
+    - [PageId2](../pages/PageId2.md)
+    - ...
+  ### Variants
+  #### [Block Title] - **[Variant Name]**
+  - **Id:** [VariantId]
+  - **Appearance:** Description of the variant's layout or features.
+  - **Behavior:** Description of the variant's behavior.
+  ```
+
+- Keep the list of ComponentIds and their paths in the **Components:** section up to date.
+- Keep the list of PageIds and their paths in the **Used in Pages:** section up to date.
+- The **Used in Pages:** section must not be empty; every block must be referenced by at least one real page.

@@ -5,20 +5,35 @@ Questions ▷ martin@kavik.cz
 
 ## Contributing
 
-To contribute to NovyUI, you must validate both your documentation structure and font assets before creating a pull request. This ensures the design system remains consistent and implementation-ready.
+To contribute to NovyUI, you must validate your documentation structure and asset files before creating a pull request. This ensures the design system remains consistent and implementation-ready.
 
 If you don't have Deno installed, you can get it from [deno.com](https://deno.com/).
 
 ### Documentation structure enforcement
 
-To validate your documentation structure, run:
+The documentation structure rules are split by type and described in the respective ToC files:
+- `pages.md` (pages)
+- `blocks.md` (blocks)
+- `components.md` (components)
+
+To validate your documentation structure, run the relevant script:
 
 ```sh
-deno run --allow-read scripts/doc-structure-enforcer.ts
+deno run --allow-read scripts/page-markdown-enforcer.ts      # For pages
+
+deno run --allow-read scripts/block-markdown-enforcer.ts     # For blocks
+
+deno run --allow-read scripts/component-markdown-enforcer.ts # For components
 ```
 
-This script will:
-- Check that your documentation files and structure match the design system requirements
+Or run all checks at once:
+
+```sh
+deno run --allow-read --allow-run scripts/all-markdown-enforcer.ts
+```
+
+Each script will:
+- Check that your documentation files and structure match the design system requirements for that type
 - Report any missing or misplaced documentation files
 - Print a ✅ message when your documentation structure is valid
 

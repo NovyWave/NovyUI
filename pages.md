@@ -32,3 +32,29 @@ This document provides an overview of all page templates and layouts available i
 - [Team](pages/Team.md)
 - [User Profile](pages/UserProfile.md)
 
+## Instructions
+
+- Every page in `/pages` must be listed here, sorted alphabetically by display name (ignoring leading emojis/symbols).
+- Every link must point to an existing file.
+
+- Use the following template for each page:
+  ```md
+  ## [Page Title]
+  A brief description of the page's purpose.
+  - **Id:** [PageId]
+  - **Appearance:** Description of the layout, sections, and visual elements.
+  - **Behavior:** Description of interactive features or logic.
+  - **Blocks:**
+    - [BlockId1](../blocks/BlockId1.md)
+    - [BlockId2](../blocks/BlockId2.md)
+    - ...
+  ### Variants
+  #### [Page Title] - **[Variant Name]**
+  - **Id:** [VariantId]
+  - **Appearance:** Description of the variant's layout or features.
+  - **Behavior:** Description of the variant's behavior.
+  ```
+
+- Keep the list of BlockIds and their paths in the **Blocks:** section up to date.
+- Ensure all references (blocks in pages, components in blocks, etc.) use correct relative paths and are kept in sync.
+

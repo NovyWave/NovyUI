@@ -270,3 +270,13 @@ This section tracks all requirements and automation tasks for the templates and 
 
 **Summary:**
 All documentation, enforcement, and automation tasks should be managed and tracked here. Prioritize automation and scriptable solutions for all repetitive or large-scale changes. Use the guidelines above for best practices.
+
+- Documentation structure rules are now split by type and described in:
+  - `pages.md` (pages)
+  - `blocks.md` (blocks)
+  - `components.md` (components)
+- To validate, use:
+  - `deno run --allow-read scripts/doc-structure-enforcer-pages.ts`
+  - `deno run --allow-read scripts/doc-structure-enforcer-blocks.ts`
+  - `deno run --allow-read scripts/doc-structure-enforcer-components.ts`
+  - Or the legacy all-in-one: `deno run --allow-read scripts/doc-structure-enforcer.ts`
