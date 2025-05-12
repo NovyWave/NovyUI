@@ -121,12 +121,24 @@ async function ensureLucideIcons(iconFiles: string[]) {
   } catch { /* zip file removed after extraction */ }
 }
 
+async function ensureLucideLicense() {
+  const licenseUrl = "https://raw.githubusercontent.com/lucide-icons/lucide/main/LICENSE";
+  const licenseDest = join(ICONS_DIR, "lucide-license.txt");
+  try { await Deno.stat(licenseDest); } catch { await downloadFile(licenseUrl, licenseDest); }
+}
+
 async function main() {
   const tokenFiles = await parseIconTokens();
   await ensureLucideIcons(tokenFiles);
+  await ensureLucideLicense();
   const actualFiles = await listIconFiles();
   const missing = tokenFiles.filter(f => !actualFiles.includes(f));
   const orphaned = actualFiles.filter(f => !tokenFiles.includes(f));
+  // Enforce license file presence
+  try { await Deno.stat(join(ICONS_DIR, "lucide-license.txt")); } catch {
+    console.error("Missing Lucide license file (lucide-license.txt) in /assets/icons");
+    Deno.exit(1);
+  }
   if (missing.length > 0) {
     console.error("Missing icon files (listed in tokens/icons.md but not found in /assets/icons):", missing);
   }
@@ -135,7 +147,7 @@ async function main() {
     await removeOrphanedIconFiles(tokenFiles, actualFiles);
   }
   if (missing.length === 0 && orphaned.length === 0) {
-    console.log("✅ All icon files are in sync with tokens/icons.md.");
+    console.log("✅ All icon files are in sync with tokens/icons.md and license present.");
   }
 }
 

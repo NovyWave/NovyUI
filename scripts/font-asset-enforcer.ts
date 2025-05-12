@@ -21,31 +21,31 @@ const INTER_FILENAME_MAP: Record<string, string> = {
   // Bold
   "Inter-Bold.woff2": "inter-7-bold.woff2",
   "Inter-Bold.ttf": "inter-7-bold.ttf",
-  // Normal Italic
-  "Inter-Italic.woff2": "inter-4-normal-italic.woff2",
-  "Inter-Italic.ttf": "inter-4-normal-italic.ttf",
-  // Medium Italic
-  "Inter-MediumItalic.woff2": "inter-5-medium-italic.woff2",
-  "Inter-MediumItalic.ttf": "inter-5-medium-italic.ttf",
-  // Bold Italic
-  "Inter-BoldItalic.woff2": "inter-7-bold-italic.woff2",
-  "Inter-BoldItalic.ttf": "inter-7-bold-italic.ttf",
+  // Italic Regular
+  "Inter-Italic.woff2": "inter-4-italic-normal.woff2",
+  "Inter-Italic.ttf": "inter-4-italic-normal.ttf",
+  // Italic Medium
+  "Inter-MediumItalic.woff2": "inter-5-italic-medium.woff2",
+  "Inter-MediumItalic.ttf": "inter-5-italic-medium.ttf",
+  // Italic Bold
+  "Inter-BoldItalic.woff2": "inter-7-italic-bold.woff2",
+  "Inter-BoldItalic.ttf": "inter-7-italic-bold.ttf",
 };
 
-// Map JetBrains Mono upstream filenames to required token filenames
-const JBM_FILENAME_MAP: Record<string, string> = {
+// Map FiraCode upstream filenames to required token filenames
+const FIRECODE_FILENAME_MAP: Record<string, string> = {
   // Regular
-  "JetBrainsMono-Regular.woff2": "jetbrains-mono-4-normal.woff2",
-  "JetBrainsMono-Regular.ttf": "jetbrains-mono-4-normal.ttf",
+  "FiraCode-Regular.woff2": "firacode-4-normal.woff2",
+  "FiraCode-Regular.ttf": "firacode-4-normal.ttf",
   // Bold
-  "JetBrainsMono-Bold.woff2": "jetbrains-mono-7-bold.woff2",
-  "JetBrainsMono-Bold.ttf": "jetbrains-mono-7-bold.ttf",
-  // Normal Italic
-  "JetBrainsMono-Italic.woff2": "jetbrains-mono-4-normal-italic.woff2",
-  "JetBrainsMono-Italic.ttf": "jetbrains-mono-4-normal-italic.ttf",
-  // Bold Italic
-  "JetBrainsMono-BoldItalic.woff2": "jetbrains-mono-7-bold-italic.woff2",
-  "JetBrainsMono-BoldItalic.ttf": "jetbrains-mono-7-bold-italic.ttf",
+  "FiraCode-Bold.woff2": "firacode-7-bold.woff2",
+  "FiraCode-Bold.ttf": "firacode-7-bold.ttf",
+};
+
+// Audiowide font enforcement (Google Fonts official)
+const AUDIOWIDE_FILENAME_MAP: Record<string, string> = {
+  "Audiowide-Regular.ttf": "audiowide-4-normal.ttf",
+  "Audiowide-Regular.woff2": "audiowide-4-normal.woff2",
 };
 
 async function parseFontTokens() {
@@ -59,8 +59,8 @@ async function parseFontTokens() {
     else if (inTable && line.trim().startsWith("|---")) continue;
     else if (inTable && line.trim().startsWith("|")) {
       const cols = line.split("|").map((s: string) => s.trim());
-      if (cols.length < 5 || !cols[1]) continue;
-      // Font Family, Weight, CSS Weight Mapping, File Example, Description
+      if (cols.length < 5) continue;
+      // Always parse the File Example column (index 4) for every row in the table
       const files = cols[4].split(",").map((f: string) => f.trim()).filter(Boolean);
       for (const file of files) {
         if (file.endsWith(".woff2") || file.endsWith(".ttf")) {
@@ -97,14 +97,33 @@ async function getLatestInterRelease(): Promise<string> {
   return data.tag_name.replace(/^v/, "");
 }
 
-async function getLatestJetBrainsMonoRelease(): Promise<string> {
-  const res = await fetch("https://api.github.com/repos/JetBrains/JetBrainsMono/releases/latest");
-  if (!res.ok) throw new Error("Failed to fetch latest JetBrains Mono release");
+async function getLatestFiraCodeRelease(): Promise<string> {
+  const res = await fetch("https://api.github.com/repos/tonsky/FiraCode/releases/latest");
+  if (!res.ok) throw new Error("Failed to fetch latest FiraCode release");
   const data = await res.json();
   return data.tag_name.replace(/^v/, "");
 }
 
 async function unzipFontZip(zipPath: string, destDir: string, filenameMap: Record<string, string>) {
+  const zipData = await Deno.readFile(zipPath);
+  const reader = new ZipReader(new Uint8ArrayReader(zipData));
+  const entries = await reader.getEntries();
+  const { Uint8ArrayWriter } = await import("jsr:@zip-js/zip-js");
+  for (const entry of entries) {
+    if (!entry.directory) {
+      if ((entry.filename.endsWith(".woff2") || entry.filename.endsWith(".ttf")) && filenameMap[basename(entry.filename)]) {
+        if (typeof entry.getData === "function") {
+          const fileData = await entry.getData(new Uint8ArrayWriter());
+          const outPath = join(destDir, filenameMap[basename(entry.filename)]);
+          await Deno.writeFile(outPath, fileData);
+        }
+      }
+    }
+  }
+  await reader.close();
+}
+
+async function unzipFontZipSelective(zipPath: string, destDir: string, filenameMap: Record<string, string>) {
   const zipData = await Deno.readFile(zipPath);
   const reader = new ZipReader(new Uint8ArrayReader(zipData));
   const entries = await reader.getEntries();
@@ -132,14 +151,10 @@ async function ensureInterFonts() {
   for (const f of interFontFiles) {
     try { await Deno.stat(join(FONTS_DIR, f)); } catch { missing = true; break; }
   }
-  let downloaded: string[] = [];
   if (missing) {
     await ensureDir(FONTS_DIR);
     await downloadFile(INTER_ZIP_URL, INTER_ZIP_PATH);
-    const before = await listFontFiles();
-    await unzipFontZip(INTER_ZIP_PATH, FONTS_DIR, INTER_FILENAME_MAP);
-    const after = await listFontFiles();
-    downloaded = after.filter(f => !before.includes(f));
+    await unzipFontZipSelective(INTER_ZIP_PATH, FONTS_DIR, INTER_FILENAME_MAP);
     try {
       await Deno.remove(INTER_ZIP_PATH);
     } catch (e) {
@@ -147,67 +162,98 @@ async function ensureInterFonts() {
       console.error(`Failed to remove zip file ${INTER_ZIP_PATH}:`, msg);
     }
   }
-  return downloaded;
 }
 
-async function ensureJetBrainsMonoFonts() {
-  const JBM_RELEASE = await getLatestJetBrainsMonoRelease();
-  const JBM_ZIP_URL = `https://github.com/JetBrains/JetBrainsMono/releases/download/v${JBM_RELEASE}/JetBrainsMono-${JBM_RELEASE}.zip`;
-  const JBM_ZIP_PATH = join(FONTS_DIR, `JetBrainsMono-${JBM_RELEASE}.zip`);
-  const jbmFontFiles = Object.values(JBM_FILENAME_MAP);
+async function ensureFiraCodeFonts() {
+  const FIRECODE_RELEASE = await getLatestFiraCodeRelease();
+  const FIRECODE_ZIP_URL = `https://github.com/tonsky/FiraCode/releases/download/${FIRECODE_RELEASE}/Fira_Code_v${FIRECODE_RELEASE}.zip`;
+  const FIRECODE_ZIP_PATH = join(FONTS_DIR, `FiraCode-${FIRECODE_RELEASE}.zip`);
+  const firecodeFontFiles = Object.values(FIRECODE_FILENAME_MAP);
   let missing = false;
-  for (const f of jbmFontFiles) {
+  for (const f of firecodeFontFiles) {
     try { await Deno.stat(join(FONTS_DIR, f)); } catch { missing = true; break; }
   }
-  let downloaded: string[] = [];
   if (missing) {
     await ensureDir(FONTS_DIR);
-    await downloadFile(JBM_ZIP_URL, JBM_ZIP_PATH);
-    const before = await listFontFiles();
-    await unzipFontZip(JBM_ZIP_PATH, FONTS_DIR, JBM_FILENAME_MAP);
-    const after = await listFontFiles();
-    downloaded = after.filter(f => !before.includes(f));
+    await downloadFile(FIRECODE_ZIP_URL, FIRECODE_ZIP_PATH);
+    await unzipFontZip(FIRECODE_ZIP_PATH, FONTS_DIR, FIRECODE_FILENAME_MAP);
     try {
-      await Deno.remove(JBM_ZIP_PATH);
+      await Deno.remove(FIRECODE_ZIP_PATH);
     } catch (e) {
       const msg = e instanceof Error ? e.message : String(e);
-      console.error(`Failed to remove zip file ${JBM_ZIP_PATH}:`, msg);
+      console.error(`Failed to remove zip file ${FIRECODE_ZIP_PATH}:`, msg);
     }
   }
-  return downloaded;
 }
 
-async function removeOrphanedFontFiles(tokenFiles: string[], actualFiles: string[]) {
-  const orphaned = actualFiles.filter(f => !tokenFiles.includes(f));
-  for (const file of orphaned) {
-    try {
-      await Deno.remove(join(FONTS_DIR, file));
-    } catch (e) {
-      const msg = e instanceof Error ? e.message : String(e);
-      console.error(`Failed to remove orphaned file ${file}:`, msg);
-    }
+async function ensureAudiowideFonts() {
+  // Google Fonts official repo for TTF, direct WOFF2 from fonts.gstatic.com
+  const TTF_URL = "https://github.com/google/fonts/raw/main/ofl/audiowide/Audiowide-Regular.ttf";
+  const WOFF2_URL = "https://fonts.gstatic.com/s/audiowide/v24/l7gdbjpo0cum0ckerWCdmA.woff2";
+  const ttfPath = join(FONTS_DIR, AUDIOWIDE_FILENAME_MAP["Audiowide-Regular.ttf"]);
+  const woff2Path = join(FONTS_DIR, AUDIOWIDE_FILENAME_MAP["Audiowide-Regular.woff2"]);
+  let missing = false;
+  try { await Deno.stat(ttfPath); } catch { missing = true; }
+  try { await Deno.stat(woff2Path); } catch { missing = true; }
+  if (missing) {
+    await ensureDir(FONTS_DIR);
+    await downloadFile(TTF_URL, ttfPath);
+    await downloadFile(WOFF2_URL, woff2Path);
+  }
+}
+
+async function ensureFontLicenses() {
+  // Download OFL license for each font family if not present
+  const licenses = [
+    {
+      url: "https://github.com/google/fonts/raw/main/ofl/audiowide/OFL.txt",
+      dest: join(FONTS_DIR, "audiowide-license.txt"),
+    },
+    {
+      url: "https://github.com/rsms/inter/raw/main/OFL.txt",
+      dest: join(FONTS_DIR, "inter-license.txt"),
+    },
+    {
+      url: "https://github.com/tonsky/FiraCode/raw/master/OFL.txt",
+      dest: join(FONTS_DIR, "firacode-license.txt"),
+    },
+  ];
+  for (const lic of licenses) {
+    try { await Deno.stat(lic.dest); } catch { await downloadFile(lic.url, lic.dest); }
   }
 }
 
 async function main() {
   await ensureInterFonts();
-  await ensureJetBrainsMonoFonts();
+  await ensureFiraCodeFonts();
+  await ensureAudiowideFonts();
+  await ensureFontLicenses();
   const tokenFiles = await parseFontTokens();
   const actualFiles = await listFontFiles();
   const missing = tokenFiles.filter(f => !actualFiles.includes(f));
   const orphaned = actualFiles.filter(f => !tokenFiles.includes(f));
   if (missing.length > 0) {
     console.error("Missing font files (listed in tokens/fonts.md but not found in /assets/fonts):", missing);
+    Deno.exit(1);
   }
   if (orphaned.length > 0) {
-    await removeOrphanedFontFiles(tokenFiles, actualFiles);
+    console.error("Orphaned font files (found in /assets/fonts but not listed in tokens/fonts.md):", orphaned);
+    Deno.exit(1);
   }
-  // Always re-check after possible orphan removal
-  const actualFilesAfter = await listFontFiles();
-  const missingAfter = tokenFiles.filter(f => !actualFilesAfter.includes(f));
-  const orphanedAfter = actualFilesAfter.filter(f => !tokenFiles.includes(f));
-  if (missingAfter.length === 0 && orphanedAfter.length === 0) {
+  // Final check
+  const finalFiles = await listFontFiles();
+  const finalMissing = tokenFiles.filter(f => !finalFiles.includes(f));
+  const finalOrphaned = finalFiles.filter(f => !tokenFiles.includes(f));
+  if (finalMissing.length === 0 && finalOrphaned.length === 0) {
     console.log("✅ All font files are in sync with tokens/fonts.md.");
+  } else {
+    if (finalMissing.length > 0) {
+      console.error("Missing font files (final check):", finalMissing);
+    }
+    if (finalOrphaned.length > 0) {
+      console.error("Orphaned font files (final check):", finalOrphaned);
+    }
+    Deno.exit(1);
   }
 }
 

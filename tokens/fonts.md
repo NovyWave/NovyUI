@@ -10,10 +10,9 @@ This file defines all font design tokens for NovyUI. All font assets referenced 
 | Inter Italic     | 4            | 400, Normal Italic        | inter-4-italic-normal.woff2, inter-4-italic-normal.ttf           | Default UI italic     |
 |                  | 5            | 500, Medium Italic        | inter-5-italic-medium.woff2, inter-5-italic-medium.ttf           |                       |
 |                  | 7            | 700, Bold Italic          | inter-7-italic-bold.woff2, inter-7-italic-bold.ttf             |                       |
-| JetBrains Mono   | 4            | 400, Normal               | jetbrains-mono-4-normal.woff2, jetbrains-mono-4-normal.ttf         | Code/monospace font   |
-|                  | 7            | 700, Bold                 | jetbrains-mono-7-bold.woff2, jetbrains-mono-7-bold.ttf           |                       |
-| JetBrains Mono Italic| 4         | 400, Normal Italic        | jetbrains-mono-4-italic-normal.woff2, jetbrains-mono-4-italic-normal.ttf  | Code/monospace italic |
-|                  | 7            | 700, Bold Italic          | jetbrains-mono-7-italic-bold.woff2, jetbrains-mono-7-italic-bold.ttf    |                       |
+| FiraCode         | 4            | 400, Normal               | firacode-4-normal.woff2, firacode-4-normal.ttf                 | Code/monospace font   |
+|                  | 7            | 700, Bold                 | firacode-7-bold.woff2, firacode-7-bold.ttf                      |                       |
+| Audiowide         | 4            | 400, Normal               | audiowide-4-normal.woff2, audiowide-4-normal.ttf                 | Display/branding font   |
 
 ## Font Weight Scale
 | Token | CSS Weight | Name        |
