@@ -24,13 +24,13 @@
 ### 1. Icons, Fonts, and Asset Tokens & Files
 - [x] 1.1 Define design tokens for all icons, fonts, and other assets (e.g., icon names, font families, font weights, asset types) in `/tokens` as markdown files with clear tables and usage guidelines. [scriptable:define-asset-tokens]
 - [x] 1.2 Add or generate the actual icon, font, and asset files in a dedicated `/assets` directory, ensuring all referenced assets are present and versioned. [scriptable:add-asset-files]
-- [ ] 1.3 Document the process for adding new icons, fonts, and assets, including naming conventions, file formats, and update workflow. [scriptable:document-asset-process]
-  - [ ] 1.3.1 Document naming conventions for all asset types (e.g., kebab-case for icons, font family-weight-style for fonts).
-  - [ ] 1.3.2 Specify required file formats for each asset type (e.g., .svg for icons, .woff2 for fonts).
-  - [ ] 1.3.3 Describe the directory structure for assets (e.g., `/assets/icons`, `/assets/fonts`).
-  - [ ] 1.3.4 Outline the workflow for adding, reviewing, and updating assets and tokens (including updating token markdown files).
-  - [ ] 1.3.5 Add cross-references to relevant token files and documentation.
-- [ ] 1.4 Add enforcement scripts to check that all asset tokens have corresponding files and vice versa. [scriptable:asset-token-file-enforcer] (`scripts/asset-token-file-enforcer.ts`)
+- [x] 1.3 Document the process for adding new icons, fonts, and assets, including naming conventions, file formats, and update workflow. [scriptable:document-asset-process]
+  - [x] 1.3.1 Document naming conventions for all asset types (e.g., kebab-case for icons, font family-weight-style for fonts).
+  - [x] 1.3.2 Specify required file formats for each asset type (e.g., .svg for icons, .woff2 for fonts).
+  - [x] 1.3.3 Describe the directory structure for assets (e.g., `/assets/icons`, `/assets/fonts`).
+  - [x] 1.3.4 Outline the workflow for adding, reviewing, and updating assets and tokens (including updating token markdown files).
+  - [x] 1.3.5 Add cross-references to relevant token files and documentation.
+- [x] 1.4 Add enforcement scripts to check that all asset tokens have corresponding files and vice versa. [scriptable:asset-token-file-enforcer] (`scripts/asset-token-file-enforcer.ts`)
 
 ---
 
@@ -38,34 +38,34 @@
 
 **Adding or Updating Icons, Fonts, and Assets:**
 
-1. **Naming Conventions:**
-   - **Icons:** Use kebab-case (e.g., `arrow-left.svg`).
-   - **Fonts:** Use `family-weight-style` (e.g., `inter-4-normal.woff2`, `jetbrains-mono-7-bold.woff2`).
-   - **Other Assets:** Use descriptive, kebab-case names.
-2. **File Formats:**
-   - **Icons:** `.svg` (preferred), optionally `.png` for raster assets.
-   - **Fonts:** `.woff2` (required), `.woff` (optional fallback).
-   - **Other Assets:** Use open, web-friendly formats (e.g., `.webp`, `.png`).
-3. **Directory Structure:**
-   - Place icons in `/assets/icons/`.
-   - Place fonts in `/assets/fonts/`.
-   - Place other assets in `/assets/` or a relevant subdirectory.
-4. **Token File Updates:**
-   - Add a new row to the relevant token markdown file (`icons.md`, `fonts.md`, etc.) for each new asset.
-   - Ensure the table entry matches the file name and describes the asset.
-   - Update usage guidelines if conventions change.
-5. **Review & Approval:**
-   - All asset additions/updates must be reviewed for naming, format, and documentation compliance.
-   - Use enforcement scripts to check for missing or orphaned assets/tokens.
-6. **Cross-References:**
-   - Reference this process in all relevant token files and documentation.
+- [x] 1.3.a Naming Conventions:
+  - [x] Icons: Use kebab-case (e.g., `arrow-left.svg`).
+  - [x] Fonts: Use `family-weight-style` (e.g., `inter-4-normal.woff2`, `jetbrains-mono-7-bold.woff2`).
+  - [x] Other Assets: Use descriptive, kebab-case names.
+- [x] 1.3.b File Formats:
+  - [x] Icons: `.svg` (preferred), optionally `.png` for raster assets.
+  - [x] Fonts: `.woff2` (required), `.woff` (optional fallback).
+  - [x] Other Assets: Use open, web-friendly formats (e.g., `.webp`, `.png`).
+- [x] 1.3.c Directory Structure:
+  - [x] Place icons in `/assets/icons/`.
+  - [x] Place fonts in `/assets/fonts/`.
+  - [x] Place other assets in `/assets/` or a relevant subdirectory.
+- [x] 1.3.d Token File Updates:
+  - [x] Add a new row to the relevant token markdown file (`icons.md`, `fonts.md`, etc.) for each new asset.
+  - [x] Ensure the table entry matches the file name and describes the asset.
+  - [x] Update usage guidelines if conventions change.
+- [x] 1.3.e Review & Approval:
+  - [x] All asset additions/updates must be reviewed for naming, format, and documentation compliance.
+  - [x] Use enforcement scripts to check for missing or orphaned assets/tokens.
+- [x] 1.3.f Cross-References:
+  - [x] Reference this process in all relevant token files and documentation.
 
 ---
 
 ## 2. Documentation Structure
 
-- [ ] 2.1 **Update doc-structure.md** [scriptable:enforce-doc-structure]
-  - [ ] 2.1.1 Update the documentation rules and templates in `doc-structure.md` to require:
+- [ ] 2.1 **Update documentation structure rules in `components.md`, `blocks.md`, and `pages.md`** [scriptable:enforce-doc-structure]
+  - [ ] 2.1.1 Update the documentation rules and templates in `components.md`, `blocks.md`, and `pages.md` to require:
     - [ ] 2.1.1.1 A "Token Usage" table in every component file, listing all relevant UI parts, the token used, and a short description. [scriptable:token-usage-table-enforcer]
     - [ ] 2.1.1.2 Explicit state/variant token documentation for all components, blocks, and pages. [scriptable:state-variant-docs-enforcer]
     - [ ] 2.1.1.3 An expanded accessibility section for all components, blocks, and pages (keyboard navigation, ARIA, contrast, focus indicators). [scriptable:accessibility-section-enforcer]
@@ -76,10 +76,10 @@
     - [ ] 2.1.1.8 Every item must be listed in its respective table of contents file (`components.md`, `blocks.md`, `pages.md`). [scriptable:toc-listing-enforcer]
     - [ ] 2.1.1.9 The rules must be clear, strict, and enforceable even if not all files are updated yet. [scriptable:doc-structure-strictness-enforcer]
   - [ ] 2.1.2 **Ensure all changes preserve the existing file style:**
-    - [ ] 2.1.2.1 Do not break or remove any `<!-- RULE:... -->` comments, templates, or formatting in `doc-structure.md`.
-    - [ ] 2.1.2.2 Integrate new requirements using the same style and conventions as the rest of the file (e.g., add new rules as `<!-- RULE:... -->` blocks, update templates in-place, etc.).
+    - [ ] 2.1.2.1 Do not break or remove any `<!-- RULE:... -->` comments, templates, or formatting in the new structure files.
+    - [ ] 2.1.2.2 Integrate new requirements using the same style and conventions as the rest of the files (e.g., add new rules as `<!-- RULE:... -->` blocks, update templates in-place, etc.).
     - [ ] 2.1.2.3 If adding new sections, use the same heading and comment conventions as existing sections.
-    - [ ] 2.1.2.4 Review the file after changes to confirm style and structure are consistent.
+    - [ ] 2.1.2.4 Review the files after changes to confirm style and structure are consistent.
   - [ ] 2.1.3 **Synchronize with Component/Block/Page Templates**
     - [ ] 2.1.3.1 Whenever changes are made to documentation structure or templates, ensure corresponding updates are made in both this section and Section 4 (Component/Block/Page Templates), and vice versa. Cross-reference changes and keep both sections in sync. [scriptable:sync-doc-structure-templates]
 
@@ -87,7 +87,7 @@
 
 ## 3. Enforcement Scripts
 
-- [ ] 3.1 **Update scripts/doc-structure-enforcer.ts** [scriptable:update-script-enforcer]
+- [ ] 3.1 **Update documentation structure enforcement scripts (`scripts/component-markdown-enforcer.ts`, `scripts/block-markdown-enforcer.ts`, `scripts/page-markdown-enforcer.ts`)** [scriptable:update-script-enforcer]
   - [ ] 3.1.1 Update the enforcement script to check for the new requirements:
     - [ ] 3.1.1.1 Presence of a "Token Usage" table in each component file. [scriptable:token-usage-table-enforcer]
     - [ ] 3.1.1.2 Explicit documentation of states and variants with token references in all components, blocks, and pages. [scriptable:state-variant-docs-enforcer]

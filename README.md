@@ -65,6 +65,21 @@ This script will:
 - Place the icons in `/assets/icons` and remove any orphaned icon files not listed in `tokens/icons.md`
 - Print a ✅ message when all icon files are in sync
 
+### Pattern asset enforcement
+
+To ensure all required SVG pattern files are present and correctly named, run:
+
+```sh
+deno run --allow-read --allow-write --allow-net --allow-run scripts/pattern-asset-enforcer.ts
+```
+
+This script will:
+- Parse `tokens/patterns.md` and strictly enforce that all pattern tokens use the exact pattern slugs
+- Download and extract the SVG for each pattern from the official Hero Patterns zip (e.g. `https://heropatterns.com/svg/{slug}.zip`)
+- Place the SVGs in `/assets/patterns` and remove any orphaned pattern files not listed in `tokens/patterns.md`
+- Ensure the Hero Patterns license file is present
+- Print a ✅ message when all pattern files are in sync
+
 ## Run all documentation and asset enforcers
 
 To check all documentation types and asset files in a single step, run:

@@ -3,6 +3,7 @@ const commands: [string, string[]][] = [
   ["deno", ["run", "--allow-read", "--allow-run", "scripts/all-markdown-enforcer.ts"]],
   ["deno", ["run", "--allow-read", "--allow-write", "--allow-net", "scripts/font-asset-enforcer.ts"]],
   ["deno", ["run", "--allow-read", "--allow-write", "--allow-net", "scripts/icon-asset-enforcer.ts"]],
+  ["deno", ["run", "--allow-read", "--allow-write", "--allow-net", "scripts/pattern-asset-enforcer.ts"]],
 ];
 
 for (const entry of commands) {
