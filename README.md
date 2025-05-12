@@ -36,6 +36,20 @@ This script will:
 - Remove any orphaned font files not listed in `tokens/fonts.md`
 - Print a ✅ message when all font files are in sync
 
+### Icon asset enforcement
+
+To ensure all required icon files are present, correctly named, and synchronized with Lucide, run:
+
+```sh
+deno run --allow-read --allow-write --allow-net scripts/icon-asset-enforcer.ts
+```
+
+This script will:
+- Parse `tokens/icons.md` and strictly enforce that all icon tokens use the exact Lucide icon filenames
+- Download and extract only the required SVG icons from the latest Lucide release
+- Place the icons in `/assets/icons` and remove any orphaned icon files not listed in `tokens/icons.md`
+- Print a ✅ message when all icon files are in sync
+
 ## Funding
 
 This project is funded through [NGI Zero Core](https://nlnet.nl/core), a fund established by [NLnet](https://nlnet.nl) with financial support from the European Commission's [Next Generation Internet](https://ngi.eu) program. Learn more at the [NLnet project page](https://nlnet.nl/project/NovyWave).
