@@ -5,18 +5,18 @@ Questions ▷ martin@kavik.cz
 
 ## Contributing
 
-To contribute to NovyUI, you must validate your documentation structure and asset files before creating a pull request. This ensures the design system remains consistent and implementation-ready.
+To contribute to NovyUI, please validate the documentation and asset files before creating a pull request. This helps keep the design system consistent and implementation-ready.
 
 If you don't have Deno installed, you can get it from [deno.com](https://deno.com/).
 
-### Documentation structure enforcement
+### Components, Blocks, and Pages markdown enforcement
 
-The documentation structure rules are split by type and described in the respective ToC files:
+NovyUI documentation is organized by type, with each type listed in its own table of contents file:
 - `pages.md` (pages)
 - `blocks.md` (blocks)
 - `components.md` (components)
 
-To validate your documentation structure, run the relevant script:
+To validate the documentation, run the relevant script:
 
 ```sh
 deno run --allow-read scripts/page-markdown-enforcer.ts      # For pages
@@ -33,9 +33,9 @@ deno run --allow-read --allow-run scripts/all-markdown-enforcer.ts
 ```
 
 Each script will:
-- Check that your documentation files and structure match the design system requirements for that type
+- Check that documentation files and structure match the design system requirements for that type
 - Report any missing or misplaced documentation files
-- Print a ✅ message when your documentation structure is valid
+- Print a ✅ message when the documentation structure is valid
 
 ### Font asset enforcement
 
@@ -64,6 +64,20 @@ This script will:
 - Download and extract only the required SVG icons from the latest Lucide release
 - Place the icons in `/assets/icons` and remove any orphaned icon files not listed in `tokens/icons.md`
 - Print a ✅ message when all icon files are in sync
+
+## Run all documentation and asset enforcers
+
+To check all documentation types and asset files in a single step, run:
+
+```sh
+deno run --allow-read --allow-write --allow-net --allow-run scripts/all-enforcer.ts
+```
+
+This script will:
+- Run all markdown enforcers (components, blocks, pages)
+- Run the font asset enforcer
+- Run the icon asset enforcer
+- Print a ✅ message when everything is valid and in sync
 
 ## Funding
 

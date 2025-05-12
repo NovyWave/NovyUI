@@ -135,7 +135,7 @@ async function main() {
     await removeOrphanedIconFiles(tokenFiles, actualFiles);
   }
   if (missing.length === 0 && orphaned.length === 0) {
-    console.log("All icon files are in sync with tokens/icons.md. ✅");
+    console.log("✅ All icon files are in sync with tokens/icons.md.");
   }
 }
 

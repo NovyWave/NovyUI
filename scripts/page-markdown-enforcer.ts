@@ -1,4 +1,4 @@
-// Checks documentation rules for pages only.
+// Checks documentation instructions for pages only.
 import { join, basename, resolve } from "jsr:@std/path";
 
 const ROOT = resolve(".");
@@ -76,7 +76,7 @@ async function lintPages(): Promise<void> {
     }
     Deno.exit(1);
   } else {
-    console.log("✅ All page documentation files follow the structure rules.");
+    console.log("✅ All page documentation files follow the instructions.");
   }
 }
 

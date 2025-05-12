@@ -1,4 +1,4 @@
-// Checks documentation rules for blocks only.
+// Checks documentation instructions for blocks only.
 import { join, basename, resolve } from "jsr:@std/path";
 
 const ROOT = resolve(".");
@@ -80,7 +80,7 @@ async function lintBlocks(): Promise<void> {
     }
     Deno.exit(1);
   } else {
-    console.log("✅ All block documentation files follow the structure rules.");
+    console.log("✅ All block documentation files follow the instructions.");
   }
 }
 

@@ -1,4 +1,4 @@
-// Checks documentation rules for components only.
+// Checks documentation instructions for components only.
 import { join, basename, resolve } from "jsr:@std/path";
 
 const ROOT = resolve(".");
@@ -84,7 +84,7 @@ async function lintComponents(): Promise<void> {
     }
     Deno.exit(1);
   } else {
-    console.log("✅ All component documentation files follow the structure rules.");
+    console.log("✅ All component documentation files follow the instructions.");
   }
 }
 

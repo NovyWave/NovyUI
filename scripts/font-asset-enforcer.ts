@@ -190,18 +190,12 @@ async function removeOrphanedFontFiles(tokenFiles: string[], actualFiles: string
 }
 
 async function main() {
-  const interDownloaded = await ensureInterFonts();
-  const jbmDownloaded = await ensureJetBrainsMonoFonts();
+  await ensureInterFonts();
+  await ensureJetBrainsMonoFonts();
   const tokenFiles = await parseFontTokens();
   const actualFiles = await listFontFiles();
   const missing = tokenFiles.filter(f => !actualFiles.includes(f));
   const orphaned = actualFiles.filter(f => !tokenFiles.includes(f));
-  if (interDownloaded.length > 0) {
-    console.log("Downloaded Inter font files:", interDownloaded);
-  }
-  if (jbmDownloaded.length > 0) {
-    console.log("Downloaded JetBrains Mono font files:", jbmDownloaded);
-  }
   if (missing.length > 0) {
     console.error("Missing font files (listed in tokens/fonts.md but not found in /assets/fonts):", missing);
   }
