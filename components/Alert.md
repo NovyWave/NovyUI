@@ -10,6 +10,8 @@
   - [ContactCard](../blocks/ContactCard.md)
   - [Error](../blocks/Error.md)
 
+---
+
 ### Token Usage
 The following table lists all design tokens used by the Alert component:
 | Part         | Token Example      | Description                              |

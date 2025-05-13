@@ -6,21 +6,45 @@
 - **Used in Blocks:**
   - [SplitLayout](../blocks/SplitLayout.md)
 
-### Accessibility
-- Use `aria-label` to describe panel purpose.
-- Ensure drag handles are keyboard accessible.
-- Announce size changes to screen readers if relevant.
+---
+
+### Token Usage
+The following table lists all design tokens used by the Resizable Panel component:
+| Part        | Token Example      | Description                |
+|-------------|-------------------|----------------------------|
+| Background  | color.surface.1   | Panel background           |
+| Border      | color.border.2    | Panel border and handle    |
+| Focus Ring  | color.focus.1     | Focus indicator for handle |
+| Disabled    | color.neutral.7   | Disabled overlay           |
+
+---
 
 ### Variants
-#### Resizable Panel - **Horizontal**
-- **Id:** Horizontal
-- **Appearance:** Horizontal layout.
-- **Behavior:** Resizes horizontally.
-#### Resizable Panel - **Vertical**
-- **Id:** Vertical
-- **Appearance:** Vertical layout.
-- **Behavior:** Resizes vertically.
-#### Resizable Panel - **With content**
-- **Id:** WithContent
-- **Appearance:** Includes content.
-- **Behavior:** Displays panel content.
+All supported Resizable Panel variants are listed below:
+| Variant Name   | Description         | Appearance/Behavior         | Tokens Used         | Notes    |
+|---------------|---------------------|-----------------------------|---------------------|----------|
+| Horizontal    | Horizontal layout   | Resizes horizontally        | Background, Border  | Default  |
+| Vertical      | Vertical layout     | Resizes vertically          | Background, Border  |          |
+| WithContent   | Includes content    | Displays panel content      | Background, Border  |          |
+
+---
+
+### States
+Resizable Panel states and their token usage:
+| State     | Description                                 | Token(s) affected   |
+|-----------|---------------------------------------------|---------------------|
+| Default   | Panel is visible, not focused or selected   | Background, Border  |
+| Focus     | Handle is focused via keyboard              | Focus Ring, Border  |
+| Disabled  | Panel is not interactive                    | Disabled, Border    |
+
+- For each state, ensure tokens are used (no hardcoded values). For example, focus ring uses `color.focus.1`.
+
+---
+
+### Accessibility
+Accessibility features and requirements for Resizable Panel:
+- Provide keyboard navigation for resizing and moving the panel.
+- Use appropriate ARIA roles and attributes for panel and resize handles.
+- Ensure focus indicators are visible and use the designated focus token.
+- Support screen readers and assistive technologies.
+- Ensure sufficient color contrast for all states (WCAG AA compliant).

@@ -6,6 +6,8 @@
 - **Used in blocks:**
   - [TableOfContents](../blocks/TableOfContents.md)
 
+---
+
 ### Token Usage
 The following table lists all design tokens used by the Anchor Navigation component:
 | Part         | Token Example      | Description                              |

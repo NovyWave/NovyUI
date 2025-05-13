@@ -6,6 +6,8 @@
 - **Used in blocks:**
   - [StickyHeader](../blocks/StickyHeader.md)
 
+---
+
 ### Token Usage
 The following table lists all design tokens used by the Affix component:
 | Part         | Token Example      | Description                              |

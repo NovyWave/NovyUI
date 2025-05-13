@@ -6,6 +6,8 @@
 - **Used in blocks:**
   - [AccordionFAQ](../blocks/AccordionFAQ.md)
 
+---
+
 ### Token Usage
 The following table lists all design tokens used by the Accordion component:
 | Part         | Token Example      | Description                        |
@@ -41,7 +43,6 @@ Accordion states and their token usage:
 | Disabled             | Item is not interactive                          | Text (muted), Icon (muted)  |
 | Expanded             | Item is expanded, content visible                | Background, Shadow, Border  |
 | Collapsed            | Item is collapsed, content hidden                | Background, Border          |
-
 - For each state, ensure tokens are used (no hardcoded values). For example, focus ring uses `color.focus.1`, hover uses `color.surface.2` for background, etc.
 
 ---

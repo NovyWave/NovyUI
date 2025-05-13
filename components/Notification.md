@@ -6,45 +6,56 @@
 - **Used in Blocks:**
   - [NotificationCenter](../blocks/NotificationCenter.md)
 
-### Accessibility
-- Use `role="status"` or `role="alert"` for notifications.
-- Announce new notifications to screen readers.
-- Ensure dismiss buttons are keyboard accessible.
+---
+
+### Token Usage
+The following table lists all design tokens used by the Notification component:
+| Part        | Token Example      | Description                |
+|-------------|-------------------|----------------------------|
+| Background  | color.surface.1   | Notification background    |
+| Text        | color.neutral.12  | Notification text color    |
+| Border      | color.border.2    | Notification border        |
+| Icon        | color.primary.7   | Icon color                 |
+| Focus Ring  | color.focus.1     | Focus indicator for notification |
+| Disabled    | color.neutral.7   | Disabled text              |
+
+---
 
 ### Variants
-#### Notification - **Success**
-- **Id:** NotificationSuccess
-- **Appearance:** Green color and success icon.
-- **Behavior:** Indicates a successful action or event.
-#### Notification - **Error**
-- **Id:** NotificationError
-- **Appearance:** Red color and error icon.
-- **Behavior:** Indicates an error or failure.
-#### Notification - **Info**
-- **Id:** NotificationInfo
-- **Appearance:** Blue color and info icon.
-- **Behavior:** Provides informational message.
-#### Notification - **Warning**
-- **Id:** NotificationWarning
-- **Appearance:** Yellow color and warning icon.
-- **Behavior:** Indicates a warning or caution.
-#### Notification - **Custom icon**
-- **Id:** NotificationCustomIcon
-- **Appearance:** Includes custom icon.
-- **Behavior:** Displays custom icon.
-#### Notification - **With actions**
-- **Id:** NotificationWithActions
-- **Appearance:** Includes action button.
-- **Behavior:** Supports interactive actions.
-#### Notification - **Temporary (snackbar)**
-- **Id:** NotificationTemporary
-- **Appearance:** Temporary display.
-- **Behavior:** Auto-dismisses after timeout.
-#### Notification - **Stacking**
-- **Id:** NotificationStacking
-- **Appearance:** Supports stacking.
-- **Behavior:** Stacks notifications.
-#### Notification - **Bottom position**
-- **Id:** NotificationBottomPosition
-- **Appearance:** Displays at bottom.
-- **Behavior:** Bottom position display.
+All supported Notification variants are listed below:
+| Variant Name   | Description                | Appearance/Behavior                        | Tokens Used                | Notes    |
+|---------------|----------------------------|--------------------------------------------|----------------------------|----------|
+| Basic         | Simple notification        | Basic notification display                 | Background, Text, Border   | Default  |
+| WithIcon      | Includes icon              | Displays icon content                      | Icon, Background, Border   |          |
+| WithActions   | Includes action buttons    | Displays action controls                   | Background, Border, Text   |          |
+| Success       | Success notification       | Green color for success                    | Icon, Background, Border   |          |
+| Error         | Error notification         | Red color for error                        | Icon, Background, Border   |          |
+| Warning       | Warning notification       | Yellow color for warning                   | Icon, Background, Border   |          |
+| Info          | Info notification          | Blue color for info                        | Icon, Background, Border   |          |
+
+---
+
+### States
+Notification states and their token usage:
+| State                | Description                                      | Token(s) affected           |
+|----------------------|--------------------------------------------------|-----------------------------|
+| Default              | Notification is visible, not focused or selected | Background, Text, Border    |
+| Focus                | Notification is focused via keyboard             | Focus Ring, Border          |
+| Disabled             | Notification is not interactive                  | Disabled, Border            |
+| Success              | Notification is in success state                 | Icon, Background, Border    |
+| Error                | Notification is in error state                   | Icon, Background, Border    |
+| Warning              | Notification is in warning state                 | Icon, Background, Border    |
+| Info                 | Notification is in info state                    | Icon, Background, Border    |
+
+- For each state, ensure tokens are used (no hardcoded values). For example, focus ring uses `color.focus.1`, icon uses `color.primary.7`, etc.
+
+---
+
+### Accessibility
+Accessibility features and requirements for Notification:
+- Use ARIA roles (`status`, `alert`, `aria-live`).
+- Announce notification content and updates to screen readers.
+- Support keyboard navigation to and from notifications (Tab, Shift+Tab).
+- Ensure focus indicators are visible and use the designated focus token.
+- Ensure sufficient color contrast for text, background, and border in all states (WCAG AA compliant).
+- Notification must be operable with assistive technologies and screen readers.

@@ -5,6 +5,36 @@ const ROOT = resolve(".");
 const COMPONENTS_DIR = join(ROOT, "components");
 const CAMEL_CASE_REGEX = /^[A-Z][A-Za-z0-9]*$/;
 
+// Canonical section order and requirements (from components.md)
+const SECTION_ORDER = [
+  'Header',
+  'Token Usage',
+  'Variants',
+  'States',
+  'Accessibility'
+];
+const SECTION_REGEXES = [
+  /^##\s+.+/m, // Header
+  /^### Token Usage/m,
+  /^### Variants/m,
+  /^### States/m,
+  /^### Accessibility/m
+];
+const INTRO_SENTENCES = [
+  null, // Header
+  /^The following table lists all design tokens used by the .+ component:$/m,
+  /^All supported .+ variants are listed below:$/m,
+  /^.+ states and their token usage:$/m,
+  null // Accessibility
+];
+const TABLE_HEADERS = [
+  null, // Header
+  /\|\s*Part\s*\|\s*Token Example\s*\|\s*Description\s*\|/i,
+  /\|\s*Variant Name\s*\|\s*Description\s*\|\s*Appearance\/Behavior\s*\|\s*Tokens Used\s*\|\s*Notes\s*\|/i,
+  /\|\s*State\s*\|\s*Description\s*\|\s*Token\(s\) affected\s*\|/i,
+  null // Accessibility
+];
+
 async function getMarkdownFiles(dir: string): Promise<string[]> {
   const files: string[] = [];
   for await (const entry of Deno.readDir(dir)) {
@@ -101,8 +131,109 @@ async function checkComponentListedInTOC(filePath: string, tocContent: string): 
   return false;
 }
 
+// Error type for richer error reporting
+interface LintError {
+  type: string;
+  message: string;
+  line?: number;
+  column?: number;
+}
+
+function shortPath(file: string): string {
+  // Return path relative to project root
+  const root = ROOT.endsWith("\\") || ROOT.endsWith("/") ? ROOT : ROOT + "\\";
+  return file.startsWith(root) ? file.slice(root.length).replace(/\\/g, '/') : file.replace(/\\/g, '/');
+}
+
+function formatError(file: string, err: LintError): string {
+  const short = shortPath(file);
+  const loc = err.line !== undefined ? `${short}:${err.line + 1}${err.column !== undefined ? ':' + (err.column + 1) : ''}` : short;
+  return `  [${err.type}] ${loc} ${err.message}`;
+}
+
+function parseSectionsWithLines(content: string) {
+  // Returns array of {title, start, end, body, lineStart, lineEnd}
+  const matches = [];
+  let lastTitle = null;
+  let lastStart = 0;
+  let lastLine = 0;
+  const lines = content.split(/\n/);
+  for (let i = 0; i < lines.length; ++i) {
+    for (let j = 0; j < SECTION_REGEXES.length; ++j) {
+      if (SECTION_REGEXES[j].test(lines[i])) {
+        if (lastTitle !== null) {
+          matches.push({title: lastTitle, start: lastStart, end: i, body: lines.slice(lastStart, i).join('\n'), lineStart: lastLine, lineEnd: i});
+        }
+        lastTitle = SECTION_ORDER[j];
+        lastStart = i;
+        lastLine = i;
+      }
+    }
+  }
+  if (lastTitle !== null) {
+    matches.push({title: lastTitle, start: lastStart, end: lines.length, body: lines.slice(lastStart).join('\n'), lineStart: lastLine, lineEnd: lines.length});
+  }
+  return matches;
+}
+
+function checkSectionOrderAndFormat(content: string, componentName: string): LintError[] {
+  const errors: LintError[] = [];
+  const sections = parseSectionsWithLines(content);
+  // Check section count and order
+  if (sections.length !== SECTION_ORDER.length) {
+    errors.push({type: 'Section Order', message: `Section count/order mismatch. Expected: ${SECTION_ORDER.join(', ')}`});
+    return errors;
+  }
+  for (let i = 0; i < SECTION_ORDER.length; ++i) {
+    if (sections[i].title !== SECTION_ORDER[i]) {
+      errors.push({type: 'Section Order', message: `Section ${i+1} should be '${SECTION_ORDER[i]}', found '${sections[i].title}'.`, line: sections[i].lineStart});
+    }
+    // Check intro sentence if required
+    if (INTRO_SENTENCES[i]) {
+      const introLines = sections[i].body.split('\n');
+      // Skip the heading line (first line of the section)
+      let introLineIdx = 1;
+      while (introLineIdx < introLines.length && (introLines[introLineIdx].trim() === '' || introLines[introLineIdx].trim().startsWith('|'))) {
+        introLineIdx++;
+      }
+      const intro = introLineIdx < introLines.length ? introLines[introLineIdx] : '';
+      if (INTRO_SENTENCES[i] instanceof RegExp && intro) {
+        const introReg = INTRO_SENTENCES[i];
+        if (introReg && typeof introReg.source === 'string') {
+          const introRegex = new RegExp(introReg.source.replace('.+', componentName));
+          if (!introRegex.test(intro)) {
+            errors.push({type: 'Intro Sentence', message: `Section '${SECTION_ORDER[i]}' missing or incorrect intro sentence.\n  Found: '${intro}'\n  Expected: '${introRegex}'`, line: sections[i].lineStart + introLineIdx});
+          }
+        }
+      } else if (INTRO_SENTENCES[i]) {
+        errors.push({type: 'Intro Sentence', message: `Section '${SECTION_ORDER[i]}' missing or incorrect intro sentence.`, line: sections[i].lineStart});
+      }
+    }
+    // Check table header if required
+    if (TABLE_HEADERS[i]) {
+      const tableLineIdx = sections[i].body.split('\n').findIndex(l => TABLE_HEADERS[i]!.test(l));
+      if (tableLineIdx === -1) {
+        errors.push({type: 'Table Format', message: `Section '${SECTION_ORDER[i]}' missing or incorrect table header.\n  Expected: ${TABLE_HEADERS[i]}`, line: sections[i].lineStart});
+      }
+    }
+    // Check for horizontal rule after section (except last)
+    if (i < SECTION_ORDER.length - 1) {
+      const after = sections[i].body.split('\n').slice(-3).join('\n');
+      if (!/---/.test(after)) {
+        errors.push({type: 'Section Format', message: `Section '${SECTION_ORDER[i]}' missing horizontal rule (---) after section.`, line: sections[i].lineEnd - 1});
+      }
+    }
+  }
+  // Accessibility section must be a bullet list
+  const accSection = sections[sections.length-1].body;
+  if (!/^Accessibility features and requirements for .+:\n(- .+\n)+/m.test(accSection)) {
+    errors.push({type: 'Accessibility', message: `Accessibility section must start with 'Accessibility features and requirements for [Component]:' and be a bullet list.`});
+  }
+  return errors;
+}
+
 async function lintComponents(): Promise<void> {
-  const errorMap: Record<string, string[]> = {};
+  const errorMap: Record<string, LintError[]> = {};
   // Load blocks list and components TOC for cross-reference
   const blocksToc = await Deno.readTextFile(join(ROOT, "blocks.md"));
   const blocksList = new Set(
@@ -111,58 +242,73 @@ async function lintComponents(): Promise<void> {
   const componentsToc = await Deno.readTextFile(join(ROOT, "components.md"));
   for (const file of await getMarkdownFiles(COMPONENTS_DIR)) {
     const content = await Deno.readTextFile(file);
-    const name = basename(file);
+    const name = await getComponentNameFromFile(file);
+    // Strict section order/format enforcement
+    const sectionErrors = checkSectionOrderAndFormat(content, name);
+    if (sectionErrors.length) {
+      if (!errorMap[file]) errorMap[file] = [];
+      errorMap[file].push(...sectionErrors);
+    }
     // Filename and Id
     const idError = await checkIdAndFilename(file);
     if (idError) {
       if (!errorMap[file]) errorMap[file] = [];
-      errorMap[file].push(idError);
+      errorMap[file].push({type: 'Id', message: idError});
     }
     // Token Usage Table
     if (!hasTokenUsageTable(content)) {
       if (!errorMap[file]) errorMap[file] = [];
-      errorMap[file].push(`Component '${name}' missing required Token Usage table.`);
+      errorMap[file].push({type: 'Table Format', message: `Component '${name}' missing required Token Usage table.`});
     }
     // State/Variant Documentation
     if (!hasStateVariantDocumentation(content)) {
       if (!errorMap[file]) errorMap[file] = [];
-      errorMap[file].push(`Component '${name}' missing explicit state/variant documentation.`);
+      errorMap[file].push({type: 'State/Variant', message: `Component '${name}' missing explicit state/variant documentation.`});
     }
     // Accessibility Section
     if (!/### Accessibility/i.test(content)) {
       if (!errorMap[file]) errorMap[file] = [];
-      errorMap[file].push(`Component '${name}' missing required ### Accessibility section.`);
+      errorMap[file].push({type: 'Accessibility', message: `Component '${name}' missing required ### Accessibility section.`});
     } else {
       const accErrors = checkAccessibilityDetails(content);
       if (accErrors.length) {
         if (!errorMap[file]) errorMap[file] = [];
-        errorMap[file].push(...accErrors.map(e => `Component '${name}': ${e}`));
+        errorMap[file].push(...accErrors.map(e => ({type: 'Accessibility', message: `Component '${name}': ${e}`})));
       }
     }
     // Hardcoded values
     const hardcodedErrors = findHardcodedValues(content);
     if (hardcodedErrors.length) {
       if (!errorMap[file]) errorMap[file] = [];
-      errorMap[file].push(...hardcodedErrors.map(e => `Component '${name}': ${e}`));
+      errorMap[file].push(...hardcodedErrors.map(e => ({type: 'Hardcoded', message: `Component '${name}': ${e}`})));
     }
     // Used in Blocks cross-reference
     const usedBlocksErrors = checkUsedBlocksExist(content, blocksList);
     if (usedBlocksErrors.length) {
       if (!errorMap[file]) errorMap[file] = [];
-      errorMap[file].push(...usedBlocksErrors);
+      errorMap[file].push(...usedBlocksErrors.map(e => ({type: 'Cross-Reference', message: e})));
     }
     // TOC listing
     if (!(await checkComponentListedInTOC(file, componentsToc))) {
       if (!errorMap[file]) errorMap[file] = [];
-      errorMap[file].push(`Component '${name}' is not listed in components.md TOC.`);
+      errorMap[file].push({type: 'TOC', message: `Component '${name}' is not listed in components.md TOC.`});
     }
   }
   const errorFiles = Object.keys(errorMap);
   if (errorFiles.length) {
     console.error("Component documentation structure errors found:");
     for (const file of errorFiles) {
+      // Group errors by type
+      const grouped: Record<string, LintError[]> = {};
       for (const err of errorMap[file]) {
-        console.error(err);
+        if (!grouped[err.type]) grouped[err.type] = [];
+        grouped[err.type].push(err);
+      }
+      console.error(shortPath(file));
+      for (const type of Object.keys(grouped)) {
+        for (const err of grouped[type]) {
+          console.error(formatError(file, err));
+        }
       }
     }
     Deno.exit(1);
@@ -172,5 +318,90 @@ async function lintComponents(): Promise<void> {
 }
 
 if (import.meta.main) {
-  await lintComponents();
+  // Support: deno run --allow-read scripts/component-markdown-enforcer.ts -id Accordion
+  const idFlagIdx = Deno.args.indexOf('-id');
+  if (idFlagIdx !== -1 && Deno.args.length > idFlagIdx + 1) {
+    const componentId = Deno.args[idFlagIdx + 1];
+    const file = join(COMPONENTS_DIR, `${componentId}.md`);
+    const files = [file];
+    await lintComponentsCustom(files);
+  } else {
+    await lintComponents();
+  }
+}
+
+// Custom lint for a single file
+async function lintComponentsCustom(files: string[]): Promise<void> {
+  const errorMap: Record<string, LintError[]> = {};
+  const blocksToc = await Deno.readTextFile(join(ROOT, "blocks.md"));
+  const blocksList = new Set(
+    [...blocksToc.matchAll(/\((blocks\/([\w-]+)\.md)\)/g)].map(m => m[2])
+  );
+  const componentsToc = await Deno.readTextFile(join(ROOT, "components.md"));
+  for (const file of files) {
+    const content = await Deno.readTextFile(file);
+    const name = await getComponentNameFromFile(file);
+    const sectionErrors = checkSectionOrderAndFormat(content, name);
+    if (sectionErrors.length) {
+      if (!errorMap[file]) errorMap[file] = [];
+      errorMap[file].push(...sectionErrors);
+    }
+    const idError = await checkIdAndFilename(file);
+    if (idError) {
+      if (!errorMap[file]) errorMap[file] = [];
+      errorMap[file].push({type: 'Id', message: idError});
+    }
+    if (!hasTokenUsageTable(content)) {
+      if (!errorMap[file]) errorMap[file] = [];
+      errorMap[file].push({type: 'Table Format', message: `Component '${name}' missing required Token Usage table.`});
+    }
+    if (!hasStateVariantDocumentation(content)) {
+      if (!errorMap[file]) errorMap[file] = [];
+      errorMap[file].push({type: 'State/Variant', message: `Component '${name}' missing explicit state/variant documentation.`});
+    }
+    if (!/### Accessibility/i.test(content)) {
+      if (!errorMap[file]) errorMap[file] = [];
+      errorMap[file].push({type: 'Accessibility', message: `Component '${name}' missing required ### Accessibility section.`});
+    } else {
+      const accErrors = checkAccessibilityDetails(content);
+      if (accErrors.length) {
+        if (!errorMap[file]) errorMap[file] = [];
+        errorMap[file].push(...accErrors.map(e => ({type: 'Accessibility', message: `Component '${name}': ${e}`})));
+      }
+    }
+    const hardcodedErrors = findHardcodedValues(content);
+    if (hardcodedErrors.length) {
+      if (!errorMap[file]) errorMap[file] = [];
+      errorMap[file].push(...hardcodedErrors.map(e => ({type: 'Hardcoded', message: `Component '${name}': ${e}`})));
+    }
+    const usedBlocksErrors = checkUsedBlocksExist(content, blocksList);
+    if (usedBlocksErrors.length) {
+      if (!errorMap[file]) errorMap[file] = [];
+      errorMap[file].push(...usedBlocksErrors.map(e => ({type: 'Cross-Reference', message: e})));
+    }
+    if (!(await checkComponentListedInTOC(file, componentsToc))) {
+      if (!errorMap[file]) errorMap[file] = [];
+      errorMap[file].push({type: 'TOC', message: `Component '${name}' is not listed in components.md TOC.`});
+    }
+  }
+  const errorFiles = Object.keys(errorMap);
+  if (errorFiles.length) {
+    console.error("Component documentation structure errors found:");
+    for (const file of errorFiles) {
+      const grouped: Record<string, LintError[]> = {};
+      for (const err of errorMap[file]) {
+        if (!grouped[err.type]) grouped[err.type] = [];
+        grouped[err.type].push(err);
+      }
+      console.error(shortPath(file));
+      for (const type of Object.keys(grouped)) {
+        for (const err of grouped[type]) {
+          console.error(formatError(file, err));
+        }
+      }
+    }
+    Deno.exit(1);
+  } else {
+    console.log("✅ All component documentation files follow the instructions.");
+  }
 }

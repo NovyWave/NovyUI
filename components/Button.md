@@ -36,42 +36,60 @@
   - [Testimonials](../blocks/Testimonials.md)
   - [UserInfoAndControls](../blocks/UserInfoAndControls.md)
   - [Wishlist](../blocks/Wishlist.md)
-### Accessibility
-- Use `<button>` element or `role="button"` if not native.
-- Provide accessible labels (`aria-label`) for icon-only buttons.
-- Ensure focus and active states are visible.
-- Support keyboard activation (Enter/Space).
+
+---
+
+### Token Usage
+The following table lists all design tokens used by the Button component:
+| Part           | Token Example      | Description                                 |
+|----------------|-------------------|---------------------------------------------|
+| Background     | color.primary.7   | Button background (primary)                 |
+| Text           | color.neutral.1   | Button text color                           |
+| Border         | color.border.2    | Button border color (outline/secondary)     |
+| Icon           | color.primary.7   | Icon color                                  |
+| Focus Ring     | color.focus.1     | Focus indicator for button                  |
+| Hover          | color.primary.8   | Background on hover                         |
+| Disabled Bg    | color.surface.3   | Background when disabled                    |
+| Disabled Text  | color.neutral.7   | Text color when disabled                    |
+| Loading Spinner| color.primary.7   | Spinner color                              |
+
+---
 
 ### Variants
-#### Button - **Primary**
-- **Id:** Primary
-- **Appearance:** Solid color background.
-- **Behavior:** Primary action button.
-#### Button - **Secondary**
-- **Id:** Secondary
-- **Appearance:** Outline border.
-- **Behavior:** Secondary action button.
-#### Button - **Outline**
-- **Id:** Outline
-- **Appearance:** Outline border with transparent background.
-- **Behavior:** Secondary action button.
-#### Button - **Ghost**
-- **Id:** Ghost
-- **Appearance:** Transparent background with minimal styling.
-- **Behavior:** Secondary action button.
-#### Button - **Icon**
-- **Id:** Icon
-- **Appearance:** Icon only, no text.
-- **Behavior:** Icon button.
-#### Button - **Loading**
-- **Id:** Loading
-- **Appearance:** Includes loading spinner.
-- **Behavior:** Indicates loading state.
-#### Button - **Group**
-- **Id:** Group
-- **Appearance:** Group of buttons.
-- **Behavior:** Grouped button actions.
-#### Button - **Social login**
-- **Id:** SocialLogin
-- **Appearance:** Includes social media icon.
-- **Behavior:** Social login button.
+All supported Button variants are listed below:
+| Variant Name   | Description                | Appearance/Behavior                        | Tokens Used                | Notes    |
+|---------------|----------------------------|--------------------------------------------|----------------------------|----------|
+| Primary       | Main action button         | Solid color background                     | Background, Text, Border   | Default  |
+| Secondary     | Secondary action button    | Outline border, transparent background     | Border, Text, Background   |          |
+| Outline       | Tertiary action button     | Outline border, transparent background     | Border, Text, Background   |          |
+| Ghost         | Minimal, low emphasis      | Transparent background, minimal styling    | Text, Background           |          |
+| Icon          | Icon-only button           | No text, icon centered                     | Icon, Background, Border   |          |
+| Loading       | Shows loading spinner      | Spinner replaces content                   | Loading Spinner, Background|          |
+| Group         | Group of buttons           | Buttons visually grouped                   | All above                 |          |
+| SocialLogin   | Social login button        | Includes social media icon                 | Icon, Background, Text     |          |
+
+---
+
+### States
+Button states and their token usage:
+| State                | Description                                      | Token(s) affected           |
+|----------------------|--------------------------------------------------|-----------------------------|
+| Default              | Button is visible, not focused or hovered        | Background, Text, Border    |
+| Hover                | Button is hovered                                | Hover, Text, Border         |
+| Focus                | Button is focused via keyboard                   | Focus Ring, Border          |
+| Active               | Button is being pressed/clicked                  | Background, Text, Border    |
+| Disabled             | Button is not interactive                        | Disabled Bg, Disabled Text  |
+| Loading              | Button shows loading spinner                     | Loading Spinner, Background |
+
+- For each state, ensure tokens are used (no hardcoded values). For example, focus ring uses `color.focus.1`, hover uses `color.primary.8`, etc.
+
+---
+
+### Accessibility
+Accessibility features and requirements for Button:
+- Use `<button>` element or `role="button"` if not native.
+- Provide accessible labels (`aria-label`) for icon-only buttons.
+- Ensure focus and active states are visible and use the designated focus token.
+- Support keyboard activation (Enter/Space).
+- Ensure sufficient color contrast for text, background, and border in all states (WCAG AA compliant).
+- Button must be operable with assistive technologies and screen readers.

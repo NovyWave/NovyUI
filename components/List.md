@@ -15,29 +15,51 @@
   - [TableOfContents](../blocks/TableOfContents.md)
   - [TeamSection](../blocks/TeamSection.md)
   - [UserInfoAndControls](../blocks/UserInfoAndControls.md)
-### Accessibility
-- Use semantic list elements (`<ul>`, `<ol>`, `<li>`).
-- Ensure interactive list items are keyboard accessible.
-- Announce selection or focus changes.
+
+---
+
+### Token Usage
+The following table lists all design tokens used by the List component:
+| Part        | Token Example      | Description                |
+|-------------|-------------------|----------------------------|
+| Background  | color.surface.1   | List background            |
+| Text        | color.neutral.12  | List item text color       |
+| Border      | color.border.2    | List border                |
+| Icon        | color.primary.7   | Icon color                 |
+| Focus Ring  | color.focus.1     | Focus indicator for items  |
+| Disabled    | color.neutral.7   | Disabled item text         |
+
+---
 
 ### Variants
-#### List - **Ordered**
-- **Id:** Ordered
-- **Appearance:** Numbered list.
-- **Behavior:** Ordered list items.
-#### List - **Unordered**
-- **Id:** Unordered
-- **Appearance:** Bulleted list.
-- **Behavior:** Unordered list items.
-#### List - **Description**
-- **Id:** Description
-- **Appearance:** Description list.
-- **Behavior:** Displays descriptions.
-#### List - **With actions**
-- **Id:** WithActions
-- **Appearance:** Includes actions.
-- **Behavior:** Supports interactive actions.
-#### List - **With avatars**
-- **Id:** WithAvatars
-- **Appearance:** Includes avatars.
-- **Behavior:** Displays avatar content.
+All supported List variants are listed below:
+| Variant Name   | Description                | Appearance/Behavior                        | Tokens Used                | Notes    |
+|---------------|----------------------------|--------------------------------------------|----------------------------|----------|
+| Unordered     | Unordered list             | Bulleted list                              | Background, Text, Border   | Default  |
+| Ordered       | Ordered list               | Numbered list                              | Background, Text, Border   |          |
+| WithIcons     | Includes icons             | Displays icon content                      | Icon, Background, Border   |          |
+| WithActions   | Includes action buttons    | Displays action controls                   | Background, Border, Text   |          |
+
+---
+
+### States
+List states and their token usage:
+| State                | Description                                      | Token(s) affected           |
+|----------------------|--------------------------------------------------|-----------------------------|
+| Default              | Item is visible, not focused or selected         | Background, Text, Border    |
+| Focus                | Item is focused via keyboard                     | Focus Ring, Border          |
+| Selected             | Item is selected                                 | Background, Text            |
+| Disabled             | Item is not interactive                          | Disabled, Border            |
+
+- For each state, ensure tokens are used (no hardcoded values). For example, focus ring uses `color.focus.1`, icon uses `color.primary.7`, etc.
+
+---
+
+### Accessibility
+Accessibility features and requirements for List:
+- Use semantic list markup (`<ul>`, `<ol>`, `<li>`) and appropriate ARIA roles/attributes.
+- Announce list structure and item status to screen readers.
+- Support keyboard navigation to and from list items (Tab, Shift+Tab).
+- Ensure focus indicators are visible and use the designated focus token.
+- Ensure sufficient color contrast for text, background, and border in all states (WCAG AA compliant).
+- List must be operable with assistive technologies and screen readers.
