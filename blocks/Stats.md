@@ -1,53 +1,52 @@
 ## Stats
-A section displaying key metrics, statistics, or trends, often in a grid or card layout.
+A block for displaying key statistics or metrics in a visually prominent way.
 - **Id:** Stats
-- **Appearance:** A section with one or more statistic cards, each showing a number, label, icon, and optional trend or progress bar.
-- **Behavior:** Numbers may animate on load. Cards may be clickable for more details. Updates dynamically with data.
+- **Appearance:** Cards or panels with numbers, labels, and icons.
+- **Behavior:** Shows important metrics, may include trends or comparisons.
 - **Components:**
-  - [Statistic](../components/Statistic.md)
   - [Card](../components/Card.md)
-  - [Progress](../components/Progress.md)
-  - [Badge](../components/Badge.md)
+  - [Typography](../components/Typography.md)
 - **Used in pages:**
   - [Dashboard](../pages/Dashboard.md)
+  - [Analytics](../pages/Analytics.md)
+
+---
+
+### Token Usage
+The following table lists all design tokens used by the Stats block:
+| Part         | Token Example      | Description                        |
+|--------------|-------------------|------------------------------------|
+| Background   | color.surface.1   | Card/panel background              |
+| Text         | color.neutral.12  | Metric label and value text        |
+| Icon         | color.primary.7   | Icon color                         |
+| Border       | color.border.2    | Card/panel border                  |
+| Focus Ring   | color.focus.1     | Focus indicator for interactive elements|
+
+---
+
 ### Variants
-#### Stats - **Stat grid**
-- **Id:** StatGrid
-- **Appearance:** Statistics are arranged in a grid layout.
-- **Behavior:** Static or may animate numbers.
-#### Stats - **Stat with icon**
-- **Id:** StatWithIcon
-- **Appearance:** Each stat includes an icon.
-- **Behavior:** Icon visually reinforces the stat meaning.
-#### Stats - **Stat with progress**
-- **Id:** StatWithProgress
-- **Appearance:** Includes a progress bar or indicator.
-- **Behavior:** Progress bar animates to show value.
-#### Stats - **Stat card**
-- **Id:** StatCard
-- **Appearance:** Each stat is displayed in a card with border or shadow.
-- **Behavior:** Card may be clickable for more details.
-#### Stats - **Stat list**
-- **Id:** StatList
-- **Appearance:** Statistics are listed vertically.
-- **Behavior:** Static, no interactivity.
-#### Stats - **Stat with chart**
-- **Id:** StatWithChart
-- **Appearance:** Includes a small chart or sparkline.
-- **Behavior:** Chart animates or updates with data.
-#### Stats - **Stat with description**
-- **Id:** StatWithDescription
-- **Appearance:** Includes a descriptive text below the stat.
-- **Behavior:** Static, provides additional context.
-#### Stats - **Stat with actions**
-- **Id:** StatWithActions
-- **Appearance:** Includes action buttons or links.
-- **Behavior:** Actions trigger navigation or updates.
-#### Stats - **Stat with avatar**
-- **Id:** StatWithAvatar
-- **Appearance:** Includes an avatar or user image.
-- **Behavior:** Avatar may link to user profile.
-#### Stats - **Stat with badge**
-- **Id:** StatWithBadge
-- **Appearance:** Includes a badge to indicate status or change.
-- **Behavior:** Badge updates dynamically with status.
+All supported Stats variants are listed below:
+| Variant Name   | Description                                 | Appearance/Behavior                        | Tokens Used         | Notes |
+|---------------|---------------------------------------------|--------------------------------------------|---------------------|-------|
+| Basic         | Standard stats cards.                        | Static metrics and icons.                  | All above           |       |
+| WithTrends    | Shows trend indicators (up/down).            | Trend icons/colors.                        | All above           |       |
+| WithComparisons| Shows comparisons to previous periods.       | Additional comparison text.                | All above           |       |
+
+---
+
+### States
+Stats states and their token usage:
+| State     | Description                        | Token(s) affected      |
+|-----------|------------------------------------|-----------------------|
+| Default   | Normal display of stats.           | All above             |
+| Focused   | Card or icon is focused.           | Focus Ring            |
+| Highlighted| Stat is highlighted.               | Icon, Border          |
+
+---
+
+### Accessibility
+Accessibility features and requirements for Stats block:
+- Keyboard navigation: Tab to cards and icons, Enter/Space to activate (if interactive).
+- ARIA roles/attributes: group, region, and figure.
+- Color contrast: Sufficient for all text, icons, and borders.
+- Focus indicator: Visible and uses the focus token.

@@ -34,13 +34,13 @@ This document provides an overview of all page templates and layouts available i
 
 # NovyUI Page Documentation Format
 
-All NovyUI page documentation **must** strictly follow the structure and formatting exemplified in `Accordion.md` (see components for canonical example). This format is required for all page docs—no legacy or alternative formats are permitted. The enforcer script will flag any deviation.
+All NovyUI page documentation **must** strictly follow the structure and formatting exemplified in `CheckoutPage.md` (see this file for the canonical page example). This format is required for all page docs—no legacy or alternative formats are permitted. The enforcer script will flag any deviation.
 
 ## Required Section Order
 1. **Header**
    - Page name as H2 (e.g., `## CheckoutPage`)
    - One-line summary with emoji (if applicable)
-   - Bullet list: **Id** (must match filename, CamelCase), **Appearance**, **Behavior**, **Used in blocks/components** (with links to existing blocks/components)
+   - Bullet list: **Id** (must match filename, CamelCase), **Appearance**, **Behavior**, **Blocks** (with links to existing blocks), **Components** (with links to existing components)
 2. **Token Usage**
    - H3: `### Token Usage`
    - Intro sentence: "The following table lists all design tokens used by the [Page] page:"
@@ -80,7 +80,8 @@ All NovyUI page documentation **must** strictly follow the structure and formatt
   - **Id:** (must match filename, CamelCase)
   - **Appearance:**
   - **Behavior:**
-  - **Used in blocks/components:** (with links to existing blocks/components)
+  - **Blocks:** (with links to existing blocks)
+  - **Components:** (with links to existing components)
 
 ## Accessibility Section
 - Must start with: "Accessibility features and requirements for [Page]:"
@@ -92,9 +93,9 @@ All NovyUI page documentation **must** strictly follow the structure and formatt
   - Focus indicator
 
 ## Additional Enforcement
-- Filename must be CamelCase and match the `**Id:**` in the file.
+- Filename must be CamelCase.
 - No hardcoded values (hex colors, px) in documentation—must reference tokens.
-- "Used in blocks/components" references must exist in `blocks.md`/`components.md`.
+- "Blocks" references must exist in `blocks.md`, "Components" in `components.md`.
 - Page must be listed in `pages.md` TOC (with correct name, ignoring emoji).
 - State/Variant documentation must exist (explicitly document all states/variants).
 - All sections must be present (no omission).
@@ -106,7 +107,6 @@ All NovyUI page documentation **must** strictly follow the structure and formatt
   - Incorrect table columns or order
   - Missing horizontal rules
   - Any deviation from the canonical example
-  - Missing or mismatched `**Id:**`
   - Hardcoded values
   - Broken block/component references
   - Not listed in TOC

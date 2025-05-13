@@ -1,38 +1,51 @@
 ## FAQ
-A block for displaying frequently asked questions and answers.
+A block for displaying frequently asked questions in an expandable/collapsible format.
 - **Id:** FAQ
-- **Appearance:** List or accordion of questions and answers, with optional search.
-- **Behavior:** Allows expanding/collapsing answers, searching/filtering questions.
+- **Appearance:** List of questions with expandable answers.
+- **Behavior:** Allows users to expand/collapse answers for each question.
 - **Components:**
-  - [Collapse](../components/Collapse.md)
-  - [Input](../components/Input.md)
+  - [Accordion](../components/Accordion.md)
   - [Typography](../components/Typography.md)
 - **Used in pages:**
-  - [FAQ](../pages/FAQ.md)
+  - [Help](../pages/Help.md)
+  - [Support](../pages/Support.md)
+
+---
 
 ### Token Usage
+The following table lists all design tokens used by the FAQ block:
 | Part         | Token Example      | Description                        |
 |--------------|-------------------|------------------------------------|
-| Background   | color.surface.1   | FAQ block background               |
+| Background   | color.surface.1   | FAQ background                     |
 | Text         | color.neutral.12  | Question and answer text           |
-| Border       | color.border.2    | Border between FAQ items           |
-| Radius       | radii.2           | Border radius for FAQ container    |
-| Focus Ring   | color.focus.1     | Focus indicator for question header|
-| Shadow       | shadow.1          | Optional shadow for expanded item  |
+| Border       | color.border.2    | Border between questions           |
+| Focus Ring   | color.focus.1     | Focus indicator for interactive elements|
 
-### Accessibility
-- FAQ items use ARIA roles and attributes for expand/collapse.
-- Keyboard navigation: arrow keys to move, Enter/Space to expand/collapse.
-- Focus indicators are visible and use the focus token.
-- Sufficient color contrast for all text and icons.
-- Panels are hidden from tab order when collapsed.
+---
 
 ### Variants
-#### FAQ - **Basic**
-- **Id:** Basic
-- **Appearance:** Simple list of questions and answers.
-- **Behavior:** Static display, no interactivity.
-#### FAQ - **With search**
-- **Id:** WithSearch
-- **Appearance:** Includes a search input for filtering questions.
-- **Behavior:** User can search and filter questions.
+All supported FAQ variants are listed below:
+| Variant Name   | Description                                 | Appearance/Behavior                        | Tokens Used         | Notes |
+|---------------|---------------------------------------------|--------------------------------------------|---------------------|-------|
+| Basic         | Standard FAQ list.                           | Expand/collapse answers.                   | All above           |       |
+| WithIcons     | Questions have icons.                        | Icon shown next to each question.          | All above           |       |
+| Grouped       | Questions grouped by category.               | Group headings for related questions.      | All above           |       |
+
+---
+
+### States
+FAQ states and their token usage:
+| State     | Description                        | Token(s) affected      |
+|-----------|------------------------------------|-----------------------|
+| Default   | All questions collapsed.           | All above             |
+| Expanded  | Question is expanded.              | Background, Border    |
+| Focused   | Question or answer is focused.     | Focus Ring            |
+
+---
+
+### Accessibility
+Accessibility features and requirements for FAQ block:
+- Keyboard navigation: Tab to questions, Enter/Space to expand/collapse.
+- ARIA roles/attributes: list, listitem, button, and region.
+- Color contrast: Sufficient for all text and borders.
+- Focus indicator: Visible and uses the focus token.

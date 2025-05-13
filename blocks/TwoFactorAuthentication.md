@@ -1,20 +1,52 @@
-## Two-Factor Authentication
-A block for entering and verifying a two-factor authentication code.
+## TwoFactorAuthentication
+A block for displaying and managing two-factor authentication (2FA) setup and verification.
 - **Id:** TwoFactorAuthentication
-- **Appearance:** Input fields for entering a verification code, with submit button and optional resend link.
-- **Behavior:** Validates and submits the code. May show error or success messages, and allow resending the code.
+- **Appearance:** Panel or modal with input fields, QR code, and instructions.
+- **Behavior:** Guides users through enabling, verifying, or disabling 2FA.
 - **Components:**
-  - [PinInput](../components/Pininput.md)
+  - [Input](../components/Input.md)
   - [Button](../components/Button.md)
-  - [Alert](../components/Alert.md)
+  - [Typography](../components/Typography.md)
 - **Used in pages:**
-  - [LoginAndSecurity](../pages/LoginAndSecurity.md)
+  - [Settings](../pages/Settings.md)
+  - [Profile](../pages/Profile.md)
+
+---
+
+### Token Usage
+The following table lists all design tokens used by the TwoFactorAuthentication block:
+| Part         | Token Example      | Description                        |
+|--------------|-------------------|------------------------------------|
+| Background   | color.surface.1   | Panel/modal background             |
+| Text         | color.neutral.12  | Label and input text               |
+| Border       | color.border.2    | Panel/modal border                 |
+| Focus Ring   | color.focus.1     | Focus indicator for interactive elements|
+
+---
+
 ### Variants
-#### Two-Factor Authentication - **Basic**
-- **Id:** Basic
-- **Appearance:** Simple code input and submit button.
-- **Behavior:** Static display, no interactivity.
-#### Two-Factor Authentication - **With resend**
-- **Id:** WithResend
-- **Appearance:** Includes a resend code link or button.
-- **Behavior:** User can request a new code.
+All supported TwoFactorAuthentication variants are listed below:
+| Variant Name   | Description                                 | Appearance/Behavior                        | Tokens Used         | Notes |
+|---------------|---------------------------------------------|--------------------------------------------|---------------------|-------|
+| Basic         | Standard 2FA setup/verification.             | Input for code, enable/disable actions.    | All above           |       |
+| WithQR        | Includes QR code for authenticator apps.     | QR code image shown.                       | All above           |       |
+| WithBackup    | Shows backup codes for recovery.             | List of backup codes.                      | All above           |       |
+
+---
+
+### States
+TwoFactorAuthentication states and their token usage:
+| State     | Description                        | Token(s) affected      |
+|-----------|------------------------------------|-----------------------|
+| Default   | Normal display of 2FA panel.       | All above             |
+| Focused   | Input or button is focused.        | Focus Ring            |
+| Disabled  | Actions are disabled.              | Text, Border          |
+
+---
+
+### Accessibility
+Accessibility features and requirements for TwoFactorAuthentication block:
+- Keyboard navigation: Tab to inputs and buttons, Enter/Space to activate.
+- ARIA roles/attributes: form, input, button, and region.
+- Color contrast: Sufficient for all text, borders, and backgrounds.
+- Focus indicator: Visible and uses the focus token.

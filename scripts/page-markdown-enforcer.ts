@@ -16,25 +16,13 @@ async function getMarkdownFiles(dir: string): Promise<string[]> {
 }
 
 function checkSection(content: string, section: string): boolean {
+  // For pages, check for **Id:**, **Appearance:**, **Behavior:**, **Blocks:**, **Components:**
   const regex = new RegExp(`\\*\\*${section}:\\*\\*`, "i");
   return regex.test(content);
 }
 
 function checkVariants(content: string): boolean {
   return /### Variants/i.test(content);
-}
-
-async function checkIdAndFilename(filePath: string): Promise<string | null> {
-  const fileName = basename(filePath, ".md");
-  if (!CAMEL_CASE_REGEX.test(fileName)) {
-    return `Page file '${fileName}.md' does not use CamelCase.`;
-  }
-  const content = await Deno.readTextFile(filePath);
-  const idMatch = content.match(/\*\*Id:\*\*\s*([A-Za-z0-9]+)/);
-  if (!idMatch || idMatch[1] !== fileName) {
-    return `Page file '${fileName}.md' has mismatched or missing **Id:** (expected '${fileName}').`;
-  }
-  return null;
 }
 
 // Additional utility: check for a markdown table with required columns
@@ -201,6 +189,20 @@ function checkSectionOrderAndFormat(content: string, pageName: string): string[]
   return errors;
 }
 
+// Checks that the **Id:** field matches the filename in CamelCase
+async function checkIdAndFilename(filePath: string): Promise<string | null> {
+  const fileName = basename(filePath, ".md");
+  if (!CAMEL_CASE_REGEX.test(fileName)) {
+    return `Page file '${fileName}.md' does not use CamelCase.`;
+  }
+  const content = await Deno.readTextFile(filePath);
+  const idMatch = content.match(/\*\*Id:\*\*\s*([A-Za-z0-9]+)/);
+  if (!idMatch || idMatch[1] !== fileName) {
+    return `Page file '${fileName}.md' has mismatched or missing **Id:** (expected '${fileName}').`;
+  }
+  return null;
+}
+
 async function lintPages(): Promise<void> {
   const errorMap: Record<string, string[]> = {};
   // Load blocks list and pages TOC for cross-reference
@@ -219,12 +221,6 @@ async function lintPages(): Promise<void> {
       errorMap[file].push(...sectionErrors);
     }
     const nameWithExt = basename(file);
-    // Filename and Id
-    const idError = await checkIdAndFilename(file);
-    if (idError) {
-      if (!errorMap[file]) errorMap[file] = [];
-      errorMap[file].push(idError);
-    }
     // Token Usage Table
     if (!hasTokenUsageTable(content)) {
       if (!errorMap[file]) errorMap[file] = [];
@@ -264,7 +260,11 @@ async function lintPages(): Promise<void> {
       if (!errorMap[file]) errorMap[file] = [];
       errorMap[file].push(`Page '${nameWithExt}' is not listed in pages.md TOC.`);
     }
-    // Template sections
+    // Template sections (page header bullet list)
+    if (!checkSection(content, "Id")) {
+      if (!errorMap[file]) errorMap[file] = [];
+      errorMap[file].push(`Page '${nameWithExt}' missing **Id:** section.`);
+    }
     if (!checkSection(content, "Appearance")) {
       if (!errorMap[file]) errorMap[file] = [];
       errorMap[file].push(`Page '${nameWithExt}' missing **Appearance:** section.`);
@@ -276,6 +276,10 @@ async function lintPages(): Promise<void> {
     if (!checkSection(content, "Blocks")) {
       if (!errorMap[file]) errorMap[file] = [];
       errorMap[file].push(`Page '${nameWithExt}' missing **Blocks:** section.`);
+    }
+    if (!checkSection(content, "Components")) {
+      if (!errorMap[file]) errorMap[file] = [];
+      errorMap[file].push(`Page '${nameWithExt}' missing **Components:** section.`);
     }
     if (!checkVariants(content)) {
       if (!errorMap[file]) errorMap[file] = [];
@@ -299,21 +303,17 @@ async function lintPages(): Promise<void> {
 // Custom lint for a single file
 async function lintPagesCustom(files: string[]): Promise<void> {
   const errorMap: Record<string, string[]> = {};
-  const blocksToc = await Deno.readTextFile(join(ROOT, "blocks.md"));
-  const blocksList = new Set(
-    [...blocksToc.matchAll(/\((blocks\/([\w-]+)\.md)\)/g)].map(m => m[2])
-  );
+  // Load pages TOC for TOC check
   const pagesToc = await Deno.readTextFile(join(ROOT, "pages.md"));
   for (const file of files) {
     const content = await Deno.readTextFile(file);
-    const name = basename(file, ".md");
+    const pageName = basename(file, ".md");
     // Strict section order/format enforcement
-    const sectionErrors = checkSectionOrderAndFormat(content, name);
+    const sectionErrors = checkSectionOrderAndFormat(content, pageName);
     if (sectionErrors.length) {
       if (!errorMap[file]) errorMap[file] = [];
       errorMap[file].push(...sectionErrors);
     }
-    const nameWithExt = basename(file);
     // Filename and Id
     const idError = await checkIdAndFilename(file);
     if (idError) {
@@ -323,58 +323,59 @@ async function lintPagesCustom(files: string[]): Promise<void> {
     // Token Usage Table
     if (!hasTokenUsageTable(content)) {
       if (!errorMap[file]) errorMap[file] = [];
-      errorMap[file].push(`Page '${nameWithExt}' missing required Token Usage table.`);
+      errorMap[file].push(`Page '${pageName}' missing required Token Usage table.`);
     }
     // State/Variant Documentation
     if (!hasStateVariantDocumentation(content)) {
       if (!errorMap[file]) errorMap[file] = [];
-      errorMap[file].push(`Page '${nameWithExt}' missing explicit state/variant documentation.`);
+      errorMap[file].push(`Page '${pageName}' missing explicit state/variant documentation.`);
     }
     // Accessibility Section
     if (!/### Accessibility/i.test(content)) {
       if (!errorMap[file]) errorMap[file] = [];
-      errorMap[file].push(`Page '${nameWithExt}' missing required ### Accessibility section.`);
+      errorMap[file].push(`Page '${pageName}' missing required ### Accessibility section.`);
     } else {
       const accErrors = checkAccessibilityDetails(content);
       if (accErrors.length) {
         if (!errorMap[file]) errorMap[file] = [];
-        errorMap[file].push(...accErrors.map(e => `Page '${nameWithExt}': ${e}`));
+        errorMap[file].push(...accErrors.map(e => `Page '${pageName}': ${e}`));
       }
     }
     // Hardcoded values
     const hardcodedErrors = findHardcodedValues(content);
     if (hardcodedErrors.length) {
       if (!errorMap[file]) errorMap[file] = [];
-      errorMap[file].push(...hardcodedErrors.map(e => `Page '${nameWithExt}': ${e}`));
+      errorMap[file].push(...hardcodedErrors.map(e => `Page '${pageName}': ${e}`));
     }
-    // Used Blocks cross-reference
-    const usedBlocksErrors = checkUsedBlocksExist(content, blocksList);
-    if (usedBlocksErrors.length) {
+    // TOC listing (even in single-file mode)
+    if (!checkPageListedInTOC(pageName, pagesToc)) {
       if (!errorMap[file]) errorMap[file] = [];
-      errorMap[file].push(...usedBlocksErrors);
+      errorMap[file].push(`Page '${pageName}.md' is not listed in pages.md TOC.`);
     }
-    // TOC listing
-    const fileNameNoExt = nameWithExt.replace(/\.md$/, "");
-    if (!checkPageListedInTOC(fileNameNoExt, pagesToc)) {
+    // Header bullet list checks
+    if (!checkSection(content, "Id")) {
       if (!errorMap[file]) errorMap[file] = [];
-      errorMap[file].push(`Page '${nameWithExt}' is not listed in pages.md TOC.`);
+      errorMap[file].push(`Page '${pageName}' missing **Id:** section.`);
     }
-    // Template sections
     if (!checkSection(content, "Appearance")) {
       if (!errorMap[file]) errorMap[file] = [];
-      errorMap[file].push(`Page '${nameWithExt}' missing **Appearance:** section.`);
+      errorMap[file].push(`Page '${pageName}' missing **Appearance:** section.`);
     }
     if (!checkSection(content, "Behavior")) {
       if (!errorMap[file]) errorMap[file] = [];
-      errorMap[file].push(`Page '${nameWithExt}' missing **Behavior:** section.`);
+      errorMap[file].push(`Page '${pageName}' missing **Behavior:** section.`);
     }
     if (!checkSection(content, "Blocks")) {
       if (!errorMap[file]) errorMap[file] = [];
-      errorMap[file].push(`Page '${nameWithExt}' missing **Blocks:** section.`);
+      errorMap[file].push(`Page '${pageName}' missing **Blocks:** section.`);
+    }
+    if (!checkSection(content, "Components")) {
+      if (!errorMap[file]) errorMap[file] = [];
+      errorMap[file].push(`Page '${pageName}' missing **Components:** section.`);
     }
     if (!checkVariants(content)) {
       if (!errorMap[file]) errorMap[file] = [];
-      errorMap[file].push(`Page '${nameWithExt}' missing ### Variants section.`);
+      errorMap[file].push(`Page '${pageName}' missing ### Variants section.`);
     }
   }
   const errorFiles = Object.keys(errorMap);

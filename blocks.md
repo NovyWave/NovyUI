@@ -74,13 +74,13 @@ This document provides an overview of all UI blocks available in NovyUI. Each bl
 
 # NovyUI Block Documentation Format
 
-All NovyUI block documentation **must** strictly follow the structure and formatting exemplified in `Accordion.md` (see components for canonical example). This format is required for all block docs—no legacy or alternative formats are permitted. The enforcer script will flag any deviation.
+All NovyUI block documentation **must** strictly follow the structure and formatting exemplified in `AccordionFAQ.md` (see this file for the canonical block example). This format is required for all block docs—no legacy or alternative formats are permitted. The enforcer script will flag any deviation.
 
 ## Required Section Order
 1. **Header**
    - Block name as H2 (e.g., `## AccordionFAQ`)
    - One-line summary with emoji (if applicable)
-   - Bullet list: **Id** (must match filename, CamelCase), **Appearance**, **Behavior**, **Used in components/pages** (with links to existing components/pages)
+   - Bullet list: **Id** (must match filename, CamelCase), **Appearance**, **Behavior**, **Components** (with links to existing components), **Used in pages** (with links to existing pages)
 2. **Token Usage**
    - H3: `### Token Usage`
    - Intro sentence: "The following table lists all design tokens used by the [Block] block:"
@@ -120,7 +120,8 @@ All NovyUI block documentation **must** strictly follow the structure and format
   - **Id:** (must match filename, CamelCase)
   - **Appearance:**
   - **Behavior:**
-  - **Used in components/pages:** (with links to existing components/pages)
+  - **Components:** (with links to existing components)
+  - **Used in pages:** (with links to existing pages)
 
 ## Accessibility Section
 - Must start with: "Accessibility features and requirements for [Block]:"
@@ -132,7 +133,7 @@ All NovyUI block documentation **must** strictly follow the structure and format
   - Focus indicator
 
 ## Additional Enforcement
-- Filename must be CamelCase and match the `**Id:**` in the file.
+- Filename must be CamelCase.
 - No hardcoded values (hex colors, px) in documentation—must reference tokens.
 - "Used in components/pages" references must exist in `components.md`/`pages.md`.
 - Block must be listed in `blocks.md` TOC (with correct name, ignoring emoji).
@@ -146,7 +147,6 @@ All NovyUI block documentation **must** strictly follow the structure and format
   - Incorrect table columns or order
   - Missing horizontal rules
   - Any deviation from the canonical example
-  - Missing or mismatched `**Id:**`
   - Hardcoded values
   - Broken component/page references
   - Not listed in TOC

@@ -1,4 +1,4 @@
-## Accordion FAQ
+## AccordionFAQ
 A block for displaying a list of frequently asked questions using an accordion UI.
 - **Id:** AccordionFAQ
 - **Appearance:** A vertical list of questions, each expandable/collapsible using an accordion component.
@@ -9,8 +9,10 @@ A block for displaying a list of frequently asked questions using an accordion U
 - **Used in pages:**
   - [FAQ](../pages/FAQ.md)
 
+---
+
 ### Token Usage
-The following table lists all design tokens used by the Accordion FAQ block:
+The following table lists all design tokens used by the AccordionFAQ block:
 | Part         | Token Example      | Description                        |
 |--------------|-------------------|------------------------------------|
 | Background   | color.surface.1   | FAQ item background                |
@@ -24,7 +26,7 @@ The following table lists all design tokens used by the Accordion FAQ block:
 ---
 
 ### Variants
-All supported Accordion FAQ variants are listed below:
+All supported AccordionFAQ variants are listed below:
 | Variant Name | Description                                 | Appearance/Behavior                                              | Tokens Used                | Notes    |
 |--------------|---------------------------------------------|------------------------------------------------------------------|----------------------------|----------|
 | Basic        | Simple accordion list of questions and answers| Static or interactive, depending on configuration                | Background, Border, Icon   | Default  |
@@ -33,7 +35,7 @@ All supported Accordion FAQ variants are listed below:
 ---
 
 ### States
-Accordion FAQ states and their token usage:
+AccordionFAQ states and their token usage:
 | State                | Description                                      | Token(s) affected           |
 |----------------------|--------------------------------------------------|-----------------------------|
 | Default              | Item is collapsed and not focused                | Background, Border, Text    |
@@ -49,6 +51,7 @@ Accordion FAQ states and their token usage:
 ---
 
 ### Accessibility
+Accessibility features and requirements for AccordionFAQ:
 - Accordion headers use ARIA roles and attributes (`button`, `aria-expanded`, `aria-controls`).
 - Keyboard navigation: arrow keys to move, Enter/Space to expand/collapse.
 - Focus indicators are visible and use the focus token.

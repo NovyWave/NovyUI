@@ -1,42 +1,53 @@
 ## Navbars
-A horizontal or vertical navigation bar providing links to main sections of a site or app.
+A block for displaying a horizontal navigation bar with links, branding, and actions.
 - **Id:** Navbars
-- **Appearance:** A horizontal or vertical bar with navigation links, logo, and optional user avatar, search, or menu. May be fixed or sticky.
-- **Behavior:** Clicking links navigates to pages. Dropdowns open on click/hover. Responsive to screen size (collapsible on mobile).
+- **Appearance:** Horizontal bar at the top with logo, links, and optional buttons.
+- **Behavior:** Stays at the top, may include dropdowns, search, or user menu.
 - **Components:**
+  - [Typography](../components/Typography.md)
   - [Button](../components/Button.md)
-  - [Avatar](../components/Avatar.md)
-  - [Badge](../components/Badge.md)
+  - [Menu](../components/Menu.md)
 - **Used in pages:**
-  - [AppShell](../pages/AppShell.md)
-  - [Blog](../pages/Blog.md)
-  - [ECommerce](../pages/ECommerce.md)
+  - [Landing](../pages/Landing.md)
+  - [Dashboard](../pages/Dashboard.md)
+
+---
+
+### Token Usage
+The following table lists all design tokens used by the Navbars block:
+| Part         | Token Example      | Description                        |
+|--------------|-------------------|------------------------------------|
+| Background   | color.surface.2   | Navbar background                  |
+| Text         | color.neutral.12  | Navbar link and text               |
+| Icon         | color.primary.7   | Icon color                         |
+| Border       | color.border.2    | Navbar border                      |
+| Focus Ring   | color.focus.1     | Focus indicator for interactive elements|
+
+---
+
 ### Variants
-#### Navbars - **Basic**
-- **Id:** Basic
-- **Appearance:** Simple bar with links and logo only.
-- **Behavior:** Static navigation, no dropdowns or user info.
-#### Navbars - **With user info**
-- **Id:** WithUserInfo
-- **Appearance:** Includes user avatar and name.
-- **Behavior:** User info may open a dropdown or menu.
-#### Navbars - **With search**
-- **Id:** WithSearch
-- **Appearance:** Includes a search input field.
-- **Behavior:** Allows searching from the navbar.
-#### Navbars - **With menu**
-- **Id:** WithMenu
-- **Appearance:** Includes dropdown or mega menu.
-- **Behavior:** Dropdown/mega menu opens on click/hover.
-#### Navbars - **Collapsible**
-- **Id:** Collapsible
-- **Appearance:** Collapses into a hamburger menu on small screens.
-- **Behavior:** Menu toggles open/close on mobile.
-#### Navbars - **Vertical**
-- **Id:** Vertical
-- **Appearance:** Arranged vertically on the side of the page.
-- **Behavior:** Navigation links stack vertically.
-#### Navbars - **Horizontal**
-- **Id:** Horizontal
-- **Appearance:** Arranged horizontally at the top of the page.
-- **Behavior:** Navigation links align in a row.
+All supported Navbars variants are listed below:
+| Variant Name   | Description                                 | Appearance/Behavior                        | Tokens Used         | Notes |
+|---------------|---------------------------------------------|--------------------------------------------|---------------------|-------|
+| Basic         | Standard navbar with links.                  | Static links and logo.                     | All above           |       |
+| WithDropdowns | Navbar includes dropdown menus.              | Dropdowns for grouped links.               | All above           |       |
+| WithSearch    | Navbar includes search input.                | Search field in navbar.                    | All above           |       |
+
+---
+
+### States
+Navbars states and their token usage:
+| State     | Description                        | Token(s) affected      |
+|-----------|------------------------------------|-----------------------|
+| Default   | Normal display of navbar.          | All above             |
+| Focused   | Link or button is focused.         | Focus Ring            |
+| Hovered   | Link or button is hovered.         | Border, Icon          |
+
+---
+
+### Accessibility
+Accessibility features and requirements for Navbars block:
+- Keyboard navigation: Tab to links and buttons, Enter/Space to activate.
+- ARIA roles/attributes: navigation, menubar, menuitem, and button.
+- Color contrast: Sufficient for all text, icons, and borders.
+- Focus indicator: Visible and uses the focus token.
