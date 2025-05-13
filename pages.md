@@ -40,26 +40,28 @@ All NovyUI page documentation **must** strictly follow the structure and formatt
 1. **Header**
    - Page name as H2 (e.g., `## CheckoutPage`)
    - One-line summary with emoji (if applicable)
-   - Bullet list: **Id**, **Appearance**, **Behavior**, **Used in blocks/components** (with links)
+   - Bullet list: **Id** (must match filename, CamelCase), **Appearance**, **Behavior**, **Used in blocks/components** (with links to existing blocks/components)
 2. **Token Usage**
    - H3: `### Token Usage`
    - Intro sentence: "The following table lists all design tokens used by the [Page] page:"
-   - Table with columns: Part | Token Example | Description
-   - Horizontal rule (`---`)
+   - Table with columns: Part | Token Example | Description (no extra or missing columns)
+   - Horizontal rule (`---`) after section
 3. **Variants**
    - H3: `### Variants`
    - Intro sentence: "All supported [Page] variants are listed below:"
-   - Table with columns: Variant Name | Description | Appearance/Behavior | Tokens Used | Notes
-   - Horizontal rule (`---`)
+   - Table with columns: Variant Name | Description | Appearance/Behavior | Tokens Used | Notes (no extra or missing columns)
+   - Horizontal rule (`---`) after section
 4. **States**
    - H3: `### States`
    - Intro sentence: "[Page] states and their token usage:"
-   - Table with columns: State | Description | Token(s) affected
+   - Table with columns: State | Description | Token(s) affected (no extra or missing columns)
    - Additional notes as bullet points (if needed)
-   - Horizontal rule (`---`)
+   - Horizontal rule (`---`) after section
 5. **Accessibility**
    - H3: `### Accessibility`
-   - Bullet list of accessibility features and requirements
+   - Must start with: "Accessibility features and requirements for [Page]:"
+   - Must be a bullet list of accessibility features and requirements
+   - Must mention: keyboard navigation, ARIA roles/attributes, color contrast, and focus indicator
 
 ## Table Formats
 - All tables must use the exact columns and order as shown above.
@@ -67,9 +69,35 @@ All NovyUI page documentation **must** strictly follow the structure and formatt
 - No alternative table layouts.
 
 ## Section Details
-- Each section must begin with the required intro sentence.
+- Each section must begin with the required intro sentence (except Header and Accessibility).
 - Section order is strict—no reordering or omission.
-- Use horizontal rules (`---`) between major sections.
+- Use horizontal rules (`---`) between major sections (after each except the last).
+
+## Header Section
+- Page name as H2 (e.g., `## CheckoutPage`)
+- One-line summary with emoji (if applicable)
+- Bullet list:
+  - **Id:** (must match filename, CamelCase)
+  - **Appearance:**
+  - **Behavior:**
+  - **Used in blocks/components:** (with links to existing blocks/components)
+
+## Accessibility Section
+- Must start with: "Accessibility features and requirements for [Page]:"
+- Must be a bullet list
+- Must mention:
+  - Keyboard navigation
+  - ARIA roles/attributes
+  - Color contrast
+  - Focus indicator
+
+## Additional Enforcement
+- Filename must be CamelCase and match the `**Id:**` in the file.
+- No hardcoded values (hex colors, px) in documentation—must reference tokens.
+- "Used in blocks/components" references must exist in `blocks.md`/`components.md`.
+- Page must be listed in `pages.md` TOC (with correct name, ignoring emoji).
+- State/Variant documentation must exist (explicitly document all states/variants).
+- All sections must be present (no omission).
 
 ## Enforcement
 - The enforcer script (`page-markdown-enforcer.ts`) will flag any file that does not strictly follow this format, including:
@@ -78,6 +106,10 @@ All NovyUI page documentation **must** strictly follow the structure and formatt
   - Incorrect table columns or order
   - Missing horizontal rules
   - Any deviation from the canonical example
+  - Missing or mismatched `**Id:**`
+  - Hardcoded values
+  - Broken block/component references
+  - Not listed in TOC
 
 **This format is required for all NovyUI page docs.**
 
