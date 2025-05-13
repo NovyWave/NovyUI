@@ -6,6 +6,22 @@ A feed page showing recent activity, notifications, or events, often with filter
 - **Blocks:**
   - [ActivityFeed](../blocks/ActivityFeed.md)
   - [Footers](../blocks/Footers.md)
+
+### Token Usage
+| Part         | Token Example      | Description                        |
+|--------------|-------------------|------------------------------------|
+| Background   | color.surface.1   | Page background                    |
+| Text         | color.neutral.12  | Main text                          |
+| Border       | color.border.2    | Border for sections                |
+| Focus Ring   | color.focus.1     | Focus indicator for interactive elements|
+
+### Accessibility
+- Page structure uses semantic HTML (main, nav, section, etc.).
+- Keyboard navigation: Tab to all interactive elements, arrow keys for feed navigation.
+- Sufficient color contrast for all text and icons.
+- Focus indicators are visible and use the focus token.
+- ARIA live regions for real-time activity updates if present.
+
 ### Variants
 #### Activity - **Activity feed**
 - **Id:** ActivityFeed

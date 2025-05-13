@@ -18,7 +18,7 @@ A section at the bottom of a page containing links, copyright, and additional in
   - [ECommerce](../pages/ECommerce.md)
   - [Editor](../pages/Editor.md)
   - [Error](../pages/Error.md)
-  - [FAQ](../pages/Faq.md)
+  - [FAQ](../pages/FAQ.md)
   - [Landing](../pages/Landing.md)
   - [Legal](../pages/Legal.md)
   - [Onboarding](../pages/Onboarding.md)
