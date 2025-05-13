@@ -72,52 +72,51 @@ This document provides an overview of all UI blocks available in NovyUI. Each bl
 - [User Role Assignment](blocks/UserRoleAssignment.md)
 - [Wishlist](blocks/Wishlist.md)
 
-## Instructions and Documentation Structure Rules
+# NovyUI Block Documentation Format
 
-- Every block in `/blocks` must be listed here, sorted alphabetically by display name (ignoring leading emojis/symbols).
-- Every link must point to an existing file.
+All NovyUI block documentation **must** strictly follow the structure and formatting exemplified in `Accordion.md` (see components for canonical example). This format is required for all block docs—no legacy or alternative formats are permitted. The enforcer script will flag any deviation.
 
-- Use the following template for each block:
-  ```md
-  ## [Block Title]
-  A brief description of the block's purpose.
-  - **Id:** [BlockId]
-  - **Appearance:** Description of the block's layout and visual elements.
-  - **Behavior:** Description of the block's interactive features or logic.
-  - **Used in Pages:**
-    - [PageId1](../pages/PageId1.md)
-    - [PageId2](../pages/PageId2.md)
-    - ...
-  ### Accessibility
-  - Describe accessibility features, keyboard support, and ARIA usage if relevant.
-  ### Variants
-  #### [Block Title] - **[Variant Name]**
-  - **Id:** [VariantId]
-  - **Appearance:** Description of the variant's layout or features.
-  - **Behavior:** Description of the variant's behavior.
-  ```
+## Required Section Order
+1. **Header**
+   - Block name as H2 (e.g., `## AccordionFAQ`)
+   - One-line summary with emoji (if applicable)
+   - Bullet list: **Id**, **Appearance**, **Behavior**, **Used in components/pages** (with links)
+2. **Token Usage**
+   - H3: `### Token Usage`
+   - Intro sentence: "The following table lists all design tokens used by the [Block] block:"
+   - Table with columns: Part | Token Example | Description
+   - Horizontal rule (`---`)
+3. **Variants**
+   - H3: `### Variants`
+   - Intro sentence: "All supported [Block] variants are listed below:"
+   - Table with columns: Variant Name | Description | Appearance/Behavior | Tokens Used | Notes
+   - Horizontal rule (`---`)
+4. **States**
+   - H3: `### States`
+   - Intro sentence: "[Block] states and their token usage:"
+   - Table with columns: State | Description | Token(s) affected
+   - Additional notes as bullet points (if needed)
+   - Horizontal rule (`---`)
+5. **Accessibility**
+   - H3: `### Accessibility`
+   - Bullet list of accessibility features and requirements
 
-- Keep the list of PageIds and their paths in the **Used in Pages:** section up to date.
-- The **Used in Pages:** section must not be empty; every block must be referenced by at least one real page.
-- Always document accessibility and keyboard support for all blocks (Accessibility section is required).
-- Every block file must include a `### Accessibility` section describing accessibility and keyboard support.
+## Table Formats
+- All tables must use the exact columns and order as shown above.
+- No extra or missing columns.
+- No alternative table layouts.
 
-- **Token Usage Table:** Include a table listing all relevant UI parts, the token used, and a short description. Example:
+## Section Details
+- Each section must begin with the required intro sentence.
+- Section order is strict—no reordering or omission.
+- Use horizontal rules (`---`) between major sections.
 
-  | Part        | Token Example      | Description                |
-  |-------------|-------------------|----------------------------|
-  | Background  | color.primary.7   | Main block background      |
-  | Text        | color.neutral.11  | Block label                |
-  | Border      | color.primary.5   | Border color               |
-  | Radius      | radii.2           | Border radius              |
-  | Shadow      | shadow.1          | Block shadow               |
+## Enforcement
+- The enforcer script (`block-markdown-enforcer.ts`) will flag any file that does not strictly follow this format, including:
+  - Missing or out-of-order sections
+  - Missing or incorrect intro sentences
+  - Incorrect table columns or order
+  - Missing horizontal rules
+  - Any deviation from the canonical example
 
-- **State/Variant Documentation:** Explicitly document all UI states (default, hover, active, disabled, focus, etc.) and variants. For each state/variant, specify which tokens change and how.
-
-- **Accessibility Section:** Cover keyboard navigation, ARIA roles/attributes, color contrast, focus indicators, and any additional considerations.
-
-- **Consistent Token Use:** All visual properties must use tokens from `/tokens`. No hardcoded values.
-
-- **Reference Sync and ToC Listing:** All references must use correct relative paths and be kept in sync. Every item must be listed in `blocks.md`.
-
-- **Style Consistency:** Integrate new requirements using the same style and conventions as the rest of the file.
+**This format is required for all NovyUI block docs.**

@@ -40,7 +40,7 @@ function checkAccessibilityDetails(content: string): string[] {
   const errors: string[] = [];
   const accSection = content.split(/### Accessibility/i)[1] || "";
   if (!/keyboard/i.test(accSection)) errors.push("Accessibility section missing 'keyboard' navigation details.");
-  if (!/aria/i.test(accSection)) errors.push("Accessibility section missing ARIA roles/attributes.");
+  if (!/aria/i.test(accSection) && !/role="alert"|role="status"/i.test(accSection)) errors.push("Accessibility section missing ARIA roles/attributes.");
   if (!/contrast/i.test(accSection)) errors.push("Accessibility section missing color contrast details.");
   if (!/focus/i.test(accSection)) errors.push("Accessibility section missing focus indicator details.");
   return errors;
@@ -75,10 +75,30 @@ function checkUsedBlocksExist(content: string, blocksList: Set<string>): string[
   return errors;
 }
 
-function checkComponentListedInTOC(fileName: string, tocContent: string): boolean {
-  // Check if the component file is listed in components.md
-  const regex = new RegExp(`\\(${fileName}\\.md\\)`, 'i');
-  return regex.test(tocContent);
+async function getComponentNameFromFile(filePath: string): Promise<string> {
+  // Read the first non-empty line starting with '## ' to get the component name
+  const content = await Deno.readTextFile(filePath);
+  const match = content.match(/^##\s+(.+)$/m);
+  return match ? match[1].trim() : '';
+}
+
+function stripLeadingEmojiAndWhitespace(str: string): string {
+  // Remove leading emoji and whitespace from a string
+  // Emoji regex: https://stackoverflow.com/a/41164587/2124254
+  return str.replace(/^[^\w\s\[]+\s*/u, '').trim();
+}
+
+async function checkComponentListedInTOC(filePath: string, tocContent: string): Promise<boolean> {
+  // Get the component name from the file (first ## header)
+  const componentName = await getComponentNameFromFile(filePath);
+  // Find all TOC lines with a markdown link to a .md file
+  const tocLinks = [...tocContent.matchAll(/\- \[(.*?)\]\((components\/([A-Za-z0-9]+)\.md)\)/g)];
+  for (const [, linkText] of tocLinks) {
+    if (stripLeadingEmojiAndWhitespace(linkText) === componentName) {
+      return true;
+    }
+  }
+  return false;
 }
 
 async function lintComponents(): Promise<void> {
@@ -132,8 +152,7 @@ async function lintComponents(): Promise<void> {
       errorMap[file].push(...usedBlocksErrors);
     }
     // TOC listing
-    const fileNameNoExt = name.replace(/\.md$/, "");
-    if (!checkComponentListedInTOC(fileNameNoExt, componentsToc)) {
+    if (!(await checkComponentListedInTOC(file, componentsToc))) {
       if (!errorMap[file]) errorMap[file] = [];
       errorMap[file].push(`Component '${name}' is not listed in components.md TOC.`);
     }

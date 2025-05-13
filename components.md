@@ -73,52 +73,51 @@ Welcome to the NovyUI Components reference. This document provides an overview o
 - [🌳 Tree View](components/TreeView.md)
 - [🔤 Typography](components/Typography.md)
 
-## Instructions and Documentation Structure Rules
+# NovyUI Component Documentation Format
 
-- Every component in `/components` must be listed here, sorted alphabetically by display name (ignoring leading emojis/symbols).
-- Every link must point to an existing file.
+All NovyUI component documentation **must** strictly follow the structure and formatting exemplified in `Accordion.md`. This format is required for all component docs—no legacy or alternative formats are permitted. The enforcer script will flag any deviation.
 
-- Use the following template for each component:
-  ```md
-  ## [Component Title]
-  A brief description of the component's purpose.
-  - **Id:** [ComponentId]
-  - **Appearance:** Description of the component's layout and visual elements.
-  - **Behavior:** Description of the component's interactive features or logic.
-  - **Used in Blocks:**
-    - [BlockId1](../blocks/BlockId1.md)
-    - [BlockId2](../blocks/BlockId2.md)
-    - ...
-  ### Accessibility
-  - Describe accessibility features, keyboard support, and ARIA usage if relevant.
-  ### Variants
-  #### [Component Title] - **[Variant Name]**
-  - **Id:** [VariantId]
-  - **Appearance:** Description of the variant's layout or features.
-  - **Behavior:** Description of the variant's behavior.
-  ```
+## Required Section Order
+1. **Header**
+   - Component name as H2 (e.g., `## Accordion`)
+   - One-line summary with emoji (if applicable)
+   - Bullet list: **Id**, **Appearance**, **Behavior**, **Used in blocks** (with links)
+2. **Token Usage**
+   - H3: `### Token Usage`
+   - Intro sentence: "The following table lists all design tokens used by the [Component] component:"
+   - Table with columns: Part | Token Example | Description
+   - Horizontal rule (`---`)
+3. **Variants**
+   - H3: `### Variants`
+   - Intro sentence: "All supported [Component] variants are listed below:"
+   - Table with columns: Variant Name | Description | Appearance/Behavior | Tokens Used | Notes
+   - Horizontal rule (`---`)
+4. **States**
+   - H3: `### States`
+   - Intro sentence: "[Component] states and their token usage:"
+   - Table with columns: State | Description | Token(s) affected
+   - Additional notes as bullet points (if needed)
+   - Horizontal rule (`---`)
+5. **Accessibility**
+   - H3: `### Accessibility`
+   - Bullet list of accessibility features and requirements
 
-- Keep the list of BlockIds and their paths in the **Used in Blocks:** section up to date.
-- The **Used in Blocks:** section must not be empty; every component must be referenced by at least one real block.
-- Always document accessibility and keyboard support for all components (Accessibility section is required).
-- Every component file must include a `### Accessibility` section describing accessibility and keyboard support.
+## Table Formats
+- All tables must use the exact columns and order as shown above.
+- No extra or missing columns.
+- No alternative table layouts.
 
-- **Token Usage Table:** Include a table listing all relevant UI parts, the token used, and a short description. Example:
+## Section Details
+- Each section must begin with the required intro sentence.
+- Section order is strict—no reordering or omission.
+- Use horizontal rules (`---`) between major sections.
 
-  | Part        | Token Example      | Description                |
-  |-------------|-------------------|----------------------------|
-  | Background  | color.primary.7   | Main button background     |
-  | Text        | color.neutral.11  | Button label               |
-  | Border      | color.primary.5   | Border color               |
-  | Radius      | radii.2           | Border radius              |
-  | Shadow      | shadow.1          | Button shadow              |
+## Enforcement
+- The enforcer script (`component-markdown-enforcer.ts`) will flag any file that does not strictly follow this format, including:
+  - Missing or out-of-order sections
+  - Missing or incorrect intro sentences
+  - Incorrect table columns or order
+  - Missing horizontal rules
+  - Any deviation from the canonical example
 
-- **State/Variant Documentation:** Explicitly document all UI states (default, hover, active, disabled, focus, etc.) and variants. For each state/variant, specify which tokens change and how.
-
-- **Accessibility Section:** Cover keyboard navigation, ARIA roles/attributes, color contrast, focus indicators, and any additional considerations.
-
-- **Consistent Token Use:** All visual properties must use tokens from `/tokens`. No hardcoded values.
-
-- **Reference Sync and ToC Listing:** All references must use correct relative paths and be kept in sync. Every item must be listed in `components.md`.
-
-- **Style Consistency:** Integrate new requirements using the same style and conventions as the rest of the file.
+**This format is required for all NovyUI component docs.**
