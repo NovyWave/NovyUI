@@ -72,7 +72,7 @@ This document provides an overview of all UI blocks available in NovyUI. Each bl
 - [User Role Assignment](blocks/UserRoleAssignment.md)
 - [Wishlist](blocks/Wishlist.md)
 
-## Instructions
+## Instructions and Documentation Structure Rules
 
 - Every block in `/blocks` must be listed here, sorted alphabetically by display name (ignoring leading emojis/symbols).
 - Every link must point to an existing file.
@@ -84,14 +84,12 @@ This document provides an overview of all UI blocks available in NovyUI. Each bl
   - **Id:** [BlockId]
   - **Appearance:** Description of the block's layout and visual elements.
   - **Behavior:** Description of the block's interactive features or logic.
-  - **Components:**
-    - [ComponentId1](../components/ComponentId1.md)
-    - [ComponentId2](../components/ComponentId2.md)
-    - ...
   - **Used in Pages:**
     - [PageId1](../pages/PageId1.md)
     - [PageId2](../pages/PageId2.md)
     - ...
+  ### Accessibility
+  - Describe accessibility features, keyboard support, and ARIA usage if relevant.
   ### Variants
   #### [Block Title] - **[Variant Name]**
   - **Id:** [VariantId]
@@ -99,6 +97,27 @@ This document provides an overview of all UI blocks available in NovyUI. Each bl
   - **Behavior:** Description of the variant's behavior.
   ```
 
-- Keep the list of ComponentIds and their paths in the **Components:** section up to date.
 - Keep the list of PageIds and their paths in the **Used in Pages:** section up to date.
 - The **Used in Pages:** section must not be empty; every block must be referenced by at least one real page.
+- Always document accessibility and keyboard support for all blocks (Accessibility section is required).
+- Every block file must include a `### Accessibility` section describing accessibility and keyboard support.
+
+- **Token Usage Table:** Include a table listing all relevant UI parts, the token used, and a short description. Example:
+
+  | Part        | Token Example      | Description                |
+  |-------------|-------------------|----------------------------|
+  | Background  | color.primary.7   | Main block background      |
+  | Text        | color.neutral.11  | Block label                |
+  | Border      | color.primary.5   | Border color               |
+  | Radius      | radii.2           | Border radius              |
+  | Shadow      | shadow.1          | Block shadow               |
+
+- **State/Variant Documentation:** Explicitly document all UI states (default, hover, active, disabled, focus, etc.) and variants. For each state/variant, specify which tokens change and how.
+
+- **Accessibility Section:** Cover keyboard navigation, ARIA roles/attributes, color contrast, focus indicators, and any additional considerations.
+
+- **Consistent Token Use:** All visual properties must use tokens from `/tokens`. No hardcoded values.
+
+- **Reference Sync and ToC Listing:** All references must use correct relative paths and be kept in sync. Every item must be listed in `blocks.md`.
+
+- **Style Consistency:** Integrate new requirements using the same style and conventions as the rest of the file.

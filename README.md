@@ -80,6 +80,66 @@ This script will:
 - Ensure the Hero Patterns license file is present
 - Print a ✅ message when all pattern files are in sync
 
+## Documentation Structure Rules
+
+<!-- RULE: Every component, block, and page markdown file must follow these rules. -->
+
+1. **Token Usage Table**
+   - Every component, block, and page file must include a "Token Usage" table listing all relevant UI parts, the token used, and a short description.
+   - Example:
+
+     | Part        | Token Example      | Description                |
+     |-------------|-------------------|----------------------------|
+     | Background  | color.primary.7   | Main button background     |
+     | Text        | color.neutral.11  | Button label               |
+     | Border      | color.primary.5   | Border color               |
+     | Radius      | radii.2           | Border radius              |
+     | Shadow      | shadow.1          | Button shadow              |
+
+2. **State/Variant Documentation**
+   - Explicitly document all UI states (default, hover, active, disabled, focus, etc.) and variants.
+   - For each state/variant, specify which tokens change and how.
+   - Example:
+     - **Default:**  
+       - Background: `color.primary.7`
+       - Text: `color.neutral.11`
+     - **Hover:**  
+       - Background: `color.primary.8`
+     - **Active:**  
+       - Background: `color.primary.9`
+     - **Disabled:**  
+       - Background: `color.neutral.3`
+       - Text: `color.neutral.7`
+     - **Outline Variant:**  
+       - Border: `color.primary.7`
+       - Background: `color.transparent`
+
+3. **Accessibility Section**
+   - Include an expanded accessibility section covering:
+     - Keyboard navigation (tab order, shortcuts, etc.)
+     - ARIA roles and attributes
+     - Color contrast and focus indicators (with token references)
+     - Any additional accessibility considerations
+
+4. **Consistent Token Use**
+   - All visual properties (color, spacing, radius, shadow, etc.) must be described using tokens from `/tokens`.
+   - No hardcoded values for visual properties in documentation.
+
+5. **Reference Sync and ToC Listing**
+   - All references (blocks in pages, components in blocks, etc.) must use correct relative paths and be kept in sync.
+   - Every item must be listed in its respective table of contents file (`components.md`, `blocks.md`, `pages.md`).
+
+6. **Style Consistency**
+   - Do not break or remove any `<!-- RULE:... -->` comments, templates, or formatting in the structure files.
+   - Integrate new requirements using the same style and conventions as the rest of the files (e.g., add new rules as `<!-- RULE:... -->` blocks, update templates in-place, etc.).
+   - If adding new sections, use the same heading and comment conventions as existing sections.
+   - Review the files after changes to confirm style and structure are consistent.
+
+7. **Synchronize with Templates**
+   - Whenever changes are made to documentation structure or templates, ensure corresponding updates are made in both this section and Section 4 (Component/Block/Page Templates), and vice versa. Cross-reference changes and keep both sections in sync.
+
+<!-- END RULES -->
+
 ## Run all documentation and asset enforcers
 
 To check all documentation types and asset files in a single step, run:

@@ -73,7 +73,7 @@ Welcome to the NovyUI Components reference. This document provides an overview o
 - [🌳 Tree View](components/TreeView.md)
 - [🔤 Typography](components/Typography.md)
 
-## Instructions
+## Instructions and Documentation Structure Rules
 
 - Every component in `/components` must be listed here, sorted alphabetically by display name (ignoring leading emojis/symbols).
 - Every link must point to an existing file.
@@ -102,3 +102,23 @@ Welcome to the NovyUI Components reference. This document provides an overview o
 - The **Used in Blocks:** section must not be empty; every component must be referenced by at least one real block.
 - Always document accessibility and keyboard support for all components (Accessibility section is required).
 - Every component file must include a `### Accessibility` section describing accessibility and keyboard support.
+
+- **Token Usage Table:** Include a table listing all relevant UI parts, the token used, and a short description. Example:
+
+  | Part        | Token Example      | Description                |
+  |-------------|-------------------|----------------------------|
+  | Background  | color.primary.7   | Main button background     |
+  | Text        | color.neutral.11  | Button label               |
+  | Border      | color.primary.5   | Border color               |
+  | Radius      | radii.2           | Border radius              |
+  | Shadow      | shadow.1          | Button shadow              |
+
+- **State/Variant Documentation:** Explicitly document all UI states (default, hover, active, disabled, focus, etc.) and variants. For each state/variant, specify which tokens change and how.
+
+- **Accessibility Section:** Cover keyboard navigation, ARIA roles/attributes, color contrast, focus indicators, and any additional considerations.
+
+- **Consistent Token Use:** All visual properties must use tokens from `/tokens`. No hardcoded values.
+
+- **Reference Sync and ToC Listing:** All references must use correct relative paths and be kept in sync. Every item must be listed in `components.md`.
+
+- **Style Consistency:** Integrate new requirements using the same style and conventions as the rest of the file.

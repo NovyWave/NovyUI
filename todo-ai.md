@@ -64,24 +64,19 @@
 
 ## 2. Documentation Structure
 
-- [ ] 2.1 **Update documentation structure rules in `components.md`, `blocks.md`, and `pages.md`** [scriptable:enforce-doc-structure]
-  - [ ] 2.1.1 Update the documentation rules and templates in `components.md`, `blocks.md`, and `pages.md` to require:
-    - [ ] 2.1.1.1 A "Token Usage" table in every component file, listing all relevant UI parts, the token used, and a short description. [scriptable:token-usage-table-enforcer]
-    - [ ] 2.1.1.2 Explicit state/variant token documentation for all components, blocks, and pages. [scriptable:state-variant-docs-enforcer]
-    - [ ] 2.1.1.3 An expanded accessibility section for all components, blocks, and pages (keyboard navigation, ARIA, contrast, focus indicators). [scriptable:accessibility-section-enforcer]
-    - [ ] 2.1.1.4 Consistent use of tokens for all visual properties (color, spacing, radius, shadow, etc.) in all documentation. [scriptable:token-consistency-enforcer]
-    - [ ] 2.1.1.5 No hardcoded values for visual properties in documentation. [scriptable:no-hardcoded-values-enforcer]
-    - [ ] 2.1.1.6 (Optional) Token usage table for complex blocks/pages. [scriptable:block-page-token-table-enforcer]
-    - [ ] 2.1.1.7 All references (blocks in pages, components in blocks, etc.) must use correct relative paths and be kept in sync. [scriptable:reference-sync-enforcer]
-    - [ ] 2.1.1.8 Every item must be listed in its respective table of contents file (`components.md`, `blocks.md`, `pages.md`). [scriptable:toc-listing-enforcer]
-    - [ ] 2.1.1.9 The rules must be clear, strict, and enforceable even if not all files are updated yet. [scriptable:doc-structure-strictness-enforcer]
-  - [ ] 2.1.2 **Ensure all changes preserve the existing file style:**
-    - [ ] 2.1.2.1 Do not break or remove any `<!-- RULE:... -->` comments, templates, or formatting in the new structure files.
-    - [ ] 2.1.2.2 Integrate new requirements using the same style and conventions as the rest of the files (e.g., add new rules as `<!-- RULE:... -->` blocks, update templates in-place, etc.).
-    - [ ] 2.1.2.3 If adding new sections, use the same heading and comment conventions as existing sections.
-    - [ ] 2.1.2.4 Review the files after changes to confirm style and structure are consistent.
-  - [ ] 2.1.3 **Synchronize with Component/Block/Page Templates**
-    - [ ] 2.1.3.1 Whenever changes are made to documentation structure or templates, ensure corresponding updates are made in both this section and Section 4 (Component/Block/Page Templates), and vice versa. Cross-reference changes and keep both sections in sync. [scriptable:sync-doc-structure-templates]
+- [x] 2.1 Update documentation structure rules in `components.md`, `blocks.md`, and `pages.md` [scriptable:enforce-doc-structure]
+  - [x] 2.1.1 Update the documentation rules and templates in `components.md`, `blocks.md`, and `pages.md` to require:
+    - [x] 2.1.1.1 A "Token Usage" table in every component file, listing all relevant UI parts, the token used, and a short description. [scriptable:token-usage-table-enforcer]
+    - [x] 2.1.1.2 Explicit state/variant token documentation for all components, blocks, and pages. [scriptable:state-variant-docs-enforcer]
+    - [x] 2.1.1.3 An expanded accessibility section for all components, blocks, and pages (keyboard navigation, ARIA, contrast, focus indicators). [scriptable:accessibility-section-enforcer]
+    - [x] 2.1.1.4 Consistent use of tokens for all visual properties (color, spacing, radius, shadow, etc.) in all documentation. [scriptable:token-consistency-enforcer]
+    - [x] 2.1.1.5 No hardcoded values for visual properties in documentation. [scriptable:no-hardcoded-values-enforcer]
+    - [x] 2.1.1.6 (Optional) Token usage table for complex blocks/pages. [scriptable:block-page-token-table-enforcer]
+    - [x] 2.1.1.7 All references (blocks in pages, components in blocks, etc.) must use correct relative paths and be kept in sync. [scriptable:reference-sync-enforcer]
+    - [x] 2.1.1.8 Every item must be listed in its respective table of contents file (`components.md`, `blocks.md`, `pages.md`). [scriptable:toc-listing-enforcer]
+    - [x] 2.1.1.9 The rules must be clear, strict, and enforceable even if not all files are updated yet. [scriptable:doc-structure-strictness-enforcer]
+  - [x] 2.1.2 Ensure all changes preserve the existing file style.
+  - [x] 2.1.3 Synchronize with Component/Block/Page Templates
 
 ---
 

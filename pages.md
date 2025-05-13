@@ -32,7 +32,7 @@ This document provides an overview of all page templates and layouts available i
 - [Team](pages/Team.md)
 - [User Profile](pages/UserProfile.md)
 
-## Instructions
+## Instructions and Documentation Structure Rules
 
 - Every page in `/pages` must be listed here, sorted alphabetically by display name (ignoring leading emojis/symbols).
 - Every link must point to an existing file.
@@ -42,12 +42,14 @@ This document provides an overview of all page templates and layouts available i
   ## [Page Title]
   A brief description of the page's purpose.
   - **Id:** [PageId]
-  - **Appearance:** Description of the layout, sections, and visual elements.
-  - **Behavior:** Description of interactive features or logic.
-  - **Blocks:**
+  - **Appearance:** Description of the page's layout and visual elements.
+  - **Behavior:** Description of the page's interactive features or logic.
+  - **Used Blocks:**
     - [BlockId1](../blocks/BlockId1.md)
     - [BlockId2](../blocks/BlockId2.md)
     - ...
+  ### Accessibility
+  - Describe accessibility features, keyboard support, and ARIA usage if relevant.
   ### Variants
   #### [Page Title] - **[Variant Name]**
   - **Id:** [VariantId]
@@ -55,6 +57,28 @@ This document provides an overview of all page templates and layouts available i
   - **Behavior:** Description of the variant's behavior.
   ```
 
-- Keep the list of BlockIds and their paths in the **Blocks:** section up to date.
-- Ensure all references (blocks in pages, components in blocks, etc.) use correct relative paths and are kept in sync.
+- Keep the list of BlockIds and their paths in the **Used Blocks:** section up to date.
+- The **Used Blocks:** section must not be empty; every page must be referenced by at least one real block.
+- Always document accessibility and keyboard support for all pages (Accessibility section is required).
+- Every page file must include a `### Accessibility` section describing accessibility and keyboard support.
+
+- **Token Usage Table:** Include a table listing all relevant UI parts, the token used, and a short description. Example:
+
+  | Part        | Token Example      | Description                |
+  |-------------|-------------------|----------------------------|
+  | Background  | color.primary.7   | Main page background       |
+  | Text        | color.neutral.11  | Page label                 |
+  | Border      | color.primary.5   | Border color               |
+  | Radius      | radii.2           | Border radius              |
+  | Shadow      | shadow.1          | Page shadow                |
+
+- **State/Variant Documentation:** Explicitly document all UI states (default, hover, active, disabled, focus, etc.) and variants. For each state/variant, specify which tokens change and how.
+
+- **Accessibility Section:** Cover keyboard navigation, ARIA roles/attributes, color contrast, focus indicators, and any additional considerations.
+
+- **Consistent Token Use:** All visual properties must use tokens from `/tokens`. No hardcoded values.
+
+- **Reference Sync and ToC Listing:** All references must use correct relative paths and be kept in sync. Every item must be listed in `pages.md`.
+
+- **Style Consistency:** Integrate new requirements using the same style and conventions as the rest of the file.
 
