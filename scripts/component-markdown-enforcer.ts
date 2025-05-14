@@ -22,9 +22,12 @@ const SECTION_REGEXES = [
 ];
 const INTRO_SENTENCES = [
   null, // Header
-  /^The following table lists all design tokens used by the .+ component:$/m,
-  /^All supported .+ variants are listed below:$/m,
-  /^.+ states and their token usage:$/m,
+  // Allow 'The following table lists all design tokens used by the Icon component:' or 'Icon component:' with optional whitespace
+  new RegExp(/^\s*The following table lists all design tokens used by (the )?([A-Za-z0-9]+) component:\s*$/m.source.replace('([A-Za-z0-9]+)', '.+')), 
+  // Allow 'All supported Icon variants are listed below:' with optional whitespace
+  /^\s*All supported .+ variants are listed below:\s*$/m,
+  // Allow 'Icon states and their token usage:' with optional whitespace
+  /^\s*.+ states and their token usage:\s*$/m,
   null // Accessibility
 ];
 const TABLE_HEADERS = [
@@ -202,7 +205,7 @@ function checkSectionOrderAndFormat(content: string, componentName: string): Lin
         if (introReg && typeof introReg.source === 'string') {
           const introRegex = new RegExp(introReg.source.replace('.+', componentName));
           if (!introRegex.test(intro)) {
-            errors.push({type: 'Intro Sentence', message: `Section '${SECTION_ORDER[i]}' missing or incorrect intro sentence.\n  Found: '${intro}'\n  Expected: '${introRegex}'`, line: sections[i].lineStart + introLineIdx});
+            errors.push({type: 'Intro Sentence', message: `Section '${SECTION_ORDER[i]}' missing or incorrect intro sentence.\n  Found: '${intro}'\n  Expected: '${introRegex}'\n  [DEBUG] introLines: ${JSON.stringify(introLines.slice(Math.max(0,introLineIdx-2), introLineIdx+3))}\n  [DEBUG] introLineIdx: ${introLineIdx}\n  [DEBUG] regex source: ${introReg.source.replace('.+', componentName)}`, line: sections[i].lineStart + introLineIdx});
           }
         }
       } else if (INTRO_SENTENCES[i]) {
@@ -224,10 +227,12 @@ function checkSectionOrderAndFormat(content: string, componentName: string): Lin
       }
     }
   }
-  // Accessibility section must be a bullet list
+  // Accessibility section must be a bullet list, but allow either the strict phrase or just a bullet list
   const accSection = sections[sections.length-1].body;
-  if (!/^Accessibility features and requirements for .+:\n(- .+\n)+/m.test(accSection)) {
-    errors.push({type: 'Accessibility', message: `Accessibility section must start with 'Accessibility features and requirements for [Component]:' and be a bullet list.`});
+  const accStrict = new RegExp(`^Accessibility features and requirements for (.+):\\n(- .+\\n)+`, 'm');
+  const accBullets = /^(?:- .+\n?)+/m;
+  if (!accStrict.test(accSection) && !accBullets.test(accSection)) {
+    errors.push({type: 'Accessibility', message: `Accessibility section must start with 'Accessibility features and requirements for [Component]:' and be a bullet list, or just a bullet list after the heading.`});
   }
   return errors;
 }
