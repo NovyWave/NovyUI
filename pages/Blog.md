@@ -11,24 +11,47 @@ A content-driven page listing articles, with support for reading, commenting, an
   - [Comments](../blocks/Comments.md)
   - [Footers](../blocks/Footers.md)
   - [Section](../blocks/Section.md)
+- **Components:**
+  - [Typography](../components/Typography.md)
+  - [Button](../components/Button.md)
+
+---
+
+### Token Usage
+The following table lists all design tokens used by the Blog page:
+| Part         | Token Example      | Description                        |
+|--------------|-------------------|------------------------------------|
+| Background   | color.surface.1   | Page background                    |
+| Text         | color.neutral.12  | Main text                          |
+| Link         | color.primary.7   | Link color                         |
+| Border       | color.border.2    | Section border                     |
+| Focus Ring   | color.focus.1     | Focus indicator for interactive elements|
+
+---
+
 ### Variants
-#### Blog - **Blog home**
-- **Id:** BlogHome
-- **Appearance:** List or grid of articles with images, excerpts, author, and tags.
-- **Behavior:** Allows filtering, pagination, and navigation to article details.
-#### Blog - **Article Detail**
-- **Id:** ArticleDetail
-- **Appearance:** Full content of a single article with comments section and table of contents.
-- **Behavior:** Allows commenting, sharing, and navigation within the article.
-#### Blog - **Author profile**
-- **Id:** AuthorProfile
-- **Appearance:** Profile of the author with bio, avatar, and list of articles.
-- **Behavior:** Static display of author information only.
-#### Blog - **Categories and Tags**
-- **Id:** CategoriesAndTags
-- **Appearance:** List of categories or tags for filtering articles.
-- **Behavior:** Allows filtering articles by category or tag.
-#### Blog - **Comments**
-- **Id:** Comments
-- **Appearance:** List of comments with input field for new comments, may be threaded.
-- **Behavior:** Allows adding, replying, editing, and moderating comments.
+All supported Blog variants are listed below:
+| Variant Name   | Description                                 | Appearance/Behavior                        | Tokens Used         | Notes |
+|---------------|---------------------------------------------|--------------------------------------------|---------------------|-------|
+| BlogHome      | List or grid of articles.                    | Article cards, filters, pagination.        | All above           |       |
+| ArticleDetail | Full article with comments.                  | Article content, comments section.         | All above           |       |
+| AuthorProfile | Author profile with bio and articles.        | Author info, list of articles.             | All above           |       |
+
+---
+
+### States
+Blog states and their token usage:
+| State     | Description                        | Token(s) affected      |
+|-----------|------------------------------------|-----------------------|
+| Default   | Normal display of blog.            | All above             |
+| Focused   | Link or button is focused.         | Focus Ring            |
+| Hovered   | Link is hovered.                   | Link, Border          |
+
+---
+
+### Accessibility
+Accessibility features and requirements for Blog:
+- Keyboard navigation: Tab to links and buttons, Enter/Space to activate.
+- ARIA roles/attributes: region, link, navigation, list.
+- Color contrast: Sufficient for all text, links, and borders.
+- Focus indicator: Visible and uses the focus token.

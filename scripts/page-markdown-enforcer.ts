@@ -73,9 +73,17 @@ function checkUsedBlocksExist(content: string, blocksList: Set<string>): string[
 }
 
 function checkPageListedInTOC(fileName: string, tocContent: string): boolean {
-  // Check if the page file is listed in pages.md
-  const regex = new RegExp(`\\(${fileName}\\.md\\)`, 'i');
-  return regex.test(tocContent);
+  const lines = tocContent.split(/\r?\n/);
+  for (const line of lines) {
+    if (line.includes(fileName + '.md')) {
+      const regex = new RegExp(String.raw`\[.*?\]\(\s*pages\/${fileName}\.md\s*\)`, 'i');
+      const match = regex.exec(line.replace(/\r/g, ''));
+      if (match) {
+        return true;
+      }
+    }
+  }
+  return false;
 }
 
 // Canonical section order and requirements (from pages.md)
@@ -109,12 +117,12 @@ const TABLE_HEADERS = [
 ];
 
 function parseSectionsWithLines(content: string) {
-  // Returns array of {title, start, end, body, lineStart, lineEnd}
+  // Accept both LF and CRLF line endings
+  const lines = content.split(/\r?\n/);
   const matches = [];
   let lastTitle = null;
   let lastStart = 0;
   let lastLine = 0;
-  const lines = content.split(/\n/);
   for (let i = 0; i < lines.length; ++i) {
     for (let j = 0; j < SECTION_REGEXES.length; ++j) {
       if (SECTION_REGEXES[j].test(lines[i])) {
@@ -138,12 +146,12 @@ function checkSectionOrderAndFormat(content: string, pageName: string): string[]
   const sections = parseSectionsWithLines(content);
   // Check section count and order
   if (sections.length !== SECTION_ORDER.length) {
-    errors.push(`Section count/order mismatch. Expected: ${SECTION_ORDER.join(', ')}`);
+    errors.push(`Section count/order mismatch. Expected: ${SECTION_ORDER.join(', ')}. Found: ${sections.map(s => s.title).join(', ')}.\nSection starts (line numbers): ${sections.map(s => `${s.title} (line ${s.lineStart + 1})`).join(', ')}`);
     return errors;
   }
   for (let i = 0; i < SECTION_ORDER.length; ++i) {
     if (sections[i].title !== SECTION_ORDER[i]) {
-      errors.push(`Section ${i+1} should be '${SECTION_ORDER[i]}', found '${sections[i].title}'.`);
+      errors.push(`Section ${i+1} should be '${SECTION_ORDER[i]}', found '${sections[i].title}' at line ${sections[i].lineStart + 1}.`);
     }
     // Check intro sentence if required
     if (INTRO_SENTENCES[i]) {
@@ -159,7 +167,7 @@ function checkSectionOrderAndFormat(content: string, pageName: string): string[]
         if (introReg && typeof introReg.source === 'string') {
           const introRegex = new RegExp(introReg.source.replace('.+', pageName));
           if (!introRegex.test(intro)) {
-            errors.push(`Section '${SECTION_ORDER[i]}' missing or incorrect intro sentence.\n  Found: '${intro}'\n  Expected: '${introRegex}'`);
+            errors.push(`Section '${SECTION_ORDER[i]}' missing or incorrect intro sentence.\n  Found: '${intro}' (line ${sections[i].lineStart + introLineIdx + 1})\n  Expected: '${introRegex}'\n  Context: ${introLines.slice(Math.max(0, introLineIdx-2), introLineIdx+3).join(' | ')}\n  (Check for trailing spaces, line wrapping, or invisible characters.)`);
           }
         }
       } else if (INTRO_SENTENCES[i]) {
@@ -170,21 +178,26 @@ function checkSectionOrderAndFormat(content: string, pageName: string): string[]
     if (TABLE_HEADERS[i]) {
       const tableLineIdx = sections[i].body.split('\n').findIndex(l => TABLE_HEADERS[i]!.test(l));
       if (tableLineIdx === -1) {
-        errors.push(`Section '${SECTION_ORDER[i]}' missing or incorrect table header.\n  Expected: ${TABLE_HEADERS[i]}`);
+        errors.push(`Section '${SECTION_ORDER[i]}' missing or incorrect table header.\n  Expected: ${TABLE_HEADERS[i]}\n  Section starts at line ${sections[i].lineStart + 1}`);
       }
     }
     // Check for horizontal rule after section (except last)
     if (i < SECTION_ORDER.length - 1) {
       const after = sections[i].body.split('\n').slice(-3).join('\n');
       if (!/---/.test(after)) {
-        errors.push(`Section '${SECTION_ORDER[i]}' missing horizontal rule (---) after section.`);
+        errors.push(`Section '${SECTION_ORDER[i]}' missing horizontal rule (---) after section.\n  Section ends at line ${sections[i].lineEnd}`);
       }
     }
   }
   // Accessibility section must be a bullet list
+  // Accept both LF and CRLF for bullet list regex, and allow optional blank line and heading line
   const accSection = sections[sections.length-1].body;
-  if (!/^Accessibility features and requirements for .+:\n(- .+\n)+/m.test(accSection)) {
-    errors.push(`Accessibility section must start with 'Accessibility features and requirements for [Page]:' and be a bullet list.`);
+  // Remove heading line if present
+  const accLines = accSection.split(/\r?\n/).filter(l => !l.trim().startsWith('###'));
+  const accBody = accLines.join('\n');
+  // Accept both with and without a blank line after the required phrase
+  if (!/^Accessibility features and requirements for .+:\n(\s*)?- .+(\n- .+)*\n?$/m.test(accBody)) {
+    errors.push(`Accessibility section must start with 'Accessibility features and requirements for [Page]:' and be a bullet list.\n  Section starts at line ${sections[sections.length-1].lineStart + 1}\n  Context: ${accBody.split(/\r?\n/).slice(0,5).join(' | ')}`);
   }
   return errors;
 }
@@ -203,7 +216,8 @@ async function checkIdAndFilename(filePath: string): Promise<string | null> {
   return null;
 }
 
-async function lintPages(): Promise<void> {
+// Custom lint for a single file or multiple files
+async function lintPagesCustom(files: string[]): Promise<void> {
   const errorMap: Record<string, string[]> = {};
   // Load blocks list and pages TOC for cross-reference
   const blocksToc = await Deno.readTextFile(join(ROOT, "blocks.md"));
@@ -211,7 +225,7 @@ async function lintPages(): Promise<void> {
     [...blocksToc.matchAll(/\((blocks\/([\w-]+)\.md)\)/g)].map(m => m[2])
   );
   const pagesToc = await Deno.readTextFile(join(ROOT, "pages.md"));
-  for (const file of await getMarkdownFiles(PAGES_DIR)) {
+  for (const file of files) {
     const content = await Deno.readTextFile(file);
     const name = basename(file, ".md");
     // Strict section order/format enforcement
@@ -300,105 +314,14 @@ async function lintPages(): Promise<void> {
   }
 }
 
-// Custom lint for a single file
-async function lintPagesCustom(files: string[]): Promise<void> {
-  const errorMap: Record<string, string[]> = {};
-  // Load pages TOC for TOC check
-  const pagesToc = await Deno.readTextFile(join(ROOT, "pages.md"));
-  for (const file of files) {
-    const content = await Deno.readTextFile(file);
-    const pageName = basename(file, ".md");
-    // Strict section order/format enforcement
-    const sectionErrors = checkSectionOrderAndFormat(content, pageName);
-    if (sectionErrors.length) {
-      if (!errorMap[file]) errorMap[file] = [];
-      errorMap[file].push(...sectionErrors);
-    }
-    // Filename and Id
-    const idError = await checkIdAndFilename(file);
-    if (idError) {
-      if (!errorMap[file]) errorMap[file] = [];
-      errorMap[file].push(idError);
-    }
-    // Token Usage Table
-    if (!hasTokenUsageTable(content)) {
-      if (!errorMap[file]) errorMap[file] = [];
-      errorMap[file].push(`Page '${pageName}' missing required Token Usage table.`);
-    }
-    // State/Variant Documentation
-    if (!hasStateVariantDocumentation(content)) {
-      if (!errorMap[file]) errorMap[file] = [];
-      errorMap[file].push(`Page '${pageName}' missing explicit state/variant documentation.`);
-    }
-    // Accessibility Section
-    if (!/### Accessibility/i.test(content)) {
-      if (!errorMap[file]) errorMap[file] = [];
-      errorMap[file].push(`Page '${pageName}' missing required ### Accessibility section.`);
-    } else {
-      const accErrors = checkAccessibilityDetails(content);
-      if (accErrors.length) {
-        if (!errorMap[file]) errorMap[file] = [];
-        errorMap[file].push(...accErrors.map(e => `Page '${pageName}': ${e}`));
-      }
-    }
-    // Hardcoded values
-    const hardcodedErrors = findHardcodedValues(content);
-    if (hardcodedErrors.length) {
-      if (!errorMap[file]) errorMap[file] = [];
-      errorMap[file].push(...hardcodedErrors.map(e => `Page '${pageName}': ${e}`));
-    }
-    // TOC listing (even in single-file mode)
-    if (!checkPageListedInTOC(pageName, pagesToc)) {
-      if (!errorMap[file]) errorMap[file] = [];
-      errorMap[file].push(`Page '${pageName}.md' is not listed in pages.md TOC.`);
-    }
-    // Header bullet list checks
-    if (!checkSection(content, "Id")) {
-      if (!errorMap[file]) errorMap[file] = [];
-      errorMap[file].push(`Page '${pageName}' missing **Id:** section.`);
-    }
-    if (!checkSection(content, "Appearance")) {
-      if (!errorMap[file]) errorMap[file] = [];
-      errorMap[file].push(`Page '${pageName}' missing **Appearance:** section.`);
-    }
-    if (!checkSection(content, "Behavior")) {
-      if (!errorMap[file]) errorMap[file] = [];
-      errorMap[file].push(`Page '${pageName}' missing **Behavior:** section.`);
-    }
-    if (!checkSection(content, "Blocks")) {
-      if (!errorMap[file]) errorMap[file] = [];
-      errorMap[file].push(`Page '${pageName}' missing **Blocks:** section.`);
-    }
-    if (!checkSection(content, "Components")) {
-      if (!errorMap[file]) errorMap[file] = [];
-      errorMap[file].push(`Page '${pageName}' missing **Components:** section.`);
-    }
-    if (!checkVariants(content)) {
-      if (!errorMap[file]) errorMap[file] = [];
-      errorMap[file].push(`Page '${pageName}' missing ### Variants section.`);
-    }
-  }
-  const errorFiles = Object.keys(errorMap);
-  if (errorFiles.length) {
-    console.error("Page documentation structure errors found:");
-    for (const file of errorFiles) {
-      for (const err of errorMap[file]) {
-        console.error(err);
-      }
-    }
-    Deno.exit(1);
-  } else {
-    console.log("✅ All page documentation files follow the instructions.");
-  }
-}
-
 if (import.meta.main) {
   const idFlagIdx = Deno.args.indexOf('-id');
+  let files: string[];
   if (idFlagIdx !== -1 && Deno.args.length > idFlagIdx + 1) {
     const pageId = Deno.args[idFlagIdx + 1];
-    const file = join(PAGES_DIR, `${pageId}.md`);
-    await lintPagesCustom([file]);
+    files = [join(PAGES_DIR, `${pageId}.md`)];
   } else {
-    await lintPages();
+    files = await getMarkdownFiles(PAGES_DIR);
   }
+  await lintPagesCustom(files);
 }

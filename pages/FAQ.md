@@ -1,11 +1,16 @@
 ## FAQ
 A page presenting frequently asked questions and answers, often with search and categories.
 - **Id:** FAQ
-- **Appearance:** A page with a list or accordion of frequently asked questions and answers. May include search and categories.
-- **Behavior:** Allows expanding/collapsing answers, searching/filtering questions, and navigation. Search input filters questions in real time.
+- **Appearance:** List or accordion of questions and answers, with optional search and categories.
+- **Behavior:** Allows expanding/collapsing answers, searching/filtering questions, and navigation.
 - **Blocks:**
   - [FAQ](../blocks/FAQ.md)
   - [Footers](../blocks/Footers.md)
+- **Components:**
+  - [Typography](../components/Typography.md)
+  - [Button](../components/Button.md)
+
+---
 
 ### Token Usage
 The following table lists all design tokens used by the FAQ page:
@@ -13,35 +18,33 @@ The following table lists all design tokens used by the FAQ page:
 |--------------|-------------------|------------------------------------|
 | Background   | color.surface.1   | Page background                    |
 | Text         | color.neutral.12  | Main text                          |
-| Border       | color.border.2    | Border for sections                |
+| Border       | color.border.2    | Section or accordion border        |
 | Focus Ring   | color.focus.1     | Focus indicator for interactive elements|
 
 ---
 
 ### Variants
-All supported FAQ page variants are listed below:
+All supported FAQ variants are listed below:
 | Variant Name           | Description                                 | Appearance/Behavior                                              | Tokens Used                | Notes    |
 |-----------------------|---------------------------------------------|------------------------------------------------------------------|----------------------------|----------|
-| FrequentlyAskedQuestions | Simple list or accordion of questions and answers | Static display, no interactivity                                 | Background, Border, Text   | Default  |
-| SearchableFAQ         | FAQ with a search bar for filtering questions| User can search and filter questions                             | Background, Border, Text   |          |
+| FrequentlyAskedQuestions | Simple list or accordion of questions and answers | Static display, no interactivity                                 | All above                  | Default  |
+| SearchableFAQ         | FAQ with a search bar for filtering questions| User can search and filter questions                             | All above                  |          |
 
 ---
 
 ### States
-FAQ page states and their token usage:
+FAQ states and their token usage:
 | State                | Description                                      | Token(s) affected           |
 |----------------------|--------------------------------------------------|-----------------------------|
-| Default              | Page loaded, no interaction                      | Background, Border, Text    |
-| SearchActive         | User is searching/filtering questions            | Background, Border, Text    |
-| Focus (search/input) | Search or input is focused                       | Focus Ring, Border, Text    |
-
-- For each state, ensure tokens are used (no hardcoded values). For example, focus ring uses `color.focus.1`, etc.
+| Default              | Page loaded, no interaction                      | All above                   |
+| SearchActive         | User is searching/filtering questions            | All above                   |
+| Focused (search/input)| Search or input is focused                      | Focus Ring                  |
 
 ---
 
 ### Accessibility
-- FAQ items use ARIA roles and attributes for expand/collapse.
-- Keyboard navigation: arrow keys to move, Enter/Space to expand/collapse.
-- Focus indicators are visible and use the focus token.
-- Sufficient color contrast for all text and icons.
-- Panels are hidden from tab order when collapsed.
+Accessibility features and requirements for FAQ:
+- Keyboard navigation: Tab to all questions and search, Enter/Space to expand/collapse.
+- ARIA roles/attributes: list, button, region, search.
+- Color contrast: Sufficient for all text, questions, and controls.
+- Focus indicator: Visible and uses the focus token.

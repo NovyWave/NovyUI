@@ -1,8 +1,8 @@
 ## Landing
 A marketing page designed to introduce a product or service, highlight features, and drive conversions.
 - **Id:** Landing
-- **Appearance:** A marketing-focused page with hero, features, testimonials, pricing, and call-to-action sections. Uses bold visuals, clear messaging, banners, carousels, and cookie consent banner.
-- **Behavior:** Static by default. Buttons trigger navigation or actions. May include animations, interactive carousels, and cookie consent interactions.
+- **Appearance:** Marketing-focused page with hero, features, testimonials, pricing, and call-to-action sections.
+- **Behavior:** Static by default. Buttons trigger navigation or actions. May include animations, carousels, and cookie consent interactions.
 - **Blocks:**
   - [Hero](../blocks/Hero.md)
   - [FeaturesSection](../blocks/FeaturesSection.md)
@@ -13,24 +13,47 @@ A marketing page designed to introduce a product or service, highlight features,
   - [Footers](../blocks/Footers.md)
   - [Carousels](../blocks/Carousels.md)
   - [CookieConsentBanner](../blocks/CookieConsentBanner.md)
+- **Components:**
+  - [Typography](../components/Typography.md)
+  - [Button](../components/Button.md)
+
+---
+
+### Token Usage
+The following table lists all design tokens used by the Landing page:
+| Part         | Token Example      | Description                        |
+|--------------|-------------------|------------------------------------|
+| Background   | color.surface.1   | Page background                    |
+| Text         | color.neutral.12  | Main text                          |
+| Border       | color.border.2    | Section/card border                |
+| Focus Ring   | color.focus.1     | Focus indicator for interactive elements|
+
+---
+
 ### Variants
-#### Landing - **Marketing homepage**
-- **Id:** MarketingHomepage
-- **Appearance:** Hero section with bold visuals and clear messaging.
-- **Behavior:** Static display with navigation buttons.
-#### Landing - **Features**
-- **Id:** Features
-- **Appearance:** List or grid of features with icons and descriptions.
-- **Behavior:** Static display of features only.
-#### Landing - **Pricing**
-- **Id:** Pricing
-- **Appearance:** Pricing table with different plans and features.
-- **Behavior:** Static display of pricing information only.
-#### Landing - **Testimonials**
-- **Id:** Testimonials
-- **Appearance:** List or carousel of testimonials with user photos and quotes.
-- **Behavior:** Static display or auto-advancing carousel.
-#### Landing - **Call to action**
-- **Id:** CallToAction
-- **Appearance:** Section with a strong call-to-action button.
-- **Behavior:** Button triggers navigation or action.
+All supported Landing variants are listed below:
+| Variant Name         | Description                        | Appearance/Behavior                | Tokens Used         | Notes |
+|---------------------|------------------------------------|------------------------------------|---------------------|-------|
+| MarketingHomepage   | Hero section, bold visuals, CTA    | Static, navigation buttons         | All above           |       |
+| Features            | List/grid of features               | Static, icons, descriptions        | All above           |       |
+| Pricing             | Pricing table, plans                | Static, pricing info               | All above           |       |
+| Testimonials        | List/carousel of testimonials       | Static or auto-advancing carousel  | All above           |       |
+| CallToAction        | Strong call-to-action section       | Button triggers navigation/action  | All above           |       |
+
+---
+
+### States
+Landing states and their token usage:
+| State     | Description                        | Token(s) affected      |
+|-----------|------------------------------------|-----------------------|
+| Default   | Normal display of landing page.    | All above             |
+| Focused   | Button or link is focused.         | Focus Ring            |
+
+---
+
+### Accessibility
+Accessibility features and requirements for Landing:
+- Keyboard navigation: Tab to all sections and buttons, Enter/Space to activate.
+- ARIA roles/attributes: region, button, link, banner, navigation.
+- Color contrast: Sufficient for all text, sections, and controls.
+- Focus indicator: Visible and uses the focus token.

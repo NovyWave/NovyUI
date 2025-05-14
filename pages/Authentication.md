@@ -1,25 +1,50 @@
 ## Authentication
-A page for user login, registration, and password management, providing secure access to the application.
+A page for user login, registration, or authentication flows.
 - **Id:** Authentication
-- **Appearance:** A page with a centered card or form for login, registration, or password reset. Includes input fields, labels, buttons, and links for navigation between forms. May be centered or in a card.
-- **Behavior:** Submits user credentials or registration info. Shows validation errors and loading state. May redirect or show success message on completion.
+- **Appearance:** Login/register form with fields, buttons, and error messages.
+- **Behavior:** Handles authentication, validation, and error display.
 - **Blocks:**
   - [Authentication](../blocks/Authentication.md)
   - [Footers](../blocks/Footers.md)
+- **Components:**
+  - [Typography](../components/Typography.md)
+  - [Button](../components/Button.md)
+
+---
+
+### Token Usage
+The following table lists all design tokens used by the Authentication page:
+| Part         | Token Example      | Description                        |
+|--------------|-------------------|------------------------------------|
+| Background   | color.surface.1   | Page background                    |
+| Text         | color.neutral.12  | Main text                          |
+| Border       | color.border.2    | Input border                       |
+| Focus Ring   | color.focus.1     | Focus indicator for interactive elements|
+
+---
+
 ### Variants
-#### Authentication - **Login**
-- **Id:** Login
-- **Appearance:** Shows username/email and password fields, login button, and optional 'forgot password' link.
-- **Behavior:** Submits credentials for authentication.
-#### Authentication - **Register**
-- **Id:** Register
-- **Appearance:** Shows fields for new account creation (e.g., name, email, password, confirm password).
-- **Behavior:** Submits registration data to create a new account.
-#### Authentication - **Forgot password**
-- **Id:** ForgotPassword
-- **Appearance:** Shows email input and submit button for password reset request.
-- **Behavior:** Sends password reset instructions to email.
-#### Authentication - **Reset password**
-- **Id:** ResetPassword
-- **Appearance:** Shows new password and confirm password fields.
-- **Behavior:** Submits new password to reset account credentials.
+All supported Authentication variants are listed below:
+| Variant Name   | Description                                 | Appearance/Behavior                        | Tokens Used         | Notes |
+|---------------|---------------------------------------------|--------------------------------------------|---------------------|-------|
+| Login         | Standard login form.                         | Email/password fields, submit button.      | All above           |       |
+| Register      | Registration form.                           | Name/email/password fields, submit button. | All above           |       |
+
+---
+
+### States
+Authentication states and their token usage:
+| State     | Description                        | Token(s) affected      |
+|-----------|------------------------------------|-----------------------|
+| Default   | Normal display of authentication.  | All above             |
+| Focused   | Input or button is focused.        | Focus Ring            |
+| Error     | Error message shown.               | Border, Text          |
+
+---
+
+### Accessibility
+Accessibility features and requirements for Authentication:
+- Keyboard navigation: Tab to all fields and buttons, Enter/Space to submit.
+- ARIA roles/attributes: form, input, button, alert.
+- Color contrast: Sufficient for all text, inputs, and buttons.
+- Focus indicator: Visible and uses the focus token.
