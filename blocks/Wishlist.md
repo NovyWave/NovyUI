@@ -9,7 +9,6 @@ A block for displaying a user's saved or favorite items in a list or grid.
   - [Typography](../components/Typography.md)
 - **Used in pages:**
   - [Profile](../pages/Profile.md)
-  - [Wishlist](../pages/Wishlist.md)
 
 ---
 

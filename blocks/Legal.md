@@ -8,7 +8,6 @@ A block for displaying legal information, terms, and privacy policies.
   - [Button](../components/Button.md)
 - **Used in pages:**
   - [Legal](../pages/Legal.md)
-  - [Footer](../pages/Footer.md)
 
 ---
 
