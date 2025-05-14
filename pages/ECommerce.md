@@ -4,8 +4,8 @@ A page for browsing and purchasing products online.
 - **Appearance:** Product grid or list, filters, and shopping cart.
 - **Behavior:** Allows users to browse, filter, and add products to cart. Supports sorting, pagination, and responsive layout.
 - **Blocks:**
-  - [ProductFilters](../blocks/ProductFilters.md)
-  - [ProductPage](../blocks/ProductPage.md)
+  - [CascaderFilter](../blocks/CascaderFilter.md)
+  - [ProductDetails](../blocks/ProductDetails.md)
   - [Cart](../blocks/Cart.md)
   - [Footers](../blocks/Footers.md)
 - **Components:**

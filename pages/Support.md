@@ -5,11 +5,11 @@ A support page providing help resources, FAQs, and contact options. Users can se
 - **Behavior:** Users can search, submit tickets, or chat. Contact form validates input and submits requests. FAQ expands/collapses answers.
 - **Blocks:**
   - [FAQ](../blocks/FAQ.md)
-  - [Contact](../blocks/Contact.md)
+  - [ContactCard](../blocks/ContactCard.md)
 - **Components:**
   - [Input](../components/Input.md)
   - [Button](../components/Button.md)
-  - [ChatWidget](../components/ChatWidget.md)
+  - [ChatMessageList](../blocks/ChatMessageList.md)
 
 ---
 

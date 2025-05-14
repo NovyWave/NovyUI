@@ -49,6 +49,7 @@ This document provides an overview of all UI blocks available in NovyUI. Each bl
 - [Page Loader Overlay](blocks/PageLoaderOverlay.md)
 - [Popconfirm Dialog](blocks/PopconfirmDialog.md)
 - [Pricing Table](blocks/PricingTable.md)
+- [Product](blocks/Product.md)
 - [Product Details](blocks/ProductDetails.md)
 - [Product Review](blocks/ProductReview.md)
 - [Profile Theme Customization](blocks/ProfileThemeCustomization.md)

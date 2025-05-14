@@ -5,11 +5,12 @@ A wishlist page where users can save products or items for future reference or p
 - **Behavior:** Users can add/remove items, move to cart, and view product details. Supports empty state and persistent storage.
 - **Blocks:**
   - [Product](../blocks/Product.md)
+  - [ProductDetails](../blocks/ProductDetails.md)
   - [Cart](../blocks/Cart.md)
 - **Components:**
   - [Button](../components/Button.md)
   - [Image](../components/Image.md)
-  - [PriceTag](../components/PriceTag.md)
+  - [Badge](../components/Badge.md)
 
 ---
 

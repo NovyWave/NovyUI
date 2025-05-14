@@ -8,7 +8,7 @@ A header that remains visible at the top of the page as users scroll.
   - [Navbars](../blocks/Navbars.md)
 - **Components:**
   - [Button](../components/Button.md)
-  - [Logo](../components/Logo.md)
+  - [Image](../components/Image.md)
   - [Menu](../components/Menu.md)
 
 ---

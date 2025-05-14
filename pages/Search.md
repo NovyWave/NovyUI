@@ -4,7 +4,7 @@ A search results page that displays matching items, products, or content based o
 - **Appearance:** List or grid of search results, with filters, sorting, and pagination controls.
 - **Behavior:** Displays results based on user queries, supports filtering, sorting, and navigation.
 - **Blocks:**
-  - [Search](../blocks/Search.md)
+  - [GlobalCommandPalette](../blocks/GlobalCommandPalette.md)
   - [Footers](../blocks/Footers.md)
 - **Components:**
   - [Typography](../components/Typography.md)

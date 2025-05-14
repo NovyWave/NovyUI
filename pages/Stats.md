@@ -7,7 +7,7 @@ A page or section displaying key metrics, analytics, or statistics, often in car
   - [Stats](../blocks/Stats.md)
 - **Components:**
   - [Card](../components/Card.md)
-  - [Chart](../components/Chart.md)
+  - [DataTable](../components/DataTable.md)
   - [Icon](../components/Icon.md)
 
 ---

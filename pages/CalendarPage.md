@@ -5,7 +5,7 @@ A page for displaying and managing calendar events, schedules, and reminders. Su
 - **Behavior:** Users can add, edit, and delete events. Supports drag-and-drop, recurring events, and filtering by date or category.
 - **Blocks:**
   - [Calendar](../blocks/Calendar.md)
-  - [EventCard](../blocks/EventCard.md)
+  - [ArticleCards](../blocks/ArticleCards.md)
 - **Components:**
   - [DatePicker](../components/DatePicker.md)
   - [Button](../components/Button.md)

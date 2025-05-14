@@ -5,7 +5,7 @@ A testimonials page featuring user or client feedback, endorsements, and success
 - **Behavior:** Static display of testimonials. May support carousel or expand/collapse for long quotes.
 - **Blocks:**
   - [QuoteSection](../blocks/QuoteSection.md)
-  - [Gallery](../blocks/Gallery.md)
+  - [Carousels](../blocks/Carousels.md)
 - **Components:**
   - [Avatar](../components/Avatar.md)
   - [Rating](../components/Rating.md)

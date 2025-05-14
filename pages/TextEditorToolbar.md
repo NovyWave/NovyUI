@@ -8,7 +8,7 @@ A toolbar for a text or rich text editor, providing formatting and editing contr
 - **Components:**
   - [Button](../components/Button.md)
   - [Icon](../components/Icon.md)
-  - [Dropdown](../components/Dropdown.md)
+  - [Combobox](../components/Combobox.md)
 
 ---
 

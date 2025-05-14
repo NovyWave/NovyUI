@@ -4,7 +4,7 @@ A page for downloading files, resources, or software.
 - **Appearance:** List or grid of downloadable items with descriptions and download buttons.
 - **Behavior:** Allows users to download files, view details, and see file types/sizes.
 - **Blocks:**
-  - [Download](../blocks/Download.md)
+  - [AppDownloadSection](../blocks/AppDownloadSection.md)
   - [Footers](../blocks/Footers.md)
 - **Components:**
   - [Typography](../components/Typography.md)

@@ -4,7 +4,7 @@ A gallery page for browsing images, videos, or media collections. Features grid 
 - **Appearance:** Grid or masonry layout of media items, with filtering and preview options.
 - **Behavior:** Allows browsing, filtering, and previewing media in a lightbox or modal.
 - **Blocks:**
-  - [Gallery](../blocks/Gallery.md)
+  - [Carousels](../blocks/Carousels.md)
   - [Footers](../blocks/Footers.md)
 - **Components:**
   - [Typography](../components/Typography.md)

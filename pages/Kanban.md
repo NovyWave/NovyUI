@@ -4,7 +4,7 @@ A kanban board page for visualizing and managing tasks or projects. Features col
 - **Appearance:** Columns for task states, cards for tasks, drag-and-drop between columns.
 - **Behavior:** Allows adding, editing, moving, and deleting tasks; supports drag-and-drop and task details.
 - **Blocks:**
-  - [Kanban](../blocks/Kanban.md)
+  - [DragAndDrop](../blocks/DragAndDrop.md)
   - [Footers](../blocks/Footers.md)
 - **Components:**
   - [Typography](../components/Typography.md)

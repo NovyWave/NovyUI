@@ -4,7 +4,7 @@ A page listing upcoming or past events, with details such as date, location, des
 - **Appearance:** List or grid of events, each with date, location, description, and registration button.
 - **Behavior:** Allows users to view event details, register, and filter by date or type.
 - **Blocks:**
-  - [Events](../blocks/Events.md)
+  - [ActivityFeed](../blocks/ActivityFeed.md)
   - [Footers](../blocks/Footers.md)
 - **Components:**
   - [Typography](../components/Typography.md)

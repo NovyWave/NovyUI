@@ -9,7 +9,7 @@ A sticky summary of the shopping cart, visible as users scroll through checkout 
 - **Components:**
   - [Button](../components/Button.md)
   - [Image](../components/Image.md)
-  - [PriceTag](../components/PriceTag.md)
+  - [Badge](../components/Badge.md)
 
 ---
 

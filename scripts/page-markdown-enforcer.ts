@@ -216,17 +216,33 @@ async function checkIdAndFilename(filePath: string): Promise<string | null> {
   return null;
 }
 
-function checkBlocksAndComponentsExist(content: string, blocksDir: string, componentsDir: string): string[] {
+function checkBlocksAndComponentsExist(content: string, blocksDir: string, componentsDir: string, fileName?: string): string[] {
   const errors: string[] = [];
+  const lines = content.split(/\r?\n/);
   // Check Blocks
   const blocksSection = content.split(/\*\*Blocks:\*\*/i)[1] || "";
   const blockMatches = [...blocksSection.matchAll(/\[([\w-]+)\]\(\.\.\/blocks\/([\w-]+)\.md\)/g)];
   for (const m of blockMatches) {
     const blockId = m[2];
+    let found = true;
     try {
       Deno.statSync(`${blocksDir}/${blockId}.md`);
     } catch {
-      errors.push(`Referenced block '${blockId}' does not exist in blocks/`);
+      found = false;
+    }
+    if (!found) {
+      // Find the line/col of the reference
+      let lineNum = 0, colNum = 0;
+      for (let i = 0; i < lines.length; ++i) {
+        const idx = lines[i].indexOf(`../blocks/${blockId}.md`);
+        if (idx !== -1) {
+          lineNum = i + 1;
+          colNum = idx + 1;
+          break;
+        }
+      }
+      const loc = fileName ? `${fileName}:${lineNum}:${colNum}` : `line ${lineNum}, col ${colNum}`;
+      errors.push(`${loc} Referenced block '${blockId}' does not exist in blocks/`);
     }
   }
   // Check Components
@@ -234,10 +250,25 @@ function checkBlocksAndComponentsExist(content: string, blocksDir: string, compo
   const componentMatches = [...componentsSection.matchAll(/\[([\w-]+)\]\(\.\.\/components\/([\w-]+)\.md\)/g)];
   for (const m of componentMatches) {
     const componentId = m[2];
+    let found = true;
     try {
       Deno.statSync(`${componentsDir}/${componentId}.md`);
     } catch {
-      errors.push(`Referenced component '${componentId}' does not exist in components/`);
+      found = false;
+    }
+    if (!found) {
+      // Find the line/col of the reference
+      let lineNum = 0, colNum = 0;
+      for (let i = 0; i < lines.length; ++i) {
+        const idx = lines[i].indexOf(`../components/${componentId}.md`);
+        if (idx !== -1) {
+          lineNum = i + 1;
+          colNum = idx + 1;
+          break;
+        }
+      }
+      const loc = fileName ? `${fileName}:${lineNum}:${colNum}` : `line ${lineNum}, col ${colNum}`;
+      errors.push(`${loc} Referenced component '${componentId}' does not exist in components/`);
     }
   }
   return errors;
@@ -326,8 +357,8 @@ async function lintPagesCustom(files: string[]): Promise<void> {
       if (!errorMap[file]) errorMap[file] = [];
       errorMap[file].push(`Page '${nameWithExt}' missing ### Variants section.`);
     }
-    // Check referenced blocks/components existence
-    const refErrors = checkBlocksAndComponentsExist(content, join(ROOT, "blocks"), join(ROOT, "components"));
+    // Check referenced blocks/components existence (improved)
+    const refErrors = checkBlocksAndComponentsExist(content, join(ROOT, "blocks"), join(ROOT, "components"), basename(file));
     if (refErrors.length) {
       if (!errorMap[file]) errorMap[file] = [];
       errorMap[file].push(...refErrors);

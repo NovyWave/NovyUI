@@ -4,7 +4,7 @@ An orders page listing all user orders, with details, statuses, and actions like
 - **Appearance:** List or table of orders, with details, status, and action buttons.
 - **Behavior:** Allows users to view, reorder, or track orders. Supports filtering and sorting.
 - **Blocks:**
-  - [Orders](../blocks/Orders.md)
+  - [OrderHistory](../blocks/OrderHistory.md)
   - [Footers](../blocks/Footers.md)
 - **Components:**
   - [Typography](../components/Typography.md)

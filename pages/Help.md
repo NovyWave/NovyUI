@@ -4,7 +4,7 @@ A help center page with guides, tutorials, and troubleshooting resources. Users 
 - **Appearance:** List or grid of help topics, search bar, and contact/support options.
 - **Behavior:** Allows browsing, searching, and accessing help articles or contacting support.
 - **Blocks:**
-  - [Help](../blocks/Help.md)
+  - [FAQ](../blocks/FAQ.md)
   - [Footers](../blocks/Footers.md)
 - **Components:**
   - [Typography](../components/Typography.md)

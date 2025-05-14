@@ -4,7 +4,7 @@ A page for users to get in touch, submit inquiries, or request support. Includes
 - **Appearance:** Contact form, contact info section, and optional map or social links. Clean layout with clear call-to-action.
 - **Behavior:** Users can submit messages via the form. Form validates input and provides feedback. May include spam protection.
 - **Blocks:**
-  - [Contact](../blocks/Contact.md)
+  - [ContactCard](../blocks/ContactCard.md)
   - [FAQ](../blocks/FAQ.md)
 - **Components:**
   - [Input](../components/Input.md)

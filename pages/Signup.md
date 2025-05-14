@@ -4,12 +4,12 @@ A signup or registration page for new users to create an account. Collects user 
 - **Appearance:** Form with fields for user info, password, and social login buttons. May include terms of service checkbox and submit button.
 - **Behavior:** Validates input, provides feedback, and submits registration. May redirect on success or show errors.
 - **Blocks:**
-  - [Form](../blocks/Form.md)
-  - [Button](../blocks/Button.md)
+  - [Authentication](../blocks/Authentication.md)
+  - [Button](../components/Button.md)
 - **Components:**
   - [Input](../components/Input.md)
   - [Checkbox](../components/Checkbox.md)
-  - [SocialLogin](../components/SocialLogin.md)
+  - [Form](../components/Form.md)
 
 ---
 
