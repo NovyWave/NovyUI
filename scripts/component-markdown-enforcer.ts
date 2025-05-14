@@ -232,6 +232,28 @@ function checkSectionOrderAndFormat(content: string, componentName: string): Lin
   return errors;
 }
 
+// Checks that all referenced components in the header bullet list exist in components/
+function checkHeaderComponentsExist(content: string, componentsDir: string): string[] {
+  const errors: string[] = [];
+  // Look for the **Components:** bullet list (header, not section)
+  // Accept both '- [ComponentName](../components/ComponentName.md)' and '* [ComponentName](../components/ComponentName.md)'
+  const headerSection = content.split(/\*\*Components:\*\*/i)[1] || "";
+  // Only consider the first 10 lines after the header (to avoid matching section lists)
+  const headerLines = headerSection.split(/\r?\n/).slice(0, 10);
+  for (const line of headerLines) {
+    const match = line.match(/\[([\w-]+)\]\(\.\.\/components\/([\w-]+)\.md\)/);
+    if (match) {
+      const componentId = match[2];
+      try {
+        Deno.statSync(`${componentsDir}/${componentId}.md`);
+      } catch {
+        errors.push(`Header-referenced component '${componentId}' does not exist in components/`);
+      }
+    }
+  }
+  return errors;
+}
+
 async function lintComponents(): Promise<void> {
   const errorMap: Record<string, LintError[]> = {};
   // Load blocks list and components TOC for cross-reference
@@ -287,6 +309,12 @@ async function lintComponents(): Promise<void> {
     if (usedBlocksErrors.length) {
       if (!errorMap[file]) errorMap[file] = [];
       errorMap[file].push(...usedBlocksErrors.map(e => ({type: 'Cross-Reference', message: e})));
+    }
+    // Check referenced components in header bullet list
+    const headerComponentErrors = checkHeaderComponentsExist(content, join(ROOT, "components"));
+    if (headerComponentErrors.length) {
+      if (!errorMap[file]) errorMap[file] = [];
+      errorMap[file].push(...headerComponentErrors.map(e => ({type: 'Cross-Reference', message: e})));
     }
     // TOC listing
     if (!(await checkComponentListedInTOC(file, componentsToc))) {
@@ -378,6 +406,12 @@ async function lintComponentsCustom(files: string[]): Promise<void> {
     if (usedBlocksErrors.length) {
       if (!errorMap[file]) errorMap[file] = [];
       errorMap[file].push(...usedBlocksErrors.map(e => ({type: 'Cross-Reference', message: e})));
+    }
+    // Check referenced components in header bullet list
+    const headerComponentErrors = checkHeaderComponentsExist(content, join(ROOT, "components"));
+    if (headerComponentErrors.length) {
+      if (!errorMap[file]) errorMap[file] = [];
+      errorMap[file].push(...headerComponentErrors.map(e => ({type: 'Cross-Reference', message: e})));
     }
     if (!(await checkComponentListedInTOC(file, componentsToc))) {
       if (!errorMap[file]) errorMap[file] = [];

@@ -236,6 +236,28 @@ function checkSectionOrderAndFormat(content: string, blockName: string): string[
   return errors;
 }
 
+// Checks that all referenced components in the header bullet list exist in components/
+function checkHeaderComponentsExist(content: string, componentsDir: string): string[] {
+  const errors: string[] = [];
+  // Look for the **Components:** bullet list (header, not section)
+  // Accept both '- [ComponentName](../components/ComponentName.md)' and '* [ComponentName](../components/ComponentName.md)'
+  const headerSection = content.split(/\*\*Components:\*\*/i)[1] || "";
+  // Only consider the first 10 lines after the header (to avoid matching section lists)
+  const headerLines = headerSection.split(/\r?\n/).slice(0, 10);
+  for (const line of headerLines) {
+    const match = line.match(/\[([\w-]+)\]\(\.\.\/components\/([\w-]+)\.md\)/);
+    if (match) {
+      const componentId = match[2];
+      try {
+        Deno.statSync(`${componentsDir}/${componentId}.md`);
+      } catch {
+        errors.push(`Header-referenced component '${componentId}' does not exist in components/`);
+      }
+    }
+  }
+  return errors;
+}
+
 // Shared linting logic for one or more block files
 async function lintBlockFiles(files: string[], blocksToc: string): Promise<void> {
   const errorMap: Record<string, string[]> = {};
@@ -320,6 +342,12 @@ async function lintBlockFiles(files: string[], blocksToc: string): Promise<void>
     if (!checkVariants(content)) {
       if (!errorMap[file]) errorMap[file] = [];
       errorMap[file].push(`Block '${blockName}' missing ### Variants section.`);
+    }
+    // Check referenced components in header bullet list
+    const headerComponentErrors = checkHeaderComponentsExist(content, join(ROOT, "components"));
+    if (headerComponentErrors.length) {
+      if (!errorMap[file]) errorMap[file] = [];
+      errorMap[file].push(...headerComponentErrors);
     }
   }
   const errorFiles = Object.keys(errorMap);

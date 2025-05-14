@@ -216,6 +216,33 @@ async function checkIdAndFilename(filePath: string): Promise<string | null> {
   return null;
 }
 
+function checkBlocksAndComponentsExist(content: string, blocksDir: string, componentsDir: string): string[] {
+  const errors: string[] = [];
+  // Check Blocks
+  const blocksSection = content.split(/\*\*Blocks:\*\*/i)[1] || "";
+  const blockMatches = [...blocksSection.matchAll(/\[([\w-]+)\]\(\.\.\/blocks\/([\w-]+)\.md\)/g)];
+  for (const m of blockMatches) {
+    const blockId = m[2];
+    try {
+      Deno.statSync(`${blocksDir}/${blockId}.md`);
+    } catch {
+      errors.push(`Referenced block '${blockId}' does not exist in blocks/`);
+    }
+  }
+  // Check Components
+  const componentsSection = content.split(/\*\*Components:\*\*/i)[1] || "";
+  const componentMatches = [...componentsSection.matchAll(/\[([\w-]+)\]\(\.\.\/components\/([\w-]+)\.md\)/g)];
+  for (const m of componentMatches) {
+    const componentId = m[2];
+    try {
+      Deno.statSync(`${componentsDir}/${componentId}.md`);
+    } catch {
+      errors.push(`Referenced component '${componentId}' does not exist in components/`);
+    }
+  }
+  return errors;
+}
+
 // Custom lint for a single file or multiple files
 async function lintPagesCustom(files: string[]): Promise<void> {
   const errorMap: Record<string, string[]> = {};
@@ -298,6 +325,12 @@ async function lintPagesCustom(files: string[]): Promise<void> {
     if (!checkVariants(content)) {
       if (!errorMap[file]) errorMap[file] = [];
       errorMap[file].push(`Page '${nameWithExt}' missing ### Variants section.`);
+    }
+    // Check referenced blocks/components existence
+    const refErrors = checkBlocksAndComponentsExist(content, join(ROOT, "blocks"), join(ROOT, "components"));
+    if (refErrors.length) {
+      if (!errorMap[file]) errorMap[file] = [];
+      errorMap[file].push(...refErrors);
     }
   }
   const errorFiles = Object.keys(errorMap);
