@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import Breadcrumbs from '../components/Breadcrumbs.vue';
 
 const meta = {
