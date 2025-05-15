@@ -16,6 +16,7 @@ const meta = {
     dismissible: false,
   },
   parameters: {
+    layout: 'fullscreen',
     docs: {
       description: {
         component: 'A message box used to display important information, feedback, or status updates. Color and icon reflect the alert type. Uses design tokens for all appearance.'
@@ -34,18 +35,23 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Success: Story = {
-  args: { variant: 'Success' },
-};
-export const Error: Story = {
-  args: { variant: 'Error' },
-};
-export const Warning: Story = {
-  args: { variant: 'Warning' },
-};
-export const Info: Story = {
-  args: { variant: 'Info' },
-};
-export const Dismissible: Story = {
-  args: { variant: 'Dismissible', dismissible: true },
-};
+const Template = (args) => ({
+  components: { Alert },
+  setup() { return { args }; },
+  template: `<Alert v-bind="args" />`,
+});
+
+export const Success: Story = Template.bind({});
+Success.args = { variant: 'Success' };
+
+export const Error: Story = Template.bind({});
+Error.args = { variant: 'Error' };
+
+export const Warning: Story = Template.bind({});
+Warning.args = { variant: 'Warning' };
+
+export const Info: Story = Template.bind({});
+Info.args = { variant: 'Info' };
+
+export const Dismissible: Story = Template.bind({});
+Dismissible.args = { variant: 'Dismissible', dismissible: true };

@@ -14,6 +14,7 @@ const meta = {
     disabled: false,
   },
   parameters: {
+    layout: 'fullscreen',
     docs: {
       description: {
         component: 'A navigation aid that displays the user\'s current location within a site hierarchy. Each item is a clickable link except the last. Uses design tokens for all appearance.'
@@ -32,12 +33,23 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Basic: Story = {
-  args: { variant: 'Basic' },
-};
-export const WithIcons: Story = {
-  args: { variant: 'WithIcons' },
-};
-export const CollapsibleAndOverflow: Story = {
-  args: { variant: 'CollapsibleAndOverflow' },
-};
+const Template = (args) => ({
+  components: { Breadcrumbs },
+  setup() { return { args }; },
+  template: `
+    <Breadcrumbs v-bind="args">
+      <a href="#">Home</a> /
+      <a href="#">Library</a> /
+      <span>Data</span>
+    </Breadcrumbs>
+  `,
+});
+
+export const Basic: Story = Template.bind({});
+Basic.args = { variant: 'Basic' };
+
+export const WithIcons: Story = Template.bind({});
+WithIcons.args = { variant: 'WithIcons' };
+
+export const CollapsibleAndOverflow: Story = Template.bind({});
+CollapsibleAndOverflow.args = { variant: 'CollapsibleAndOverflow' };

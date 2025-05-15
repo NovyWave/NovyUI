@@ -18,6 +18,7 @@ const meta = {
     disabled: false,
   },
   parameters: {
+    layout: 'fullscreen',
     docs: {
       description: {
         component: 'A small indicator used to display status, count, or highlight information. Can display a number, icon, or short text. Uses design tokens for all appearance.'
@@ -36,18 +37,23 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Solid: Story = {
-  args: { variant: 'Solid' },
-};
-export const Outline: Story = {
-  args: { variant: 'Outline' },
-};
-export const Dot: Story = {
-  args: { variant: 'Dot' },
-};
-export const WithIcon: Story = {
-  args: { variant: 'WithIcon', icon: 'star' },
-};
-export const WithCount: Story = {
-  args: { variant: 'WithCount', count: 5 },
-};
+const Template = (args) => ({
+  components: { Badge },
+  setup() { return { args }; },
+  template: `<Badge v-bind="args">Badge</Badge>`
+});
+
+export const Solid: Story = Template.bind({});
+Solid.args = { variant: 'Solid' };
+
+export const Outline: Story = Template.bind({});
+Outline.args = { variant: 'Outline' };
+
+export const Dot: Story = Template.bind({});
+Dot.args = { variant: 'Dot' };
+
+export const WithIcon: Story = Template.bind({});
+WithIcon.args = { variant: 'WithIcon', icon: 'star' };
+
+export const WithCount: Story = Template.bind({});
+WithCount.args = { variant: 'WithCount', count: 5 };

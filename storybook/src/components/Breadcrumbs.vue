@@ -12,8 +12,10 @@
 .novy-breadcrumbs {
   background: var(--color-surface-1);
   border-radius: var(--radii-2);
-  padding: 4px 8px;
+  padding: var(--spacing-1) var(--spacing-2);
   display: flex;
   align-items: center;
+  color: var(--color-neutral-12);
+  gap: var(--spacing-2);
 }
 </style>

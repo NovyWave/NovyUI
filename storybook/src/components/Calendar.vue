@@ -13,6 +13,7 @@
   background: var(--color-surface-1);
   border-radius: var(--radii-2);
   box-shadow: var(--shadow-1);
-  padding: 16px;
+  padding: var(--spacing-4);
+  color: var(--color-neutral-12);
 }
 </style>

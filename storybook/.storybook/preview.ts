@@ -22,6 +22,30 @@ const preview: Preview = {
       },
     },
   },
+  decorators: [
+    (story, context) => {
+      // Set theme class on body for all stories
+      const theme = context.globals.theme || 'light';
+      document.body.classList.remove('light', 'dark');
+      document.body.classList.add(theme);
+      return story();
+    },
+  ],
+  globalTypes: {
+    theme: {
+      name: 'Theme',
+      description: 'Global theme for components',
+      defaultValue: 'light',
+      toolbar: {
+        icon: 'circlehollow',
+        items: [
+          { value: 'light', title: 'Light' },
+          { value: 'dark', title: 'Dark' },
+        ],
+        showName: true,
+      },
+    },
+  },
 };
 
 export default preview;
