@@ -1,0 +1,232 @@
+import { Meta, Title, Subtitle, Description, Stories } from '@storybook/addon-docs/blocks';
+
+<Meta title="Design System/Design Tokens" />
+
+# 🎨 Design Tokens
+
+This page documents all design tokens used in NovyUI. All tokens use a unified 1–x scale and reference OKLCH color, modern typography, and accessible spacing.
+
+## Color Tokens
+
+<table>
+  <thead>
+    <tr>
+      <th>Token</th>
+      <th>Example Value</th>
+      <th>Usage Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>color.primary.1</td><td>oklch(98% 0.01 250)</td><td>Lightest backgrounds</td></tr>
+    <tr><td>color.primary.7</td><td>oklch(55% 0.16 250)</td><td>Primary action, base blue</td></tr>
+    <tr><td>color.neutral.12</td><td>oklch(15% 0.10 250)</td><td>Main text</td></tr>
+    <tr><td>color.surface.1</td><td>oklch(98% 0.01 250)</td><td>Card backgrounds</td></tr>
+    <tr><td>color.success.7</td><td>oklch(55% 0.16 145)</td><td>Success state</td></tr>
+    <tr><td>color.error.7</td><td>oklch(55% 0.16 25)</td><td>Error state</td></tr>
+    <tr><td>color.focus.1</td><td>oklch(25% 0.12 250)</td><td>Focus ring</td></tr>
+    <tr><td>color.border.2</td><td>oklch(75% 0.10 250)</td><td>Default border</td></tr>
+    <tr><td>color.warning.7</td><td>oklch(55% 0.16 90)</td><td>Warning state</td></tr>
+    <tr><td>color.info.7</td><td>oklch(55% 0.16 210)</td><td>Info state</td></tr>
+  </tbody>
+</table>
+
+## Typography Tokens
+
+<table>
+  <thead>
+    <tr>
+      <th>Token</th>
+      <th>Example Value</th>
+      <th>Usage Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>font.size.1</td><td>0.75rem</td><td>Caption, small text</td></tr>
+    <tr><td>font.size.2</td><td>0.875rem</td><td>Label, helper text</td></tr>
+    <tr><td>font.size.3</td><td>1rem</td><td>Body, default</td></tr>
+    <tr><td>font.size.4</td><td>1.125rem</td><td>Subheading</td></tr>
+    <tr><td>font.size.5</td><td>1.25rem</td><td>Heading 5</td></tr>
+    <tr><td>font.size.6</td><td>1.5rem</td><td>Heading 4</td></tr>
+    <tr><td>font.size.7</td><td>1.875rem</td><td>Heading 3</td></tr>
+    <tr><td>font.size.8</td><td>2.25rem</td><td>Heading 2</td></tr>
+    <tr><td>font.size.9</td><td>3rem</td><td>Heading 1</td></tr>
+    <tr><td>font.weight.4</td><td>400</td><td>Normal text</td></tr>
+    <tr><td>font.weight.7</td><td>700</td><td>Bold, headings</td></tr>
+    <tr><td>font.line.3</td><td>1.6</td><td>Body, default</td></tr>
+    <tr><td>font.letter.2</td><td>0.01em</td><td>All-caps, buttons</td></tr>
+    <tr><td>font.sans</td><td>Inter, system-ui, Segoe UI, Arial, sans-serif</td><td>Default UI font</td></tr>
+    <tr><td>font.mono</td><td>JetBrains Mono, Menlo, Monaco, Consolas, monospace</td><td>Code font</td></tr>
+  </tbody>
+</table>
+
+## Spacing Tokens
+
+<table>
+  <thead>
+    <tr>
+      <th>Token</th>
+      <th>Value (px)</th>
+      <th>Usage Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>spacing.none</td><td>0</td><td>No spacing</td></tr>
+    <tr><td>spacing.1</td><td>4</td><td>Smallest gap/padding</td></tr>
+    <tr><td>spacing.2</td><td>8</td><td>Input padding</td></tr>
+    <tr><td>spacing.3</td><td>12</td><td>Button padding</td></tr>
+    <tr><td>spacing.4</td><td>16</td><td>Card padding</td></tr>
+    <tr><td>spacing.5</td><td>20</td><td>Section gap</td></tr>
+    <tr><td>spacing.6</td><td>24</td><td>Large section gap</td></tr>
+    <tr><td>spacing.7</td><td>32</td><td></td></tr>
+    <tr><td>spacing.8</td><td>40</td><td></td></tr>
+    <tr><td>spacing.9</td><td>48</td><td></td></tr>
+    <tr><td>spacing.10</td><td>56</td><td>Largest gap/padding</td></tr>
+  </tbody>
+</table>
+
+## Border Tokens
+
+<table>
+  <thead>
+    <tr>
+      <th>Token</th>
+      <th>Value</th>
+      <th>Usage Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>border.1</td><td>1px solid</td><td>Default border</td></tr>
+    <tr><td>border.2</td><td>2px solid</td><td>Emphasized border</td></tr>
+    <tr><td>border.3</td><td>4px solid</td><td>Divider, strong</td></tr>
+    <tr><td>border.none</td><td>0</td><td>No border</td></tr>
+    <tr><td>border.solid</td><td>solid</td><td>Most elements</td></tr>
+    <tr><td>border.dashed</td><td>dashed</td><td>Dividers, highlights</td></tr>
+    <tr><td>border.dotted</td><td>dotted</td><td>Decorative, focus</td></tr>
+  </tbody>
+</table>
+
+## Shadow Tokens
+
+<table>
+  <thead>
+    <tr>
+      <th>Token</th>
+      <th>Example Value</th>
+      <th>Usage Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>shadow.1</td><td>0 1px 2px oklch(0.9 0 0)</td><td>Subtle shadow (inputs, buttons)</td></tr>
+    <tr><td>shadow.2</td><td>0 2px 8px oklch(0.85 0 0)</td><td>Card shadow</td></tr>
+    <tr><td>shadow.3</td><td>0 4px 16px oklch(0.8 0 0)</td><td>Modal, popover shadow</td></tr>
+  </tbody>
+</table>
+
+## Z-Index Tokens
+
+<table>
+  <thead>
+    <tr>
+      <th>Token</th>
+      <th>Value</th>
+      <th>Usage Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>z.1</td><td>10</td><td>Base layer</td></tr>
+    <tr><td>z.2</td><td>100</td><td>Dropdowns</td></tr>
+    <tr><td>z.3</td><td>1000</td><td>Modals</td></tr>
+    <tr><td>z.4</td><td>10000</td><td>Overlays, tooltips</td></tr>
+    <tr><td>z.auto</td><td>auto</td><td>Default stacking</td></tr>
+  </tbody>
+</table>
+
+## Opacity Tokens
+
+<table>
+  <thead>
+    <tr>
+      <th>Token</th>
+      <th>Value</th>
+      <th>Usage Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>opacity.none</td><td>0</td><td>Fully transparent</td></tr>
+    <tr><td>opacity.1</td><td>0.04</td><td>Disabled, subtle</td></tr>
+    <tr><td>opacity.2</td><td>0.08</td><td>Overlay, subtle</td></tr>
+    <tr><td>opacity.3</td><td>0.16</td><td>Overlay, medium</td></tr>
+    <tr><td>opacity.4</td><td>0.32</td><td>Overlay, strong</td></tr>
+    <tr><td>opacity.5</td><td>0.64</td><td>Hover, active</td></tr>
+    <tr><td>opacity.6</td><td>0.8</td><td>Focus, highlight</td></tr>
+    <tr><td>opacity.7</td><td>1</td><td>Fully opaque</td></tr>
+  </tbody>
+</table>
+
+## Radius Tokens
+
+<table>
+  <thead>
+    <tr>
+      <th>Token</th>
+      <th>Value (px)</th>
+      <th>Usage Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>radii.1</td><td>2</td><td>Subtle rounding (inputs, chips)</td></tr>
+    <tr><td>radii.2</td><td>4</td><td>Buttons, cards</td></tr>
+    <tr><td>radii.3</td><td>8</td><td>Modals, popovers</td></tr>
+    <tr><td>radii.4</td><td>16</td><td>Large containers</td></tr>
+    <tr><td>radii.full</td><td>9999</td><td>Full (circle/pill)</td></tr>
+    <tr><td>radii.none</td><td>0</td><td>No rounding</td></tr>
+  </tbody>
+</table>
+
+## Font Tokens
+
+<table>
+  <thead>
+    <tr>
+      <th>Font Family</th>
+      <th>Weight</th>
+      <th>File Example</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Inter</td><td>400</td><td>inter-4-normal.woff2</td><td>Default UI font</td></tr>
+    <tr><td>Inter Italic</td><td>400</td><td>inter-4-italic.woff2</td><td>Default UI italic</td></tr>
+    <tr><td>FiraCode</td><td>400</td><td>firacode-4-normal.woff2</td><td>Code/monospace font</td></tr>
+    <tr><td>Audiowide</td><td>400</td><td>audiowide-4-normal.woff2</td><td>Display/branding font</td></tr>
+  </tbody>
+</table>
+
+## Icon Tokens
+
+<table>
+  <thead>
+    <tr>
+      <th>Icon Name</th>
+      <th>Size</th>
+      <th>File Example</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>arrow-left</td><td>24</td><td>arrow-left.svg</td><td>Left-pointing arrow icon</td></tr>
+    <tr><td>user-round</td><td>24</td><td>user-round.svg</td><td>User profile icon</td></tr>
+    <tr><td>search</td><td>24</td><td>search.svg</td><td>Search icon</td></tr>
+    <tr><td>check</td><td>24</td><td>check.svg</td><td>Checkmark icon</td></tr>
+    <tr><td>x</td><td>24</td><td>x.svg</td><td>Close/cancel icon</td></tr>
+    <tr><td>plus</td><td>24</td><td>plus.svg</td><td>Plus/add icon</td></tr>
+    <tr><td>menu</td><td>24</td><td>menu.svg</td><td>Menu/hamburger icon</td></tr>
+    <tr><td>calendar</td><td>24</td><td>calendar.svg</td><td>Calendar/date icon</td></tr>
+    <tr><td>upload</td><td>24</td><td>upload.svg</td><td>Upload icon</td></tr>
+    <tr><td>download</td><td>24</td><td>download.svg</td><td>Download icon</td></tr>
+  </tbody>
+</table>
+
+---
+
+> All components and blocks reference these tokens. No hardcoded values are used in NovyUI components.
