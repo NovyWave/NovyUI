@@ -3,11 +3,10 @@ import type { Preview } from '@storybook/vue3-vite'
 const preview: Preview = {
   parameters: {
     backgrounds: {
-      default: 'dark',
-      values: [
-        { name: 'light', value: '#ffffff' },
-        { name: 'dark', value: '#222222' },
-      ],
+      options: {
+        light: { name: 'Light', value: '#ffffff' },
+        dark: { name: 'Dark', value: '#222222' },
+      },
     },
     darkMode: {
       current: 'dark',
@@ -22,9 +21,12 @@ const preview: Preview = {
       },
     },
   },
+  initialGlobals: {
+    backgrounds: { value: 'dark' },
+  },
   decorators: [
     (story, context) => {
-      // Set theme class on body for all stories
+      // Only handle theme class on body, let Storybook backgrounds addon handle backgrounds
       const theme = context.globals.theme || 'light';
       document.body.classList.remove('light', 'dark');
       document.body.classList.add(theme);
@@ -37,7 +39,7 @@ const preview: Preview = {
       description: 'Global theme for components',
       defaultValue: 'light',
       toolbar: {
-        icon: 'circlehollow',
+        icon: 'sun', // sun icon for theme switch
         items: [
           { value: 'light', title: 'Light' },
           { value: 'dark', title: 'Dark' },
