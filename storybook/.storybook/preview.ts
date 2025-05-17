@@ -1,4 +1,5 @@
 import type { Preview } from '@storybook/vue3-vite'
+import { setTheme } from '../src/tokens.ts'
 
 const preview: Preview = {
   parameters: {
@@ -26,10 +27,9 @@ const preview: Preview = {
   },
   decorators: [
     (story, context) => {
-      // Only handle theme class on body, let Storybook backgrounds addon handle backgrounds
+      // Sync theme with tokens.ts for runtime theming
       const theme = context.globals.theme || 'light';
-      document.body.classList.remove('light', 'dark');
-      document.body.classList.add(theme);
+      setTheme(theme);
       return story();
     },
   ],
