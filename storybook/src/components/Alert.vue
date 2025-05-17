@@ -1,37 +1,49 @@
 <template>
   <div
-    class="novy-alert"
-    :class="`novy-alert--${variant.toLowerCase()}`"
+    v-if="visible"
     role="alert"
     :aria-live="variant === 'Error' ? 'assertive' : 'polite'"
+    :style="alertStyle"
   >
-    <span v-if="icon" class="novy-alert__icon">{{ icon }}</span>
-    <span class="novy-alert__message">{{ message }}</span>
+    <span v-if="icon">{{ icon }}</span>
+    <span style="flex:1">{{ message }}</span>
     <button
       v-if="dismissible"
-      class="novy-alert__close"
       aria-label="Close alert"
       @click="visible = false"
+      :style="{
+        background: 'none',
+        border: 'none',
+        color: 'inherit',
+        fontSize: '1.2em',
+        position: 'absolute',
+        right: tokens.spacing[3],
+        top: tokens.spacing[3],
+        cursor: 'pointer',
+        borderRadius: tokens.radii[1],
+        outline: 'none',
+        transition: 'box-shadow 0.2s',
+      }"
     >×</button>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref, computed } from 'vue';
+import { tokens } from '../tokens';
 
-const props = withDefaults(defineProps<{
+const props = defineProps<{
   variant?: 'Success' | 'Error' | 'Warning' | 'Info' | 'Dismissible',
   message?: string,
   dismissible?: boolean,
-}>(), {
-  variant: 'Success',
-  message: '',
-  dismissible: false,
-});
+}>();
 
+const variant = props.variant ?? 'Success';
+const message = props.message ?? '';
+const dismissible = props.dismissible ?? false;
 const visible = ref(true);
 const icon = computed(() => {
-  switch (props.variant) {
+  switch (variant) {
     case 'Success': return '✔️';
     case 'Error': return '❌';
     case 'Warning': return '⚠️';
@@ -41,64 +53,32 @@ const icon = computed(() => {
   }
 });
 
-if (props.dismissible) visible.value = true;
+const alertStyle = computed(() => {
+  return {
+    background: variant === 'Success' ? '#f0fdf4'
+      : variant === 'Error' ? '#fef2f2'
+      : variant === 'Warning' ? '#fefce8'
+      : variant === 'Info' ? '#eff6ff'
+      : tokens.color.bg.subtle,
+    border: `${tokens.border[1]} solid ${
+      variant === 'Success' ? '#22c55e'
+      : variant === 'Error' ? '#ef4444'
+      : variant === 'Warning' ? '#eab308'
+      : variant === 'Info' ? '#2563eb'
+      : tokens.color.border.subtle
+    }`,
+    color: variant === 'Success' ? '#166534'
+      : variant === 'Error' ? '#991b1b'
+      : variant === 'Warning' ? '#78350f'
+      : variant === 'Info' ? '#1e3a8a'
+      : tokens.color.text.default,
+    boxShadow: tokens.shadow[1],
+    borderRadius: tokens.radii[2],
+    padding: `${tokens.spacing[3]} ${tokens.spacing[4]}`,
+    display: 'flex',
+    alignItems: 'center',
+    gap: tokens.spacing[2],
+    position: 'relative',
+  };
+});
 </script>
-
-<style scoped>
-.novy-alert {
-  background: var(--color-surface-2);
-  border: var(--border-1) solid var(--color-border-2);
-  color: var(--color-neutral-12);
-  box-shadow: var(--shadow-1);
-  border-radius: var(--radii-2);
-  padding: var(--spacing-3) var(--spacing-4);
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-2);
-  position: relative;
-}
-.novy-alert__icon {
-  color: var(--color-primary-7);
-  font-size: 1.2em;
-}
-.novy-alert__close {
-  background: none;
-  border: none;
-  color: inherit;
-  font-size: 1.2em;
-  position: absolute;
-  right: var(--spacing-3);
-  top: var(--spacing-3);
-  cursor: pointer;
-  border-radius: var(--radii-1);
-  outline: none;
-  transition: box-shadow 0.2s;
-}
-.novy-alert__close:focus-visible {
-  box-shadow: 0 0 0 2px var(--color-focus-1);
-}
-.novy-alert--success {
-  border-color: var(--color-success-7);
-  background: var(--color-success-1);
-  color: var(--color-success-11);
-}
-.novy-alert--error {
-  border-color: var(--color-error-7);
-  background: var(--color-error-1);
-  color: var(--color-error-11);
-}
-.novy-alert--warning {
-  border-color: var(--color-warning-7);
-  background: var(--color-warning-1);
-  color: var(--color-warning-11);
-}
-.novy-alert--info {
-  border-color: var(--color-info-7);
-  background: var(--color-info-1);
-  color: var(--color-info-11);
-}
-.is-disabled {
-  opacity: 0.5;
-  pointer-events: none;
-}
-</style>

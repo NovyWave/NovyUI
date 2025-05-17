@@ -39,7 +39,7 @@ const items = [
   { id: 3, title: 'Accordion Item 3', content: 'Content for item 3' },
 ];
 
-const Template = (args) => ({
+const Template = (args: Record<string, unknown>) => ({
   components: { Accordion },
   setup() { return { args, items }; },
   template: `
@@ -55,3 +55,26 @@ Multiple.args = { variant: 'Multiple' };
 
 export const WithIcons: Story = Template.bind({});
 WithIcons.args = { variant: 'WithIcons' };
+
+export const LightTheme: Story = Template.bind({});
+LightTheme.args = { variant: 'Single' };
+LightTheme.parameters = { backgrounds: { default: 'light' } };
+
+export const DarkTheme: Story = Template.bind({});
+DarkTheme.args = { variant: 'Single' };
+DarkTheme.decorators = [(_args: unknown, context: unknown) => {
+  const ctx = context as { args: Record<string, unknown> };
+  return {
+    components: { Accordion },
+    setup() {
+      const items = [
+        { id: 1, title: 'Accordion Item 1', content: 'Content for item 1' },
+        { id: 2, title: 'Accordion Item 2', content: 'Content for item 2' },
+        { id: 3, title: 'Accordion Item 3', content: 'Content for item 3' },
+      ];
+      return { args: ctx.args, items };
+    },
+    template: '<div class="dark" style="background: #181A20; padding: 2rem;"><Accordion v-bind="args" :items="items" /></div>',
+  };
+}];
+DarkTheme.parameters = { backgrounds: { default: 'dark' } };
