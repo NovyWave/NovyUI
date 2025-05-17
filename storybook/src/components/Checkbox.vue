@@ -19,22 +19,22 @@ const props = defineProps<{
 const wrapperStyle = computed(() => ({
   display: 'inline-flex',
   alignItems: 'center',
-  gap: tokens.spacing[2],
+  gap: tokens.value.spacing[2],
   cursor: props.disabled ? 'not-allowed' : 'pointer',
 }));
 
 const checkboxStyle = computed(() => ({
   width: '16px',
   height: '16px',
-  borderRadius: tokens.radii[1],
-  border: `${tokens.border[1]} solid ${tokens.color.border.default}`,
-  background: props.disabled ? tokens.color.bg.muted : tokens.color.bg.default,
-  accentColor: props.disabled ? tokens.color.text.muted : tokens.color.primary.default,
+  borderRadius: tokens.value.radii[1],
+  border: `${tokens.value.border[1]} solid ${tokens.value.color.border?.default}`,
+  background: props.disabled ? tokens.value.color.bg?.muted : tokens.value.color.bg?.default,
+  accentColor: props.disabled ? tokens.value.color.text?.muted : tokens.value.color.primary?.default,
   margin: 0,
 }));
 
 const labelStyle = computed(() => ({
-  color: props.disabled ? tokens.color.text.muted : tokens.color.text.default,
-  fontSize: tokens.font.size3,
+  color: props.disabled ? tokens.value.color.text?.muted : tokens.value.color.text?.default,
+  fontSize: tokens.value.typography.size[3],
 }));
 </script>

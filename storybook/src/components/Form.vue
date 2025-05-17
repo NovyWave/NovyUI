@@ -15,12 +15,12 @@ const props = defineProps<{
 }>();
 
 const formStyle = computed(() => ({
-  background: props.disabled ? tokens.color.bg.muted : tokens.color.bg.default,
-  color: tokens.color.text.default,
-  borderRadius: tokens.radii[props.radius || 2],
-  boxShadow: tokens.shadow[props.shadow || 1],
-  border: `${tokens.border[1]} solid ${tokens.color.border.default}`,
-  padding: tokens.spacing[6],
+  background: props.disabled ? tokens.value.color.surface[2] : tokens.value.color.surface[1],
+  color: tokens.value.color.neutral[12],
+  borderRadius: tokens.value.radii[props.radius || 2],
+  boxShadow: tokens.value.shadow[props.shadow || 1],
+  border: `${tokens.value.border[1]} solid ${tokens.value.color.border[2]}`,
+  padding: tokens.value.spacing[6],
   opacity: props.disabled ? '0.6' : '1',
   pointerEvents: props.disabled ? 'none' : 'auto',
   transition: 'box-shadow 0.2s, border 0.2s',

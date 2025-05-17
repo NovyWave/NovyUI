@@ -18,15 +18,15 @@ const props = defineProps<{
 const drawerStyle = computed(() => {
   const side = props.side || 'right';
   const base: Record<string, string> = {
-    background: tokens.color.bg.default,
-    color: tokens.color.text.default,
-    borderRadius: tokens.radii[props.radius || 3],
-    boxShadow: tokens.shadow[props.shadow || 3],
-    padding: tokens.spacing[6],
+    background: tokens.value.color.surface[1],
+    color: tokens.value.color.neutral[12],
+    borderRadius: tokens.value.radii[props.radius || 3],
+    boxShadow: tokens.value.shadow[props.shadow || 3],
+    padding: tokens.value.spacing[6],
     minWidth: side === 'left' || side === 'right' ? '320px' : '100%',
     minHeight: side === 'top' || side === 'bottom' ? '120px' : '100%',
     position: 'fixed',
-    zIndex: '100',
+    zIndex: String(tokens.value.z[3]),
     transition: 'box-shadow 0.2s, border 0.2s',
   };
   if (side === 'left') base.left = '0';

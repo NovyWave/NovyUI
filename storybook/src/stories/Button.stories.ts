@@ -14,7 +14,6 @@ const meta: Meta<typeof Button> = {
         'Outline',
         'Ghost',
         'Icon',
-        'Loading',
         'Group',
         'SocialLogin',
       ],
@@ -79,7 +78,7 @@ export const Icon: Story = {
   args: { variant: 'Icon', label: '' },
 };
 export const Loading: Story = {
-  args: { variant: 'Loading', loading: true },
+  args: { variant: 'Primary', loading: true },
 };
 export const Group: Story = {
   args: { variant: 'Group' },

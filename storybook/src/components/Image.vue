@@ -16,8 +16,8 @@ const imageStyle = computed(() => ({
   display: 'block',
   width: '100%',
   height: 'auto',
-  borderRadius: tokens.radii[props.radius || 2],
-  boxShadow: tokens.shadow[1],
-  background: tokens.color.bg.muted,
+  borderRadius: tokens.value.radii[props.radius || 2],
+  boxShadow: tokens.value.shadow[1],
+  background: tokens.value.color.surface[2],
 }));
 </script>

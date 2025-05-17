@@ -1,246 +1,244 @@
-// Typed design tokens for NovyUI (auto-generated from /tokens folder)
-// Use these for inline styles or script-side token access in Vue components
-export const tokens = {
-  color: {
-    bg: {
-      default: 'var(--color-bg-default)',
-      subtle: 'var(--color-bg-subtle)',
-      muted: 'var(--color-bg-muted)',
-      inverse: 'var(--color-bg-inverse)',
-    },
-    border: {
-      default: 'var(--color-border-default)',
-      subtle: 'var(--color-border-subtle)',
-      muted: 'var(--color-border-muted)',
-    },
-    text: {
-      default: 'var(--color-text-default)',
-      subtle: 'var(--color-text-subtle)',
-      muted: 'var(--color-text-muted)',
-      inverse: 'var(--color-text-inverse)',
-    },
-    primary: {
-      default: 'var(--color-primary-default)',
-      subtle: 'var(--color-primary-subtle)',
-      muted: 'var(--color-primary-muted)',
-    },
-    focus: {
-      default: 'var(--color-focus-default)',
-    },
+import { ref, computed } from 'vue';
+
+// Atomic, themeable, runtime-switchable design tokens
+// All color values are OKLCH, all tokens are typed, all values are atomic
+
+// Color palettes (OKLCH, theme-mapped)
+const color = {
+  primary: {
+    1: { light: 'oklch(98% 0.01 250)', dark: 'oklch(20% 0.01 250)' },
+    2: { light: 'oklch(95% 0.03 250)', dark: 'oklch(25% 0.03 250)' },
+    3: { light: 'oklch(90% 0.05 250)', dark: 'oklch(30% 0.05 250)' },
+    4: { light: 'oklch(85% 0.07 250)', dark: 'oklch(35% 0.07 250)' },
+    5: { light: 'oklch(75% 0.10 250)', dark: 'oklch(45% 0.10 250)' },
+    6: { light: 'oklch(65% 0.13 250)', dark: 'oklch(55% 0.13 250)' },
+    7: { light: 'oklch(55% 0.16 250)', dark: 'oklch(65% 0.16 250)' },
+    8: { light: 'oklch(45% 0.16 250)', dark: 'oklch(75% 0.16 250)' },
+    9: { light: 'oklch(35% 0.14 250)', dark: 'oklch(85% 0.14 250)' },
+    10: { light: 'oklch(25% 0.12 250)', dark: 'oklch(90% 0.12 250)' },
+    11: { light: 'oklch(15% 0.10 250)', dark: 'oklch(98% 0.10 250)' },
   },
-  spacing: {
-    1: '4px',
-    2: '8px',
-    3: '12px',
-    4: '16px',
-    5: '20px',
-    6: '24px',
-    7: '32px',
-    8: '40px',
-    9: '48px',
-    10: '56px',
+  neutral: {
+    1: { light: 'oklch(99% 0.005 270)', dark: 'oklch(12% 0.005 270)' },
+    2: { light: 'oklch(96% 0.01 270)', dark: 'oklch(18% 0.01 270)' },
+    3: { light: 'oklch(92% 0.012 270)', dark: 'oklch(30% 0.012 270)' },
+    4: { light: 'oklch(88% 0.014 270)', dark: 'oklch(45% 0.014 270)' },
+    5: { light: 'oklch(80% 0.016 270)', dark: 'oklch(60% 0.016 270)' },
+    6: { light: 'oklch(70% 0.018 270)', dark: 'oklch(70% 0.018 270)' },
+    7: { light: 'oklch(60% 0.02 270)', dark: 'oklch(80% 0.02 270)' },
+    8: { light: 'oklch(45% 0.018 270)', dark: 'oklch(88% 0.018 270)' },
+    9: { light: 'oklch(30% 0.016 270)', dark: 'oklch(92% 0.016 270)' },
+    10: { light: 'oklch(18% 0.012 270)', dark: 'oklch(96% 0.012 270)' },
+    11: { light: 'oklch(10% 0.008 270)', dark: 'oklch(99% 0.008 270)' },
   },
-  radii: {
-    1: '2px',
-    2: '4px',
-    3: '8px',
-    4: '16px',
-    full: '9999px',
-    none: '0',
+  success: {
+    1: { light: 'oklch(98% 0.03 145)', dark: 'oklch(12% 0.03 145)' },
+    2: { light: 'oklch(94% 0.05 145)', dark: 'oklch(20% 0.05 145)' },
+    3: { light: 'oklch(88% 0.07 145)', dark: 'oklch(30% 0.07 145)' },
+    4: { light: 'oklch(80% 0.09 145)', dark: 'oklch(40% 0.09 145)' },
+    5: { light: 'oklch(70% 0.11 145)', dark: 'oklch(50% 0.11 145)' },
+    6: { light: 'oklch(60% 0.13 145)', dark: 'oklch(60% 0.13 145)' },
+    7: { light: 'oklch(50% 0.15 145)', dark: 'oklch(70% 0.15 145)' },
+    8: { light: 'oklch(40% 0.15 145)', dark: 'oklch(80% 0.15 145)' },
+    9: { light: 'oklch(30% 0.13 145)', dark: 'oklch(88% 0.13 145)' },
+    10: { light: 'oklch(20% 0.11 145)', dark: 'oklch(94% 0.11 145)' },
+    11: { light: 'oklch(12% 0.09 145)', dark: 'oklch(98% 0.09 145)' },
   },
-  shadow: {
-    1: '0 1px 2px oklch(0.9 0 0)',
-    2: '0 2px 8px oklch(0.85 0 0)',
-    3: '0 4px 16px oklch(0.8 0 0)',
+  warning: {
+    1: { light: 'oklch(98% 0.04 85)', dark: 'oklch(12% 0.04 85)' },
+    2: { light: 'oklch(94% 0.07 85)', dark: 'oklch(20% 0.07 85)' },
+    3: { light: 'oklch(88% 0.10 85)', dark: 'oklch(30% 0.10 85)' },
+    4: { light: 'oklch(80% 0.13 85)', dark: 'oklch(40% 0.13 85)' },
+    5: { light: 'oklch(70% 0.16 85)', dark: 'oklch(50% 0.16 85)' },
+    6: { light: 'oklch(60% 0.19 85)', dark: 'oklch(60% 0.19 85)' },
+    7: { light: 'oklch(50% 0.22 85)', dark: 'oklch(70% 0.22 85)' },
+    8: { light: 'oklch(40% 0.22 85)', dark: 'oklch(80% 0.22 85)' },
+    9: { light: 'oklch(30% 0.19 85)', dark: 'oklch(88% 0.19 85)' },
+    10: { light: 'oklch(20% 0.16 85)', dark: 'oklch(94% 0.16 85)' },
+    11: { light: 'oklch(12% 0.13 85)', dark: 'oklch(98% 0.13 85)' },
   },
-  border: {
-    1: '1px',
-  },
-  font: {
-    size3: '1rem',
-    weight2: 500,
-  },
-  button: {
-    primary: {
-      bg: {
-        default: 'linear-gradient(180deg, var(--color-primary-6), var(--color-primary-7))',
-        hover: 'linear-gradient(180deg, var(--color-primary-7), var(--color-primary-8))',
-        active: 'var(--color-primary-8)',
-        focus: 'linear-gradient(180deg, var(--color-primary-8), var(--color-primary-7))',
-        disabled: 'var(--color-neutral-6)',
-      },
-      text: {
-        default: 'var(--color-neutral-1)',
-        hover: 'var(--color-neutral-1)',
-        active: 'var(--color-neutral-1)',
-        disabled: 'var(--color-neutral-8)',
-      },
-      border: {
-        default: 'var(--color-primary-7)',
-        hover: 'var(--color-primary-8)',
-        active: 'var(--color-primary-8)',
-        disabled: 'var(--color-neutral-6)',
-      },
-      shadow: {
-        default: 'var(--shadow-1)',
-        hover: 'var(--shadow-2)',
-        active: 'none',
-      },
-    },
-    secondary: {
-      bg: {
-        default: 'var(--color-neutral-2)',
-        hover: 'var(--color-primary-2)',
-        active: 'var(--color-primary-3)',
-        disabled: 'var(--color-neutral-6)',
-      },
-      text: {
-        default: 'var(--color-primary-7)',
-        hover: 'var(--color-primary-8)',
-        active: 'var(--color-primary-8)',
-        disabled: 'var(--color-neutral-8)',
-      },
-      border: {
-        default: 'var(--color-primary-5)',
-        hover: 'var(--color-primary-6)',
-        active: 'var(--color-primary-6)',
-        disabled: 'var(--color-neutral-6)',
-      },
-      shadow: {
-        default: 'var(--shadow-1)',
-        hover: 'var(--shadow-2)',
-        active: 'none',
-      },
-    },
-    outline: {
-      bg: {
-        default: 'transparent',
-        hover: 'var(--color-primary-1)',
-        active: 'var(--color-primary-2)',
-        disabled: 'var(--color-neutral-6)',
-      },
-      text: {
-        default: 'var(--color-primary-7)',
-        hover: 'var(--color-primary-8)',
-        active: 'var(--color-primary-8)',
-        disabled: 'var(--color-neutral-8)',
-      },
-      border: {
-        default: 'var(--color-primary-6)',
-        hover: 'var(--color-primary-7)',
-        active: 'var(--color-primary-8)',
-        disabled: 'var(--color-neutral-6)',
-        style: 'dashed',
-      },
-      shadow: {
-        default: 'var(--shadow-1)',
-        hover: 'var(--shadow-2)',
-        active: 'none',
-      },
-    },
-    ghost: {
-      bg: {
-        default: 'transparent',
-        hover: 'var(--color-primary-1)',
-        active: 'var(--color-primary-2)',
-        disabled: 'var(--color-neutral-6)',
-      },
-      text: {
-        default: 'var(--color-primary-7)',
-        hover: 'var(--color-primary-8)',
-        active: 'var(--color-primary-8)',
-        disabled: 'var(--color-neutral-8)',
-      },
-      border: {
-        default: 'none',
-        hover: 'none',
-        active: 'none',
-        disabled: 'none',
-      },
-      shadow: {
-        default: 'none',
-        hover: 'none',
-        active: 'none',
-      },
-    },
-    icon: {
-      bg: {
-        default: 'var(--color-primary-1)',
-        hover: 'var(--color-primary-2)',
-        active: 'var(--color-primary-3)',
-        disabled: 'var(--color-neutral-6)',
-      },
-      text: {
-        default: 'var(--color-primary-7)',
-        hover: 'var(--color-primary-8)',
-        active: 'var(--color-primary-8)',
-        disabled: 'var(--color-neutral-8)',
-      },
-      border: {
-        default: 'none',
-        hover: 'none',
-        active: 'none',
-        disabled: 'none',
-      },
-      shadow: {
-        default: 'none',
-        hover: 'none',
-        active: 'none',
-      },
-    },
-    socialLogin: {
-      bg: {
-        default: 'var(--color-neutral-1)',
-        hover: 'var(--color-neutral-2)',
-        active: 'var(--color-neutral-3)',
-        disabled: 'var(--color-neutral-6)',
-      },
-      text: {
-        default: 'var(--color-primary-7)',
-        hover: 'var(--color-primary-8)',
-        active: 'var(--color-primary-8)',
-        disabled: 'var(--color-neutral-8)',
-      },
-      border: {
-        default: 'var(--color-neutral-5)',
-        hover: 'var(--color-neutral-6)',
-        active: 'var(--color-neutral-7)',
-        disabled: 'var(--color-neutral-6)',
-      },
-      shadow: {
-        default: 'var(--shadow-1)',
-        hover: 'var(--shadow-2)',
-        active: 'none',
-      },
-    },
-    loading: {
-      spinner: 'var(--color-primary-7)',
-    },
-    group: {
-      borderRadius: '0',
-    },
-    sizes: {
-      small: {
-        height: '28px',
-        fontSize: 'var(--font-size-2, 0.875rem)',
-        paddingX: 'var(--spacing-2, 8px)',
-      },
-      medium: {
-        height: '36px',
-        fontSize: 'var(--font-size-3, 1rem)',
-        paddingX: 'var(--spacing-3, 12px)',
-      },
-      large: {
-        height: '44px',
-        fontSize: 'var(--font-size-4, 1.125rem)',
-        paddingX: 'var(--spacing-4, 16px)',
-      },
-      icon: {
-        width: '36px',
-        height: '36px',
-        padding: '0',
-      },
-    },
+  error: {
+    1: { light: 'oklch(98% 0.03 30)', dark: 'oklch(12% 0.03 30)' },
+    2: { light: 'oklch(94% 0.06 30)', dark: 'oklch(20% 0.06 30)' },
+    3: { light: 'oklch(88% 0.09 30)', dark: 'oklch(30% 0.09 30)' },
+    4: { light: 'oklch(80% 0.12 30)', dark: 'oklch(40% 0.12 30)' },
+    5: { light: 'oklch(70% 0.15 30)', dark: 'oklch(50% 0.15 30)' },
+    6: { light: 'oklch(60% 0.18 30)', dark: 'oklch(60% 0.18 30)' },
+    7: { light: 'oklch(50% 0.21 30)', dark: 'oklch(70% 0.21 30)' },
+    8: { light: 'oklch(40% 0.21 30)', dark: 'oklch(80% 0.21 30)' },
+    9: { light: 'oklch(30% 0.18 30)', dark: 'oklch(88% 0.18 30)' },
+    10: { light: 'oklch(20% 0.15 30)', dark: 'oklch(94% 0.15 30)' },
+    11: { light: 'oklch(12% 0.12 30)', dark: 'oklch(98% 0.12 30)' },
   },
 };
-export type Tokens = typeof tokens;
+
+// Spacing tokens (atomic)
+const spacing = {
+  none: '0px',
+  1: '4px',
+  2: '8px',
+  3: '12px',
+  4: '16px',
+  5: '20px',
+  6: '24px',
+  7: '32px',
+  8: '40px',
+  9: '48px',
+  10: '56px',
+};
+
+// Corner radius tokens
+const radii = {
+  1: '2px',
+  2: '4px',
+  3: '8px',
+  4: '16px',
+  full: '9999px',
+  none: '0px',
+};
+
+// Border tokens
+const border = {
+  1: '1px',
+  2: '2px',
+  3: '4px',
+  none: '0px',
+  solid: 'solid',
+  dashed: 'dashed',
+  dotted: 'dotted',
+};
+
+// Shadow tokens (OKLCH)
+const shadow = {
+  1: '0 1px 2px oklch(90% 0 0)',
+  2: '0 2px 8px oklch(85% 0 0)',
+  3: '0 4px 16px oklch(80% 0 0)',
+};
+
+// Opacity tokens
+const opacity = {
+  none: 0,
+  1: 0.04,
+  2: 0.08,
+  3: 0.16,
+  4: 0.32,
+  5: 0.64,
+  6: 0.8,
+  7: 1,
+};
+
+// Z-index tokens
+const z = {
+  1: 10,
+  2: 100,
+  3: 1000,
+  4: 10000,
+  auto: 'auto',
+};
+
+// Typography tokens
+const typography = {
+  size: {
+    1: '0.75rem',
+    2: '0.875rem',
+    3: '1rem',
+    4: '1.125rem',
+    5: '1.25rem',
+    6: '1.5rem',
+    7: '1.875rem',
+    8: '2.25rem',
+    9: '3rem',
+  },
+  weight: {
+    1: 400,
+    2: 500,
+    3: 600,
+    4: 700,
+  },
+  line: {
+    1: 1.2,
+    2: 1.4,
+    3: 1.6,
+    4: 2,
+  },
+  letter: {
+    1: 0,
+    2: 0.01,
+    3: 0.02,
+  },
+  family: {
+    sans: "'Inter', 'system-ui', 'Segoe UI', 'Arial', sans-serif",
+    mono: "'FiraCode', 'Menlo', 'Monaco', 'Consolas', monospace",
+    display: "'Audiowide', 'system-ui', 'Arial', sans-serif",
+  },
+};
+
+// Font tokens (from fonts.md)
+const font = {
+  inter: {
+    4: { normal: 'inter-4-normal.woff2', italic: 'inter-4-italic-normal.woff2' },
+    5: { normal: 'inter-5-medium.woff2', italic: 'inter-5-italic-medium.woff2' },
+    7: { normal: 'inter-7-bold.woff2', italic: 'inter-7-italic-bold.woff2' },
+  },
+  firacode: {
+    4: { normal: 'firacode-4-normal.woff2' },
+    7: { normal: 'firacode-7-bold.woff2' },
+  },
+  audiowide: {
+    4: { normal: 'audiowide-4-normal.woff2' },
+  },
+};
+
+// Pattern tokens
+const patterns = [
+  { name: 'Hexagons', slug: 'hexagons', file: 'hexagons.svg' },
+  { name: 'Jigsaw', slug: 'jigsaw', file: 'jigsaw.svg' },
+  { name: 'Overcast', slug: 'overcast', file: 'overcast.svg' },
+  { name: 'Topography', slug: 'topography', file: 'topography.svg' },
+  { name: 'Wiggle', slug: 'wiggle', file: 'wiggle.svg' },
+];
+
+// Icon tokens
+const icons = [
+  'arrow-left', 'user-round', 'search', 'check', 'x', 'plus', 'minus', 'eye', 'eye-off', 'pencil', 'trash', 'info',
+  'alert-triangle', 'alert-circle', 'check-circle', 'chevron-down', 'chevron-up', 'chevron-left', 'chevron-right',
+  'menu', 'more-vertical', 'more-horizontal', 'calendar', 'clock', 'upload', 'download', 'filter', 'settings', 'star',
+  'heart', 'lock', 'lock-open', 'refresh-ccw', 'external-link', 'copy', 'arrow-right', 'arrow-up', 'arrow-down',
+  'home', 'file', 'folder', 'image', 'upload-cloud', 'download-cloud', 'send', 'message-circle', 'phone', 'mail',
+  'zoom-in', 'zoom-out', 'user', 'users', 'settings-2', 'log-in', 'log-out', 'shield', 'shield-off', 'help-circle',
+  'alert-octagon', 'bookmark', 'tag', 'bell', 'bell-off', 'calendar-check', 'calendar-x', 'calendar-plus',
+  'calendar-minus', 'chevrons-up', 'chevrons-down', 'chevrons-left', 'chevrons-right',
+];
+
+// Theme state
+const theme = ref<'light' | 'dark'>('light');
+
+// Computed tokens object, themeable at runtime
+export const tokens = computed(() => ({
+  color: Object.fromEntries(
+    Object.entries(color).map(([palette, scale]) => [
+      palette,
+      Object.fromEntries(
+        Object.entries(scale).map(([i, val]) => [i, (val as Record<'light' | 'dark', string>)[theme.value as 'light' | 'dark']])
+      ),
+    ])
+  ),
+  spacing,
+  radii,
+  border,
+  shadow,
+  opacity,
+  z,
+  typography,
+  font,
+  patterns,
+  icons,
+}));
+
+export function setTheme(next: 'light' | 'dark') { theme.value = next; }
+export function useTheme() { return theme; }
+
+// Types
+export type ColorPalette = keyof typeof color;
+export type ColorScale = keyof typeof color.primary;
+export type Tokens = typeof tokens.value;

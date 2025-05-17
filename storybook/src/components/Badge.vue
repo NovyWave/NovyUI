@@ -27,13 +27,13 @@ const disabled = props.disabled ?? false;
 
 const badgeStyle = computed<Record<string, string | number>>(() => {
   return {
-    background: variant === 'Outline' || variant === 'Dot' ? 'transparent' : tokens.color.bg.muted,
-    color: tokens.color.text.default,
-    border: `${tokens.border[1]} solid ${tokens.color.border.subtle}`,
-    borderRadius: tokens.radii[2],
-    boxShadow: tokens.shadow[1],
-    padding: variant === 'Dot' ? '0' : `0 ${tokens.spacing[2]}`,
-    fontSize: tokens.font.size3,
+    background: variant === 'Outline' || variant === 'Dot' ? 'transparent' : tokens.value.color.bg?.muted,
+    color: tokens.value.color.text?.default,
+    border: `${tokens.value.border[1]} solid ${tokens.value.color.border?.subtle}`,
+    borderRadius: tokens.value.radii[2],
+    boxShadow: tokens.value.shadow[1],
+    padding: variant === 'Dot' ? '0' : `0 ${tokens.value.spacing[2]}`,
+    fontSize: tokens.value.typography.size[3],
     display: 'inline-flex',
     alignItems: 'center',
     height: '20px',
@@ -46,8 +46,8 @@ const badgeStyle = computed<Record<string, string | number>>(() => {
 const dotStyle = computed<Record<string, string | number>>(() => ({
   width: '8px',
   height: '8px',
-  borderRadius: tokens.radii.full,
-  background: tokens.color.primary.default,
+  borderRadius: tokens.value.radii.full,
+  background: tokens.value.color.primary?.default,
   display: 'inline-block',
 }));
 const iconStyle = computed<Record<string, string | number>>(() => ({

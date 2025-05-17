@@ -16,7 +16,7 @@ const props = defineProps<{
 
 const iconStyle = computed(() => ({
   display: 'inline-block',
-  color: props.color || tokens.color.primary.default,
+  color: props.color || tokens.value.color.primary[7],
   verticalAlign: 'middle',
 }));
 </script>

@@ -15,12 +15,12 @@ const props = defineProps<{
 const dividerStyle = computed(() => {
   const isVertical = props.vertical;
   return {
-    width: isVertical ? props.thickness || tokens.border[1] : '100%',
-    height: isVertical ? '100%' : props.thickness || tokens.border[1],
-    background: props.color || tokens.color.border.default,
-    margin: isVertical ? `0 ${tokens.spacing[3]}` : `${tokens.spacing[3]} 0`,
+    width: isVertical ? props.thickness || tokens.value.border[1] : '100%',
+    height: isVertical ? '100%' : props.thickness || tokens.value.border[1],
+    background: props.color || tokens.value.color.border[2],
+    margin: isVertical ? `0 ${tokens.value.spacing[3]}` : `${tokens.value.spacing[3]} 0`,
     alignSelf: 'stretch',
-    borderRadius: tokens.radii[1],
+    borderRadius: tokens.value.radii[1],
   };
 });
 </script>

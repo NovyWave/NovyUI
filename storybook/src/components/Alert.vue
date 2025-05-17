@@ -17,10 +17,10 @@
         color: 'inherit',
         fontSize: '1.2em',
         position: 'absolute',
-        right: tokens.spacing[3],
-        top: tokens.spacing[3],
+        right: tokens.value.spacing[3],
+        top: tokens.value.spacing[3],
         cursor: 'pointer',
-        borderRadius: tokens.radii[1],
+        borderRadius: tokens.value.radii[1],
         outline: 'none',
         transition: 'box-shadow 0.2s',
       }"
@@ -55,29 +55,15 @@ const icon = computed(() => {
 
 const alertStyle = computed(() => {
   return {
-    background: variant === 'Success' ? '#f0fdf4'
-      : variant === 'Error' ? '#fef2f2'
-      : variant === 'Warning' ? '#fefce8'
-      : variant === 'Info' ? '#eff6ff'
-      : tokens.color.bg.subtle,
-    border: `${tokens.border[1]} solid ${
-      variant === 'Success' ? '#22c55e'
-      : variant === 'Error' ? '#ef4444'
-      : variant === 'Warning' ? '#eab308'
-      : variant === 'Info' ? '#2563eb'
-      : tokens.color.border.subtle
-    }`,
-    color: variant === 'Success' ? '#166534'
-      : variant === 'Error' ? '#991b1b'
-      : variant === 'Warning' ? '#78350f'
-      : variant === 'Info' ? '#1e3a8a'
-      : tokens.color.text.default,
-    boxShadow: tokens.shadow[1],
-    borderRadius: tokens.radii[2],
-    padding: `${tokens.spacing[3]} ${tokens.spacing[4]}`,
+    background: tokens.value.color.bg?.default,
+    border: `${tokens.value.border[1]} solid ${tokens.value.color.border?.subtle}`,
+    borderRadius: tokens.value.radii[2],
+    boxShadow: tokens.value.shadow[1],
+    color: tokens.value.color.text?.default,
+    gap: tokens.value.spacing[2],
+    padding: `${tokens.value.spacing[3]} ${tokens.value.spacing[4]}`,
     display: 'flex',
     alignItems: 'center',
-    gap: tokens.spacing[2],
     position: 'relative',
   };
 });

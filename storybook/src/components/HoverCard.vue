@@ -15,16 +15,16 @@ const props = defineProps<{
 }>();
 
 const hoverCardStyle = computed(() => ({
-  background: tokens.color.bg.default,
-  color: tokens.color.text.default,
-  borderRadius: tokens.radii[props.radius || 2],
-  boxShadow: tokens.shadow[props.shadow || 2],
-  border: `${tokens.border[1]} solid ${tokens.color.border.default}`,
-  padding: tokens.spacing[5],
+  background: tokens.value.color.surface[1],
+  color: tokens.value.color.neutral[12],
+  borderRadius: tokens.value.radii[props.radius || 2],
+  boxShadow: tokens.value.shadow[props.shadow || 2],
+  border: `${tokens.value.border[1]} solid ${tokens.value.color.border[2]}`,
+  padding: tokens.value.spacing[5],
   minWidth: '220px',
   minHeight: '80px',
   position: 'absolute',
-  zIndex: 100,
+  zIndex: tokens.value.z[3],
   transition: 'box-shadow 0.2s, border 0.2s',
 }));
 </script>

@@ -19,9 +19,9 @@ const affixStyle = computed<Record<string, string | number>>(() => {
   const pos: Record<string, string | number> = {
     position: 'fixed',
     zIndex: 2, // fallback, ideally from tokens
-    background: tokens.color.bg.default,
-    border: `${tokens.border[1]} solid ${tokens.color.border.subtle}`,
-    boxShadow: tokens.shadow[1],
+    background: tokens.value.color.bg?.default,
+    border: `${tokens.value.border[1]} solid ${tokens.value.color.border?.subtle}`,
+    boxShadow: tokens.value.shadow[1],
     opacity: disabled ? 0.5 : 1,
     pointerEvents: disabled ? 'none' : 'auto',
   };

@@ -29,28 +29,32 @@ const tableStyle = computed(() => ({
   width: '100%',
   borderCollapse: 'separate',
   borderSpacing: 0,
-  borderRadius: tokens.radii[props.radius || 2],
-  border: props.bordered ? `${tokens.border[1]} solid ${tokens.color.border.default}` : 'none',
-  background: tokens.color.bg.default,
-  color: tokens.color.text.default,
-  fontSize: tokens.font.size3,
+  borderRadius: tokens.value.radii[props.radius || 2],
+  border: props.bordered ? `${tokens.value.border[1]} solid ${tokens.value.color.border[2]}` : 'none',
+  background: tokens.value.color.surface[1],
+  color: tokens.value.color.neutral[12],
+  fontSize: tokens.value.typography.size[3],
   overflow: 'hidden',
 }));
 
 const headerCellStyle = computed(() => ({
-  background: tokens.color.bg.subtle,
-  color: tokens.color.text.default,
-  padding: tokens.spacing[3],
-  fontWeight: tokens.font.weight2,
-  borderBottom: `${tokens.border[1]} solid ${tokens.color.border.default}`,
+  background: tokens.value.color.primary[7],
+  color: tokens.value.color.neutral[1],
+  padding: tokens.value.spacing[3],
+  fontWeight: tokens.value.typography.weight[2],
+  borderBottom: `${tokens.value.border[1]} solid ${tokens.value.color.border[2]}`,
 }));
 
 const cellStyle = computed(() => ({
-  padding: tokens.spacing[3],
-  borderBottom: `${tokens.border[1]} solid ${tokens.color.border.muted}`,
+  padding: tokens.value.spacing[3],
+  borderBottom: `${tokens.value.border[1]} solid ${tokens.value.color.border[2]}`,
+  color: tokens.value.color.neutral[12],
+  background: tokens.value.color.surface[1],
 }));
 
-const rowStyle = (i: number) => ({
-  background: props.striped && i % 2 === 0 ? tokens.color.bg.muted : 'transparent',
-});
+function rowStyle(i: number) {
+  return {
+    background: props.striped && i % 2 === 0 ? tokens.value.color.surface[2] : tokens.value.color.surface[1],
+  };
+}
 </script>

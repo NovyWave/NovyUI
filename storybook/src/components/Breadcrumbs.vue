@@ -8,13 +8,13 @@ const props = defineProps<{
 const variant = props.variant ?? 'Basic';
 const disabled = props.disabled ?? false;
 const navStyle = computed<Record<string, string | number>>(() => ({
-  background: tokens.color.bg.default,
-  borderRadius: tokens.radii[2],
-  padding: `${tokens.spacing[1]} ${tokens.spacing[2]}`,
+  background: tokens.value.color.bg?.default,
+  borderRadius: tokens.value.radii[2],
+  padding: `${tokens.value.spacing[1]} ${tokens.value.spacing[2]}`,
   display: 'flex',
   alignItems: 'center',
-  color: tokens.color.text.default,
-  gap: tokens.spacing[2],
+  color: tokens.value.color.text?.default,
+  gap: tokens.value.spacing[2],
   opacity: disabled ? 0.5 : 1,
   pointerEvents: disabled ? 'none' : 'auto',
 }));

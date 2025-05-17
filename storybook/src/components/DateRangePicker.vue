@@ -1,8 +1,8 @@
 <template>
   <div :style="rangeStyle">
-    <input type="date" :disabled="disabled" :style="inputStyle" />
+    <input type="date" :disabled="props.disabled === true" :style="inputStyle" />
     <span :style="dashStyle">–</span>
-    <input type="date" :disabled="disabled" :style="inputStyle" />
+    <input type="date" :disabled="props.disabled === true" :style="inputStyle" />
   </div>
 </template>
 
@@ -18,26 +18,26 @@ const props = defineProps<{
 const rangeStyle = computed(() => ({
   display: 'flex',
   alignItems: 'center',
-  gap: tokens.spacing[2],
+  gap: tokens.value.spacing[2],
 }));
 
 const inputStyle = computed(() => ({
   minWidth: '120px',
   height: '36px',
-  borderRadius: tokens.radii[props.radius || 2],
-  border: `${tokens.border[1]} solid ${tokens.color.border.default}`,
-  background: props.disabled ? tokens.color.bg.muted : tokens.color.bg.default,
-  color: tokens.color.text.default,
-  fontSize: tokens.font.size3,
-  padding: `0 ${tokens.spacing[3]}`,
+  borderRadius: tokens.value.radii[props.radius || 2],
+  border: `${tokens.value.border[1]} solid ${tokens.value.color.border[2]}`,
+  background: props.disabled ? tokens.value.color.surface[2] : tokens.value.color.surface[1],
+  color: tokens.value.color.neutral[12],
+  fontSize: tokens.value.typography.size[3],
+  padding: `0 ${tokens.value.spacing[3]}`,
   opacity: props.disabled ? '0.6' : '1',
   pointerEvents: props.disabled ? 'none' : 'auto',
   transition: 'border 0.2s',
 }));
 
 const dashStyle = computed(() => ({
-  color: tokens.color.text.muted,
-  fontSize: tokens.font.size3,
-  margin: `0 ${tokens.spacing[1]}`,
+  color: tokens.value.color.neutral[7],
+  fontSize: tokens.value.typography.size[3],
+  margin: `0 ${tokens.value.spacing[1]}`,
 }));
 </script>

@@ -17,12 +17,12 @@ const props = defineProps<{
 
 const collapseStyle = computed(() => {
   return {
-    background: tokens.color.bg.default,
-    color: tokens.color.text.default,
-    borderRadius: tokens.radii[props.radius || 2],
-    border: `${tokens.border[1]} solid ${tokens.color.border.default}`,
-    boxShadow: props.open ? tokens.shadow[1] : 'none',
-    padding: tokens.spacing[4],
+    background: tokens.value.color.bg?.default,
+    color: tokens.value.color.text?.default,
+    borderRadius: tokens.value.radii[props.radius || 2],
+    border: `${tokens.value.border[1]} solid ${tokens.value.color.border?.default}`,
+    boxShadow: props.open ? tokens.value.shadow[1] : 'none',
+    padding: tokens.value.spacing[4],
     transition: 'box-shadow 0.2s, border 0.2s',
   };
 });

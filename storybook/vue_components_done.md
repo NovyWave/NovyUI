@@ -1,10 +1,10 @@
-# NovyUI Storybook Vue Components Refactor Progress
+# NovyUI Storybook Vue Components Theme Connection Progress
 
-This checklist tracks the refactor and creation of all components in batches of 10, as per the design system and token-driven requirements.
+This checklist tracks the progress of connecting all Vue components to the theme (light/dark) from tokens.ts. Mark [x] only when a component is fully reactive to theme changes via tokens.ts.
 
 ## Legend
-- [x] = Fully refactored to use only v-bind:style and tokens.ts, type-safe, all states/variants, stories checked
-- [ ] = Not started or in progress
+- [x] = Fully connected to theme (light/dark) via tokens.ts, type-safe, all states/variants, stories checked
+- [ ] = Not yet connected to theme or in progress
 
 ---
 
@@ -52,4 +52,4 @@ This checklist tracks the refactor and creation of all components in batches of 
 
 ---
 
-> Continue to next batch after completing all in current batch. For missing components, create from components.md and components/*.md.
+> Check off each component only after it is fully reactive to theme changes from tokens.ts.

@@ -16,14 +16,14 @@ const props = defineProps<{
 const inputGroupStyle = computed(() => ({
   display: 'flex',
   alignItems: 'center',
-  background: props.disabled ? tokens.color.bg.muted : tokens.color.bg.default,
-  color: tokens.color.text.default,
-  borderRadius: tokens.radii[props.radius || 2],
-  border: `${tokens.border[1]} solid ${tokens.color.border.default}`,
-  padding: tokens.spacing[3],
+  background: props.disabled ? tokens.value.color.surface[2] : tokens.value.color.surface[1],
+  color: tokens.value.color.neutral[12],
+  borderRadius: tokens.value.radii[props.radius || 2],
+  border: `${tokens.value.border[1]} solid ${tokens.value.color.border[2]}`,
+  padding: tokens.value.spacing[3],
   opacity: props.disabled ? '0.6' : '1',
   pointerEvents: props.disabled ? 'none' : 'auto',
-  gap: tokens.spacing[2],
+  gap: tokens.value.spacing[2],
   transition: 'border 0.2s',
 }));
 </script>

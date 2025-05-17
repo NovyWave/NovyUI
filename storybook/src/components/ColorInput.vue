@@ -17,9 +17,9 @@ const colorInputStyle = computed(() => {
   return {
     width: '40px',
     height: '40px',
-    borderRadius: tokens.radii[props.radius || 2],
-    border: `${tokens.border[1]} solid ${tokens.color.border.default}`,
-    background: props.disabled ? tokens.color.bg.muted : tokens.color.bg.default,
+    borderRadius: tokens.value.radii[props.radius || 2],
+    border: `${tokens.value.border[1]} solid ${tokens.value.color.border?.default}`,
+    background: props.disabled ? tokens.value.color.bg?.muted : tokens.value.color.bg?.default,
     opacity: props.disabled ? '0.6' : '1',
     pointerEvents: props.disabled ? 'none' : 'auto',
     padding: 0,

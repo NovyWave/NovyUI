@@ -11,12 +11,12 @@ const props = defineProps<{
 }>();
 
 const errorStyle = computed(() => ({
-  color: 'var(--color-error-7, #e53935)',
-  background: 'var(--color-error-bg, #fff0f0)',
-  borderRadius: tokens.radii[1],
-  padding: `${tokens.spacing[2]} ${tokens.spacing[3]}`,
-  fontSize: tokens.font.size3,
-  marginTop: tokens.spacing[2],
-  marginBottom: tokens.spacing[2],
+  color: tokens.value.color.error[7],
+  background: tokens.value.color.error[2],
+  borderRadius: tokens.value.radii[1],
+  padding: `${tokens.value.spacing[2]} ${tokens.value.spacing[3]}`,
+  fontSize: tokens.value.typography.size[3],
+  marginTop: tokens.value.spacing[2],
+  marginBottom: tokens.value.spacing[2],
 }));
 </script>

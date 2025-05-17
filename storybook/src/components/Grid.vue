@@ -18,15 +18,15 @@ const props = defineProps<{
 const gridStyle = computed(() => ({
   display: 'grid',
   gridTemplateColumns: `repeat(${props.columns || 3}, 1fr)`,
-  gap: tokens.spacing[props.gap || 4],
+  gap: tokens.value.spacing[props.gap || 4],
   width: '100%',
 }));
 
-const itemStyle = {
-  background: tokens.color.bg.subtle,
-  color: tokens.color.text.default,
-  borderRadius: tokens.radii[2],
-  padding: tokens.spacing[4],
+const itemStyle = computed(() => ({
+  background: tokens.value.color.surface[2],
+  color: tokens.value.color.neutral[12],
+  borderRadius: tokens.value.radii[2],
+  padding: tokens.value.spacing[4],
   textAlign: 'center',
-};
+}));
 </script>
