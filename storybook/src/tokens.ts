@@ -130,7 +130,7 @@ const opacity = {
   4: 0.32,
   5: 0.64,
   6: 0.8,
-  7: 1,
+  opaque: 1,
 };
 
 // Z-index tokens
@@ -260,3 +260,18 @@ export function useTheme() { return theme; }
 export type ColorPalette = keyof typeof color;
 export type ColorScale = keyof typeof color.primary;
 export type Tokens = typeof tokens.value;
+
+export type IconToken =
+  | 'arrow-left' | 'user-round' | 'search' | 'check' | 'x' | 'plus' | 'minus' | 'eye' | 'eye-off' | 'pencil' | 'trash' | 'info'
+  | 'alert-triangle' | 'alert-circle' | 'check-circle' | 'chevron-down' | 'chevron-up' | 'chevron-left' | 'chevron-right'
+  | 'menu' | 'more-vertical' | 'more-horizontal' | 'calendar' | 'clock' | 'upload' | 'download' | 'filter' | 'settings' | 'star'
+  | 'heart' | 'lock' | 'lock-open' | 'refresh-ccw' | 'external-link' | 'copy' | 'arrow-right' | 'arrow-up' | 'arrow-down'
+  | 'home' | 'file' | 'folder' | 'image' | 'upload-cloud' | 'download-cloud' | 'send' | 'message-circle' | 'phone' | 'mail'
+  | 'zoom-in' | 'zoom-out' | 'user' | 'users' | 'settings-2' | 'log-in' | 'log-out' | 'shield' | 'shield-off' | 'help-circle'
+  | 'alert-octagon' | 'bookmark' | 'tag' | 'bell' | 'bell-off' | 'calendar-check' | 'calendar-x' | 'calendar-plus' | 'calendar-minus'
+  | 'chevrons-up' | 'chevrons-down' | 'chevrons-left' | 'chevrons-right';
+
+export function getIconUrl(name: IconToken): string {
+  // For Storybook static asset serving, use /icons/ as the base path
+  return `/icons/${name}.svg`;
+}

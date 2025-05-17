@@ -36,12 +36,8 @@
 
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
-import { tokens } from '../tokens';
-
-function getIconUrl(name: string) {
-  // For Storybook static asset serving, use /icons/ as the base path
-  return `/icons/${name}.svg`;
-}
+import { tokens, getIconUrl } from '../tokens';
+import type { IconToken } from '../tokens';
 
 type Variant = 'Primary' | 'Secondary' | 'Outline' | 'Ghost' | 'Icon' | 'Loading';
 type Size = 'small' | 'medium' | 'large';
@@ -74,8 +70,8 @@ function onMouseUp() { active.value = false; }
 function onFocus() { focused.value = true; }
 function onBlur() { focused.value = false; }
 
-const iconName = 'plus';
-const spinnerIconName = 'refresh-ccw';
+const iconName: IconToken = 'plus';
+const spinnerIconName: IconToken = 'refresh-ccw';
 const iconSize = 20;
 const spinnerSize = 20;
 
@@ -186,10 +182,10 @@ const buttonStyle = computed<Record<string, string | number>>(() => {
     minWidth = tokens.value.width[2];
   }
 
-  let opacity = 1;
+  let opacity = tokens.value.opacity.opaque; // fully opaque
   let cursor = 'pointer';
   if (props.disabled || props.loading) {
-    opacity = 0.7;
+    opacity = tokens.value.opacity[5]; // hover/active/disabled
     cursor = 'not-allowed';
     background = tokens.value.color.neutral[6];
     color = tokens.value.color.neutral[7];
