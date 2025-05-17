@@ -19,7 +19,7 @@ const color = {
     11: { light: 'oklch(15% 0.10 250)', dark: 'oklch(98% 0.10 250)' },
   },
   neutral: {
-    1: { light: 'oklch(99% 0.025 255)', dark: 'oklch(12% 0.025 255)' }, // blueish, but less intense
+    1: { light: 'oklch(99% 0.025 255)', dark: 'oklch(12% 0.025 255)' },
     2: { light: 'oklch(96% 0.035 255)', dark: 'oklch(18% 0.035 255)' },
     3: { light: 'oklch(92% 0.045 255)', dark: 'oklch(30% 0.045 255)' },
     4: { light: 'oklch(88% 0.055 255)', dark: 'oklch(45% 0.055 255)' },
@@ -231,7 +231,7 @@ const width = {
 };
 
 // Theme state
-const theme = ref<'light' | 'dark'>('light');
+const theme = ref<'light' | 'dark'>('dark');
 
 // Computed tokens object, themeable at runtime
 export const tokens = computed(() => ({

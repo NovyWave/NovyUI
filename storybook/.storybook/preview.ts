@@ -28,8 +28,8 @@ const preview: Preview = {
   decorators: [
     (story, context) => {
       // Sync theme with tokens.ts for runtime theming
-      const theme = context.globals.theme || 'light';
-      setTheme(theme);
+      const theme = context.globals.theme || 'dark';
+      setTheme(theme); // Set theme based on global, default to dark
       return story();
     },
   ],
@@ -37,9 +37,10 @@ const preview: Preview = {
     theme: {
       name: 'Theme',
       description: 'Global theme for components',
-      defaultValue: 'light',
+      defaultValue: 'dark',
       toolbar: {
-        icon: 'sun', // sun icon for theme switch
+        icon: 'sun',
+        title: 'Theme',
         items: [
           { value: 'light', title: 'Light' },
           { value: 'dark', title: 'Dark' },
