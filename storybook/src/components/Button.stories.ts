@@ -14,8 +14,6 @@ const meta: Meta<typeof Button> = {
         'Outline',
         'Ghost',
         'Icon',
-        'Group',
-        'SocialLogin',
       ],
       description: 'Visual style of the button',
       table: { category: 'Appearance' },
@@ -79,10 +77,4 @@ export const Icon: Story = {
 };
 export const Loading: Story = {
   args: { variant: 'Primary', loading: true },
-};
-export const Group: Story = {
-  args: { variant: 'Group' },
-};
-export const SocialLogin: Story = {
-  args: { variant: 'SocialLogin', label: 'Sign in with Google' },
 };

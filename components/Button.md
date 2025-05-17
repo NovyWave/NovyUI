@@ -65,8 +65,6 @@ All supported Button variants are listed below:
 | Ghost         | Minimal, low emphasis      | Transparent background, minimal styling    | Text, Background           |          |
 | Icon          | Icon-only button           | No text, icon centered                     | Icon, Background, Border   |          |
 | Loading       | Shows loading spinner      | Spinner replaces content                   | Loading Spinner, Background|          |
-| Group         | Group of buttons           | Buttons visually grouped                   | All above                 |          |
-| SocialLogin   | Social login button        | Includes social media icon                 | Icon, Background, Text     |          |
 
 ---
 

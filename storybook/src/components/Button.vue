@@ -3,7 +3,12 @@
     :style="buttonStyle"
     :disabled="disabled || loading"
     type="button"
-    v-on="listeners"
+    @mouseenter="onMouseEnter"
+    @mouseleave="onMouseLeave"
+    @mousedown="onMouseDown"
+    @mouseup="onMouseUp"
+    @focus="onFocus"
+    @blur="onBlur"
   >
     <span v-if="loading" :style="spinnerStyle">⏳</span>
     <span v-else>{{ label }}</span>
@@ -12,10 +17,10 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, useAttrs } from 'vue';
+import { computed, ref } from 'vue';
 import { tokens } from '../tokens';
 
-type Variant = 'Primary' | 'Secondary' | 'Outline' | 'Ghost' | 'Icon' | 'Loading' | 'Group' | 'SocialLogin';
+type Variant = 'Primary' | 'Secondary' | 'Outline' | 'Ghost' | 'Icon' | 'Loading';
 type Size = 'small' | 'medium' | 'large';
 
 const props = defineProps<{
@@ -26,26 +31,25 @@ const props = defineProps<{
   loading?: boolean,
 }>();
 
+const emits = defineEmits([
+  'mouseenter',
+  'mouseleave',
+  'mousedown',
+  'mouseup',
+  'focus',
+  'blur',
+]);
+
 const hovered = ref(false);
 const active = ref(false);
 const focused = ref(false);
 
-const attrs = useAttrs();
-const listeners = computed<Record<string, any>>(() => {
-  // Only pass event listeners to the button
-  const out: Record<string, any> = {};
-  for (const key in attrs) {
-    if (key.startsWith('on')) out[key] = attrs[key];
-  }
-  // Add local event handlers
-  out.onMouseenter = () => { hovered.value = true; };
-  out.onMouseleave = () => { hovered.value = false; };
-  out.onMousedown = () => { active.value = true; };
-  out.onMouseup = () => { active.value = false; };
-  out.onFocus = () => { focused.value = true; };
-  out.onBlur = () => { focused.value = false; };
-  return out;
-});
+function onMouseEnter() { hovered.value = true; }
+function onMouseLeave() { hovered.value = false; }
+function onMouseDown() { active.value = true; }
+function onMouseUp() { active.value = false; }
+function onFocus() { focused.value = true; }
+function onBlur() { focused.value = false; }
 
 const buttonStyle = computed<Record<string, string | number>>(() => {
   const variant = props.variant || 'Primary';
@@ -66,19 +70,51 @@ const buttonStyle = computed<Record<string, string | number>>(() => {
     background = tokens.value.color.primary[7];
     color = tokens.value.color.neutral[1];
     borderColor = tokens.value.color.primary[7];
+    if (hovered.value && !props.disabled && !props.loading) {
+      background = tokens.value.color.primary[8];
+      borderColor = tokens.value.color.primary[8];
+      boxShadow = tokens.value.shadow[2];
+    }
+    if (active.value && !props.disabled && !props.loading) {
+      background = tokens.value.color.primary[9];
+      borderColor = tokens.value.color.primary[9];
+      boxShadow = tokens.value.shadow[2];
+    }
   } else if (variant === 'Secondary') {
     background = tokens.value.color.neutral[2];
     color = tokens.value.color.primary[7];
     borderColor = tokens.value.color.primary[5];
+    if (hovered.value && !props.disabled && !props.loading) {
+      background = tokens.value.color.neutral[3];
+      borderColor = tokens.value.color.primary[6];
+    }
+    if (active.value && !props.disabled && !props.loading) {
+      background = tokens.value.color.neutral[4];
+      borderColor = tokens.value.color.primary[7];
+    }
   } else if (variant === 'Outline') {
     background = 'transparent';
     color = tokens.value.color.primary[7];
     borderColor = tokens.value.color.primary[6];
     borderStyle = 'dashed';
+    if (hovered.value && !props.disabled && !props.loading) {
+      background = tokens.value.color.primary[0];
+      borderColor = tokens.value.color.primary[7];
+    }
+    if (active.value && !props.disabled && !props.loading) {
+      background = tokens.value.color.primary[1];
+      borderColor = tokens.value.color.primary[8];
+    }
   } else if (variant === 'Ghost') {
     background = 'transparent';
     color = tokens.value.color.primary[7];
     borderColor = 'transparent';
+    if (hovered.value && !props.disabled && !props.loading) {
+      background = tokens.value.color.primary[0];
+    }
+    if (active.value && !props.disabled && !props.loading) {
+      background = tokens.value.color.primary[1];
+    }
   } else if (variant === 'Icon') {
     background = tokens.value.color.primary[1];
     color = tokens.value.color.primary[7];
@@ -87,12 +123,12 @@ const buttonStyle = computed<Record<string, string | number>>(() => {
     height = '36px';
     paddingX = '0';
     borderRadius = tokens.value.radii.full;
-  } else if (variant === 'SocialLogin') {
-    background = tokens.value.color.neutral[1];
-    color = tokens.value.color.primary[7];
-    borderColor = tokens.value.color.neutral[5];
-  } else if (variant === 'Group') {
-    borderRadius = '0';
+    if (hovered.value && !props.disabled && !props.loading) {
+      background = tokens.value.color.primary[2];
+    }
+    if (active.value && !props.disabled && !props.loading) {
+      background = tokens.value.color.primary[3];
+    }
   }
 
   if (size === 'small') {
@@ -115,6 +151,13 @@ const buttonStyle = computed<Record<string, string | number>>(() => {
     borderColor = tokens.value.color.neutral[6];
   }
 
+  // Focus style
+  let outline = 'none';
+  if (focused.value && !props.disabled && !props.loading) {
+    outline = '2px solid #2196f3'; // blue outline for test
+    boxShadow = '0 0 0 4px #2196f355';
+  }
+
   return {
     display: 'inline-flex',
     alignItems: 'center',
@@ -134,7 +177,7 @@ const buttonStyle = computed<Record<string, string | number>>(() => {
     background,
     color,
     boxShadow,
-    outline: focused.value ? `0 0 0 3px ${tokens.value.color.primary[10]}` : 'none',
+    outline,
     opacity,
     position: 'relative',
     transition: 'background 0.2s, color 0.2s, border 0.2s, box-shadow 0.2s',
