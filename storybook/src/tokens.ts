@@ -19,17 +19,17 @@ const color = {
     11: { light: 'oklch(15% 0.10 250)', dark: 'oklch(98% 0.10 250)' },
   },
   neutral: {
-    1: { light: 'oklch(99% 0.005 270)', dark: 'oklch(12% 0.005 270)' },
-    2: { light: 'oklch(96% 0.01 270)', dark: 'oklch(18% 0.01 270)' },
-    3: { light: 'oklch(92% 0.012 270)', dark: 'oklch(30% 0.012 270)' },
-    4: { light: 'oklch(88% 0.014 270)', dark: 'oklch(45% 0.014 270)' },
-    5: { light: 'oklch(80% 0.016 270)', dark: 'oklch(60% 0.016 270)' },
-    6: { light: 'oklch(70% 0.018 270)', dark: 'oklch(70% 0.018 270)' },
-    7: { light: 'oklch(60% 0.02 270)', dark: 'oklch(80% 0.02 270)' },
-    8: { light: 'oklch(45% 0.018 270)', dark: 'oklch(88% 0.018 270)' },
-    9: { light: 'oklch(30% 0.016 270)', dark: 'oklch(92% 0.016 270)' },
-    10: { light: 'oklch(18% 0.012 270)', dark: 'oklch(96% 0.012 270)' },
-    11: { light: 'oklch(10% 0.008 270)', dark: 'oklch(99% 0.008 270)' },
+    1: { light: 'oklch(99% 0.025 255)', dark: 'oklch(12% 0.025 255)' }, // blueish, but less intense
+    2: { light: 'oklch(96% 0.035 255)', dark: 'oklch(18% 0.035 255)' },
+    3: { light: 'oklch(92% 0.045 255)', dark: 'oklch(30% 0.045 255)' },
+    4: { light: 'oklch(88% 0.055 255)', dark: 'oklch(45% 0.055 255)' },
+    5: { light: 'oklch(80% 0.07 255)', dark: 'oklch(60% 0.07 255)' },
+    6: { light: 'oklch(70% 0.09 255)', dark: 'oklch(70% 0.09 255)' },
+    7: { light: 'oklch(60% 0.11 255)', dark: 'oklch(80% 0.11 255)' },
+    8: { light: 'oklch(45% 0.09 255)', dark: 'oklch(88% 0.09 255)' },
+    9: { light: 'oklch(30% 0.07 255)', dark: 'oklch(92% 0.07 255)' },
+    10: { light: 'oklch(18% 0.035 255)', dark: 'oklch(96% 0.035 255)' },
+    11: { light: 'oklch(10% 0.025 255)', dark: 'oklch(99% 0.025 255)' },
   },
   success: {
     1: { light: 'oklch(98% 0.03 145)', dark: 'oklch(12% 0.03 145)' },
@@ -113,12 +113,19 @@ const borderStyle = {
   dotted: 'dotted',
 };
 
-// Shadow tokens (OKLCH)
-const shadow = {
-  1: '0 1px 2px oklch(90% 0 0)',
-  2: '0 2px 8px oklch(85% 0 0)',
-  3: '0 4px 16px oklch(80% 0 0)',
-  focus: '0 0 0 4px oklch(55% 0.16 250 / 0.33)', // Focus ring shadow (primary blue, 33% opacity)
+// Shadow tokens (split into size and color for composability)
+const shadowSize = {
+  1: '0 1px 2px',
+  2: '0 2px 8px',
+  3: '0 4px 16px',
+  focus: '0 0 0 4px',
+};
+const shadowColor = {
+  neutral: 'oklch(70% 0.09 255 / 0.22)',
+  primary: 'oklch(55% 0.16 250 / 0.33)',
+  success: 'oklch(60% 0.13 145 / 0.22)',
+  warning: 'oklch(60% 0.19 85 / 0.22)',
+  error: 'oklch(60% 0.18 30 / 0.22)',
 };
 
 // Opacity tokens
@@ -243,7 +250,8 @@ export const tokens = computed(() => ({
   radii,
   borderWidth,
   borderStyle,
-  shadow,
+  shadowSize,
+  shadowColor,
   opacity,
   z,
   typography,

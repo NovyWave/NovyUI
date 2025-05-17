@@ -11,14 +11,16 @@
     @blur="onBlur"
   >
     <span v-if="loading" :style="spinnerStyle">
-      <img
-        :src="getIconUrl(spinnerIconName)"
-        :alt="'Loading'"
-        :width="spinnerSize"
-        :height="spinnerSize"
-        class="spin"
-        style="display:inline-block;vertical-align:middle;"
-      />
+      <span style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;">
+        <img
+          :src="getIconUrl(spinnerIconName)"
+          :alt="'Loading'"
+          :width="spinnerSize"
+          :height="spinnerSize"
+          class="spin"
+          style="display:block;margin:auto;"
+        />
+      </span>
     </span>
     <span v-else-if="variant === 'Icon'">
       <img
@@ -83,7 +85,7 @@ const buttonStyle = computed<Record<string, string | number>>(() => {
   let borderColor = tokens.value.color.primary[7];
   let borderStyle = tokens.value.borderStyle.solid;
   let borderWidth = tokens.value.borderWidth[1];
-  let boxShadow = tokens.value.shadow[1];
+  let boxShadow = `${tokens.value.shadowSize[1]} ${tokens.value.shadowColor.primary}`;
   let borderRadius = tokens.value.radii[2];
   let fontWeight = tokens.value.typography.weight[2];
   let fontSize = tokens.value.typography.size[3];
@@ -100,12 +102,12 @@ const buttonStyle = computed<Record<string, string | number>>(() => {
     if (hovered.value && !props.disabled && !props.loading) {
       background = tokens.value.color.primary[8];
       borderColor = tokens.value.color.primary[8];
-      boxShadow = tokens.value.shadow[2];
+      boxShadow = `${tokens.value.shadowSize[2]} ${tokens.value.shadowColor.primary}`;
     }
     if (active.value && !props.disabled && !props.loading) {
       background = tokens.value.color.primary[9];
       borderColor = tokens.value.color.primary[9];
-      boxShadow = tokens.value.shadow[2];
+      boxShadow = `${tokens.value.shadowSize[2]} ${tokens.value.shadowColor.primary}`;
     }
   } else if (variant === 'Secondary') {
     background = tokens.value.color.neutral[2];
@@ -187,15 +189,16 @@ const buttonStyle = computed<Record<string, string | number>>(() => {
   if (props.disabled || props.loading) {
     opacity = tokens.value.opacity[5]; // hover/active/disabled
     cursor = 'not-allowed';
-    background = tokens.value.color.neutral[6];
+    background = tokens.value.color.neutral[5];
     color = tokens.value.color.neutral[7];
-    borderColor = tokens.value.color.neutral[6];
+    borderColor = tokens.value.color.neutral[5];
+    boxShadow = `${tokens.value.shadowSize[1]} ${tokens.value.shadowColor.neutral}`;
   }
 
   let outline = 'none';
   if (focused.value && !props.disabled && !props.loading) {
     outline = `${tokens.value.borderWidth[2]} ${tokens.value.borderStyle.solid} ${tokens.value.color.primary[7]}`;
-    boxShadow = tokens.value.shadow.focus;
+    boxShadow = `${tokens.value.shadowSize.focus} ${tokens.value.shadowColor.primary}`;
   }
 
   return {

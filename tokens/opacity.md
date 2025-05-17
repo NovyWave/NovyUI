@@ -20,3 +20,7 @@ This file defines the opacity scale for the design system. All values use a 1–
 - Use `opacity.5`–`opacity.6` for hover and focus states.
 - Use `opacity.opaque` for fully opaque elements.
 - Use only the 1–x scale for opacity.
+
+## Disabled/Loading Color
+- Use `color.neutral.5` for disabled backgrounds and borders (a blueish cold gray for harmony with the primary palette).
+- Use `color.neutral.7` for disabled text (a blueish cold gray, slightly darker for contrast).
