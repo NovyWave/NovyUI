@@ -134,6 +134,7 @@ Example: `color.primary.7` (the base blue for primary actions)
 | color.success        | color.success.7      | Success state                |
 | color.warning        | color.warning.7      | Warning state                |
 | color.error          | color.error.7        | Error state                  |
+| color.transparent    | transparent          | Transparent elements         |
 
 > Map semantic roles to palette tokens for easier usage and future-proofing.
 

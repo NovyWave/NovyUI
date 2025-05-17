@@ -63,9 +63,9 @@ const buttonStyle = computed<Record<string, string | number>>(() => {
   let borderRadius = tokens.value.radii[2];
   let fontWeight = tokens.value.typography.weight[2];
   let fontSize = tokens.value.typography.size[3];
-  let height = '36px';
+  let paddingY = tokens.value.spacing[2];
   let paddingX = tokens.value.spacing[3];
-  let minWidth = '44px';
+  let minWidth = tokens.value.width[2];
 
   if (variant === 'Primary') {
     background = tokens.value.color.primary[7];
@@ -98,9 +98,9 @@ const buttonStyle = computed<Record<string, string | number>>(() => {
       borderColor = tokens.value.color.primary[7];
     }
   } else if (variant === 'Outline') {
-    background = 'transparent';
+    background = tokens.value.color.transparent;
     color = tokens.value.color.primary[7];
-    borderColor = tokens.value.color.primary[6];
+    borderColor = tokens.value.color.transparent;
     borderStyle = tokens.value.borderStyle.dashed;
     borderWidth = tokens.value.borderWidth[1];
     if (hovered.value && !props.disabled && !props.loading) {
@@ -112,9 +112,9 @@ const buttonStyle = computed<Record<string, string | number>>(() => {
       borderColor = tokens.value.color.primary[8];
     }
   } else if (variant === 'Ghost') {
-    background = 'transparent';
+    background = tokens.value.color.transparent;
     color = tokens.value.color.primary[7];
-    borderColor = 'transparent';
+    borderColor = tokens.value.color.transparent;
     borderStyle = tokens.value.borderStyle.solid;
     borderWidth = tokens.value.borderWidth[1];
     if (hovered.value && !props.disabled && !props.loading) {
@@ -126,12 +126,12 @@ const buttonStyle = computed<Record<string, string | number>>(() => {
   } else if (variant === 'Icon') {
     background = tokens.value.color.primary[1];
     color = tokens.value.color.primary[7];
-    borderColor = 'transparent';
+    borderColor = tokens.value.color.transparent;
     borderStyle = tokens.value.borderStyle.solid;
     borderWidth = tokens.value.borderWidth[1];
-    minWidth = '36px';
-    height = '36px';
-    paddingX = '0';
+    minWidth = tokens.value.width[1];
+    paddingY = tokens.value.spacing.none;
+    paddingX = tokens.value.spacing.none;
     borderRadius = tokens.value.radii.full;
     if (hovered.value && !props.disabled && !props.loading) {
       background = tokens.value.color.primary[2];
@@ -142,13 +142,20 @@ const buttonStyle = computed<Record<string, string | number>>(() => {
   }
 
   if (size === 'small') {
-    height = '28px';
-    fontSize = tokens.value.typography.size[2];
+    paddingY = tokens.value.spacing[1];
     paddingX = tokens.value.spacing[2];
+    fontSize = tokens.value.typography.size[2];
+    minWidth = tokens.value.width[1];
   } else if (size === 'large') {
-    height = '44px';
-    fontSize = tokens.value.typography.size[4];
+    paddingY = tokens.value.spacing[3];
     paddingX = tokens.value.spacing[4];
+    fontSize = tokens.value.typography.size[4];
+    minWidth = tokens.value.width[3];
+  } else {
+    paddingY = tokens.value.spacing[2];
+    paddingX = tokens.value.spacing[3];
+    fontSize = tokens.value.typography.size[3];
+    minWidth = tokens.value.width[2];
   }
 
   let opacity = 1;
@@ -161,11 +168,10 @@ const buttonStyle = computed<Record<string, string | number>>(() => {
     borderColor = tokens.value.color.neutral[6];
   }
 
-  // Focus style
   let outline = 'none';
   if (focused.value && !props.disabled && !props.loading) {
-    outline = '2px solid #2196f3'; // blue outline for test
-    boxShadow = '0 0 0 4px #2196f355';
+    outline = `${tokens.value.borderWidth[2]} ${tokens.value.borderStyle.solid} ${tokens.value.color.primary[7]}`;
+    boxShadow = tokens.value.shadow.focus;
   }
 
   return {
@@ -180,8 +186,7 @@ const buttonStyle = computed<Record<string, string | number>>(() => {
     fontFamily: tokens.value.typography.family.sans,
     fontWeight: fontWeight,
     letterSpacing: tokens.value.typography.letter[2],
-    padding: `0 ${paddingX}`,
-    height: height,
+    padding: `${paddingY} ${paddingX}`,
     minWidth: minWidth,
     cursor: cursor,
     background: background,

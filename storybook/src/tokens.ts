@@ -70,6 +70,7 @@ const color = {
     10: { light: 'oklch(20% 0.15 30)', dark: 'oklch(94% 0.15 30)' },
     11: { light: 'oklch(12% 0.12 30)', dark: 'oklch(98% 0.12 30)' },
   },
+  transparent: 'transparent',
 };
 
 // Spacing tokens (atomic)
@@ -117,6 +118,7 @@ const shadow = {
   1: '0 1px 2px oklch(90% 0 0)',
   2: '0 2px 8px oklch(85% 0 0)',
   3: '0 4px 16px oklch(80% 0 0)',
+  focus: '0 0 0 4px oklch(55% 0.16 250 / 0.33)', // Focus ring shadow (primary blue, 33% opacity)
 };
 
 // Opacity tokens
@@ -214,18 +216,28 @@ const icons = [
   'calendar-minus', 'chevrons-up', 'chevrons-down', 'chevrons-left', 'chevrons-right',
 ];
 
+// Width tokens
+const width = {
+  1: '32px',
+  2: '44px',
+  3: '56px',
+};
+
 // Theme state
 const theme = ref<'light' | 'dark'>('light');
 
 // Computed tokens object, themeable at runtime
 export const tokens = computed(() => ({
   color: Object.fromEntries(
-    Object.entries(color).map(([palette, scale]) => [
-      palette,
-      Object.fromEntries(
+    Object.entries(color).map(([palette, scale]) => {
+      if (typeof scale === 'string') {
+        // For direct string tokens like 'transparent'
+        return [palette, scale];
+      }
+      return [palette, Object.fromEntries(
         Object.entries(scale).map(([i, val]) => [i, (val as Record<'light' | 'dark', string>)[theme.value as 'light' | 'dark']])
-      ),
-    ])
+      )];
+    })
   ),
   spacing,
   radii,
@@ -238,6 +250,7 @@ export const tokens = computed(() => ({
   font,
   patterns,
   icons,
+  width,
 }));
 
 export function setTheme(next: 'light' | 'dark') { theme.value = next; }
