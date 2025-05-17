@@ -13,7 +13,7 @@ const meta: Meta<typeof Button> = {
         'Secondary',
         'Outline',
         'Ghost',
-        'Icon',
+        'Link',
       ],
       description: 'Visual style of the button',
       table: { category: 'Appearance' },
@@ -72,9 +72,9 @@ export const Outline: Story = {
 export const Ghost: Story = {
   args: { variant: 'Ghost' },
 };
-export const Icon: Story = {
-  args: { variant: 'Icon', label: '' },
-};
 export const Loading: Story = {
   args: { variant: 'Primary', loading: true },
+};
+export const Link: Story = {
+  args: { variant: 'Link', label: 'Link Button' },
 };
