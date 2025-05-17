@@ -97,12 +97,16 @@ const radii = {
   none: '0px',
 };
 
-// Border tokens
-const border = {
+// Border width tokens
+const borderWidth = {
   1: '1px',
   2: '2px',
   3: '4px',
   none: '0px',
+};
+
+// Border style tokens
+const borderStyle = {
   solid: 'solid',
   dashed: 'dashed',
   dotted: 'dotted',
@@ -225,7 +229,8 @@ export const tokens = computed(() => ({
   ),
   spacing,
   radii,
-  border,
+  borderWidth,
+  borderStyle,
   shadow,
   opacity,
   z,

@@ -57,7 +57,8 @@ const buttonStyle = computed<Record<string, string | number>>(() => {
   let background = tokens.value.color.primary[7];
   let color = tokens.value.color.neutral[1];
   let borderColor = tokens.value.color.primary[7];
-  let borderStyle = 'solid';
+  let borderStyle = tokens.value.borderStyle.solid;
+  let borderWidth = tokens.value.borderWidth[1];
   let boxShadow = tokens.value.shadow[1];
   let borderRadius = tokens.value.radii[2];
   let fontWeight = tokens.value.typography.weight[2];
@@ -70,6 +71,8 @@ const buttonStyle = computed<Record<string, string | number>>(() => {
     background = tokens.value.color.primary[7];
     color = tokens.value.color.neutral[1];
     borderColor = tokens.value.color.primary[7];
+    borderStyle = tokens.value.borderStyle.solid;
+    borderWidth = tokens.value.borderWidth[1];
     if (hovered.value && !props.disabled && !props.loading) {
       background = tokens.value.color.primary[8];
       borderColor = tokens.value.color.primary[8];
@@ -84,6 +87,8 @@ const buttonStyle = computed<Record<string, string | number>>(() => {
     background = tokens.value.color.neutral[2];
     color = tokens.value.color.primary[7];
     borderColor = tokens.value.color.primary[5];
+    borderStyle = tokens.value.borderStyle.solid;
+    borderWidth = tokens.value.borderWidth[1];
     if (hovered.value && !props.disabled && !props.loading) {
       background = tokens.value.color.neutral[3];
       borderColor = tokens.value.color.primary[6];
@@ -96,7 +101,8 @@ const buttonStyle = computed<Record<string, string | number>>(() => {
     background = 'transparent';
     color = tokens.value.color.primary[7];
     borderColor = tokens.value.color.primary[6];
-    borderStyle = 'dashed';
+    borderStyle = tokens.value.borderStyle.dashed;
+    borderWidth = tokens.value.borderWidth[1];
     if (hovered.value && !props.disabled && !props.loading) {
       background = tokens.value.color.primary[0];
       borderColor = tokens.value.color.primary[7];
@@ -109,6 +115,8 @@ const buttonStyle = computed<Record<string, string | number>>(() => {
     background = 'transparent';
     color = tokens.value.color.primary[7];
     borderColor = 'transparent';
+    borderStyle = tokens.value.borderStyle.solid;
+    borderWidth = tokens.value.borderWidth[1];
     if (hovered.value && !props.disabled && !props.loading) {
       background = tokens.value.color.primary[0];
     }
@@ -119,6 +127,8 @@ const buttonStyle = computed<Record<string, string | number>>(() => {
     background = tokens.value.color.primary[1];
     color = tokens.value.color.primary[7];
     borderColor = 'transparent';
+    borderStyle = tokens.value.borderStyle.solid;
+    borderWidth = tokens.value.borderWidth[1];
     minWidth = '36px';
     height = '36px';
     paddingX = '0';
@@ -162,23 +172,23 @@ const buttonStyle = computed<Record<string, string | number>>(() => {
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius,
-    borderWidth: tokens.value.border[1],
-    borderStyle,
-    borderColor,
-    fontSize,
+    borderRadius: borderRadius,
+    borderWidth: borderWidth,
+    borderStyle: borderStyle,
+    borderColor: borderColor,
+    fontSize: fontSize,
     fontFamily: tokens.value.typography.family.sans,
-    fontWeight,
+    fontWeight: fontWeight,
     letterSpacing: tokens.value.typography.letter[2],
     padding: `0 ${paddingX}`,
-    height,
-    minWidth,
-    cursor,
-    background,
-    color,
-    boxShadow,
-    outline,
-    opacity,
+    height: height,
+    minWidth: minWidth,
+    cursor: cursor,
+    background: background,
+    color: color,
+    boxShadow: boxShadow,
+    outline: outline,
+    opacity: opacity,
     position: 'relative',
     transition: 'background 0.2s, color 0.2s, border 0.2s, box-shadow 0.2s',
     pointerEvents: props.loading ? 'none' : 'auto',
