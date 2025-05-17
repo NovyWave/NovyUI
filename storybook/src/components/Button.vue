@@ -10,7 +10,25 @@
     @focus="onFocus"
     @blur="onBlur"
   >
-    <span v-if="loading" :style="spinnerStyle">⏳</span>
+    <span v-if="loading" :style="spinnerStyle">
+      <img
+        :src="getIconUrl(spinnerIconName)"
+        :alt="'Loading'"
+        :width="spinnerSize"
+        :height="spinnerSize"
+        class="spin"
+        style="display:inline-block;vertical-align:middle;"
+      />
+    </span>
+    <span v-else-if="variant === 'Icon'">
+      <img
+        :src="getIconUrl(iconName)"
+        :alt="'Icon'"
+        :width="iconSize"
+        :height="iconSize"
+        style="display:inline-block;vertical-align:middle;"
+      />
+    </span>
     <span v-else>{{ label }}</span>
     <slot />
   </button>
@@ -19,6 +37,11 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
 import { tokens } from '../tokens';
+
+function getIconUrl(name: string) {
+  // For Storybook static asset serving, use /icons/ as the base path
+  return `/icons/${name}.svg`;
+}
 
 type Variant = 'Primary' | 'Secondary' | 'Outline' | 'Ghost' | 'Icon' | 'Loading';
 type Size = 'small' | 'medium' | 'large';
@@ -50,6 +73,11 @@ function onMouseDown() { active.value = true; }
 function onMouseUp() { active.value = false; }
 function onFocus() { focused.value = true; }
 function onBlur() { focused.value = false; }
+
+const iconName = 'plus';
+const spinnerIconName = 'refresh-ccw';
+const iconSize = 20;
+const spinnerSize = 20;
 
 const buttonStyle = computed<Record<string, string | number>>(() => {
   const variant = props.variant || 'Primary';
@@ -202,7 +230,19 @@ const buttonStyle = computed<Record<string, string | number>>(() => {
 
 const spinnerStyle = computed<Record<string, string | number>>(() => ({
   marginRight: tokens.value.spacing[2],
-  fontSize: '1em',
+  fontSize: `${spinnerSize}px`,
   color: tokens.value.color.primary[7],
+  display: 'inline-flex',
+  alignItems: 'center',
+  verticalAlign: 'middle',
 }));
 </script>
+
+<style scoped>
+.spin {
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+</style>
