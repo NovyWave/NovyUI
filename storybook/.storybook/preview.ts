@@ -1,12 +1,12 @@
 import type { Preview } from '@storybook/vue3-vite'
-import { setTheme } from '../src/tokens.ts'
+import { setTheme, tokens } from '../src/tokens.ts'
 
 const preview: Preview = {
   parameters: {
     backgrounds: {
       options: {
-        light: { name: 'Light', value: '#ffffff' },
-        dark: { name: 'Dark', value: '#222222' },
+        light: { name: 'Light', value: tokens.value.color.neutral[10] },
+        dark: { name: 'Dark', value: tokens.value.color.neutral[1] },
       },
     },
     darkMode: {

@@ -27,7 +27,7 @@
 
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
-import { tokens, getIconUrl } from '../tokens';
+import { tokens, getIconUrl, useTheme } from '../tokens';
 import type { IconToken } from '../tokens';
 
 type Variant = 'Primary' | 'Secondary' | 'Outline' | 'Ghost' | 'Link';
@@ -64,9 +64,12 @@ function onBlur() { focused.value = false; }
 const spinnerIconName: IconToken = 'refresh-ccw';
 const spinnerSize = 20;
 
+const theme = useTheme();
+
 const buttonStyle = computed<Record<string, string | number>>(() => {
   const variant = props.variant || 'Primary';
   const size = props.size || 'medium';
+  const isDark = theme.value === 'dark';
   let background: string = tokens.value.color.primary[7];
   let color: string = tokens.value.color.neutral[1];
   let borderColor: string = tokens.value.color.primary[7];
@@ -89,6 +92,7 @@ const buttonStyle = computed<Record<string, string | number>>(() => {
     borderColor = tokens.value.color.primary[7];
     borderStyle = tokens.value.borderStyle.solid;
     borderWidth = tokens.value.borderWidth[1];
+    boxShadow = `${tokens.value.shadowSize[1]} ${tokens.value.shadowColor.primary}`; // Add subtle shadow
     if (hovered.value && !props.disabled && !props.loading) {
       background = tokens.value.color.primary[8];
       borderColor = tokens.value.color.primary[8];
@@ -98,18 +102,19 @@ const buttonStyle = computed<Record<string, string | number>>(() => {
       borderColor = tokens.value.color.primary[9];
     }
   } else if (variant === 'Secondary') {
-    background = tokens.value.color.neutral[1];
     color = tokens.value.color.primary[7];
     borderColor = tokens.value.color.neutral[3];
     borderStyle = tokens.value.borderStyle.solid;
     borderWidth = tokens.value.borderWidth[1];
+    boxShadow = `${tokens.value.shadowSize[1]} ${tokens.value.shadowColor.neutral}`;
+    background = isDark ? tokens.value.color.neutral[3] : tokens.value.color.neutral[1];
     if (hovered.value && !props.disabled && !props.loading) {
-      background = tokens.value.color.neutral[2];
+      background = isDark ? tokens.value.color.neutral[4] : tokens.value.color.neutral[4];
       borderColor = tokens.value.color.primary[6];
       color = tokens.value.color.primary[8];
     }
     if (active.value && !props.disabled && !props.loading) {
-      background = tokens.value.color.neutral[3];
+      background = isDark ? tokens.value.color.neutral[5] : tokens.value.color.neutral[5];
       borderColor = tokens.value.color.primary[7];
       color = tokens.value.color.primary[9];
     }
@@ -118,7 +123,8 @@ const buttonStyle = computed<Record<string, string | number>>(() => {
     color = tokens.value.color.primary[7];
     borderColor = tokens.value.color.neutral[3];
     borderStyle = tokens.value.borderStyle.solid;
-    borderWidth = tokens.value.borderWidth[1];
+    borderWidth = tokens.value.borderWidth[2]; // Thicker border for better visibility
+    boxShadow = 'none'; // Mute shadow for Outline variant
     if (hovered.value && !props.disabled && !props.loading) {
       borderColor = tokens.value.color.primary[7];
       color = tokens.value.color.primary[7];
