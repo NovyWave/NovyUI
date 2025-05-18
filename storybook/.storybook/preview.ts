@@ -39,13 +39,12 @@ const preview: Preview = {
       description: 'Global theme for components',
       defaultValue: 'dark',
       toolbar: {
-        icon: 'sun',
-        title: 'Theme',
         items: [
-          { value: 'light', title: 'Light' },
-          { value: 'dark', title: 'Dark' },
+          { value: 'light', title: 'Light', icon: 'sun', },
+          { value: 'dark', title: 'Dark', icon: 'moon', },
         ],
         showName: true,
+        dynamicTitle: true,
       },
     },
   },
