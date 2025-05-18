@@ -2,6 +2,7 @@ import { addons, types } from 'storybook/manager-api';
 import { useGlobals } from 'storybook/manager-api';
 import { IconButton } from '@storybook/components';
 import { SunIcon, MoonIcon } from '@storybook/icons';
+import { Separator } from '@storybook/components';
 import React from 'react';
 import { themes } from '@storybook/theming';
 
@@ -18,27 +19,22 @@ const ThemeToolbar = () => {
   const isDark = theme === 'dark';
   return (
     <>
+      <Separator />
       <IconButton
-        key="light"
-        title="Light Theme"
-        active={!isDark}
-        onClick={() => updateGlobals({
-          [THEME_KEY]: 'light',
-          [BACKGROUNDS_KEY]: { value: 'light' },
-        })}
+        key="theme-toggle"
+        title={isDark ? 'Switch to Light Theme' : 'Switch to Dark Theme'}
+        active
+        onClick={() => {
+          updateGlobals({
+            [THEME_KEY]: isDark ? 'light' : 'dark',
+            [BACKGROUNDS_KEY]: { value: isDark ? 'light' : 'dark' },
+          });
+        }}
       >
-        <SunIcon />
-      </IconButton>
-      <IconButton
-        key="dark"
-        title="Dark Theme"
-        active={isDark}
-        onClick={() => updateGlobals({
-          [THEME_KEY]: 'dark',
-          [BACKGROUNDS_KEY]: { value: 'dark' },
-        })}
-      >
-        <MoonIcon />
+        {isDark ? <MoonIcon /> : <SunIcon />}
+        <span style={{ marginLeft: 6, fontSize: 13, fontWeight: 500 }}>
+          {isDark ? 'Dark' : 'Light'}
+        </span>
       </IconButton>
     </>
   );

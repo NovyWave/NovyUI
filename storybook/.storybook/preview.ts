@@ -24,30 +24,15 @@ const preview: Preview = {
   },
   initialGlobals: {
     backgrounds: { value: 'dark' },
+    theme: 'dark',
   },
   decorators: [
     (story, context) => {
-      // Sync theme with tokens.ts for runtime theming
       const theme = context.globals.theme || 'dark';
-      setTheme(theme); // Set theme based on global, default to dark
+      setTheme(theme);
       return story();
     },
   ],
-  globalTypes: {
-    theme: {
-      name: 'Theme',
-      description: 'Global theme for components',
-      defaultValue: 'dark',
-      toolbar: {
-        items: [
-          { value: 'light', title: 'Light', icon: 'sun', },
-          { value: 'dark', title: 'Dark', icon: 'moon', },
-        ],
-        showName: true,
-        dynamicTitle: true,
-      },
-    },
-  },
 };
 
 export default preview;
