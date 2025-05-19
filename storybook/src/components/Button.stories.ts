@@ -46,6 +46,12 @@ const meta: Meta<typeof Button> = {
       description: 'Icon on the right (IconToken name)',
       table: { category: 'Content' },
     },
+    size: {
+      control: { type: 'select' },
+      options: ['small', 'medium', 'large'],
+      description: 'Button size',
+      table: { category: 'Appearance' },
+    },
   },
   args: {
     variant: 'Primary',
@@ -54,6 +60,7 @@ const meta: Meta<typeof Button> = {
     loading: false,
     leftIcon: undefined,
     rightIcon: undefined,
+    size: 'medium',
   },
   parameters: {
     docs: {
@@ -93,15 +100,6 @@ export const Loading: Story = {
 export const Link: Story = {
   args: { variant: 'Link', label: 'Link Button' },
 };
-export const WithLeftIcon: Story = {
-  args: { leftIcon: 'plus', label: 'Add Item' },
-};
-export const WithRightIcon: Story = {
-  args: { rightIcon: 'arrow-right', label: 'Next' },
-};
-export const WithBothIcons: Story = {
-  args: { leftIcon: 'chevron-left', rightIcon: 'chevron-right', label: 'Navigate' },
-};
 export const DynamicIconSwitch: Story = {
   render: (args: Record<string, unknown>) => ({
     components: { Button },
@@ -126,5 +124,50 @@ export const IconOnly: Story = {
     leftIcon: 'user',
     label: '',
     variant: 'Primary',
+  },
+};
+
+export const AllSizes: Story = {
+  render: (args: Record<string, unknown>) => ({
+    components: { Button },
+    setup() {
+      return { args };
+    },
+    template: `
+    <div style="display: flex; align-items: center;">
+      <Button v-bind="{...args, size: 'small'}" label="Small" />
+      <Button v-bind="{...args, size: 'medium'}" label="Medium" style="margin-left: 16px;" />
+      <Button v-bind="{...args, size: 'large'}" label="Large" style="margin-left: 16px;" />
+    </div>
+  `,
+  }),
+  args: {
+    variant: 'Primary',
+    leftIcon: undefined,
+    rightIcon: undefined,
+    loading: false,
+    disabled: false,
+  },
+};
+
+export const WithIcons: Story = {
+  render: (args: Record<string, unknown>) => ({
+    components: { Button },
+    setup() {
+      return { args };
+    },
+    template: `
+    <div style="display: flex; align-items: center;">
+      <Button v-bind="{...args, leftIcon: 'plus', rightIcon: undefined}" label="Left Icon" />
+      <Button v-bind="{...args, leftIcon: undefined, rightIcon: 'arrow-right'}" label="Right Icon" style="margin-left: 16px;" />
+      <Button v-bind="{...args, leftIcon: 'chevron-left', rightIcon: 'chevron-right'}" label="Both Icons" style="margin-left: 16px;" />
+    </div>
+  `,
+  }),
+  args: {
+    variant: 'Primary',
+    loading: false,
+    disabled: false,
+    size: 'medium',
   },
 };
