@@ -52,6 +52,7 @@ const props = defineProps<{
   rightIcon?: IconToken,
   leftIconAriaLabel?: string,
   rightIconAriaLabel?: string,
+  minWidth?: string | number, // Allow user to set minimal button width
 }>();
 
 const emits = defineEmits([
@@ -79,7 +80,7 @@ const spinnerSize = 20;
 
 const theme = useTheme();
 
-const buttonStyle = computed<Record<string, string | number>>(() => {
+const buttonStyle = computed(() => {
   const variant = props.variant || 'Primary';
   const size = props.size || 'medium';
   const isDark = theme.value === 'dark';
@@ -94,7 +95,12 @@ const buttonStyle = computed<Record<string, string | number>>(() => {
   let fontSize: string = tokens.value.typography.size[3];
   let paddingY: string = tokens.value.spacing[2];
   let paddingX: string = tokens.value.spacing[3];
-  let minWidth: string = tokens.value.width[2];
+  let minWidth: string | undefined = undefined;
+  if (typeof props.minWidth === 'number') {
+    minWidth = `${props.minWidth}px`;
+  } else if (typeof props.minWidth === 'string' && props.minWidth) {
+    minWidth = props.minWidth;
+  }
   let textDecoration: string | undefined = undefined;
   let outline: string = 'none';
 
@@ -174,7 +180,6 @@ const buttonStyle = computed<Record<string, string | number>>(() => {
     fontWeight = tokens.value.typography.weight[3];
     paddingY = tokens.value.spacing[2];
     paddingX = tokens.value.spacing[3];
-    minWidth = tokens.value.width[2];
     if (hovered.value && !props.disabled && !props.loading) {
       color = tokens.value.color.primary[9];
       textDecoration = 'underline';
@@ -195,17 +200,14 @@ const buttonStyle = computed<Record<string, string | number>>(() => {
       paddingY = tokens.value.spacing[1];
       paddingX = tokens.value.spacing[2];
       fontSize = tokens.value.typography.size[2];
-      minWidth = tokens.value.width[1];
     } else if (size === 'large') {
       paddingY = tokens.value.spacing[3];
       paddingX = tokens.value.spacing[4];
       fontSize = tokens.value.typography.size[4];
-      minWidth = tokens.value.width[3];
     } else {
       paddingY = tokens.value.spacing[2];
       paddingX = tokens.value.spacing[3];
       fontSize = tokens.value.typography.size[3];
-      minWidth = tokens.value.width[2];
     }
   }
 
@@ -243,7 +245,7 @@ const buttonStyle = computed<Record<string, string | number>>(() => {
     fontWeight: fontWeight,
     letterSpacing: tokens.value.typography.letter[2],
     padding: `${paddingY} ${paddingX}`,
-    minWidth: minWidth,
+    ...(minWidth ? { minWidth: minWidth as string } : {}),
     cursor: cursor,
     background: background,
     color: color,
@@ -256,7 +258,7 @@ const buttonStyle = computed<Record<string, string | number>>(() => {
     textDecoration: textDecoration || 'none',
     minHeight: '2.5em',
     lineHeight: 1,
-  };
+  } as Record<string, string | number>;
 });
 
 const spinnerContainerStyle = computed<Record<string, string | number>>(() => ({

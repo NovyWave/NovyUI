@@ -228,6 +228,8 @@ const width = {
   1: '32px',
   2: '44px',
   3: '56px',
+  4: '72px', // Extra large button min width
+  5: '96px', // XXL button min width
 };
 
 // Theme state

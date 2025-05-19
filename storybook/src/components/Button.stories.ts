@@ -116,7 +116,7 @@ export const DynamicIconSwitch: Story = {
       }
       return { args, toggleIcon };
     },
-    template: `<Button v-bind="args" @click="toggleIcon" />`,
+    template: `<Button v-bind="args" @click="toggleIcon" :minWidth="140" />`,
   }),
   args: { leftIcon: 'plus', label: 'Expand' },
 };
