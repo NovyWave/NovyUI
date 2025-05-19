@@ -17,7 +17,7 @@
       <span v-if="leftIcon && label" class="button-icon left">
         <Icon :name="leftIcon" :size="spinnerSize" :color="String(buttonStyle.color)" :aria-label="leftIconAriaLabel || leftIcon" role="img" />
       </span>
-      <span v-if="label" class="button-label">{{ label }}</span>
+      <span v-if="label" class="button-label" :style="{ paddingLeft: labelPaddingX, paddingRight: labelPaddingX }">{{ label }}</span>
       <span v-if="rightIcon && label" class="button-icon right">
         <Icon :name="rightIcon" :size="spinnerSize" :color="String(buttonStyle.color)" :aria-label="rightIconAriaLabel || rightIcon" role="img" />
       </span>
@@ -80,6 +80,8 @@ const spinnerSize = 20;
 
 const theme = useTheme();
 
+const labelPaddingX = computed(() => tokens.value.spacing[2]);
+
 const buttonStyle = computed(() => {
   const variant = props.variant || 'Primary';
   const size = props.size || 'medium';
@@ -101,8 +103,8 @@ const buttonStyle = computed(() => {
   } else if (typeof props.minWidth === 'string' && props.minWidth) {
     minWidth = props.minWidth;
   }
+  let outline: string = 'none'; // Always suppress native browser focus ring
   let textDecoration: string | undefined = undefined;
-  let outline: string = 'none';
 
   // Variant logic
   if (variant === 'Primary') {
@@ -211,6 +213,17 @@ const buttonStyle = computed(() => {
     }
   }
 
+  // --- FOCUS RING LOGIC ---
+  if (focused.value && !props.disabled && !props.loading && variant !== 'Link') {
+    // Custom focus ring: 3px, high-contrast, always visible
+    const focusColor = tokens.value.color.focus?.[1] ?? '#1976d2';
+    if (typeof boxShadow === 'string' && boxShadow !== 'none' && boxShadow.length > 0) {
+      boxShadow = `${boxShadow}, 0 0 0 3px ${focusColor}cc`;
+    } else {
+      boxShadow = `0 0 0 3px ${focusColor}cc`;
+    }
+  }
+
   let opacity = tokens.value.opacity.opaque;
   let cursor = 'pointer';
   if (props.disabled || props.loading) {
@@ -220,16 +233,6 @@ const buttonStyle = computed(() => {
     color = tokens.value.color.neutral[7];
     borderColor = tokens.value.color.neutral[5];
     boxShadow = `${tokens.value.shadowSize[1]} ${tokens.value.shadowColor.neutral}`;
-  }
-
-  if (focused.value && !props.disabled && !props.loading) {
-    // Only apply outline and focus shadow if not Ghost
-    if (variant !== 'Ghost') {
-      outline = `${tokens.value.borderWidth[2]} ${tokens.value.borderStyle.solid} ${tokens.value.color.primary[7]}`;
-      boxShadow = `${tokens.value.shadowSize.focus} ${tokens.value.shadowColor.primary}`;
-    } else {
-      outline = 'none';
-    }
   }
 
   return {
@@ -250,7 +253,7 @@ const buttonStyle = computed(() => {
     background: background,
     color: color,
     boxShadow: boxShadow,
-    outline: outline,
+    outline: 'none',
     opacity: opacity,
     position: 'relative',
     transition: 'background 0.2s, color 0.2s, border 0.2s, box-shadow 0.2s',
@@ -269,56 +272,3 @@ const spinnerContainerStyle = computed<Record<string, string | number>>(() => ({
   height: '100%',
 }));
 </script>
-
-<style scoped>
-.spin {
-  animation: spin 1s linear infinite;
-}
-@keyframes spin {
-  100% { transform: rotate(360deg); }
-}
-.button-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: auto;
-  flex: 0 0 auto;
-}
-.button-label:empty + .button-icon.right,
-.button-label:empty ~ .button-icon.left {
-  padding-right: 0;
-  padding-left: 0;
-}
-.button-label:empty {
-  display: none;
-}
-.button-label {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  flex: 1 1 auto;
-  padding-left: 0.75em;
-  padding-right: 0.75em;
-}
-.button-icon-img {
-  mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
-  mask-size: contain;
-  -webkit-mask-size: contain;
-  mask-position: center;
-  -webkit-mask-position: center;
-  background-repeat: no-repeat;
-  vertical-align: middle;
-}
-button {
-  /* Ensure minimum height for vertical centering */
-  min-height: 2.5em;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-}
-</style>
