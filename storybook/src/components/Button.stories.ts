@@ -127,11 +127,4 @@ export const IconOnly: Story = {
     label: '',
     variant: 'Primary',
   },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Button with only an icon and no text.'
-      }
-    }
-  }
 };

@@ -14,18 +14,36 @@
       <Icon :name="spinnerIconName" :size="spinnerSize" :color="String(buttonStyle.color)" aria-label="Loading" role="img" />
     </span>
     <template v-else>
-      <span v-if="leftIcon && label" class="button-icon left">
+      <span
+        v-if="leftIcon && label"
+        class="button-icon left"
+        :style="{}"
+      >
         <Icon :name="leftIcon" :size="spinnerSize" :color="String(buttonStyle.color)" :aria-label="leftIconAriaLabel || leftIcon" role="img" />
       </span>
-      <span v-if="label" class="button-label" :style="{ paddingLeft: labelPaddingX, paddingRight: labelPaddingX }">{{ label }}</span>
-      <span v-if="rightIcon && label" class="button-icon right">
+      <span
+        v-if="label"
+        class="button-label"
+        :style="{
+          flex: 1,
+          textAlign: 'center',
+          paddingLeft: labelPaddingX,
+          paddingRight: labelPaddingX,
+          minWidth: 0
+        }"
+      >{{ label }}</span>
+      <span
+        v-if="rightIcon && label"
+        class="button-icon right"
+        :style="{}"
+      >
         <Icon :name="rightIcon" :size="spinnerSize" :color="String(buttonStyle.color)" :aria-label="rightIconAriaLabel || rightIcon" role="img" />
       </span>
       <!-- Icon-only left or right -->
-      <span v-else-if="leftIcon && !label" class="button-icon left">
+      <span v-else-if="leftIcon && !label" class="button-icon left" :style="{}">
         <Icon :name="leftIcon" :size="spinnerSize" :color="String(buttonStyle.color)" :aria-label="leftIconAriaLabel || leftIcon" role="img" />
       </span>
-      <span v-else-if="rightIcon && !label" class="button-icon right">
+      <span v-else-if="rightIcon && !label" class="button-icon right" :style="{}">
         <Icon :name="rightIcon" :size="spinnerSize" :color="String(buttonStyle.color)" :aria-label="rightIconAriaLabel || rightIcon" role="img" />
       </span>
     </template>
@@ -103,7 +121,6 @@ const buttonStyle = computed(() => {
   } else if (typeof props.minWidth === 'string' && props.minWidth) {
     minWidth = props.minWidth;
   }
-  let outline: string = 'none'; // Always suppress native browser focus ring
   let textDecoration: string | undefined = undefined;
 
   // Variant logic
@@ -160,7 +177,6 @@ const buttonStyle = computed(() => {
     borderColor = tokens.value.color.transparent; // No border
     borderStyle = 'none'; // Remove border style
     borderWidth = '0'; // Remove border width
-    outline = 'none'; // No outline
     boxShadow = 'none'; // No shadow
     if ((hovered.value || focused.value) && !props.disabled && !props.loading) {
       background = tokens.value.color.primary[3]; // More visible blue background on hover/focus
@@ -177,7 +193,6 @@ const buttonStyle = computed(() => {
     borderStyle = tokens.value.borderStyle.solid;
     borderWidth = tokens.value.borderWidth.none;
     boxShadow = 'none';
-    outline = 'none';
     textDecoration = 'underline';
     fontWeight = tokens.value.typography.weight[3];
     paddingY = tokens.value.spacing[2];
