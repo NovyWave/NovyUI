@@ -292,9 +292,13 @@ export async function fetchIconSvg(name: IconToken): Promise<string | undefined>
   const url = getIconUrl(name);
   try {
     const response = await fetch(url);
-    if (!response.ok) return undefined;
+    if (!response.ok) {
+      console.error('Failed to fetch icon SVG: HTTP', response.status, response.statusText, url);
+      return undefined;
+    }
     return await response.text();
-  } catch {
+  } catch (e) {
+    console.error('Failed to fetch icon SVG:', e);
     return undefined;
   }
 }
