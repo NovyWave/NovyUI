@@ -14,11 +14,18 @@
       <Icon :name="spinnerIconName" :size="spinnerSize" :color="String(buttonStyle.color)" aria-label="Loading" role="img" />
     </span>
     <template v-else>
-      <span v-if="leftIcon" class="button-icon left">
+      <span v-if="leftIcon && label" class="button-icon left">
         <Icon :name="leftIcon" :size="spinnerSize" :color="String(buttonStyle.color)" :aria-label="leftIconAriaLabel || leftIcon" role="img" />
       </span>
-      <span class="button-label">{{ label }}</span>
-      <span v-if="rightIcon" class="button-icon right">
+      <span v-if="label" class="button-label">{{ label }}</span>
+      <span v-if="rightIcon && label" class="button-icon right">
+        <Icon :name="rightIcon" :size="spinnerSize" :color="String(buttonStyle.color)" :aria-label="rightIconAriaLabel || rightIcon" role="img" />
+      </span>
+      <!-- Icon-only left or right -->
+      <span v-else-if="leftIcon && !label" class="button-icon left">
+        <Icon :name="leftIcon" :size="spinnerSize" :color="String(buttonStyle.color)" :aria-label="leftIconAriaLabel || leftIcon" role="img" />
+      </span>
+      <span v-else-if="rightIcon && !label" class="button-icon right">
         <Icon :name="rightIcon" :size="spinnerSize" :color="String(buttonStyle.color)" :aria-label="rightIconAriaLabel || rightIcon" role="img" />
       </span>
     </template>
@@ -274,18 +281,24 @@ const spinnerContainerStyle = computed<Record<string, string | number>>(() => ({
   justify-content: center;
   height: 100%;
   width: auto;
+  flex: 0 0 auto;
 }
-.button-icon.left {
-  margin-right: 0.5em;
+.button-label:empty + .button-icon.right,
+.button-label:empty ~ .button-icon.left {
+  padding-right: 0;
+  padding-left: 0;
 }
-.button-icon.right {
-  margin-left: 0.5em;
+.button-label:empty {
+  display: none;
 }
 .button-label {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
+  flex: 1 1 auto;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
 }
 .button-icon-img {
   mask-repeat: no-repeat;
@@ -301,5 +314,9 @@ button {
   /* Ensure minimum height for vertical centering */
   min-height: 2.5em;
   line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
 }
 </style>
