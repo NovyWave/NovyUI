@@ -15,6 +15,7 @@ const meta: Meta<typeof Button> = {
         'Outline',
         'Ghost',
         'Link',
+        'Destructive',
       ],
       description: 'Visual style of the button',
       table: { category: 'Appearance' },
@@ -99,6 +100,9 @@ export const Loading: Story = {
 };
 export const Link: Story = {
   args: { variant: 'Link', label: 'Link Button' },
+};
+export const Destructive: Story = {
+  args: { variant: 'Destructive', label: 'Delete', leftIcon: 'trash' },
 };
 export const DynamicIconSwitch: Story = {
   render: (args: Record<string, unknown>) => ({

@@ -89,7 +89,7 @@ import { tokens, useTheme } from '../tokens';
 import type { IconToken } from '../tokens';
 import Icon from './Icon.vue';
 
-type Variant = 'Primary' | 'Secondary' | 'Outline' | 'Ghost' | 'Link';
+type Variant = 'Primary' | 'Secondary' | 'Outline' | 'Ghost' | 'Link' | 'Destructive';
 type Size = 'small' | 'medium' | 'large';
 
 const props = defineProps<{
@@ -241,6 +241,21 @@ const buttonStyle = computed(() => {
       color = tokens.value.color.primary[8];
       textDecoration = 'underline';
     }
+  } else if (variant === 'Destructive') {
+    background = tokens.value.color.error[7];
+    color = tokens.value.color.neutral[1];
+    borderColor = tokens.value.color.error[7];
+    borderStyle = tokens.value.borderStyle.solid;
+    borderWidth = tokens.value.borderWidth[1];
+    boxShadow = `${tokens.value.shadowSize[1]} ${tokens.value.shadowColor.error}`;
+    if (hovered.value && !props.disabled && !props.loading) {
+      background = tokens.value.color.error[8];
+      borderColor = tokens.value.color.error[8];
+    }
+    if (active.value && !props.disabled && !props.loading) {
+      background = tokens.value.color.error[9];
+      borderColor = tokens.value.color.error[9];
+    }
   }
 
   // Size logic (skip for Link)
@@ -294,7 +309,7 @@ const buttonStyle = computed(() => {
     fontFamily: tokens.value.typography.family.sans,
     fontWeight: fontWeight,
     letterSpacing: tokens.value.typography.letter[2],
-    padding: `${paddingY} ${paddingX}`,
+    padding: `${paddingY} ${paddingX}` as string,
     ...(minWidth ? { minWidth: minWidth as string } : {}),
     cursor: cursor,
     background: background,
