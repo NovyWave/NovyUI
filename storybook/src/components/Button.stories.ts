@@ -120,3 +120,18 @@ export const DynamicIconSwitch: Story = {
   }),
   args: { leftIcon: 'plus', label: 'Expand' },
 };
+
+export const IconOnly: Story = {
+  args: {
+    leftIcon: 'user',
+    label: '',
+    variant: 'Primary',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Button with only an icon and no text.'
+      }
+    }
+  }
+};

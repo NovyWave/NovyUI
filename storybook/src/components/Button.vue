@@ -267,9 +267,11 @@ const spinnerContainerStyle = computed<Record<string, string | number>>(() => ({
   100% { transform: rotate(360deg); }
 }
 .button-icon {
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  justify-content: center;
   vertical-align: middle;
+  height: 100%;
 }
 .button-icon.left {
   margin-right: 0.5em;
@@ -278,9 +280,10 @@ const spinnerContainerStyle = computed<Record<string, string | number>>(() => ({
   margin-left: 0.5em;
 }
 .button-label {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   vertical-align: middle;
+  height: 100%;
 }
 .button-icon-img {
   mask-repeat: no-repeat;
