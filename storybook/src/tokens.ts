@@ -214,13 +214,13 @@ const patterns = [
 // Icon tokens
 export const icons = [
   'arrow-left', 'user-round', 'search', 'check', 'x', 'plus', 'minus', 'eye', 'eye-off', 'pencil', 'trash', 'info',
-  'alert-triangle', 'alert-circle', 'check-circle', 'chevron-down', 'chevron-up', 'chevron-left', 'chevron-right',
-  'menu', 'more-vertical', 'more-horizontal', 'calendar', 'clock', 'upload', 'download', 'filter', 'settings', 'star',
-  'heart', 'lock', 'lock-open', 'refresh-ccw', 'external-link', 'copy', 'arrow-right', 'arrow-up', 'arrow-down',
-  'home', 'file', 'folder', 'image', 'upload-cloud', 'download-cloud', 'send', 'message-circle', 'phone', 'mail',
-  'zoom-in', 'zoom-out', 'user', 'users', 'settings-2', 'log-in', 'log-out', 'shield', 'shield-off', 'help-circle',
-  'alert-octagon', 'bookmark', 'tag', 'bell', 'bell-off', 'calendar-check', 'calendar-x', 'calendar-plus',
-  'calendar-minus', 'chevrons-up', 'chevrons-down', 'chevrons-left', 'chevrons-right',
+  'triangle-alert', 'circle-alert', 'circle-check', 'chevron-down', 'chevron-up', 'chevron-left', 'chevron-right',
+  'menu', 'ellipsis-vertical', 'ellipsis', 'calendar', 'clock', 'upload', 'download', 'funnel', 'settings', 'star',
+  'heart', 'lock', 'lock-open', 'refresh-ccw', 'refresh-cw', 'external-link', 'copy', 'arrow-right', 'arrow-up', 'arrow-down',
+  'house', 'file', 'folder', 'image', 'cloud-upload', 'cloud-download', 'send', 'message-circle', 'phone', 'mail',
+  'zoom-in', 'zoom-out', 'user', 'users', 'settings-2', 'log-in', 'log-out', 'shield', 'shield-off', 'circle-help',
+  'octagon-alert', 'bookmark', 'tag', 'bell', 'bell-off', 'calendar-check', 'calendar-x', 'calendar-plus', 'calendar-minus',
+  'chevrons-up', 'chevrons-down', 'chevrons-left', 'chevrons-right',
 ];
 
 // Width tokens
@@ -273,12 +273,12 @@ export type Tokens = typeof tokens.value;
 
 export type IconToken =
   | 'arrow-left' | 'user-round' | 'search' | 'check' | 'x' | 'plus' | 'minus' | 'eye' | 'eye-off' | 'pencil' | 'trash' | 'info'
-  | 'alert-triangle' | 'alert-circle' | 'check-circle' | 'chevron-down' | 'chevron-up' | 'chevron-left' | 'chevron-right'
-  | 'menu' | 'more-vertical' | 'more-horizontal' | 'calendar' | 'clock' | 'upload' | 'download' | 'filter' | 'settings' | 'star'
-  | 'heart' | 'lock' | 'lock-open' | 'refresh-ccw' | 'external-link' | 'copy' | 'arrow-right' | 'arrow-up' | 'arrow-down'
-  | 'home' | 'file' | 'folder' | 'image' | 'upload-cloud' | 'download-cloud' | 'send' | 'message-circle' | 'phone' | 'mail'
-  | 'zoom-in' | 'zoom-out' | 'user' | 'users' | 'settings-2' | 'log-in' | 'log-out' | 'shield' | 'shield-off' | 'help-circle'
-  | 'alert-octagon' | 'bookmark' | 'tag' | 'bell' | 'bell-off' | 'calendar-check' | 'calendar-x' | 'calendar-plus' | 'calendar-minus'
+  | 'triangle-alert' | 'circle-alert' | 'circle-check' | 'chevron-down' | 'chevron-up' | 'chevron-left' | 'chevron-right'
+  | 'menu' | 'ellipsis-vertical' | 'ellipsis' | 'calendar' | 'clock' | 'upload' | 'download' | 'funnel' | 'settings' | 'star'
+  | 'heart' | 'lock' | 'lock-open' | 'refresh-ccw' | 'refresh-cw' | 'external-link' | 'copy' | 'arrow-right' | 'arrow-up' | 'arrow-down'
+  | 'house' | 'file' | 'folder' | 'image' | 'cloud-upload' | 'cloud-download' | 'send' | 'message-circle' | 'phone' | 'mail'
+  | 'zoom-in' | 'zoom-out' | 'user' | 'users' | 'settings-2' | 'log-in' | 'log-out' | 'shield' | 'shield-off' | 'circle-help'
+  | 'octagon-alert' | 'bookmark' | 'tag' | 'bell' | 'bell-off' | 'calendar-check' | 'calendar-x' | 'calendar-plus' | 'calendar-minus'
   | 'chevrons-up' | 'chevrons-down' | 'chevrons-left' | 'chevrons-right';
 
 // Returns the URL for a given icon token (for use in <img src> or fetch)

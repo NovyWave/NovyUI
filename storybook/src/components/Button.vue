@@ -10,9 +10,41 @@
     @focus="onFocus"
     @blur="onBlur"
   >
-    <span v-if="loading" :style="spinnerContainerStyle">
-      <Icon :name="spinnerIconName" :size="spinnerSize" :color="String(buttonStyle.color)" aria-label="Loading" role="img" />
-    </span>
+    <template v-if="loading">
+      <!-- Only rightIcon defined: spinner replaces right icon, keep label and spinner in a flex row -->
+      <span v-if="rightIcon && !leftIcon" style="display: flex; align-items: center; width: 100%;">
+        <span class="button-label" v-if="label"
+          :style="{
+            flex: 1,
+            textAlign: 'center',
+            paddingLeft: labelPaddingX,
+            paddingRight: labelPaddingX,
+            minWidth: 0
+          }"
+        >{{ label }}</span>
+        <span class="button-icon right">
+          <Icon :name="spinnerIconName" :size="spinnerSize" :color="String(buttonStyle.color)" aria-label="Loading" role="img" class="spin" />
+        </span>
+      </span>
+      <!-- Left icon defined (or both icons): spinner on left, rightIcon (if present) on right -->
+      <template v-else>
+        <span class="button-icon left">
+          <Icon :name="spinnerIconName" :size="spinnerSize" :color="String(buttonStyle.color)" aria-label="Loading" role="img" class="spin" />
+        </span>
+        <span v-if="label" class="button-label"
+          :style="{
+            flex: 1,
+            textAlign: 'center',
+            paddingLeft: labelPaddingX,
+            paddingRight: labelPaddingX,
+            minWidth: 0
+          }"
+        >{{ label }}</span>
+        <span v-if="rightIcon" class="button-icon right">
+          <Icon :name="rightIcon" :size="spinnerSize" :color="String(buttonStyle.color)" :aria-label="rightIconAriaLabel || rightIcon" role="img" />
+        </span>
+      </template>
+    </template>
     <template v-else>
       <span
         v-if="leftIcon && label"
@@ -93,7 +125,7 @@ function onMouseUp() { active.value = false; }
 function onFocus() { focused.value = true; }
 function onBlur() { focused.value = false; }
 
-const spinnerIconName: IconToken = 'refresh-ccw';
+const spinnerIconName: IconToken = 'refresh-cw';
 const spinnerSize = 20;
 
 const theme = useTheme();
@@ -278,12 +310,13 @@ const buttonStyle = computed(() => {
     lineHeight: 1,
   } as Record<string, string | number>;
 });
-
-const spinnerContainerStyle = computed<Record<string, string | number>>(() => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  width: '100%',
-  height: '100%',
-}));
 </script>
+
+<style scoped>
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+.spin {
+  animation: spin 1s linear infinite;
+}
+</style>
