@@ -212,7 +212,7 @@ const patterns = [
 ];
 
 // Icon tokens
-const icons = [
+export const icons = [
   'arrow-left', 'user-round', 'search', 'check', 'x', 'plus', 'minus', 'eye', 'eye-off', 'pencil', 'trash', 'info',
   'alert-triangle', 'alert-circle', 'check-circle', 'chevron-down', 'chevron-up', 'chevron-left', 'chevron-right',
   'menu', 'more-vertical', 'more-horizontal', 'calendar', 'clock', 'upload', 'download', 'filter', 'settings', 'star',
@@ -279,7 +279,20 @@ export type IconToken =
   | 'alert-octagon' | 'bookmark' | 'tag' | 'bell' | 'bell-off' | 'calendar-check' | 'calendar-x' | 'calendar-plus' | 'calendar-minus'
   | 'chevrons-up' | 'chevrons-down' | 'chevrons-left' | 'chevrons-right';
 
+// Returns the URL for a given icon token (for use in <img src> or fetch)
 export function getIconUrl(name: IconToken): string {
-  // For Storybook static asset serving, use /icons/ as the base path
+  // Returns the static path to the icon SVG asset
   return `/icons/${name}.svg`;
+}
+
+// Fetches the SVG markup for a given icon token by requesting the icon URL
+export async function fetchIconSvg(name: IconToken): Promise<string | undefined> {
+  const url = getIconUrl(name);
+  try {
+    const response = await fetch(url);
+    if (!response.ok) return undefined;
+    return await response.text();
+  } catch {
+    return undefined;
+  }
 }

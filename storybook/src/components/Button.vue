@@ -11,24 +11,26 @@
     @blur="onBlur"
   >
     <span v-if="loading" :style="spinnerContainerStyle">
-      <img
-        :src="getIconUrl(spinnerIconName)"
-        :alt="'Loading'"
-        :width="spinnerSize"
-        :height="spinnerSize"
-        class="spin"
-        style="display:block;margin:auto;"
-      />
+      <Icon :name="spinnerIconName" :size="spinnerSize" :color="String(buttonStyle.color)" aria-label="Loading" role="img" />
     </span>
-    <span v-else>{{ label }}</span>
+    <template v-else>
+      <span v-if="leftIcon" class="button-icon left">
+        <Icon :name="leftIcon" :size="spinnerSize" :color="String(buttonStyle.color)" :aria-label="leftIconAriaLabel || leftIcon" role="img" />
+      </span>
+      <span class="button-label">{{ label }}</span>
+      <span v-if="rightIcon" class="button-icon right">
+        <Icon :name="rightIcon" :size="spinnerSize" :color="String(buttonStyle.color)" :aria-label="rightIconAriaLabel || rightIcon" role="img" />
+      </span>
+    </template>
     <slot />
   </button>
 </template>
 
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
-import { tokens, getIconUrl, useTheme } from '../tokens';
+import { tokens, useTheme } from '../tokens';
 import type { IconToken } from '../tokens';
+import Icon from './Icon.vue';
 
 type Variant = 'Primary' | 'Secondary' | 'Outline' | 'Ghost' | 'Link';
 type Size = 'small' | 'medium' | 'large';
@@ -39,6 +41,10 @@ const props = defineProps<{
   size?: Size,
   disabled?: boolean,
   loading?: boolean,
+  leftIcon?: IconToken,
+  rightIcon?: IconToken,
+  leftIconAriaLabel?: string,
+  rightIconAriaLabel?: string,
 }>();
 
 const emits = defineEmits([
@@ -259,5 +265,31 @@ const spinnerContainerStyle = computed<Record<string, string | number>>(() => ({
 }
 @keyframes spin {
   100% { transform: rotate(360deg); }
+}
+.button-icon {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+}
+.button-icon.left {
+  margin-right: 0.5em;
+}
+.button-icon.right {
+  margin-left: 0.5em;
+}
+.button-label {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+}
+.button-icon-img {
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-size: contain;
+  -webkit-mask-size: contain;
+  mask-position: center;
+  -webkit-mask-position: center;
+  background-repeat: no-repeat;
+  vertical-align: middle;
 }
 </style>

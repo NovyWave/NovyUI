@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import Button from './Button.vue';
+import { icons } from '../tokens.ts';
 
 const meta: Meta<typeof Button> = {
   title: 'Components/Button',
@@ -33,12 +34,26 @@ const meta: Meta<typeof Button> = {
       description: 'Shows loading spinner',
       table: { category: 'State' },
     },
+    leftIcon: {
+      control: { type: 'select' },
+      options: [undefined, ...icons],
+      description: 'Icon on the left (IconToken name)',
+      table: { category: 'Content' },
+    },
+    rightIcon: {
+      control: { type: 'select' },
+      options: [undefined, ...icons],
+      description: 'Icon on the right (IconToken name)',
+      table: { category: 'Content' },
+    },
   },
   args: {
     variant: 'Primary',
     label: 'Button',
     disabled: false,
     loading: false,
+    leftIcon: undefined,
+    rightIcon: undefined,
   },
   parameters: {
     docs: {
@@ -77,4 +92,31 @@ export const Loading: Story = {
 };
 export const Link: Story = {
   args: { variant: 'Link', label: 'Link Button' },
+};
+export const WithLeftIcon: Story = {
+  args: { leftIcon: 'plus', label: 'Add Item' },
+};
+export const WithRightIcon: Story = {
+  args: { rightIcon: 'arrow-right', label: 'Next' },
+};
+export const WithBothIcons: Story = {
+  args: { leftIcon: 'chevron-left', rightIcon: 'chevron-right', label: 'Navigate' },
+};
+export const DynamicIconSwitch: Story = {
+  render: (args: Record<string, unknown>) => ({
+    components: { Button },
+    setup() {
+      let toggled = false;
+      function toggleIcon() {
+        Object.assign(args, {
+          leftIcon: toggled ? 'plus' : 'minus',
+          label: toggled ? 'Expand' : 'Collapse',
+        });
+        toggled = !toggled;
+      }
+      return { args, toggleIcon };
+    },
+    template: `<Button v-bind="args" @click="toggleIcon" />`,
+  }),
+  args: { leftIcon: 'plus', label: 'Expand' },
 };
