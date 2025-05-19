@@ -247,6 +247,8 @@ const buttonStyle = computed<Record<string, string | number>>(() => {
     transition: 'background 0.2s, color 0.2s, border 0.2s, box-shadow 0.2s',
     pointerEvents: props.loading ? 'none' : 'auto',
     textDecoration: textDecoration || 'none',
+    minHeight: '2.5em',
+    lineHeight: 1,
   };
 });
 
@@ -270,8 +272,8 @@ const spinnerContainerStyle = computed<Record<string, string | number>>(() => ({
   display: flex;
   align-items: center;
   justify-content: center;
-  vertical-align: middle;
   height: 100%;
+  width: auto;
 }
 .button-icon.left {
   margin-right: 0.5em;
@@ -282,7 +284,7 @@ const spinnerContainerStyle = computed<Record<string, string | number>>(() => ({
 .button-label {
   display: flex;
   align-items: center;
-  vertical-align: middle;
+  justify-content: center;
   height: 100%;
 }
 .button-icon-img {
@@ -294,5 +296,10 @@ const spinnerContainerStyle = computed<Record<string, string | number>>(() => ({
   -webkit-mask-position: center;
   background-repeat: no-repeat;
   vertical-align: middle;
+}
+button {
+  /* Ensure minimum height for vertical centering */
+  min-height: 2.5em;
+  line-height: 1;
 }
 </style>

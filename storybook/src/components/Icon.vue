@@ -30,10 +30,12 @@ watchEffect(async () => {
 });
 
 const iconStyle = computed(() => ({
-  display: 'inline-block',
-  verticalAlign: 'middle',
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
   width: `${props.size || 24}px`,
   height: `${props.size || 24}px`,
   color: props.color || tokens.value.color.primary[7],
+  verticalAlign: 'middle',
 }));
 </script>
