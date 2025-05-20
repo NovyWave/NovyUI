@@ -9,7 +9,8 @@ import { fetchIconSvg, tokens } from '../tokens';
 
 const props = defineProps<{
   name?: string,
-  size?: number,
+  width?: number | string,
+  height?: number | string,
   color?: string,
   ariaLabel?: string,
 }>();
@@ -33,8 +34,8 @@ const iconStyle = computed(() => ({
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
-  width: `${props.size || 24}px`,
-  height: `${props.size || 24}px`,
+  width: props.width ? (typeof props.width === 'number' ? `${props.width}px` : props.width) : (props.height ? (typeof props.height === 'number' ? `${props.height}px` : props.height) : '24px'),
+  height: props.height ? (typeof props.height === 'number' ? `${props.height}px` : props.height) : (props.width ? (typeof props.width === 'number' ? `${props.width}px` : props.width) : '24px'),
   color: props.color || tokens.value.color.primary[7],
   verticalAlign: 'middle',
 }));

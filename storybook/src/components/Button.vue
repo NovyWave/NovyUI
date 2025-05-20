@@ -12,24 +12,24 @@
   >
     <template v-if="loading">
       <!-- Only rightIcon defined: spinner replaces right icon, keep label and spinner in a flex row -->
-      <span v-if="rightIcon && !leftIcon" style="display: flex; align-items: center; width: 100%;">
+      <span v-if="rightIcon && !leftIcon" :style="{ display: 'flex', alignItems: 'center', width: tokens.width.fill }">
         <span class="button-label" v-if="label"
           :style="{
             flex: 1,
             textAlign: 'center',
             paddingLeft: labelPaddingX,
             paddingRight: labelPaddingX,
-            minWidth: 0
+            minWidth: tokens.width[0]
           }"
         >{{ label }}</span>
         <span class="button-icon right">
-          <Icon :name="spinnerIconName" :size="spinnerSize" :color="String(buttonStyle.color)" aria-label="Loading" role="img" class="spin" />
+          <Icon :name="spinnerIconName" :width="iconSize" :height="iconSize" :color="String(buttonStyle.color)" aria-label="Loading" role="img" class="spin" />
         </span>
       </span>
       <!-- Left icon defined (or both icons): spinner on left, rightIcon (if present) on right -->
       <template v-else>
         <span class="button-icon left">
-          <Icon :name="spinnerIconName" :size="spinnerSize" :color="String(buttonStyle.color)" aria-label="Loading" role="img" class="spin" />
+          <Icon :name="spinnerIconName" :width="iconSize" :height="iconSize" :color="String(buttonStyle.color)" aria-label="Loading" role="img" class="spin" />
         </span>
         <span v-if="label" class="button-label"
           :style="{
@@ -37,11 +37,11 @@
             textAlign: 'center',
             paddingLeft: labelPaddingX,
             paddingRight: labelPaddingX,
-            minWidth: 0
+            minWidth: tokens.width[0]
           }"
         >{{ label }}</span>
         <span v-if="rightIcon" class="button-icon right">
-          <Icon :name="rightIcon" :size="spinnerSize" :color="String(buttonStyle.color)" :aria-label="rightIconAriaLabel || rightIcon" role="img" />
+          <Icon :name="rightIcon" :width="iconSize" :height="iconSize" :color="String(buttonStyle.color)" :aria-label="rightIconAriaLabel || rightIcon" role="img" />
         </span>
       </template>
     </template>
@@ -51,7 +51,7 @@
         class="button-icon left"
         :style="{}"
       >
-        <Icon :name="leftIcon" :size="spinnerSize" :color="String(buttonStyle.color)" :aria-label="leftIconAriaLabel || leftIcon" role="img" />
+        <Icon :name="leftIcon" :width="iconSize" :height="iconSize" :color="String(buttonStyle.color)" :aria-label="leftIconAriaLabel || leftIcon" role="img" />
       </span>
       <span
         v-if="label"
@@ -61,7 +61,7 @@
           textAlign: 'center',
           paddingLeft: labelPaddingX,
           paddingRight: labelPaddingX,
-          minWidth: 0
+          minWidth: tokens.width[0]
         }"
       >{{ label }}</span>
       <span
@@ -69,14 +69,14 @@
         class="button-icon right"
         :style="{}"
       >
-        <Icon :name="rightIcon" :size="spinnerSize" :color="String(buttonStyle.color)" :aria-label="rightIconAriaLabel || rightIcon" role="img" />
+        <Icon :name="rightIcon" :width="iconSize" :height="iconSize" :color="String(buttonStyle.color)" :aria-label="rightIconAriaLabel || rightIcon" role="img" />
       </span>
       <!-- Icon-only left or right -->
       <span v-else-if="leftIcon && !label" class="button-icon left" :style="{}">
-        <Icon :name="leftIcon" :size="spinnerSize" :color="String(buttonStyle.color)" :aria-label="leftIconAriaLabel || leftIcon" role="img" />
+        <Icon :name="leftIcon" :width="iconSize" :height="iconSize" :color="String(buttonStyle.color)" :aria-label="leftIconAriaLabel || leftIcon" role="img" />
       </span>
       <span v-else-if="rightIcon && !label" class="button-icon right" :style="{}">
-        <Icon :name="rightIcon" :size="spinnerSize" :color="String(buttonStyle.color)" :aria-label="rightIconAriaLabel || rightIcon" role="img" />
+        <Icon :name="rightIcon" :width="iconSize" :height="iconSize" :color="String(buttonStyle.color)" :aria-label="rightIconAriaLabel || rightIcon" role="img" />
       </span>
     </template>
     <slot />
@@ -117,11 +117,17 @@ function onFocus() { focused.value = true; }
 function onBlur() { focused.value = false; }
 
 const spinnerIconName: IconToken = 'refresh-cw';
-const spinnerSize = 20;
 
 const theme = useTheme();
 
 const labelPaddingX = computed(() => tokens.value.spacing[2]);
+
+// Icon size logic
+const iconSize = computed(() => {
+  if (props.size === 'small') return tokens.value.width[7];
+  if (props.size === 'large') return tokens.value.width[2];
+  return tokens.value.width[8];
+});
 
 const buttonStyle = computed(() => {
   const variant = props.variant || 'Primary';
@@ -250,19 +256,23 @@ const buttonStyle = computed(() => {
   }
 
   // Size logic (skip for Link)
+  let minHeight: string = tokens.value.height[2];
   if (variant !== 'Link') {
     if (size === 'small') {
       paddingY = tokens.value.spacing[1];
       paddingX = tokens.value.spacing[2];
       fontSize = tokens.value.typography.size[2];
+      minHeight = tokens.value.height[1];
     } else if (size === 'large') {
       paddingY = tokens.value.spacing[3];
       paddingX = tokens.value.spacing[4];
       fontSize = tokens.value.typography.size[4];
+      minHeight = tokens.value.height[3];
     } else {
       paddingY = tokens.value.spacing[2];
       paddingX = tokens.value.spacing[3];
       fontSize = tokens.value.typography.size[3];
+      minHeight = tokens.value.height[2];
     }
   }
 
@@ -309,11 +319,11 @@ const buttonStyle = computed(() => {
     outline: 'none',
     opacity: opacity,
     position: 'relative',
-    transition: 'background 0.2s, color 0.2s, border 0.2s, box-shadow 0.2s',
+    transition: tokens.value.transition.fast,
     pointerEvents: props.loading ? 'none' : 'auto',
     textDecoration: textDecoration || 'none',
-    minHeight: '2.5em',
-    lineHeight: 1,
+    minHeight: minHeight,
+    lineHeight: tokens.value.lineHeight[1],
   } as Record<string, string | number>;
 });
 </script>

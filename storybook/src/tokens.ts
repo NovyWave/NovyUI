@@ -225,11 +225,48 @@ export const icons = [
 
 // Width tokens
 const width = {
+  0: '0',
   1: '32px',
   2: '44px',
   3: '56px',
   4: '72px', // Extra large button min width
   5: '96px', // XXL button min width
+  // @TODO move to position 2 or rename keys to use their values
+  6: '24px', // Standard icon size
+  7: '18px', // Small icon size
+  8: '20px', // Medium icon size
+  9: '28px', // Slightly larger than standard icon
+  10: '36px', // For special large icons
+  fill: '100%', // Added for full width/flex fill
+};
+
+// Height tokens
+const height = {
+  1: '32px', // Small button height
+  2: '44px', // Medium button height
+  3: '56px', // Large button height
+  4: '72px',
+  5: '96px',
+  fill: '100%',
+};
+
+// Line height token (standalone, not inside button)
+const lineHeight = {
+  1: 1,
+  2: 1.2,
+  3: 1.4,
+  4: 1.6,
+  5: 2,
+};
+
+// Transition tokens
+const transition = {
+  fast: 'background 0.2s, color 0.2s, border 0.2s, box-shadow 0.2s',
+};
+
+// Animation tokens
+const animation = {
+  spinner: 'spin 1s linear infinite',
 };
 
 // Theme state
@@ -261,6 +298,10 @@ export const tokens = computed(() => ({
   patterns,
   icons,
   width,
+  height,
+  lineHeight,
+  transition,
+  animation,
 }));
 
 export function setTheme(next: 'light' | 'dark') { theme.value = next; }
