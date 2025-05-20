@@ -37,13 +37,13 @@ const meta: Meta<typeof Button> = {
     },
     leftIcon: {
       control: { type: 'select' },
-      options: [null, ...icons], // null = None/unselected
+      options: [null, ...icons],
       description: 'Icon on the left (IconToken name, or None)',
       table: { category: 'Content' },
     },
     rightIcon: {
       control: { type: 'select' },
-      options: [null, ...icons], // null = None/unselected
+      options: [null, ...icons],
       description: 'Icon on the right (IconToken name, or None)',
       table: { category: 'Content' },
     },
@@ -74,8 +74,8 @@ const meta: Meta<typeof Button> = {
     label: 'Button',
     disabled: false,
     loading: false,
-    leftIcon: null, // Use null to represent 'None' for Storybook controls
-    rightIcon: null, // Use null to represent 'None' for Storybook controls
+    leftIcon: null,
+    rightIcon: null,
     size: 'medium',
   },
   parameters: {

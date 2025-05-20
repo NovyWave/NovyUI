@@ -98,21 +98,12 @@ const props = defineProps<{
   size?: Size,
   disabled?: boolean,
   loading?: boolean,
-  leftIcon?: IconToken,
-  rightIcon?: IconToken,
+  leftIcon?: IconToken | null,
+  rightIcon?: IconToken | null,
   leftIconAriaLabel?: string,
   rightIconAriaLabel?: string,
-  minWidth?: string | number, // Allow user to set minimal button width
+  minWidth?: string | number,
 }>();
-
-const emits = defineEmits([
-  'mouseenter',
-  'mouseleave',
-  'mousedown',
-  'mouseup',
-  'focus',
-  'blur',
-]);
 
 const hovered = ref(false);
 const active = ref(false);
