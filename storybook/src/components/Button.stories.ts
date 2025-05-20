@@ -65,7 +65,7 @@ const meta: Meta<typeof Button> = {
     },
     minWidth: {
       control: 'text',
-      description: 'Minimum width of the button (e.g., 140, 200px, 10em)',
+      description: 'Minimum width of the button (e.g., 140px, 20em)',
       table: { category: 'Appearance' },
     },
   },

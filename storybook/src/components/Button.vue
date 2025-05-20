@@ -11,37 +11,19 @@
     @blur="onBlur"
   >
     <template v-if="loading">
-      <!-- Only rightIcon defined: spinner replaces right icon, keep label and spinner in a flex row -->
       <span v-if="rightIcon && !leftIcon" :style="{ display: 'flex', alignItems: 'center', width: tokens.width.fill }">
-        <span class="button-label" v-if="label"
-          :style="{
-            flex: 1,
-            textAlign: 'center',
-            paddingLeft: labelPaddingX,
-            paddingRight: labelPaddingX,
-            minWidth: tokens.width[0]
-          }"
-        >{{ label }}</span>
+        <span class="button-label" v-if="label" :style="labelStyle">{{ label }}</span>
         <span class="button-icon right">
           <Icon :name="spinnerIconName" :width="iconSize" :height="iconSize" :color="String(buttonStyle.color)" aria-label="Loading" role="img" class="spin" />
         </span>
       </span>
-      <!-- Left icon defined (or both icons): spinner on left, rightIcon (if present) on right -->
       <template v-else>
         <span class="button-icon left">
           <Icon :name="spinnerIconName" :width="iconSize" :height="iconSize" :color="String(buttonStyle.color)" aria-label="Loading" role="img" class="spin" />
         </span>
-        <span v-if="label" class="button-label"
-          :style="{
-            flex: 1,
-            textAlign: 'center',
-            paddingLeft: labelPaddingX,
-            paddingRight: labelPaddingX,
-            minWidth: tokens.width[0]
-          }"
-        >{{ label }}</span>
+        <span v-if="label" class="button-label" :style="labelStyle">{{ label }}</span>
         <span v-if="rightIcon" class="button-icon right">
-          <Icon :name="rightIcon" :width="iconSize" :height="iconSize" :color="String(buttonStyle.color)" :aria-label="rightIconAriaLabel || rightIcon" role="img" />
+          <Icon :name="String(rightIcon || '')" :width="iconSize" :height="iconSize" :color="String(buttonStyle.color)" :aria-label="rightIconAriaLabel || rightIcon" role="img" />
         </span>
       </template>
     </template>
@@ -49,34 +31,25 @@
       <span
         v-if="leftIcon && label"
         class="button-icon left"
-        :style="{}"
       >
-        <Icon :name="leftIcon" :width="iconSize" :height="iconSize" :color="String(buttonStyle.color)" :aria-label="leftIconAriaLabel || leftIcon" role="img" />
+        <Icon :name="String(leftIcon || '')" :width="iconSize" :height="iconSize" :color="String(buttonStyle.color)" :aria-label="leftIconAriaLabel || leftIcon" role="img" />
       </span>
       <span
         v-if="label"
         class="button-label"
-        :style="{
-          flex: 1,
-          textAlign: 'center',
-          paddingLeft: labelPaddingX,
-          paddingRight: labelPaddingX,
-          minWidth: tokens.width[0]
-        }"
+        :style="labelStyle"
       >{{ label }}</span>
       <span
         v-if="rightIcon && label"
         class="button-icon right"
-        :style="{}"
       >
-        <Icon :name="rightIcon" :width="iconSize" :height="iconSize" :color="String(buttonStyle.color)" :aria-label="rightIconAriaLabel || rightIcon" role="img" />
+        <Icon :name="String(rightIcon || '')" :width="iconSize" :height="iconSize" :color="String(buttonStyle.color)" :aria-label="rightIconAriaLabel || rightIcon" role="img" />
       </span>
-      <!-- Icon-only left or right -->
-      <span v-else-if="leftIcon && !label" class="button-icon left" :style="{}">
-        <Icon :name="leftIcon" :width="iconSize" :height="iconSize" :color="String(buttonStyle.color)" :aria-label="leftIconAriaLabel || leftIcon" role="img" />
+      <span v-else-if="leftIcon && !label" class="button-icon left">
+        <Icon :name="String(leftIcon || '')" :width="iconSize" :height="iconSize" :color="String(buttonStyle.color)" :aria-label="leftIconAriaLabel || leftIcon" role="img" />
       </span>
-      <span v-else-if="rightIcon && !label" class="button-icon right" :style="{}">
-        <Icon :name="rightIcon" :width="iconSize" :height="iconSize" :color="String(buttonStyle.color)" :aria-label="rightIconAriaLabel || rightIcon" role="img" />
+      <span v-else-if="rightIcon && !label" class="button-icon right">
+        <Icon :name="String(rightIcon || '')" :width="iconSize" :height="iconSize" :color="String(buttonStyle.color)" :aria-label="rightIconAriaLabel || rightIcon" role="img" />
       </span>
     </template>
     <slot />
@@ -84,7 +57,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
+import { computed, ref, type ComputedRef, type CSSProperties } from 'vue';
 import { tokens, useTheme } from '../tokens';
 import type { IconToken } from '../tokens';
 import Icon from './Icon.vue';
@@ -122,14 +95,21 @@ const theme = useTheme();
 
 const labelPaddingX = computed(() => tokens.value.spacing[2]);
 
-// Icon size logic
 const iconSize = computed(() => {
   if (props.size === 'small') return tokens.value.width[7];
   if (props.size === 'large') return tokens.value.width[2];
   return tokens.value.width[8];
 });
 
-const buttonStyle = computed(() => {
+const labelStyle: ComputedRef<Record<string, string>> = computed(() => ({
+  flex: '1',
+  textAlign: 'center',
+  paddingLeft: String(labelPaddingX.value),
+  paddingRight: String(labelPaddingX.value),
+  minWidth: String(tokens.value.width[0]),
+}));
+
+const buttonStyle = computed<CSSProperties>(() => {
   const variant = props.variant || 'Primary';
   const size = props.size || 'medium';
   const isDark = theme.value === 'dark';
@@ -152,14 +132,13 @@ const buttonStyle = computed(() => {
   }
   let textDecoration: string | undefined = undefined;
 
-  // Variant logic
   if (variant === 'Primary') {
     background = tokens.value.color.primary[7];
     color = tokens.value.color.neutral[1];
     borderColor = tokens.value.color.primary[7];
     borderStyle = tokens.value.borderStyle.solid;
     borderWidth = tokens.value.borderWidth[1];
-    boxShadow = `${tokens.value.shadowSize[1]} ${tokens.value.shadowColor.primary}`; // Add subtle shadow
+    boxShadow = `${tokens.value.shadowSize[1]} ${tokens.value.shadowColor.primary}`;
     if (hovered.value && !props.disabled && !props.loading) {
       background = tokens.value.color.primary[8];
       borderColor = tokens.value.color.primary[8];
@@ -190,8 +169,8 @@ const buttonStyle = computed(() => {
     color = tokens.value.color.primary[7];
     borderColor = tokens.value.color.neutral[3];
     borderStyle = tokens.value.borderStyle.solid;
-    borderWidth = tokens.value.borderWidth[2]; // Thicker border for better visibility
-    boxShadow = 'none'; // Mute shadow for Outline variant
+    borderWidth = tokens.value.borderWidth[2];
+    boxShadow = 'none';
     if (hovered.value && !props.disabled && !props.loading) {
       borderColor = tokens.value.color.primary[7];
       color = tokens.value.color.primary[7];
@@ -203,12 +182,12 @@ const buttonStyle = computed(() => {
   } else if (variant === 'Ghost') {
     background = tokens.value.color.transparent;
     color = tokens.value.color.primary[7];
-    borderColor = tokens.value.color.transparent; // No border
-    borderStyle = 'none'; // Remove border style
-    borderWidth = '0'; // Remove border width
-    boxShadow = 'none'; // No shadow
+    borderColor = tokens.value.color.transparent;
+    borderStyle = 'none';
+    borderWidth = tokens.value.borderWidth.none;
+    boxShadow = 'none';
     if ((hovered.value || focused.value) && !props.disabled && !props.loading) {
-      background = tokens.value.color.primary[3]; // More visible blue background on hover/focus
+      background = tokens.value.color.primary[3];
       color = tokens.value.color.primary[10];
     }
     if (active.value && !props.disabled && !props.loading) {
@@ -255,7 +234,6 @@ const buttonStyle = computed(() => {
     }
   }
 
-  // Size logic (skip for Link)
   let minHeight: string = tokens.value.height[2];
   if (variant !== 'Link') {
     if (size === 'small') {
@@ -276,22 +254,27 @@ const buttonStyle = computed(() => {
     }
   }
 
-  // --- FOCUS RING LOGIC ---
-  if (focused.value && !props.disabled && !props.loading && variant !== 'Link') {
-    // Custom focus ring: 3px, high-contrast, always visible
-    const focusColor = tokens.value.color.focus?.[1] ?? '#1976d2';
+  // Focus ring logic for Primary, Secondary, Outline, and Destructive
+  if (
+    focused.value &&
+    !props.disabled &&
+    !props.loading &&
+    (variant === 'Primary' || variant === 'Secondary' || variant === 'Outline' || variant === 'Destructive')
+  ) {
+    const focusColor = tokens.value.color.primary[5];
+    const focusRingWidth = tokens.value.borderWidth[3];
+    const focusRingShadow = `0 0 0 ${focusRingWidth} ${focusColor}`;
     if (typeof boxShadow === 'string' && boxShadow !== 'none' && boxShadow.length > 0) {
-      boxShadow = `${boxShadow}, 0 0 0 3px ${focusColor}cc`;
+      boxShadow = `${boxShadow}, ${focusRingShadow}`;
     } else {
-      boxShadow = `0 0 0 3px ${focusColor}cc`;
+      boxShadow = focusRingShadow;
     }
   }
 
   let opacity = tokens.value.opacity.opaque;
-  let cursor = 'pointer';
+  let cursor = props.disabled || props.loading ? 'not-allowed' : 'pointer';
   if (props.disabled || props.loading) {
     opacity = tokens.value.opacity[5];
-    cursor = 'not-allowed';
     background = tokens.value.color.neutral[5];
     color = tokens.value.color.neutral[7];
     borderColor = tokens.value.color.neutral[5];
@@ -302,29 +285,29 @@ const buttonStyle = computed(() => {
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: borderRadius,
-    borderWidth: borderWidth,
-    borderStyle: borderStyle,
-    borderColor: borderColor,
-    fontSize: fontSize,
+    borderRadius,
+    borderWidth,
+    borderStyle,
+    borderColor,
+    fontSize,
     fontFamily: tokens.value.typography.family.sans,
-    fontWeight: fontWeight,
+    fontWeight: String(fontWeight),
     letterSpacing: tokens.value.typography.letter[2],
-    padding: `${paddingY} ${paddingX}` as string,
-    ...(minWidth ? { minWidth: minWidth as string } : {}),
-    cursor: cursor,
-    background: background,
-    color: color,
-    boxShadow: boxShadow,
+    padding: `${paddingY} ${paddingX}`,
+    minWidth,
+    cursor,
+    background,
+    color,
+    boxShadow,
     outline: 'none',
-    opacity: opacity,
+    opacity: String(opacity),
     position: 'relative',
     transition: tokens.value.transition.fast,
     pointerEvents: props.loading ? 'none' : 'auto',
-    textDecoration: textDecoration || 'none',
-    minHeight: minHeight,
-    lineHeight: tokens.value.lineHeight[1],
-  } as Record<string, string | number>;
+    textDecoration,
+    minHeight,
+    lineHeight: String(tokens.value.lineHeight[1]),
+  };
 });
 </script>
 
