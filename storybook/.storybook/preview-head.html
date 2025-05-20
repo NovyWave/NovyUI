@@ -87,25 +87,6 @@
     box-shadow: none !important;
     border: none !important;
   }
-  /* Dark mode for select element with id control-variant */
-  #control-variant {
-    background: #202027 !important;
-    color: #c7c9d1 !important;
-    border: 1px solid #26262c !important;
-    border-radius: 4px;
-    padding: 4px 8px;
-    font-size: 1em;
-    box-shadow: none;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  #control-variant:focus {
-    border-color: #444 !important;
-  }
-  #control-variant option {
-    background: #202027 !important;
-    color: #c7c9d1 !important;
-  }
   /* Stronger priority for variant spans in Storybook controls, without hardcoded classes */
   .sbdocs span[role="option"],
   .sbdocs [data-variant],
@@ -539,7 +520,6 @@
     display: inline-block !important;
   }
   /* Make input and value borders a bit more visible in dark mode */
-  #control-variant,
   #control-label,
   .sbdocs textarea,
   .sbdocs .docblock-argstable td > div > div > span:not(:only-child),
@@ -646,7 +626,26 @@
     font-weight: 700 !important;
     color: #f3f4f6 !important;
   }
-  body.dark :root {
-    /* This will trigger :root.dark selectors in component CSS */
+  /* --- DARK MODE FOR ALL STORYBOOK COMBOBOXES (SELECT CONTROLS) --- */
+  .sbdocs select,
+  .sbdocs div[role="listbox"],
+  .sbdocs .docblock-argstable select,
+  .sbdocs .docblock-argstable div[role="listbox"] {
+    background: #202027 !important;
+    color: #c7c9d1 !important;
+    border: 1.2px solid #1a2233 !important;
+    box-shadow: 0 0 0 0.5px #1a2233 !important;
+    border-radius: 4px !important;
+    font-size: 13px !important;
+    font-family: inherit !important;
+    padding: 6px 10px !important;
+    transition: border-color 0.2s !important;
+  }
+  .sbdocs select:focus,
+  .sbdocs div[role="listbox"]:focus,
+  .sbdocs .docblock-argstable select:focus,
+  .sbdocs .docblock-argstable div[role="listbox"]:focus {
+    border-color: #4a90e2 !important;
+    outline: none !important;
   }
 </style>

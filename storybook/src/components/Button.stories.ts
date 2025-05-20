@@ -37,14 +37,14 @@ const meta: Meta<typeof Button> = {
     },
     leftIcon: {
       control: { type: 'select' },
-      options: [undefined, ...icons],
-      description: 'Icon on the left (IconToken name)',
+      options: [null, ...icons], // null = None/unselected
+      description: 'Icon on the left (IconToken name, or None)',
       table: { category: 'Content' },
     },
     rightIcon: {
       control: { type: 'select' },
-      options: [undefined, ...icons],
-      description: 'Icon on the right (IconToken name)',
+      options: [null, ...icons], // null = None/unselected
+      description: 'Icon on the right (IconToken name, or None)',
       table: { category: 'Content' },
     },
     size: {
@@ -53,14 +53,29 @@ const meta: Meta<typeof Button> = {
       description: 'Button size',
       table: { category: 'Appearance' },
     },
+    leftIconAriaLabel: {
+      control: 'text',
+      description: 'Accessible label for the left icon (improves screen reader accessibility)',
+      table: { category: 'Accessibility' },
+    },
+    rightIconAriaLabel: {
+      control: 'text',
+      description: 'Accessible label for the right icon (improves screen reader accessibility)',
+      table: { category: 'Accessibility' },
+    },
+    minWidth: {
+      control: 'text',
+      description: 'Minimum width of the button (e.g., 140, 200px, 10em)',
+      table: { category: 'Appearance' },
+    },
   },
   args: {
     variant: 'Primary',
     label: 'Button',
     disabled: false,
     loading: false,
-    leftIcon: undefined,
-    rightIcon: undefined,
+    leftIcon: null, // Use null to represent 'None' for Storybook controls
+    rightIcon: null, // Use null to represent 'None' for Storybook controls
     size: 'medium',
   },
   parameters: {
@@ -147,8 +162,8 @@ export const AllSizes: Story = {
   }),
   args: {
     variant: 'Primary',
-    leftIcon: undefined,
-    rightIcon: undefined,
+    leftIcon: null,
+    rightIcon: null,
     loading: false,
     disabled: false,
   },
