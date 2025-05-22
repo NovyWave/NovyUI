@@ -1,6 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import Button from './Button.vue';
-import { icons } from '../tokens.ts';
+import { tokens, icons } from '../tokens.ts';
+
+// Use key-value pairs for minWidthOptions for better Storybook labels
+const minWidthOptions = Object.entries(tokens.value.width).reduce((acc, [key, value]) => {
+  acc[`Width ${key} (${value})`] = value;
+  return acc;
+}, {} as Record<string, string>);
 
 const meta: Meta<typeof Button> = {
   title: 'Components/Button',
@@ -65,8 +71,9 @@ const meta: Meta<typeof Button> = {
       table: { category: 'Accessibility', defaultValue: { summary: 'rightIcon' } },
     },
     minWidth: {
-      control: 'text',
-      description: 'Minimum width of the button (e.g., 140px, 20em).',
+      control: { type: 'select' },
+      options: minWidthOptions,
+      description: 'Minimum width of the button (from design tokens or custom value, e.g. 140px, 20em, or 100%).',
       table: { category: 'Appearance', defaultValue: { summary: '' } },
     },
     default: {
