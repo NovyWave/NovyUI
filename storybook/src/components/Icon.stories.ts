@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import Icon from './Icon.vue';
-import { tokens, icons } from '../tokens.ts';
+import { tokens, icons, getAllColorOptions } from '../tokens.ts';
 
 const widthOptions = Object.entries(tokens.value.width).reduce((acc, [key, value]) => {
   acc[`Width ${key} (${value})`] = value;
@@ -11,6 +11,10 @@ const heightOptions = Object.entries(tokens.value.height).reduce((acc, [key, val
   return acc;
 }, {} as Record<string, string>);
 const iconOptions = icons;
+const colorOptions = getAllColorOptions().reduce((acc, { key, value }) => {
+  acc[key] = value;
+  return acc;
+}, {} as Record<string, string>);
 
 const meta: Meta<typeof Icon> = {
   title: 'Components/Icon',
@@ -39,7 +43,8 @@ const meta: Meta<typeof Icon> = {
       type: { name: 'string', required: false },
     },
     color: {
-      control: { type: 'color' },
+      control: { type: 'select' },
+      options: colorOptions,
       description: 'Icon color',
       table: { category: 'Appearance' },
       type: { name: 'string', required: false },

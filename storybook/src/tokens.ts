@@ -308,6 +308,31 @@ export const tokens = computed(() => ({
 export function setTheme(next: 'light' | 'dark') { theme.value = next; }
 export function useTheme() { return theme; }
 
+// Utility: Generate all color options for select dropdowns
+export function getAllColorOptions() {
+  const options: { key: string; value: string }[] = [];
+  for (const [palette, scale] of Object.entries(color)) {
+    if (typeof scale === 'string') {
+      // For direct string tokens like 'transparent'
+      options.push({
+        key: `${palette} (transparent)` ,
+        value: scale,
+      });
+      continue;
+    }
+    for (const [scaleKey, val] of Object.entries(scale)) {
+      for (const theme of ['light', 'dark'] as const) {
+        const colorValue = (val as Record<'light' | 'dark', string>)[theme];
+        options.push({
+          key: `${palette} ${scaleKey} ${theme} (${colorValue})`,
+          value: colorValue,
+        });
+      }
+    }
+  }
+  return options;
+}
+
 // Types
 export type ColorPalette = keyof typeof color;
 export type ColorScale = keyof typeof color.primary;
