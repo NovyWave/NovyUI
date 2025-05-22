@@ -2,8 +2,14 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import Icon from './Icon.vue';
 import { tokens, icons } from '../tokens.ts';
 
-const widthOptions = Object.values(tokens.value.width);
-const heightOptions = Object.values(tokens.value.height);
+const widthOptions = Object.entries(tokens.value.width).reduce((acc, [key, value]) => {
+  acc[`Width ${key} (${value})`] = value;
+  return acc;
+}, {} as Record<string, string>);
+const heightOptions = Object.entries(tokens.value.height).reduce((acc, [key, value]) => {
+  acc[`Height ${key} (${value})`] = value;
+  return acc;
+}, {} as Record<string, string>);
 const iconOptions = icons;
 
 const meta: Meta<typeof Icon> = {
@@ -16,7 +22,7 @@ const meta: Meta<typeof Icon> = {
       options: iconOptions,
       description: 'Name of the icon to render',
       table: { category: 'Content' },
-      type: { name: 'string', required: true },
+      type: { name: 'IconToken', required: true },
     },
     width: {
       control: { type: 'select' },
@@ -40,7 +46,7 @@ const meta: Meta<typeof Icon> = {
     },
     ariaLabel: {
       control: 'text',
-      description: 'Accessible label for the icon (optional)',
+      description: 'Accessible label for the icon (optional). Defaults to the icon name if not provided.',
       table: { category: 'Accessibility' },
       type: { name: 'string', required: false },
     },

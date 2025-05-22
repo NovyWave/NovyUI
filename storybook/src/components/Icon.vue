@@ -1,19 +1,23 @@
 <template>
-  <span v-if="svgMarkup" :style="iconStyle" v-html="svgMarkup" :aria-label="ariaLabel" :role="ariaLabel ? 'img' : 'presentation'"></span>
+  <span v-if="svgMarkup" :style="iconStyle" v-html="svgMarkup" :aria-label="computedAriaLabel" :role="computedAriaLabel ? 'img' : 'presentation'"></span>
   <span v-else :style="iconStyle">?</span>
 </template>
 
 <script lang="ts" setup>
 import { ref, watchEffect, computed } from 'vue';
 import { fetchIconSvg, tokens } from '../tokens';
+import type { IconToken } from '../tokens';
 
 const props = defineProps<{
-  name?: string,
+  name?: IconToken,
   width?: number | string,
   height?: number | string,
   color?: string,
   ariaLabel?: string,
 }>();
+
+// Compute the accessible label: use ariaLabel if provided, otherwise use name
+const computedAriaLabel = computed(() => props.ariaLabel || props.name || undefined);
 
 const svgMarkup = ref('');
 
