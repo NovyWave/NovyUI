@@ -68,6 +68,19 @@ const meta: Meta<typeof Button> = {
       description: 'Minimum width of the button (e.g., 140px, 20em)',
       table: { category: 'Appearance' },
     },
+    default: {
+      name: 'default',
+      description: 'Default slot for custom content in the button label area. When provided, replaces the label prop but icons and spinner still render as usual. Use for rich or formatted content.',
+      table: {
+        category: 'Slots',
+        type: { summary: 'VNode | HTML | String' },
+        defaultValue: { summary: '—' },
+      },
+      control: false,
+      type: { name: 'other', required: false },
+      defaultValue: undefined,
+      story: `\n**Example:**\n\n\u0060\u0060\u0060vue\n<Button leftIcon=\"star\" rightIcon=\"arrow-right\">\n  <span style=\"font-weight: bold; color: #eab308; padding: 0 12px;\">Custom <em>slot</em> <u>content</u></span>\n</Button>\n\u0060\u0060\u0060\n`
+    },
   },
   args: {
     variant: 'Primary',
@@ -82,7 +95,7 @@ const meta: Meta<typeof Button> = {
     docs: {
       description: {
         component:
-          'A clickable element used to trigger actions, submit forms, or navigate. Visual style changes based on variant and state. Uses design tokens for all appearance. See components/Button.md for full documentation.'
+          'A clickable element used to trigger actions, submit forms, or navigate. Visual style changes based on variant and state. Uses design tokens for all appearance. See components/Button.md for full documentation.\n\n**Slot usage:**\n\nThe default slot replaces the label area, but icons and spinner still render as usual.\n\n**Example:**\n\n```vue\n<Button leftIcon="star" rightIcon="arrow-right">\n  <span style="font-weight: bold; color: #eab308; padding: 0 12px;">Custom <em>slot</em> <u>content</u></span>\n</Button>\n```\n',
       },
     },
     a11y: {
@@ -189,4 +202,31 @@ export const WithIcons: Story = {
     disabled: false,
     size: 'medium',
   },
+};
+
+export const SlotContent: Story = {
+  render: (args: Record<string, unknown>) => ({
+    components: { Button },
+    setup() {
+      return { args };
+    },
+    template: `
+      <Button v-bind="args" leftIcon="star" rightIcon="arrow-right">
+        <span style="font-weight: bold; color: #eab308; padding: 0 12px;">Custom <em>slot</em> <u>content</u></span>
+      </Button>
+    `,
+  }),
+  args: {
+    variant: 'Primary',
+    label: 'This label will be ignored',
+    leftIcon: 'star',
+    rightIcon: 'arrow-right',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: `Demonstrates using the Button slot to fully customize the label area, while icons and loading spinner still render as usual.\n\n**Slot usage example:**\n\n\u0060\u0060\u0060vue\n<Button leftIcon="star" rightIcon="arrow-right">\n  <span style="font-weight: bold; color: #eab308; padding: 0 12px;">Custom <em>slot</em> <u>content</u></span>\n</Button>\n\u0060\u0060\u0060\n` 
+      }
+    }
+  }
 };

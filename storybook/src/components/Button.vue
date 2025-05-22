@@ -12,7 +12,10 @@
   >
     <template v-if="loading">
       <span v-if="rightIcon && !leftIcon" :style="{ display: 'flex', alignItems: 'center', width: tokens.width.fill }">
-        <span class="button-label" v-if="label" :style="labelStyle">{{ label }}</span>
+        <span class="button-label" v-if="$slots.default">
+          <slot />
+        </span>
+        <span class="button-label" v-else-if="label" :style="labelStyle">{{ label }}</span>
         <span class="button-icon right">
           <Icon :name="spinnerIconName" :width="iconSize" :height="iconSize" :color="String(buttonStyle.color)" aria-label="Loading" role="img" class="spin" />
         </span>
@@ -21,7 +24,10 @@
         <span class="button-icon left">
           <Icon :name="spinnerIconName" :width="iconSize" :height="iconSize" :color="String(buttonStyle.color)" aria-label="Loading" role="img" class="spin" />
         </span>
-        <span v-if="label" class="button-label" :style="labelStyle">{{ label }}</span>
+        <span v-if="$slots.default" class="button-label">
+          <slot />
+        </span>
+        <span v-else-if="label" class="button-label" :style="labelStyle">{{ label }}</span>
         <span v-if="rightIcon" class="button-icon right">
           <Icon :name="String(rightIcon || '')" :width="iconSize" :height="iconSize" :color="String(buttonStyle.color)" :aria-label="rightIconAriaLabel || rightIcon" role="img" />
         </span>
@@ -29,30 +35,35 @@
     </template>
     <template v-else>
       <span
-        v-if="leftIcon && label"
+        v-if="leftIcon && (label || $slots.default)"
         class="button-icon left"
       >
         <Icon :name="String(leftIcon || '')" :width="iconSize" :height="iconSize" :color="String(buttonStyle.color)" :aria-label="leftIconAriaLabel || leftIcon" role="img" />
       </span>
       <span
-        v-if="label"
+        v-if="$slots.default"
+        class="button-label"
+      >
+        <slot />
+      </span>
+      <span
+        v-else-if="label"
         class="button-label"
         :style="labelStyle"
       >{{ label }}</span>
       <span
-        v-if="rightIcon && label"
+        v-if="rightIcon && (label || $slots.default)"
         class="button-icon right"
       >
         <Icon :name="String(rightIcon || '')" :width="iconSize" :height="iconSize" :color="String(buttonStyle.color)" :aria-label="rightIconAriaLabel || rightIcon" role="img" />
       </span>
-      <span v-else-if="leftIcon && !label" class="button-icon left">
+      <span v-else-if="leftIcon && !label && !$slots.default" class="button-icon left">
         <Icon :name="String(leftIcon || '')" :width="iconSize" :height="iconSize" :color="String(buttonStyle.color)" :aria-label="leftIconAriaLabel || leftIcon" role="img" />
       </span>
-      <span v-else-if="rightIcon && !label" class="button-icon right">
+      <span v-else-if="rightIcon && !label && !$slots.default" class="button-icon right">
         <Icon :name="String(rightIcon || '')" :width="iconSize" :height="iconSize" :color="String(buttonStyle.color)" :aria-label="rightIconAriaLabel || rightIcon" role="img" />
       </span>
     </template>
-    <slot />
   </button>
 </template>
 
