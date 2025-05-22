@@ -247,6 +247,7 @@ const height = {
   3: '56px', // Large button height
   4: '72px',
   5: '96px',
+  6: '24px', // Standard icon height
   fill: '100%',
 };
 

@@ -1,5 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import Icon from './Icon.vue';
+import { tokens, icons } from '../tokens.ts';
+
+const widthOptions = Object.values(tokens.value.width);
+const heightOptions = Object.values(tokens.value.height);
+const iconOptions = icons;
 
 const meta: Meta<typeof Icon> = {
   title: 'Components/Icon',
@@ -7,26 +12,44 @@ const meta: Meta<typeof Icon> = {
   tags: ['autodocs'],
   argTypes: {
     name: {
-      control: 'text',
-      description: 'Icon name',
-      table: { category: 'Content' },
-    },
-    size: {
       control: { type: 'select' },
-      options: [16, 20, 24, 32, 40],
-      description: 'Icon size (px)',
+      options: iconOptions,
+      description: 'Name of the icon to render',
+      table: { category: 'Content' },
+      type: { name: 'string', required: true },
+    },
+    width: {
+      control: { type: 'select' },
+      options: widthOptions,
+      description: 'Icon width',
       table: { category: 'Appearance' },
+      type: { name: 'string', required: false },
+    },
+    height: {
+      control: { type: 'select' },
+      options: heightOptions,
+      description: 'Icon height',
+      table: { category: 'Appearance' },
+      type: { name: 'string', required: false },
     },
     color: {
-      control: 'text',
-      description: 'Icon color (token)',
+      control: { type: 'color' },
+      description: 'Icon color',
       table: { category: 'Appearance' },
+      type: { name: 'string', required: false },
+    },
+    ariaLabel: {
+      control: 'text',
+      description: 'Accessible label for the icon (optional)',
+      table: { category: 'Accessibility' },
+      type: { name: 'string', required: false },
     },
   },
   args: {
     name: 'user',
-    size: 24,
-    color: 'var(--color-primary-7)',
+    width: tokens.value.width[6], // Standard icon size
+    height: tokens.value.height[6], // Standard icon height (24px)
+    ariaLabel: '',
   },
 };
 
