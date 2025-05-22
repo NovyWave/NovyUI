@@ -333,6 +333,29 @@ export function getAllColorOptions() {
   return options;
 }
 
+// Utility: Generate all color options for select dropdowns as a Record<string, string>
+export function getAllColorOptionsRecord() {
+  return getAllColorOptions().reduce((acc, { key, value }) => {
+    acc[key] = value;
+    return acc;
+  }, {} as Record<string, string>);
+}
+
+// Helper to generate width options with descriptive keys
+export function getWidthOptions(widthObj: Record<string, string>) {
+  return Object.entries(widthObj).reduce((acc, [key, value]) => {
+    acc[`Width ${key} (${value})`] = value;
+    return acc;
+  }, {} as Record<string, string>);
+}
+// Helper to generate height options with descriptive keys
+export function getHeightOptions(heightObj: Record<string, string>) {
+  return Object.entries(heightObj).reduce((acc, [key, value]) => {
+    acc[`Height ${key} (${value})`] = value;
+    return acc;
+  }, {} as Record<string, string>);
+}
+
 // Types
 export type ColorPalette = keyof typeof color;
 export type ColorScale = keyof typeof color.primary;

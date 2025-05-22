@@ -1,12 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import Button from './Button.vue';
-import { tokens, icons } from '../tokens.ts';
+import { tokens, icons, getWidthOptions } from '../tokens.ts';
 
 // Use key-value pairs for minWidthOptions for better Storybook labels
-const minWidthOptions = Object.entries(tokens.value.width).reduce((acc, [key, value]) => {
-  acc[`Width ${key} (${value})`] = value;
-  return acc;
-}, {} as Record<string, string>);
+const minWidthOptions = getWidthOptions(tokens.value.width);
 
 const meta: Meta<typeof Button> = {
   title: 'Components/Button',

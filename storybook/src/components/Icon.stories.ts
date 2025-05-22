@@ -1,20 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import Icon from './Icon.vue';
-import { tokens, icons, getAllColorOptions } from '../tokens.ts';
+import { tokens, icons, getAllColorOptionsRecord, getWidthOptions, getHeightOptions } from '../tokens.ts';
 
-const widthOptions = Object.entries(tokens.value.width).reduce((acc, [key, value]) => {
-  acc[`Width ${key} (${value})`] = value;
-  return acc;
-}, {} as Record<string, string>);
-const heightOptions = Object.entries(tokens.value.height).reduce((acc, [key, value]) => {
-  acc[`Height ${key} (${value})`] = value;
-  return acc;
-}, {} as Record<string, string>);
+const widthOptions = getWidthOptions(tokens.value.width);
+const heightOptions = getHeightOptions(tokens.value.height);
 const iconOptions = icons;
-const colorOptions = getAllColorOptions().reduce((acc, { key, value }) => {
-  acc[key] = value;
-  return acc;
-}, {} as Record<string, string>);
+const colorOptions = getAllColorOptionsRecord();
 
 const meta: Meta<typeof Icon> = {
   title: 'Components/Icon',
@@ -60,6 +51,7 @@ const meta: Meta<typeof Icon> = {
     name: 'user',
     width: tokens.value.width[6], // Standard icon size
     height: tokens.value.height[6], // Standard icon height (24px)
+    color: tokens.value.color.primary[5], // Set default color to primary 5
     ariaLabel: '',
   },
 };
