@@ -1,4 +1,4 @@
-import { ref, computed } from 'vue';
+import { ref, computed, type ComputedRef } from 'vue';
 
 // Atomic, themeable, runtime-switchable design tokens
 // All color values are OKLCH, all tokens are typed, all values are atomic
@@ -6,71 +6,75 @@ import { ref, computed } from 'vue';
 // Color palettes (OKLCH, theme-mapped)
 const color = {
   primary: {
-    1: { light: 'oklch(98% 0.01 250)', dark: 'oklch(20% 0.01 250)' },
-    2: { light: 'oklch(95% 0.03 250)', dark: 'oklch(25% 0.03 250)' },
-    3: { light: 'oklch(90% 0.05 250)', dark: 'oklch(30% 0.05 250)' },
-    4: { light: 'oklch(85% 0.07 250)', dark: 'oklch(35% 0.07 250)' },
-    5: { light: 'oklch(75% 0.10 250)', dark: 'oklch(45% 0.10 250)' },
-    6: { light: 'oklch(65% 0.13 250)', dark: 'oklch(55% 0.13 250)' },
-    7: { light: 'oklch(55% 0.16 250)', dark: 'oklch(65% 0.16 250)' },
-    8: { light: 'oklch(45% 0.16 250)', dark: 'oklch(75% 0.16 250)' },
-    9: { light: 'oklch(35% 0.14 250)', dark: 'oklch(85% 0.14 250)' },
-    10: { light: 'oklch(25% 0.12 250)', dark: 'oklch(90% 0.12 250)' },
-    11: { light: 'oklch(15% 0.10 250)', dark: 'oklch(98% 0.10 250)' },
+    0: computed(() => 'transparent'),
+    1: computed(() => (theme.value === 'light' ? 'oklch(98% 0.01 250)' : 'oklch(20% 0.01 250)')),
+    2: computed(() => (theme.value === 'light' ? 'oklch(95% 0.03 250)' : 'oklch(25% 0.03 250)')),
+    3: computed(() => (theme.value === 'light' ? 'oklch(90% 0.05 250)' : 'oklch(30% 0.05 250)')),
+    4: computed(() => (theme.value === 'light' ? 'oklch(85% 0.07 250)' : 'oklch(35% 0.07 250)')),
+    5: computed(() => (theme.value === 'light' ? 'oklch(75% 0.10 250)' : 'oklch(45% 0.10 250)')),
+    6: computed(() => (theme.value === 'light' ? 'oklch(65% 0.13 250)' : 'oklch(55% 0.13 250)')),
+    7: computed(() => (theme.value === 'light' ? 'oklch(55% 0.16 250)' : 'oklch(65% 0.16 250)')),
+    8: computed(() => (theme.value === 'light' ? 'oklch(45% 0.16 250)' : 'oklch(75% 0.16 250)')),
+    9: computed(() => (theme.value === 'light' ? 'oklch(35% 0.14 250)' : 'oklch(85% 0.14 250)')),
+    10: computed(() => (theme.value === 'light' ? 'oklch(25% 0.12 250)' : 'oklch(90% 0.12 250)')),
+    11: computed(() => (theme.value === 'light' ? 'oklch(15% 0.10 250)' : 'oklch(98% 0.10 250)')),
   },
   neutral: {
-    1: { light: 'oklch(99% 0.025 255)', dark: 'oklch(12% 0.025 255)' },
-    2: { light: 'oklch(96% 0.035 255)', dark: 'oklch(18% 0.035 255)' },
-    3: { light: 'oklch(92% 0.045 255)', dark: 'oklch(30% 0.045 255)' },
-    4: { light: 'oklch(88% 0.055 255)', dark: 'oklch(45% 0.055 255)' },
-    5: { light: 'oklch(80% 0.07 255)', dark: 'oklch(60% 0.07 255)' },
-    6: { light: 'oklch(70% 0.09 255)', dark: 'oklch(70% 0.09 255)' },
-    7: { light: 'oklch(60% 0.11 255)', dark: 'oklch(80% 0.11 255)' },
-    8: { light: 'oklch(45% 0.09 255)', dark: 'oklch(88% 0.09 255)' },
-    9: { light: 'oklch(30% 0.07 255)', dark: 'oklch(92% 0.07 255)' },
-    10: { light: 'oklch(18% 0.035 255)', dark: 'oklch(96% 0.035 255)' },
-    11: { light: 'oklch(10% 0.025 255)', dark: 'oklch(99% 0.025 255)' },
+    0: computed(() => 'transparent'),
+    1: computed(() => (theme.value === 'light' ? 'oklch(99% 0.025 255)' : 'oklch(12% 0.025 255)')),
+    2: computed(() => (theme.value === 'light' ? 'oklch(96% 0.035 255)' : 'oklch(18% 0.035 255)')),
+    3: computed(() => (theme.value === 'light' ? 'oklch(92% 0.045 255)' : 'oklch(30% 0.045 255)')),
+    4: computed(() => (theme.value === 'light' ? 'oklch(88% 0.055 255)' : 'oklch(45% 0.055 255)')),
+    5: computed(() => (theme.value === 'light' ? 'oklch(80% 0.07 255)' : 'oklch(60% 0.07 255)')),
+    6: computed(() => (theme.value === 'light' ? 'oklch(70% 0.09 255)' : 'oklch(70% 0.09 255)')),
+    7: computed(() => (theme.value === 'light' ? 'oklch(60% 0.11 255)' : 'oklch(80% 0.11 255)')),
+    8: computed(() => (theme.value === 'light' ? 'oklch(45% 0.09 255)' : 'oklch(88% 0.09 255)')),
+    9: computed(() => (theme.value === 'light' ? 'oklch(30% 0.07 255)' : 'oklch(92% 0.07 255)')),
+    10: computed(() => (theme.value === 'light' ? 'oklch(18% 0.035 255)' : 'oklch(96% 0.035 255)')),
+    11: computed(() => (theme.value === 'light' ? 'oklch(10% 0.025 255)' : 'oklch(99% 0.025 255)')),
   },
   success: {
-    1: { light: 'oklch(98% 0.03 145)', dark: 'oklch(12% 0.03 145)' },
-    2: { light: 'oklch(94% 0.05 145)', dark: 'oklch(20% 0.05 145)' },
-    3: { light: 'oklch(88% 0.07 145)', dark: 'oklch(30% 0.07 145)' },
-    4: { light: 'oklch(80% 0.09 145)', dark: 'oklch(40% 0.09 145)' },
-    5: { light: 'oklch(70% 0.11 145)', dark: 'oklch(50% 0.11 145)' },
-    6: { light: 'oklch(60% 0.13 145)', dark: 'oklch(60% 0.13 145)' },
-    7: { light: 'oklch(50% 0.15 145)', dark: 'oklch(70% 0.15 145)' },
-    8: { light: 'oklch(40% 0.15 145)', dark: 'oklch(80% 0.15 145)' },
-    9: { light: 'oklch(30% 0.13 145)', dark: 'oklch(88% 0.13 145)' },
-    10: { light: 'oklch(20% 0.11 145)', dark: 'oklch(94% 0.11 145)' },
-    11: { light: 'oklch(12% 0.09 145)', dark: 'oklch(98% 0.09 145)' },
+    0: computed(() => 'transparent'),
+    1: computed(() => (theme.value === 'light' ? 'oklch(98% 0.03 145)' : 'oklch(12% 0.03 145)')),
+    2: computed(() => (theme.value === 'light' ? 'oklch(94% 0.05 145)' : 'oklch(20% 0.05 145)')),
+    3: computed(() => (theme.value === 'light' ? 'oklch(88% 0.07 145)' : 'oklch(30% 0.07 145)')),
+    4: computed(() => (theme.value === 'light' ? 'oklch(80% 0.09 145)' : 'oklch(40% 0.09 145)')),
+    5: computed(() => (theme.value === 'light' ? 'oklch(70% 0.11 145)' : 'oklch(50% 0.11 145)')),
+    6: computed(() => (theme.value === 'light' ? 'oklch(60% 0.13 145)' : 'oklch(60% 0.13 145)')),
+    7: computed(() => (theme.value === 'light' ? 'oklch(50% 0.15 145)' : 'oklch(70% 0.15 145)')),
+    8: computed(() => (theme.value === 'light' ? 'oklch(40% 0.15 145)' : 'oklch(80% 0.15 145)')),
+    9: computed(() => (theme.value === 'light' ? 'oklch(30% 0.13 145)' : 'oklch(88% 0.13 145)')),
+    10: computed(() => (theme.value === 'light' ? 'oklch(20% 0.11 145)' : 'oklch(94% 0.11 145)')),
+    11: computed(() => (theme.value === 'light' ? 'oklch(12% 0.09 145)' : 'oklch(98% 0.09 145)')),
   },
   warning: {
-    1: { light: 'oklch(98% 0.04 85)', dark: 'oklch(12% 0.04 85)' },
-    2: { light: 'oklch(94% 0.07 85)', dark: 'oklch(20% 0.07 85)' },
-    3: { light: 'oklch(88% 0.10 85)', dark: 'oklch(30% 0.10 85)' },
-    4: { light: 'oklch(80% 0.13 85)', dark: 'oklch(40% 0.13 85)' },
-    5: { light: 'oklch(70% 0.16 85)', dark: 'oklch(50% 0.16 85)' },
-    6: { light: 'oklch(60% 0.19 85)', dark: 'oklch(60% 0.19 85)' },
-    7: { light: 'oklch(50% 0.22 85)', dark: 'oklch(70% 0.22 85)' },
-    8: { light: 'oklch(40% 0.22 85)', dark: 'oklch(80% 0.22 85)' },
-    9: { light: 'oklch(30% 0.19 85)', dark: 'oklch(88% 0.19 85)' },
-    10: { light: 'oklch(20% 0.16 85)', dark: 'oklch(94% 0.16 85)' },
-    11: { light: 'oklch(12% 0.13 85)', dark: 'oklch(98% 0.13 85)' },
+    0: computed(() => 'transparent'),
+    1: computed(() => (theme.value === 'light' ? 'oklch(98% 0.04 85)' : 'oklch(12% 0.04 85)')),
+    2: computed(() => (theme.value === 'light' ? 'oklch(94% 0.07 85)' : 'oklch(20% 0.07 85)')),
+    3: computed(() => (theme.value === 'light' ? 'oklch(88% 0.10 85)' : 'oklch(30% 0.10 85)')),
+    4: computed(() => (theme.value === 'light' ? 'oklch(80% 0.13 85)' : 'oklch(40% 0.13 85)')),
+    5: computed(() => (theme.value === 'light' ? 'oklch(70% 0.16 85)' : 'oklch(50% 0.16 85)')),
+    6: computed(() => (theme.value === 'light' ? 'oklch(60% 0.19 85)' : 'oklch(60% 0.19 85)')),
+    7: computed(() => (theme.value === 'light' ? 'oklch(50% 0.22 85)' : 'oklch(70% 0.22 85)')),
+    8: computed(() => (theme.value === 'light' ? 'oklch(40% 0.22 85)' : 'oklch(80% 0.22 85)')),
+    9: computed(() => (theme.value === 'light' ? 'oklch(30% 0.19 85)' : 'oklch(88% 0.19 85)')),
+    10: computed(() => (theme.value === 'light' ? 'oklch(20% 0.16 85)' : 'oklch(94% 0.16 85)')),
+    11: computed(() => (theme.value === 'light' ? 'oklch(12% 0.13 85)' : 'oklch(98% 0.13 85)')),
   },
   error: {
-    1: { light: 'oklch(98% 0.03 30)', dark: 'oklch(12% 0.03 30)' },
-    2: { light: 'oklch(94% 0.06 30)', dark: 'oklch(20% 0.06 30)' },
-    3: { light: 'oklch(88% 0.09 30)', dark: 'oklch(30% 0.09 30)' },
-    4: { light: 'oklch(80% 0.12 30)', dark: 'oklch(40% 0.12 30)' },
-    5: { light: 'oklch(70% 0.15 30)', dark: 'oklch(50% 0.15 30)' },
-    6: { light: 'oklch(60% 0.18 30)', dark: 'oklch(60% 0.18 30)' },
-    7: { light: 'oklch(50% 0.21 30)', dark: 'oklch(70% 0.21 30)' },
-    8: { light: 'oklch(40% 0.21 30)', dark: 'oklch(80% 0.21 30)' },
-    9: { light: 'oklch(30% 0.18 30)', dark: 'oklch(88% 0.18 30)' },
-    10: { light: 'oklch(20% 0.15 30)', dark: 'oklch(94% 0.15 30)' },
-    11: { light: 'oklch(12% 0.12 30)', dark: 'oklch(98% 0.12 30)' },
+    0: computed(() => 'transparent'),
+    1: computed(() => (theme.value === 'light' ? 'oklch(98% 0.03 30)' : 'oklch(12% 0.03 30)')),
+    2: computed(() => (theme.value === 'light' ? 'oklch(94% 0.06 30)' : 'oklch(20% 0.06 30)')),
+    3: computed(() => (theme.value === 'light' ? 'oklch(88% 0.09 30)' : 'oklch(30% 0.09 30)')),
+    4: computed(() => (theme.value === 'light' ? 'oklch(80% 0.12 30)' : 'oklch(40% 0.12 30)')),
+    5: computed(() => (theme.value === 'light' ? 'oklch(70% 0.15 30)' : 'oklch(50% 0.15 30)')),
+    6: computed(() => (theme.value === 'light' ? 'oklch(60% 0.18 30)' : 'oklch(60% 0.18 30)')),
+    7: computed(() => (theme.value === 'light' ? 'oklch(50% 0.21 30)' : 'oklch(70% 0.21 30)')),
+    8: computed(() => (theme.value === 'light' ? 'oklch(40% 0.21 30)' : 'oklch(80% 0.21 30)')),
+    9: computed(() => (theme.value === 'light' ? 'oklch(30% 0.18 30)' : 'oklch(88% 0.18 30)')),
+    10: computed(() => (theme.value === 'light' ? 'oklch(20% 0.15 30)' : 'oklch(94% 0.15 30)')),
+    11: computed(() => (theme.value === 'light' ? 'oklch(12% 0.12 30)' : 'oklch(98% 0.12 30)')),
   },
-  transparent: 'transparent',
 };
 
 // Spacing tokens (atomic)
@@ -274,18 +278,8 @@ const animation = {
 const theme = ref<'light' | 'dark'>('dark');
 
 // Computed tokens object, themeable at runtime
-export const tokens = computed(() => ({
-  color: Object.fromEntries(
-    Object.entries(color).map(([palette, scale]) => {
-      if (typeof scale === 'string') {
-        // For direct string tokens like 'transparent'
-        return [palette, scale];
-      }
-      return [palette, Object.fromEntries(
-        Object.entries(scale).map(([i, val]) => [i, (val as Record<'light' | 'dark', string>)[theme.value as 'light' | 'dark']])
-      )];
-    })
-  ),
+export const tokens = {
+  color,
   spacing,
   radii,
   borderWidth,
@@ -303,42 +297,19 @@ export const tokens = computed(() => ({
   lineHeight,
   transition,
   animation,
-}));
+};
 
 export function setTheme(next: 'light' | 'dark') { theme.value = next; }
 export function useTheme() { return theme; }
 
-// Utility: Generate all color options for select dropdowns
-export function getAllColorOptions() {
-  const options: { key: string; value: string }[] = [];
-  for (const [palette, scale] of Object.entries(color)) {
-    if (typeof scale === 'string') {
-      // For direct string tokens like 'transparent'
-      options.push({
-        key: `${palette} (transparent)` ,
-        value: scale,
-      });
-      continue;
-    }
-    for (const [scaleKey, val] of Object.entries(scale)) {
-      for (const theme of ['light', 'dark'] as const) {
-        const colorValue = (val as Record<'light' | 'dark', string>)[theme];
-        options.push({
-          key: `${palette} ${scaleKey} ${theme} (${colorValue})`,
-          value: colorValue,
-        });
-      }
-    }
-  }
-  return options;
-}
-
-// Utility: Generate all color options for select dropdowns as a Record<string, string>
-export function getAllColorOptionsRecord() {
-  return getAllColorOptions().reduce((acc, { key, value }) => {
-    acc[key] = value;
+// Helper to generate color options with descriptive keys (returns computed refs, not unwrapped values)
+export function getColorOptions(colorObj: typeof color) {
+  return Object.entries(colorObj).reduce((acc, [palette, scale]) => {
+    Object.entries(scale).forEach(([scaleKey, val]) => {
+      acc[`${palette} ${scaleKey} (theme)`] = val as ComputedRef<string>;
+    });
     return acc;
-  }, {} as Record<string, string>);
+  }, {} as Record<string, ComputedRef<string>>);
 }
 
 // Helper to generate width options with descriptive keys
@@ -359,7 +330,7 @@ export function getHeightOptions(heightObj: Record<string, string>) {
 // Types
 export type ColorPalette = keyof typeof color;
 export type ColorScale = keyof typeof color.primary;
-export type Tokens = typeof tokens.value;
+export type Tokens = typeof tokens;
 
 export type IconToken =
   | 'arrow-left' | 'user-round' | 'search' | 'check' | 'x' | 'plus' | 'minus' | 'eye' | 'eye-off' | 'pencil' | 'trash' | 'info'

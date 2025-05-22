@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import Icon from './Icon.vue';
-import { tokens, icons, getAllColorOptionsRecord, getWidthOptions, getHeightOptions } from '../tokens.ts';
+import { tokens, icons, getColorOptions, getWidthOptions, getHeightOptions } from '../tokens.ts';
 
-const widthOptions = getWidthOptions(tokens.value.width);
-const heightOptions = getHeightOptions(tokens.value.height);
+const widthOptions = getWidthOptions(tokens.width);
+const heightOptions = getHeightOptions(tokens.height);
 const iconOptions = icons;
-const colorOptions = getAllColorOptionsRecord();
+const colorOptions = getColorOptions(tokens.color);
 
 const meta: Meta<typeof Icon> = {
   title: 'Components/Icon',
@@ -35,7 +35,7 @@ const meta: Meta<typeof Icon> = {
     },
     color: {
       control: { type: 'select' },
-      options: colorOptions,
+      options: Object.keys(colorOptions),
       description: 'Icon color',
       table: { category: 'Appearance' },
       type: { name: 'string', required: false },
@@ -49,9 +49,9 @@ const meta: Meta<typeof Icon> = {
   },
   args: {
     name: 'user',
-    width: tokens.value.width[6], // Standard icon size
-    height: tokens.value.height[6], // Standard icon height (24px)
-    color: tokens.value.color.primary[5], // Set default color to primary 5
+    width: tokens.width[6], // Standard icon size
+    height: tokens.height[6], // Standard icon height (24px)
+    color: Object.keys(colorOptions)[5], // Set default color to primary 5
     ariaLabel: '',
   },
 };

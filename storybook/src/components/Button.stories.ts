@@ -3,7 +3,7 @@ import Button from './Button.vue';
 import { tokens, icons, getWidthOptions } from '../tokens.ts';
 
 // Use key-value pairs for minWidthOptions for better Storybook labels
-const minWidthOptions = getWidthOptions(tokens.value.width);
+const minWidthOptions = getWidthOptions(tokens.width);
 
 const meta: Meta<typeof Button> = {
   title: 'Components/Button',

@@ -7,6 +7,9 @@
 import { ref, watchEffect, computed } from 'vue';
 import { fetchIconSvg, tokens } from '../tokens';
 import type { IconToken } from '../tokens';
+import { getColorOptions } from '../tokens';
+
+const colors = getColorOptions(tokens.color);
 
 const props = defineProps<{
   name?: IconToken,
@@ -37,7 +40,10 @@ const iconStyle = computed(() => {
     justifyContent: 'center',
     width: props.width ? (typeof props.width === 'number' ? `${props.width}px` : props.width) : undefined,
     height: props.height ? (typeof props.height === 'number' ? `${props.height}px` : props.height) : undefined,
-    color: props.color || tokens.value.color.primary[7],
+    color:
+      typeof props.color === 'string'
+        ? (colors[props.color]?.value ?? props.color)
+        : tokens.color.primary[7].value,
     verticalAlign: 'middle',
   };
 });

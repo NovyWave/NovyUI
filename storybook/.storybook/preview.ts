@@ -5,8 +5,8 @@ const preview: Preview = {
   parameters: {
     backgrounds: {
       options: {
-        light: { name: 'Light', value: tokens.value.color.neutral[10] },
-        dark: { name: 'Dark', value: tokens.value.color.neutral[1] },
+        light: { name: 'Light', value: tokens.color.neutral[10].value },
+        dark: { name: 'Dark', value: tokens.color.neutral[1].value },
       },
     },
     darkMode: {
