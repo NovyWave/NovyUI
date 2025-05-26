@@ -185,19 +185,33 @@ All color tokens are reactive and theme-aware, automatically switching between l
     </tr>
   </thead>
   <tbody>
-    <tr><td>height.1</td><td>4px</td><td>Tiny icons</td></tr>
-    <tr><td>height.2</td><td>8px</td><td>Small icons</td></tr>
-    <tr><td>height.4</td><td>16px</td><td>Standard small</td></tr>
-    <tr><td>height.6</td><td>24px</td><td>Standard icon size</td></tr>
-    <tr><td>height.8</td><td>32px</td><td>Large icons</td></tr>
-    <tr><td>height.12</td><td>48px</td><td>Extra large</td></tr>
+    <tr><td>height.4px</td><td>4px</td><td>Tiny icons</td></tr>
+    <tr><td>height.8px</td><td>8px</td><td>Small icons</td></tr>
+    <tr><td>height.12px</td><td>12px</td><td>Small elements</td></tr>
+    <tr><td>height.16px</td><td>16px</td><td>Standard small</td></tr>
+    <tr><td>height.20px</td><td>20px</td><td>Medium small</td></tr>
+    <tr><td>height.24px</td><td>24px</td><td>Standard icon size</td></tr>
+    <tr><td>height.28px</td><td>28px</td><td>Medium icons</td></tr>
+    <tr><td>height.32px</td><td>32px</td><td>Large icons</td></tr>
+    <tr><td>height.36px</td><td>36px</td><td>Large elements</td></tr>
+    <tr><td>height.40px</td><td>40px</td><td>Extra large elements</td></tr>
+    <tr><td>height.44px</td><td>44px</td><td>Touch-friendly height</td></tr>
+    <tr><td>height.48px</td><td>48px</td><td>Extra large icons</td></tr>
     <tr><td>height.256px</td><td>256px</td><td>Small container</td></tr>
     <tr><td>height.320px</td><td>320px</td><td>Mobile</td></tr>
+    <tr><td>height.384px</td><td>384px</td><td>Medium mobile</td></tr>
     <tr><td>height.512px</td><td>512px</td><td>Tablet</td></tr>
+    <tr><td>height.576px</td><td>576px</td><td>Large tablet</td></tr>
+    <tr><td>height.672px</td><td>672px</td><td>Small desktop</td></tr>
     <tr><td>height.768px</td><td>768px</td><td>Medium desktop</td></tr>
+    <tr><td>height.896px</td><td>896px</td><td>Large desktop</td></tr>
     <tr><td>height.1024px</td><td>1024px</td><td>Extra large desktop</td></tr>
+    <tr><td>height.1152px</td><td>1152px</td><td>Full desktop</td></tr>
     <tr><td>height.full</td><td>100%</td><td>Full height</td></tr>
     <tr><td>height.screen</td><td>100vh</td><td>Full viewport height</td></tr>
+    <tr><td>height.fit</td><td>fit-content</td><td>Content-based height</td></tr>
+    <tr><td>height.min</td><td>min-content</td><td>Minimum content height</td></tr>
+    <tr><td>height.max</td><td>max-content</td><td>Maximum content height</td></tr>
   </tbody>
 </table>
 
@@ -382,7 +396,7 @@ All color tokens are reactive and theme-aware, automatically switching between l
 
 ```typescript
 // Import tokens
-import { color, spacing, typography, width, height } from './tokens';
+import { color, spacing, typography, width, height, cornerRadius } from './tokens';
 
 // Use reactive color tokens (automatically switches with theme)
 const buttonStyle = {
@@ -393,7 +407,7 @@ const buttonStyle = {
   fontWeight: typography.weight['6'],
   borderRadius: cornerRadius['4px'],
   width: width['256px'],
-  height: height['10']
+  height: height['48px']  // Updated to use pixel-based height token
 };
 ```
 

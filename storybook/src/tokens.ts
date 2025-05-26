@@ -289,18 +289,18 @@ export const width = {
  * All values are CSS height values.
  */
 export const height = {
-  '1': '4px',         // 4px - tiny icons
-  '2': '8px',         // 8px - small icons
-  '3': '12px',        // 12px
-  '4': '16px',        // 16px - standard small
-  '5': '20px',        // 20px
-  '6': '24px',        // 24px - standard icon size
-  '7': '28px',        // 28px
-  '8': '32px',        // 32px - large icons
-  '9': '36px',        // 36px
-  '10': '40px',       // 40px
-  '11': '44px',       // 44px
-  '12': '48px',       // 48px - extra large
+  '4px': '4px',       // 4px - tiny icons
+  '8px': '8px',       // 8px - small icons
+  '12px': '12px',     // 12px
+  '16px': '16px',     // 16px - standard small
+  '20px': '20px',     // 20px
+  '24px': '24px',     // 24px - standard icon size
+  '28px': '28px',     // 28px
+  '32px': '32px',     // 32px - large icons
+  '36px': '36px',     // 36px
+  '40px': '40px',     // 40px
+  '44px': '44px',     // 44px
+  '48px': '48px',     // 48px - extra large
   '256px': '256px',   // small container
   '320px': '320px',   // mobile
   '384px': '384px',   // medium mobile
