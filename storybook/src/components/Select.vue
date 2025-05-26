@@ -566,7 +566,6 @@ const getOptionStyle = (option: Option, index: number): CSSProperties => {
     fontFamily: typography.family.sans,
     color: textColor,
     backgroundColor,
-    borderRadius: cornerRadius['2px'],
     cursor: isDisabled ? 'not-allowed' : 'pointer',
     transition: transition.fast,
     opacity: isDisabled ? String(opacity['64%']) : '1',

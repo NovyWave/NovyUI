@@ -200,6 +200,17 @@ type Story = StoryObj<typeof meta>;
 
 // Basic select story
 export const Default: Story = {
+  render: (args) => ({
+    components: { Select },
+    setup() {
+      return { args };
+    },
+    template: `
+      <div style="min-height: 300px; padding: 20px;">
+        <Select v-bind="args" />
+      </div>
+    `,
+  }),
   args: {
     modelValue: null,
     options: basicOptions,
@@ -215,6 +226,17 @@ export const Default: Story = {
 
 // Pre-selected value
 export const WithSelectedValue: Story = {
+  render: (args) => ({
+    components: { Select },
+    setup() {
+      return { args };
+    },
+    template: `
+      <div style="min-height: 300px; padding: 20px;">
+        <Select v-bind="args" />
+      </div>
+    `,
+  }),
   args: {
     modelValue: 'Option 2',
     options: basicOptions,
@@ -230,6 +252,17 @@ export const WithSelectedValue: Story = {
 
 // Object options
 export const ObjectOptions: Story = {
+  render: (args) => ({
+    components: { Select },
+    setup() {
+      return { args };
+    },
+    template: `
+      <div style="min-height: 300px; padding: 20px;">
+        <Select v-bind="args" />
+      </div>
+    `,
+  }),
   args: {
     modelValue: null,
     options: objectOptions,
@@ -246,6 +279,17 @@ export const ObjectOptions: Story = {
 
 // Searchable select
 export const Searchable: Story = {
+  render: (args) => ({
+    components: { Select },
+    setup() {
+      return { args };
+    },
+    template: `
+      <div style="min-height: 350px; padding: 20px;">
+        <Select v-bind="args" />
+      </div>
+    `,
+  }),
   args: {
     modelValue: null,
     options: manyOptions,
@@ -264,6 +308,17 @@ export const Searchable: Story = {
 
 // Multiple selection
 export const Multiple: Story = {
+  render: (args) => ({
+    components: { Select },
+    setup() {
+      return { args };
+    },
+    template: `
+      <div style="min-height: 300px; padding: 20px;">
+        <Select v-bind="args" />
+      </div>
+    `,
+  }),
   args: {
     modelValue: [],
     options: objectOptions,
@@ -281,6 +336,17 @@ export const Multiple: Story = {
 
 // Multiple with search
 export const MultipleSearchable: Story = {
+  render: (args) => ({
+    components: { Select },
+    setup() {
+      return { args };
+    },
+    template: `
+      <div style="min-height: 350px; padding: 20px;">
+        <Select v-bind="args" />
+      </div>
+    `,
+  }),
   args: {
     modelValue: ['canada', 'france'],
     options: manyOptions,
@@ -337,6 +403,17 @@ export const Sizes: Story = {
 
 // Disabled state
 export const Disabled: Story = {
+  render: (args) => ({
+    components: { Select },
+    setup() {
+      return { args };
+    },
+    template: `
+      <div style="min-height: 300px; padding: 20px;">
+        <Select v-bind="args" />
+      </div>
+    `,
+  }),
   args: {
     modelValue: 'Option 2',
     options: basicOptions,
@@ -353,6 +430,17 @@ export const Disabled: Story = {
 
 // With disabled options
 export const DisabledOptions: Story = {
+  render: (args) => ({
+    components: { Select },
+    setup() {
+      return { args };
+    },
+    template: `
+      <div style="min-height: 350px; padding: 20px;">
+        <Select v-bind="args" />
+      </div>
+    `,
+  }),
   args: {
     modelValue: null,
     options: optionsWithDisabled,
@@ -369,6 +457,17 @@ export const DisabledOptions: Story = {
 
 // No options
 export const NoOptions: Story = {
+  render: (args) => ({
+    components: { Select },
+    setup() {
+      return { args };
+    },
+    template: `
+      <div style="min-height: 300px; padding: 20px;">
+        <Select v-bind="args" />
+      </div>
+    `,
+  }),
   args: {
     modelValue: null,
     options: [],
@@ -392,24 +491,26 @@ export const CustomStyling: Story = {
       return { args };
     },
     template: `
-      <div style="max-width: 400px;">
-        <h3 style="margin-bottom: 16px; color: #1f2937;">Custom Select Example</h3>
-        <div style="margin-bottom: 8px;">
-          <label 
-            id="custom-label" 
-            style="display: block; margin-bottom: 4px; font-weight: 600; font-size: 14px; color: #374151;"
-          >
-            Favorite Programming Language
-          </label>
-          <div id="custom-description" style="font-size: 12px; color: #6b7280; margin-bottom: 8px;">
-            Choose your preferred programming language from the list below.
+      <div style="min-height: 400px; padding: 20px;">
+        <div style="max-width: 400px;">
+          <h3 style="margin-bottom: 16px; color: #1f2937;">Custom Select Example</h3>
+          <div style="margin-bottom: 8px;">
+            <label 
+              id="custom-label" 
+              style="display: block; margin-bottom: 4px; font-weight: 600; font-size: 14px; color: #374151;"
+            >
+              Favorite Programming Language
+            </label>
+            <div id="custom-description" style="font-size: 12px; color: #6b7280; margin-bottom: 8px;">
+              Choose your preferred programming language from the list below.
+            </div>
+            <Select 
+              v-bind="args" 
+              :modelValue="args.modelValue" 
+              labelId="custom-label"
+              descriptionId="custom-description"
+            />
           </div>
-          <Select 
-            v-bind="args" 
-            :modelValue="args.modelValue" 
-            labelId="custom-label"
-            descriptionId="custom-description"
-          />
         </div>
       </div>
     `,
@@ -442,6 +543,17 @@ export const CustomStyling: Story = {
 
 // Stress test with many options
 export const StressTest: Story = {
+  render: (args) => ({
+    components: { Select },
+    setup() {
+      return { args };
+    },
+    template: `
+      <div style="min-height: 400px; padding: 20px;">
+        <Select v-bind="args" />
+      </div>
+    `,
+  }),
   args: {
     modelValue: null,
     options: Array.from({ length: 1000 }, (_, i) => ({
@@ -499,46 +611,48 @@ export const InteractiveDemo: Story = {
       };
     },
     template: `
-      <div style="display: flex; flex-direction: column; gap: 24px; max-width: 600px;">
-        <div>
-          <h4 style="margin-bottom: 8px;">Single Selection</h4>
-          <Select 
-            :modelValue="singleValue"
-            @update:modelValue="handleSingleChange"
-            :options="basicOptions"
-            placeholder="Choose one option..."
-          />
-          <p style="margin-top: 8px; font-size: 14px; color: #6b7280;">
-            Selected: {{ singleValue || 'None' }}
-          </p>
-        </div>
-        
-        <div>
-          <h4 style="margin-bottom: 8px;">Multiple Selection</h4>
-          <Select 
-            :modelValue="multipleValues"
-            @update:modelValue="handleMultipleChange"
-            :options="objectOptions"
-            multiple
-            placeholder="Choose multiple fruits..."
-          />
-          <p style="margin-top: 8px; font-size: 14px; color: #6b7280;">
-            Selected: {{ multipleValues.length > 0 ? multipleValues.join(', ') : 'None' }}
-          </p>
-        </div>
-        
-        <div>
-          <h4 style="margin-bottom: 8px;">Searchable Selection</h4>
-          <Select 
-            :modelValue="searchableValue"
-            @update:modelValue="handleSearchableChange"
-            :options="manyOptions"
-            searchable
-            placeholder="Search and select a country..."
-          />
-          <p style="margin-top: 8px; font-size: 14px; color: #6b7280;">
-            Selected: {{ searchableValue || 'None' }}
-          </p>
+      <div style="min-height: 600px; padding: 20px;">
+        <div style="display: flex; flex-direction: column; gap: 24px; max-width: 600px;">
+          <div>
+            <h4 style="margin-bottom: 8px;">Single Selection</h4>
+            <Select 
+              :modelValue="singleValue"
+              @update:modelValue="handleSingleChange"
+              :options="basicOptions"
+              placeholder="Choose one option..."
+            />
+            <p style="margin-top: 8px; font-size: 14px; color: #6b7280;">
+              Selected: {{ singleValue || 'None' }}
+            </p>
+          </div>
+          
+          <div>
+            <h4 style="margin-bottom: 8px;">Multiple Selection</h4>
+            <Select 
+              :modelValue="multipleValues"
+              @update:modelValue="handleMultipleChange"
+              :options="objectOptions"
+              multiple
+              placeholder="Choose multiple fruits..."
+            />
+            <p style="margin-top: 8px; font-size: 14px; color: #6b7280;">
+              Selected: {{ multipleValues.length > 0 ? multipleValues.join(', ') : 'None' }}
+            </p>
+          </div>
+          
+          <div>
+            <h4 style="margin-bottom: 8px;">Searchable Selection</h4>
+            <Select 
+              :modelValue="searchableValue"
+              @update:modelValue="handleSearchableChange"
+              :options="manyOptions"
+              searchable
+              placeholder="Search and select a country..."
+            />
+            <p style="margin-top: 8px; font-size: 14px; color: #6b7280;">
+              Selected: {{ searchableValue || 'None' }}
+            </p>
+          </div>
         </div>
       </div>
     `,
