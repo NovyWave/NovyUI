@@ -17,12 +17,12 @@
         </span>
         <span class="button-label" v-else-if="label" :style="labelStyle">{{ label }}</span>
         <span class="button-icon right">
-          <Icon :name="spinnerIconName" :width="iconSize" :height="iconSize" :color="String(buttonStyle.color)" aria-label="Loading" role="img" class="spin" />
+          <Icon :name="spinnerIconName" :width="iconSize" :height="iconSize" :color="String(buttonStyle.color)" aria-label="Loading" role="img" :style="spinnerStyle" />
         </span>
       </span>
       <template v-else>
         <span class="button-icon left">
-          <Icon :name="spinnerIconName" :width="iconSize" :height="iconSize" :color="String(buttonStyle.color)" aria-label="Loading" role="img" class="spin" />
+          <Icon :name="spinnerIconName" :width="iconSize" :height="iconSize" :color="String(buttonStyle.color)" aria-label="Loading" role="img" :style="spinnerStyle" />
         </span>
         <span v-if="$slots.default" class="button-label">
           <slot />
@@ -105,6 +105,27 @@ const spinnerIconName: IconToken = 'refresh-cw';
 const theme = useTheme();
 
 const labelPaddingX = computed(() => spacing['8px']);
+
+const spinnerStyle = computed(() => {
+  // Inject keyframes into document head if not already present
+  if (typeof document !== 'undefined') {
+    const styleId = 'spinner-keyframes';
+    if (!document.getElementById(styleId)) {
+      const style = document.createElement('style');
+      style.id = styleId;
+      style.textContent = `
+        @keyframes spin {
+          100% { transform: rotate(360deg); }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+  }
+  
+  return {
+    animation: 'spin 1s linear infinite'
+  };
+});
 
 const iconSize = computed(() => {
   if (props.size === 'small') return '16px';
@@ -322,11 +343,4 @@ const buttonStyle = computed<CSSProperties>(() => {
 });
 </script>
 
-<style scoped>
-@keyframes spin {
-  100% { transform: rotate(360deg); }
-}
-.spin {
-  animation: spin 1s linear infinite;
-}
-</style>
+
