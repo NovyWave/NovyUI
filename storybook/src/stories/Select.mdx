@@ -1,0 +1,157 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Documentation/Select Component Guide" />
+
+# 🔽 Select Component
+
+The Select component provides a dropdown interface for selecting one or multiple options from a list. It's built using only design tokens from the NovyUI system and includes comprehensive accessibility features.
+
+## Features
+
+- **Single & Multiple Selection** - Support for both single and multi-select modes
+- **Searchable** - Built-in search functionality to filter options
+- **Keyboard Navigation** - Full keyboard support (Arrow keys, Enter, Escape, Home, End)
+- **Token-Based Styling** - Uses only design tokens, no hardcoded styles
+- **Theme Aware** - Automatically adapts to light/dark themes
+- **Accessible** - ARIA attributes, proper focus management, and screen reader support
+- **Icon Integration** - Uses the Icon component for chevrons, check marks, and search icons
+- **Customizable** - Flexible option rendering and styling
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `modelValue` | `string \| string[]` | `undefined` | The selected value(s) |
+| `options` | `SelectOption[]` | `[]` | Array of option objects |
+| `multiple` | `boolean` | `false` | Enable multiple selection |
+| `disabled` | `boolean` | `false` | Disable the select |
+| `searchable` | `boolean` | `false` | Enable search functionality |
+| `placeholder` | `string` | `'Select an option'` | Placeholder text for the trigger |
+| `searchPlaceholder` | `string` | `'Search options...'` | Placeholder for search input |
+| `noOptionsText` | `string` | `'No options available'` | Text when no options match |
+| `size` | `'small' \| 'medium' \| 'large'` | `'medium'` | Component size |
+| `labelId` | `string` | `undefined` | ID of associated label element |
+| `descriptionId` | `string` | `undefined` | ID of associated description element |
+
+## SelectOption Interface
+
+```typescript
+interface SelectOption {
+  value: string;
+  label: string;
+  disabled?: boolean;
+}
+```
+
+## Events
+
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `update:modelValue` | `string \| string[]` | Emitted when selection changes |
+| `change` | `string \| string[]` | Emitted when selection changes (alias) |
+| `open` | `void` | Emitted when dropdown opens |
+| `close` | `void` | Emitted when dropdown closes |
+
+## Usage Examples
+
+### Basic Single Select
+
+```vue
+<template>
+  <Select
+    v-model="selectedValue"
+    :options="options"
+    placeholder="Choose an option"
+  />
+</template>
+
+<script setup>
+const selectedValue = ref('')
+const options = [
+  { value: 'option1', label: 'Option 1' },
+  { value: 'option2', label: 'Option 2' },
+  { value: 'option3', label: 'Option 3' }
+]
+</script>
+```
+
+### Multiple Selection
+
+```vue
+<template>
+  <Select
+    v-model="selectedValues"
+    :options="options"
+    :multiple="true"
+    placeholder="Choose multiple options"
+  />
+</template>
+
+<script setup>
+const selectedValues = ref([])
+const options = [
+  { value: 'apple', label: 'Apple' },
+  { value: 'banana', label: 'Banana' },
+  { value: 'cherry', label: 'Cherry' }
+]
+</script>
+```
+
+### Searchable Select
+
+```vue
+<template>
+  <Select
+    v-model="selectedValue"
+    :options="options"
+    :searchable="true"
+    placeholder="Search and select"
+    searchPlaceholder="Type to search..."
+  />
+</template>
+```
+
+## Keyboard Navigation
+
+- **Arrow Down/Up** - Navigate through options
+- **Enter** - Select highlighted option
+- **Escape** - Close dropdown
+- **Home** - Jump to first option
+- **End** - Jump to last option
+- **Tab** - Close dropdown and move to next focusable element
+
+## Accessibility
+
+The Select component follows WAI-ARIA guidelines:
+
+- Uses `role="combobox"` on the trigger button
+- Provides `aria-expanded` to indicate dropdown state
+- Uses `aria-owns` to associate with the option list
+- Implements `aria-activedescendant` for keyboard navigation
+- Options have `role="option"` and `aria-selected` attributes
+- Supports `aria-labelledby` and `aria-describedby` via props
+
+## Design Token Usage
+
+The component uses the following token categories:
+
+- **Colors** - `color.neutral.*`, `color.primary.*` for theming
+- **Spacing** - `spacing.*` for padding and margins
+- **Typography** - `typography.size.*` for text sizing
+- **Corner Radius** - `cornerRadius.*` for rounded corners
+- **Shadows** - `shadow.*` for dropdown elevation
+- **Z-Index** - `zIndex.*` for proper layering
+- **Icons** - `icon.size.*` for consistent icon sizing
+
+## Testing
+
+The component includes comprehensive tests covering:
+
+- Single and multiple selection modes
+- Search functionality
+- Keyboard navigation
+- Accessibility attributes
+- Theme switching
+- Edge cases (empty options, disabled states)
+
+See the Storybook stories for interactive examples and testing scenarios.
