@@ -1,4 +1,24 @@
-import { ref, computed, type ComputedRef } from 'vue';
+import { ref, computed } from 'vue';
+
+// --- Theme State & Helpers ---
+/**
+ * Reactive theme state for design tokens. Use setTheme to change theme at runtime.
+ */
+export const theme = ref<'light' | 'dark'>('light');
+
+/**
+ * Set the current theme ('light' or 'dark').
+ */
+export function setTheme(newTheme: 'light' | 'dark') {
+  theme.value = newTheme;
+}
+
+/**
+ * Access the current theme ref in components.
+ */
+export function useTheme() {
+  return theme;
+}
 
 // Atomic, themeable, runtime-switchable design tokens
 // All color values are OKLCH, all tokens are typed, all values are atomic
@@ -209,7 +229,7 @@ export const typography = {
     'mono': "'FiraCode', 'Menlo', 'Monaco', 'Consolas', monospace",
     'display': "'Audiowide', 'system-ui', 'Arial', sans-serif",
   },
-};
+} as const;
 
 /**
  * Font tokens for font file names by family, weight, and style.
@@ -228,7 +248,7 @@ export const font = {
   audiowide: {
     4: { normal: 'audiowide-4-normal.woff2' },
   },
-};
+} as const;
 
 /**
  * Pattern tokens for SVG background patterns.
@@ -240,10 +260,10 @@ export const patterns = [
   { name: 'Overcast', slug: 'overcast', file: 'overcast.svg' },
   { name: 'Topography', slug: 'topography', file: 'topography.svg' },
   { name: 'Wiggle', slug: 'wiggle', file: 'wiggle.svg' },
-];
+] as const;
 
 /**
- * Icon tokens for available icon names (see IconToken type for all options).
+ * Icon tokens for available icon names (see icons array for all options).
  * Used for referencing SVG icon assets by name.
  */
 export const icons = [
@@ -255,285 +275,7 @@ export const icons = [
   'zoom-in', 'zoom-out', 'user', 'users', 'settings-2', 'log-in', 'log-out', 'shield', 'shield-off', 'circle-help',
   'octagon-alert', 'bookmark', 'tag', 'bell', 'bell-off', 'calendar-check', 'calendar-x', 'calendar-plus', 'calendar-minus',
   'chevrons-up', 'chevrons-down', 'chevrons-left', 'chevrons-right',
-];
-
-export type IconToken =
-  | 'arrow-left' | 'user-round' | 'search' | 'check' | 'x' | 'plus' | 'minus' | 'eye' | 'eye-off' | 'pencil' | 'trash' | 'info'
-  | 'triangle-alert' | 'circle-alert' | 'circle-check' | 'chevron-down' | 'chevron-up' | 'chevron-left' | 'chevron-right'
-  | 'menu' | 'ellipsis-vertical' | 'ellipsis' | 'calendar' | 'clock' | 'upload' | 'download' | 'funnel' | 'settings' | 'star'
-  | 'heart' | 'lock' | 'lock-open' | 'refresh-ccw' | 'refresh-cw' | 'external-link' | 'copy' | 'arrow-right' | 'arrow-up' | 'arrow-down'
-  | 'house' | 'file' | 'folder' | 'image' | 'cloud-upload' | 'cloud-download' | 'send' | 'message-circle' | 'phone' | 'mail'
-  | 'zoom-in' | 'zoom-out' | 'user' | 'users' | 'settings-2' | 'log-in' | 'log-out' | 'shield' | 'shield-off' | 'circle-help'
-  | 'octagon-alert' | 'bookmark' | 'tag' | 'bell' | 'bell-off' | 'calendar-check' | 'calendar-x' | 'calendar-plus' | 'calendar-minus'
-  | 'chevrons-up' | 'chevrons-down' | 'chevrons-left' | 'chevrons-right';
-
-// Width tokens for standard UI element widths.
-export const width = {
-  '0px': '0px',
-  '32px': '32px',
-  '44px': '44px',
-  '56px': '56px',
-  '72px': '72px', // Extra large button min width
-  '96px': '96px', // XXL button min width
-  '24px': '24px', // Standard icon size
-  '18px': '18px', // Small icon size
-  '20px': '20px', // Medium icon size
-  '28px': '28px', // Slightly larger than standard icon
-  '36px': '36px', // For special large icons
-  'fill': '100%', // Added for full width/flex fill
-};
-
-// Height tokens for standard UI element heights.
-export const height = {
-  '24px': '24px', // Standard icon height
-  '32px': '32px', // Small button height
-  '44px': '44px', // Medium button height
-  '56px': '56px', // Large button height
-  '72px': '72px',
-  '96px': '96px',
-  'fill': '100%',
-};
-
-/**
- * Transition tokens for standard transitions.
- */
-export const transition = {
-  fast: 'background 0.2s, color 0.2s, border 0.2s, box-shadow 0.2s',
-};
-
-/**
- * Animation tokens for standard animations.
- */
-export const animation = {
-  spinner: 'spin 1s linear infinite',
-};
-
-// Theme state for runtime theme switching (light/dark).
-const theme = ref<'light' | 'dark'>('dark');
-
-/**
- * The main design tokens object, aggregating all token groups.
- * Use this for themeable, atomic, and type-safe design values.
- */
-export const tokens = {
-  color,
-  spacing,
-  cornerRadius,
-  border,
-  shadow,
-  opacity,
-  zIndex,
-  typography, // Typography tokens: font sizes, weights, line heights, tracking, families
-  font,       // Font file tokens: font file names for each family/weight/style
-  patterns,   // Pattern tokens: SVG background patterns
-  icons,      // Icon tokens: available icon names
-  width,      // Width tokens: standard widths for UI elements
-  height,     // Height tokens: standard heights for UI elements
-  transition, // Transition tokens: standard transition strings
-  animation,  // Animation tokens: standard animation strings
-} as const;
-
-// --- Helper Functions ---
-
-// Helper to generate color options with descriptive keys (returns computed refs, not unwrapped values)
-export function getColorOptions(colorObj: typeof color) {
-  return Object.entries(colorObj).reduce((acc, [palette, scale]) => {
-    Object.entries(scale).forEach(([scaleKey, val]) => {
-      acc[`${palette} ${scaleKey} (theme)`] = val as ComputedRef<string>;
-    });
-    return acc;
-  }, {} as Record<string, ComputedRef<string>>);
-}
-
-// Helper to generate width options with descriptive keys
-export function getWidthOptions(widthObj: Record<string, string>) {
-  return Object.entries(widthObj).reduce((acc, [key, value]) => {
-    acc[`Width ${key} (${value})`] = value;
-    return acc;
-  }, {} as Record<string, string>);
-}
-// Helper to generate height options with descriptive keys
-export function getHeightOptions(heightObj: Record<string, string>) {
-  return Object.entries(heightObj).reduce((acc, [key, value]) => {
-    acc[`Height ${key} (${value})`] = value;
-    return acc;
-  }, {} as Record<string, string>);
-}
-
-// Helper to generate spacing options with descriptive keys
-export function getSpacingOptions(spacingObj: typeof spacing) {
-  return Object.entries(spacingObj).reduce((acc, [key, value]) => {
-    acc[`Spacing ${key}`] = value;
-    return acc;
-  }, {} as Record<string, string>);
-}
-
-// Helper to generate corner radius options with descriptive keys
-export function getCornerRadiusOptions(cornerObj: typeof cornerRadius) {
-  return Object.entries(cornerObj).reduce((acc, [key, value]) => {
-    acc[`Radius ${key}`] = value;
-    return acc;
-  }, {} as Record<string, string>);
-}
-
-// Helper to generate border width options with descriptive keys
-export function getBorderWidthOptions(borderObj: typeof border.width) {
-  return Object.entries(borderObj).reduce((acc, [key, value]) => {
-    acc[`Border ${key}`] = value;
-    return acc;
-  }, {} as Record<string, string>);
-}
-
-// Helper to generate border style options with descriptive keys
-export function getBorderStyleOptions(borderObj: typeof border.style) {
-  return Object.entries(borderObj).reduce((acc, [key, value]) => {
-    acc[`Border style ${key}`] = value;
-    return acc;
-  }, {} as Record<string, string>);
-}
-
-// Helper to generate shadow size options with descriptive keys
-export function getShadowSizeOptions(shadowObj: typeof shadow.size) {
-  return Object.entries(shadowObj).reduce((acc, [key, value]) => {
-    acc[`Shadow size ${key}`] = value;
-    return acc;
-  }, {} as Record<string, string>);
-}
-
-// Helper to generate shadow color options with descriptive keys
-export function getShadowColorOptions(shadowObj: typeof shadow.color) {
-  return Object.entries(shadowObj).reduce((acc, [key, value]) => {
-    acc[`Shadow color ${key}`] = value;
-    return acc;
-  }, {} as Record<string, string>);
-}
-
-// Helper to generate opacity options with descriptive keys
-export function getOpacityOptions(opacityObj: typeof opacity) {
-  return Object.entries(opacityObj).reduce((acc, [key, value]) => {
-    acc[`Opacity ${key}`] = value;
-    return acc;
-  }, {} as Record<string, number>);
-}
-
-// Helper to generate z-index options with descriptive keys
-export function getZIndexOptions(zIndexObj: typeof zIndex) {
-  return Object.entries(zIndexObj).reduce((acc, [key, value]) => {
-    acc[`zIndex ${key}`] = value;
-    return acc;
-  }, {} as Record<string, number | string>);
-}
-
-// Helper to generate typography size options with descriptive keys
-export function getTypographySizeOptions(typographyObj: typeof typography.size) {
-  return Object.entries(typographyObj).reduce((acc, [key, value]) => {
-    acc[`Font size ${key}`] = value;
-    return acc;
-  }, {} as Record<string, string>);
-}
-
-// Helper to generate typography weight options with descriptive keys
-export function getTypographyWeightOptions(typographyObj: typeof typography.weight) {
-  return Object.entries(typographyObj).reduce((acc, [key, value]) => {
-    acc[`Font weight ${key}`] = value;
-    return acc;
-  }, {} as Record<string, number>);
-}
-
-// Helper to generate typography line height options with descriptive keys
-export function getTypographyLineOptions(typographyObj: typeof typography.line) {
-  return Object.entries(typographyObj).reduce((acc, [key, value]) => {
-    acc[`Line height ${key}`] = value;
-    return acc;
-  }, {} as Record<string, number>);
-}
-
-// Helper to generate typography tracking options with descriptive keys
-export function getTypographyTrackingOptions(typographyObj: typeof typography.tracking) {
-  return Object.entries(typographyObj).reduce((acc, [key, value]) => {
-    acc[`Tracking ${key}`] = value;
-    return acc;
-  }, {} as Record<string, number>);
-}
-
-// Helper to generate typography family options with descriptive keys
-export function getTypographyFamilyOptions(typographyObj: typeof typography.family) {
-  return Object.entries(typographyObj).reduce((acc, [key, value]) => {
-    acc[`Font family ${key}`] = value;
-    return acc;
-  }, {} as Record<string, string>);
-}
-
-/**
- * Font tokens for font file names by family, weight, and style.
- * Used for referencing font assets in @font-face or CSS-in-JS.
- */
-
-/**
- * Pattern tokens for SVG backgrounds.
- */
-export function getPatternOptions(patternsArr: typeof patterns) {
-  return patternsArr.reduce((acc, pattern) => {
-    acc[pattern.name] = pattern.file;
-    return acc;
-  }, {} as Record<string, string>);
-}
-
-/**
- * Icon tokens for available icon names.
- */
-export function getIconOptions(iconsArr: typeof icons) {
-  return iconsArr.reduce((acc, icon) => {
-    acc[icon] = `/icons/${icon}.svg`;
-    return acc;
-  }, {} as Record<string, string>);
-}
-
-/**
- * Transition tokens for standard transitions.
- */
-export function getTransitionOptions(transitionObj: typeof transition) {
-  return Object.entries(transitionObj).reduce((acc, [key, value]) => {
-    acc[`Transition ${key}`] = value;
-    return acc;
-  }, {} as Record<string, string>);
-}
-
-/**
- * Animation tokens for standard animations.
- */
-export function getAnimationOptions(animationObj: typeof animation) {
-  return Object.entries(animationObj).reduce((acc, [key, value]) => {
-    acc[`Animation ${key}`] = value;
-    return acc;
-  }, {} as Record<string, string>);
-}
-
-// --- Theme Functions ---
-
-// Set the current theme (light or dark)
-export function setTheme(next: 'light' | 'dark') { theme.value = next; }
-// Get the current theme ref
-export function useTheme() { return theme; }
-
-// --- Types ---
-
-// Type for color palette keys (primary, neutral, etc.)
-export type ColorPalette = keyof typeof color;
-// Type for color scale keys (0-11)
-export type ColorScale = keyof typeof color.primary;
-// Type for the entire tokens object
-export type Tokens = typeof tokens;
-// Type for all icon token names
-export type IconToken =
-  | 'arrow-left' | 'user-round' | 'search' | 'check' | 'x' | 'plus' | 'minus' | 'eye' | 'eye-off' | 'pencil' | 'trash' | 'info'
-  | 'triangle-alert' | 'circle-alert' | 'circle-check' | 'chevron-down' | 'chevron-up' | 'chevron-left' | 'chevron-right'
-  | 'menu' | 'ellipsis-vertical' | 'ellipsis' | 'calendar' | 'clock' | 'upload' | 'download' | 'funnel' | 'settings' | 'star'
-  | 'heart' | 'lock' | 'lock-open' | 'refresh-ccw' | 'refresh-cw' | 'external-link' | 'copy' | 'arrow-right' | 'arrow-up' | 'arrow-down'
-  | 'house' | 'file' | 'folder' | 'image' | 'cloud-upload' | 'cloud-download' | 'send' | 'message-circle' | 'phone' | 'mail'
-  | 'zoom-in' | 'zoom-out' | 'user' | 'users' | 'settings-2' | 'log-in' | 'log-out' | 'shield' | 'shield-off' | 'circle-help'
-  | 'octagon-alert' | 'bookmark' | 'tag' | 'bell' | 'bell-off' | 'calendar-check' | 'calendar-x' | 'calendar-plus' | 'calendar-minus'
-  | 'chevrons-up' | 'chevrons-down' | 'chevrons-left' | 'chevrons-right';
+] as const;
 
 // --- Icon Utilities ---
 
@@ -564,7 +306,9 @@ export async function fetchIconSvg(name: IconToken): Promise<string | undefined>
 // Generic getToken helper for dynamic access by path (e.g., 'color.primary.1')
 export function getToken<T = unknown>(path: string): T | undefined {
   const segments = path.split('.');
-  let current: unknown = tokens;
+  // Use a type-safe workaround for referencing tokens
+  const tokensRef = (globalThis as Record<string, unknown>).tokens as typeof tokens | undefined;
+  let current: unknown = tokensRef;
   for (const seg of segments) {
     if (current && typeof current === 'object' && seg in current) {
       current = (current as Record<string, unknown>)[seg];
@@ -573,4 +317,44 @@ export function getToken<T = unknown>(path: string): T | undefined {
     }
   }
   return current as T;
+}
+
+// --- Types ---
+
+/**
+ * Type for all icon token names, derived from the icons array.
+ */
+export type IconToken = typeof icons[number];
+
+/**
+ * Type for color palette keys (primary, neutral, etc.)
+ */
+export type ColorPalette = keyof typeof color;
+
+/**
+ * Type for color scale keys (0-11)
+ */
+export type ColorScale = keyof typeof color.primary;
+
+/**
+ * Type for the entire tokens object.
+ * Declared after tokens export for correct reference.
+ * If width, height, transition, animation are not available, use Record<string, string> as fallback.
+ */
+export interface Tokens {
+  color: typeof color;
+  spacing: typeof spacing;
+  cornerRadius: typeof cornerRadius;
+  border: typeof border;
+  shadow: typeof shadow;
+  opacity: typeof opacity;
+  zIndex: typeof zIndex;
+  typography: typeof typography;
+  font: typeof font;
+  patterns: typeof patterns;
+  icons: typeof icons;
+  width: Record<string, string>;
+  height: Record<string, string>;
+  transition: Record<string, string>;
+  animation: Record<string, string>;
 }
