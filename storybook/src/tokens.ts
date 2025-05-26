@@ -24,7 +24,7 @@ export function useTheme() {
 // All color values are OKLCH, all tokens are typed, all values are atomic
 
 // Color palettes (OKLCH, theme-mapped)
-const color = {
+export const color = {
   primary: {
     '0': computed(() => 'transparent'),
     '1': computed(() => (theme.value === 'light' ? 'oklch(98% 0.01 250)' : 'oklch(20% 0.01 250)')),
@@ -251,6 +251,106 @@ export const font = {
 } as const;
 
 /**
+ * Width tokens for consistent element sizing.
+ * All values are CSS width values.
+ */
+export const width = {
+  '4px': '4px',       // tiny icons
+  '8px': '8px',       // small icons
+  '12px': '12px',
+  '16px': '16px',     // standard small
+  '20px': '20px',
+  '24px': '24px',     // standard icon size
+  '28px': '28px',
+  '32px': '32px',     // large icons
+  '36px': '36px',
+  '40px': '40px',
+  '44px': '44px',
+  '48px': '48px',     // extra large
+  '256px': '256px',   // small container
+  '320px': '320px',   // mobile
+  '384px': '384px',   // medium mobile
+  '512px': '512px',   // tablet
+  '576px': '576px',   // large tablet
+  '672px': '672px',   // small desktop
+  '768px': '768px',   // medium desktop
+  '896px': '896px',   // large desktop
+  '1024px': '1024px', // extra large desktop
+  '1152px': '1152px', // full desktop
+  'full': '100%',
+  'screen': '100vw',
+  'fit': 'fit-content',
+  'min': 'min-content',
+  'max': 'max-content',
+} as const;
+
+/**
+ * Height tokens for consistent element sizing.
+ * All values are CSS height values.
+ */
+export const height = {
+  '1': '4px',         // 4px - tiny icons
+  '2': '8px',         // 8px - small icons
+  '3': '12px',        // 12px
+  '4': '16px',        // 16px - standard small
+  '5': '20px',        // 20px
+  '6': '24px',        // 24px - standard icon size
+  '7': '28px',        // 28px
+  '8': '32px',        // 32px - large icons
+  '9': '36px',        // 36px
+  '10': '40px',       // 40px
+  '11': '44px',       // 44px
+  '12': '48px',       // 48px - extra large
+  '256px': '256px',   // small container
+  '320px': '320px',   // mobile
+  '384px': '384px',   // medium mobile
+  '512px': '512px',   // tablet
+  '576px': '576px',   // large tablet
+  '672px': '672px',   // small desktop
+  '768px': '768px',   // medium desktop
+  '896px': '896px',   // large desktop
+  '1024px': '1024px', // extra large desktop
+  '1152px': '1152px', // full desktop
+  'full': '100%',
+  'screen': '100vh',
+  'fit': 'fit-content',
+  'min': 'min-content',
+  'max': 'max-content',
+} as const;
+
+/**
+ * Transition tokens for consistent animation timing.
+ * All values are CSS transition declarations.
+ */
+export const transition = {
+  'none': 'none',
+  'all': 'all 150ms cubic-bezier(0.4, 0, 0.2, 1)',
+  'fast': 'all 100ms cubic-bezier(0.4, 0, 0.2, 1)',
+  'normal': 'all 150ms cubic-bezier(0.4, 0, 0.2, 1)',
+  'slow': 'all 300ms cubic-bezier(0.4, 0, 0.2, 1)',
+  'colors': 'color 150ms cubic-bezier(0.4, 0, 0.2, 1), background-color 150ms cubic-bezier(0.4, 0, 0.2, 1), border-color 150ms cubic-bezier(0.4, 0, 0.2, 1)',
+  'opacity': 'opacity 150ms cubic-bezier(0.4, 0, 0.2, 1)',
+  'shadow': 'box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1)',
+  'transform': 'transform 150ms cubic-bezier(0.4, 0, 0.2, 1)',
+} as const;
+
+/**
+ * Animation tokens for consistent keyframe animations.
+ * All values are CSS animation declarations.
+ */
+export const animation = {
+  'none': 'none',
+  'spin': 'spin 1s linear infinite',
+  'ping': 'ping 1s cubic-bezier(0, 0, 0.2, 1) infinite',
+  'pulse': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+  'bounce': 'bounce 1s infinite',
+  'fade-in': 'fadeIn 150ms cubic-bezier(0.4, 0, 0.2, 1)',
+  'fade-out': 'fadeOut 150ms cubic-bezier(0.4, 0, 0.2, 1)',
+  'slide-in': 'slideIn 150ms cubic-bezier(0.4, 0, 0.2, 1)',
+  'slide-out': 'slideOut 150ms cubic-bezier(0.4, 0, 0.2, 1)',
+} as const;
+
+/**
  * Pattern tokens for SVG background patterns.
  * Each pattern includes a name, slug, and file name for easy referencing.
  */
@@ -306,9 +406,25 @@ export async function fetchIconSvg(name: IconToken): Promise<string | undefined>
 // Generic getToken helper for dynamic access by path (e.g., 'color.primary.1')
 export function getToken<T = unknown>(path: string): T | undefined {
   const segments = path.split('.');
-  // Use a type-safe workaround for referencing tokens
-  const tokensRef = (globalThis as Record<string, unknown>).tokens as typeof tokens | undefined;
-  let current: unknown = tokensRef;
+  // Create a tokens object reference for dynamic access
+  const tokensObj = {
+    color,
+    spacing,
+    cornerRadius,
+    border,
+    shadow,
+    opacity,
+    zIndex,
+    typography,
+    font,
+    patterns,
+    icons,
+    width,
+    height,
+    transition,
+    animation,
+  };
+  let current: unknown = tokensObj;
   for (const seg of segments) {
     if (current && typeof current === 'object' && seg in current) {
       current = (current as Record<string, unknown>)[seg];
@@ -339,7 +455,6 @@ export type ColorScale = keyof typeof color.primary;
 /**
  * Type for the entire tokens object.
  * Declared after tokens export for correct reference.
- * If width, height, transition, animation are not available, use Record<string, string> as fallback.
  */
 export interface Tokens {
   color: typeof color;
@@ -353,8 +468,8 @@ export interface Tokens {
   font: typeof font;
   patterns: typeof patterns;
   icons: typeof icons;
-  width: Record<string, string>;
-  height: Record<string, string>;
-  transition: Record<string, string>;
-  animation: Record<string, string>;
+  width: typeof width;
+  height: typeof height;
+  transition: typeof transition;
+  animation: typeof animation;
 }

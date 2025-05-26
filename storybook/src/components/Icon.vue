@@ -5,11 +5,11 @@
 
 <script lang="ts" setup>
 import { ref, watchEffect, computed } from 'vue';
-import { fetchIconSvg, tokens } from '../tokens';
+import { fetchIconSvg, color } from '../tokens';
 import type { IconToken } from '../tokens';
-import { getColorOptions } from '../tokens';
+import { getColorOptions } from '../tokenOptions';
 
-const colors = getColorOptions(tokens.color);
+const colors = getColorOptions(color);
 
 const props = defineProps<{
   name?: IconToken,
@@ -40,10 +40,9 @@ const iconStyle = computed(() => {
     justifyContent: 'center',
     width: props.width ? (typeof props.width === 'number' ? `${props.width}px` : props.width) : undefined,
     height: props.height ? (typeof props.height === 'number' ? `${props.height}px` : props.height) : undefined,
-    color:
-      typeof props.color === 'string'
-        ? (colors[props.color]?.value ?? props.color)
-        : tokens.color.primary[7].value,
+    color: typeof props.color === 'string'
+      ? (colors[props.color]?.value ?? props.color)
+      : color.primary['7'].value,
     verticalAlign: 'middle',
   };
 });

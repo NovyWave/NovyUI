@@ -1,11 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import Icon from './Icon.vue';
-import { tokens, icons, getColorOptions, getWidthOptions, getHeightOptions } from '../tokens.ts';
+import { icons, width, height, color } from '../tokens.ts';
+import { getColorOptions, getWidthOptions, getHeightOptions, getIconOptions } from '../tokenOptions.ts';
 
-const widthOptions = getWidthOptions(tokens.width);
-const heightOptions = getHeightOptions(tokens.height);
-const iconOptions = icons;
-const colorOptions = getColorOptions(tokens.color);
+const widthOptions = getWidthOptions(width);
+const heightOptions = getHeightOptions(height);
+const iconOptions = getIconOptions(icons);
+const colorOptions = getColorOptions(color);
 
 const meta: Meta<typeof Icon> = {
   title: 'Components/Icon',
@@ -14,21 +15,21 @@ const meta: Meta<typeof Icon> = {
   argTypes: {
     name: {
       control: { type: 'select' },
-      options: iconOptions,
+      options: Object.keys(iconOptions),
       description: 'Name of the icon to render',
       table: { category: 'Content' },
       type: { name: 'IconToken', required: true },
     },
     width: {
       control: { type: 'select' },
-      options: widthOptions,
+      options: Object.keys(widthOptions),
       description: 'Icon width',
       table: { category: 'Appearance' },
       type: { name: 'string', required: false },
     },
     height: {
       control: { type: 'select' },
-      options: heightOptions,
+      options: Object.keys(heightOptions),
       description: 'Icon height',
       table: { category: 'Appearance' },
       type: { name: 'string', required: false },
@@ -49,8 +50,8 @@ const meta: Meta<typeof Icon> = {
   },
   args: {
     name: 'user',
-    width: tokens.width[6], // Standard icon size
-    height: tokens.height[6], // Standard icon height (24px)
+    width: '6', // Standard icon size (24px)
+    height: '6', // Standard icon height (24px)
     color: Object.keys(colorOptions)[5], // Set default color to primary 5
     ariaLabel: '',
   },
