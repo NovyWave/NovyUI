@@ -1,5 +1,7 @@
 import type { Preview } from '@storybook/vue3-vite'
 import { setTheme, color } from '../src/tokens.ts'
+import { themes } from '@storybook/theming'
+
 
 const preview: Preview = {
   parameters: {
@@ -20,6 +22,9 @@ const preview: Preview = {
         color: /(background|color)$/i,
         date: /Date$/i,
       },
+    },
+    docs: {
+      theme: themes.dark,
     },
   },
   initialGlobals: {
