@@ -8,28 +8,32 @@ This page documents all design tokens used in NovyUI. All tokens use a unified 1
 
 ## Color Tokens
 
+All color tokens are reactive and theme-aware, automatically switching between light and dark values.
+
 <table>
   <thead>
     <tr>
       <th>Token</th>
-      <th>Example Value</th>
+      <th>Light Value</th>
+      <th>Dark Value</th>
       <th>Usage Example</th>
     </tr>
   </thead>
   <tbody>
-    <tr><td>color.primary.1</td><td>oklch(98% 0.01 250)</td><td>Lightest backgrounds</td></tr>
-    <tr><td>color.primary.7</td><td>oklch(55% 0.16 250)</td><td>Primary action, base blue</td></tr>
-    <tr><td>color.neutral.12</td><td>oklch(15% 0.10 250)</td><td>Main text</td></tr>
-    <tr><td>color.surface.1</td><td>oklch(98% 0.01 250)</td><td>Card backgrounds</td></tr>
-    <tr><td>color.success.7</td><td>oklch(55% 0.16 145)</td><td>Success state</td></tr>
-    <tr><td>color.error.7</td><td>oklch(55% 0.16 25)</td><td>Error state</td></tr>
-    <tr><td>color.focus.1</td><td>oklch(25% 0.12 250)</td><td>Focus ring</td></tr>
-    <tr><td>color.border.2</td><td>oklch(75% 0.10 250)</td><td>Default border</td></tr>
-    <tr><td>color.warning.7</td><td>oklch(55% 0.16 90)</td><td>Warning state</td></tr>
-    <tr><td>color.info.7</td><td>oklch(55% 0.16 210)</td><td>Info state</td></tr>
-    <tr><td>color.transparent</td><td>transparent</td><td>Transparent backgrounds/borders</td></tr>
+    <tr><td>color.primary.0</td><td>transparent</td><td>transparent</td><td>Transparent primary</td></tr>
+    <tr><td>color.primary.1</td><td>oklch(98% 0.01 250)</td><td>oklch(20% 0.01 250)</td><td>Lightest primary backgrounds</td></tr>
+    <tr><td>color.primary.7</td><td>oklch(55% 0.16 250)</td><td>oklch(65% 0.16 250)</td><td>Primary action, base blue</td></tr>
+    <tr><td>color.primary.11</td><td>oklch(15% 0.10 250)</td><td>oklch(98% 0.10 250)</td><td>Darkest primary text</td></tr>
+    <tr><td>color.neutral.1</td><td>oklch(99% 0.025 255)</td><td>oklch(12% 0.025 255)</td><td>Card backgrounds</td></tr>
+    <tr><td>color.neutral.11</td><td>oklch(10% 0.025 255)</td><td>oklch(99% 0.025 255)</td><td>Main text</td></tr>
+    <tr><td>color.success.7</td><td>oklch(50% 0.15 145)</td><td>oklch(70% 0.15 145)</td><td>Success state</td></tr>
+    <tr><td>color.warning.7</td><td>oklch(50% 0.22 85)</td><td>oklch(70% 0.22 85)</td><td>Warning state</td></tr>
+    <tr><td>color.error.7</td><td>oklch(50% 0.21 30)</td><td>oklch(70% 0.21 30)</td><td>Error state</td></tr>
   </tbody>
 </table>
+
+**Available color palettes:** `primary`, `neutral`, `success`, `warning`, `error`  
+**Available scales:** `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`
 
 ## Typography Tokens
 
@@ -37,19 +41,28 @@ This page documents all design tokens used in NovyUI. All tokens use a unified 1
   <thead>
     <tr>
       <th>Token</th>
-      <th>Example Value</th>
+      <th>Value</th>
       <th>Usage Example</th>
     </tr>
   </thead>
   <tbody>
-    <tr><td>typography.size.1</td><td>0.75rem</td><td>Caption, small text</td></tr>
-    <tr><td>typography.size.3</td><td>1rem</td><td>Body, default</td></tr>
-    <tr><td>typography.size.6</td><td>1.5rem</td><td>Heading 4</td></tr>
-    <tr><td>typography.weight.2</td><td>500</td><td>Button, heading</td></tr>
-    <tr><td>typography.line.3</td><td>1.6</td><td>Body, default</td></tr>
-    <tr><td>typography.letter.2</td><td>0.01em</td><td>All-caps, buttons</td></tr>
-    <tr><td>typography.family.sans</td><td>Inter, system-ui, Segoe UI, Arial, sans-serif</td><td>Default UI font</td></tr>
-    <tr><td>typography.family.mono</td><td>FiraCode, Menlo, Monaco, Consolas, monospace</td><td>Code font</td></tr>
+    <tr><td>typography.size.12px</td><td>12px</td><td>Caption, small text</td></tr>
+    <tr><td>typography.size.14px</td><td>14px</td><td>Small body text</td></tr>
+    <tr><td>typography.size.16px</td><td>16px</td><td>Body, default</td></tr>
+    <tr><td>typography.size.18px</td><td>18px</td><td>Large body text</td></tr>
+    <tr><td>typography.size.24px</td><td>24px</td><td>Heading 4</td></tr>
+    <tr><td>typography.size.48px</td><td>48px</td><td>Large heading</td></tr>
+    <tr><td>typography.weight.4</td><td>400</td><td>Normal text</td></tr>
+    <tr><td>typography.weight.5</td><td>500</td><td>Medium weight</td></tr>
+    <tr><td>typography.weight.6</td><td>600</td><td>Semibold</td></tr>
+    <tr><td>typography.weight.7</td><td>700</td><td>Bold headings</td></tr>
+    <tr><td>typography.line.100%</td><td>1</td><td>Tight line height</td></tr>
+    <tr><td>typography.line.140%</td><td>1.4</td><td>Body, default</td></tr>
+    <tr><td>typography.tracking.0%</td><td>0</td><td>Default letter spacing</td></tr>
+    <tr><td>typography.tracking.2%</td><td>0.02</td><td>All-caps, buttons</td></tr>
+    <tr><td>typography.family.sans</td><td>'Inter', 'system-ui', 'Segoe UI', 'Arial', sans-serif</td><td>Default UI font</td></tr>
+    <tr><td>typography.family.mono</td><td>'FiraCode', 'Menlo', 'Monaco', 'Consolas', monospace</td><td>Code font</td></tr>
+    <tr><td>typography.family.display</td><td>'Audiowide', 'system-ui', 'Arial', sans-serif</td><td>Display/branding font</td></tr>
   </tbody>
 </table>
 
@@ -59,22 +72,22 @@ This page documents all design tokens used in NovyUI. All tokens use a unified 1
   <thead>
     <tr>
       <th>Token</th>
-      <th>Value (px)</th>
+      <th>Value</th>
       <th>Usage Example</th>
     </tr>
   </thead>
   <tbody>
-    <tr><td>spacing.none</td><td>0</td><td>No spacing</td></tr>
-    <tr><td>spacing.1</td><td>4</td><td>Smallest gap/padding</td></tr>
-    <tr><td>spacing.2</td><td>8</td><td>Input padding</td></tr>
-    <tr><td>spacing.3</td><td>12</td><td>Button padding</td></tr>
-    <tr><td>spacing.4</td><td>16</td><td>Card padding</td></tr>
-    <tr><td>spacing.5</td><td>20</td><td>Section gap</td></tr>
-    <tr><td>spacing.6</td><td>24</td><td>Large section gap</td></tr>
-    <tr><td>spacing.7</td><td>32</td><td>Extra large gap</td></tr>
-    <tr><td>spacing.8</td><td>40</td><td>XXL gap</td></tr>
-    <tr><td>spacing.9</td><td>48</td><td>Huge gap</td></tr>
-    <tr><td>spacing.10</td><td>56</td><td>Largest gap/padding</td></tr>
+    <tr><td>spacing.0px</td><td>0px</td><td>No spacing</td></tr>
+    <tr><td>spacing.4px</td><td>4px</td><td>Smallest gap/padding</td></tr>
+    <tr><td>spacing.8px</td><td>8px</td><td>Input padding</td></tr>
+    <tr><td>spacing.12px</td><td>12px</td><td>Button padding</td></tr>
+    <tr><td>spacing.16px</td><td>16px</td><td>Card padding</td></tr>
+    <tr><td>spacing.20px</td><td>20px</td><td>Section gap</td></tr>
+    <tr><td>spacing.24px</td><td>24px</td><td>Large section gap</td></tr>
+    <tr><td>spacing.32px</td><td>32px</td><td>Extra large gap</td></tr>
+    <tr><td>spacing.40px</td><td>40px</td><td>XXL gap</td></tr>
+    <tr><td>spacing.48px</td><td>48px</td><td>Huge gap</td></tr>
+    <tr><td>spacing.56px</td><td>56px</td><td>Largest gap/padding</td></tr>
   </tbody>
 </table>
 
@@ -89,13 +102,13 @@ This page documents all design tokens used in NovyUI. All tokens use a unified 1
     </tr>
   </thead>
   <tbody>
-    <tr><td>borderWidth.1</td><td>1px</td><td>Default border</td></tr>
-    <tr><td>borderWidth.2</td><td>2px</td><td>Emphasized border</td></tr>
-    <tr><td>borderWidth.3</td><td>4px</td><td>Divider, strong</td></tr>
-    <tr><td>borderWidth.none</td><td>0px</td><td>No border</td></tr>
-    <tr><td>borderStyle.solid</td><td>solid</td><td>Most elements</td></tr>
-    <tr><td>borderStyle.dashed</td><td>dashed</td><td>Dividers, highlights</td></tr>
-    <tr><td>borderStyle.dotted</td><td>dotted</td><td>Decorative, focus</td></tr>
+    <tr><td>border.width.0px</td><td>0px</td><td>No border</td></tr>
+    <tr><td>border.width.1px</td><td>1px</td><td>Default border</td></tr>
+    <tr><td>border.width.2px</td><td>2px</td><td>Emphasized border</td></tr>
+    <tr><td>border.width.4px</td><td>4px</td><td>Divider, strong</td></tr>
+    <tr><td>border.style.solid</td><td>solid</td><td>Most elements</td></tr>
+    <tr><td>border.style.dashed</td><td>dashed</td><td>Dividers, highlights</td></tr>
+    <tr><td>border.style.dotted</td><td>dotted</td><td>Decorative, focus</td></tr>
   </tbody>
 </table>
 
@@ -105,15 +118,32 @@ This page documents all design tokens used in NovyUI. All tokens use a unified 1
   <thead>
     <tr>
       <th>Token</th>
-      <th>Example Value</th>
+      <th>Size Value</th>
       <th>Usage Example</th>
     </tr>
   </thead>
   <tbody>
-    <tr><td>shadow.1</td><td>0 1px 2px oklch(90% 0 0)</td><td>Subtle shadow (inputs, buttons)</td></tr>
-    <tr><td>shadow.2</td><td>0 2px 8px oklch(85% 0 0)</td><td>Card shadow</td></tr>
-    <tr><td>shadow.3</td><td>0 4px 16px oklch(80% 0 0)</td><td>Modal, popover shadow</td></tr>
-    <tr><td>shadow.focus</td><td>0 0 0 4px oklch(55% 0.16 250 / 0.33)</td><td>Focus ring for interactive elements</td></tr>
+    <tr><td>shadow.size.1</td><td>0 1px 2px</td><td>Subtle shadow (inputs, buttons)</td></tr>
+    <tr><td>shadow.size.2</td><td>0 2px 8px</td><td>Card shadow</td></tr>
+    <tr><td>shadow.size.3</td><td>0 4px 16px</td><td>Modal, popover shadow</td></tr>
+    <tr><td>shadow.size.focus</td><td>0 0 0 4px</td><td>Focus ring for interactive elements</td></tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Token</th>
+      <th>Color Value</th>
+      <th>Usage Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>shadow.color.neutral</td><td>oklch(70% 0.09 255 / 0.22)</td><td>Default shadow color</td></tr>
+    <tr><td>shadow.color.primary</td><td>oklch(55% 0.16 250 / 0.33)</td><td>Primary focus shadow</td></tr>
+    <tr><td>shadow.color.success</td><td>oklch(60% 0.13 145 / 0.22)</td><td>Success state shadow</td></tr>
+    <tr><td>shadow.color.warning</td><td>oklch(60% 0.19 85 / 0.22)</td><td>Warning state shadow</td></tr>
+    <tr><td>shadow.color.error</td><td>oklch(60% 0.18 30 / 0.22)</td><td>Error state shadow</td></tr>
   </tbody>
 </table>
 
@@ -123,14 +153,51 @@ This page documents all design tokens used in NovyUI. All tokens use a unified 1
   <thead>
     <tr>
       <th>Token</th>
-      <th>Value (px)</th>
+      <th>Value</th>
       <th>Usage Example</th>
     </tr>
   </thead>
   <tbody>
-    <tr><td>width.1</td><td>32</td><td>Icon button min width</td></tr>
-    <tr><td>width.2</td><td>44</td><td>Default button min width</td></tr>
-    <tr><td>width.3</td><td>56</td><td>Large button min width</td></tr>
+    <tr><td>width.4px</td><td>4px</td><td>Tiny icons</td></tr>
+    <tr><td>width.8px</td><td>8px</td><td>Small icons</td></tr>
+    <tr><td>width.16px</td><td>16px</td><td>Standard small</td></tr>
+    <tr><td>width.24px</td><td>24px</td><td>Standard icon size</td></tr>
+    <tr><td>width.32px</td><td>32px</td><td>Large icons</td></tr>
+    <tr><td>width.48px</td><td>48px</td><td>Extra large</td></tr>
+    <tr><td>width.256px</td><td>256px</td><td>Small container</td></tr>
+    <tr><td>width.320px</td><td>320px</td><td>Mobile</td></tr>
+    <tr><td>width.512px</td><td>512px</td><td>Tablet</td></tr>
+    <tr><td>width.768px</td><td>768px</td><td>Medium desktop</td></tr>
+    <tr><td>width.1024px</td><td>1024px</td><td>Extra large desktop</td></tr>
+    <tr><td>width.full</td><td>100%</td><td>Full width</td></tr>
+    <tr><td>width.screen</td><td>100vw</td><td>Full viewport width</td></tr>
+  </tbody>
+</table>
+
+## Height Tokens
+
+<table>
+  <thead>
+    <tr>
+      <th>Token</th>
+      <th>Value</th>
+      <th>Usage Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>height.1</td><td>4px</td><td>Tiny icons</td></tr>
+    <tr><td>height.2</td><td>8px</td><td>Small icons</td></tr>
+    <tr><td>height.4</td><td>16px</td><td>Standard small</td></tr>
+    <tr><td>height.6</td><td>24px</td><td>Standard icon size</td></tr>
+    <tr><td>height.8</td><td>32px</td><td>Large icons</td></tr>
+    <tr><td>height.12</td><td>48px</td><td>Extra large</td></tr>
+    <tr><td>height.256px</td><td>256px</td><td>Small container</td></tr>
+    <tr><td>height.320px</td><td>320px</td><td>Mobile</td></tr>
+    <tr><td>height.512px</td><td>512px</td><td>Tablet</td></tr>
+    <tr><td>height.768px</td><td>768px</td><td>Medium desktop</td></tr>
+    <tr><td>height.1024px</td><td>1024px</td><td>Extra large desktop</td></tr>
+    <tr><td>height.full</td><td>100%</td><td>Full height</td></tr>
+    <tr><td>height.screen</td><td>100vh</td><td>Full viewport height</td></tr>
   </tbody>
 </table>
 
@@ -145,11 +212,11 @@ This page documents all design tokens used in NovyUI. All tokens use a unified 1
     </tr>
   </thead>
   <tbody>
-    <tr><td>z.1</td><td>10</td><td>Base layer</td></tr>
-    <tr><td>z.2</td><td>100</td><td>Dropdowns</td></tr>
-    <tr><td>z.3</td><td>1000</td><td>Modals</td></tr>
-    <tr><td>z.4</td><td>10000</td><td>Overlays, tooltips</td></tr>
-    <tr><td>z.auto</td><td>auto</td><td>Default stacking</td></tr>
+    <tr><td>zIndex.10</td><td>10</td><td>Base layer</td></tr>
+    <tr><td>zIndex.100</td><td>100</td><td>Dropdowns</td></tr>
+    <tr><td>zIndex.1000</td><td>1000</td><td>Modals</td></tr>
+    <tr><td>zIndex.10000</td><td>10000</td><td>Overlays, tooltips</td></tr>
+    <tr><td>zIndex.auto</td><td>auto</td><td>Default stacking</td></tr>
   </tbody>
 </table>
 
@@ -164,34 +231,80 @@ This page documents all design tokens used in NovyUI. All tokens use a unified 1
     </tr>
   </thead>
   <tbody>
-    <tr><td>opacity.none</td><td>0</td><td>Fully transparent</td></tr>
-    <tr><td>opacity.1</td><td>0.04</td><td>Disabled, subtle</td></tr>
-    <tr><td>opacity.2</td><td>0.08</td><td>Overlay, subtle</td></tr>
-    <tr><td>opacity.3</td><td>0.16</td><td>Overlay, medium</td></tr>
-    <tr><td>opacity.4</td><td>0.32</td><td>Overlay, strong</td></tr>
-    <tr><td>opacity.5</td><td>0.64</td><td>Hover, active</td></tr>
-    <tr><td>opacity.6</td><td>0.8</td><td>Focus, highlight</td></tr>
-    <tr><td>opacity.7</td><td>1</td><td>Fully opaque</td></tr>
+    <tr><td>opacity.0%</td><td>0</td><td>Fully transparent</td></tr>
+    <tr><td>opacity.4%</td><td>0.04</td><td>Disabled, subtle</td></tr>
+    <tr><td>opacity.8%</td><td>0.08</td><td>Overlay, subtle</td></tr>
+    <tr><td>opacity.16%</td><td>0.16</td><td>Overlay, medium</td></tr>
+    <tr><td>opacity.32%</td><td>0.32</td><td>Overlay, strong</td></tr>
+    <tr><td>opacity.64%</td><td>0.64</td><td>Hover, active</td></tr>
+    <tr><td>opacity.80%</td><td>0.8</td><td>Focus, highlight</td></tr>
+    <tr><td>opacity.100%</td><td>1</td><td>Fully opaque</td></tr>
   </tbody>
 </table>
 
-## Radius Tokens
+## Corner Radius Tokens
 
 <table>
   <thead>
     <tr>
       <th>Token</th>
-      <th>Value (px)</th>
+      <th>Value</th>
       <th>Usage Example</th>
     </tr>
   </thead>
   <tbody>
-    <tr><td>radii.1</td><td>2</td><td>Subtle rounding (inputs, chips)</td></tr>
-    <tr><td>radii.2</td><td>4</td><td>Buttons, cards</td></tr>
-    <tr><td>radii.3</td><td>8</td><td>Modals, popovers</td></tr>
-    <tr><td>radii.4</td><td>16</td><td>Large containers</td></tr>
-    <tr><td>radii.full</td><td>9999</td><td>Full (circle/pill)</td></tr>
-    <tr><td>radii.none</td><td>0</td><td>No rounding</td></tr>
+    <tr><td>cornerRadius.0px</td><td>0px</td><td>No rounding</td></tr>
+    <tr><td>cornerRadius.2px</td><td>2px</td><td>Subtle rounding (inputs, chips)</td></tr>
+    <tr><td>cornerRadius.4px</td><td>4px</td><td>Buttons, cards</td></tr>
+    <tr><td>cornerRadius.8px</td><td>8px</td><td>Modals, popovers</td></tr>
+    <tr><td>cornerRadius.16px</td><td>16px</td><td>Large containers</td></tr>
+    <tr><td>cornerRadius.max</td><td>9999px</td><td>Full (circle/pill)</td></tr>
+  </tbody>
+</table>
+
+## Transition Tokens
+
+<table>
+  <thead>
+    <tr>
+      <th>Token</th>
+      <th>Value</th>
+      <th>Usage Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>transition.none</td><td>none</td><td>No transition</td></tr>
+    <tr><td>transition.all</td><td>all 150ms cubic-bezier(0.4, 0, 0.2, 1)</td><td>All properties</td></tr>
+    <tr><td>transition.fast</td><td>all 100ms cubic-bezier(0.4, 0, 0.2, 1)</td><td>Quick interactions</td></tr>
+    <tr><td>transition.normal</td><td>all 150ms cubic-bezier(0.4, 0, 0.2, 1)</td><td>Standard timing</td></tr>
+    <tr><td>transition.slow</td><td>all 300ms cubic-bezier(0.4, 0, 0.2, 1)</td><td>Slow animations</td></tr>
+    <tr><td>transition.colors</td><td>color 150ms..., background-color 150ms..., border-color 150ms...</td><td>Color changes</td></tr>
+    <tr><td>transition.opacity</td><td>opacity 150ms cubic-bezier(0.4, 0, 0.2, 1)</td><td>Fade effects</td></tr>
+    <tr><td>transition.shadow</td><td>box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1)</td><td>Shadow changes</td></tr>
+    <tr><td>transition.transform</td><td>transform 150ms cubic-bezier(0.4, 0, 0.2, 1)</td><td>Transform changes</td></tr>
+  </tbody>
+</table>
+
+## Animation Tokens
+
+<table>
+  <thead>
+    <tr>
+      <th>Token</th>
+      <th>Value</th>
+      <th>Usage Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>animation.none</td><td>none</td><td>No animation</td></tr>
+    <tr><td>animation.spin</td><td>spin 1s linear infinite</td><td>Loading spinners</td></tr>
+    <tr><td>animation.ping</td><td>ping 1s cubic-bezier(0, 0, 0.2, 1) infinite</td><td>Pulse effect</td></tr>
+    <tr><td>animation.pulse</td><td>pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite</td><td>Breathing effect</td></tr>
+    <tr><td>animation.bounce</td><td>bounce 1s infinite</td><td>Bounce effect</td></tr>
+    <tr><td>animation.fade-in</td><td>fadeIn 150ms cubic-bezier(0.4, 0, 0.2, 1)</td><td>Fade in</td></tr>
+    <tr><td>animation.fade-out</td><td>fadeOut 150ms cubic-bezier(0.4, 0, 0.2, 1)</td><td>Fade out</td></tr>
+    <tr><td>animation.slide-in</td><td>slideIn 150ms cubic-bezier(0.4, 0, 0.2, 1)</td><td>Slide in</td></tr>
+    <tr><td>animation.slide-out</td><td>slideOut 150ms cubic-bezier(0.4, 0, 0.2, 1)</td><td>Slide out</td></tr>
   </tbody>
 </table>
 
@@ -202,15 +315,39 @@ This page documents all design tokens used in NovyUI. All tokens use a unified 1
     <tr>
       <th>Font Family</th>
       <th>Weight</th>
+      <th>Style</th>
       <th>File Example</th>
       <th>Description</th>
     </tr>
   </thead>
   <tbody>
-    <tr><td>Inter</td><td>400</td><td>inter-4-normal.woff2</td><td>Default UI font</td></tr>
-    <tr><td>Inter Italic</td><td>400</td><td>inter-4-italic.woff2</td><td>Default UI italic</td></tr>
-    <tr><td>FiraCode</td><td>400</td><td>firacode-4-normal.woff2</td><td>Code/monospace font</td></tr>
-    <tr><td>Audiowide</td><td>400</td><td>audiowide-4-normal.woff2</td><td>Display/branding font</td></tr>
+    <tr><td>Inter</td><td>400</td><td>normal</td><td>inter-4-normal.woff2</td><td>Default UI font</td></tr>
+    <tr><td>Inter</td><td>400</td><td>italic</td><td>inter-4-italic-normal.woff2</td><td>Default UI italic</td></tr>
+    <tr><td>Inter</td><td>500</td><td>normal</td><td>inter-5-medium.woff2</td><td>Medium weight UI</td></tr>
+    <tr><td>Inter</td><td>700</td><td>normal</td><td>inter-7-bold.woff2</td><td>Bold headings</td></tr>
+    <tr><td>FiraCode</td><td>400</td><td>normal</td><td>firacode-4-normal.woff2</td><td>Code/monospace font</td></tr>
+    <tr><td>FiraCode</td><td>700</td><td>normal</td><td>firacode-7-bold.woff2</td><td>Bold code</td></tr>
+    <tr><td>Audiowide</td><td>400</td><td>normal</td><td>audiowide-4-normal.woff2</td><td>Display/branding font</td></tr>
+  </tbody>
+</table>
+
+## Pattern Tokens
+
+<table>
+  <thead>
+    <tr>
+      <th>Pattern Name</th>
+      <th>Slug</th>
+      <th>File</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Hexagons</td><td>hexagons</td><td>hexagons.svg</td><td>Hexagonal pattern</td></tr>
+    <tr><td>Jigsaw</td><td>jigsaw</td><td>jigsaw.svg</td><td>Jigsaw puzzle pattern</td></tr>
+    <tr><td>Overcast</td><td>overcast</td><td>overcast.svg</td><td>Cloud-like pattern</td></tr>
+    <tr><td>Topography</td><td>topography</td><td>topography.svg</td><td>Topographical lines</td></tr>
+    <tr><td>Wiggle</td><td>wiggle</td><td>wiggle.svg</td><td>Wavy lines pattern</td></tr>
   </tbody>
 </table>
 
@@ -220,25 +357,44 @@ This page documents all design tokens used in NovyUI. All tokens use a unified 1
   <thead>
     <tr>
       <th>Icon Name</th>
-      <th>Size</th>
-      <th>File Example</th>
+      <th>File</th>
       <th>Description</th>
     </tr>
   </thead>
   <tbody>
-    <tr><td>arrow-left</td><td>24</td><td>arrow-left.svg</td><td>Left-pointing arrow icon</td></tr>
-    <tr><td>user-round</td><td>24</td><td>user-round.svg</td><td>User profile icon</td></tr>
-    <tr><td>search</td><td>24</td><td>search.svg</td><td>Search icon</td></tr>
-    <tr><td>check</td><td>24</td><td>check.svg</td><td>Checkmark icon</td></tr>
-    <tr><td>x</td><td>24</td><td>x.svg</td><td>Close/cancel icon</td></tr>
-    <tr><td>plus</td><td>24</td><td>plus.svg</td><td>Plus/add icon</td></tr>
-    <tr><td>menu</td><td>24</td><td>menu.svg</td><td>Menu/hamburger icon</td></tr>
-    <tr><td>calendar</td><td>24</td><td>calendar.svg</td><td>Calendar/date icon</td></tr>
-    <tr><td>upload</td><td>24</td><td>upload.svg</td><td>Upload icon</td></tr>
-    <tr><td>download</td><td>24</td><td>download.svg</td><td>Download icon</td></tr>
+    <tr><td>arrow-left</td><td>arrow-left.svg</td><td>Left-pointing arrow icon</td></tr>
+    <tr><td>user-round</td><td>user-round.svg</td><td>User profile icon</td></tr>
+    <tr><td>search</td><td>search.svg</td><td>Search icon</td></tr>
+    <tr><td>check</td><td>check.svg</td><td>Checkmark icon</td></tr>
+    <tr><td>x</td><td>x.svg</td><td>Close/cancel icon</td></tr>
+    <tr><td>plus</td><td>plus.svg</td><td>Plus/add icon</td></tr>
+    <tr><td>menu</td><td>menu.svg</td><td>Menu/hamburger icon</td></tr>
+    <tr><td>calendar</td><td>calendar.svg</td><td>Calendar/date icon</td></tr>
+    <tr><td>upload</td><td>upload.svg</td><td>Upload icon</td></tr>
+    <tr><td>download</td><td>download.svg</td><td>Download icon</td></tr>
+    <tr><td colspan="3">...and 60+ more icons available</td></tr>
   </tbody>
 </table>
 
 ---
 
-> All components and blocks reference these tokens. No hardcoded values are used in NovyUI components.
+## Usage Examples
+
+```typescript
+// Import tokens
+import { color, spacing, typography, width, height } from './tokens';
+
+// Use reactive color tokens (automatically switches with theme)
+const buttonStyle = {
+  backgroundColor: color.primary['7'].value,
+  color: color.neutral['1'].value,
+  padding: `${spacing['12px']} ${spacing['16px']}`,
+  fontSize: typography.size['16px'],
+  fontWeight: typography.weight['6'],
+  borderRadius: cornerRadius['4px'],
+  width: width['256px'],
+  height: height['10']
+};
+```
+
+> All components and blocks reference these tokens. No hardcoded values are used in NovyUI components. Colors are reactive and automatically adapt to light/dark themes.
