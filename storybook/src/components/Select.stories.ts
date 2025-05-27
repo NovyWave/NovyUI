@@ -203,11 +203,39 @@ export const Default: Story = {
   render: (args) => ({
     components: { Select },
     setup() {
-      return { args };
+      const selectedValue = ref(args.modelValue);
+      return { 
+        selectedValue,
+        options: args.options,
+        multiple: args.multiple,
+        disabled: args.disabled,
+        searchable: args.searchable,
+        placeholder: args.placeholder,
+        searchPlaceholder: args.searchPlaceholder,
+        noOptionsText: args.noOptionsText,
+        size: args.size,
+        labelId: args.labelId,
+        descriptionId: args.descriptionId,
+      };
     },
     template: `
       <div style="min-height: 300px; padding: 20px;">
-        <Select v-bind="args" />
+        <Select 
+          v-model="selectedValue"
+          :options="options"
+          :multiple="multiple"
+          :disabled="disabled"
+          :searchable="searchable"
+          :placeholder="placeholder"
+          :searchPlaceholder="searchPlaceholder"
+          :noOptionsText="noOptionsText"
+          :size="size"
+          :labelId="labelId"
+          :descriptionId="descriptionId"
+        />
+        <div style="margin-top: 16px; padding: 12px; background: #f8f9fa; border-radius: 4px; font-family: monospace; font-size: 12px;">
+          Selected: {{ JSON.stringify(selectedValue) }}
+        </div>
       </div>
     `,
   }),
@@ -229,11 +257,39 @@ export const WithSelectedValue: Story = {
   render: (args) => ({
     components: { Select },
     setup() {
-      return { args };
+      const selectedValue = ref(args.modelValue);
+      return { 
+        selectedValue,
+        options: args.options,
+        multiple: args.multiple,
+        disabled: args.disabled,
+        searchable: args.searchable,
+        placeholder: args.placeholder,
+        searchPlaceholder: args.searchPlaceholder,
+        noOptionsText: args.noOptionsText,
+        size: args.size,
+        labelId: args.labelId,
+        descriptionId: args.descriptionId,
+      };
     },
     template: `
       <div style="min-height: 300px; padding: 20px;">
-        <Select v-bind="args" />
+        <Select 
+          v-model="selectedValue"
+          :options="options"
+          :multiple="multiple"
+          :disabled="disabled"
+          :searchable="searchable"
+          :placeholder="placeholder"
+          :searchPlaceholder="searchPlaceholder"
+          :noOptionsText="noOptionsText"
+          :size="size"
+          :labelId="labelId"
+          :descriptionId="descriptionId"
+        />
+        <div style="margin-top: 16px; padding: 12px; background: #f8f9fa; border-radius: 4px; font-family: monospace; font-size: 12px;">
+          Selected: {{ JSON.stringify(selectedValue) }}
+        </div>
       </div>
     `,
   }),
@@ -252,22 +308,29 @@ export const WithSelectedValue: Story = {
 
 // Object options
 export const ObjectOptions: Story = {
-  render: (args) => ({
+  render: () => ({
     components: { Select },
     setup() {
-      return { args };
+      const selectedValue = ref(null);
+      
+      return { 
+        selectedValue,
+        objectOptions,
+      };
     },
     template: `
       <div style="min-height: 300px; padding: 20px;">
-        <Select v-bind="args" />
+        <Select 
+          v-model="selectedValue"
+          :options="objectOptions"
+          placeholder="Choose a fruit..."
+        />
+        <div style="margin-top: 16px; padding: 12px; background: #f8f9fa; border-radius: 4px; font-family: monospace; font-size: 12px;">
+          Selected: {{ JSON.stringify(selectedValue) }}
+        </div>
       </div>
     `,
   }),
-  args: {
-    modelValue: null,
-    options: objectOptions,
-    placeholder: 'Choose a fruit...',
-  },
   parameters: {
     docs: {
       description: {
@@ -282,11 +345,39 @@ export const Searchable: Story = {
   render: (args) => ({
     components: { Select },
     setup() {
-      return { args };
+      const selectedValue = ref(args.modelValue);
+      return { 
+        selectedValue,
+        options: args.options,
+        multiple: args.multiple,
+        disabled: args.disabled,
+        searchable: args.searchable,
+        placeholder: args.placeholder,
+        searchPlaceholder: args.searchPlaceholder,
+        noOptionsText: args.noOptionsText,
+        size: args.size,
+        labelId: args.labelId,
+        descriptionId: args.descriptionId,
+      };
     },
     template: `
       <div style="min-height: 350px; padding: 20px;">
-        <Select v-bind="args" />
+        <Select 
+          v-model="selectedValue"
+          :options="options"
+          :multiple="multiple"
+          :disabled="disabled"
+          :searchable="searchable"
+          :placeholder="placeholder"
+          :searchPlaceholder="searchPlaceholder"
+          :noOptionsText="noOptionsText"
+          :size="size"
+          :labelId="labelId"
+          :descriptionId="descriptionId"
+        />
+        <div style="margin-top: 16px; padding: 12px; background: #f8f9fa; border-radius: 4px; font-family: monospace; font-size: 12px;">
+          Selected: {{ JSON.stringify(selectedValue) }}
+        </div>
       </div>
     `,
   }),
@@ -311,11 +402,39 @@ export const Multiple: Story = {
   render: (args) => ({
     components: { Select },
     setup() {
-      return { args };
+      const selectedValue = ref(args.modelValue);
+      return { 
+        selectedValue,
+        options: args.options,
+        multiple: args.multiple,
+        disabled: args.disabled,
+        searchable: args.searchable,
+        placeholder: args.placeholder,
+        searchPlaceholder: args.searchPlaceholder,
+        noOptionsText: args.noOptionsText,
+        size: args.size,
+        labelId: args.labelId,
+        descriptionId: args.descriptionId,
+      };
     },
     template: `
       <div style="min-height: 300px; padding: 20px;">
-        <Select v-bind="args" />
+        <Select 
+          v-model="selectedValue"
+          :options="options"
+          :multiple="multiple"
+          :disabled="disabled"
+          :searchable="searchable"
+          :placeholder="placeholder"
+          :searchPlaceholder="searchPlaceholder"
+          :noOptionsText="noOptionsText"
+          :size="size"
+          :labelId="labelId"
+          :descriptionId="descriptionId"
+        />
+        <div style="margin-top: 16px; padding: 12px; background: #f8f9fa; border-radius: 4px; font-family: monospace; font-size: 12px;">
+          Selected: {{ JSON.stringify(selectedValue) }}
+        </div>
       </div>
     `,
   }),
@@ -339,11 +458,39 @@ export const MultipleSearchable: Story = {
   render: (args) => ({
     components: { Select },
     setup() {
-      return { args };
+      const selectedValue = ref(args.modelValue);
+      return { 
+        selectedValue,
+        options: args.options,
+        multiple: args.multiple,
+        disabled: args.disabled,
+        searchable: args.searchable,
+        placeholder: args.placeholder,
+        searchPlaceholder: args.searchPlaceholder,
+        noOptionsText: args.noOptionsText,
+        size: args.size,
+        labelId: args.labelId,
+        descriptionId: args.descriptionId,
+      };
     },
     template: `
       <div style="min-height: 350px; padding: 20px;">
-        <Select v-bind="args" />
+        <Select 
+          v-model="selectedValue"
+          :options="options"
+          :multiple="multiple"
+          :disabled="disabled"
+          :searchable="searchable"
+          :placeholder="placeholder"
+          :searchPlaceholder="searchPlaceholder"
+          :noOptionsText="noOptionsText"
+          :size="size"
+          :labelId="labelId"
+          :descriptionId="descriptionId"
+        />
+        <div style="margin-top: 16px; padding: 12px; background: #f8f9fa; border-radius: 4px; font-family: monospace; font-size: 12px;">
+          Selected: {{ JSON.stringify(selectedValue) }}
+        </div>
       </div>
     `,
   }),
@@ -369,21 +516,51 @@ export const Sizes: Story = {
   render: (args) => ({
     components: { Select },
     setup() {
-      return { args };
+      const smallValue = ref(null);
+      const mediumValue = ref(null);
+      const largeValue = ref(null);
+      
+      return { 
+        args, 
+        smallValue, 
+        mediumValue, 
+        largeValue,
+        handleSmallChange: (value: any) => { smallValue.value = value; },
+        handleMediumChange: (value: any) => { mediumValue.value = value; },
+        handleLargeChange: (value: any) => { largeValue.value = value; },
+      };
     },
     template: `
       <div style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start;">
         <div>
           <label style="display: block; margin-bottom: 4px; font-weight: 600; font-size: 14px;">Small</label>
-          <Select v-bind="args" size="small" :modelValue="null" />
+          <Select 
+            v-bind="args" 
+            size="small" 
+            :modelValue="smallValue" 
+            @update:modelValue="handleSmallChange"
+          />
+          <p style="margin-top: 4px; font-size: 12px; opacity: 0.7;">Selected: {{ smallValue || 'None' }}</p>
         </div>
         <div>
           <label style="display: block; margin-bottom: 4px; font-weight: 600; font-size: 14px;">Medium (Default)</label>
-          <Select v-bind="args" size="medium" :modelValue="null" />
+          <Select 
+            v-bind="args" 
+            size="medium" 
+            :modelValue="mediumValue" 
+            @update:modelValue="handleMediumChange"
+          />
+          <p style="margin-top: 4px; font-size: 12px; opacity: 0.7;">Selected: {{ mediumValue || 'None' }}</p>
         </div>
         <div>
           <label style="display: block; margin-bottom: 4px; font-weight: 600; font-size: 14px;">Large</label>
-          <Select v-bind="args" size="large" :modelValue="null" />
+          <Select 
+            v-bind="args" 
+            size="large" 
+            :modelValue="largeValue" 
+            @update:modelValue="handleLargeChange"
+          />
+          <p style="margin-top: 4px; font-size: 12px; opacity: 0.7;">Selected: {{ largeValue || 'None' }}</p>
         </div>
       </div>
     `,
@@ -433,11 +610,24 @@ export const DisabledOptions: Story = {
   render: (args) => ({
     components: { Select },
     setup() {
-      return { args };
+      const selectedValue = ref(null);
+      
+      return { 
+        args, 
+        selectedValue,
+        handleChange: (value: any) => { selectedValue.value = value; },
+      };
     },
     template: `
       <div style="min-height: 350px; padding: 20px;">
-        <Select v-bind="args" />
+        <Select 
+          v-bind="args" 
+          :modelValue="selectedValue" 
+          @update:modelValue="handleChange"
+        />
+        <p style="margin-top: 12px; font-size: 14px; opacity: 0.7;">
+          Selected: {{ selectedValue || 'None' }}
+        </p>
       </div>
     `,
   }),
@@ -488,28 +678,38 @@ export const CustomStyling: Story = {
   render: (args) => ({
     components: { Select },
     setup() {
-      return { args };
+      const selectedValue = ref('typescript');
+      
+      return { 
+        args, 
+        selectedValue,
+        handleChange: (value: any) => { selectedValue.value = value; },
+      };
     },
     template: `
       <div style="min-height: 400px; padding: 20px;">
         <div style="max-width: 400px;">
-          <h3 style="margin-bottom: 16px; color: #1f2937;">Custom Select Example</h3>
+          <h3 style="margin-bottom: 16px;">Custom Select Example</h3>
           <div style="margin-bottom: 8px;">
             <label 
               id="custom-label" 
-              style="display: block; margin-bottom: 4px; font-weight: 600; font-size: 14px; color: #374151;"
+              style="display: block; margin-bottom: 4px; font-weight: 600; font-size: 14px;"
             >
               Favorite Programming Language
             </label>
-            <div id="custom-description" style="font-size: 12px; color: #6b7280; margin-bottom: 8px;">
+            <div id="custom-description" style="font-size: 12px; opacity: 0.7; margin-bottom: 8px;">
               Choose your preferred programming language from the list below.
             </div>
             <Select 
               v-bind="args" 
-              :modelValue="args.modelValue" 
+              :modelValue="selectedValue" 
+              @update:modelValue="handleChange"
               labelId="custom-label"
               descriptionId="custom-description"
             />
+            <p style="margin-top: 12px; font-size: 14px; opacity: 0.7;">
+              Selected: {{ selectedValue || 'None' }}
+            </p>
           </div>
         </div>
       </div>
@@ -546,11 +746,24 @@ export const StressTest: Story = {
   render: (args) => ({
     components: { Select },
     setup() {
-      return { args };
+      const selectedValue = ref(null);
+      
+      return { 
+        args, 
+        selectedValue,
+        handleChange: (value: any) => { selectedValue.value = value; },
+      };
     },
     template: `
       <div style="min-height: 400px; padding: 20px;">
-        <Select v-bind="args" />
+        <Select 
+          v-bind="args" 
+          :modelValue="selectedValue" 
+          @update:modelValue="handleChange"
+        />
+        <p style="margin-top: 12px; font-size: 14px; opacity: 0.7;">
+          Selected: {{ selectedValue || 'None' }}
+        </p>
       </div>
     `,
   }),

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Component Selection Test</title>
+    <script type="importmap">
+    {
+        "imports": {
+            "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+        }
+    }
+    </script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        .test-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+        }
+        .value-display {
+            margin-top: 10px;
+            padding: 10px;
+            background: #f1f3f4;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="test-container">
+            <h1>Select Component Selection Test</h1>
+            
+            <div class="test-section">
+                <h3>Single Selection Test</h3>
+                <div class="form-group">
+                    <label>Select a fruit:</label>
+                    <test-select
+                        v-model="singleValue"
+                        :options="fruits"
+                        placeholder="Choose a fruit..."
+                    />
+                </div>
+                <div class="value-display">
+                    <strong>Selected Value:</strong> {{ JSON.stringify(singleValue) }}<br>
+                    <strong>Type:</strong> {{ typeof singleValue }}<br>
+                    <strong>Is null/undefined:</strong> {{ singleValue === null || singleValue === undefined }}
+                </div>
+            </div>
+
+            <div class="test-section">
+                <h3>Multiple Selection Test</h3>
+                <div class="form-group">
+                    <label>Select multiple colors:</label>
+                    <test-select
+                        v-model="multipleValue"
+                        :options="colors"
+                        :multiple="true"
+                        placeholder="Choose colors..."
+                    />
+                </div>
+                <div class="value-display">
+                    <strong>Selected Values:</strong> {{ JSON.stringify(multipleValue) }}<br>
+                    <strong>Type:</strong> {{ typeof multipleValue }} ({{ Array.isArray(multipleValue) ? 'Array' : 'Not Array' }})<br>
+                    <strong>Length:</strong> {{ Array.isArray(multipleValue) ? multipleValue.length : 'N/A' }}
+                </div>
+            </div>
+
+            <div class="test-section">
+                <h3>Object Options Test</h3>
+                <div class="form-group">
+                    <label>Select a language:</label>
+                    <test-select
+                        v-model="objectValue"
+                        :options="languages"
+                        placeholder="Choose a language..."
+                    />
+                </div>
+                <div class="value-display">
+                    <strong>Selected Value:</strong> {{ JSON.stringify(objectValue) }}<br>
+                    <strong>Matching Option:</strong> {{ JSON.stringify(getOptionByValue(objectValue)) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { createApp, ref, computed } from 'vue';
+
+        // Simplified Select component for testing
+        const TestSelect = {
+            template: `
+                <div style="position: relative; width: 100%;">
+                    <button 
+                        @click="toggleOpen"
+                        style="
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            width: 100%;
+                            padding: 8px 12px;
+                            border: 1px solid #ccc;
+                            border-radius: 4px;
+                            background: white;
+                            cursor: pointer;
+                            font-size: 14px;
+                        "
+                    >
+                        <span>{{ displayValue }}</span>
+                        <span>{{ isOpen ? '▲' : '▼' }}</span>
+                    </button>
+                    
+                    <div 
+                        v-if="isOpen"
+                        style="
+                            position: absolute;
+                            top: 100%;
+                            left: 0;
+                            right: 0;
+                            background: white;
+                            border: 1px solid #ccc;
+                            border-radius: 4px;
+                            margin-top: 2px;
+                            max-height: 200px;
+                            overflow-y: auto;
+                            z-index: 1000;
+                            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+                        "
+                    >
+                        <div
+                            v-for="option in options"
+                            :key="getOptionValue(option)"
+                            @click="selectOption(option)"
+                            style="
+                                padding: 8px 12px;
+                                cursor: pointer;
+                                border-bottom: 1px solid #f0f0f0;
+                                transition: background-color 0.15s;
+                            "
+                            :style="{
+                                backgroundColor: isSelected(option) ? '#e3f2fd' : 'transparent',
+                                fontWeight: isSelected(option) ? 'bold' : 'normal'
+                            }"
+                            @mouseenter="$event.target.style.backgroundColor = '#f5f5f5'"
+                            @mouseleave="$event.target.style.backgroundColor = isSelected(option) ? '#e3f2fd' : 'transparent'"
+                        >
+                            <span v-if="isSelected(option)" style="color: #1976d2; margin-right: 5px;">✓</span>
+                            {{ getOptionLabel(option) }}
+                        </div>
+                    </div>
+                </div>
+            `,
+            props: {
+                modelValue: { default: null },
+                options: { type: Array, default: () => [] },
+                multiple: { type: Boolean, default: false },
+                placeholder: { type: String, default: 'Select...' }
+            },
+            emits: ['update:modelValue'],
+            setup(props, { emit }) {
+                const isOpen = ref(false);
+
+                const getOptionValue = (option) => {
+                    return typeof option === 'object' && option !== null ? option.value : option;
+                };
+
+                const getOptionLabel = (option) => {
+                    return typeof option === 'object' && option !== null ? option.label : String(option);
+                };
+
+                const displayValue = computed(() => {
+                    if (props.multiple && Array.isArray(props.modelValue)) {
+                        return props.modelValue.length > 0 
+                            ? `${props.modelValue.length} selected`
+                            : props.placeholder;
+                    }
+                    
+                    if (props.modelValue !== null && props.modelValue !== undefined) {
+                        const option = props.options.find(opt => getOptionValue(opt) === props.modelValue);
+                        return option ? getOptionLabel(option) : String(props.modelValue);
+                    }
+                    
+                    return props.placeholder;
+                });
+
+                const toggleOpen = () => {
+                    isOpen.value = !isOpen.value;
+                };
+
+                const selectOption = (option) => {
+                    const value = getOptionValue(option);
+                    console.log('Selecting option:', { option, value, currentModelValue: props.modelValue });
+                    
+                    if (props.multiple) {
+                        const current = Array.isArray(props.modelValue) ? [...props.modelValue] : [];
+                        const index = current.indexOf(value);
+                        
+                        if (index >= 0) {
+                            current.splice(index, 1);
+                        } else {
+                            current.push(value);
+                        }
+                        
+                        console.log('Emitting multiple values:', current);
+                        emit('update:modelValue', current);
+                    } else {
+                        console.log('Emitting single value:', value);
+                        emit('update:modelValue', value);
+                        isOpen.value = false;
+                    }
+                };
+
+                const isSelected = (option) => {
+                    const value = getOptionValue(option);
+                    if (props.multiple && Array.isArray(props.modelValue)) {
+                        return props.modelValue.includes(value);
+                    }
+                    return props.modelValue === value;
+                };
+
+                return {
+                    isOpen,
+                    displayValue,
+                    toggleOpen,
+                    selectOption,
+                    isSelected,
+                    getOptionValue,
+                    getOptionLabel
+                };
+            }
+        };
+
+        const app = createApp({
+            components: {
+                'test-select': TestSelect
+            },
+            setup() {
+                const singleValue = ref(null);
+                const multipleValue = ref([]);
+                const objectValue = ref(null);
+
+                const fruits = ['Apple', 'Banana', 'Cherry', 'Date', 'Elderberry'];
+                
+                const colors = [
+                    { value: 'red', label: 'Red' },
+                    { value: 'blue', label: 'Blue' },
+                    { value: 'green', label: 'Green' },
+                    { value: 'yellow', label: 'Yellow' }
+                ];
+
+                const languages = [
+                    { value: 'js', label: 'JavaScript' },
+                    { value: 'ts', label: 'TypeScript' },
+                    { value: 'py', label: 'Python' },
+                    { value: 'go', label: 'Go' }
+                ];
+
+                const getOptionByValue = (value) => {
+                    if (value === null || value === undefined) return null;
+                    return languages.find(lang => lang.value === value) || null;
+                };
+
+                // Watch for changes
+                const watchValue = (name, value) => {
+                    console.log(`${name} changed:`, value);
+                };
+
+                return {
+                    singleValue,
+                    multipleValue,
+                    objectValue,
+                    fruits,
+                    colors,
+                    languages,
+                    getOptionByValue
+                };
+            }
+        });
+
+        app.mount('#app');
+    </script>
+</body>
+</html>

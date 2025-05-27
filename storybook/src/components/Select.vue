@@ -25,7 +25,8 @@
             <span v-else :style="multipleValueStyle">
               {{ modelValue.length }} selected
             </span>
-          </template>          <template v-else-if="!multiple && modelValue !== null && modelValue !== undefined && !Array.isArray(modelValue)">
+          </template>
+          <template v-else-if="!multiple && modelValue !== null && modelValue !== undefined && !Array.isArray(modelValue)">
             <span :style="singleValueStyle">
               {{ getOptionLabel(getOptionByValue(modelValue)) }}
             </span>
@@ -70,6 +71,23 @@
             ref="searchInputRef"
             @keydown.stop
           />
+          <!-- Clear Search Button -->
+          <button
+            v-if="searchQuery.trim()"
+            :style="clearSearchButtonStyle"
+            type="button"
+            @click.stop="clearSearch"
+            :aria-label="'Clear search'"
+            title="Clear search"
+          >
+            <Icon 
+              :name="'x'" 
+              :width="'14px'" 
+              :height="'14px'" 
+              :color="color.neutral['6'].value"
+              :aria-hidden="true"
+            />
+          </button>
         </div>
 
         <!-- Options List -->
@@ -80,7 +98,8 @@
             :style="getOptionStyle(option, index)"
             :aria-selected="isOptionSelected(option)"
             :role="'option'"
-            @click="selectOption(option)"
+            @click.stop="selectOption(option)"
+            @mousedown="onOptionMouseDown"
             @mouseenter="hoveredIndex = index"
             @mouseleave="hoveredIndex = -1"
           >
@@ -115,7 +134,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, nextTick, onMounted, onUnmounted, type CSSProperties } from 'vue';
+import { computed, ref, watch, nextTick, onMounted, onUnmounted, type CSSProperties } from 'vue';
 import { color, spacing, cornerRadius, border, shadow, typography, width, opacity, transition, zIndex, useTheme } from '../tokens';
 import Icon from './Icon.vue';
 
@@ -161,6 +180,11 @@ const searchQuery = ref('');
 const hoveredIndex = ref(-1);
 const focusedIndex = ref(-1);
 
+// Debug watcher for searchQuery
+watch(searchQuery, (newValue: string, oldValue: string) => {
+  console.log('searchQuery changed from:', oldValue, 'to:', newValue, 'trimmed:', newValue.trim());
+});
+
 // Refs
 const selectRef = ref<HTMLElement>();
 const triggerRef = ref<HTMLButtonElement>();
@@ -205,15 +229,25 @@ const isOptionSelected = (option: Option): boolean => {
 
 // Filtered options based on search
 const filteredOptions = computed(() => {
-  if (!props.searchable || !searchQuery.value.trim()) {
-    return props.options;
+  let options = props.options;
+  
+  // Apply search filter if searchable and query exists
+  if (props.searchable && searchQuery.value.trim()) {
+    const query = searchQuery.value.toLowerCase().trim();
+    options = props.options.filter(option => {
+      const label = getOptionLabel(option).toLowerCase();
+      return label.includes(query);
+    });
   }
   
-  const query = searchQuery.value.toLowerCase().trim();
-  return props.options.filter(option => {
-    const label = getOptionLabel(option).toLowerCase();
-    return label.includes(query);
-  });
+  // For multiple selection, show selected options at the top
+  if (props.multiple && Array.isArray(props.modelValue) && props.modelValue.length > 0) {
+    const selectedOptions = options.filter(option => isOptionSelected(option));
+    const unselectedOptions = options.filter(option => !isOptionSelected(option));
+    return [...selectedOptions, ...unselectedOptions];
+  }
+  
+  return options;
 });
 
 // Methods
@@ -262,6 +296,7 @@ const closeDropdown = () => {
 };
 
 const selectOption = (option: Option) => {
+  console.log('selectOption called:', option, 'multiple:', props.multiple);
   if (isOptionDisabled(option)) return;
   
   const value = getOptionValue(option);
@@ -280,10 +315,27 @@ const selectOption = (option: Option) => {
       emit('update:modelValue', newValues);
       emit('change', newValues);
     }
+    console.log('Multiple selection - dropdown should stay open');
   } else {
     emit('update:modelValue', value);
     emit('change', value);
+    console.log('Single selection - closing dropdown');
     closeDropdown();
+  }
+};
+
+const clearSearch = () => {
+  console.log('clearSearch called, searchQuery was:', searchQuery.value);
+  searchQuery.value = '';
+  if (searchInputRef.value) {
+    searchInputRef.value.focus();
+  }
+};
+
+const onOptionMouseDown = (event: MouseEvent) => {
+  // In multiple selection mode, prevent mousedown from causing blur
+  if (props.multiple) {
+    event.preventDefault();
   }
 };
 
@@ -293,15 +345,20 @@ const onTriggerFocus = () => {
 };
 
 const onTriggerBlur = (event: FocusEvent) => {
+  console.log('onTriggerBlur called, relatedTarget:', event.relatedTarget);
   // Don't close if focus is moving to dropdown content
   const relatedTarget = event.relatedTarget as Element;
   if (dropdownRef.value?.contains(relatedTarget)) {
+    console.log('Focus moving to dropdown, not closing');
     return;
   }
   
   setTimeout(() => {
     if (!selectRef.value?.contains(document.activeElement)) {
+      console.log('Focus lost, closing dropdown');
       closeDropdown();
+    } else {
+      console.log('Focus still within select, keeping open');
     }
   }, 0);
 };
@@ -522,7 +579,9 @@ const searchIconStyle = computed<CSSProperties>(() => ({
 
 const searchInputStyle = computed<CSSProperties>(() => ({
   width: '100%',
-  padding: `${spacing['4px']} ${spacing['8px']} ${spacing['4px']} ${spacing['32px']}`,
+  padding: searchQuery.value.trim() 
+    ? `${spacing['4px']} ${spacing['40px']} ${spacing['4px']} ${spacing['32px']}` 
+    : `${spacing['4px']} ${spacing['32px']} ${spacing['4px']} ${spacing['32px']}`,
   fontSize: typography.size['14px'],
   fontFamily: typography.family.sans,
   color: theme.value === 'dark' ? color.neutral['10'].value : color.neutral['9'].value,
@@ -531,6 +590,29 @@ const searchInputStyle = computed<CSSProperties>(() => ({
   outline: 'none',
   '::placeholder': {
     color: color.neutral['6'].value,
+  },
+}));
+
+const clearSearchButtonStyle = computed<CSSProperties>(() => ({
+  position: 'absolute',
+  right: spacing['8px'],
+  top: '50%',
+  transform: 'translateY(-50%)',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: '20px',
+  height: '20px',
+  border: 'none',
+  backgroundColor: 'transparent',
+  borderRadius: cornerRadius['4px'],
+  cursor: 'pointer',
+  color: color.neutral['6'].value,
+  transition: 'background-color 0.15s ease, color 0.15s ease',
+  zIndex: '1',
+  '&:hover': {
+    backgroundColor: color.neutral['2'].value,
+    color: color.neutral['8'].value,
   },
 }));
 
