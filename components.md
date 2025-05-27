@@ -39,7 +39,7 @@ Welcome to the NovyUI Components reference. This document provides an overview o
 - [🖼️ Image](components/Image.md)
 - [📝 Input](components/Input.md)
 - [👥 Input Group](components/InputGroup.md)
-- [⌨️ Keyboard Key](components/KeyboardKey.md)
+- [⌨️ Kbd](components/Kbd.md)
 - [📋 List](components/List.md)
 - [⏳ Loading](components/Loading.md)
 - [🗺️ Map](components/Map.md)
