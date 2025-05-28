@@ -23,10 +23,10 @@
         :style="leftIconStyle"
         :aria-hidden="true"
       />
-      
+
       <!-- Title -->
       <span :style="titleStyle">{{ item.title }}</span>
-      
+
       <!-- Right Icon -->
       <Icon
         v-if="showIcon && iconPosition === 'right'"
@@ -38,7 +38,7 @@
         :aria-hidden="true"
       />
     </button>
-    
+
     <!-- Content -->
     <div
       :id="contentId"
@@ -46,8 +46,7 @@
       :aria-labelledby="triggerId"
       role="region"
     >
-      <div :style="contentStyle">
-        {{ item.content }}
+      <div :style="contentStyle" v-html="item.content">
       </div>
     </div>
   </div>
@@ -157,11 +156,11 @@ const itemContainerStyle = computed<CSSProperties>(() => {
 const triggerStyle = computed<CSSProperties>(() => {
   const size = props.size;
   const isDark = theme.value === 'dark';
-  
+
   let paddingY: string = spacing['12px'];
   let paddingX: string = spacing['16px'];
   let fontSize: string = typography.size['16px'];
-  
+
   if (size === 'small') {
     paddingY = spacing['8px'];
     paddingX = spacing['12px'];
@@ -174,7 +173,7 @@ const triggerStyle = computed<CSSProperties>(() => {
 
   let backgroundColor = 'transparent';
   let textColor = isDark ? color.neutral['10'].value : color.neutral['9'].value;
-  
+
   if (props.disabled) {
     textColor = color.neutral['5'].value;
     backgroundColor = isDark ? color.neutral['2'].value : color.neutral['1'].value;
@@ -200,7 +199,7 @@ const triggerStyle = computed<CSSProperties>(() => {
     transition: transition.colors,
     borderRadius: props.variant === 'separated' ? `${cornerRadius['8px']} ${cornerRadius['8px']} 0 0` : '0',
     outline: 'none',
-    boxShadow: focused.value && !props.disabled ? 
+    boxShadow: focused.value && !props.disabled ?
       `0 0 0 2px ${color.primary['5'].value}` : 'none',
   };
 });
@@ -236,11 +235,11 @@ const contentWrapperStyle = computed<CSSProperties>(() => {
 const contentStyle = computed<CSSProperties>(() => {
   const size = props.size;
   const isDark = theme.value === 'dark';
-  
+
   let paddingY: string = spacing['12px'];
   let paddingX: string = spacing['16px'];
   let fontSize: string = typography.size['14px'];
-  
+
   if (size === 'small') {
     paddingY = spacing['8px'];
     paddingX = spacing['12px'];
