@@ -86,6 +86,7 @@
           size="small"
           :leftIcon="'x'"
           @click="removeFile(index)"
+          :aria-label="`Remove ${file.name}`"
         />
       </div>
     </div>
@@ -380,6 +381,8 @@ const fileSizeStyle = computed<CSSProperties>(() => {
     color: isDark ? color.neutral['8'].value : color.neutral['7'].value,
   };
 });
+
+
 
 
 

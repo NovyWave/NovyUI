@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
+import { ref } from 'vue';
 import FileInput from './FileInput.vue';
 import { color } from '../tokens';
 
@@ -103,10 +104,28 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  render: (args) => ({
+    components: { FileInput },
+    setup() {
+      const files = ref([]);
+      const { modelValue, ...restArgs } = args;
+      return { files, restArgs };
+    },
+    template: `<FileInput v-model="files" v-bind="restArgs" />`,
+  }),
   args: {},
 };
 
 export const Multiple: Story = {
+  render: (args) => ({
+    components: { FileInput },
+    setup() {
+      const files = ref([]);
+      const { modelValue, ...restArgs } = args;
+      return { files, restArgs };
+    },
+    template: `<FileInput v-model="files" v-bind="restArgs" />`,
+  }),
   args: {
     multiple: true,
     primaryText: 'Drop multiple files here',
@@ -115,6 +134,15 @@ export const Multiple: Story = {
 };
 
 export const ImagesOnly: Story = {
+  render: (args) => ({
+    components: { FileInput },
+    setup() {
+      const files = ref([]);
+      const { modelValue, ...restArgs } = args;
+      return { files, restArgs };
+    },
+    template: `<FileInput v-model="files" v-bind="restArgs" />`,
+  }),
   args: {
     accept: 'image/*',
     multiple: true,
@@ -125,6 +153,15 @@ export const ImagesOnly: Story = {
 };
 
 export const DocumentsOnly: Story = {
+  render: (args) => ({
+    components: { FileInput },
+    setup() {
+      const files = ref([]);
+      const { modelValue, ...restArgs } = args;
+      return { files, restArgs };
+    },
+    template: `<FileInput v-model="files" v-bind="restArgs" />`,
+  }),
   args: {
     accept: '.pdf,.doc,.docx,.txt',
     multiple: true,
@@ -135,6 +172,15 @@ export const DocumentsOnly: Story = {
 };
 
 export const SingleFile: Story = {
+  render: (args) => ({
+    components: { FileInput },
+    setup() {
+      const files = ref([]);
+      const { modelValue, ...restArgs } = args;
+      return { files, restArgs };
+    },
+    template: `<FileInput v-model="files" v-bind="restArgs" />`,
+  }),
   args: {
     multiple: false,
     primaryText: 'Drop a single file here',
@@ -144,6 +190,15 @@ export const SingleFile: Story = {
 };
 
 export const SmallSize: Story = {
+  render: (args) => ({
+    components: { FileInput },
+    setup() {
+      const files = ref([]);
+      const { modelValue, ...restArgs } = args;
+      return { files, restArgs };
+    },
+    template: `<FileInput v-model="files" v-bind="restArgs" />`,
+  }),
   args: {
     size: 'small',
     primaryText: 'Drop file here',
@@ -152,6 +207,15 @@ export const SmallSize: Story = {
 };
 
 export const LargeSize: Story = {
+  render: (args) => ({
+    components: { FileInput },
+    setup() {
+      const files = ref([]);
+      const { modelValue, ...restArgs } = args;
+      return { files, restArgs };
+    },
+    template: `<FileInput v-model="files" v-bind="restArgs" />`,
+  }),
   args: {
     size: 'large',
     multiple: true,
@@ -161,6 +225,15 @@ export const LargeSize: Story = {
 };
 
 export const Disabled: Story = {
+  render: (args) => ({
+    components: { FileInput },
+    setup() {
+      const files = ref([]);
+      const { modelValue, ...restArgs } = args;
+      return { files, restArgs };
+    },
+    template: `<FileInput v-model="files" v-bind="restArgs" />`,
+  }),
   args: {
     disabled: true,
     primaryText: 'File input is disabled',
@@ -169,6 +242,15 @@ export const Disabled: Story = {
 };
 
 export const WithValidation: Story = {
+  render: (args) => ({
+    components: { FileInput },
+    setup() {
+      const files = ref([]);
+      const { modelValue, ...restArgs } = args;
+      return { files, restArgs };
+    },
+    template: `<FileInput v-model="files" v-bind="restArgs" />`,
+  }),
   args: {
     multiple: true,
     maxFiles: 3,
