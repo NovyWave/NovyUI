@@ -7,11 +7,12 @@
 
 <script lang="ts" setup>
 import { ref, watchEffect, computed } from 'vue';
-import { fetchIconSvg, color, width, height } from '../tokens';
+import { fetchIconSvg, color, width, height, useTheme } from '../tokens';
 import type { IconToken } from '../tokens';
 import { getColorOptions } from '../tokenOptions';
 
 const colors = getColorOptions(color);
+const theme = useTheme();
 
 const props = defineProps<{
   name?: IconToken,
@@ -58,7 +59,7 @@ watchEffect(async () => {
         }
       }
     );
-    
+
     svgMarkup.value = processedSvg;
   } else {
     svgMarkup.value = '';
@@ -92,6 +93,13 @@ const iconStyle = computed(() => {
   const resolvedWidth = resolveWidthValue(props.width);
   const resolvedHeight = resolveHeightValue(props.height);
 
+  // Default color that adapts to theme
+  const getDefaultColor = () => {
+    const isDark = theme.value === 'dark';
+    // Use neutral colors that provide good contrast in both themes
+    return isDark ? color.neutral['11'].value : color.neutral['7'].value;
+  };
+
   return {
     display: 'inline-flex',
     alignItems: 'center',
@@ -100,7 +108,8 @@ const iconStyle = computed(() => {
     height: resolvedHeight,
     color: typeof props.color === 'string'
       ? (colors[props.color]?.value ?? props.color)
-      : color.primary['7'].value,    verticalAlign: 'middle',
+      : getDefaultColor(),
+    verticalAlign: 'middle',
     overflow: 'hidden',
   };
 });
@@ -112,6 +121,8 @@ const iconSvgStyle = computed(() => {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    // Ensure color inheritance for SVG currentColor
+    color: 'inherit',
     // Ensure crisp icon rendering
     WebkitFontSmoothing: 'antialiased',
     MozOsxFontSmoothing: 'grayscale',
