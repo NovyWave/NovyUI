@@ -107,7 +107,7 @@ export const Warning: Story = {
   args: {
     label: 'Warning',
     variant: 'warning',
-    leftIcon: 'alert-triangle',
+    leftIcon: 'triangle-alert',
   },
 };
 
@@ -115,7 +115,7 @@ export const Error: Story = {
   args: {
     label: 'Error',
     variant: 'error',
-    leftIcon: 'x-circle',
+    leftIcon: 'octagon-alert',
   },
 };
 
@@ -200,8 +200,8 @@ export const StatusBadges: Story = {
     template: `
       <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
         <Badge variant="success" leftIcon="check" label="Completed" />
-        <Badge variant="warning" leftIcon="clock" label="Pending" />
-        <Badge variant="error" leftIcon="x-circle" label="Failed" />
+        <Badge variant="warning" leftIcon="triangle-alert" label="Warning" />
+        <Badge variant="error" leftIcon="octagon-alert" label="Error" />
         <Badge variant="primary" leftIcon="info" label="Info" />
         <Badge variant="secondary" leftIcon="user" label="Draft" />
       </div>
@@ -223,27 +223,27 @@ export const CountBadges: Story = {
       <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
         <div style="position: relative; display: inline-block;">
           <span style="padding: 8px 16px; background: #f3f4f6; border-radius: 8px;">Inbox</span>
-          <Badge 
-            variant="error" 
-            label="3" 
+          <Badge
+            variant="error"
+            label="3"
             size="small"
             style="position: absolute; top: -8px; right: -8px;"
           />
         </div>
         <div style="position: relative; display: inline-block;">
           <span style="padding: 8px 16px; background: #f3f4f6; border-radius: 8px;">Notifications</span>
-          <Badge 
-            variant="primary" 
-            label="12" 
+          <Badge
+            variant="primary"
+            label="12"
             size="small"
             style="position: absolute; top: -8px; right: -8px;"
           />
         </div>
         <div style="position: relative; display: inline-block;">
           <span style="padding: 8px 16px; background: #f3f4f6; border-radius: 8px;">Messages</span>
-          <Badge 
-            variant="success" 
-            label="99+" 
+          <Badge
+            variant="success"
+            label="99+"
             size="small"
             style="position: absolute; top: -8px; right: -8px;"
           />

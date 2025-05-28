@@ -264,22 +264,25 @@ const avatarStyle = computed<CSSProperties>(() => {
     justifyContent: 'center',
     width: sizeConfig.value.width,
     height: sizeConfig.value.height,
-    backgroundColor: isDark ? color.neutral['6'].value : color.neutral['2'].value,
+    background: isDark
+      ? `linear-gradient(135deg, ${color.neutral['7'].value} 0%, ${color.neutral['8'].value} 100%)`
+      : `linear-gradient(135deg, ${color.neutral['2'].value} 0%, ${color.neutral['3'].value} 100%)`,
     borderRadius: shapeConfig.value.borderRadius,
     overflow: 'hidden',
     cursor: (props.interactive || props.href) ? 'pointer' : 'default',
     textDecoration: 'none',
     color: 'inherit',
-    border: 'none',
+    border: `2px solid ${isDark ? color.neutral['6'].value : color.neutral['4'].value}`,
     boxShadow: isDark
-      ? '0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2)'
-      : '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+      ? '0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+      : '0 4px 6px -1px rgba(0, 0, 0, 0.15), 0 2px 4px -1px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
     transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+    transform: 'translateZ(0)', // Enable hardware acceleration
     ':hover': (props.interactive || props.href) ? {
-      transform: 'scale(1.05)',
+      transform: 'scale(1.05) translateZ(0)',
       boxShadow: isDark
-        ? '0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3)'
-        : '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+        ? '0 8px 25px -8px rgba(0, 0, 0, 0.5), 0 4px 6px -1px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15)'
+        : '0 8px 25px -8px rgba(0, 0, 0, 0.25), 0 4px 6px -1px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.9)',
     } : {},
   };
 });
@@ -296,13 +299,17 @@ const initialsStyle = computed<CSSProperties>(() => {
 
   return {
     fontSize: sizeConfig.value.fontSize,
-    fontWeight: String(typography.weight['6']),
+    fontWeight: String(typography.weight['7']),
     fontFamily: typography.family.sans,
     color: isDark ? color.neutral['1'].value : color.neutral['11'].value,
     lineHeight: '1',
     userSelect: 'none',
     textTransform: 'uppercase',
-    letterSpacing: '0.025em',
+    letterSpacing: '0.1em',
+    textShadow: isDark
+      ? '0 1px 2px rgba(0, 0, 0, 0.8), 0 0 4px rgba(255, 255, 255, 0.1)'
+      : '0 1px 2px rgba(255, 255, 255, 0.8), 0 0 4px rgba(0, 0, 0, 0.1)',
+    filter: 'drop-shadow(0 1px 1px rgba(0, 0, 0, 0.1))',
   };
 });
 
@@ -315,10 +322,14 @@ const statusIndicatorStyle = computed<CSSProperties>(() => {
     right: sizeConfig.value.statusOffset,
     width: sizeConfig.value.statusSize,
     height: sizeConfig.value.statusSize,
-    backgroundColor: statusColor.value,
+    background: `radial-gradient(circle, ${statusColor.value} 0%, ${statusColor.value} 70%, rgba(0,0,0,0.1) 100%)`,
     borderRadius: cornerRadius['50%'],
-    border: `2px solid ${isDark ? color.neutral['9'].value : color.neutral['1'].value}`,
-    boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+    border: `3px solid ${isDark ? color.neutral['9'].value : color.neutral['1'].value}`,
+    boxShadow: isDark
+      ? '0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+      : '0 4px 6px -1px rgba(0, 0, 0, 0.15), 0 2px 4px -1px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
+    zIndex: '10',
+    transform: 'translateZ(0)',
   };
 });
 
@@ -334,11 +345,15 @@ const badgeStyle = computed<CSSProperties>(() => {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: color.error['6'].value,
+    background: `linear-gradient(135deg, ${color.error['6'].value} 0%, ${color.error['7'].value} 100%)`,
     borderRadius: cornerRadius['50%'],
-    border: `2px solid ${isDark ? color.neutral['9'].value : color.neutral['1'].value}`,
-    boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+    border: `3px solid ${isDark ? color.neutral['9'].value : color.neutral['1'].value}`,
+    boxShadow: isDark
+      ? '0 4px 6px -1px rgba(239, 68, 68, 0.4), 0 2px 4px -1px rgba(239, 68, 68, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+      : '0 4px 6px -1px rgba(239, 68, 68, 0.25), 0 2px 4px -1px rgba(239, 68, 68, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
     padding: `0 ${spacing['4px']}`,
+    zIndex: '10',
+    transform: 'translateZ(0)',
   };
 });
 
@@ -350,6 +365,9 @@ const badgeTextStyle = computed<CSSProperties>(() => ({
   lineHeight: '1',
   whiteSpace: 'nowrap',
   letterSpacing: '0.025em',
+  userSelect: 'none',
+  textShadow: '0 1px 2px rgba(0, 0, 0, 0.8)',
+  filter: 'drop-shadow(0 1px 1px rgba(0, 0, 0, 0.2))',
 }));
 
 // Event handlers

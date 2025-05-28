@@ -85,7 +85,7 @@ const sizeConfig = computed(() => {
     return {
       fontSize: typography.size['12px'],
       paddingY: spacing['4px'],
-      paddingX: spacing['8px'],
+      paddingX: spacing['8px'], // Improved horizontal padding for small
       iconSize: '12px',
       removeIconSize: '10px',
       minHeight: '20px',
@@ -94,7 +94,7 @@ const sizeConfig = computed(() => {
     return {
       fontSize: typography.size['16px'],
       paddingY: spacing['8px'],
-      paddingX: spacing['12px'],
+      paddingX: spacing['16px'], // Improved horizontal padding for large
       iconSize: '16px',
       removeIconSize: '14px',
       minHeight: '32px',
@@ -102,8 +102,8 @@ const sizeConfig = computed(() => {
   } else {
     return {
       fontSize: typography.size['14px'],
-      paddingY: spacing['6px'],
-      paddingX: spacing['10px'],
+      paddingY: spacing['4px'],
+      paddingX: spacing['12px'], // Improved horizontal padding for medium
       iconSize: '14px',
       removeIconSize: '12px',
       minHeight: '24px',
@@ -111,7 +111,7 @@ const sizeConfig = computed(() => {
   }
 });
 
-// Variant-based colors
+// Variant-based colors with enhanced Preline-inspired styling
 const variantConfig = computed(() => {
   const variant = props.variant;
   const isDark = theme.value === 'dark';
@@ -119,45 +119,97 @@ const variantConfig = computed(() => {
   switch (variant) {
     case 'primary':
       return {
-        background: isDark ? color.primary['6'].value : color.primary['6'].value,
+        background: isDark
+          ? `linear-gradient(135deg, ${color.primary['7'].value} 0%, ${color.primary['8'].value} 100%)`
+          : `linear-gradient(135deg, ${color.primary['6'].value} 0%, ${color.primary['7'].value} 100%)`,
         textColor: color.neutral['1'].value,
         borderColor: color.primary['6'].value,
+        hoverBackground: isDark
+          ? `linear-gradient(135deg, ${color.primary['6'].value} 0%, ${color.primary['7'].value} 100%)`
+          : `linear-gradient(135deg, ${color.primary['7'].value} 0%, ${color.primary['8'].value} 100%)`,
+        boxShadow: isDark
+          ? '0 4px 6px -1px rgba(59, 130, 246, 0.3), 0 2px 4px -1px rgba(59, 130, 246, 0.2)'
+          : '0 4px 6px -1px rgba(59, 130, 246, 0.25), 0 2px 4px -1px rgba(59, 130, 246, 0.15)',
       };
     case 'secondary':
       return {
-        background: isDark ? color.neutral['6'].value : color.neutral['5'].value,
-        textColor: color.neutral['1'].value,
+        background: isDark
+          ? `linear-gradient(135deg, ${color.neutral['7'].value} 0%, ${color.neutral['8'].value} 100%)`
+          : `linear-gradient(135deg, ${color.neutral['5'].value} 0%, ${color.neutral['6'].value} 100%)`,
+        textColor: isDark ? color.neutral['1'].value : color.neutral['1'].value,
         borderColor: color.neutral['6'].value,
+        hoverBackground: isDark
+          ? `linear-gradient(135deg, ${color.neutral['6'].value} 0%, ${color.neutral['7'].value} 100%)`
+          : `linear-gradient(135deg, ${color.neutral['6'].value} 0%, ${color.neutral['7'].value} 100%)`,
+        boxShadow: isDark
+          ? '0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3)'
+          : '0 4px 6px -1px rgba(0, 0, 0, 0.15), 0 2px 4px -1px rgba(0, 0, 0, 0.1)',
       };
     case 'success':
       return {
-        background: isDark ? color.success['6'].value : color.success['5'].value,
+        background: isDark
+          ? `linear-gradient(135deg, ${color.success['7'].value} 0%, ${color.success['8'].value} 100%)`
+          : `linear-gradient(135deg, ${color.success['6'].value} 0%, ${color.success['7'].value} 100%)`,
         textColor: color.neutral['1'].value,
         borderColor: color.success['6'].value,
+        hoverBackground: isDark
+          ? `linear-gradient(135deg, ${color.success['6'].value} 0%, ${color.success['7'].value} 100%)`
+          : `linear-gradient(135deg, ${color.success['7'].value} 0%, ${color.success['8'].value} 100%)`,
+        boxShadow: isDark
+          ? '0 4px 6px -1px rgba(34, 197, 94, 0.3), 0 2px 4px -1px rgba(34, 197, 94, 0.2)'
+          : '0 4px 6px -1px rgba(34, 197, 94, 0.25), 0 2px 4px -1px rgba(34, 197, 94, 0.15)',
       };
     case 'warning':
       return {
-        background: isDark ? color.warning['6'].value : color.warning['5'].value,
+        background: isDark
+          ? `linear-gradient(135deg, ${color.warning['7'].value} 0%, ${color.warning['8'].value} 100%)`
+          : `linear-gradient(135deg, ${color.warning['6'].value} 0%, ${color.warning['7'].value} 100%)`,
         textColor: color.neutral['1'].value,
         borderColor: color.warning['6'].value,
+        hoverBackground: isDark
+          ? `linear-gradient(135deg, ${color.warning['6'].value} 0%, ${color.warning['7'].value} 100%)`
+          : `linear-gradient(135deg, ${color.warning['7'].value} 0%, ${color.warning['8'].value} 100%)`,
+        boxShadow: isDark
+          ? '0 4px 6px -1px rgba(245, 158, 11, 0.3), 0 2px 4px -1px rgba(245, 158, 11, 0.2)'
+          : '0 4px 6px -1px rgba(245, 158, 11, 0.25), 0 2px 4px -1px rgba(245, 158, 11, 0.15)',
       };
     case 'error':
       return {
-        background: isDark ? color.error['6'].value : color.error['5'].value,
+        background: isDark
+          ? `linear-gradient(135deg, ${color.error['7'].value} 0%, ${color.error['8'].value} 100%)`
+          : `linear-gradient(135deg, ${color.error['6'].value} 0%, ${color.error['7'].value} 100%)`,
         textColor: color.neutral['1'].value,
         borderColor: color.error['6'].value,
+        hoverBackground: isDark
+          ? `linear-gradient(135deg, ${color.error['6'].value} 0%, ${color.error['7'].value} 100%)`
+          : `linear-gradient(135deg, ${color.error['7'].value} 0%, ${color.error['8'].value} 100%)`,
+        boxShadow: isDark
+          ? '0 4px 6px -1px rgba(239, 68, 68, 0.3), 0 2px 4px -1px rgba(239, 68, 68, 0.2)'
+          : '0 4px 6px -1px rgba(239, 68, 68, 0.25), 0 2px 4px -1px rgba(239, 68, 68, 0.15)',
       };
     case 'outline':
       return {
         background: 'transparent',
-        textColor: isDark ? color.neutral['10'].value : color.neutral['7'].value,
-        borderColor: isDark ? color.neutral['6'].value : color.neutral['4'].value,
+        textColor: isDark ? color.neutral['11'].value : color.neutral['8'].value,
+        borderColor: isDark ? color.neutral['7'].value : color.neutral['5'].value,
+        hoverBackground: isDark ? color.neutral['8'].value : color.neutral['2'].value,
+        boxShadow: isDark
+          ? '0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 1px 2px -1px rgba(0, 0, 0, 0.1)'
+          : '0 2px 4px -1px rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.05)',
       };
     default: // 'default'
       return {
-        background: isDark ? color.neutral['8'].value : color.neutral['8'].value,
+        background: isDark
+          ? `linear-gradient(135deg, ${color.neutral['7'].value} 0%, ${color.neutral['8'].value} 100%)`
+          : `linear-gradient(135deg, ${color.neutral['4'].value} 0%, ${color.neutral['5'].value} 100%)`,
         textColor: isDark ? color.neutral['1'].value : color.neutral['1'].value,
-        borderColor: isDark ? color.neutral['6'].value : color.neutral['4'].value,
+        borderColor: isDark ? color.neutral['6'].value : color.neutral['5'].value,
+        hoverBackground: isDark
+          ? `linear-gradient(135deg, ${color.neutral['6'].value} 0%, ${color.neutral['7'].value} 100%)`
+          : `linear-gradient(135deg, ${color.neutral['5'].value} 0%, ${color.neutral['6'].value} 100%)`,
+        boxShadow: isDark
+          ? '0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3)'
+          : '0 4px 6px -1px rgba(0, 0, 0, 0.15), 0 2px 4px -1px rgba(0, 0, 0, 0.1)',
       };
   }
 });
@@ -171,48 +223,60 @@ const badgeStyle = computed<CSSProperties>(() => ({
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
-  gap: spacing['6px'],
+  gap: spacing['4px'],
   minHeight: sizeConfig.value.minHeight,
   padding: `${sizeConfig.value.paddingY} ${sizeConfig.value.paddingX}`,
   fontSize: sizeConfig.value.fontSize,
   fontFamily: typography.family.sans,
-  fontWeight: String(typography.weight['5']),
-  lineHeight: String(typography.line['100%']),
+  fontWeight: String(typography.weight['6']),
+  lineHeight: String(typography.line['120%']),
+  letterSpacing: '0.025em',
   color: variantConfig.value.textColor,
-  backgroundColor: variantConfig.value.background,
+  background: variantConfig.value.background,
   border: props.variant === 'outline'
     ? `${border.width['1px']} ${border.style.solid} ${variantConfig.value.borderColor}`
     : 'none',
-  borderRadius: cornerRadius['50%'],
+  borderRadius: cornerRadius['max'],
   whiteSpace: 'nowrap',
   verticalAlign: 'middle',
-  transition: 'all 0.15s ease-in-out',
-  boxShadow: props.variant === 'outline' || props.variant === 'default'
-    ? 'none'
-    : '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+  transition: 'all 0.15s cubic-bezier(0.4, 0, 0.2, 1)',
+  boxShadow: variantConfig.value.boxShadow,
+  cursor: props.removable ? 'default' : 'inherit',
+  userSelect: 'none',
+  transform: 'translateZ(0)', // Enable hardware acceleration
+  ':hover': {
+    background: variantConfig.value.hoverBackground,
+    transform: 'translateY(-1px) translateZ(0)',
+    boxShadow: props.variant === 'outline'
+      ? variantConfig.value.boxShadow
+      : `${variantConfig.value.boxShadow}, 0 8px 25px -8px rgba(0, 0, 0, 0.15)`,
+  },
 }));
 
 const contentStyle = computed<CSSProperties>(() => ({
   display: 'flex',
   alignItems: 'center',
-  lineHeight: String(typography.line['100%']),
+  lineHeight: String(typography.line['120%']),
 }));
 
 const leftIconStyle = computed<CSSProperties>(() => ({
   flexShrink: '0',
-  marginRight: props.label || props.rightIcon || props.removable ? spacing['4px'] : '0',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 }));
 
 const rightIconStyle = computed<CSSProperties>(() => ({
   flexShrink: '0',
-  marginLeft: props.label || props.leftIcon ? spacing['4px'] : '0',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 }));
 
 const removeButtonStyle = computed<CSSProperties>(() => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  marginLeft: spacing['4px'],
   padding: '0',
   border: 'none',
   background: 'transparent',
