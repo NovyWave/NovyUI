@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
+import { ref, watch, reactive } from 'vue';
 import Switch from './Switch.vue';
 import { icons } from '../tokens.ts';
 
@@ -91,18 +92,72 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  render: (args) => ({
+    components: { Switch },
+    setup() {
+      const checked = ref(args.modelValue);
+      watch(() => args.modelValue, (newValue) => {
+        checked.value = newValue;
+      });
+      return {
+        checked,
+        args: reactive(args),
+        onUpdate: (value: boolean) => {
+          checked.value = value;
+          args.modelValue = value;
+        }
+      };
+    },
+    template: `<Switch v-model="checked" @update:modelValue="onUpdate" v-bind="args" />`,
+  }),
   args: {
     modelValue: false,
   },
 };
 
 export const Checked: Story = {
+  render: (args) => ({
+    components: { Switch },
+    setup() {
+      const checked = ref(args.modelValue);
+      watch(() => args.modelValue, (newValue) => {
+        checked.value = newValue;
+      });
+      return {
+        checked,
+        args: reactive(args),
+        onUpdate: (value: boolean) => {
+          checked.value = value;
+          args.modelValue = value;
+        }
+      };
+    },
+    template: `<Switch v-model="checked" @update:modelValue="onUpdate" v-bind="args" />`,
+  }),
   args: {
     modelValue: true,
   },
 };
 
 export const WithLabel: Story = {
+  render: (args) => ({
+    components: { Switch },
+    setup() {
+      const checked = ref(args.modelValue);
+      watch(() => args.modelValue, (newValue) => {
+        checked.value = newValue;
+      });
+      return {
+        checked,
+        args: reactive(args),
+        onUpdate: (value: boolean) => {
+          checked.value = value;
+          args.modelValue = value;
+        }
+      };
+    },
+    template: `<Switch v-model="checked" @update:modelValue="onUpdate" v-bind="args" />`,
+  }),
   args: {
     modelValue: false,
     label: 'Enable notifications',
@@ -110,6 +165,24 @@ export const WithLabel: Story = {
 };
 
 export const WithDescription: Story = {
+  render: (args) => ({
+    components: { Switch },
+    setup() {
+      const checked = ref(args.modelValue);
+      watch(() => args.modelValue, (newValue) => {
+        checked.value = newValue;
+      });
+      return {
+        checked,
+        args: reactive(args),
+        onUpdate: (value: boolean) => {
+          checked.value = value;
+          args.modelValue = value;
+        }
+      };
+    },
+    template: `<Switch v-model="checked" @update:modelValue="onUpdate" v-bind="args" />`,
+  }),
   args: {
     modelValue: true,
     label: 'Dark mode',
@@ -118,6 +191,24 @@ export const WithDescription: Story = {
 };
 
 export const Disabled: Story = {
+  render: (args) => ({
+    components: { Switch },
+    setup() {
+      const checked = ref(args.modelValue);
+      watch(() => args.modelValue, (newValue) => {
+        checked.value = newValue;
+      });
+      return {
+        checked,
+        args: reactive(args),
+        onUpdate: (value: boolean) => {
+          checked.value = value;
+          args.modelValue = value;
+        }
+      };
+    },
+    template: `<Switch v-model="checked" @update:modelValue="onUpdate" v-bind="args" />`,
+  }),
   args: {
     modelValue: false,
     label: 'Disabled switch',
@@ -126,6 +217,24 @@ export const Disabled: Story = {
 };
 
 export const DisabledChecked: Story = {
+  render: (args) => ({
+    components: { Switch },
+    setup() {
+      const checked = ref(args.modelValue);
+      watch(() => args.modelValue, (newValue) => {
+        checked.value = newValue;
+      });
+      return {
+        checked,
+        args: reactive(args),
+        onUpdate: (value: boolean) => {
+          checked.value = value;
+          args.modelValue = value;
+        }
+      };
+    },
+    template: `<Switch v-model="checked" @update:modelValue="onUpdate" v-bind="args" />`,
+  }),
   args: {
     modelValue: true,
     label: 'Disabled checked',
@@ -134,6 +243,24 @@ export const DisabledChecked: Story = {
 };
 
 export const LeftLabel: Story = {
+  render: (args) => ({
+    components: { Switch },
+    setup() {
+      const checked = ref(args.modelValue);
+      watch(() => args.modelValue, (newValue) => {
+        checked.value = newValue;
+      });
+      return {
+        checked,
+        args: reactive(args),
+        onUpdate: (value: boolean) => {
+          checked.value = value;
+          args.modelValue = value;
+        }
+      };
+    },
+    template: `<Switch v-model="checked" @update:modelValue="onUpdate" v-bind="args" />`,
+  }),
   args: {
     modelValue: true,
     label: 'Label on left',
@@ -142,19 +269,55 @@ export const LeftLabel: Story = {
 };
 
 export const WithIcons: Story = {
+  render: (args) => ({
+    components: { Switch },
+    setup() {
+      const checked = ref(args.modelValue);
+      watch(() => args.modelValue, (newValue) => {
+        checked.value = newValue;
+      });
+      return {
+        checked,
+        args: reactive(args),
+        onUpdate: (value: boolean) => {
+          checked.value = value;
+          args.modelValue = value;
+        }
+      };
+    },
+    template: `<Switch v-model="checked" @update:modelValue="onUpdate" v-bind="args" />`,
+  }),
   args: {
     modelValue: true,
-    label: 'Theme toggle',
-    checkedIcon: 'sun',
-    uncheckedIcon: 'moon',
+    label: 'Visibility toggle',
+    checkedIcon: 'eye',
+    uncheckedIcon: 'eye-off',
   },
 };
 
 export const WithThumbIcon: Story = {
+  render: (args) => ({
+    components: { Switch },
+    setup() {
+      const checked = ref(args.modelValue);
+      watch(() => args.modelValue, (newValue) => {
+        checked.value = newValue;
+      });
+      return {
+        checked,
+        args: reactive(args),
+        onUpdate: (value: boolean) => {
+          checked.value = value;
+          args.modelValue = value;
+        }
+      };
+    },
+    template: `<Switch v-model="checked" @update:modelValue="onUpdate" v-bind="args" />`,
+  }),
   args: {
     modelValue: false,
-    label: 'Power switch',
-    thumbIcon: 'power',
+    label: 'Settings switch',
+    thumbIcon: 'settings',
   },
 };
 
@@ -163,9 +326,9 @@ export const Sizes: Story = {
     components: { Switch },
     setup() {
       return {
-        small: false,
-        medium: true,
-        large: false,
+        small: ref(false),
+        medium: ref(true),
+        large: ref(false),
       };
     },
     template: `
@@ -199,33 +362,33 @@ export const Interactive: Story = {
     components: { Switch },
     setup() {
       return {
-        notifications: true,
-        darkMode: false,
-        autoSave: true,
-        analytics: false,
+        notifications: ref(true),
+        darkMode: ref(false),
+        autoSave: ref(true),
+        analytics: ref(false),
       };
     },
     template: `
       <div style="display: flex; flex-direction: column; gap: 20px; max-width: 400px;">
-        <Switch 
-          v-model="notifications" 
+        <Switch
+          v-model="notifications"
           label="Push notifications"
           description="Receive notifications about important updates and messages."
         />
-        <Switch 
-          v-model="darkMode" 
+        <Switch
+          v-model="darkMode"
           label="Dark mode"
           description="Switch to dark theme for better viewing in low light."
-          checkedIcon="moon"
-          uncheckedIcon="sun"
+          checkedIcon="eye-off"
+          uncheckedIcon="eye"
         />
-        <Switch 
-          v-model="autoSave" 
+        <Switch
+          v-model="autoSave"
           label="Auto-save"
           description="Automatically save your work every few minutes."
         />
-        <Switch 
-          v-model="analytics" 
+        <Switch
+          v-model="analytics"
           label="Analytics"
           description="Help us improve by sharing anonymous usage data."
         />
@@ -246,54 +409,54 @@ export const SettingsPanel: Story = {
     components: { Switch },
     setup() {
       return {
-        emailNotifications: true,
-        pushNotifications: false,
-        smsNotifications: false,
-        marketingEmails: false,
-        twoFactorAuth: true,
-        publicProfile: false,
+        emailNotifications: ref(true),
+        pushNotifications: ref(false),
+        smsNotifications: ref(false),
+        marketingEmails: ref(false),
+        twoFactorAuth: ref(true),
+        publicProfile: ref(false),
       };
     },
     template: `
       <div style="max-width: 500px; padding: 24px; border: 1px solid #e5e7eb; border-radius: 8px;">
         <h3 style="margin: 0 0 20px 0; font-size: 18px; font-weight: 600;">Settings</h3>
-        
+
         <div style="margin-bottom: 24px;">
           <h4 style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; color: #6b7280;">Notifications</h4>
           <div style="display: flex; flex-direction: column; gap: 16px;">
-            <Switch 
-              v-model="emailNotifications" 
+            <Switch
+              v-model="emailNotifications"
               label="Email notifications"
               description="Receive notifications via email"
             />
-            <Switch 
-              v-model="pushNotifications" 
+            <Switch
+              v-model="pushNotifications"
               label="Push notifications"
               description="Receive push notifications on your device"
             />
-            <Switch 
-              v-model="smsNotifications" 
+            <Switch
+              v-model="smsNotifications"
               label="SMS notifications"
               description="Receive notifications via text message"
             />
-            <Switch 
-              v-model="marketingEmails" 
+            <Switch
+              v-model="marketingEmails"
               label="Marketing emails"
               description="Receive promotional and marketing emails"
             />
           </div>
         </div>
-        
+
         <div>
           <h4 style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; color: #6b7280;">Security & Privacy</h4>
           <div style="display: flex; flex-direction: column; gap: 16px;">
-            <Switch 
-              v-model="twoFactorAuth" 
+            <Switch
+              v-model="twoFactorAuth"
               label="Two-factor authentication"
               description="Add an extra layer of security to your account"
             />
-            <Switch 
-              v-model="publicProfile" 
+            <Switch
+              v-model="publicProfile"
               label="Public profile"
               description="Make your profile visible to other users"
             />
@@ -316,59 +479,59 @@ export const FormIntegration: Story = {
     components: { Switch },
     setup() {
       return {
-        agreeToTerms: false,
-        subscribeNewsletter: true,
-        enableNotifications: false,
+        agreeToTerms: ref(false),
+        subscribeNewsletter: ref(true),
+        enableNotifications: ref(false),
       };
     },
     template: `
       <form style="max-width: 400px; padding: 24px; border: 1px solid #e5e7eb; border-radius: 8px;">
         <h3 style="margin: 0 0 20px 0; font-size: 18px; font-weight: 600;">Account Setup</h3>
-        
+
         <div style="display: flex; flex-direction: column; gap: 20px;">
           <div>
             <label style="display: block; margin-bottom: 8px; font-weight: 500;">Email</label>
-            <input 
-              type="email" 
+            <input
+              type="email"
               placeholder="Enter your email"
-              style="width: 100%; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px;"
+              style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 6px; height: 48px; box-sizing: border-box;"
             />
           </div>
-          
+
           <div>
             <label style="display: block; margin-bottom: 8px; font-weight: 500;">Password</label>
-            <input 
-              type="password" 
+            <input
+              type="password"
               placeholder="Enter your password"
-              style="width: 100%; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px;"
+              style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 6px; height: 48px; box-sizing: border-box;"
             />
           </div>
-          
+
           <div style="border-top: 1px solid #e5e7eb; padding-top: 20px;">
             <div style="display: flex; flex-direction: column; gap: 16px;">
-              <Switch 
-                v-model="agreeToTerms" 
+              <Switch
+                v-model="agreeToTerms"
                 label="I agree to the Terms of Service"
                 description="Required to create an account"
                 required
               />
-              <Switch 
-                v-model="subscribeNewsletter" 
+              <Switch
+                v-model="subscribeNewsletter"
                 label="Subscribe to newsletter"
                 description="Get updates about new features and tips"
               />
-              <Switch 
-                v-model="enableNotifications" 
+              <Switch
+                v-model="enableNotifications"
                 label="Enable notifications"
                 description="Receive important account notifications"
               />
             </div>
           </div>
-          
-          <button 
+
+          <button
             type="submit"
             :disabled="!agreeToTerms"
-            style="padding: 12px 24px; background: #3b82f6; color: white; border: none; border-radius: 6px; font-weight: 500; cursor: pointer; opacity: agreeToTerms ? 1 : 0.5;"
+            style="padding: 12px 24px; background: #3b82f6; color: white; border: none; border-radius: 6px; font-weight: 500; cursor: pointer; height: 48px; box-sizing: border-box; opacity: agreeToTerms ? 1 : 0.5;"
           >
             Create Account
           </button>

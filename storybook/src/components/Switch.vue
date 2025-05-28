@@ -4,12 +4,12 @@
     <input
       ref="inputRef"
       type="checkbox"
-      :id="inputId"
+      :id="computedInputId"
       :checked="modelValue"
       :disabled="disabled"
       :required="required"
-      :aria-describedby="descriptionId"
-      :aria-labelledby="labelId"
+      :aria-describedby="computedDescriptionId"
+      :aria-labelledby="computedLabelId"
       :style="hiddenInputStyle"
       @change="onChange"
       @focus="onFocus"
@@ -19,7 +19,7 @@
 
     <!-- Switch Track -->
     <label
-      :for="inputId"
+      :for="computedInputId"
       :style="switchTrackStyle"
       :class="switchClass"
       @click="onLabelClick"
@@ -63,9 +63,9 @@
     <div v-if="hasLabelContent" :style="labelContentStyle">
       <label
         v-if="label"
-        :for="inputId"
+        :for="computedInputId"
         :style="labelStyle"
-        :id="labelId"
+        :id="computedLabelId"
       >
         {{ label }}
       </label>
@@ -73,7 +73,7 @@
       <p
         v-if="description"
         :style="descriptionStyle"
-        :id="descriptionId"
+        :id="computedDescriptionId"
       >
         {{ description }}
       </p>
@@ -123,15 +123,21 @@ const theme = useTheme();
 const focused = ref(false);
 const inputRef = ref<HTMLInputElement>();
 
+// Generate unique IDs if not provided
+const uniqueId = Math.random().toString(36).substr(2, 9);
+const computedInputId = computed(() => props.inputId || `switch-${uniqueId}`);
+const computedLabelId = computed(() => props.labelId || `switch-label-${uniqueId}`);
+const computedDescriptionId = computed(() => props.descriptionId || `switch-description-${uniqueId}`);
+
 // Size configuration
 const sizeConfig = computed(() => {
   const size = props.size;
 
   if (size === 'small') {
     return {
-      trackWidth: '32px',
-      trackHeight: '18px',
-      thumbSize: '14px',
+      trackWidth: '36px',
+      trackHeight: '20px',
+      thumbSize: '16px',
       thumbOffset: '2px',
       thumbIconSize: '8px',
       trackIconSize: '10px',
@@ -141,9 +147,9 @@ const sizeConfig = computed(() => {
     };
   } else if (size === 'large') {
     return {
-      trackWidth: '56px',
-      trackHeight: '32px',
-      thumbSize: '28px',
+      trackWidth: '60px',
+      trackHeight: '34px',
+      thumbSize: '30px',
       thumbOffset: '2px',
       thumbIconSize: '16px',
       trackIconSize: '16px',
@@ -153,9 +159,9 @@ const sizeConfig = computed(() => {
     };
   } else {
     return {
-      trackWidth: '44px',
-      trackHeight: '24px',
-      thumbSize: '20px',
+      trackWidth: '48px',
+      trackHeight: '26px',
+      thumbSize: '22px',
       thumbOffset: '2px',
       thumbIconSize: '12px',
       trackIconSize: '12px',
@@ -179,11 +185,12 @@ const thumbIconColor = computed(() => {
     return color.neutral['5'].value;
   }
 
-  if (props.modelValue) {
-    return color.primary['7'].value;
+  // Make thumb icon contrast well against the light thumb in dark mode
+  if (isDark) {
+    return color.neutral['3'].value; // Dark icon for light thumb in dark mode
+  } else {
+    return color.neutral['6'].value; // Medium dark icon for light thumb in light mode
   }
-
-  return isDark ? color.neutral['7'].value : color.neutral['6'].value;
 });
 
 const trackIconColor = computed(() => {
@@ -193,7 +200,14 @@ const trackIconColor = computed(() => {
     return color.neutral['5'].value;
   }
 
-  return isDark ? color.neutral['1'].value : color.neutral['1'].value;
+  // Make track icon contrast well against track background
+  if (props.modelValue) {
+    // When checked (blue track), use white/light icon for contrast
+    return isDark ? color.neutral['11'].value : color.neutral['1'].value;
+  } else {
+    // When unchecked, use appropriate contrast for track color
+    return isDark ? color.neutral['8'].value : color.neutral['6'].value;
+  }
 });
 
 const switchClass = computed(() => {
@@ -229,16 +243,32 @@ const switchTrackStyle = computed<CSSProperties>(() => {
 
   let backgroundColor: string;
   let borderColor: string;
+  let boxShadow: string;
 
   if (props.disabled) {
     backgroundColor = isDark ? color.neutral['3'].value : color.neutral['2'].value;
-    borderColor = color.neutral['4'].value;
+    borderColor = isDark ? color.neutral['4'].value : color.neutral['3'].value;
+    boxShadow = 'none';
   } else if (props.modelValue) {
-    backgroundColor = color.primary['7'].value;
+    // Enhanced checked state with gradient and better shadows
+    backgroundColor = `linear-gradient(135deg, ${color.primary['6'].value} 0%, ${color.primary['7'].value} 100%)`;
     borderColor = color.primary['7'].value;
+    boxShadow = `
+      inset 0 1px 3px rgba(0, 0, 0, 0.12),
+      0 1px 2px rgba(0, 0, 0, 0.08),
+      0 0 0 1px rgba(255, 255, 255, 0.05)
+    `;
   } else {
-    backgroundColor = isDark ? color.neutral['4'].value : color.neutral['3'].value;
-    borderColor = color.neutral['5'].value;
+    // Enhanced unchecked state with better depth
+    backgroundColor = isDark
+      ? `linear-gradient(135deg, ${color.neutral['4'].value} 0%, ${color.neutral['5'].value} 100%)`
+      : `linear-gradient(135deg, ${color.neutral['1'].value} 0%, ${color.neutral['2'].value} 100%)`;
+    borderColor = isDark ? color.neutral['6'].value : color.neutral['3'].value;
+    boxShadow = `
+      inset 0 2px 4px rgba(0, 0, 0, 0.06),
+      0 1px 2px rgba(0, 0, 0, 0.05),
+      0 0 0 1px rgba(255, 255, 255, 0.05)
+    `;
   }
 
   return {
@@ -247,14 +277,24 @@ const switchTrackStyle = computed<CSSProperties>(() => {
     alignItems: 'center',
     width: sizeConfig.value.trackWidth,
     height: sizeConfig.value.trackHeight,
-    backgroundColor,
-    border: `${border.width['1px']} ${border.style.solid} ${borderColor}`,
+    background: backgroundColor,
+    border: `1px solid ${borderColor}`,
     borderRadius: sizeConfig.value.trackHeight,
     cursor: props.disabled ? 'not-allowed' : 'pointer',
-    transition: transition.normal,
+    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
     flexShrink: '0',
     outline: focused.value ? `2px solid ${color.primary['7'].value}` : 'none',
     outlineOffset: '2px',
+    boxShadow,
+    // Add subtle inner glow effect
+    '&::before': props.modelValue && !props.disabled ? {
+      content: '""',
+      position: 'absolute',
+      inset: '1px',
+      borderRadius: 'inherit',
+      background: `linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)`,
+      pointerEvents: 'none',
+    } : undefined,
   };
 });
 
@@ -267,13 +307,26 @@ const switchThumbStyle = computed<CSSProperties>(() => {
 
   let backgroundColor: string;
   let boxShadow: string;
+  let border: string;
 
   if (props.disabled) {
-    backgroundColor = color.neutral['5'].value;
-    boxShadow = 'none';
+    backgroundColor = isDark ? color.neutral['4'].value : color.neutral['3'].value;
+    boxShadow = '0 1px 2px rgba(0, 0, 0, 0.1)';
+    border = `1px solid ${isDark ? color.neutral['5'].value : color.neutral['4'].value}`;
   } else {
-    backgroundColor = color.neutral['1'].value;
-    boxShadow = `${shadow.size[1]} ${shadow.color.neutral}`;
+    // Enhanced thumb with gradient and better shadows - theme-aware colors
+    if (isDark) {
+      backgroundColor = `linear-gradient(135deg, ${color.neutral['10'].value} 0%, ${color.neutral['9'].value} 100%)`;
+    } else {
+      backgroundColor = `linear-gradient(135deg, ${color.neutral['1'].value} 0%, ${color.neutral['2'].value} 100%)`;
+    }
+    boxShadow = `
+      0 4px 8px rgba(0, 0, 0, 0.12),
+      0 2px 4px rgba(0, 0, 0, 0.08),
+      0 1px 2px rgba(0, 0, 0, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15)
+    `;
+    border = `1px solid ${isDark ? color.neutral['8'].value : color.neutral['2'].value}`;
   }
 
   return {
@@ -285,18 +338,31 @@ const switchThumbStyle = computed<CSSProperties>(() => {
     justifyContent: 'center',
     width: sizeConfig.value.thumbSize,
     height: sizeConfig.value.thumbSize,
-    backgroundColor,
-    borderRadius: cornerRadius['50%'],
+    background: backgroundColor,
+    border,
+    borderRadius: '50%',
     boxShadow,
-    transform: `translateX(${translateX})`,
-    transition: transition.normal,
+    transform: `translateX(${translateX}) ${props.modelValue ? 'scale(1.05)' : 'scale(1)'}`,
+    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
     zIndex: '1',
+    // Add subtle highlight effect
+    '&::before': !props.disabled ? {
+      content: '""',
+      position: 'absolute',
+      top: '2px',
+      left: '2px',
+      right: '2px',
+      height: '40%',
+      background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.05) 100%)',
+      borderRadius: '50% 50% 50% 50% / 60% 60% 40% 40%',
+      pointerEvents: 'none',
+    } : undefined,
   };
 });
 
 const checkedIconStyle = computed<CSSProperties>(() => ({
   position: 'absolute',
-  left: spacing['6px'],
+  left: spacing['8px'],
   top: '50%',
   transform: 'translateY(-50%)',
   zIndex: '0',
@@ -304,7 +370,7 @@ const checkedIconStyle = computed<CSSProperties>(() => ({
 
 const uncheckedIconStyle = computed<CSSProperties>(() => ({
   position: 'absolute',
-  right: spacing['6px'],
+  right: spacing['8px'],
   top: '50%',
   transform: 'translateY(-50%)',
   zIndex: '0',

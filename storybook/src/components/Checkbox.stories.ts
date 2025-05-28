@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
-import { ref, computed } from 'vue';
+import { ref, computed, watch, reactive } from 'vue';
 import Checkbox from './Checkbox.vue';
 
 const meta: Meta<typeof Checkbox> = {
@@ -77,18 +77,80 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  render: (args) => ({
+    components: { Checkbox },
+    setup() {
+      const checked = ref(args.modelValue);
+      watch(() => args.modelValue, (newValue) => {
+        checked.value = newValue;
+      });
+      return {
+        checked,
+        args: reactive(args),
+        onUpdate: (value: boolean) => {
+          checked.value = value;
+          args.modelValue = value;
+        }
+      };
+    },
+    template: `<Checkbox v-model="checked" @update:modelValue="onUpdate" v-bind="args" />`,
+  }),
   args: {
     modelValue: false,
   },
 };
 
 export const Checked: Story = {
+  render: (args) => ({
+    components: { Checkbox },
+    setup() {
+      const checked = ref(args.modelValue);
+      watch(() => args.modelValue, (newValue) => {
+        checked.value = newValue;
+      });
+      return {
+        checked,
+        args: reactive(args),
+        onUpdate: (value: boolean) => {
+          checked.value = value;
+          args.modelValue = value;
+        }
+      };
+    },
+    template: `<Checkbox v-model="checked" @update:modelValue="onUpdate" v-bind="args" />`,
+  }),
   args: {
     modelValue: true,
   },
 };
 
 export const WithLabel: Story = {
+  render: (args) => ({
+    components: { Checkbox },
+    setup() {
+      const checked = ref(args.modelValue);
+      return {
+        checked,
+        label: args.label,
+        disabled: args.disabled,
+        required: args.required,
+        indeterminate: args.indeterminate,
+        size: args.size,
+        description: args.description,
+        value: args.value,
+      };
+    },
+    template: `<Checkbox
+      v-model="checked"
+      :label="label"
+      :disabled="disabled"
+      :required="required"
+      :indeterminate="indeterminate"
+      :size="size"
+      :description="description"
+      :value="value"
+    />`,
+  }),
   args: {
     modelValue: false,
     label: 'Accept terms and conditions',
@@ -96,6 +158,24 @@ export const WithLabel: Story = {
 };
 
 export const WithDescription: Story = {
+  render: (args) => ({
+    components: { Checkbox },
+    setup() {
+      const checked = ref(args.modelValue);
+      watch(() => args.modelValue, (newValue) => {
+        checked.value = newValue;
+      });
+      return {
+        checked,
+        args: reactive(args),
+        onUpdate: (value: boolean) => {
+          checked.value = value;
+          args.modelValue = value;
+        }
+      };
+    },
+    template: `<Checkbox v-model="checked" @update:modelValue="onUpdate" v-bind="args" />`,
+  }),
   args: {
     modelValue: true,
     label: 'Email notifications',
@@ -104,6 +184,24 @@ export const WithDescription: Story = {
 };
 
 export const Indeterminate: Story = {
+  render: (args) => ({
+    components: { Checkbox },
+    setup() {
+      const checked = ref(args.modelValue);
+      watch(() => args.modelValue, (newValue) => {
+        checked.value = newValue;
+      });
+      return {
+        checked,
+        args: reactive(args),
+        onUpdate: (value: boolean) => {
+          checked.value = value;
+          args.modelValue = value;
+        }
+      };
+    },
+    template: `<Checkbox v-model="checked" @update:modelValue="onUpdate" v-bind="args" />`,
+  }),
   args: {
     modelValue: false,
     label: 'Select all items',
@@ -112,6 +210,24 @@ export const Indeterminate: Story = {
 };
 
 export const Disabled: Story = {
+  render: (args) => ({
+    components: { Checkbox },
+    setup() {
+      const checked = ref(args.modelValue);
+      watch(() => args.modelValue, (newValue) => {
+        checked.value = newValue;
+      });
+      return {
+        checked,
+        args: reactive(args),
+        onUpdate: (value: boolean) => {
+          checked.value = value;
+          args.modelValue = value;
+        }
+      };
+    },
+    template: `<Checkbox v-model="checked" @update:modelValue="onUpdate" v-bind="args" />`,
+  }),
   args: {
     modelValue: false,
     label: 'Disabled checkbox',
@@ -120,6 +236,24 @@ export const Disabled: Story = {
 };
 
 export const DisabledChecked: Story = {
+  render: (args) => ({
+    components: { Checkbox },
+    setup() {
+      const checked = ref(args.modelValue);
+      watch(() => args.modelValue, (newValue) => {
+        checked.value = newValue;
+      });
+      return {
+        checked,
+        args: reactive(args),
+        onUpdate: (value: boolean) => {
+          checked.value = value;
+          args.modelValue = value;
+        }
+      };
+    },
+    template: `<Checkbox v-model="checked" @update:modelValue="onUpdate" v-bind="args" />`,
+  }),
   args: {
     modelValue: true,
     label: 'Disabled checked',
@@ -128,6 +262,24 @@ export const DisabledChecked: Story = {
 };
 
 export const Required: Story = {
+  render: (args) => ({
+    components: { Checkbox },
+    setup() {
+      const checked = ref(args.modelValue);
+      watch(() => args.modelValue, (newValue) => {
+        checked.value = newValue;
+      });
+      return {
+        checked,
+        args: reactive(args),
+        onUpdate: (value: boolean) => {
+          checked.value = value;
+          args.modelValue = value;
+        }
+      };
+    },
+    template: `<Checkbox v-model="checked" @update:modelValue="onUpdate" v-bind="args" />`,
+  }),
   args: {
     modelValue: false,
     label: 'Required checkbox',
@@ -140,10 +292,13 @@ export const Sizes: Story = {
   render: () => ({
     components: { Checkbox },
     setup() {
+      const small = ref(false);
+      const medium = ref(true);
+      const large = ref(false);
       return {
-        small: false,
-        medium: true,
-        large: false,
+        small,
+        medium,
+        large,
       };
     },
     template: `
@@ -167,14 +322,16 @@ export const MultipleSelection: Story = {
   render: () => ({
     components: { Checkbox },
     setup() {
+      const selectedFruits = ref(['apple', 'banana']);
+      const fruits = [
+        { value: 'apple', label: 'Apple', description: 'Crisp and sweet' },
+        { value: 'banana', label: 'Banana', description: 'Rich in potassium' },
+        { value: 'orange', label: 'Orange', description: 'High in vitamin C' },
+        { value: 'grape', label: 'Grape', description: 'Perfect for snacking' },
+      ];
       return {
-        selectedFruits: ['apple', 'banana'],
-        fruits: [
-          { value: 'apple', label: 'Apple', description: 'Crisp and sweet' },
-          { value: 'banana', label: 'Banana', description: 'Rich in potassium' },
-          { value: 'orange', label: 'Orange', description: 'High in vitamin C' },
-          { value: 'grape', label: 'Grape', description: 'Perfect for snacking' },
-        ],
+        selectedFruits,
+        fruits,
       };
     },
     template: `
@@ -268,11 +425,15 @@ export const FormIntegration: Story = {
   render: () => ({
     components: { Checkbox },
     setup() {
+      const agreeToTerms = ref(false);
+      const subscribeNewsletter = ref(true);
+      const enableNotifications = ref(false);
+      const marketingEmails = ref(false);
       return {
-        agreeToTerms: false,
-        subscribeNewsletter: true,
-        enableNotifications: false,
-        marketingEmails: false,
+        agreeToTerms,
+        subscribeNewsletter,
+        enableNotifications,
+        marketingEmails,
       };
     },
     template: `

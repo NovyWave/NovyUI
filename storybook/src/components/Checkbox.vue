@@ -4,13 +4,13 @@
     <input
       ref="inputRef"
       type="checkbox"
-      :id="inputId"
+      :id="computedInputId"
       :checked="isChecked"
       :indeterminate="indeterminate"
       :disabled="disabled"
       :required="required"
-      :aria-describedby="descriptionId"
-      :aria-labelledby="labelId"
+      :aria-describedby="computedDescriptionId"
+      :aria-labelledby="computedLabelId"
       :style="hiddenInputStyle"
       @change="onChange"
       @focus="onFocus"
@@ -19,7 +19,7 @@
 
     <!-- Checkbox Visual -->
     <label
-      :for="inputId"
+      :for="computedInputId"
       :style="checkboxStyle"
       :class="checkboxClass"
     >
@@ -50,9 +50,9 @@
     <div v-if="hasLabelContent" :style="labelContentStyle">
       <label
         v-if="label"
-        :for="inputId"
+        :for="computedInputId"
         :style="labelStyle"
-        :id="labelId"
+        :id="computedLabelId"
       >
         {{ label }}
       </label>
@@ -60,7 +60,7 @@
       <p
         v-if="description"
         :style="descriptionStyle"
-        :id="descriptionId"
+        :id="computedDescriptionId"
       >
         {{ description }}
       </p>
@@ -107,6 +107,12 @@ const theme = useTheme();
 // State
 const focused = ref(false);
 const inputRef = ref<HTMLInputElement>();
+
+// Generate unique IDs if not provided
+const uniqueId = Math.random().toString(36).substr(2, 9);
+const computedInputId = computed(() => props.inputId || `checkbox-${uniqueId}`);
+const computedLabelId = computed(() => props.labelId || `checkbox-label-${uniqueId}`);
+const computedDescriptionId = computed(() => props.descriptionId || `checkbox-description-${uniqueId}`);
 
 // Computed properties
 const isArray = computed(() => Array.isArray(props.modelValue));
