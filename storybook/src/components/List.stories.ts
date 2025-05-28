@@ -74,62 +74,62 @@ const basicItems: ListItem[] = [
 ];
 
 const iconItems: ListItem[] = [
-  { id: 1, icon: 'home', primary: 'Home', secondary: 'Go to homepage' },
+  { id: 1, icon: 'house', primary: 'Home', secondary: 'Go to homepage' },
   { id: 2, icon: 'user', primary: 'Profile', secondary: 'View your profile' },
   { id: 3, icon: 'settings', primary: 'Settings', secondary: 'Manage preferences' },
-  { id: 4, icon: 'help-circle', primary: 'Help', secondary: 'Get support' },
+  { id: 4, icon: 'circle-help', primary: 'Help', secondary: 'Get support' },
 ];
 
 const avatarItems: ListItem[] = [
-  { 
-    id: 1, 
+  {
+    id: 1,
     avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face',
-    primary: 'John Doe', 
+    primary: 'John Doe',
     secondary: 'Software Engineer',
     trailingText: 'Online'
   },
-  { 
-    id: 2, 
+  {
+    id: 2,
     avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=32&h=32&fit=crop&crop=face',
-    primary: 'Jane Smith', 
+    primary: 'Jane Smith',
     secondary: 'Product Manager',
     trailingText: '2h ago'
   },
-  { 
-    id: 3, 
+  {
+    id: 3,
     avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&h=32&fit=crop&crop=face',
-    primary: 'Mike Johnson', 
+    primary: 'Mike Johnson',
     secondary: 'Designer',
     trailingText: 'Away'
   },
 ];
 
 const actionItems: ListItem[] = [
-  { 
-    id: 1, 
-    icon: 'file-text', 
-    primary: 'Document.pdf', 
+  {
+    id: 1,
+    icon: 'file',
+    primary: 'Document.pdf',
     secondary: '2.4 MB • Modified 2 hours ago',
     action: true,
-    actionIcon: 'more-horizontal',
+    actionIcon: 'ellipsis',
     actionLabel: 'More options'
   },
-  { 
-    id: 2, 
-    icon: 'image', 
-    primary: 'Photo.jpg', 
+  {
+    id: 2,
+    icon: 'image',
+    primary: 'Photo.jpg',
     secondary: '1.8 MB • Modified yesterday',
     action: true,
-    actionIcon: 'more-horizontal',
+    actionIcon: 'ellipsis',
     actionLabel: 'More options'
   },
-  { 
-    id: 3, 
-    icon: 'folder', 
-    primary: 'Projects', 
+  {
+    id: 3,
+    icon: 'folder',
+    primary: 'Projects',
     secondary: '12 items • Modified last week',
     action: true,
-    actionIcon: 'more-horizontal',
+    actionIcon: 'ellipsis',
     actionLabel: 'More options'
   },
 ];
@@ -227,10 +227,10 @@ export const Sizes: Story = {
 export const Interactive: Story = {
   args: {
     items: [
-      { id: 1, icon: 'home', primary: 'Home', secondary: 'Navigate to home page' },
+      { id: 1, icon: 'house', primary: 'Home', secondary: 'Navigate to home page' },
       { id: 2, icon: 'user', primary: 'Profile', secondary: 'View your profile', selected: true },
       { id: 3, icon: 'settings', primary: 'Settings', secondary: 'Manage your settings' },
-      { id: 4, icon: 'help-circle', primary: 'Help', secondary: 'Get help and support', disabled: true },
+      { id: 4, icon: 'circle-help', primary: 'Help', secondary: 'Get help and support', disabled: true },
     ],
     interactive: true,
     variant: 'bordered',
@@ -249,19 +249,19 @@ export const NavigationMenu: Story = {
     components: { List },
     setup() {
       const menuItems = [
-        { id: 1, icon: 'home', primary: 'Dashboard', trailingIcon: 'chevron-right' },
+        { id: 1, icon: 'house', primary: 'Dashboard', trailingIcon: 'chevron-right' },
         { id: 2, icon: 'users', primary: 'Team', trailingIcon: 'chevron-right' },
         { id: 3, icon: 'folder', primary: 'Projects', badge: '12', trailingIcon: 'chevron-right' },
         { id: 4, icon: 'calendar', primary: 'Calendar', trailingIcon: 'chevron-right' },
-        { id: 5, icon: 'bar-chart', primary: 'Analytics', trailingIcon: 'chevron-right' },
+        { id: 5, icon: 'funnel', primary: 'Analytics', trailingIcon: 'chevron-right' },
       ];
       return { menuItems };
     },
     template: `
-      <List 
-        :items="menuItems" 
-        interactive 
-        variant="bordered" 
+      <List
+        :items="menuItems"
+        interactive
+        variant="bordered"
         size="large"
       />
     `,
@@ -280,30 +280,30 @@ export const ContactList: Story = {
     components: { List },
     setup() {
       const contacts = [
-        { 
-          id: 1, 
+        {
+          id: 1,
           avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face',
-          primary: 'Alex Johnson', 
+          primary: 'Alex Johnson',
           secondary: 'alex@company.com',
           description: 'Last seen 2 hours ago',
           action: true,
           actionIcon: 'phone',
           actionLabel: 'Call Alex'
         },
-        { 
-          id: 2, 
+        {
+          id: 2,
           avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face',
-          primary: 'Sarah Wilson', 
+          primary: 'Sarah Wilson',
           secondary: 'sarah@company.com',
           description: 'Online now',
           action: true,
           actionIcon: 'message-circle',
           actionLabel: 'Message Sarah'
         },
-        { 
-          id: 3, 
+        {
+          id: 3,
           avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face',
-          primary: 'David Brown', 
+          primary: 'David Brown',
           secondary: 'david@company.com',
           description: 'Away',
           action: true,
@@ -314,9 +314,9 @@ export const ContactList: Story = {
       return { contacts };
     },
     template: `
-      <List 
-        :items="contacts" 
-        interactive 
+      <List
+        :items="contacts"
+        interactive
         size="large"
         showDividers
       />
