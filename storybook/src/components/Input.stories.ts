@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
+import { computed } from 'vue';
 import Input from './Input.vue';
-import { icons } from '../tokens.ts';
+import { icons, color, useTheme } from '../tokens.ts';
 
 const meta: Meta<typeof Input> = {
   title: 'Components/Input',
@@ -227,12 +228,19 @@ export const ComplexExample: Story = {
   render: (args: Record<string, unknown>) => ({
     components: { Input },
     setup() {
-      return { args };
+      const theme = useTheme();
+      const labelStyle = computed(() => ({
+        display: 'block',
+        marginBottom: '4px',
+        fontWeight: '600',
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+      return { args, labelStyle };
     },
     template: `
       <div style="display: flex; flex-direction: column; gap: 16px; max-width: 400px;">
         <div>
-          <label for="username" style="display: block; margin-bottom: 4px; font-weight: 600;">Username</label>
+          <label for="username" :style="labelStyle">Username</label>
           <Input
             id="username"
             v-bind="args"
@@ -242,9 +250,9 @@ export const ComplexExample: Story = {
             label-id="username-label"
           />
         </div>
-        
+
         <div>
-          <label for="email" style="display: block; margin-bottom: 4px; font-weight: 600;">Email</label>
+          <label for="email" :style="labelStyle">Email</label>
           <Input
             id="email"
             type="email"
@@ -253,9 +261,9 @@ export const ComplexExample: Story = {
             label-id="email-label"
           />
         </div>
-        
+
         <div>
-          <label for="password" style="display: block; margin-bottom: 4px; font-weight: 600;">Password</label>
+          <label for="password" :style="labelStyle">Password</label>
           <Input
             id="password"
             type="password"
@@ -264,9 +272,9 @@ export const ComplexExample: Story = {
             label-id="password-label"
           />
         </div>
-        
+
         <div>
-          <label for="search" style="display: block; margin-bottom: 4px; font-weight: 600;">Search</label>
+          <label for="search" :style="labelStyle">Search</label>
           <Input
             id="search"
             type="search"

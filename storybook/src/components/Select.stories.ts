@@ -1,11 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import Select from './Select.vue';
+import { color, useTheme } from '../tokens.ts';
 
 // Sample options for stories
 const basicOptions = [
   'Option 1',
-  'Option 2', 
+  'Option 2',
   'Option 3',
   'Option 4',
   'Option 5',
@@ -203,8 +204,19 @@ export const Default: Story = {
   render: (args) => ({
     components: { Select },
     setup() {
+      const theme = useTheme();
+      const statusStyle = computed(() => ({
+        marginTop: '16px',
+        padding: '12px',
+        background: theme.value === 'dark' ? color.neutral['2'].value : color.neutral['1'].value,
+        borderRadius: '4px',
+        fontFamily: 'monospace',
+        fontSize: '12px',
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+
       const selectedValue = ref(args.modelValue);
-      return { 
+      return {
         selectedValue,
         options: args.options,
         multiple: args.multiple,
@@ -216,11 +228,12 @@ export const Default: Story = {
         size: args.size,
         labelId: args.labelId,
         descriptionId: args.descriptionId,
+        statusStyle,
       };
     },
     template: `
       <div style="min-height: 300px; padding: 20px;">
-        <Select 
+        <Select
           v-model="selectedValue"
           :options="options"
           :multiple="multiple"
@@ -233,7 +246,7 @@ export const Default: Story = {
           :labelId="labelId"
           :descriptionId="descriptionId"
         />
-        <div style="margin-top: 16px; padding: 12px; background: #f8f9fa; border-radius: 4px; font-family: monospace; font-size: 12px;">
+        <div :style="statusStyle">
           Selected: {{ JSON.stringify(selectedValue) }}
         </div>
       </div>
@@ -257,8 +270,19 @@ export const WithSelectedValue: Story = {
   render: (args) => ({
     components: { Select },
     setup() {
+      const theme = useTheme();
+      const statusStyle = computed(() => ({
+        marginTop: '16px',
+        padding: '12px',
+        background: theme.value === 'dark' ? color.neutral['2'].value : color.neutral['1'].value,
+        borderRadius: '4px',
+        fontFamily: 'monospace',
+        fontSize: '12px',
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+
       const selectedValue = ref(args.modelValue);
-      return { 
+      return {
         selectedValue,
         options: args.options,
         multiple: args.multiple,
@@ -270,11 +294,12 @@ export const WithSelectedValue: Story = {
         size: args.size,
         labelId: args.labelId,
         descriptionId: args.descriptionId,
+        statusStyle,
       };
     },
     template: `
       <div style="min-height: 300px; padding: 20px;">
-        <Select 
+        <Select
           v-model="selectedValue"
           :options="options"
           :multiple="multiple"
@@ -287,7 +312,7 @@ export const WithSelectedValue: Story = {
           :labelId="labelId"
           :descriptionId="descriptionId"
         />
-        <div style="margin-top: 16px; padding: 12px; background: #f8f9fa; border-radius: 4px; font-family: monospace; font-size: 12px;">
+        <div :style="statusStyle">
           Selected: {{ JSON.stringify(selectedValue) }}
         </div>
       </div>
@@ -311,21 +336,33 @@ export const ObjectOptions: Story = {
   render: () => ({
     components: { Select },
     setup() {
+      const theme = useTheme();
+      const statusStyle = computed(() => ({
+        marginTop: '16px',
+        padding: '12px',
+        background: theme.value === 'dark' ? color.neutral['2'].value : color.neutral['1'].value,
+        borderRadius: '4px',
+        fontFamily: 'monospace',
+        fontSize: '12px',
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+
       const selectedValue = ref(null);
-      
-      return { 
+
+      return {
         selectedValue,
         objectOptions,
+        statusStyle,
       };
     },
     template: `
       <div style="min-height: 300px; padding: 20px;">
-        <Select 
+        <Select
           v-model="selectedValue"
           :options="objectOptions"
           placeholder="Choose a fruit..."
         />
-        <div style="margin-top: 16px; padding: 12px; background: #f8f9fa; border-radius: 4px; font-family: monospace; font-size: 12px;">
+        <div :style="statusStyle">
           Selected: {{ JSON.stringify(selectedValue) }}
         </div>
       </div>
@@ -345,8 +382,19 @@ export const Searchable: Story = {
   render: (args) => ({
     components: { Select },
     setup() {
+      const theme = useTheme();
+      const statusStyle = computed(() => ({
+        marginTop: '16px',
+        padding: '12px',
+        background: theme.value === 'dark' ? color.neutral['2'].value : color.neutral['1'].value,
+        borderRadius: '4px',
+        fontFamily: 'monospace',
+        fontSize: '12px',
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+
       const selectedValue = ref(args.modelValue);
-      return { 
+      return {
         selectedValue,
         options: args.options,
         multiple: args.multiple,
@@ -358,11 +406,12 @@ export const Searchable: Story = {
         size: args.size,
         labelId: args.labelId,
         descriptionId: args.descriptionId,
+        statusStyle,
       };
     },
     template: `
       <div style="min-height: 350px; padding: 20px;">
-        <Select 
+        <Select
           v-model="selectedValue"
           :options="options"
           :multiple="multiple"
@@ -375,7 +424,7 @@ export const Searchable: Story = {
           :labelId="labelId"
           :descriptionId="descriptionId"
         />
-        <div style="margin-top: 16px; padding: 12px; background: #f8f9fa; border-radius: 4px; font-family: monospace; font-size: 12px;">
+        <div :style="statusStyle">
           Selected: {{ JSON.stringify(selectedValue) }}
         </div>
       </div>
@@ -402,8 +451,19 @@ export const Multiple: Story = {
   render: (args) => ({
     components: { Select },
     setup() {
+      const theme = useTheme();
+      const statusStyle = computed(() => ({
+        marginTop: '16px',
+        padding: '12px',
+        background: theme.value === 'dark' ? color.neutral['2'].value : color.neutral['1'].value,
+        borderRadius: '4px',
+        fontFamily: 'monospace',
+        fontSize: '12px',
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+
       const selectedValue = ref(args.modelValue);
-      return { 
+      return {
         selectedValue,
         options: args.options,
         multiple: args.multiple,
@@ -415,11 +475,12 @@ export const Multiple: Story = {
         size: args.size,
         labelId: args.labelId,
         descriptionId: args.descriptionId,
+        statusStyle,
       };
     },
     template: `
       <div style="min-height: 300px; padding: 20px;">
-        <Select 
+        <Select
           v-model="selectedValue"
           :options="options"
           :multiple="multiple"
@@ -432,7 +493,7 @@ export const Multiple: Story = {
           :labelId="labelId"
           :descriptionId="descriptionId"
         />
-        <div style="margin-top: 16px; padding: 12px; background: #f8f9fa; border-radius: 4px; font-family: monospace; font-size: 12px;">
+        <div :style="statusStyle">
           Selected: {{ JSON.stringify(selectedValue) }}
         </div>
       </div>
@@ -458,8 +519,19 @@ export const MultipleSearchable: Story = {
   render: (args) => ({
     components: { Select },
     setup() {
+      const theme = useTheme();
+      const statusStyle = computed(() => ({
+        marginTop: '16px',
+        padding: '12px',
+        background: theme.value === 'dark' ? color.neutral['2'].value : color.neutral['1'].value,
+        borderRadius: '4px',
+        fontFamily: 'monospace',
+        fontSize: '12px',
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+
       const selectedValue = ref(args.modelValue);
-      return { 
+      return {
         selectedValue,
         options: args.options,
         multiple: args.multiple,
@@ -471,11 +543,12 @@ export const MultipleSearchable: Story = {
         size: args.size,
         labelId: args.labelId,
         descriptionId: args.descriptionId,
+        statusStyle,
       };
     },
     template: `
       <div style="min-height: 350px; padding: 20px;">
-        <Select 
+        <Select
           v-model="selectedValue"
           :options="options"
           :multiple="multiple"
@@ -488,7 +561,7 @@ export const MultipleSearchable: Story = {
           :labelId="labelId"
           :descriptionId="descriptionId"
         />
-        <div style="margin-top: 16px; padding: 12px; background: #f8f9fa; border-radius: 4px; font-family: monospace; font-size: 12px;">
+        <div :style="statusStyle">
           Selected: {{ JSON.stringify(selectedValue) }}
         </div>
       </div>
@@ -516,51 +589,67 @@ export const Sizes: Story = {
   render: (args) => ({
     components: { Select },
     setup() {
+      const theme = useTheme();
+      const labelStyle = computed(() => ({
+        display: 'block',
+        marginBottom: '4px',
+        fontWeight: '600',
+        fontSize: '14px',
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+      const statusStyle = computed(() => ({
+        marginTop: '4px',
+        fontSize: '12px',
+        color: theme.value === 'dark' ? color.neutral['8'].value : color.neutral['7'].value,
+      }));
+
       const smallValue = ref(null);
       const mediumValue = ref(null);
       const largeValue = ref(null);
-      
-      return { 
-        args, 
-        smallValue, 
-        mediumValue, 
+
+      return {
+        args,
+        smallValue,
+        mediumValue,
         largeValue,
         handleSmallChange: (value: any) => { smallValue.value = value; },
         handleMediumChange: (value: any) => { mediumValue.value = value; },
         handleLargeChange: (value: any) => { largeValue.value = value; },
+        labelStyle,
+        statusStyle,
       };
     },
     template: `
       <div style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start;">
         <div>
-          <label style="display: block; margin-bottom: 4px; font-weight: 600; font-size: 14px;">Small</label>
-          <Select 
-            v-bind="args" 
-            size="small" 
-            :modelValue="smallValue" 
+          <label :style="labelStyle">Small</label>
+          <Select
+            v-bind="args"
+            size="small"
+            :modelValue="smallValue"
             @update:modelValue="handleSmallChange"
           />
-          <p style="margin-top: 4px; font-size: 12px; opacity: 0.7;">Selected: {{ smallValue || 'None' }}</p>
+          <p :style="statusStyle">Selected: {{ smallValue || 'None' }}</p>
         </div>
         <div>
-          <label style="display: block; margin-bottom: 4px; font-weight: 600; font-size: 14px;">Medium (Default)</label>
-          <Select 
-            v-bind="args" 
-            size="medium" 
-            :modelValue="mediumValue" 
+          <label :style="labelStyle">Medium (Default)</label>
+          <Select
+            v-bind="args"
+            size="medium"
+            :modelValue="mediumValue"
             @update:modelValue="handleMediumChange"
           />
-          <p style="margin-top: 4px; font-size: 12px; opacity: 0.7;">Selected: {{ mediumValue || 'None' }}</p>
+          <p :style="statusStyle">Selected: {{ mediumValue || 'None' }}</p>
         </div>
         <div>
-          <label style="display: block; margin-bottom: 4px; font-weight: 600; font-size: 14px;">Large</label>
-          <Select 
-            v-bind="args" 
-            size="large" 
-            :modelValue="largeValue" 
+          <label :style="labelStyle">Large</label>
+          <Select
+            v-bind="args"
+            size="large"
+            :modelValue="largeValue"
             @update:modelValue="handleLargeChange"
           />
-          <p style="margin-top: 4px; font-size: 12px; opacity: 0.7;">Selected: {{ largeValue || 'None' }}</p>
+          <p :style="statusStyle">Selected: {{ largeValue || 'None' }}</p>
         </div>
       </div>
     `,
@@ -610,22 +699,30 @@ export const DisabledOptions: Story = {
   render: (args) => ({
     components: { Select },
     setup() {
+      const theme = useTheme();
+      const statusStyle = computed(() => ({
+        marginTop: '12px',
+        fontSize: '14px',
+        color: theme.value === 'dark' ? color.neutral['8'].value : color.neutral['7'].value,
+      }));
+
       const selectedValue = ref(null);
-      
-      return { 
-        args, 
+
+      return {
+        args,
         selectedValue,
         handleChange: (value: any) => { selectedValue.value = value; },
+        statusStyle,
       };
     },
     template: `
       <div style="min-height: 350px; padding: 20px;">
-        <Select 
-          v-bind="args" 
-          :modelValue="selectedValue" 
+        <Select
+          v-bind="args"
+          :modelValue="selectedValue"
           @update:modelValue="handleChange"
         />
-        <p style="margin-top: 12px; font-size: 14px; opacity: 0.7;">
+        <p :style="statusStyle">
           Selected: {{ selectedValue || 'None' }}
         </p>
       </div>
@@ -678,36 +775,63 @@ export const CustomStyling: Story = {
   render: (args) => ({
     components: { Select },
     setup() {
+      const theme = useTheme();
+      const headingStyle = computed(() => ({
+        marginBottom: '16px',
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+      const labelStyle = computed(() => ({
+        display: 'block',
+        marginBottom: '4px',
+        fontWeight: '600',
+        fontSize: '14px',
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+      const descriptionStyle = computed(() => ({
+        fontSize: '12px',
+        marginBottom: '8px',
+        color: theme.value === 'dark' ? color.neutral['8'].value : color.neutral['7'].value,
+      }));
+      const statusStyle = computed(() => ({
+        marginTop: '12px',
+        fontSize: '14px',
+        color: theme.value === 'dark' ? color.neutral['8'].value : color.neutral['7'].value,
+      }));
+
       const selectedValue = ref('typescript');
-      
-      return { 
-        args, 
+
+      return {
+        args,
         selectedValue,
         handleChange: (value: any) => { selectedValue.value = value; },
+        headingStyle,
+        labelStyle,
+        descriptionStyle,
+        statusStyle,
       };
     },
     template: `
       <div style="min-height: 400px; padding: 20px;">
         <div style="max-width: 400px;">
-          <h3 style="margin-bottom: 16px;">Custom Select Example</h3>
+          <h3 :style="headingStyle">Custom Select Example</h3>
           <div style="margin-bottom: 8px;">
-            <label 
-              id="custom-label" 
-              style="display: block; margin-bottom: 4px; font-weight: 600; font-size: 14px;"
+            <label
+              id="custom-label"
+              :style="labelStyle"
             >
               Favorite Programming Language
             </label>
-            <div id="custom-description" style="font-size: 12px; opacity: 0.7; margin-bottom: 8px;">
+            <div id="custom-description" :style="descriptionStyle">
               Choose your preferred programming language from the list below.
             </div>
-            <Select 
-              v-bind="args" 
-              :modelValue="selectedValue" 
+            <Select
+              v-bind="args"
+              :modelValue="selectedValue"
               @update:modelValue="handleChange"
               labelId="custom-label"
               descriptionId="custom-description"
             />
-            <p style="margin-top: 12px; font-size: 14px; opacity: 0.7;">
+            <p :style="statusStyle">
               Selected: {{ selectedValue || 'None' }}
             </p>
           </div>
@@ -746,22 +870,30 @@ export const StressTest: Story = {
   render: (args) => ({
     components: { Select },
     setup() {
+      const theme = useTheme();
+      const statusStyle = computed(() => ({
+        marginTop: '12px',
+        fontSize: '14px',
+        color: theme.value === 'dark' ? color.neutral['8'].value : color.neutral['7'].value,
+      }));
+
       const selectedValue = ref(null);
-      
-      return { 
-        args, 
+
+      return {
+        args,
         selectedValue,
         handleChange: (value: any) => { selectedValue.value = value; },
+        statusStyle,
       };
     },
     template: `
       <div style="min-height: 400px; padding: 20px;">
-        <Select 
-          v-bind="args" 
-          :modelValue="selectedValue" 
+        <Select
+          v-bind="args"
+          :modelValue="selectedValue"
           @update:modelValue="handleChange"
         />
-        <p style="margin-top: 12px; font-size: 14px; opacity: 0.7;">
+        <p :style="statusStyle">
           Selected: {{ selectedValue || 'None' }}
         </p>
       </div>
@@ -792,25 +924,36 @@ export const InteractiveDemo: Story = {
   render: () => ({
     components: { Select },
     setup() {
+      const theme = useTheme();
+      const headingStyle = computed(() => ({
+        marginBottom: '8px',
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+      const statusStyle = computed(() => ({
+        marginTop: '8px',
+        fontSize: '14px',
+        color: theme.value === 'dark' ? color.neutral['8'].value : color.neutral['7'].value,
+      }));
+
       const singleValue = ref(null);
       const multipleValues = ref([]);
       const searchableValue = ref('france');
-      
+
       const handleSingleChange = (value: any) => {
         console.log('Single select changed:', value);
         singleValue.value = value;
       };
-      
+
       const handleMultipleChange = (values: any) => {
         console.log('Multiple select changed:', values);
         multipleValues.value = values;
       };
-      
+
       const handleSearchableChange = (value: any) => {
         console.log('Searchable select changed:', value);
         searchableValue.value = value;
       };
-      
+
       return {
         singleValue,
         multipleValues,
@@ -821,48 +964,50 @@ export const InteractiveDemo: Story = {
         basicOptions,
         objectOptions,
         manyOptions,
+        headingStyle,
+        statusStyle,
       };
     },
     template: `
       <div style="min-height: 600px; padding: 20px;">
         <div style="display: flex; flex-direction: column; gap: 24px; max-width: 600px;">
           <div>
-            <h4 style="margin-bottom: 8px;">Single Selection</h4>
-            <Select 
+            <h4 :style="headingStyle">Single Selection</h4>
+            <Select
               :modelValue="singleValue"
               @update:modelValue="handleSingleChange"
               :options="basicOptions"
               placeholder="Choose one option..."
             />
-            <p style="margin-top: 8px; font-size: 14px; color: #6b7280;">
+            <p :style="statusStyle">
               Selected: {{ singleValue || 'None' }}
             </p>
           </div>
-          
+
           <div>
-            <h4 style="margin-bottom: 8px;">Multiple Selection</h4>
-            <Select 
+            <h4 :style="headingStyle">Multiple Selection</h4>
+            <Select
               :modelValue="multipleValues"
               @update:modelValue="handleMultipleChange"
               :options="objectOptions"
               multiple
               placeholder="Choose multiple fruits..."
             />
-            <p style="margin-top: 8px; font-size: 14px; color: #6b7280;">
+            <p :style="statusStyle">
               Selected: {{ multipleValues.length > 0 ? multipleValues.join(', ') : 'None' }}
             </p>
           </div>
-          
+
           <div>
-            <h4 style="margin-bottom: 8px;">Searchable Selection</h4>
-            <Select 
+            <h4 :style="headingStyle">Searchable Selection</h4>
+            <Select
               :modelValue="searchableValue"
               @update:modelValue="handleSearchableChange"
               :options="manyOptions"
               searchable
               placeholder="Search and select a country..."
             />
-            <p style="margin-top: 8px; font-size: 14px; color: #6b7280;">
+            <p :style="statusStyle">
               Selected: {{ searchableValue || 'None' }}
             </p>
           </div>

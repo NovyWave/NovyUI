@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
+import { computed } from 'vue';
 import TextArea from './TextArea.vue';
+import { color, useTheme } from '../tokens.ts';
 
 const meta: Meta<typeof TextArea> = {
   title: 'Components/TextArea',
@@ -174,24 +176,33 @@ export const Sizes: Story = {
   render: () => ({
     components: { TextArea },
     setup() {
+      const theme = useTheme();
+      const headingStyle = computed(() => ({
+        margin: '0 0 8px 0',
+        fontSize: '14px',
+        fontWeight: '600',
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+
       return {
         smallText: 'Small textarea',
         mediumText: 'Medium textarea with more content to show the size difference',
         largeText: 'Large textarea with even more content to demonstrate how the different sizes look and feel when you have longer text content',
+        headingStyle,
       };
     },
     template: `
       <div style="display: flex; flex-direction: column; gap: 24px;">
         <div>
-          <h3 style="margin: 0 0 8px 0; font-size: 14px; font-weight: 600;">Small</h3>
+          <h3 :style="headingStyle">Small</h3>
           <TextArea v-model="smallText" size="small" placeholder="Small textarea..." />
         </div>
         <div>
-          <h3 style="margin: 0 0 8px 0; font-size: 14px; font-weight: 600;">Medium</h3>
+          <h3 :style="headingStyle">Medium</h3>
           <TextArea v-model="mediumText" size="medium" placeholder="Medium textarea..." />
         </div>
         <div>
-          <h3 style="margin: 0 0 8px 0; font-size: 14px; font-weight: 600;">Large</h3>
+          <h3 :style="headingStyle">Large</h3>
           <TextArea v-model="largeText" size="large" placeholder="Large textarea..." />
         </div>
       </div>
@@ -260,21 +271,21 @@ export const FormIntegration: Story = {
     template: `
       <form style="max-width: 500px; padding: 24px; border: 1px solid #e5e7eb; border-radius: 8px;">
         <h3 style="margin: 0 0 20px 0; font-size: 18px; font-weight: 600;">Contact Form</h3>
-        
+
         <div style="display: flex; flex-direction: column; gap: 20px;">
           <div>
             <label style="display: block; margin-bottom: 8px; font-weight: 500;">Subject</label>
-            <input 
+            <input
               v-model="subject"
-              type="text" 
+              type="text"
               placeholder="Enter subject"
               style="width: 100%; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px;"
             />
           </div>
-          
+
           <div>
             <label style="display: block; margin-bottom: 8px; font-weight: 500;">Message *</label>
-            <TextArea 
+            <TextArea
               v-model="message"
               placeholder="Enter your message..."
               :maxlength="500"
@@ -283,10 +294,10 @@ export const FormIntegration: Story = {
               rows="6"
             />
           </div>
-          
+
           <div>
             <label style="display: block; margin-bottom: 8px; font-weight: 500;">Additional Feedback</label>
-            <TextArea 
+            <TextArea
               v-model="feedback"
               placeholder="Any additional feedback (optional)..."
               autoResize
@@ -294,8 +305,8 @@ export const FormIntegration: Story = {
               size="small"
             />
           </div>
-          
-          <button 
+
+          <button
             type="submit"
             :disabled="!message.trim()"
             style="padding: 12px 24px; background: #3b82f6; color: white; border: none; border-radius: 6px; font-weight: 500; cursor: pointer;"
@@ -320,6 +331,19 @@ export const CodeEditor: Story = {
   render: () => ({
     components: { TextArea },
     setup() {
+      const theme = useTheme();
+      const headingStyle = computed(() => ({
+        margin: '0 0 12px 0',
+        fontSize: '16px',
+        fontWeight: '600',
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+      const tipStyle = computed(() => ({
+        margin: '8px 0 0 0',
+        fontSize: '12px',
+        color: theme.value === 'dark' ? color.neutral['8'].value : color.neutral['7'].value,
+      }));
+
       return {
         code: `function fibonacci(n) {
   if (n <= 1) return n;
@@ -327,12 +351,14 @@ export const CodeEditor: Story = {
 }
 
 console.log(fibonacci(10));`,
+        headingStyle,
+        tipStyle,
       };
     },
     template: `
       <div style="max-width: 600px;">
-        <h3 style="margin: 0 0 12px 0; font-size: 16px; font-weight: 600;">Code Editor</h3>
-        <TextArea 
+        <h3 :style="headingStyle">Code Editor</h3>
+        <TextArea
           v-model="code"
           placeholder="Enter your code..."
           :rows="12"
@@ -340,7 +366,7 @@ console.log(fibonacci(10));`,
           showCharacterCount
           style="font-family: 'Fira Code', 'Monaco', 'Consolas', monospace; font-size: 14px; line-height: 1.5;"
         />
-        <p style="margin: 8px 0 0 0; font-size: 12px; color: #6b7280;">
+        <p :style="tipStyle">
           Tip: Use Tab key for indentation
         </p>
       </div>
@@ -364,17 +390,17 @@ export const States: Story = {
           <h4 style="margin: 0 0 8px 0; font-size: 14px; font-weight: 600;">Normal</h4>
           <TextArea modelValue="Normal state" />
         </div>
-        
+
         <div>
           <h4 style="margin: 0 0 8px 0; font-size: 14px; font-weight: 600;">Error</h4>
           <TextArea modelValue="Error state" error />
         </div>
-        
+
         <div>
           <h4 style="margin: 0 0 8px 0; font-size: 14px; font-weight: 600;">Disabled</h4>
           <TextArea modelValue="Disabled state" disabled />
         </div>
-        
+
         <div>
           <h4 style="margin: 0 0 8px 0; font-size: 14px; font-weight: 600;">Read-only</h4>
           <TextArea modelValue="Read-only state" readonly />

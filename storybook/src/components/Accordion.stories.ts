@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import Accordion from './Accordion.vue';
-import { icons } from '../tokens.ts';
+import { icons, color, useTheme } from '../tokens.ts';
 
 const meta: Meta<typeof Accordion> = {
   title: 'Components/Accordion',
@@ -158,6 +158,12 @@ export const Sizes: Story = {
   render: (args: Record<string, unknown>) => ({
     components: { Accordion },
     setup() {
+      const theme = useTheme();
+      const headingStyle = computed(() => ({
+        marginBottom: '16px',
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+
       const baseItems = [
         {
           id: 'small1',
@@ -197,20 +203,20 @@ export const Sizes: Story = {
         },
       ];
 
-      return { baseItems, mediumItems, largeItems };
+      return { baseItems, mediumItems, largeItems, headingStyle };
     },
     template: `
       <div style="display: flex; flex-direction: column; gap: 32px;">
         <div>
-          <h3 style="margin-bottom: 16px;">Small</h3>
+          <h3 :style="headingStyle">Small</h3>
           <Accordion :items="baseItems" size="small" type="multiple" />
         </div>
         <div>
-          <h3 style="margin-bottom: 16px;">Medium (Default)</h3>
+          <h3 :style="headingStyle">Medium (Default)</h3>
           <Accordion :items="mediumItems" size="medium" type="multiple" />
         </div>
         <div>
-          <h3 style="margin-bottom: 16px;">Large</h3>
+          <h3 :style="headingStyle">Large</h3>
           <Accordion :items="largeItems" size="large" type="multiple" />
         </div>
       </div>
@@ -229,6 +235,12 @@ export const IconPositions: Story = {
   render: (args: Record<string, unknown>) => ({
     components: { Accordion },
     setup() {
+      const theme = useTheme();
+      const headingStyle = computed(() => ({
+        marginBottom: '16px',
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+
       const items = [
         {
           id: 'pos1',
@@ -242,16 +254,16 @@ export const IconPositions: Story = {
         },
       ];
 
-      return { items };
+      return { items, headingStyle };
     },
     template: `
       <div style="display: flex; flex-direction: column; gap: 32px;">
         <div>
-          <h3 style="margin-bottom: 16px;">Icon on Right (Default)</h3>
+          <h3 :style="headingStyle">Icon on Right (Default)</h3>
           <Accordion :items="items" iconPosition="right" type="multiple" />
         </div>
         <div>
-          <h3 style="margin-bottom: 16px;">Icon on Left</h3>
+          <h3 :style="headingStyle">Icon on Left</h3>
           <Accordion :items="items" iconPosition="left" type="multiple" />
         </div>
       </div>
@@ -345,73 +357,89 @@ export const DisabledItems: Story = {
 };
 
 export const RichContent: Story = {
-  args: {
-    type: 'single',
-    defaultOpenItems: ['rich1'],
-    items: [
-      {
-        id: 'rich1',
-        title: 'Installation Guide',
-        content: `
-          <div style="line-height: 1.6;">
-            <p style="margin-bottom: 16px;"><strong>Follow these steps to get started:</strong></p>
-            <ol style="margin-left: 20px; margin-bottom: 16px;">
-              <li style="margin-bottom: 8px;">Download the latest version from our releases page</li>
-              <li style="margin-bottom: 8px;">Extract the files to your desired directory</li>
-              <li style="margin-bottom: 8px;">Run the installation script</li>
-              <li>Restart your application</li>
-            </ol>
-            <div style="background: #f1f5f9; border-left: 4px solid #3b82f6; padding: 12px; margin: 16px 0; border-radius: 4px;">
-              <strong>Note:</strong> Make sure you have the required dependencies installed before proceeding.
+  render: (args: Record<string, unknown>) => ({
+    components: { Accordion },
+    setup() {
+      const theme = useTheme();
+
+      // Generate theme-aware content
+      const noteBackground = computed(() => theme.value === 'dark' ? color.primary['2'].value : color.primary['1'].value);
+      const noteBorder = computed(() => theme.value === 'dark' ? color.primary['7'].value : color.primary['6'].value);
+      const linkColor = computed(() => theme.value === 'dark' ? color.primary['9'].value : color.primary['7'].value);
+      const mutedTextColor = computed(() => theme.value === 'dark' ? color.neutral['8'].value : color.neutral['6'].value);
+      const warningBackground = computed(() => theme.value === 'dark' ? color.warning['2'].value : color.warning['1'].value);
+      const warningBorder = computed(() => theme.value === 'dark' ? color.warning['7'].value : color.warning['6'].value);
+      const warningText = computed(() => theme.value === 'dark' ? color.warning['10'].value : color.warning['8'].value);
+      const codeBackground = computed(() => theme.value === 'dark' ? color.neutral['2'].value : color.neutral['1'].value);
+
+      const items = computed(() => [
+        {
+          id: 'rich1',
+          title: 'Installation Guide',
+          content: `
+            <div style="line-height: 1.6;">
+              <p style="margin-bottom: 16px;"><strong>Follow these steps to get started:</strong></p>
+              <ol style="margin-left: 20px; margin-bottom: 16px;">
+                <li style="margin-bottom: 8px;">Download the latest version from our releases page</li>
+                <li style="margin-bottom: 8px;">Extract the files to your desired directory</li>
+                <li style="margin-bottom: 8px;">Run the installation script</li>
+                <li>Restart your application</li>
+              </ol>
+              <div style="background: ${noteBackground.value}; border-left: 4px solid ${noteBorder.value}; padding: 12px; margin: 16px 0; border-radius: 4px;">
+                <strong>Note:</strong> Make sure you have the required dependencies installed before proceeding.
+              </div>
+              <p style="margin-top: 16px;">
+                <a href="#" style="color: ${linkColor.value}; text-decoration: underline;">View detailed documentation →</a>
+              </p>
             </div>
-            <p style="margin-top: 16px;">
-              <a href="#" style="color: #3b82f6; text-decoration: underline;">View detailed documentation →</a>
-            </p>
-          </div>
-        `,
-      },
-      {
-        id: 'rich2',
-        title: 'Code Examples',
-        content: `
-          <div style="line-height: 1.6;">
-            <p style="margin-bottom: 16px;">Here's a basic example to get you started:</p>
-            <pre style="background: #1e293b; color: #e2e8f0; padding: 16px; border-radius: 8px; overflow-x: auto; margin: 16px 0; font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace; font-size: 14px;"><code>import { createApp } from 'vue'
+          `,
+        },
+        {
+          id: 'rich2',
+          title: 'Code Examples',
+          content: `
+            <div style="line-height: 1.6;">
+              <p style="margin-bottom: 16px;">Here's a basic example to get you started:</p>
+              <pre style="background: ${theme.value === 'dark' ? '#1e293b' : '#f8fafc'}; color: ${theme.value === 'dark' ? '#e2e8f0' : '#1e293b'}; padding: 16px; border-radius: 8px; overflow-x: auto; margin: 16px 0; font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace; font-size: 14px;"><code>import { createApp } from 'vue'
 import { NovyUI } from '@novyui/core'
 
 const app = createApp(App)
 app.use(NovyUI)
 app.mount('#app')</code></pre>
-            <p style="margin-top: 16px; color: #64748b;">
-              This will register all NovyUI components globally in your Vue application.
-            </p>
-          </div>
-        `,
-      },
-      {
-        id: 'rich3',
-        title: 'Troubleshooting',
-        content: `
-          <div style="line-height: 1.6;">
-            <h4 style="margin-bottom: 12px; color: #dc2626;">Common Issues</h4>
-            <div style="margin-bottom: 20px;">
-              <h5 style="margin-bottom: 8px; font-weight: 600;">Module not found error</h5>
-              <p style="margin-bottom: 8px; color: #64748b;">Check that all dependencies are installed:</p>
-              <code style="background: #f1f5f9; padding: 4px 8px; border-radius: 4px; font-family: monospace;">npm install</code>
+              <p style="margin-top: 16px; color: ${mutedTextColor.value};">
+                This will register all NovyUI components globally in your Vue application.
+              </p>
             </div>
-            <div style="margin-bottom: 20px;">
-              <h5 style="margin-bottom: 8px; font-weight: 600;">Styles not loading</h5>
-              <p style="color: #64748b;">Make sure to import the CSS file in your main entry point.</p>
+          `,
+        },
+        {
+          id: 'rich3',
+          title: 'Troubleshooting',
+          content: `
+            <div style="line-height: 1.6;">
+              <h4 style="margin-bottom: 12px; color: ${theme.value === 'dark' ? color.error['9'].value : color.error['7'].value};">Common Issues</h4>
+              <div style="margin-bottom: 20px;">
+                <h5 style="margin-bottom: 8px; font-weight: 600;">Module not found error</h5>
+                <p style="margin-bottom: 8px; color: ${mutedTextColor.value};">Check that all dependencies are installed:</p>
+                <code style="background: ${codeBackground.value}; padding: 4px 8px; border-radius: 4px; font-family: monospace;">npm install</code>
+              </div>
+              <div style="margin-bottom: 20px;">
+                <h5 style="margin-bottom: 8px; font-weight: 600;">Styles not loading</h5>
+                <p style="color: ${mutedTextColor.value};">Make sure to import the CSS file in your main entry point.</p>
+              </div>
+              <div style="background: ${warningBackground.value}; border: 1px solid ${warningBorder.value}; padding: 12px; border-radius: 8px; margin-top: 16px;">
+                <strong style="color: ${warningText.value};">Still having issues?</strong>
+                <p style="margin-top: 4px; color: ${warningText.value};">Check our <a href="#" style="color: ${warningText.value}; text-decoration: underline;">FAQ section</a> or contact support.</p>
+              </div>
             </div>
-            <div style="background: #fef3c7; border: 1px solid #f59e0b; padding: 12px; border-radius: 8px; margin-top: 16px;">
-              <strong style="color: #92400e;">Still having issues?</strong>
-              <p style="margin-top: 4px; color: #92400e;">Check our <a href="#" style="color: #92400e; text-decoration: underline;">FAQ section</a> or contact support.</p>
-            </div>
-          </div>
-        `,
-      },
-    ],
-  },
+          `,
+        },
+      ]);
+
+      return { items };
+    },
+    template: `<Accordion :items="items" type="single" :defaultOpenItems="['rich1']" />`,
+  }),
   parameters: {
     docs: {
       description: {
@@ -425,7 +453,18 @@ export const ControlledState: Story = {
   render: (args: Record<string, unknown>) => ({
     components: { Accordion },
     setup() {
+      const theme = useTheme();
       const openItems = ref(['controlled2']);
+
+      const statusStyle = computed(() => ({
+        marginTop: '16px',
+        padding: '12px',
+        background: theme.value === 'dark' ? color.neutral['2'].value : color.neutral['1'].value,
+        borderRadius: '6px',
+        fontSize: '14px',
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+
       const items = [
         {
           id: 'controlled1',
@@ -456,7 +495,7 @@ export const ControlledState: Story = {
         openItems.value = ['controlled1'];
       };
 
-      return { openItems, items, openAll, closeAll, openFirst };
+      return { openItems, items, openAll, closeAll, openFirst, statusStyle };
     },
     template: `
       <div>
@@ -477,7 +516,7 @@ export const ControlledState: Story = {
           @change="openItems = $event"
           type="multiple"
         />
-        <div style="margin-top: 16px; padding: 12px; background: #f8fafc; border-radius: 6px; font-size: 14px;">
+        <div :style="statusStyle">
           <strong>Current open items:</strong> {{ openItems.length ? openItems.join(', ') : 'None' }}
         </div>
       </div>

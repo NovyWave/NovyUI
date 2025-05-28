@@ -199,7 +199,7 @@ export const ColorVariations: Story = {
         </div>
         <div style="text-align: center;">
           <div :style="labelStyle">Custom Red</div>
-          <Icon :name="args.name" :width="args.width" :height="args.height" color="#ef4444" aria-label="Red colored heart" />
+          <Icon :name="args.name" :width="args.width" :height="args.height" :color="customRedColor" aria-label="Red colored heart" />
         </div>
       </div>
     `,
@@ -215,7 +215,8 @@ export const ColorVariations: Story = {
       const primary7Color = computed(() => theme.value === 'dark' ? color.primary['10'].value : color.primary['7'].value);
       const primary9Color = computed(() => theme.value === 'dark' ? color.primary['11'].value : color.primary['9'].value);
       const neutral7Color = computed(() => theme.value === 'dark' ? color.neutral['10'].value : color.neutral['7'].value);
-      return { Icon, width, height, args, labelStyle, primary5Color, primary7Color, primary9Color, neutral7Color };
+      const customRedColor = computed(() => theme.value === 'dark' ? color.error['9'].value : color.error['7'].value);
+      return { Icon, width, height, args, labelStyle, primary5Color, primary7Color, primary9Color, neutral7Color, customRedColor };
     },
   }),
 };

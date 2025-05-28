@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
+import { computed } from 'vue';
 import Card from './Card.vue';
 import Button from './Button.vue';
+import { color, useTheme } from '../tokens.ts';
 import { icons } from '../tokens.ts';
 
 const meta: Meta<typeof Card> = {
@@ -197,27 +199,27 @@ export const Sizes: Story = {
       <div style="display: flex; flex-direction: column; gap: 24px;">
         <div>
           <h3 style="margin: 0 0 8px 0; font-size: 14px; font-weight: 600;">Small</h3>
-          <Card 
-            size="small" 
-            title="Small Card" 
+          <Card
+            size="small"
+            title="Small Card"
             description="This is a small card with compact spacing."
             variant="bordered"
           />
         </div>
         <div>
           <h3 style="margin: 0 0 8px 0; font-size: 14px; font-weight: 600;">Medium</h3>
-          <Card 
-            size="medium" 
-            title="Medium Card" 
+          <Card
+            size="medium"
+            title="Medium Card"
             description="This is a medium card with standard spacing."
             variant="bordered"
           />
         </div>
         <div>
           <h3 style="margin: 0 0 8px 0; font-size: 14px; font-weight: 600;">Large</h3>
-          <Card 
-            size="large" 
-            title="Large Card" 
+          <Card
+            size="large"
+            title="Large Card"
             description="This is a large card with generous spacing."
             variant="bordered"
           />
@@ -238,8 +240,8 @@ export const WithCustomContent: Story = {
   render: () => ({
     components: { Card, Button },
     template: `
-      <Card 
-        title="Custom Content Card" 
+      <Card
+        title="Custom Content Card"
         subtitle="With slot content"
         variant="bordered"
       >
@@ -252,7 +254,7 @@ export const WithCustomContent: Story = {
             <Button variant="Secondary" label="Secondary" size="small" />
           </div>
         </div>
-        
+
         <template #footer>
           <span style="font-size: 12px; color: #9ca3af;">Last updated 2 hours ago</span>
         </template>
@@ -271,10 +273,29 @@ export const WithCustomContent: Story = {
 export const ProductCard: Story = {
   render: () => ({
     components: { Card, Button },
+    setup() {
+      const theme = useTheme();
+      const priceStyle = computed(() => ({
+        fontSize: '24px',
+        fontWeight: '600',
+        color: theme.value === 'dark' ? color.success['9'].value : color.success['7'].value,
+      }));
+      const originalPriceStyle = computed(() => ({
+        fontSize: '16px',
+        color: theme.value === 'dark' ? color.neutral['7'].value : color.neutral['6'].value,
+        textDecoration: 'line-through',
+      }));
+      const descriptionStyle = computed(() => ({
+        margin: '0',
+        fontSize: '14px',
+        color: theme.value === 'dark' ? color.neutral['8'].value : color.neutral['7'].value,
+      }));
+      return { priceStyle, originalPriceStyle, descriptionStyle };
+    },
     template: `
       <div style="max-width: 300px;">
-        <Card 
-          title="Wireless Headphones" 
+        <Card
+          title="Wireless Headphones"
           subtitle="Premium Audio"
           image="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&h=200&fit=crop"
           imageAlt="Wireless headphones"
@@ -282,10 +303,10 @@ export const ProductCard: Story = {
         >
           <div style="display: flex; flex-direction: column; gap: 12px;">
             <div style="display: flex; align-items: center; gap: 8px;">
-              <span style="font-size: 24px; font-weight: 600; color: #059669;">$199</span>
-              <span style="font-size: 16px; color: #9ca3af; text-decoration: line-through;">$249</span>
+              <span :style="priceStyle">$199</span>
+              <span :style="originalPriceStyle">$249</span>
             </div>
-            <p style="margin: 0; font-size: 14px; color: #6b7280;">
+            <p :style="descriptionStyle">
               High-quality wireless headphones with noise cancellation and 30-hour battery life.
             </p>
             <div style="display: flex; gap: 8px; margin-top: 8px;">

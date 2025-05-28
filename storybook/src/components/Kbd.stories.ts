@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
+import { computed } from 'vue';
 import Kbd from './Kbd.vue';
+import { color, useTheme } from '../tokens.ts';
 
 const meta: Meta<typeof Kbd> = {
   title: 'Components/Kbd',
@@ -132,11 +134,18 @@ export const Solid: Story = {
 export const CopyPaste: Story = {
   render: () => ({
     components: { Kbd },
+    setup() {
+      const theme = useTheme();
+      const textStyle = computed(() => ({
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+      return { textStyle };
+    },
     template: `
       <div style="display: flex; gap: 8px; align-items: center; font-family: Inter, sans-serif;">
-        <span>Copy:</span>
+        <span :style="textStyle">Copy:</span>
         <Kbd keys="Ctrl + C" />
-        <span>Paste:</span>
+        <span :style="textStyle">Paste:</span>
         <Kbd keys="Ctrl + V" />
       </div>
     `,
@@ -146,14 +155,21 @@ export const CopyPaste: Story = {
 export const NavigationKeys: Story = {
   render: () => ({
     components: { Kbd },
+    setup() {
+      const theme = useTheme();
+      const textStyle = computed(() => ({
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+      return { textStyle };
+    },
     template: `
       <div style="display: flex; gap: 8px; align-items: center; font-family: Inter, sans-serif;">
-        <span>Navigate with</span>
+        <span :style="textStyle">Navigate with</span>
         <Kbd keys="↑" />
         <Kbd keys="↓" />
         <Kbd keys="←" />
         <Kbd keys="→" />
-        <span>arrow keys</span>
+        <span :style="textStyle">arrow keys</span>
       </div>
     `,
   }),
@@ -162,23 +178,30 @@ export const NavigationKeys: Story = {
 export const TextEditing: Story = {
   render: () => ({
     components: { Kbd },
+    setup() {
+      const theme = useTheme();
+      const textStyle = computed(() => ({
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+      return { textStyle };
+    },
     template: `
       <div style="display: flex; flex-direction: column; gap: 12px; font-family: Inter, sans-serif;">
         <div style="display: flex; gap: 8px; align-items: center;">
           <Kbd keys="Ctrl + Z" />
-          <span>Undo</span>
+          <span :style="textStyle">Undo</span>
         </div>
         <div style="display: flex; gap: 8px; align-items: center;">
           <Kbd keys="Ctrl + Y" />
-          <span>Redo</span>
+          <span :style="textStyle">Redo</span>
         </div>
         <div style="display: flex; gap: 8px; align-items: center;">
           <Kbd keys="Ctrl + A" />
-          <span>Select All</span>
+          <span :style="textStyle">Select All</span>
         </div>
         <div style="display: flex; gap: 8px; align-items: center;">
           <Kbd keys="Ctrl + F" />
-          <span>Find</span>
+          <span :style="textStyle">Find</span>
         </div>
       </div>
     `,
@@ -188,23 +211,30 @@ export const TextEditing: Story = {
 export const MacShortcuts: Story = {
   render: () => ({
     components: { Kbd },
+    setup() {
+      const theme = useTheme();
+      const textStyle = computed(() => ({
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+      return { textStyle };
+    },
     template: `
       <div style="display: flex; flex-direction: column; gap: 12px; font-family: Inter, sans-serif;">
         <div style="display: flex; gap: 8px; align-items: center;">
           <Kbd keys="⌘ + Space" />
-          <span>Spotlight Search</span>
+          <span :style="textStyle">Spotlight Search</span>
         </div>
         <div style="display: flex; gap: 8px; align-items: center;">
           <Kbd keys="⌘ + Tab" />
-          <span>Switch Apps</span>
+          <span :style="textStyle">Switch Apps</span>
         </div>
         <div style="display: flex; gap: 8px; align-items: center;">
           <Kbd keys="⌘ + Shift + 3" />
-          <span>Screenshot</span>
+          <span :style="textStyle">Screenshot</span>
         </div>
         <div style="display: flex; gap: 8px; align-items: center;">
           <Kbd keys="⌘ + Option + Esc" />
-          <span>Force Quit</span>
+          <span :style="textStyle">Force Quit</span>
         </div>
       </div>
     `,
@@ -214,19 +244,27 @@ export const MacShortcuts: Story = {
 export const SizeComparison: Story = {
   render: () => ({
     components: { Kbd },
+    setup() {
+      const theme = useTheme();
+      const labelStyle = computed(() => ({
+        fontSize: '12px',
+        color: theme.value === 'dark' ? color.neutral['8'].value : color.neutral['6'].value,
+      }));
+      return { labelStyle };
+    },
     template: `
       <div style="display: flex; gap: 16px; align-items: center; font-family: Inter, sans-serif;">
         <div style="display: flex; flex-direction: column; gap: 8px; align-items: center;">
           <Kbd keys="Small" size="small" />
-          <span style="font-size: 12px; color: #666;">Small</span>
+          <span :style="labelStyle">Small</span>
         </div>
         <div style="display: flex; flex-direction: column; gap: 8px; align-items: center;">
           <Kbd keys="Medium" size="medium" />
-          <span style="font-size: 12px; color: #666;">Medium</span>
+          <span :style="labelStyle">Medium</span>
         </div>
         <div style="display: flex; flex-direction: column; gap: 8px; align-items: center;">
           <Kbd keys="Large" size="large" />
-          <span style="font-size: 12px; color: #666;">Large</span>
+          <span :style="labelStyle">Large</span>
         </div>
       </div>
     `,
@@ -236,19 +274,27 @@ export const SizeComparison: Story = {
 export const VariantComparison: Story = {
   render: () => ({
     components: { Kbd },
+    setup() {
+      const theme = useTheme();
+      const labelStyle = computed(() => ({
+        fontSize: '12px',
+        color: theme.value === 'dark' ? color.neutral['8'].value : color.neutral['6'].value,
+      }));
+      return { labelStyle };
+    },
     template: `
       <div style="display: flex; gap: 16px; align-items: center; font-family: Inter, sans-serif;">
         <div style="display: flex; flex-direction: column; gap: 8px; align-items: center;">
           <Kbd keys="Default" variant="default" />
-          <span style="font-size: 12px; color: #666;">Default</span>
+          <span :style="labelStyle">Default</span>
         </div>
         <div style="display: flex; flex-direction: column; gap: 8px; align-items: center;">
           <Kbd keys="Outlined" variant="outlined" />
-          <span style="font-size: 12px; color: #666;">Outlined</span>
+          <span :style="labelStyle">Outlined</span>
         </div>
         <div style="display: flex; flex-direction: column; gap: 8px; align-items: center;">
           <Kbd keys="Solid" variant="solid" />
-          <span style="font-size: 12px; color: #666;">Solid</span>
+          <span :style="labelStyle">Solid</span>
         </div>
       </div>
     `,
@@ -298,11 +344,18 @@ export const AccessibilityExample: Story = {
 export const CustomContent: Story = {
   render: () => ({
     components: { Kbd },
+    setup() {
+      const theme = useTheme();
+      const textStyle = computed(() => ({
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+      return { textStyle };
+    },
     template: `
       <div style="display: flex; gap: 8px; align-items: center; font-family: Inter, sans-serif;">
-        <span>Press</span>
+        <span :style="textStyle">Press</span>
         <Kbd>Custom Content</Kbd>
-        <span>using slots</span>
+        <span :style="textStyle">using slots</span>
       </div>
     `,
   }),

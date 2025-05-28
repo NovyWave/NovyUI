@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import { ref, computed, watch, reactive } from 'vue';
 import Checkbox from './Checkbox.vue';
+import { color, useTheme } from '../tokens.ts';
 
 const meta: Meta<typeof Checkbox> = {
   title: 'Components/Checkbox',
@@ -322,6 +323,21 @@ export const MultipleSelection: Story = {
   render: () => ({
     components: { Checkbox },
     setup() {
+      const theme = useTheme();
+      const headingStyle = computed(() => ({
+        margin: '0 0 8px 0',
+        fontSize: '16px',
+        fontWeight: '600',
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+      const statusStyle = computed(() => ({
+        marginTop: '16px',
+        padding: '12px',
+        background: theme.value === 'dark' ? color.neutral['2'].value : color.neutral['1'].value,
+        borderRadius: '6px',
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+
       const selectedFruits = ref(['apple', 'banana']);
       const fruits = [
         { value: 'apple', label: 'Apple', description: 'Crisp and sweet' },
@@ -332,11 +348,13 @@ export const MultipleSelection: Story = {
       return {
         selectedFruits,
         fruits,
+        headingStyle,
+        statusStyle,
       };
     },
     template: `
       <div style="display: flex; flex-direction: column; gap: 16px;">
-        <h3 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 600;">Select your favorite fruits:</h3>
+        <h3 :style="headingStyle">Select your favorite fruits:</h3>
         <div style="display: flex; flex-direction: column; gap: 12px;">
           <Checkbox
             v-for="fruit in fruits"
@@ -347,7 +365,7 @@ export const MultipleSelection: Story = {
             :description="fruit.description"
           />
         </div>
-        <div style="margin-top: 16px; padding: 12px; background: #f3f4f6; border-radius: 6px;">
+        <div :style="statusStyle">
           <strong>Selected:</strong> {{ selectedFruits.join(', ') || 'None' }}
         </div>
       </div>
@@ -366,6 +384,20 @@ export const SelectAllPattern: Story = {
   render: () => ({
     components: { Checkbox },
     setup() {
+      const theme = useTheme();
+      const dividerStyle = computed(() => ({
+        border: 'none',
+        borderTop: `1px solid ${theme.value === 'dark' ? color.neutral['4'].value : color.neutral['3'].value}`,
+        margin: '8px 0',
+      }));
+      const statusStyle = computed(() => ({
+        marginTop: '16px',
+        padding: '12px',
+        background: theme.value === 'dark' ? color.neutral['2'].value : color.neutral['1'].value,
+        borderRadius: '6px',
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+
       const items = ['Item 1', 'Item 2', 'Item 3', 'Item 4'];
       const selectedItems = ref(['Item 1', 'Item 3']);
 
@@ -386,6 +418,8 @@ export const SelectAllPattern: Story = {
         allSelected,
         someSelected,
         toggleSelectAll,
+        dividerStyle,
+        statusStyle,
       };
     },
     template: `
@@ -396,7 +430,7 @@ export const SelectAllPattern: Story = {
           label="Select All"
           @update:modelValue="toggleSelectAll"
         />
-        <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 8px 0;" />
+        <hr :style="dividerStyle" />
         <div style="display: flex; flex-direction: column; gap: 12px; margin-left: 24px;">
           <Checkbox
             v-for="item in items"
@@ -406,7 +440,7 @@ export const SelectAllPattern: Story = {
             :label="item"
           />
         </div>
-        <div style="margin-top: 16px; padding: 12px; background: #f3f4f6; border-radius: 6px;">
+        <div :style="statusStyle">
           <strong>Selected:</strong> {{ selectedItems.join(', ') || 'None' }}
         </div>
       </div>
@@ -425,6 +459,51 @@ export const FormIntegration: Story = {
   render: () => ({
     components: { Checkbox },
     setup() {
+      const theme = useTheme();
+      const formStyle = computed(() => ({
+        maxWidth: '400px',
+        padding: '24px',
+        border: `1px solid ${theme.value === 'dark' ? color.neutral['4'].value : color.neutral['3'].value}`,
+        borderRadius: '8px',
+        background: theme.value === 'dark' ? color.neutral['1'].value : color.neutral['0'].value,
+      }));
+      const headingStyle = computed(() => ({
+        margin: '0 0 20px 0',
+        fontSize: '18px',
+        fontWeight: '600',
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+      const dividerStyle = computed(() => ({
+        borderTop: `1px solid ${theme.value === 'dark' ? color.neutral['4'].value : color.neutral['3'].value}`,
+        paddingTop: '20px',
+      }));
+      const labelStyle = computed(() => ({
+        display: 'block',
+        marginBottom: '8px',
+        fontWeight: '500',
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+      const inputStyle = computed(() => ({
+        width: '100%',
+        padding: '12px',
+        border: `1px solid ${theme.value === 'dark' ? color.neutral['4'].value : color.neutral['3'].value}`,
+        borderRadius: '6px',
+        boxSizing: 'border-box',
+        background: theme.value === 'dark' ? color.neutral['1'].value : color.neutral['0'].value,
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+      const buttonStyle = computed(() => ({
+        width: '100%',
+        padding: '12px',
+        background: theme.value === 'dark' ? color.primary['7'].value : color.primary['6'].value,
+        color: color.neutral['1'].value,
+        border: 'none',
+        borderRadius: '6px',
+        fontWeight: '500',
+        cursor: 'pointer',
+        boxSizing: 'border-box',
+      }));
+
       const agreeToTerms = ref(false);
       const subscribeNewsletter = ref(true);
       const enableNotifications = ref(false);
@@ -434,23 +513,29 @@ export const FormIntegration: Story = {
         subscribeNewsletter,
         enableNotifications,
         marketingEmails,
+        formStyle,
+        headingStyle,
+        dividerStyle,
+        labelStyle,
+        inputStyle,
+        buttonStyle,
       };
     },
     template: `
-      <form style="max-width: 400px; padding: 24px; border: 1px solid #e5e7eb; border-radius: 8px;">
-        <h3 style="margin: 0 0 20px 0; font-size: 18px; font-weight: 600;">Account Preferences</h3>
+      <form :style="formStyle">
+        <h3 :style="headingStyle">Account Preferences</h3>
 
         <div style="display: flex; flex-direction: column; gap: 20px;">
           <div>
-            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Email</label>
+            <label :style="labelStyle">Email</label>
             <input
               type="email"
               placeholder="Enter your email"
-              style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 6px; box-sizing: border-box;"
+              :style="inputStyle"
             />
           </div>
 
-          <div style="border-top: 1px solid #e5e7eb; padding-top: 20px;">
+          <div :style="dividerStyle">
             <div style="display: flex; flex-direction: column; gap: 16px;">
               <Checkbox
                 v-model="agreeToTerms"
@@ -479,8 +564,7 @@ export const FormIntegration: Story = {
           <button
             type="submit"
             :disabled="!agreeToTerms"
-            style="width: 100%; padding: 12px; background: #3b82f6; color: white; border: none; border-radius: 6px; font-weight: 500; cursor: pointer; box-sizing: border-box;"
-            :style="{ opacity: agreeToTerms ? 1 : 0.5 }"
+            :style="{ ...buttonStyle, opacity: agreeToTerms ? 1 : 0.5 }"
           >
             Create Account
           </button>
@@ -500,10 +584,20 @@ export const FormIntegration: Story = {
 export const States: Story = {
   render: () => ({
     components: { Checkbox },
+    setup() {
+      const theme = useTheme();
+      const headingStyle = computed(() => ({
+        margin: '0 0 12px 0',
+        fontSize: '14px',
+        fontWeight: '600',
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+      return { headingStyle };
+    },
     template: `
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px;">
         <div>
-          <h4 style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600;">Normal States</h4>
+          <h4 :style="headingStyle">Normal States</h4>
           <div style="display: flex; flex-direction: column; gap: 12px;">
             <Checkbox :modelValue="false" label="Unchecked" />
             <Checkbox :modelValue="true" label="Checked" />
@@ -512,7 +606,7 @@ export const States: Story = {
         </div>
 
         <div>
-          <h4 style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600;">Disabled States</h4>
+          <h4 :style="headingStyle">Disabled States</h4>
           <div style="display: flex; flex-direction: column; gap: 12px;">
             <Checkbox :modelValue="false" label="Disabled unchecked" disabled />
             <Checkbox :modelValue="true" label="Disabled checked" disabled />
