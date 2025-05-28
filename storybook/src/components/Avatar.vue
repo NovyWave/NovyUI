@@ -84,6 +84,7 @@ import Icon from './Icon.vue';
 type Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 type Shape = 'circle' | 'square' | 'rounded';
 type Status = 'online' | 'offline' | 'away' | 'busy';
+type ColorVariant = 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'soft-primary' | 'soft-secondary' | 'soft-success' | 'soft-warning' | 'soft-error' | 'outline-primary' | 'outline-secondary' | 'outline-success' | 'outline-warning' | 'outline-error';
 
 const props = withDefaults(defineProps<{
   src?: string;
@@ -100,6 +101,7 @@ const props = withDefaults(defineProps<{
   target?: string;
   ariaLabel?: string;
   interactive?: boolean;
+  colorVariant?: ColorVariant;
 }>(), {
   size: 'md',
   shape: 'circle',
@@ -107,6 +109,7 @@ const props = withDefaults(defineProps<{
   statusAriaLabel: 'User status',
   badgeAriaLabel: 'Notification badge',
   interactive: false,
+  colorVariant: 'default',
 });
 
 const emit = defineEmits<{
@@ -135,7 +138,7 @@ const sizeConfig = computed(() => {
         statusOffset: '0px',
         badgeSize: '16px',
         badgeOffset: '-2px',
-        badgeFontSize: typography.size['10px'],
+        badgeFontSize: typography.size['12px'],
       };
     case 'sm':
       return {
@@ -147,7 +150,7 @@ const sizeConfig = computed(() => {
         statusOffset: '2px',
         badgeSize: '18px',
         badgeOffset: '-2px',
-        badgeFontSize: typography.size['10px'],
+        badgeFontSize: typography.size['12px'],
       };
     case 'lg':
       return {
@@ -195,7 +198,7 @@ const sizeConfig = computed(() => {
         statusOffset: '2px',
         badgeSize: '20px',
         badgeOffset: '-2px',
-        badgeFontSize: typography.size['10px'],
+        badgeFontSize: typography.size['12px'],
       };
   }
 });
@@ -210,7 +213,134 @@ const shapeConfig = computed(() => {
     case 'rounded':
       return { borderRadius: cornerRadius['8px'] };
     default: // 'circle'
-      return { borderRadius: cornerRadius['50%'] };
+      return { borderRadius: cornerRadius['max'] };
+  }
+});
+
+// Color variant configuration
+const colorVariantConfig = computed(() => {
+  const variant = props.colorVariant;
+  const isDark = theme.value === 'dark';
+
+  switch (variant) {
+    case 'primary':
+      return {
+        background: isDark
+          ? `linear-gradient(135deg, ${color.primary['9'].value} 0%, ${color.primary['10'].value} 100%)`
+          : `linear-gradient(135deg, ${color.primary['6'].value} 0%, ${color.primary['7'].value} 100%)`,
+        textColor: isDark ? color.primary['2'].value : color.neutral['1'].value,
+        borderColor: isDark ? color.primary['8'].value : color.primary['5'].value,
+      };
+    case 'secondary':
+      return {
+        background: isDark
+          ? `linear-gradient(135deg, ${color.neutral['9'].value} 0%, ${color.neutral['10'].value} 100%)`
+          : `linear-gradient(135deg, ${color.neutral['6'].value} 0%, ${color.neutral['7'].value} 100%)`,
+        textColor: isDark ? color.neutral['2'].value : color.neutral['1'].value,
+        borderColor: isDark ? color.neutral['8'].value : color.neutral['5'].value,
+      };
+    case 'success':
+      return {
+        background: isDark
+          ? `linear-gradient(135deg, ${color.success['9'].value} 0%, ${color.success['10'].value} 100%)`
+          : `linear-gradient(135deg, ${color.success['6'].value} 0%, ${color.success['7'].value} 100%)`,
+        textColor: isDark ? color.success['2'].value : color.neutral['1'].value,
+        borderColor: isDark ? color.success['8'].value : color.success['5'].value,
+      };
+    case 'warning':
+      return {
+        background: isDark
+          ? `linear-gradient(135deg, ${color.warning['9'].value} 0%, ${color.warning['10'].value} 100%)`
+          : `linear-gradient(135deg, ${color.warning['6'].value} 0%, ${color.warning['7'].value} 100%)`,
+        textColor: isDark ? color.warning['2'].value : color.neutral['1'].value,
+        borderColor: isDark ? color.warning['8'].value : color.warning['5'].value,
+      };
+    case 'error':
+      return {
+        background: isDark
+          ? `linear-gradient(135deg, ${color.error['9'].value} 0%, ${color.error['10'].value} 100%)`
+          : `linear-gradient(135deg, ${color.error['6'].value} 0%, ${color.error['7'].value} 100%)`,
+        textColor: isDark ? color.error['2'].value : color.neutral['1'].value,
+        borderColor: isDark ? color.error['8'].value : color.error['5'].value,
+      };
+    case 'soft-primary':
+      return {
+        background: isDark
+          ? `linear-gradient(135deg, ${color.primary['9'].value}40 0%, ${color.primary['8'].value}60 100%)`
+          : `linear-gradient(135deg, ${color.primary['1'].value} 0%, ${color.primary['2'].value} 100%)`,
+        textColor: color.primary['7'].value,
+        borderColor: isDark ? color.primary['7'].value : color.primary['3'].value,
+      };
+    case 'soft-secondary':
+      return {
+        background: isDark
+          ? `linear-gradient(135deg, ${color.neutral['7'].value}60 0%, ${color.neutral['6'].value}80 100%)`
+          : `linear-gradient(135deg, ${color.neutral['1'].value} 0%, ${color.neutral['2'].value} 100%)`,
+        textColor: isDark ? color.neutral['2'].value : color.neutral['7'].value,
+        borderColor: isDark ? color.neutral['5'].value : color.neutral['3'].value,
+      };
+    case 'soft-success':
+      return {
+        background: isDark
+          ? `linear-gradient(135deg, ${color.success['9'].value}40 0%, ${color.success['8'].value}60 100%)`
+          : `linear-gradient(135deg, ${color.success['1'].value} 0%, ${color.success['2'].value} 100%)`,
+        textColor: color.success['7'].value,
+        borderColor: isDark ? color.success['7'].value : color.success['3'].value,
+      };
+    case 'soft-warning':
+      return {
+        background: isDark
+          ? `linear-gradient(135deg, ${color.warning['9'].value}40 0%, ${color.warning['8'].value}60 100%)`
+          : `linear-gradient(135deg, ${color.warning['1'].value} 0%, ${color.warning['2'].value} 100%)`,
+        textColor: color.warning['7'].value,
+        borderColor: isDark ? color.warning['7'].value : color.warning['3'].value,
+      };
+    case 'soft-error':
+      return {
+        background: isDark
+          ? `linear-gradient(135deg, ${color.error['9'].value}40 0%, ${color.error['8'].value}60 100%)`
+          : `linear-gradient(135deg, ${color.error['1'].value} 0%, ${color.error['2'].value} 100%)`,
+        textColor: color.error['7'].value,
+        borderColor: isDark ? color.error['7'].value : color.error['3'].value,
+      };
+    case 'outline-primary':
+      return {
+        background: 'transparent',
+        textColor: isDark ? color.primary['4'].value : color.primary['7'].value,
+        borderColor: isDark ? color.primary['6'].value : color.primary['6'].value,
+      };
+    case 'outline-secondary':
+      return {
+        background: 'transparent',
+        textColor: isDark ? color.neutral['3'].value : color.neutral['7'].value,
+        borderColor: isDark ? color.neutral['6'].value : color.neutral['4'].value,
+      };
+    case 'outline-success':
+      return {
+        background: 'transparent',
+        textColor: isDark ? color.success['4'].value : color.success['7'].value,
+        borderColor: isDark ? color.success['6'].value : color.success['6'].value,
+      };
+    case 'outline-warning':
+      return {
+        background: 'transparent',
+        textColor: isDark ? color.warning['4'].value : color.warning['7'].value,
+        borderColor: isDark ? color.warning['6'].value : color.warning['6'].value,
+      };
+    case 'outline-error':
+      return {
+        background: 'transparent',
+        textColor: isDark ? color.error['4'].value : color.error['7'].value,
+        borderColor: isDark ? color.error['6'].value : color.error['6'].value,
+      };
+    default: // 'default'
+      return {
+        background: isDark
+          ? `linear-gradient(135deg, ${color.neutral['10'].value} 0%, ${color.neutral['11'].value} 100%)`
+          : `linear-gradient(135deg, ${color.neutral['2'].value} 0%, ${color.neutral['3'].value} 100%)`,
+        textColor: isDark ? color.neutral['3'].value : color.neutral['11'].value,
+        borderColor: isDark ? color.neutral['8'].value : color.neutral['4'].value,
+      };
   }
 });
 
@@ -257,6 +387,8 @@ const avatarContainerStyle = computed<CSSProperties>(() => ({
 
 const avatarStyle = computed<CSSProperties>(() => {
   const isDark = theme.value === 'dark';
+  const colorConfig = colorVariantConfig.value;
+  const isOutline = props.colorVariant?.startsWith('outline-');
 
   return {
     display: 'flex',
@@ -264,25 +396,38 @@ const avatarStyle = computed<CSSProperties>(() => {
     justifyContent: 'center',
     width: sizeConfig.value.width,
     height: sizeConfig.value.height,
-    background: isDark
-      ? `linear-gradient(135deg, ${color.neutral['7'].value} 0%, ${color.neutral['8'].value} 100%)`
-      : `linear-gradient(135deg, ${color.neutral['2'].value} 0%, ${color.neutral['3'].value} 100%)`,
+    background: colorConfig.background,
     borderRadius: shapeConfig.value.borderRadius,
     overflow: 'hidden',
     cursor: (props.interactive || props.href) ? 'pointer' : 'default',
     textDecoration: 'none',
     color: 'inherit',
-    border: `2px solid ${isDark ? color.neutral['6'].value : color.neutral['4'].value}`,
-    boxShadow: isDark
-      ? '0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
-      : '0 4px 6px -1px rgba(0, 0, 0, 0.15), 0 2px 4px -1px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
-    transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+    border: `2px solid ${colorConfig.borderColor}`,
+    boxShadow: isOutline
+      ? isDark
+        ? `0 0 0 1px ${colorConfig.borderColor}, 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3)`
+        : `0 0 0 1px ${colorConfig.borderColor}, 0 4px 6px -1px rgba(0, 0, 0, 0.15), 0 2px 4px -1px rgba(0, 0, 0, 0.1)`
+      : isDark
+        ? '0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+        : '0 4px 6px -1px rgba(0, 0, 0, 0.15), 0 2px 4px -1px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
+    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
     transform: 'translateZ(0)', // Enable hardware acceleration
+    position: 'relative',
     ':hover': (props.interactive || props.href) ? {
       transform: 'scale(1.05) translateZ(0)',
-      boxShadow: isDark
-        ? '0 8px 25px -8px rgba(0, 0, 0, 0.5), 0 4px 6px -1px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15)'
-        : '0 8px 25px -8px rgba(0, 0, 0, 0.25), 0 4px 6px -1px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.9)',
+      boxShadow: isOutline
+        ? isDark
+          ? `0 0 0 2px ${colorConfig.borderColor}, 0 8px 25px -8px rgba(0, 0, 0, 0.5), 0 4px 6px -1px rgba(0, 0, 0, 0.4)`
+          : `0 0 0 2px ${colorConfig.borderColor}, 0 8px 25px -8px rgba(0, 0, 0, 0.25), 0 4px 6px -1px rgba(0, 0, 0, 0.15)`
+        : isDark
+          ? '0 8px 25px -8px rgba(0, 0, 0, 0.5), 0 4px 6px -1px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15)'
+          : '0 8px 25px -8px rgba(0, 0, 0, 0.25), 0 4px 6px -1px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.9)',
+    } : {},
+    ':focus': (props.interactive || props.href) ? {
+      outline: 'none',
+      boxShadow: isOutline
+        ? `0 0 0 3px ${colorConfig.borderColor}40, 0 4px 6px -1px rgba(0, 0, 0, 0.15)`
+        : `0 0 0 3px ${colorConfig.borderColor}40, 0 4px 6px -1px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)`,
     } : {},
   };
 });
@@ -296,20 +441,24 @@ const imageStyle = computed<CSSProperties>(() => ({
 
 const initialsStyle = computed<CSSProperties>(() => {
   const isDark = theme.value === 'dark';
+  const colorConfig = colorVariantConfig.value;
+  const isOutline = props.colorVariant?.startsWith('outline-');
 
   return {
     fontSize: sizeConfig.value.fontSize,
     fontWeight: String(typography.weight['7']),
     fontFamily: typography.family.sans,
-    color: isDark ? color.neutral['1'].value : color.neutral['11'].value,
+    color: colorConfig.textColor,
     lineHeight: '1',
     userSelect: 'none',
     textTransform: 'uppercase',
     letterSpacing: '0.1em',
-    textShadow: isDark
-      ? '0 1px 2px rgba(0, 0, 0, 0.8), 0 0 4px rgba(255, 255, 255, 0.1)'
-      : '0 1px 2px rgba(255, 255, 255, 0.8), 0 0 4px rgba(0, 0, 0, 0.1)',
-    filter: 'drop-shadow(0 1px 1px rgba(0, 0, 0, 0.1))',
+    textShadow: isOutline
+      ? 'none'
+      : isDark
+        ? '0 1px 2px rgba(0, 0, 0, 0.8), 0 0 4px rgba(255, 255, 255, 0.1)'
+        : '0 1px 2px rgba(255, 255, 255, 0.8), 0 0 4px rgba(0, 0, 0, 0.1)',
+    filter: isOutline ? 'none' : 'drop-shadow(0 1px 1px rgba(0, 0, 0, 0.1))',
   };
 });
 
@@ -323,13 +472,14 @@ const statusIndicatorStyle = computed<CSSProperties>(() => {
     width: sizeConfig.value.statusSize,
     height: sizeConfig.value.statusSize,
     background: `radial-gradient(circle, ${statusColor.value} 0%, ${statusColor.value} 70%, rgba(0,0,0,0.1) 100%)`,
-    borderRadius: cornerRadius['50%'],
+    borderRadius: cornerRadius['max'],
     border: `3px solid ${isDark ? color.neutral['9'].value : color.neutral['1'].value}`,
     boxShadow: isDark
-      ? '0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
-      : '0 4px 6px -1px rgba(0, 0, 0, 0.15), 0 2px 4px -1px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
+      ? `0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 0 0 1px ${statusColor.value}20`
+      : `0 4px 6px -1px rgba(0, 0, 0, 0.15), 0 2px 4px -1px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 0 0 1px ${statusColor.value}20`,
     zIndex: '10',
     transform: 'translateZ(0)',
+    transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
   };
 });
 
@@ -346,7 +496,7 @@ const badgeStyle = computed<CSSProperties>(() => {
     alignItems: 'center',
     justifyContent: 'center',
     background: `linear-gradient(135deg, ${color.error['6'].value} 0%, ${color.error['7'].value} 100%)`,
-    borderRadius: cornerRadius['50%'],
+    borderRadius: cornerRadius['max'],
     border: `3px solid ${isDark ? color.neutral['9'].value : color.neutral['1'].value}`,
     boxShadow: isDark
       ? '0 4px 6px -1px rgba(239, 68, 68, 0.4), 0 2px 4px -1px rgba(239, 68, 68, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
