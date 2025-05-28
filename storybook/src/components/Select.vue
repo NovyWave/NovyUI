@@ -35,12 +35,12 @@
             <span :style="placeholderStyle">{{ placeholder }}</span>
           </template>
         </span>
-        
+
         <!-- Chevron Icon -->
-        <Icon 
-          :name="'chevron-down'" 
-          :width="iconSize" 
-          :height="iconSize" 
+        <Icon
+          :name="'chevron-down'"
+          :width="iconSize"
+          :height="iconSize"
           :color="String(triggerStyle.color)"
           :style="chevronStyle"
           :aria-hidden="true"
@@ -53,10 +53,10 @@
       <div v-if="isOpen" :style="dropdownStyle" ref="dropdownRef" role="listbox" :aria-multiselectable="multiple">
         <!-- Search Input (if searchable) -->
         <div v-if="searchable" :style="searchContainerStyle">
-          <Icon 
-            :name="'search'" 
-            :width="'16px'" 
-            :height="'16px'" 
+          <Icon
+            :name="'search'"
+            :width="'16px'"
+            :height="'16px'"
             :color="color.neutral['6'].value"
             :style="searchIconStyle"
             :aria-hidden="true"
@@ -80,10 +80,10 @@
             :aria-label="'Clear search'"
             title="Clear search"
           >
-            <Icon 
-              :name="'x'" 
-              :width="'14px'" 
-              :height="'14px'" 
+            <Icon
+              :name="'x'"
+              :width="'14px'"
+              :height="'14px'"
               :color="color.neutral['6'].value"
               :aria-hidden="true"
             />
@@ -115,7 +115,7 @@
                 :aria-hidden="true"
               />
               <span v-else :style="checkIconPlaceholderStyle"></span>
-              
+
               <!-- Option Label -->
               <span :style="optionLabelStyle">
                 {{ getOptionLabel(option) }}
@@ -230,7 +230,7 @@ const isOptionSelected = (option: Option): boolean => {
 // Filtered options based on search
 const filteredOptions = computed(() => {
   let options = props.options;
-  
+
   // Apply search filter if searchable and query exists
   if (props.searchable && searchQuery.value.trim()) {
     const query = searchQuery.value.toLowerCase().trim();
@@ -239,21 +239,21 @@ const filteredOptions = computed(() => {
       return label.includes(query);
     });
   }
-  
+
   // For multiple selection, show selected options at the top
   if (props.multiple && Array.isArray(props.modelValue) && props.modelValue.length > 0) {
     const selectedOptions = options.filter(option => isOptionSelected(option));
     const unselectedOptions = options.filter(option => !isOptionSelected(option));
     return [...selectedOptions, ...unselectedOptions];
   }
-  
+
   return options;
 });
 
 // Methods
 const toggleDropdown = () => {
   if (props.disabled) return;
-  
+
   if (isOpen.value) {
     closeDropdown();
   } else {
@@ -263,22 +263,22 @@ const toggleDropdown = () => {
 
 const openDropdown = async () => {
   if (props.disabled) return;
-  
+
   isOpen.value = true;
   emit('open');
-  
+
   await nextTick();
-  
+
   if (props.searchable && searchInputRef.value) {
     searchInputRef.value.focus();
   }
-  
+
   // Set initial focus to selected option or first option
   if (props.modelValue !== null && props.modelValue !== undefined) {
-    const selectedValue = props.multiple && Array.isArray(props.modelValue) 
-      ? props.modelValue[0] 
+    const selectedValue = props.multiple && Array.isArray(props.modelValue)
+      ? props.modelValue[0]
       : props.modelValue;
-    const selectedIndex = filteredOptions.value.findIndex(option => 
+    const selectedIndex = filteredOptions.value.findIndex(option =>
       getOptionValue(option) === selectedValue
     );
     focusedIndex.value = selectedIndex >= 0 ? selectedIndex : 0;
@@ -298,12 +298,12 @@ const closeDropdown = () => {
 const selectOption = (option: Option) => {
   console.log('selectOption called:', option, 'multiple:', props.multiple);
   if (isOptionDisabled(option)) return;
-  
+
   const value = getOptionValue(option);
-  
+
   if (props.multiple) {
     const currentValues = Array.isArray(props.modelValue) ? [...props.modelValue] : [];
-    
+
     if (currentValues.includes(value)) {
       // Remove value
       const newValues = currentValues.filter(v => v !== value);
@@ -345,27 +345,22 @@ const onTriggerFocus = () => {
 };
 
 const onTriggerBlur = (event: FocusEvent) => {
-  console.log('onTriggerBlur called, relatedTarget:', event.relatedTarget);
   // Don't close if focus is moving to dropdown content
   const relatedTarget = event.relatedTarget as Element;
   if (dropdownRef.value?.contains(relatedTarget)) {
-    console.log('Focus moving to dropdown, not closing');
     return;
   }
-  
+
   setTimeout(() => {
     if (!selectRef.value?.contains(document.activeElement)) {
-      console.log('Focus lost, closing dropdown');
       closeDropdown();
-    } else {
-      console.log('Focus still within select, keeping open');
     }
   }, 0);
 };
 
 const onKeyDown = (event: KeyboardEvent) => {
   if (props.disabled) return;
-  
+
   switch (event.key) {
     case 'Enter':
     case ' ':
@@ -377,13 +372,13 @@ const onKeyDown = (event: KeyboardEvent) => {
         selectOption(filteredOptions.value[focusedIndex.value]);
       }
       break;
-      
+
     case 'Escape':
       if (isOpen.value) {
         event.preventDefault();
         closeDropdown();      }
       break;
-      
+
     case 'ArrowDown':
       event.preventDefault();
       if (!isOpen.value) {
@@ -395,7 +390,7 @@ const onKeyDown = (event: KeyboardEvent) => {
         }
       }
       break;
-      
+
     case 'ArrowUp':
       event.preventDefault();
       if (isOpen.value && filteredOptions.value.length > 0) {
@@ -405,7 +400,7 @@ const onKeyDown = (event: KeyboardEvent) => {
         }
       }
       break;
-      
+
     case 'Home':
       if (isOpen.value && filteredOptions.value.length > 0) {
         event.preventDefault();
@@ -414,7 +409,7 @@ const onKeyDown = (event: KeyboardEvent) => {
         }
       }
       break;
-      
+
     case 'End':
       if (isOpen.value && filteredOptions.value.length > 0) {
         event.preventDefault();
@@ -453,12 +448,12 @@ const selectContainerStyle = computed<CSSProperties>(() => ({
 const triggerStyle = computed<CSSProperties>(() => {
   const size = props.size || 'medium';
   const isDark = theme.value === 'dark';
-  
+
   let fontSize: string = typography.size['16px'];
   let paddingY: string = spacing['8px'];
   let paddingX: string = spacing['12px'];
   let minHeight: string = '40px';
-  
+
   if (size === 'small') {
     paddingY = spacing['4px'];
     paddingX = spacing['8px'];
@@ -470,7 +465,7 @@ const triggerStyle = computed<CSSProperties>(() => {
     fontSize = typography.size['18px'];
     minHeight = '48px';
   }
-  
+
   const baseStyle: CSSProperties = {
     display: 'flex',
     alignItems: 'center',
@@ -492,7 +487,7 @@ const triggerStyle = computed<CSSProperties>(() => {
     outline: 'none',
     textAlign: 'left',
   };
-  
+
   if (props.disabled) {
     baseStyle.opacity = String(opacity['64%']);
     baseStyle.backgroundColor = color.neutral['2'].value;
@@ -501,7 +496,7 @@ const triggerStyle = computed<CSSProperties>(() => {
     baseStyle.borderColor = color.primary['7'].value;
     baseStyle.boxShadow = `0 0 0 ${border.width['2px']} ${color.primary['5'].value}`;
   }
-  
+
   return baseStyle;
 });
 
@@ -579,8 +574,8 @@ const searchIconStyle = computed<CSSProperties>(() => ({
 
 const searchInputStyle = computed<CSSProperties>(() => ({
   width: '100%',
-  padding: searchQuery.value.trim() 
-    ? `${spacing['4px']} ${spacing['40px']} ${spacing['4px']} ${spacing['32px']}` 
+  padding: searchQuery.value.trim()
+    ? `${spacing['4px']} ${spacing['40px']} ${spacing['4px']} ${spacing['32px']}`
     : `${spacing['4px']} ${spacing['32px']} ${spacing['4px']} ${spacing['32px']}`,
   fontSize: typography.size['14px'],
   fontFamily: typography.family.sans,
@@ -627,10 +622,10 @@ const getOptionStyle = (option: Option, index: number): CSSProperties => {
   const isHovered = hoveredIndex.value === index;
   const isFocused = focusedIndex.value === index;
   const isDisabled = isOptionDisabled(option);
-  
+
   let backgroundColor = 'transparent';
   let textColor = theme.value === 'dark' ? color.neutral['10'].value : color.neutral['9'].value;
-  
+
   if (isDisabled) {
     textColor = color.neutral['6'].value;
   } else if (isSelected) {
@@ -639,7 +634,7 @@ const getOptionStyle = (option: Option, index: number): CSSProperties => {
   } else if (isHovered || isFocused) {
     backgroundColor = color.neutral['3'].value;
   }
-  
+
   return {
     display: 'flex',
     alignItems: 'center',
