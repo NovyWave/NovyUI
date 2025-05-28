@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import FileInput from './FileInput.vue';
+import { color } from '../tokens';
 
 const meta: Meta<typeof FileInput> = {
   title: 'Components/FileInput',
@@ -185,33 +186,34 @@ export const Sizes: Story = {
         smallFiles: [],
         mediumFiles: [],
         largeFiles: [],
+        color,
       };
     },
     template: `
       <div style="display: flex; flex-direction: column; gap: 32px;">
         <div>
-          <h3 style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600;">Small</h3>
-          <FileInput 
-            v-model="smallFiles" 
-            size="small" 
+          <h3 :style="{ margin: '0 0 12px 0', fontSize: '14px', fontWeight: '600', color: color.neutral['11'].value }">Small</h3>
+          <FileInput
+            v-model="smallFiles"
+            size="small"
             primaryText="Small file input"
             secondaryText="Compact size"
           />
         </div>
         <div>
-          <h3 style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600;">Medium</h3>
-          <FileInput 
-            v-model="mediumFiles" 
-            size="medium" 
+          <h3 :style="{ margin: '0 0 12px 0', fontSize: '14px', fontWeight: '600', color: color.neutral['11'].value }">Medium</h3>
+          <FileInput
+            v-model="mediumFiles"
+            size="medium"
             primaryText="Medium file input"
             secondaryText="Standard size"
           />
         </div>
         <div>
-          <h3 style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600;">Large</h3>
-          <FileInput 
-            v-model="largeFiles" 
-            size="large" 
+          <h3 :style="{ margin: '0 0 12px 0', fontSize: '14px', fontWeight: '600', color: color.neutral['11'].value }">Large</h3>
+          <FileInput
+            v-model="largeFiles"
+            size="large"
             primaryText="Large file input"
             secondaryText="Spacious size for better drag and drop experience"
           />
@@ -234,13 +236,14 @@ export const AvatarUpload: Story = {
     setup() {
       return {
         avatarFile: [],
+        color,
       };
     },
     template: `
       <div style="max-width: 400px;">
-        <h3 style="margin: 0 0 16px 0; font-size: 18px; font-weight: 600;">Profile Avatar</h3>
-        <FileInput 
-          v-model="avatarFile" 
+        <h3 :style="{ margin: '0 0 16px 0', fontSize: '18px', fontWeight: '600', color: color.neutral['11'].value }">Profile Avatar</h3>
+        <FileInput
+          v-model="avatarFile"
           accept="image/*"
           :multiple="false"
           :maxFileSize="1024 * 1024"
@@ -250,7 +253,7 @@ export const AvatarUpload: Story = {
           uploadIcon="user"
           size="small"
         />
-        <p style="margin: 12px 0 0 0; font-size: 12px; color: #6b7280;">
+        <p :style="{ margin: '12px 0 0 0', fontSize: '12px', color: color.neutral['11'].value }">
           Recommended: Square image, at least 200x200 pixels
         </p>
       </div>
@@ -271,13 +274,15 @@ export const DocumentUpload: Story = {
     setup() {
       return {
         documents: [],
+        color,
       };
     },
     template: `
       <div style="max-width: 600px;">
-        <h3 style="margin: 0 0 16px 0; font-size: 18px; font-weight: 600;">Document Upload</h3>
-        <FileInput 
-          v-model="documents" 
+        <h3 :style="{ margin: '0 0 16px 0', fontSize: '18px', fontWeight: '600', color: color.neutral['11'].value }">Document Upload</h3>
+        <p :style="{ margin: '0 0 16px 0', fontSize: '14px', color: color.neutral['11'].value }">File input configured for business document upload with guidelines.</p>
+        <FileInput
+          v-model="documents"
           accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx"
           multiple
           :maxFiles="10"
@@ -285,11 +290,11 @@ export const DocumentUpload: Story = {
           primaryText="Drop your documents here"
           secondaryText="Supports: PDF, Word, Excel, PowerPoint (max 10MB each)"
           browseButtonText="Browse Documents"
-          uploadIcon="file-text"
+          uploadIcon="file"
         />
-        <div style="margin-top: 16px; padding: 12px; background: #f9fafb; border-radius: 6px; border: 1px solid #e5e7eb;">
-          <h4 style="margin: 0 0 8px 0; font-size: 14px; font-weight: 600;">Upload Guidelines:</h4>
-          <ul style="margin: 0; padding-left: 20px; font-size: 14px; color: #6b7280;">
+        <div :style="{ marginTop: '16px', padding: '12px', background: color.neutral['2'].value, borderRadius: '6px', border: '1px solid ' + color.neutral['4'].value }">
+          <h4 :style="{ margin: '0 0 8px 0', fontSize: '14px', fontWeight: '600', color: color.neutral['11'].value }">Upload Guidelines:</h4>
+          <ul :style="{ margin: '0', paddingLeft: '20px', fontSize: '14px', color: color.neutral['11'].value }">
             <li>Maximum 10 files per upload</li>
             <li>Each file must be under 10MB</li>
             <li>Supported formats: PDF, DOC, DOCX, XLS, XLSX, PPT, PPTX</li>
@@ -314,13 +319,15 @@ export const MediaUpload: Story = {
     setup() {
       return {
         mediaFiles: [],
+        color,
       };
     },
     template: `
       <div style="max-width: 600px;">
-        <h3 style="margin: 0 0 16px 0; font-size: 18px; font-weight: 600;">Media Gallery</h3>
-        <FileInput 
-          v-model="mediaFiles" 
+        <h3 :style="{ margin: '0 0 16px 0', fontSize: '18px', fontWeight: '600', color: color.neutral['11'].value }">Media Upload</h3>
+        <p :style="{ margin: '0 0 16px 0', fontSize: '14px', color: color.neutral['11'].value }">File input configured for media gallery with images and videos.</p>
+        <FileInput
+          v-model="mediaFiles"
           accept="image/*,video/*"
           multiple
           :maxFiles="20"
@@ -331,7 +338,7 @@ export const MediaUpload: Story = {
           uploadIcon="image"
           size="large"
         />
-        <div style="margin-top: 16px; display: flex; gap: 16px; font-size: 12px; color: #6b7280;">
+        <div :style="{ marginTop: '16px', display: 'flex', gap: '16px', fontSize: '12px', color: color.neutral['11'].value }">
           <div>
             <strong>Images:</strong> JPG, PNG, GIF, WebP
           </div>
@@ -359,35 +366,63 @@ export const FormIntegration: Story = {
         resume: [],
         portfolio: [],
         coverLetter: [],
+        color,
       };
     },
     template: `
-      <form style="max-width: 600px; padding: 24px; border: 1px solid #e5e7eb; border-radius: 8px;">
-        <h3 style="margin: 0 0 20px 0; font-size: 18px; font-weight: 600;">Job Application</h3>
-        
+      <form :style="{
+        maxWidth: '600px',
+        padding: '24px',
+        border: '1px solid ' + color.neutral['3'].value,
+        borderRadius: '8px',
+        backgroundColor: color.neutral['1'].value
+      }">
+        <h3 :style="{ margin: '0 0 20px 0', fontSize: '18px', fontWeight: '600', color: color.neutral['11'].value }">Job Application</h3>
+        <p :style="{ margin: '0 0 20px 0', fontSize: '14px', color: color.neutral['11'].value }">FileInput components integrated in a job application form.</p>
+
         <div style="display: flex; flex-direction: column; gap: 24px;">
-          <div>
-            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Name</label>
-            <input 
-              type="text" 
+          <div :style="{ marginBottom: '20px' }">
+            <label :style="{ display: 'block', marginBottom: '8px', fontWeight: '500', color: color.neutral['11'].value }">Name</label>
+            <input
+              type="text"
               placeholder="Enter your full name"
-              style="width: 100%; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px;"
+              :style="{
+                width: '100%',
+                padding: '12px 16px',
+                border: '1px solid ' + color.neutral['3'].value,
+                borderRadius: '6px',
+                backgroundColor: color.neutral['1'].value,
+                color: color.neutral['11'].value,
+                fontSize: '16px',
+                fontFamily: 'inherit',
+                boxSizing: 'border-box'
+              }"
             />
           </div>
-          
-          <div>
-            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Email</label>
-            <input 
-              type="email" 
+
+          <div :style="{ marginBottom: '20px' }">
+            <label :style="{ display: 'block', marginBottom: '8px', fontWeight: '500', color: color.neutral['11'].value }">Email</label>
+            <input
+              type="email"
               placeholder="Enter your email"
-              style="width: 100%; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px;"
+              :style="{
+                width: '100%',
+                padding: '12px 16px',
+                border: '1px solid ' + color.neutral['3'].value,
+                borderRadius: '6px',
+                backgroundColor: color.neutral['1'].value,
+                color: color.neutral['11'].value,
+                fontSize: '16px',
+                fontFamily: 'inherit',
+                boxSizing: 'border-box'
+              }"
             />
           </div>
-          
+
           <div>
-            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Resume *</label>
-            <FileInput 
-              v-model="resume" 
+            <label :style="{ display: 'block', marginBottom: '8px', fontWeight: '500', color: color.neutral['11'].value }">Resume *</label>
+            <FileInput
+              v-model="resume"
               accept=".pdf,.doc,.docx"
               :multiple="false"
               :maxFileSize="5 * 1024 * 1024"
@@ -398,11 +433,11 @@ export const FormIntegration: Story = {
               required
             />
           </div>
-          
+
           <div>
-            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Portfolio (Optional)</label>
-            <FileInput 
-              v-model="portfolio" 
+            <label :style="{ display: 'block', marginBottom: '8px', fontWeight: '500', color: color.neutral['11'].value }">Portfolio (Optional)</label>
+            <FileInput
+              v-model="portfolio"
               accept=".pdf,image/*"
               multiple
               :maxFiles="5"
@@ -413,11 +448,11 @@ export const FormIntegration: Story = {
               size="small"
             />
           </div>
-          
+
           <div>
-            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Cover Letter (Optional)</label>
-            <FileInput 
-              v-model="coverLetter" 
+            <label :style="{ display: 'block', marginBottom: '8px', fontWeight: '500', color: color.neutral['11'].value }">Cover Letter (Optional)</label>
+            <FileInput
+              v-model="coverLetter"
               accept=".pdf,.doc,.docx,.txt"
               :multiple="false"
               :maxFileSize="2 * 1024 * 1024"
@@ -427,12 +462,24 @@ export const FormIntegration: Story = {
               size="small"
             />
           </div>
-          
-          <button 
+
+          <button
             type="submit"
             :disabled="resume.length === 0"
-            style="padding: 12px 24px; background: #3b82f6; color: white; border: none; border-radius: 6px; font-weight: 500; cursor: pointer;"
-            :style="{ opacity: resume.length > 0 ? 1 : 0.5 }"
+            :style="{
+              width: '100%',
+              padding: '12px 24px',
+              background: color.primary['7'].value,
+              color: color.neutral['1'].value,
+              border: 'none',
+              borderRadius: '6px',
+              fontWeight: '500',
+              cursor: resume.length > 0 ? 'pointer' : 'not-allowed',
+              opacity: resume.length > 0 ? 1 : 0.5,
+              fontSize: '16px',
+              fontFamily: 'inherit',
+              boxSizing: 'border-box'
+            }"
           >
             Submit Application
           </button>

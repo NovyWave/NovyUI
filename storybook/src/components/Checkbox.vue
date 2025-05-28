@@ -136,7 +136,7 @@ const sizeConfig = computed(() => {
       iconSize: '12px',
       labelFontSize: typography.size['14px'],
       descriptionFontSize: typography.size['12px'],
-      gap: spacing['8px'],
+      gap: spacing['12px'],
     };
   } else if (size === 'large') {
     return {
@@ -144,7 +144,7 @@ const sizeConfig = computed(() => {
       iconSize: '18px',
       labelFontSize: typography.size['18px'],
       descriptionFontSize: typography.size['16px'],
-      gap: spacing['12px'],
+      gap: spacing['16px'],
     };
   } else {
     return {
@@ -152,7 +152,7 @@ const sizeConfig = computed(() => {
       iconSize: '14px',
       labelFontSize: typography.size['16px'],
       descriptionFontSize: typography.size['14px'],
-      gap: spacing['10px'],
+      gap: spacing['12px'],
     };
   }
 });

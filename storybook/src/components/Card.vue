@@ -316,6 +316,7 @@ const subtitleStyle = computed<CSSProperties>(() => {
 const imageContainerStyle = computed<CSSProperties>(() => ({
   width: '100%',
   overflow: 'hidden',
+  marginTop: hasHeader.value ? sizeConfig.value.gap : '0',
 }));
 
 const imageStyle = computed<CSSProperties>(() => ({

@@ -9,7 +9,7 @@
       :variant="variant"
       :show-icon="showIcon"
       :icon-position="iconPosition"
-      :is-open="openItems.includes(index)"
+      :is-open="isItemOpen(item, index)"
       :disabled="disabled || !!item.disabled"
       @toggle="handleToggle"
     />
@@ -60,13 +60,13 @@ const props = withDefaults(defineProps<{
    */
   iconPosition?: IconPosition;
   /**
-   * Initially open items (array of indices)
+   * Initially open items (array of indices or IDs)
    */
-  defaultOpen?: number[];
+  defaultOpen?: (number | string)[];
   /**
-   * Controlled open items (array of indices)
+   * Controlled open items (array of indices or IDs)
    */
-  open?: number[];
+  open?: (number | string)[];
   /**
    * Whether the entire accordion is disabled
    */
@@ -94,7 +94,7 @@ const emit = defineEmits<{
   /**
    * Emitted when accordion items open/close state changes
    */
-  'change': [openItems: number[]];
+  'change': [openItems: (number | string)[]];
   /**
    * Emitted when a specific item is toggled
    */
@@ -102,18 +102,39 @@ const emit = defineEmits<{
 }>();
 
 // State
-const openItems = ref<number[]>([]);
+const openItems = ref<(number | string)[]>([]);
+
+// Helper function to check if an item is open (supports both ID and index)
+const isItemOpen = (item: AccordionItemData, index: number): boolean => {
+  const itemId = item.id;
+  // Check if the item is open by either its ID or index
+  return openItems.value.includes(itemId ?? index) ||
+         (itemId !== undefined && openItems.value.includes(itemId)) ||
+         openItems.value.includes(index);
+};
+
+// Helper function to convert between IDs and indices
+const normalizeOpenItems = (items: (number | string)[]): (number | string)[] => {
+  return items.map(item => {
+    // If it's a string, try to find the corresponding index
+    if (typeof item === 'string') {
+      const foundIndex = props.items.findIndex(accordionItem => accordionItem.id === item);
+      return foundIndex !== -1 ? item : item; // Keep the ID if found, otherwise keep as is
+    }
+    return item; // Keep numeric indices as is
+  });
+};
 
 // Initialize open items
 watch(() => props.open, (newOpen) => {
   if (newOpen !== undefined) {
-    openItems.value = [...newOpen];
+    openItems.value = normalizeOpenItems([...newOpen]);
   }
 }, { immediate: true });
 
 watch(() => props.defaultOpen, (newDefaultOpen) => {
   if (props.open === undefined) {
-    openItems.value = [...newDefaultOpen];
+    openItems.value = normalizeOpenItems([...newDefaultOpen]);
   }
 }, { immediate: true });
 
@@ -121,23 +142,28 @@ watch(() => props.defaultOpen, (newDefaultOpen) => {
 const handleToggle = (index: number) => {
   if (props.disabled) return;
 
-  const isCurrentlyOpen = openItems.value.includes(index);
-  let newOpenItems: number[];
+  const item = props.items[index];
+  const itemIdentifier = item.id ?? index;
+  const isCurrentlyOpen = isItemOpen(item, index);
+  let newOpenItems: (number | string)[];
 
   if (props.type === 'single') {
     if (isCurrentlyOpen) {
       // Close current item if collapsible is true
-      newOpenItems = props.collapsible ? [] : [index];
+      newOpenItems = props.collapsible ? [] : [itemIdentifier];
     } else {
       // Open clicked item, close others
-      newOpenItems = [index];
+      newOpenItems = [itemIdentifier];
     }
   } else {
     // Multiple mode - toggle the clicked item
     if (isCurrentlyOpen) {
-      newOpenItems = openItems.value.filter(item => item !== index);
+      // Remove both ID and index to ensure it's closed
+      newOpenItems = openItems.value.filter(openItem =>
+        openItem !== itemIdentifier && openItem !== index && openItem !== item.id
+      );
     } else {
-      newOpenItems = [...openItems.value, index];
+      newOpenItems = [...openItems.value, itemIdentifier];
     }
   }
 

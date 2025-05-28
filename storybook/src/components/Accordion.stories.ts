@@ -11,8 +11,8 @@ const meta: Meta<typeof Accordion> = {
     items: {
       control: 'object',
       description: 'Array of accordion items with title, content, disabled state, and optional icons.',
-      table: { 
-        category: 'Data', 
+      table: {
+        category: 'Data',
         defaultValue: { summary: '[]' },
         type: { summary: 'AccordionItemData[]' }
       },
@@ -43,20 +43,20 @@ const meta: Meta<typeof Accordion> = {
     },
     defaultOpenItems: {
       control: 'object',
-      description: 'Array of item IDs that should be open by default.',
-      table: { 
-        category: 'State', 
+      description: 'Array of item IDs or indices that should be open by default.',
+      table: {
+        category: 'State',
         defaultValue: { summary: '[]' },
-        type: { summary: 'string[]' }
+        type: { summary: '(string | number)[]' }
       },
     },
     openItems: {
       control: 'object',
-      description: 'Controlled state: array of currently open item IDs. Use with @update:openItems for controlled mode.',
-      table: { 
-        category: 'State', 
+      description: 'Controlled state: array of currently open item IDs or indices. Use with @update:openItems for controlled mode.',
+      table: {
+        category: 'State',
         defaultValue: { summary: 'undefined' },
-        type: { summary: 'string[] | undefined' }
+        type: { summary: '(string | number)[] | undefined' }
       },
     },
   },
@@ -170,7 +170,7 @@ export const Sizes: Story = {
           content: 'Perfect for dense interfaces or sidebars where space is at a premium.',
         },
       ];
-      
+
       const mediumItems = [
         {
           id: 'medium1',
@@ -183,7 +183,7 @@ export const Sizes: Story = {
           content: 'Provides a good balance between content density and readability.',
         },
       ];
-      
+
       const largeItems = [
         {
           id: 'large1',
@@ -196,7 +196,7 @@ export const Sizes: Story = {
           content: 'Ideal for main content areas or when you want to emphasize the accordion.',
         },
       ];
-      
+
       return { baseItems, mediumItems, largeItems };
     },
     template: `
@@ -241,7 +241,7 @@ export const IconPositions: Story = {
           content: 'Choose the position that best fits your design requirements.',
         },
       ];
-      
+
       return { items };
     },
     template: `
@@ -443,19 +443,19 @@ export const ControlledState: Story = {
           content: 'Click the buttons below to see how external controls can manage the accordion state.',
         },
       ];
-      
+
       const openAll = () => {
         openItems.value = ['controlled1', 'controlled2', 'controlled3'];
       };
-      
+
       const closeAll = () => {
         openItems.value = [];
       };
-      
+
       const openFirst = () => {
         openItems.value = ['controlled1'];
       };
-      
+
       return { openItems, items, openAll, closeAll, openFirst };
     },
     template: `
@@ -471,10 +471,10 @@ export const ControlledState: Story = {
             Open First Only
           </button>
         </div>
-        <Accordion 
-          :items="items" 
-          :openItems="openItems" 
-          @update:openItems="openItems = $event"
+        <Accordion
+          :items="items"
+          :open="openItems"
+          @change="openItems = $event"
           type="multiple"
         />
         <div style="margin-top: 16px; padding: 12px; background: #f8fafc; border-radius: 6px; font-size: 14px;">

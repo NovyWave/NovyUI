@@ -446,7 +446,7 @@ export const FormIntegration: Story = {
             <input
               type="email"
               placeholder="Enter your email"
-              style="width: 100%; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px;"
+              style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 6px; box-sizing: border-box;"
             />
           </div>
 
@@ -479,7 +479,7 @@ export const FormIntegration: Story = {
           <button
             type="submit"
             :disabled="!agreeToTerms"
-            style="padding: 12px 24px; background: #3b82f6; color: white; border: none; border-radius: 6px; font-weight: 500; cursor: pointer;"
+            style="width: 100%; padding: 12px; background: #3b82f6; color: white; border: none; border-radius: 6px; font-weight: 500; cursor: pointer; box-sizing: border-box;"
             :style="{ opacity: agreeToTerms ? 1 : 0.5 }"
           >
             Create Account

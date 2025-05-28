@@ -48,14 +48,13 @@
       </div>
 
       <!-- Browse Button -->
-      <button
-        type="button"
-        :style="browseButtonStyle"
+      <Button
+        :label="browseButtonText"
+        variant="Outline"
+        :size="buttonSize"
         :disabled="disabled"
         @click.stop="openFileDialog"
-      >
-        {{ browseButtonText }}
-      </button>
+      />
     </div>
 
     <!-- File List -->
@@ -81,27 +80,20 @@
         </div>
 
         <!-- Remove Button -->
-        <button
-          type="button"
-          :style="removeButtonStyle"
-          :aria-label="`Remove ${file.name}`"
+        <Button
+          :label="`Remove ${file.name}`"
+          variant="Ghost"
+          size="small"
+          :leftIcon="'x'"
           @click="removeFile(index)"
-        >
-          <Icon
-            :name="'x'"
-            :width="'14px'"
-            :height="'14px'"
-            :color="removeIconColor"
-            :aria-hidden="true"
-          />
-        </button>
+        />
       </div>
     </div>
 
     <!-- Error Message -->
     <div v-if="errorMessage" :style="errorMessageStyle">
       <Icon
-        :name="'alert-circle'"
+        :name="'circle-alert'"
         :width="'16px'"
         :height="'16px'"
         :color="color.error['7'].value"
@@ -116,6 +108,7 @@
 import { computed, ref, type CSSProperties } from 'vue';
 import { color, spacing, cornerRadius, border, typography, transition, useTheme } from '../tokens';
 import Icon from './Icon.vue';
+import Button from './Button.vue';
 
 type Size = 'small' | 'medium' | 'large';
 
@@ -204,6 +197,13 @@ const sizeConfig = computed(() => {
 
 const iconSize = computed(() => sizeConfig.value.iconSize);
 
+const buttonSize = computed(() => {
+  // Map FileInput size to Button size
+  if (props.size === 'small') return 'small';
+  if (props.size === 'large') return 'large';
+  return 'medium';
+});
+
 const iconColor = computed(() => {
   const isDark = theme.value === 'dark';
 
@@ -223,10 +223,7 @@ const fileIconColor = computed(() => {
   return isDark ? color.neutral['8'].value : color.neutral['7'].value;
 });
 
-const removeIconColor = computed(() => {
-  const isDark = theme.value === 'dark';
-  return isDark ? color.neutral['7'].value : color.neutral['6'].value;
-});
+
 
 const dropZoneClass = computed(() => {
   const classes = [];
@@ -331,27 +328,7 @@ const secondaryTextStyle = computed<CSSProperties>(() => {
   };
 });
 
-const browseButtonStyle = computed<CSSProperties>(() => {
-  const isDark = theme.value === 'dark';
 
-  return {
-    padding: `${spacing['8px']} ${spacing['16px']}`,
-    fontSize: sizeConfig.value.buttonFontSize,
-    fontWeight: String(typography.weight['5']),
-    fontFamily: typography.family.sans,
-    color: props.disabled
-      ? color.neutral['5'].value
-      : color.primary['7'].value,
-    backgroundColor: 'transparent',
-    border: `${border.width['1px']} ${border.style.solid} ${props.disabled ? color.neutral['4'].value : color.primary['7'].value}`,
-    borderRadius: cornerRadius['6px'],
-    cursor: props.disabled ? 'not-allowed' : 'pointer',
-    transition: transition.normal,
-    ':hover': !props.disabled ? {
-      backgroundColor: isDark ? color.primary['1'].value : color.primary['1'].value,
-    } : {},
-  };
-});
 
 const fileListStyle = computed<CSSProperties>(() => ({
   display: 'flex',
@@ -404,20 +381,7 @@ const fileSizeStyle = computed<CSSProperties>(() => {
   };
 });
 
-const removeButtonStyle = computed<CSSProperties>(() => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  padding: spacing['4px'],
-  border: 'none',
-  background: 'transparent',
-  borderRadius: cornerRadius['4px'],
-  cursor: 'pointer',
-  transition: transition.normal,
-  ':hover': {
-    backgroundColor: color.neutral['3'].value,
-  },
-}));
+
 
 const errorMessageStyle = computed<CSSProperties>(() => ({
   display: 'flex',
@@ -428,7 +392,7 @@ const errorMessageStyle = computed<CSSProperties>(() => ({
   color: color.error['7'].value,
   backgroundColor: color.error['1'].value,
   border: `${border.width['1px']} ${border.style.solid} ${color.error['3'].value}`,
-  borderRadius: cornerRadius['6px'],
+  borderRadius: cornerRadius['8px'],
 }));
 
 // Helper functions
@@ -436,13 +400,13 @@ const getFileIcon = (file: File): string => {
   const type = file.type.toLowerCase();
 
   if (type.startsWith('image/')) return 'image';
-  if (type.includes('pdf')) return 'file-text';
-  if (type.includes('word') || type.includes('document')) return 'file-text';
-  if (type.includes('excel') || type.includes('spreadsheet')) return 'file-text';
-  if (type.includes('powerpoint') || type.includes('presentation')) return 'file-text';
-  if (type.startsWith('video/')) return 'video';
-  if (type.startsWith('audio/')) return 'music';
-  if (type.includes('zip') || type.includes('rar') || type.includes('archive')) return 'archive';
+  if (type.includes('pdf')) return 'file';
+  if (type.includes('word') || type.includes('document')) return 'file';
+  if (type.includes('excel') || type.includes('spreadsheet')) return 'file';
+  if (type.includes('powerpoint') || type.includes('presentation')) return 'file';
+  if (type.startsWith('video/')) return 'file';
+  if (type.startsWith('audio/')) return 'file';
+  if (type.includes('zip') || type.includes('rar') || type.includes('archive')) return 'file';
 
   return 'file';
 };
@@ -517,12 +481,12 @@ const removeFile = (index: number) => {
   errorMessage.value = '';
 };
 
-const onDragOver = (event: DragEvent) => {
+const onDragOver = () => {
   if (props.disabled) return;
   isDragOver.value = true;
 };
 
-const onDragLeave = (event: DragEvent) => {
+const onDragLeave = () => {
   if (props.disabled) return;
   isDragOver.value = false;
 };
