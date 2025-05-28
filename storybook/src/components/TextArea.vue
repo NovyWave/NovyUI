@@ -21,14 +21,14 @@
       @blur="onBlur"
       @keydown="onKeydown"
     />
-    
+
     <!-- Character Count -->
     <div v-if="showCharacterCount" :style="characterCountStyle">
       <span :style="characterCountTextStyle">
         {{ characterCount }}{{ maxlength ? `/${maxlength}` : '' }}
       </span>
     </div>
-    
+
     <!-- Resize Handle -->
     <div v-if="resizable && !disabled" :style="resizeHandleStyle">
       <Icon
@@ -88,7 +88,7 @@ const emit = defineEmits<{
   'keydown': [event: KeyboardEvent];
 }>();
 
-const { theme } = useTheme();
+const theme = useTheme();
 
 // State
 const focused = ref(false);
@@ -97,7 +97,7 @@ const textareaRef = ref<HTMLTextAreaElement>();
 // Size configuration
 const sizeConfig = computed(() => {
   const size = props.size;
-  
+
   if (size === 'small') {
     return {
       fontSize: typography.size['14px'],
@@ -138,11 +138,11 @@ const textareaContainerStyle = computed<CSSProperties>(() => ({
 
 const textareaStyle = computed<CSSProperties>(() => {
   const isDark = theme.value === 'dark';
-  
+
   let backgroundColor: string;
   let borderColor: string;
   let textColor: string;
-  
+
   if (props.disabled) {
     backgroundColor = isDark ? color.neutral['2'].value : color.neutral['1'].value;
     borderColor = color.neutral['4'].value;
@@ -160,7 +160,7 @@ const textareaStyle = computed<CSSProperties>(() => {
     borderColor = color.neutral['5'].value;
     textColor = isDark ? color.neutral['11'].value : color.neutral['9'].value;
   }
-  
+
   return {
     width: '100%',
     minHeight: sizeConfig.value.minHeight,
@@ -195,12 +195,12 @@ const characterCountStyle = computed<CSSProperties>(() => ({
 const characterCountTextStyle = computed<CSSProperties>(() => {
   const isDark = theme.value === 'dark';
   const isOverLimit = props.maxlength && characterCount.value > props.maxlength;
-  
+
   return {
     fontSize: typography.size['12px'],
     fontWeight: String(typography.weight['4']),
-    color: isOverLimit 
-      ? color.error['7'].value 
+    color: isOverLimit
+      ? color.error['7'].value
       : isDark ? color.neutral['7'].value : color.neutral['6'].value,
     backgroundColor: isDark ? color.neutral['2'].value : color.neutral['1'].value,
     padding: `${spacing['2px']} ${spacing['4px']}`,
@@ -221,9 +221,9 @@ const resizeHandleStyle = computed<CSSProperties>(() => ({
 // Auto-resize functionality
 const autoResizeTextarea = async () => {
   if (!props.autoResize || !textareaRef.value) return;
-  
+
   await nextTick();
-  
+
   const textarea = textareaRef.value;
   textarea.style.height = 'auto';
   textarea.style.height = `${textarea.scrollHeight}px`;
@@ -233,7 +233,7 @@ const autoResizeTextarea = async () => {
 const onInput = async (event: Event) => {
   const target = event.target as HTMLTextAreaElement;
   emit('update:modelValue', target.value);
-  
+
   if (props.autoResize) {
     await autoResizeTextarea();
   }
@@ -251,18 +251,18 @@ const onBlur = (event: FocusEvent) => {
 
 const onKeydown = (event: KeyboardEvent) => {
   emit('keydown', event);
-  
+
   // Handle Tab key for indentation
   if (event.key === 'Tab' && !event.shiftKey) {
     event.preventDefault();
     const textarea = event.target as HTMLTextAreaElement;
     const start = textarea.selectionStart;
     const end = textarea.selectionEnd;
-    
+
     // Insert tab character
     const newValue = props.modelValue.substring(0, start) + '\t' + props.modelValue.substring(end);
     emit('update:modelValue', newValue);
-    
+
     // Restore cursor position
     nextTick(() => {
       textarea.selectionStart = textarea.selectionEnd = start + 1;

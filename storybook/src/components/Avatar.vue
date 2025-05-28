@@ -19,7 +19,7 @@
         @error="onImageError"
         @load="onImageLoad"
       />
-      
+
       <!-- Icon Fallback -->
       <Icon
         v-else-if="icon"
@@ -29,7 +29,7 @@
         :color="iconColor"
         :aria-hidden="true"
       />
-      
+
       <!-- Initials Fallback -->
       <span
         v-else-if="initials"
@@ -38,7 +38,7 @@
       >
         {{ displayInitials }}
       </span>
-      
+
       <!-- Default User Icon -->
       <Icon
         v-else
@@ -49,7 +49,7 @@
         :aria-hidden="true"
       />
     </component>
-    
+
     <!-- Status Indicator -->
     <div
       v-if="status"
@@ -57,7 +57,7 @@
       :aria-label="statusAriaLabel"
       role="img"
     />
-    
+
     <!-- Badge/Notification -->
     <div
       v-if="badge !== undefined"
@@ -115,7 +115,7 @@ const emit = defineEmits<{
   'image-load': [];
 }>();
 
-const { theme } = useTheme();
+const theme = useTheme();
 
 // State
 const imageError = ref(false);
@@ -123,7 +123,7 @@ const imageError = ref(false);
 // Size configuration
 const sizeConfig = computed(() => {
   const size = props.size;
-  
+
   switch (size) {
     case 'xs':
       return {
@@ -203,7 +203,7 @@ const sizeConfig = computed(() => {
 // Shape configuration
 const shapeConfig = computed(() => {
   const shape = props.shape;
-  
+
   switch (shape) {
     case 'square':
       return { borderRadius: '0' };
@@ -217,7 +217,7 @@ const shapeConfig = computed(() => {
 // Status color configuration
 const statusColor = computed(() => {
   const status = props.status;
-  
+
   switch (status) {
     case 'online':
       return color.success['7'].value;
@@ -257,7 +257,7 @@ const avatarContainerStyle = computed<CSSProperties>(() => ({
 
 const avatarStyle = computed<CSSProperties>(() => {
   const isDark = theme.value === 'dark';
-  
+
   return {
     display: 'flex',
     alignItems: 'center',
@@ -288,7 +288,7 @@ const imageStyle = computed<CSSProperties>(() => ({
 
 const initialsStyle = computed<CSSProperties>(() => {
   const isDark = theme.value === 'dark';
-  
+
   return {
     fontSize: sizeConfig.value.fontSize,
     fontWeight: String(typography.weight['6']),

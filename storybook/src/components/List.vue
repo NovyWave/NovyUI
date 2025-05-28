@@ -1,6 +1,6 @@
 <template>
-  <component 
-    :is="ordered ? 'ol' : 'ul'" 
+  <component
+    :is="ordered ? 'ol' : 'ul'"
     :style="listStyle"
     :role="role"
   >
@@ -36,31 +36,31 @@
             {{ item.badge }}
           </span>
         </div>
-        
+
         <!-- Main Content -->
         <div :style="mainContentStyle">
           <!-- Primary Text -->
           <div :style="primaryTextStyle">
             {{ item.primary || item.text || item.label }}
           </div>
-          
+
           <!-- Secondary Text -->
-          <div 
+          <div
             v-if="item.secondary"
             :style="secondaryTextStyle"
           >
             {{ item.secondary }}
           </div>
-          
+
           <!-- Description -->
-          <div 
+          <div
             v-if="item.description"
             :style="descriptionStyle"
           >
             {{ item.description }}
           </div>
         </div>
-        
+
         <!-- Trailing Content -->
         <div v-if="hasTrailingContent(item)" :style="trailingContentStyle">
           <Icon
@@ -94,9 +94,9 @@
           </button>
         </div>
       </div>
-      
+
       <!-- Divider -->
-      <div 
+      <div
         v-if="showDividers && index < items.length - 1"
         :style="dividerStyle"
       />
@@ -156,12 +156,12 @@ const emit = defineEmits<{
   'action-click': [item: ListItem, index: number];
 }>();
 
-const { theme } = useTheme();
+const theme = useTheme();
 
 // Size configuration
 const sizeConfig = computed(() => {
   const size = props.size;
-  
+
   if (size === 'small') {
     return {
       padding: spacing['8px'],
@@ -197,17 +197,17 @@ const iconSize = computed(() => sizeConfig.value.iconSize);
 
 const listStyle = computed<CSSProperties>(() => {
   const isDark = theme.value === 'dark';
-  
+
   let borderStyle = 'none';
   let borderRadius = '0';
   let backgroundColor = 'transparent';
-  
+
   if (props.variant === 'bordered') {
     borderStyle = `${border.width['1px']} ${border.style.solid} ${color.neutral['4'].value}`;
     borderRadius = cornerRadius['8px'];
     backgroundColor = isDark ? color.neutral['2'].value : color.neutral['1'].value;
   }
-  
+
   return {
     margin: '0',
     padding: '0',
@@ -223,20 +223,20 @@ const getItemStyle = (item: ListItem, index: number): CSSProperties => {
   const isDark = theme.value === 'dark';
   let backgroundColor = 'transparent';
   let cursor = 'default';
-  
+
   if (props.interactive || item.href) {
     cursor = 'pointer';
   }
-  
+
   if (item.selected) {
     backgroundColor = isDark ? color.primary['2'].value : color.primary['1'].value;
   }
-  
+
   if (item.disabled) {
     cursor = 'not-allowed';
     opacity: '0.5';
   }
-  
+
   return {
     position: 'relative',
     padding: sizeConfig.value.padding,
@@ -279,7 +279,7 @@ const trailingContentStyle = computed<CSSProperties>(() => ({
 
 const primaryTextStyle = computed<CSSProperties>(() => {
   const isDark = theme.value === 'dark';
-  
+
   return {
     fontSize: sizeConfig.value.primaryFontSize,
     fontWeight: String(typography.weight['5']),
@@ -293,7 +293,7 @@ const primaryTextStyle = computed<CSSProperties>(() => {
 
 const secondaryTextStyle = computed<CSSProperties>(() => {
   const isDark = theme.value === 'dark';
-  
+
   return {
     fontSize: sizeConfig.value.secondaryFontSize,
     fontWeight: String(typography.weight['4']),
@@ -307,7 +307,7 @@ const secondaryTextStyle = computed<CSSProperties>(() => {
 
 const descriptionStyle = computed<CSSProperties>(() => {
   const isDark = theme.value === 'dark';
-  
+
   return {
     fontSize: sizeConfig.value.secondaryFontSize,
     fontWeight: String(typography.weight['4']),
@@ -326,7 +326,7 @@ const avatarStyle = computed<CSSProperties>(() => ({
 
 const badgeStyle = computed<CSSProperties>(() => {
   const isDark = theme.value === 'dark';
-  
+
   return {
     display: 'flex',
     alignItems: 'center',
@@ -343,7 +343,7 @@ const badgeStyle = computed<CSSProperties>(() => {
 
 const trailingTextStyle = computed<CSSProperties>(() => {
   const isDark = theme.value === 'dark';
-  
+
   return {
     fontSize: sizeConfig.value.secondaryFontSize,
     fontWeight: String(typography.weight['4']),
@@ -397,22 +397,22 @@ const hasTrailingContent = (item: ListItem): boolean => {
 
 const getIconColor = (item: ListItem): string => {
   const isDark = theme.value === 'dark';
-  
+
   if (item.disabled) {
     return color.neutral['5'].value;
   }
-  
+
   if (item.selected) {
     return color.primary['7'].value;
   }
-  
+
   return isDark ? color.neutral['8'].value : color.neutral['7'].value;
 };
 
 // Event handlers
 const onItemClick = (item: ListItem, index: number) => {
   if (item.disabled) return;
-  
+
   if (item.href) {
     if (item.target === '_blank') {
       window.open(item.href, '_blank');
@@ -420,7 +420,7 @@ const onItemClick = (item: ListItem, index: number) => {
       window.location.href = item.href;
     }
   }
-  
+
   emit('item-click', item, index);
 };
 

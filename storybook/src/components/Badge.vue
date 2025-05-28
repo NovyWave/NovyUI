@@ -10,12 +10,12 @@
       :style="leftIconStyle"
       :aria-hidden="true"
     />
-    
+
     <!-- Badge Content -->
     <span :style="contentStyle">
       <slot>{{ label }}</slot>
     </span>
-    
+
     <!-- Right Icon -->
     <Icon
       v-if="rightIcon"
@@ -26,7 +26,7 @@
       :style="rightIconStyle"
       :aria-hidden="true"
     />
-    
+
     <!-- Close/Remove Button -->
     <button
       v-if="removable"
@@ -75,12 +75,12 @@ const emit = defineEmits<{
   'remove': [];
 }>();
 
-const { theme } = useTheme();
+const theme = useTheme();
 
 // Size-based styling
 const sizeConfig = computed(() => {
   const size = props.size;
-  
+
   if (size === 'small') {
     return {
       fontSize: typography.size['12px'],
@@ -115,7 +115,7 @@ const sizeConfig = computed(() => {
 const variantConfig = computed(() => {
   const variant = props.variant;
   const isDark = theme.value === 'dark';
-  
+
   switch (variant) {
     case 'primary':
       return {

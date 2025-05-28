@@ -16,7 +16,7 @@
       @focus="onFocus"
       @blur="onBlur"
     />
-    
+
     <!-- Checkbox Visual -->
     <label
       :for="inputId"
@@ -33,7 +33,7 @@
         :aria-hidden="true"
         :style="iconStyle"
       />
-      
+
       <!-- Indeterminate Icon -->
       <Icon
         v-else-if="indeterminate"
@@ -45,7 +45,7 @@
         :style="iconStyle"
       />
     </label>
-    
+
     <!-- Label Content -->
     <div v-if="hasLabelContent" :style="labelContentStyle">
       <label
@@ -56,7 +56,7 @@
       >
         {{ label }}
       </label>
-      
+
       <p
         v-if="description"
         :style="descriptionStyle"
@@ -102,7 +102,7 @@ const emit = defineEmits<{
   'blur': [event: FocusEvent];
 }>();
 
-const { theme } = useTheme();
+const theme = useTheme();
 
 // State
 const focused = ref(false);
@@ -123,7 +123,7 @@ const hasLabelContent = computed(() => props.label || props.description);
 // Size configuration
 const sizeConfig = computed(() => {
   const size = props.size;
-  
+
   if (size === 'small') {
     return {
       checkboxSize: '16px',
@@ -190,11 +190,11 @@ const hiddenInputStyle = computed<CSSProperties>(() => ({
 
 const checkboxStyle = computed<CSSProperties>(() => {
   const isDark = theme.value === 'dark';
-  
+
   let backgroundColor: string;
   let borderColor: string;
   let boxShadow: string = 'none';
-  
+
   if (props.disabled) {
     backgroundColor = isDark ? color.neutral['3'].value : color.neutral['2'].value;
     borderColor = color.neutral['4'].value;
@@ -206,7 +206,7 @@ const checkboxStyle = computed<CSSProperties>(() => {
     backgroundColor = isDark ? color.neutral['2'].value : color.neutral['1'].value;
     borderColor = color.neutral['5'].value;
   }
-  
+
   return {
     position: 'relative',
     display: 'inline-flex',
@@ -239,13 +239,13 @@ const labelContentStyle = computed<CSSProperties>(() => ({
 
 const labelStyle = computed<CSSProperties>(() => {
   const isDark = theme.value === 'dark';
-  
+
   return {
     fontSize: sizeConfig.value.labelFontSize,
     fontWeight: String(typography.weight['5']),
     lineHeight: String(typography.line['140%']),
-    color: props.disabled 
-      ? color.neutral['5'].value 
+    color: props.disabled
+      ? color.neutral['5'].value
       : isDark ? color.neutral['11'].value : color.neutral['9'].value,
     cursor: props.disabled ? 'not-allowed' : 'pointer',
     margin: '0',
@@ -254,13 +254,13 @@ const labelStyle = computed<CSSProperties>(() => {
 
 const descriptionStyle = computed<CSSProperties>(() => {
   const isDark = theme.value === 'dark';
-  
+
   return {
     fontSize: sizeConfig.value.descriptionFontSize,
     fontWeight: String(typography.weight['4']),
     lineHeight: String(typography.line['140%']),
-    color: props.disabled 
-      ? color.neutral['5'].value 
+    color: props.disabled
+      ? color.neutral['5'].value
       : isDark ? color.neutral['8'].value : color.neutral['7'].value,
     margin: '0',
   };
@@ -276,13 +276,13 @@ watch(() => props.indeterminate, (newValue) => {
 // Event handlers
 const onChange = (event: Event) => {
   if (props.disabled) return;
-  
+
   const target = event.target as HTMLInputElement;
   const checked = target.checked;
-  
+
   if (isArray.value && props.value !== undefined) {
     const currentValues = [...(props.modelValue as (string | number)[])];
-    
+
     if (checked) {
       // Add value to array
       if (!currentValues.includes(props.value)) {
@@ -295,7 +295,7 @@ const onChange = (event: Event) => {
         currentValues.splice(index, 1);
       }
     }
-    
+
     emit('update:modelValue', currentValues);
     emit('change', currentValues, event);
   } else {

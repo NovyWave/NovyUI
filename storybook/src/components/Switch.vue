@@ -16,7 +16,7 @@
       @blur="onBlur"
       @keydown="onKeydown"
     />
-    
+
     <!-- Switch Track -->
     <label
       :for="inputId"
@@ -36,7 +36,7 @@
           :aria-hidden="true"
         />
       </span>
-      
+
       <!-- Track Icons -->
       <Icon
         v-if="checkedIcon && modelValue"
@@ -47,7 +47,7 @@
         :style="checkedIconStyle"
         :aria-hidden="true"
       />
-      
+
       <Icon
         v-if="uncheckedIcon && !modelValue"
         :name="uncheckedIcon"
@@ -58,7 +58,7 @@
         :aria-hidden="true"
       />
     </label>
-    
+
     <!-- Label Text -->
     <div v-if="hasLabelContent" :style="labelContentStyle">
       <label
@@ -69,7 +69,7 @@
       >
         {{ label }}
       </label>
-      
+
       <p
         v-if="description"
         :style="descriptionStyle"
@@ -117,7 +117,7 @@ const emit = defineEmits<{
   'blur': [event: FocusEvent];
 }>();
 
-const { theme } = useTheme();
+const theme = useTheme();
 
 // State
 const focused = ref(false);
@@ -126,7 +126,7 @@ const inputRef = ref<HTMLInputElement>();
 // Size configuration
 const sizeConfig = computed(() => {
   const size = props.size;
-  
+
   if (size === 'small') {
     return {
       trackWidth: '32px',
@@ -174,25 +174,25 @@ const trackIconSize = computed(() => sizeConfig.value.trackIconSize);
 
 const thumbIconColor = computed(() => {
   const isDark = theme.value === 'dark';
-  
+
   if (props.disabled) {
     return color.neutral['5'].value;
   }
-  
+
   if (props.modelValue) {
     return color.primary['7'].value;
   }
-  
+
   return isDark ? color.neutral['7'].value : color.neutral['6'].value;
 });
 
 const trackIconColor = computed(() => {
   const isDark = theme.value === 'dark';
-  
+
   if (props.disabled) {
     return color.neutral['5'].value;
   }
-  
+
   return isDark ? color.neutral['1'].value : color.neutral['1'].value;
 });
 
@@ -226,10 +226,10 @@ const hiddenInputStyle = computed<CSSProperties>(() => ({
 
 const switchTrackStyle = computed<CSSProperties>(() => {
   const isDark = theme.value === 'dark';
-  
+
   let backgroundColor: string;
   let borderColor: string;
-  
+
   if (props.disabled) {
     backgroundColor = isDark ? color.neutral['3'].value : color.neutral['2'].value;
     borderColor = color.neutral['4'].value;
@@ -240,7 +240,7 @@ const switchTrackStyle = computed<CSSProperties>(() => {
     backgroundColor = isDark ? color.neutral['4'].value : color.neutral['3'].value;
     borderColor = color.neutral['5'].value;
   }
-  
+
   return {
     position: 'relative',
     display: 'inline-flex',
@@ -260,14 +260,14 @@ const switchTrackStyle = computed<CSSProperties>(() => {
 
 const switchThumbStyle = computed<CSSProperties>(() => {
   const isDark = theme.value === 'dark';
-  
-  const translateX = props.modelValue 
+
+  const translateX = props.modelValue
     ? `calc(${sizeConfig.value.trackWidth} - ${sizeConfig.value.thumbSize} - ${sizeConfig.value.thumbOffset})`
     : sizeConfig.value.thumbOffset;
-  
+
   let backgroundColor: string;
   let boxShadow: string;
-  
+
   if (props.disabled) {
     backgroundColor = color.neutral['5'].value;
     boxShadow = 'none';
@@ -275,7 +275,7 @@ const switchThumbStyle = computed<CSSProperties>(() => {
     backgroundColor = color.neutral['1'].value;
     boxShadow = `${shadow.size[1]} ${shadow.color.neutral}`;
   }
-  
+
   return {
     position: 'absolute',
     top: sizeConfig.value.thumbOffset,
@@ -319,13 +319,13 @@ const labelContentStyle = computed<CSSProperties>(() => ({
 
 const labelStyle = computed<CSSProperties>(() => {
   const isDark = theme.value === 'dark';
-  
+
   return {
     fontSize: sizeConfig.value.labelFontSize,
     fontWeight: String(typography.weight['5']),
     lineHeight: String(typography.line['140%']),
-    color: props.disabled 
-      ? color.neutral['5'].value 
+    color: props.disabled
+      ? color.neutral['5'].value
       : isDark ? color.neutral['11'].value : color.neutral['9'].value,
     cursor: props.disabled ? 'not-allowed' : 'pointer',
     margin: '0',
@@ -334,13 +334,13 @@ const labelStyle = computed<CSSProperties>(() => {
 
 const descriptionStyle = computed<CSSProperties>(() => {
   const isDark = theme.value === 'dark';
-  
+
   return {
     fontSize: sizeConfig.value.descriptionFontSize,
     fontWeight: String(typography.weight['4']),
     lineHeight: String(typography.line['140%']),
-    color: props.disabled 
-      ? color.neutral['5'].value 
+    color: props.disabled
+      ? color.neutral['5'].value
       : isDark ? color.neutral['8'].value : color.neutral['7'].value,
     margin: '0',
   };
@@ -349,10 +349,10 @@ const descriptionStyle = computed<CSSProperties>(() => {
 // Event handlers
 const onChange = (event: Event) => {
   if (props.disabled) return;
-  
+
   const target = event.target as HTMLInputElement;
   const newValue = target.checked;
-  
+
   emit('update:modelValue', newValue);
   emit('change', newValue, event);
 };
@@ -384,7 +384,7 @@ const onLabelClick = (event: MouseEvent) => {
   if (event.target === inputRef.value) {
     return;
   }
-  
+
   if (!props.disabled) {
     inputRef.value?.focus();
   }

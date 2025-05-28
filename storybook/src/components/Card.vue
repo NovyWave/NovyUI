@@ -23,7 +23,7 @@
         :style="headerIconStyle"
         :aria-hidden="true"
       />
-      
+
       <!-- Header Content -->
       <div :style="headerContentStyle">
         <h3 v-if="title" :style="titleStyle">
@@ -33,7 +33,7 @@
           {{ subtitle }}
         </p>
       </div>
-      
+
       <!-- Header Actions -->
       <div v-if="hasHeaderActions" :style="headerActionsStyle">
         <button
@@ -51,7 +51,7 @@
             :aria-hidden="true"
           />
         </button>
-        
+
         <button
           v-if="actionIcon"
           :style="actionButtonStyle"
@@ -69,7 +69,7 @@
         </button>
       </div>
     </header>
-    
+
     <!-- Image -->
     <div v-if="image" :style="imageContainerStyle">
       <img
@@ -78,7 +78,7 @@
         :style="imageStyle"
       />
     </div>
-    
+
     <!-- Content -->
     <div :style="contentStyle">
       <slot>
@@ -87,7 +87,7 @@
         </p>
       </slot>
     </div>
-    
+
     <!-- Footer -->
     <footer v-if="hasFooter" :style="footerStyle">
       <slot name="footer">
@@ -142,7 +142,7 @@ const emit = defineEmits<{
   'close': [];
 }>();
 
-const { theme } = useTheme();
+const theme = useTheme();
 
 // State
 const isHovered = ref(false);
@@ -151,7 +151,7 @@ const isFocused = ref(false);
 // Size configuration
 const sizeConfig = computed(() => {
   const size = props.size;
-  
+
   if (size === 'small') {
     return {
       padding: spacing['12px'],
@@ -222,12 +222,12 @@ const cardClass = computed(() => {
 const cardStyle = computed<CSSProperties>(() => {
   const isDark = theme.value === 'dark';
   const variant = props.variant;
-  
+
   let backgroundColor = isDark ? color.neutral['2'].value : color.neutral['1'].value;
   let borderStyle = 'none';
   let boxShadow = 'none';
   let borderRadius = cornerRadius['8px'];
-  
+
   // Variant styles
   if (variant === 'bordered') {
     borderStyle = `${border.width['1px']} ${border.style.solid} ${color.neutral['4'].value}`;
@@ -236,7 +236,7 @@ const cardStyle = computed<CSSProperties>(() => {
   } else if (variant === 'outlined') {
     borderStyle = `${border.width['2px']} ${border.style.solid} ${color.neutral['4'].value}`;
   }
-  
+
   // Interactive styles
   if ((props.interactive || props.href) && (isHovered.value || isFocused.value)) {
     if (variant === 'elevated') {
@@ -245,7 +245,7 @@ const cardStyle = computed<CSSProperties>(() => {
       backgroundColor = isDark ? color.neutral['3'].value : color.neutral['2'].value;
     }
   }
-  
+
   return {
     display: 'flex',
     flexDirection: 'column',
@@ -289,7 +289,7 @@ const headerActionsStyle = computed<CSSProperties>(() => ({
 
 const titleStyle = computed<CSSProperties>(() => {
   const isDark = theme.value === 'dark';
-  
+
   return {
     margin: '0',
     fontSize: sizeConfig.value.titleFontSize,
@@ -302,7 +302,7 @@ const titleStyle = computed<CSSProperties>(() => {
 
 const subtitleStyle = computed<CSSProperties>(() => {
   const isDark = theme.value === 'dark';
-  
+
   return {
     margin: `${spacing['4px']} 0 0 0`,
     fontSize: sizeConfig.value.subtitleFontSize,
@@ -327,14 +327,14 @@ const imageStyle = computed<CSSProperties>(() => ({
 
 const contentStyle = computed<CSSProperties>(() => ({
   flex: '1',
-  padding: hasHeader.value ? 
+  padding: hasHeader.value ?
     `${sizeConfig.value.gap} ${sizeConfig.value.contentPadding} ${sizeConfig.value.contentPadding}` :
     sizeConfig.value.contentPadding,
 }));
 
 const descriptionStyle = computed<CSSProperties>(() => {
   const isDark = theme.value === 'dark';
-  
+
   return {
     margin: '0',
     fontSize: sizeConfig.value.descriptionFontSize,
@@ -355,7 +355,7 @@ const footerStyle = computed<CSSProperties>(() => ({
 
 const footerTextStyle = computed<CSSProperties>(() => {
   const isDark = theme.value === 'dark';
-  
+
   return {
     fontSize: sizeConfig.value.footerFontSize,
     fontWeight: String(typography.weight['4']),

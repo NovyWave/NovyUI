@@ -16,7 +16,7 @@
       @focus="onFocus"
       @blur="onBlur"
     />
-    
+
     <!-- Drop Zone -->
     <div
       :style="dropZoneStyle"
@@ -36,7 +36,7 @@
           :aria-hidden="true"
         />
       </div>
-      
+
       <!-- Upload Text -->
       <div :style="textContainerStyle">
         <p :style="primaryTextStyle">
@@ -46,7 +46,7 @@
           {{ secondaryText }}
         </p>
       </div>
-      
+
       <!-- Browse Button -->
       <button
         type="button"
@@ -57,7 +57,7 @@
         {{ browseButtonText }}
       </button>
     </div>
-    
+
     <!-- File List -->
     <div v-if="files.length > 0" :style="fileListStyle">
       <div
@@ -73,13 +73,13 @@
           :color="fileIconColor"
           :aria-hidden="true"
         />
-        
+
         <!-- File Info -->
         <div :style="fileInfoStyle">
           <span :style="fileNameStyle">{{ file.name }}</span>
           <span :style="fileSizeStyle">{{ formatFileSize(file.size) }}</span>
         </div>
-        
+
         <!-- Remove Button -->
         <button
           type="button"
@@ -97,7 +97,7 @@
         </button>
       </div>
     </div>
-    
+
     <!-- Error Message -->
     <div v-if="errorMessage" :style="errorMessageStyle">
       <Icon
@@ -157,7 +157,7 @@ const emit = defineEmits<{
   'blur': [event: FocusEvent];
 }>();
 
-const { theme } = useTheme();
+const theme = useTheme();
 
 // State
 const isDragOver = ref(false);
@@ -171,7 +171,7 @@ const files = computed(() => props.modelValue || []);
 // Size configuration
 const sizeConfig = computed(() => {
   const size = props.size;
-  
+
   if (size === 'small') {
     return {
       padding: spacing['16px'],
@@ -206,15 +206,15 @@ const iconSize = computed(() => sizeConfig.value.iconSize);
 
 const iconColor = computed(() => {
   const isDark = theme.value === 'dark';
-  
+
   if (props.disabled) {
     return color.neutral['5'].value;
   }
-  
+
   if (isDragOver.value) {
     return color.primary['7'].value;
   }
-  
+
   return isDark ? color.neutral['7'].value : color.neutral['6'].value;
 });
 
@@ -257,11 +257,11 @@ const hiddenInputStyle = computed<CSSProperties>(() => ({
 
 const dropZoneStyle = computed<CSSProperties>(() => {
   const isDark = theme.value === 'dark';
-  
+
   let backgroundColor: string;
   let borderColor: string;
   let borderStyle: string = border.style.dashed;
-  
+
   if (props.disabled) {
     backgroundColor = isDark ? color.neutral['2'].value : color.neutral['1'].value;
     borderColor = color.neutral['4'].value;
@@ -273,7 +273,7 @@ const dropZoneStyle = computed<CSSProperties>(() => {
     backgroundColor = isDark ? color.neutral['2'].value : color.neutral['1'].value;
     borderColor = color.neutral['5'].value;
   }
-  
+
   return {
     display: 'flex',
     flexDirection: 'column',
@@ -305,42 +305,42 @@ const textContainerStyle = computed<CSSProperties>(() => ({
 
 const primaryTextStyle = computed<CSSProperties>(() => {
   const isDark = theme.value === 'dark';
-  
+
   return {
     margin: '0',
     fontSize: sizeConfig.value.primaryFontSize,
     fontWeight: String(typography.weight['5']),
     lineHeight: String(typography.line['140%']),
-    color: props.disabled 
-      ? color.neutral['5'].value 
+    color: props.disabled
+      ? color.neutral['5'].value
       : isDark ? color.neutral['11'].value : color.neutral['9'].value,
   };
 });
 
 const secondaryTextStyle = computed<CSSProperties>(() => {
   const isDark = theme.value === 'dark';
-  
+
   return {
     margin: `${spacing['4px']} 0 0 0`,
     fontSize: sizeConfig.value.secondaryFontSize,
     fontWeight: String(typography.weight['4']),
     lineHeight: String(typography.line['140%']),
-    color: props.disabled 
-      ? color.neutral['5'].value 
+    color: props.disabled
+      ? color.neutral['5'].value
       : isDark ? color.neutral['8'].value : color.neutral['7'].value,
   };
 });
 
 const browseButtonStyle = computed<CSSProperties>(() => {
   const isDark = theme.value === 'dark';
-  
+
   return {
     padding: `${spacing['8px']} ${spacing['16px']}`,
     fontSize: sizeConfig.value.buttonFontSize,
     fontWeight: String(typography.weight['5']),
     fontFamily: typography.family.sans,
-    color: props.disabled 
-      ? color.neutral['5'].value 
+    color: props.disabled
+      ? color.neutral['5'].value
       : color.primary['7'].value,
     backgroundColor: 'transparent',
     border: `${border.width['1px']} ${border.style.solid} ${props.disabled ? color.neutral['4'].value : color.primary['7'].value}`,
@@ -361,7 +361,7 @@ const fileListStyle = computed<CSSProperties>(() => ({
 
 const fileItemStyle = computed<CSSProperties>(() => {
   const isDark = theme.value === 'dark';
-  
+
   return {
     display: 'flex',
     alignItems: 'center',
@@ -383,7 +383,7 @@ const fileInfoStyle = computed<CSSProperties>(() => ({
 
 const fileNameStyle = computed<CSSProperties>(() => {
   const isDark = theme.value === 'dark';
-  
+
   return {
     fontSize: typography.size['14px'],
     fontWeight: String(typography.weight['5']),
@@ -396,7 +396,7 @@ const fileNameStyle = computed<CSSProperties>(() => {
 
 const fileSizeStyle = computed<CSSProperties>(() => {
   const isDark = theme.value === 'dark';
-  
+
   return {
     fontSize: typography.size['12px'],
     fontWeight: String(typography.weight['4']),
@@ -434,7 +434,7 @@ const errorMessageStyle = computed<CSSProperties>(() => ({
 // Helper functions
 const getFileIcon = (file: File): string => {
   const type = file.type.toLowerCase();
-  
+
   if (type.startsWith('image/')) return 'image';
   if (type.includes('pdf')) return 'file-text';
   if (type.includes('word') || type.includes('document')) return 'file-text';
@@ -443,17 +443,17 @@ const getFileIcon = (file: File): string => {
   if (type.startsWith('video/')) return 'video';
   if (type.startsWith('audio/')) return 'music';
   if (type.includes('zip') || type.includes('rar') || type.includes('archive')) return 'archive';
-  
+
   return 'file';
 };
 
 const formatFileSize = (bytes: number): string => {
   if (bytes === 0) return '0 Bytes';
-  
+
   const k = 1024;
   const sizes = ['Bytes', 'KB', 'MB', 'GB'];
   const i = Math.floor(Math.log(bytes) / Math.log(k));
-  
+
   return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
 };
 
@@ -461,13 +461,13 @@ const validateFiles = (fileList: File[]): string | null => {
   if (props.maxFiles && fileList.length > props.maxFiles) {
     return `Maximum ${props.maxFiles} files allowed`;
   }
-  
+
   for (const file of fileList) {
     if (props.maxFileSize && file.size > props.maxFileSize) {
       return `File "${file.name}" is too large. Maximum size is ${formatFileSize(props.maxFileSize)}`;
     }
   }
-  
+
   return null;
 };
 
@@ -481,31 +481,31 @@ const openFileDialog = () => {
 const onFileChange = (event: Event) => {
   const target = event.target as HTMLInputElement;
   const selectedFiles = Array.from(target.files || []);
-  
+
   handleFiles(selectedFiles);
-  
+
   // Reset input value to allow selecting the same file again
   target.value = '';
 };
 
 const handleFiles = (newFiles: File[]) => {
   errorMessage.value = '';
-  
+
   let updatedFiles: File[];
-  
+
   if (props.multiple) {
     updatedFiles = [...files.value, ...newFiles];
   } else {
     updatedFiles = newFiles.slice(0, 1);
   }
-  
+
   const validationError = validateFiles(updatedFiles);
   if (validationError) {
     errorMessage.value = validationError;
     emit('error', validationError);
     return;
   }
-  
+
   emit('update:modelValue', updatedFiles);
   emit('change', updatedFiles);
 };
@@ -529,9 +529,9 @@ const onDragLeave = (event: DragEvent) => {
 
 const onDrop = (event: DragEvent) => {
   if (props.disabled) return;
-  
+
   isDragOver.value = false;
-  
+
   const droppedFiles = Array.from(event.dataTransfer?.files || []);
   handleFiles(droppedFiles);
 };

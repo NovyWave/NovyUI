@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
+import { ref, computed } from 'vue';
 import Checkbox from './Checkbox.vue';
 
 const meta: Meta<typeof Checkbox> = {
@@ -210,10 +211,10 @@ export const SelectAllPattern: Story = {
     setup() {
       const items = ['Item 1', 'Item 2', 'Item 3', 'Item 4'];
       const selectedItems = ref(['Item 1', 'Item 3']);
-      
+
       const allSelected = computed(() => selectedItems.value.length === items.length);
       const someSelected = computed(() => selectedItems.value.length > 0 && selectedItems.value.length < items.length);
-      
+
       const toggleSelectAll = () => {
         if (allSelected.value) {
           selectedItems.value = [];
@@ -221,7 +222,7 @@ export const SelectAllPattern: Story = {
           selectedItems.value = [...items];
         }
       };
-      
+
       return {
         items,
         selectedItems,
@@ -277,44 +278,44 @@ export const FormIntegration: Story = {
     template: `
       <form style="max-width: 400px; padding: 24px; border: 1px solid #e5e7eb; border-radius: 8px;">
         <h3 style="margin: 0 0 20px 0; font-size: 18px; font-weight: 600;">Account Preferences</h3>
-        
+
         <div style="display: flex; flex-direction: column; gap: 20px;">
           <div>
             <label style="display: block; margin-bottom: 8px; font-weight: 500;">Email</label>
-            <input 
-              type="email" 
+            <input
+              type="email"
               placeholder="Enter your email"
               style="width: 100%; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px;"
             />
           </div>
-          
+
           <div style="border-top: 1px solid #e5e7eb; padding-top: 20px;">
             <div style="display: flex; flex-direction: column; gap: 16px;">
-              <Checkbox 
-                v-model="agreeToTerms" 
+              <Checkbox
+                v-model="agreeToTerms"
                 label="I agree to the Terms of Service and Privacy Policy"
                 description="Required to create an account"
                 required
               />
-              <Checkbox 
-                v-model="subscribeNewsletter" 
+              <Checkbox
+                v-model="subscribeNewsletter"
                 label="Subscribe to newsletter"
                 description="Get weekly updates about new features and tips"
               />
-              <Checkbox 
-                v-model="enableNotifications" 
+              <Checkbox
+                v-model="enableNotifications"
                 label="Enable push notifications"
                 description="Receive important account notifications"
               />
-              <Checkbox 
-                v-model="marketingEmails" 
+              <Checkbox
+                v-model="marketingEmails"
                 label="Receive marketing emails"
                 description="Get promotional offers and product updates"
               />
             </div>
           </div>
-          
-          <button 
+
+          <button
             type="submit"
             :disabled="!agreeToTerms"
             style="padding: 12px 24px; background: #3b82f6; color: white; border: none; border-radius: 6px; font-weight: 500; cursor: pointer;"
@@ -348,7 +349,7 @@ export const States: Story = {
             <Checkbox :indeterminate="true" label="Indeterminate" />
           </div>
         </div>
-        
+
         <div>
           <h4 style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600;">Disabled States</h4>
           <div style="display: flex; flex-direction: column; gap: 12px;">
