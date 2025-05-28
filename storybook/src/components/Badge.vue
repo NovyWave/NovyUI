@@ -119,45 +119,45 @@ const variantConfig = computed(() => {
   switch (variant) {
     case 'primary':
       return {
-        background: color.primary['7'].value,
+        background: isDark ? color.primary['6'].value : color.primary['6'].value,
         textColor: color.neutral['1'].value,
-        borderColor: color.primary['7'].value,
+        borderColor: color.primary['6'].value,
       };
     case 'secondary':
       return {
-        background: color.neutral['3'].value,
-        textColor: isDark ? color.neutral['11'].value : color.neutral['9'].value,
-        borderColor: color.neutral['3'].value,
+        background: isDark ? color.neutral['6'].value : color.neutral['5'].value,
+        textColor: color.neutral['1'].value,
+        borderColor: color.neutral['6'].value,
       };
     case 'success':
       return {
-        background: color.success['7'].value,
+        background: isDark ? color.success['6'].value : color.success['5'].value,
         textColor: color.neutral['1'].value,
-        borderColor: color.success['7'].value,
+        borderColor: color.success['6'].value,
       };
     case 'warning':
       return {
-        background: color.warning['7'].value,
+        background: isDark ? color.warning['6'].value : color.warning['5'].value,
         textColor: color.neutral['1'].value,
-        borderColor: color.warning['7'].value,
+        borderColor: color.warning['6'].value,
       };
     case 'error':
       return {
-        background: color.error['7'].value,
+        background: isDark ? color.error['6'].value : color.error['5'].value,
         textColor: color.neutral['1'].value,
-        borderColor: color.error['7'].value,
+        borderColor: color.error['6'].value,
       };
     case 'outline':
       return {
         background: 'transparent',
-        textColor: isDark ? color.neutral['10'].value : color.neutral['8'].value,
-        borderColor: color.neutral['6'].value,
+        textColor: isDark ? color.neutral['10'].value : color.neutral['7'].value,
+        borderColor: isDark ? color.neutral['6'].value : color.neutral['4'].value,
       };
     default: // 'default'
       return {
-        background: isDark ? color.neutral['3'].value : color.neutral['2'].value,
-        textColor: isDark ? color.neutral['11'].value : color.neutral['8'].value,
-        borderColor: isDark ? color.neutral['4'].value : color.neutral['3'].value,
+        background: isDark ? color.neutral['8'].value : color.neutral['8'].value,
+        textColor: isDark ? color.neutral['1'].value : color.neutral['1'].value,
+        borderColor: isDark ? color.neutral['6'].value : color.neutral['4'].value,
       };
   }
 });
@@ -171,19 +171,25 @@ const badgeStyle = computed<CSSProperties>(() => ({
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
-  gap: spacing['4px'],
+  gap: spacing['6px'],
   minHeight: sizeConfig.value.minHeight,
   padding: `${sizeConfig.value.paddingY} ${sizeConfig.value.paddingX}`,
   fontSize: sizeConfig.value.fontSize,
   fontFamily: typography.family.sans,
   fontWeight: String(typography.weight['5']),
-  lineHeight: String(typography.line['120%']),
+  lineHeight: String(typography.line['100%']),
   color: variantConfig.value.textColor,
   backgroundColor: variantConfig.value.background,
-  border: `${border.width['1px']} ${border.style.solid} ${variantConfig.value.borderColor}`,
-  borderRadius: cornerRadius['12px'],
+  border: props.variant === 'outline'
+    ? `${border.width['1px']} ${border.style.solid} ${variantConfig.value.borderColor}`
+    : 'none',
+  borderRadius: cornerRadius['50%'],
   whiteSpace: 'nowrap',
   verticalAlign: 'middle',
+  transition: 'all 0.15s ease-in-out',
+  boxShadow: props.variant === 'outline' || props.variant === 'default'
+    ? 'none'
+    : '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
 }));
 
 const contentStyle = computed<CSSProperties>(() => ({

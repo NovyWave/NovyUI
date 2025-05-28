@@ -264,17 +264,22 @@ const avatarStyle = computed<CSSProperties>(() => {
     justifyContent: 'center',
     width: sizeConfig.value.width,
     height: sizeConfig.value.height,
-    backgroundColor: isDark ? color.neutral['4'].value : color.neutral['3'].value,
+    backgroundColor: isDark ? color.neutral['6'].value : color.neutral['2'].value,
     borderRadius: shapeConfig.value.borderRadius,
     overflow: 'hidden',
     cursor: (props.interactive || props.href) ? 'pointer' : 'default',
     textDecoration: 'none',
     color: 'inherit',
-    border: `${border.width['1px']} ${border.style.solid} ${color.neutral['4'].value}`,
-    transition: 'all 0.15s ease',
+    border: 'none',
+    boxShadow: isDark
+      ? '0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2)'
+      : '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+    transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
     ':hover': (props.interactive || props.href) ? {
       transform: 'scale(1.05)',
-      boxShadow: `${shadow.size[1]} ${shadow.color.neutral}`,
+      boxShadow: isDark
+        ? '0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3)'
+        : '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
     } : {},
   };
 });
@@ -293,47 +298,58 @@ const initialsStyle = computed<CSSProperties>(() => {
     fontSize: sizeConfig.value.fontSize,
     fontWeight: String(typography.weight['6']),
     fontFamily: typography.family.sans,
-    color: isDark ? color.neutral['11'].value : color.neutral['8'].value,
+    color: isDark ? color.neutral['1'].value : color.neutral['11'].value,
     lineHeight: '1',
     userSelect: 'none',
+    textTransform: 'uppercase',
+    letterSpacing: '0.025em',
   };
 });
 
-const statusIndicatorStyle = computed<CSSProperties>(() => ({
-  position: 'absolute',
-  bottom: sizeConfig.value.statusOffset,
-  right: sizeConfig.value.statusOffset,
-  width: sizeConfig.value.statusSize,
-  height: sizeConfig.value.statusSize,
-  backgroundColor: statusColor.value,
-  borderRadius: cornerRadius['50%'],
-  border: `${border.width['2px']} ${border.style.solid} ${color.neutral['1'].value}`,
-  boxShadow: `${shadow.size[1]} ${shadow.color.neutral}`,
-}));
+const statusIndicatorStyle = computed<CSSProperties>(() => {
+  const isDark = theme.value === 'dark';
 
-const badgeStyle = computed<CSSProperties>(() => ({
-  position: 'absolute',
-  top: sizeConfig.value.badgeOffset,
-  right: sizeConfig.value.badgeOffset,
-  minWidth: sizeConfig.value.badgeSize,
-  height: sizeConfig.value.badgeSize,
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  backgroundColor: color.error['7'].value,
-  borderRadius: cornerRadius['50%'],
-  border: `${border.width['2px']} ${border.style.solid} ${color.neutral['1'].value}`,
-  boxShadow: `${shadow.size[1]} ${shadow.color.neutral}`,
-  padding: `0 ${spacing['4px']}`,
-}));
+  return {
+    position: 'absolute',
+    top: sizeConfig.value.statusOffset,
+    right: sizeConfig.value.statusOffset,
+    width: sizeConfig.value.statusSize,
+    height: sizeConfig.value.statusSize,
+    backgroundColor: statusColor.value,
+    borderRadius: cornerRadius['50%'],
+    border: `2px solid ${isDark ? color.neutral['9'].value : color.neutral['1'].value}`,
+    boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+  };
+});
+
+const badgeStyle = computed<CSSProperties>(() => {
+  const isDark = theme.value === 'dark';
+
+  return {
+    position: 'absolute',
+    top: sizeConfig.value.badgeOffset,
+    right: sizeConfig.value.badgeOffset,
+    minWidth: sizeConfig.value.badgeSize,
+    height: sizeConfig.value.badgeSize,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: color.error['6'].value,
+    borderRadius: cornerRadius['50%'],
+    border: `2px solid ${isDark ? color.neutral['9'].value : color.neutral['1'].value}`,
+    boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+    padding: `0 ${spacing['4px']}`,
+  };
+});
 
 const badgeTextStyle = computed<CSSProperties>(() => ({
   fontSize: sizeConfig.value.badgeFontSize,
-  fontWeight: String(typography.weight['6']),
+  fontWeight: String(typography.weight['7']),
   fontFamily: typography.family.sans,
   color: color.neutral['1'].value,
   lineHeight: '1',
   whiteSpace: 'nowrap',
+  letterSpacing: '0.025em',
 }));
 
 // Event handlers
