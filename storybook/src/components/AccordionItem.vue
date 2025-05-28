@@ -251,7 +251,7 @@ const contentStyle = computed<CSSProperties>(() => {
   }
 
   return {
-    padding: `0 ${paddingX} ${paddingY} ${paddingX}`,
+    padding: `${paddingY} ${paddingX}`,
     fontSize,
     fontFamily: typography.family.sans,
     fontWeight: String(typography.weight['4']),
