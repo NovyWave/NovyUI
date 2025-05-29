@@ -1,5 +1,17 @@
 <template>
-  <div :style="inputContainerStyle">
+  <div :style="fieldContainerStyle">
+    <!-- Label -->
+    <label
+      v-if="label"
+      :for="inputId"
+      :style="labelStyle"
+    >
+      {{ label }}
+      <span v-if="required" :style="requiredStyle">*</span>
+    </label>
+
+    <!-- Input Container -->
+    <div :style="inputContainerStyle">
     <!-- Left Icon -->
     <Icon
       v-if="leftIcon"
@@ -14,6 +26,7 @@
     <!-- Input Element -->
     <input
       ref="inputRef"
+      :id="inputId"
       :style="inputStyle"
       :type="computedInputType"
       :value="modelValue"
@@ -22,7 +35,7 @@
       :readonly="readonly"
       :required="required"
       :aria-labelledby="labelId"
-      :aria-describedby="descriptionId"
+      :aria-describedby="error && errorMessage ? errorMessageId : descriptionId"
       :aria-invalid="error ? 'true' : undefined"
       class="input-with-primary-placeholder"
       @input="onInput"
@@ -70,6 +83,16 @@
         :aria-hidden="true"
       />
     </div>
+    </div>
+
+    <!-- Error Message -->
+    <div
+      v-if="error && errorMessage"
+      :style="errorMessageStyle"
+      :id="errorMessageId"
+    >
+      {{ errorMessage }}
+    </div>
   </div>
 </template>
 
@@ -92,8 +115,11 @@ const props = withDefaults(defineProps<{
   readonly?: boolean;
   required?: boolean;
   error?: boolean;
+  label?: string;
+  errorMessage?: string;
   leftIcon?: IconToken;
   rightIcon?: IconToken;
+  id?: string;
   labelId?: string;
   descriptionId?: string;
   clearAriaLabel?: string;
@@ -126,6 +152,10 @@ const inputRef = ref<HTMLInputElement>();
 
 // Theme
 const theme = useTheme();
+
+// Generate unique IDs for accessibility
+const inputId = computed(() => props.id || `input-${Math.random().toString(36).substr(2, 9)}`);
+const errorMessageId = computed(() => `${inputId.value}-error`);
 
 // Computed input type for password toggle
 const computedInputType = computed(() => {
@@ -215,6 +245,65 @@ const togglePasswordVisibility = () => {
 };
 
 // Styles
+const fieldContainerStyle = computed<CSSProperties>(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: spacing['4px'],
+  width: '100%',
+}));
+
+const labelStyle = computed<CSSProperties>(() => {
+  const size = props.size;
+  let fontSize: string = typography.size['14px'];
+
+  if (size === 'small') {
+    fontSize = typography.size['12px'];
+  } else if (size === 'large') {
+    fontSize = typography.size['16px'];
+  }
+
+  const isDark = theme.value === 'dark';
+  let textColor = isDark ? color.neutral['11'].value : color.neutral['9'].value;
+
+  if (props.disabled) {
+    textColor = color.neutral['6'].value;
+  }
+
+  return {
+    fontSize,
+    fontFamily: typography.family.sans,
+    fontWeight: String(typography.weight['6']),
+    lineHeight: String(typography.line['140%']),
+    color: textColor,
+    marginBottom: spacing['2px'],
+  };
+});
+
+const requiredStyle = computed<CSSProperties>(() => ({
+  color: color.error['7'].value,
+  marginLeft: spacing['2px'],
+}));
+
+const errorMessageStyle = computed<CSSProperties>(() => {
+  const size = props.size;
+  let fontSize: string = typography.size['12px'];
+
+  if (size === 'small') {
+    fontSize = typography.size['11px'];
+  } else if (size === 'large') {
+    fontSize = typography.size['14px'];
+  }
+
+  return {
+    fontSize,
+    fontFamily: typography.family.sans,
+    fontWeight: String(typography.weight['5']),
+    lineHeight: String(typography.line['140%']),
+    color: color.error['7'].value,
+    marginTop: spacing['2px'],
+  };
+});
+
 const inputContainerStyle = computed<CSSProperties>(() => {
   const size = props.size;
   let paddingY: string = spacing['6px'];

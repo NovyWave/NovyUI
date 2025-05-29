@@ -331,73 +331,79 @@ export const WithBothIcons: Story = {
   args: {},
 };
 
+export const WithLabel: Story = {
+  render: (args: Record<string, unknown>) => ({
+    components: { Input },
+    setup() {
+      const value = ref('');
+      return { args, value };
+    },
+    template: `<Input v-bind="args" v-model="value" label="Full Name" leftIcon="user" placeholder="Enter your full name..." required />`,
+  }),
+  args: {},
+};
+
+export const WithError: Story = {
+  render: (args: Record<string, unknown>) => ({
+    components: { Input },
+    setup() {
+      const value = ref('invalid@');
+      return { args, value };
+    },
+    template: `<Input v-bind="args" v-model="value" label="Email Address" type="email" leftIcon="mail" placeholder="Enter email..." error errorMessage="Please enter a valid email address" required />`,
+  }),
+  args: {},
+};
+
 export const ComplexExample: Story = {
   render: (args: Record<string, unknown>) => ({
     components: { Input },
     setup() {
-      const theme = useTheme();
       const username = ref('');
-      const email = ref('');
+      const email = ref('invalid-email');
       const password = ref('');
       const search = ref('smartphones');
-      const labelStyle = computed(() => ({
-        display: 'block',
-        marginBottom: '4px',
-        fontWeight: '600',
-        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
-      }));
-      return { args, labelStyle, username, email, password, search };
+      return { args, username, email, password, search };
     },
     template: `
-      <div style="display: flex; flex-direction: column; gap: 16px; max-width: 400px;">
-        <div>
-          <label for="username" :style="labelStyle">Username</label>
-          <Input
-            id="username"
-            v-bind="args"
-            v-model="username"
-            type="text"
-            leftIcon="user"
-            placeholder="Enter username..."
-            label-id="username-label"
-          />
-        </div>
+      <div style="display: flex; flex-direction: column; gap: 24px; max-width: 400px;">
+        <Input
+          v-bind="args"
+          v-model="username"
+          type="text"
+          label="Username"
+          leftIcon="user"
+          placeholder="Enter username..."
+          required
+        />
 
-        <div>
-          <label for="email" :style="labelStyle">Email</label>
-          <Input
-            id="email"
-            v-model="email"
-            type="email"
-            leftIcon="mail"
-            placeholder="Enter email address..."
-            label-id="email-label"
-          />
-        </div>
+        <Input
+          v-model="email"
+          type="email"
+          label="Email"
+          leftIcon="mail"
+          placeholder="Enter email address..."
+          error
+          errorMessage="Please enter a valid email address"
+          required
+        />
 
-        <div>
-          <label for="password" :style="labelStyle">Password</label>
-          <Input
-            id="password"
-            v-model="password"
-            type="password"
-            leftIcon="lock"
-            placeholder="Enter password..."
-            label-id="password-label"
-          />
-        </div>
+        <Input
+          v-model="password"
+          type="password"
+          label="Password"
+          leftIcon="lock"
+          placeholder="Enter password..."
+          required
+        />
 
-        <div>
-          <label for="search" :style="labelStyle">Search</label>
-          <Input
-            id="search"
-            v-model="search"
-            type="search"
-            leftIcon="search"
-            placeholder="Search products..."
-            label-id="search-label"
-          />
-        </div>
+        <Input
+          v-model="search"
+          type="search"
+          label="Search"
+          leftIcon="search"
+          placeholder="Search products..."
+        />
       </div>
     `,
   }),
