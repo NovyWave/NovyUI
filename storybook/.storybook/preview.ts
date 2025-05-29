@@ -1,6 +1,6 @@
 import type { Preview } from '@storybook/vue3-vite'
 import { setTheme, color } from '../src/tokens.ts'
-import { themes, create } from '@storybook/theming'
+import { themes, create } from 'storybook/theming'
 
 // Create custom dark theme with better contrast for story descriptions
 const customDarkTheme = create({

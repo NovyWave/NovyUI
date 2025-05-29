@@ -1,10 +1,10 @@
 import { addons, types } from 'storybook/manager-api';
 import { useGlobals } from 'storybook/manager-api';
-import { IconButton } from '@storybook/components';
+import { IconButton } from 'storybook/internal/components';
 import { SunIcon, MoonIcon } from '@storybook/icons';
-import { Separator } from '@storybook/components';
+import { Separator } from 'storybook/internal/components';
 import React from 'react';
-import { themes, create } from '@storybook/theming';
+import { themes, create } from 'storybook/theming';
 
 const THEME_KEY = 'theme';
 const BACKGROUNDS_KEY = 'backgrounds';
