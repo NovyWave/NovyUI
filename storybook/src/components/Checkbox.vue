@@ -140,15 +140,15 @@ const sizeConfig = computed(() => {
     };
   } else if (size === 'large') {
     return {
-      checkboxSize: '24px',
-      iconSize: '18px',
+      checkboxSize: '22px',
+      iconSize: '16px',
       labelFontSize: typography.size['18px'],
       descriptionFontSize: typography.size['16px'],
       gap: spacing['16px'],
     };
   } else {
     return {
-      checkboxSize: '20px',
+      checkboxSize: '18px',
       iconSize: '14px',
       labelFontSize: typography.size['16px'],
       descriptionFontSize: typography.size['14px'],
@@ -234,6 +234,7 @@ const checkboxStyle = computed<CSSProperties>(() => {
 
 const iconStyle = computed<CSSProperties>(() => ({
   transition: transition.fast,
+  transform: 'translateX(1px)', // Slight optical centering adjustment
 }));
 
 const labelContentStyle = computed<CSSProperties>(() => ({
