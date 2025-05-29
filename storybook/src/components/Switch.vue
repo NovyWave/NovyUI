@@ -360,21 +360,27 @@ const switchThumbStyle = computed<CSSProperties>(() => {
   };
 });
 
-const checkedIconStyle = computed<CSSProperties>(() => ({
-  position: 'absolute',
-  left: spacing['8px'],
-  top: '50%',
-  transform: 'translateY(-50%)',
-  zIndex: '0',
-}));
+const checkedIconStyle = computed<CSSProperties>(() => {
+  // Position checked icon on the left side (space available when thumb is on right)
+  return {
+    position: 'absolute',
+    left: spacing['8px'],
+    top: '50%',
+    transform: 'translateY(-50%)',
+    zIndex: '0',
+  };
+});
 
-const uncheckedIconStyle = computed<CSSProperties>(() => ({
-  position: 'absolute',
-  right: spacing['8px'],
-  top: '50%',
-  transform: 'translateY(-50%)',
-  zIndex: '0',
-}));
+const uncheckedIconStyle = computed<CSSProperties>(() => {
+  // Position unchecked icon on the right side (space available when thumb is on left)
+  return {
+    position: 'absolute',
+    right: spacing['6px'],
+    top: '50%',
+    transform: 'translateY(-50%)',
+    zIndex: '0',
+  };
+});
 
 const labelContentStyle = computed<CSSProperties>(() => ({
   display: 'flex',

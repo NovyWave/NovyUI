@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
-import { ref, watch, reactive } from 'vue';
+import { ref, watch, reactive, computed } from 'vue';
 import Switch from './Switch.vue';
-import { icons } from '../tokens.ts';
+import { icons, color, useTheme } from '../tokens.ts';
 
 const meta: Meta<typeof Switch> = {
   title: 'Components/Switch',
@@ -47,19 +47,19 @@ const meta: Meta<typeof Switch> = {
     },
     thumbIcon: {
       control: { type: 'select' },
-      options: [null, ...Object.keys(icons)],
+      options: [null, ...icons],
       description: 'Icon to display in the switch thumb.',
       table: { category: 'Content', defaultValue: { summary: 'null' } },
     },
     checkedIcon: {
       control: { type: 'select' },
-      options: [null, ...Object.keys(icons)],
+      options: [null, ...icons],
       description: 'Icon to display when switch is checked.',
       table: { category: 'Content', defaultValue: { summary: 'null' } },
     },
     uncheckedIcon: {
       control: { type: 'select' },
-      options: [null, ...Object.keys(icons)],
+      options: [null, ...icons],
       description: 'Icon to display when switch is unchecked.',
       table: { category: 'Content', defaultValue: { summary: 'null' } },
     },
@@ -325,25 +325,32 @@ export const Sizes: Story = {
   render: () => ({
     components: { Switch },
     setup() {
+      const theme = useTheme();
+      const labelStyle = computed(() => ({
+        fontSize: '14px',
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+
       return {
         small: ref(false),
         medium: ref(true),
         large: ref(false),
+        labelStyle,
       };
     },
     template: `
       <div style="display: flex; flex-direction: column; gap: 24px;">
         <div style="display: flex; align-items: center; gap: 16px;">
           <Switch v-model="small" size="small" />
-          <span style="font-size: 14px;">Small</span>
+          <span :style="labelStyle">Small</span>
         </div>
         <div style="display: flex; align-items: center; gap: 16px;">
           <Switch v-model="medium" size="medium" />
-          <span style="font-size: 14px;">Medium</span>
+          <span :style="labelStyle">Medium</span>
         </div>
         <div style="display: flex; align-items: center; gap: 16px;">
           <Switch v-model="large" size="large" />
-          <span style="font-size: 14px;">Large</span>
+          <span :style="labelStyle">Large</span>
         </div>
       </div>
     `,
@@ -408,6 +415,27 @@ export const SettingsPanel: Story = {
   render: () => ({
     components: { Switch },
     setup() {
+      const theme = useTheme();
+      const panelStyle = computed(() => ({
+        maxWidth: '500px',
+        padding: '24px',
+        border: `1px solid ${theme.value === 'dark' ? color.neutral['4'].value : color.neutral['3'].value}`,
+        borderRadius: '8px',
+        background: theme.value === 'dark' ? color.neutral['1'].value : color.neutral['0'].value,
+      }));
+      const headingStyle = computed(() => ({
+        margin: '0 0 20px 0',
+        fontSize: '18px',
+        fontWeight: '600',
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+      const sectionHeadingStyle = computed(() => ({
+        margin: '0 0 12px 0',
+        fontSize: '14px',
+        fontWeight: '600',
+        color: theme.value === 'dark' ? color.neutral['8'].value : color.neutral['7'].value,
+      }));
+
       return {
         emailNotifications: ref(true),
         pushNotifications: ref(false),
@@ -415,14 +443,17 @@ export const SettingsPanel: Story = {
         marketingEmails: ref(false),
         twoFactorAuth: ref(true),
         publicProfile: ref(false),
+        panelStyle,
+        headingStyle,
+        sectionHeadingStyle,
       };
     },
     template: `
-      <div style="max-width: 500px; padding: 24px; border: 1px solid #e5e7eb; border-radius: 8px;">
-        <h3 style="margin: 0 0 20px 0; font-size: 18px; font-weight: 600;">Settings</h3>
+      <div :style="panelStyle">
+        <h3 :style="headingStyle">Settings</h3>
 
         <div style="margin-bottom: 24px;">
-          <h4 style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; color: #6b7280;">Notifications</h4>
+          <h4 :style="sectionHeadingStyle">Notifications</h4>
           <div style="display: flex; flex-direction: column; gap: 16px;">
             <Switch
               v-model="emailNotifications"
@@ -448,7 +479,7 @@ export const SettingsPanel: Story = {
         </div>
 
         <div>
-          <h4 style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; color: #6b7280;">Security & Privacy</h4>
+          <h4 :style="sectionHeadingStyle">Security & Privacy</h4>
           <div style="display: flex; flex-direction: column; gap: 16px;">
             <Switch
               v-model="twoFactorAuth"
@@ -478,36 +509,90 @@ export const FormIntegration: Story = {
   render: () => ({
     components: { Switch },
     setup() {
+      const theme = useTheme();
+      const formStyle = computed(() => ({
+        maxWidth: '400px',
+        padding: '24px',
+        border: `1px solid ${theme.value === 'dark' ? color.neutral['4'].value : color.neutral['3'].value}`,
+        borderRadius: '8px',
+        background: theme.value === 'dark' ? color.neutral['1'].value : color.neutral['0'].value,
+      }));
+      const headingStyle = computed(() => ({
+        margin: '0 0 20px 0',
+        fontSize: '18px',
+        fontWeight: '600',
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+      const labelStyle = computed(() => ({
+        display: 'block',
+        marginBottom: '8px',
+        fontWeight: '500',
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+      const inputStyle = computed(() => ({
+        width: '100%',
+        padding: '12px',
+        border: `1px solid ${theme.value === 'dark' ? color.neutral['4'].value : color.neutral['3'].value}`,
+        borderRadius: '6px',
+        height: '48px',
+        boxSizing: 'border-box',
+        background: theme.value === 'dark' ? color.neutral['1'].value : color.neutral['0'].value,
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+      const dividerStyle = computed(() => ({
+        borderTop: `1px solid ${theme.value === 'dark' ? color.neutral['4'].value : color.neutral['3'].value}`,
+        paddingTop: '20px',
+      }));
+      const buttonStyle = computed(() => ({
+        padding: '12px 24px',
+        background: theme.value === 'dark' ? color.primary['7'].value : color.primary['6'].value,
+        color: color.neutral['1'].value,
+        border: 'none',
+        borderRadius: '6px',
+        fontWeight: '500',
+        cursor: 'pointer',
+        height: '48px',
+        boxSizing: 'border-box',
+      }));
+
+      const agreeToTerms = ref(false);
+
       return {
-        agreeToTerms: ref(false),
+        agreeToTerms,
         subscribeNewsletter: ref(true),
         enableNotifications: ref(false),
+        formStyle,
+        headingStyle,
+        labelStyle,
+        inputStyle,
+        dividerStyle,
+        buttonStyle,
       };
     },
     template: `
-      <form style="max-width: 400px; padding: 24px; border: 1px solid #e5e7eb; border-radius: 8px;">
-        <h3 style="margin: 0 0 20px 0; font-size: 18px; font-weight: 600;">Account Setup</h3>
+      <form :style="formStyle">
+        <h3 :style="headingStyle">Account Setup</h3>
 
         <div style="display: flex; flex-direction: column; gap: 20px;">
           <div>
-            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Email</label>
+            <label :style="labelStyle">Email</label>
             <input
               type="email"
               placeholder="Enter your email"
-              style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 6px; height: 48px; box-sizing: border-box;"
+              :style="inputStyle"
             />
           </div>
 
           <div>
-            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Password</label>
+            <label :style="labelStyle">Password</label>
             <input
               type="password"
               placeholder="Enter your password"
-              style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 6px; height: 48px; box-sizing: border-box;"
+              :style="inputStyle"
             />
           </div>
 
-          <div style="border-top: 1px solid #e5e7eb; padding-top: 20px;">
+          <div :style="dividerStyle">
             <div style="display: flex; flex-direction: column; gap: 16px;">
               <Switch
                 v-model="agreeToTerms"
@@ -531,7 +616,7 @@ export const FormIntegration: Story = {
           <button
             type="submit"
             :disabled="!agreeToTerms"
-            style="padding: 12px 24px; background: #3b82f6; color: white; border: none; border-radius: 6px; font-weight: 500; cursor: pointer; height: 48px; box-sizing: border-box; opacity: agreeToTerms ? 1 : 0.5;"
+            :style="{ ...buttonStyle, opacity: agreeToTerms ? 1 : 0.5 }"
           >
             Create Account
           </button>

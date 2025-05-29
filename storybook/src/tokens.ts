@@ -105,6 +105,7 @@ export const color = {
 export const spacing = {
   '0px': '0px',
   '4px': '4px',
+  '6px': '6px',
   '8px': '8px',
   '12px': '12px',
   '16px': '16px',
