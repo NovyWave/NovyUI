@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import TextArea from './TextArea.vue';
 import { color, useTheme } from '../tokens.ts';
 
@@ -105,29 +105,58 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  render: (args) => ({
+    components: { TextArea },
+    setup() {
+      const text = ref('');
+      return { text, args };
+    },
+    template: `<TextArea v-model="text" :placeholder="args.placeholder" />`,
+  }),
   args: {
     placeholder: 'Enter your text here...',
   },
 };
 
 export const WithContent: Story = {
+  render: (args) => ({
+    components: { TextArea },
+    setup() {
+      const text = ref('This is some sample content in the textarea. You can edit this text to see how the component behaves with different amounts of content.');
+      return { text, args };
+    },
+    template: `<TextArea v-model="text" :placeholder="args.placeholder" />`,
+  }),
   args: {
-    modelValue: 'This is some sample content in the textarea. You can edit this text to see how the component behaves with different amounts of content.',
     placeholder: 'Enter your text here...',
   },
 };
 
 export const WithCharacterCount: Story = {
+  render: (args) => ({
+    components: { TextArea },
+    setup() {
+      const text = ref('This textarea shows a character count.');
+      return { text, args };
+    },
+    template: `<TextArea v-model="text" :placeholder="args.placeholder" :showCharacterCount="args.showCharacterCount" />`,
+  }),
   args: {
-    modelValue: 'This textarea shows a character count.',
     placeholder: 'Type something...',
     showCharacterCount: true,
   },
 };
 
 export const WithMaxLength: Story = {
+  render: (args) => ({
+    components: { TextArea },
+    setup() {
+      const text = ref('This textarea has a maximum length of 100 characters.');
+      return { text, args };
+    },
+    template: `<TextArea v-model="text" :placeholder="args.placeholder" :maxlength="args.maxlength" :showCharacterCount="args.showCharacterCount" />`,
+  }),
   args: {
-    modelValue: 'This textarea has a maximum length of 100 characters.',
     placeholder: 'Maximum 100 characters...',
     maxlength: 100,
     showCharacterCount: true,
@@ -135,8 +164,15 @@ export const WithMaxLength: Story = {
 };
 
 export const AutoResize: Story = {
+  render: (args) => ({
+    components: { TextArea },
+    setup() {
+      const text = ref('This textarea automatically resizes as you type more content. Try adding multiple lines to see it grow!');
+      return { text, args };
+    },
+    template: `<TextArea v-model="text" :placeholder="args.placeholder" :autoResize="args.autoResize" :resize="args.resize" />`,
+  }),
   args: {
-    modelValue: 'This textarea automatically resizes as you type more content. Try adding multiple lines to see it grow!',
     placeholder: 'Type multiple lines...',
     autoResize: true,
     resize: 'none',
@@ -144,28 +180,57 @@ export const AutoResize: Story = {
 };
 
 export const Error: Story = {
+  render: (args) => ({
+    components: { TextArea },
+    setup() {
+      const text = ref('This content has an error');
+      return { text, args };
+    },
+    template: `<TextArea v-model="text" :placeholder="args.placeholder" :error="args.error" />`,
+  }),
   args: {
-    modelValue: 'This content has an error',
     placeholder: 'Enter valid content...',
     error: true,
   },
 };
 
 export const Disabled: Story = {
+  render: (args) => ({
+    components: { TextArea },
+    setup() {
+      const text = ref('This textarea is disabled and cannot be edited.');
+      return { text, args };
+    },
+    template: `<TextArea v-model="text" :disabled="args.disabled" />`,
+  }),
   args: {
-    modelValue: 'This textarea is disabled and cannot be edited.',
     disabled: true,
   },
 };
 
 export const ReadOnly: Story = {
+  render: (args) => ({
+    components: { TextArea },
+    setup() {
+      const text = ref('This textarea is read-only. You can select and copy the text but cannot edit it.');
+      return { text, args };
+    },
+    template: `<TextArea v-model="text" :readonly="args.readonly" />`,
+  }),
   args: {
-    modelValue: 'This textarea is read-only. You can select and copy the text but cannot edit it.',
     readonly: true,
   },
 };
 
 export const Required: Story = {
+  render: (args) => ({
+    components: { TextArea },
+    setup() {
+      const text = ref('');
+      return { text, args };
+    },
+    template: `<TextArea v-model="text" :placeholder="args.placeholder" :required="args.required" />`,
+  }),
   args: {
     placeholder: 'This field is required...',
     required: true,
@@ -185,9 +250,9 @@ export const Sizes: Story = {
       }));
 
       return {
-        smallText: 'Small textarea',
-        mediumText: 'Medium textarea with more content to show the size difference',
-        largeText: 'Large textarea with even more content to demonstrate how the different sizes look and feel when you have longer text content',
+        smallText: ref('Small textarea'),
+        mediumText: ref('Medium textarea with more content to show the size difference'),
+        largeText: ref('Large textarea with even more content to demonstrate how the different sizes look and feel when you have longer text content'),
         headingStyle,
       };
     },
@@ -221,29 +286,38 @@ export const ResizeModes: Story = {
   render: () => ({
     components: { TextArea },
     setup() {
+      const theme = useTheme();
+      const headingStyle = computed(() => ({
+        margin: '0 0 8px 0',
+        fontSize: '14px',
+        fontWeight: '600',
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+
       return {
-        noneText: 'No resize',
-        verticalText: 'Vertical resize only',
-        horizontalText: 'Horizontal resize only',
-        bothText: 'Both directions',
+        noneText: ref('No resize'),
+        verticalText: ref('Vertical resize only'),
+        horizontalText: ref('Horizontal resize only'),
+        bothText: ref('Both directions'),
+        headingStyle,
       };
     },
     template: `
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px;">
         <div>
-          <h4 style="margin: 0 0 8px 0; font-size: 14px; font-weight: 600;">None</h4>
+          <h4 :style="headingStyle">None</h4>
           <TextArea v-model="noneText" resize="none" />
         </div>
         <div>
-          <h4 style="margin: 0 0 8px 0; font-size: 14px; font-weight: 600;">Vertical</h4>
+          <h4 :style="headingStyle">Vertical</h4>
           <TextArea v-model="verticalText" resize="vertical" />
         </div>
         <div>
-          <h4 style="margin: 0 0 8px 0; font-size: 14px; font-weight: 600;">Horizontal</h4>
+          <h4 :style="headingStyle">Horizontal</h4>
           <TextArea v-model="horizontalText" resize="horizontal" />
         </div>
         <div>
-          <h4 style="margin: 0 0 8px 0; font-size: 14px; font-weight: 600;">Both</h4>
+          <h4 :style="headingStyle">Both</h4>
           <TextArea v-model="bothText" resize="both" />
         </div>
       </div>
@@ -262,41 +336,92 @@ export const FormIntegration: Story = {
   render: () => ({
     components: { TextArea },
     setup() {
+      const theme = useTheme();
+      const formStyle = computed(() => ({
+        maxWidth: '500px',
+        padding: '24px',
+        border: `1px solid ${theme.value === 'dark' ? color.neutral['4'].value : color.neutral['3'].value}`,
+        borderRadius: '8px',
+        backgroundColor: theme.value === 'dark' ? color.neutral['2'].value : color.neutral['1'].value,
+      }));
+      const headingStyle = computed(() => ({
+        margin: '0 0 20px 0',
+        fontSize: '18px',
+        fontWeight: '600',
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+      const labelStyle = computed(() => ({
+        display: 'block',
+        marginBottom: '8px',
+        fontWeight: '500',
+        color: theme.value === 'dark' ? color.neutral['10'].value : color.neutral['8'].value,
+      }));
+      const inputStyle = computed(() => ({
+        width: '100%',
+        padding: '8px 12px',
+        border: `1px solid ${theme.value === 'dark' ? color.neutral['4'].value : color.neutral['3'].value}`,
+        borderRadius: '6px',
+        backgroundColor: theme.value === 'dark' ? color.neutral['2'].value : color.neutral['1'].value,
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+        boxSizing: 'border-box',
+      }));
+      const buttonStyle = computed(() => ({
+        display: 'block',
+        width: '100%',
+        maxWidth: 'none',
+        minWidth: '0',
+        padding: '12px 24px',
+        background: color.primary['6'].value,
+        color: 'white',
+        border: 'none',
+        borderRadius: '6px',
+        fontWeight: '500',
+        cursor: 'pointer',
+        boxSizing: 'border-box',
+        textAlign: 'center',
+        margin: '0',
+      }));
+
       return {
-        subject: '',
-        message: '',
-        feedback: '',
+        subject: ref(''),
+        message: ref(''),
+        feedback: ref(''),
+        formStyle,
+        headingStyle,
+        labelStyle,
+        inputStyle,
+        buttonStyle,
       };
     },
     template: `
-      <form style="max-width: 500px; padding: 24px; border: 1px solid #e5e7eb; border-radius: 8px;">
-        <h3 style="margin: 0 0 20px 0; font-size: 18px; font-weight: 600;">Contact Form</h3>
+      <form :style="formStyle">
+        <h3 :style="headingStyle">Contact Form</h3>
 
         <div style="display: flex; flex-direction: column; gap: 20px;">
           <div>
-            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Subject</label>
+            <label :style="labelStyle">Subject</label>
             <input
               v-model="subject"
               type="text"
               placeholder="Enter subject"
-              style="width: 100%; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px;"
+              :style="inputStyle"
             />
           </div>
 
           <div>
-            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Message *</label>
+            <label :style="labelStyle">Message *</label>
             <TextArea
               v-model="message"
               placeholder="Enter your message..."
               :maxlength="500"
               showCharacterCount
               required
-              rows="6"
+              :rows="6"
             />
           </div>
 
           <div>
-            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Additional Feedback</label>
+            <label :style="labelStyle">Additional Feedback</label>
             <TextArea
               v-model="feedback"
               placeholder="Any additional feedback (optional)..."
@@ -309,8 +434,7 @@ export const FormIntegration: Story = {
           <button
             type="submit"
             :disabled="!message.trim()"
-            style="padding: 12px 24px; background: #3b82f6; color: white; border: none; border-radius: 6px; font-weight: 500; cursor: pointer;"
-            :style="{ opacity: message.trim() ? 1 : 0.5 }"
+            :style="{ ...buttonStyle, opacity: message.trim() ? 1 : 0.5 }"
           >
             Send Message
           </button>
@@ -345,12 +469,12 @@ export const CodeEditor: Story = {
       }));
 
       return {
-        code: `function fibonacci(n) {
+        code: ref(`function fibonacci(n) {
   if (n <= 1) return n;
   return fibonacci(n - 1) + fibonacci(n - 2);
 }
 
-console.log(fibonacci(10));`,
+console.log(fibonacci(10));`),
         headingStyle,
         tipStyle,
       };
@@ -384,26 +508,43 @@ console.log(fibonacci(10));`,
 export const States: Story = {
   render: () => ({
     components: { TextArea },
+    setup() {
+      const theme = useTheme();
+      const headingStyle = computed(() => ({
+        margin: '0 0 8px 0',
+        fontSize: '14px',
+        fontWeight: '600',
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+
+      return {
+        normalText: ref('Normal state'),
+        errorText: ref('Error state'),
+        disabledText: ref('Disabled state'),
+        readonlyText: ref('Read-only state'),
+        headingStyle,
+      };
+    },
     template: `
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px;">
         <div>
-          <h4 style="margin: 0 0 8px 0; font-size: 14px; font-weight: 600;">Normal</h4>
-          <TextArea modelValue="Normal state" />
+          <h4 :style="headingStyle">Normal</h4>
+          <TextArea v-model="normalText" />
         </div>
 
         <div>
-          <h4 style="margin: 0 0 8px 0; font-size: 14px; font-weight: 600;">Error</h4>
-          <TextArea modelValue="Error state" error />
+          <h4 :style="headingStyle">Error</h4>
+          <TextArea v-model="errorText" error />
         </div>
 
         <div>
-          <h4 style="margin: 0 0 8px 0; font-size: 14px; font-weight: 600;">Disabled</h4>
-          <TextArea modelValue="Disabled state" disabled />
+          <h4 :style="headingStyle">Disabled</h4>
+          <TextArea v-model="disabledText" disabled />
         </div>
 
         <div>
-          <h4 style="margin: 0 0 8px 0; font-size: 14px; font-weight: 600;">Read-only</h4>
-          <TextArea modelValue="Read-only state" readonly />
+          <h4 :style="headingStyle">Read-only</h4>
+          <TextArea v-model="readonlyText" readonly />
         </div>
       </div>
     `,

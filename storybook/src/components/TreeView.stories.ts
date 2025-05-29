@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import TreeView from './TreeView.vue';
 import type { TreeViewItemData } from './TreeView.vue';
+import { color, useTheme } from '../tokens';
 
 // Sample data for different scenarios
 const basicTreeData: TreeViewItemData[] = [
@@ -114,7 +115,7 @@ const organizationData: TreeViewItemData[] = [
       {
         id: 'frontend',
         label: 'Frontend Team',
-        icon: 'code',
+        icon: 'settings',
         children: [
           { id: 'john', label: 'John Doe - Senior Developer', icon: 'user' },
           { id: 'jane', label: 'Jane Smith - Developer', icon: 'user' },
@@ -123,7 +124,7 @@ const organizationData: TreeViewItemData[] = [
       {
         id: 'backend',
         label: 'Backend Team',
-        icon: 'server',
+        icon: 'settings-2',
         children: [
           { id: 'bob', label: 'Bob Johnson - Tech Lead', icon: 'user' },
           { id: 'alice', label: 'Alice Brown - Developer', icon: 'user' },
@@ -134,7 +135,7 @@ const organizationData: TreeViewItemData[] = [
   {
     id: 'design',
     label: 'Design',
-    icon: 'palette',
+    icon: 'star',
     children: [
       { id: 'sarah', label: 'Sarah Wilson - UX Designer', icon: 'user' },
       { id: 'mike', label: 'Mike Davis - UI Designer', icon: 'user' },
@@ -375,6 +376,7 @@ export const Interactive: Story = {
     components: { TreeView },
     setup() {
       const treeRef = ref();
+      const theme = useTheme();
 
       const expandAll = () => {
         treeRef.value?.expandAll();
@@ -404,6 +406,19 @@ export const Interactive: Story = {
         console.log(`Item ${itemId} focused`);
       };
 
+      // Theme-aware button styling
+      const buttonStyle = computed(() => ({
+        padding: '8px 16px',
+        border: `1px solid ${color.neutral[6].value}`,
+        borderRadius: '4px',
+        background: color.neutral[2].value,
+        color: color.neutral[11].value,
+        cursor: 'pointer',
+        fontSize: '14px',
+        fontWeight: '500',
+        transition: 'all 0.2s ease',
+      }));
+
       return {
         args,
         treeRef,
@@ -414,21 +429,22 @@ export const Interactive: Story = {
         onExpand,
         onSelect,
         onFocus,
+        buttonStyle,
       };
     },
     template: `
       <div style="max-width: 400px;">
         <div style="margin-bottom: 16px; display: flex; gap: 8px; flex-wrap: wrap;">
-          <button @click="expandAll" style="padding: 8px 16px; border: 1px solid #ccc; border-radius: 4px; background: white; cursor: pointer;">
+          <button @click="expandAll" :style="buttonStyle">
             Expand All
           </button>
-          <button @click="collapseAll" style="padding: 8px 16px; border: 1px solid #ccc; border-radius: 4px; background: white; cursor: pointer;">
+          <button @click="collapseAll" :style="buttonStyle">
             Collapse All
           </button>
-          <button @click="selectAll" style="padding: 8px 16px; border: 1px solid #ccc; border-radius: 4px; background: white; cursor: pointer;">
+          <button @click="selectAll" :style="buttonStyle">
             Select All
           </button>
-          <button @click="clearSelection" style="padding: 8px 16px; border: 1px solid #ccc; border-radius: 4px; background: white; cursor: pointer;">
+          <button @click="clearSelection" :style="buttonStyle">
             Clear Selection
           </button>
         </div>
@@ -456,14 +472,25 @@ export const AllVariants: Story = {
   render: () => ({
     components: { TreeView },
     setup() {
+      const theme = useTheme();
+
+      // Theme-aware heading styling
+      const headingStyle = computed(() => ({
+        marginBottom: '12px',
+        fontSize: '16px',
+        fontWeight: '600',
+        color: color.neutral[11].value,
+      }));
+
       return {
         basicData: basicTreeData,
+        headingStyle,
       };
     },
     template: `
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
         <div>
-          <h3 style="margin-bottom: 12px; font-size: 16px; font-weight: 600;">Basic</h3>
+          <h3 :style="headingStyle">Basic</h3>
           <TreeView
             :data="basicData"
             variant="basic"
@@ -472,7 +499,7 @@ export const AllVariants: Story = {
           />
         </div>
         <div>
-          <h3 style="margin-bottom: 12px; font-size: 16px; font-weight: 600;">Bordered</h3>
+          <h3 :style="headingStyle">Bordered</h3>
           <TreeView
             :data="basicData"
             variant="bordered"
@@ -481,7 +508,7 @@ export const AllVariants: Story = {
           />
         </div>
         <div>
-          <h3 style="margin-bottom: 12px; font-size: 16px; font-weight: 600;">Elevated</h3>
+          <h3 :style="headingStyle">Elevated</h3>
           <TreeView
             :data="basicData"
             variant="elevated"

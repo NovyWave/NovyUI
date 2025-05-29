@@ -31,8 +31,8 @@
       >
         <Icon
           :name="isExpanded ? 'chevron-down' : 'chevron-right'"
-          :width="iconSize"
-          :height="iconSize"
+          :width="expandIconSize"
+          :height="expandIconSize"
           :color="expandIconColor"
         />
       </button>
@@ -44,13 +44,12 @@
         :style="checkboxContainerStyle"
         @click.stop="handleSelect"
       >
-        <input
-          type="checkbox"
-          :checked="isSelected"
-          :disabled="disabled"
-          :style="checkboxStyle"
+        <Checkbox
+          :model-value="isSelected"
+          :disabled="isDisabled"
+          :size="checkboxSize"
           :aria-hidden="true"
-          tabindex="-1"
+          @update:model-value="() => handleSelect()"
         />
       </div>
 
@@ -103,6 +102,7 @@ import { computed, ref, nextTick, watch, type CSSProperties } from 'vue';
 import { color, spacing, cornerRadius, typography } from '../tokens';
 import type { IconToken } from '../tokens';
 import Icon from './Icon.vue';
+import Checkbox from './Checkbox.vue';
 import type { TreeViewItemData } from './TreeView.vue';
 
 type Size = 'small' | 'medium' | 'large';
@@ -159,30 +159,44 @@ const iconSize = computed(() => {
   return '18px';
 });
 
+// Expand/collapse chevron icon configuration (larger for better visibility)
+const expandIconSize = computed(() => {
+  if (props.size === 'small') return '32px';
+  if (props.size === 'large') return '40px';
+  return '36px';
+});
+
+// Checkbox configuration
+const checkboxSize = computed(() => {
+  if (props.size === 'small') return 'small';
+  if (props.size === 'large') return 'large';
+  return 'medium';
+});
+
 const itemIcon = computed(() => {
   if (props.item.icon) return props.item.icon as IconToken;
-  
+
   // Default icons based on type
   if (props.item.type === 'folder') {
     return 'folder';
   } else if (props.item.type === 'file') {
     return 'file';
   }
-  
+
   // Default icon for items with children
   if (hasChildren.value) {
     return 'folder';
   }
-  
+
   return 'file';
 });
 
 // Event handlers
 const handleClick = () => {
   if (isDisabled.value) return;
-  
+
   emit('focus', props.item.id);
-  
+
   if (props.showCheckboxes) {
     handleSelect();
   } else if (hasChildren.value) {
@@ -256,27 +270,35 @@ const indentationStyle = computed<CSSProperties>(() => ({
   flexShrink: 0,
 }));
 
-const expandButtonStyle = computed<CSSProperties>(() => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  width: '20px',
-  height: '20px',
-  border: 'none',
-  background: 'transparent',
-  cursor: isDisabled.value ? 'not-allowed' : 'pointer',
-  borderRadius: cornerRadius['2px'],
-  marginRight: spacing['4px'],
-  flexShrink: 0,
-  opacity: isDisabled.value ? 0.5 : 1,
-}));
+const expandButtonStyle = computed<CSSProperties>(() => {
+  // Make button size match the icon size
+  const buttonSize = expandIconSize.value;
+  return {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: buttonSize,
+    height: buttonSize,
+    border: 'none',
+    background: 'transparent',
+    cursor: isDisabled.value ? 'not-allowed' : 'pointer',
+    borderRadius: cornerRadius['2px'],
+    marginRight: spacing['4px'],
+    flexShrink: 0,
+    opacity: isDisabled.value ? 0.5 : 1,
+  };
+});
 
-const expandButtonPlaceholderStyle = computed<CSSProperties>(() => ({
-  width: '20px',
-  height: '20px',
-  marginRight: spacing['4px'],
-  flexShrink: 0,
-}));
+const expandButtonPlaceholderStyle = computed<CSSProperties>(() => {
+  // Make placeholder size match the button size
+  const buttonSize = expandIconSize.value;
+  return {
+    width: buttonSize,
+    height: buttonSize,
+    marginRight: spacing['4px'],
+    flexShrink: 0,
+  };
+});
 
 const expandIconColor = computed(() => {
   if (isDisabled.value) return color.neutral[7].value;
@@ -290,13 +312,6 @@ const checkboxContainerStyle = computed<CSSProperties>(() => ({
   flexShrink: 0,
 }));
 
-const checkboxStyle = computed<CSSProperties>(() => ({
-  width: '16px',
-  height: '16px',
-  cursor: isDisabled.value ? 'not-allowed' : 'pointer',
-  opacity: isDisabled.value ? 0.5 : 1,
-}));
-
 const iconContainerStyle = computed<CSSProperties>(() => ({
   display: 'flex',
   alignItems: 'center',
@@ -307,14 +322,14 @@ const iconContainerStyle = computed<CSSProperties>(() => ({
 const itemIconColor = computed(() => {
   if (isDisabled.value) return color.neutral[7].value;
   if (isSelected.value) return color.primary[11].value;
-  
+
   // Special colors for different types
   if (props.item.type === 'folder') {
     return color.warning[7].value; // Yellow/orange for folders
   } else if (props.item.type === 'file') {
     return color.neutral[9].value;
   }
-  
+
   return color.primary[7].value;
 });
 

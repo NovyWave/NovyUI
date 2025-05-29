@@ -584,7 +584,7 @@ const searchInputStyle = computed<CSSProperties>(() => ({
   border: 'none',
   outline: 'none',
   '::placeholder': {
-    color: color.neutral['6'].value,
+    color: color.primary['9'].value,
   },
 }));
 

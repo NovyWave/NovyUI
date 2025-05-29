@@ -16,6 +16,7 @@
       :aria-labelledby="labelId"
       :aria-describedby="descriptionId"
       :aria-invalid="error ? 'true' : undefined"
+      class="textarea-with-primary-placeholder"
       @input="onInput"
       @focus="onFocus"
       @blur="onBlur"
@@ -29,16 +30,7 @@
       </span>
     </div>
 
-    <!-- Resize Handle -->
-    <div v-if="resizable && !disabled" :style="resizeHandleStyle">
-      <Icon
-        :name="'corner-down-right'"
-        :width="'12px'"
-        :height="'12px'"
-        :color="resizeHandleColor"
-        :aria-hidden="true"
-      />
-    </div>
+
   </div>
 </template>
 
@@ -122,12 +114,7 @@ const sizeConfig = computed(() => {
 // Computed properties
 const characterCount = computed(() => props.modelValue?.length || 0);
 
-const resizable = computed(() => props.resize !== 'none');
 
-const resizeHandleColor = computed(() => {
-  const isDark = theme.value === 'dark';
-  return isDark ? color.neutral['6'].value : color.neutral['5'].value;
-});
 
 const textareaContainerStyle = computed<CSSProperties>(() => ({
   position: 'relative',
@@ -177,10 +164,7 @@ const textareaStyle = computed<CSSProperties>(() => {
     resize: props.resize,
     transition: transition.normal,
     cursor: props.disabled ? 'not-allowed' : 'text',
-    '::placeholder': {
-      color: color.neutral['6'].value,
-      opacity: '1',
-    },
+    boxSizing: 'border-box',
   };
 });
 
@@ -205,18 +189,10 @@ const characterCountTextStyle = computed<CSSProperties>(() => {
     backgroundColor: isDark ? color.neutral['2'].value : color.neutral['1'].value,
     padding: `${spacing['2px']} ${spacing['4px']}`,
     borderRadius: cornerRadius['4px'],
-    border: `${border.width['1px']} ${border.style.solid} ${color.neutral['4'].value}`,
   };
 });
 
-const resizeHandleStyle = computed<CSSProperties>(() => ({
-  position: 'absolute',
-  bottom: spacing['4px'],
-  right: spacing['4px'],
-  pointerEvents: 'none',
-  opacity: '0.5',
-  zIndex: '1',
-}));
+
 
 // Auto-resize functionality
 const autoResizeTextarea = async () => {
@@ -270,3 +246,10 @@ const onKeydown = (event: KeyboardEvent) => {
   }
 };
 </script>
+
+<style scoped>
+.textarea-with-primary-placeholder::placeholder {
+  color: v-bind('color.primary["9"].value');
+  opacity: 1;
+}
+</style>

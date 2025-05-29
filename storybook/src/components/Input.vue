@@ -10,7 +10,7 @@
       :style="leftIconStyle"
       :aria-hidden="true"
     />
-    
+
     <!-- Input Element -->
     <input
       ref="inputRef"
@@ -24,12 +24,13 @@
       :aria-labelledby="labelId"
       :aria-describedby="descriptionId"
       :aria-invalid="error ? 'true' : undefined"
+      class="input-with-primary-placeholder"
       @input="onInput"
       @focus="onFocus"
       @blur="onBlur"
       @keydown="onKeydown"
     />
-    
+
     <!-- Right Side Actions -->
     <div v-if="rightIcon || type === 'password' || (type === 'search' && modelValue)" :style="rightActionsStyle">
       <!-- Clear Button for Search -->
@@ -49,7 +50,7 @@
           :aria-hidden="true"
         />
       </button>
-      
+
       <!-- Password Toggle -->
       <button
         v-if="type === 'password' && !disabled"
@@ -67,7 +68,7 @@
           :aria-hidden="true"
         />
       </button>
-      
+
       <!-- Right Icon -->
       <Icon
         v-if="rightIcon"
@@ -183,7 +184,7 @@ const onBlur = (event: FocusEvent) => {
 
 const onKeydown = (event: KeyboardEvent) => {
   emit('keydown', event);
-  
+
   // Clear on Escape for search inputs
   if (event.key === 'Escape' && props.type === 'search' && props.modelValue) {
     onClear();
@@ -207,7 +208,7 @@ const inputContainerStyle = computed<CSSProperties>(() => {
   let paddingY: string = spacing['8px'];
   let paddingX: string = spacing['12px'];
   let minHeight: string = '40px';
-  
+
   if (size === 'small') {
     paddingY = spacing['4px'];
     paddingX = spacing['8px'];
@@ -228,13 +229,13 @@ const inputContainerStyle = computed<CSSProperties>(() => {
     borderColor = color.error['7'].value;
     backgroundColor = props.error ? color.error['1'].value : backgroundColor;
   }
-  
+
   // Focus state
   if (focused.value && !props.disabled && !props.error) {
     borderColor = color.primary['7'].value;
     boxShadow = `0 0 0 ${border.width['2px']} ${color.primary['5'].value}`;
   }
-  
+
   // Disabled state
   if (props.disabled) {
     backgroundColor = color.neutral['2'].value;
@@ -260,7 +261,7 @@ const inputContainerStyle = computed<CSSProperties>(() => {
 const inputStyle = computed<CSSProperties>(() => {
   const size = props.size;
   let fontSize: string = typography.size['16px'];
-  
+
   if (size === 'small') {
     fontSize = typography.size['14px'];
   } else if (size === 'large') {
@@ -269,7 +270,7 @@ const inputStyle = computed<CSSProperties>(() => {
 
   const isDark = theme.value === 'dark';
   let textColor = isDark ? color.neutral['10'].value : color.neutral['9'].value;
-  
+
   if (props.disabled) {
     textColor = color.neutral['6'].value;
   }
@@ -285,9 +286,6 @@ const inputStyle = computed<CSSProperties>(() => {
     fontWeight: String(typography.weight['5']),
     lineHeight: String(typography.line['140%']),
     color: textColor,
-    '::placeholder': {
-      color: color.neutral['6'].value,
-    },
   };
 });
 
@@ -346,3 +344,10 @@ const passwordToggleStyle = computed<CSSProperties>(() => ({
   },
 }));
 </script>
+
+<style scoped>
+.input-with-primary-placeholder::placeholder {
+  color: v-bind('color.primary["9"].value');
+  opacity: 1;
+}
+</style>
