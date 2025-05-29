@@ -91,7 +91,7 @@ const contentId = computed(() => `accordion-content-${props.index}`);
 
 // Icon configuration
 const iconName = computed<IconToken>(() => {
-  return props.isOpen ? 'chevron-up' : 'chevron-down';
+  return 'chevron-down'; // Always use chevron-down, rotation handles the direction
 });
 
 const iconSize = computed(() => {
