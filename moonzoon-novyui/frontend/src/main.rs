@@ -1,0 +1,1016 @@
+use zoon::*;
+
+mod tokens;
+mod components;
+
+use tokens::*;
+use components::*;
+
+fn main() {
+    start_app("app", root);
+}
+
+fn root() -> impl Element {
+    Column::new()
+        .s(Width::fill())
+        .s(Height::screen())    // Height::fill() => Height::screen()
+        .s(Scrollbars::both())  // This one is important - enables proper scrolling
+        .s(Padding::all(SPACING_32))
+        .s(Background::new().color_signal(neutral_1()))
+        .s(Gap::new().y(SPACING_32))
+        .item(header())
+        .item(theme_toggle())
+        .item(component_showcase())
+}
+
+fn header() -> impl Element {
+    Column::new()
+        .s(Gap::new().y(SPACING_16))
+        .item(h1("NovyUI MoonZoon Migration"))
+        .item(paragraph("Phase 1: Foundation components with research-validated patterns"))
+}
+
+fn theme_toggle() -> impl Element {
+    Row::new()
+        .s(Gap::new().x(SPACING_16))
+        .s(Align::new().center_y())
+        .item(small("Theme:"))
+        .item(
+            button()
+                .label("Toggle Theme")
+                .variant(ButtonVariant::Outline)
+                .on_press(|| toggle_theme())
+                .build()
+        )
+}
+
+fn component_showcase() -> impl Element {
+    Column::new()
+        .s(Gap::new().y(SPACING_24))
+        .item(h3("Component Showcase"))
+        .item(icon_examples())
+        .item(button_examples())
+        .item(input_examples())
+        .item(badge_examples())
+        .item(card_examples())
+        .item(list_examples())
+        .item(avatar_examples())
+        .item(switch_examples())
+        .item(checkbox_examples())
+        .item(textarea_examples())
+        .item(kbd_examples())
+        .item(accordion_examples())
+        .item(select_examples())
+        .item(alert_examples())
+        .item(treeview_examples())
+        .item(fileinput_examples())
+        .item(typography_examples())
+}
+
+fn icon_examples() -> impl Element {
+    Column::new()
+        .s(Gap::new().y(SPACING_16))
+        .item(h4("Icons"))
+        .item(small("Different sizes:"))
+        .item(
+            Row::new()
+                .s(Gap::new().x(SPACING_12))
+                .s(Align::new().center_y())
+                .item(icon("star").size(IconSize::Small).build())
+                .item(icon("star").size(IconSize::Medium).build())
+                .item(icon("star").size(IconSize::Large).build())
+                .item(icon("star").size(IconSize::XLarge).build())
+        )
+        .item(small("Different colors:"))
+        .item(
+            Row::new()
+                .s(Gap::new().x(SPACING_12))
+                .s(Align::new().center_y())
+                .item(icon("heart").color(IconColor::Current).build())
+                .item(icon("heart").color(IconColor::Primary).build())
+                .item(icon("heart").color(IconColor::Secondary).build())
+                .item(icon("heart").color(IconColor::Success).build())
+                .item(icon("heart").color(IconColor::Error).build())
+                .item(icon("heart").color(IconColor::Muted).build())
+        )
+        .item(small("Common icons:"))
+        .item(
+            Row::new()
+                .s(Gap::new().x(SPACING_12))
+                .s(Align::new().center_y())
+                .item(search().build())
+                .item(close().build())
+                .item(check().build())
+                .item(eye().build())
+                .item(eye_off().build())
+        )
+        .item(small("Chevron icons:"))
+        .item(
+            Row::new()
+                .s(Gap::new().x(SPACING_12))
+                .s(Align::new().center_y())
+                .item(chevron_up().build())
+                .item(chevron_down().build())
+                .item(chevron_left().build())
+                .item(chevron_right().build())
+        )
+        .item(small("Custom color:"))
+        .item(
+            Row::new()
+                .s(Gap::new().x(SPACING_12))
+                .s(Align::new().center_y())
+                .item(icon("custom").color(IconColor::Custom("#ff6b6b")).build())
+                .item(icon("custom").color(IconColor::Custom("#4ecdc4")).build())
+                .item(icon("custom").color(IconColor::Custom("#45b7d1")).build())
+                .item(icon("custom").color(IconColor::Custom("#f9ca24")).build())
+        )
+        .item(small("Usage in context:"))
+        .item(
+            Row::new()
+                .s(Gap::new().x(SPACING_8))
+                .s(Align::new().center_y())
+                .item(search().size(IconSize::Small).color(IconColor::Muted).build())
+                .item(paragraph("Search for items"))
+        )
+}
+
+fn button_examples() -> impl Element {
+    Column::new()
+        .s(Gap::new().y(SPACING_16))
+        .item(h4("Buttons"))
+        .item(small("Basic variants:"))
+        .item(
+            Row::new()
+                .s(Gap::new().x(SPACING_12))
+                .item(
+                    button()
+                        .label("Primary")
+                        .variant(ButtonVariant::Primary)
+                        .on_press(|| {})
+                        .build()
+                )
+                .item(
+                    button()
+                        .label("Secondary")
+                        .variant(ButtonVariant::Secondary)
+                        .on_press(|| {})
+                        .build()
+                )
+                .item(
+                    button()
+                        .label("Outline")
+                        .variant(ButtonVariant::Outline)
+                        .on_press(|| {})
+                        .build()
+                )
+                .item(
+                    button()
+                        .label("Ghost")
+                        .variant(ButtonVariant::Ghost)
+                        .on_press(|| {})
+                        .build()
+                )
+        )
+        .item(small("Additional variants:"))
+        .item(
+            Row::new()
+                .s(Gap::new().x(SPACING_12))
+                .item(
+                    button()
+                        .label("Link")
+                        .variant(ButtonVariant::Link)
+                        .on_press(|| {})
+                        .build()
+                )
+                .item(
+                    button()
+                        .label("Destructive")
+                        .variant(ButtonVariant::Destructive)
+                        .on_press(|| {})
+                        .build()
+                )
+        )
+        .item(small("Different sizes:"))
+        .item(
+            Row::new()
+                .s(Gap::new().x(SPACING_12))
+                .item(
+                    button()
+                        .label("Small")
+                        .size(ButtonSize::Small)
+                        .variant(ButtonVariant::Primary)
+                        .on_press(|| {})
+                        .build()
+                )
+                .item(
+                    button()
+                        .label("Medium")
+                        .size(ButtonSize::Medium)
+                        .variant(ButtonVariant::Primary)
+                        .on_press(|| {})
+                        .build()
+                )
+                .item(
+                    button()
+                        .label("Large")
+                        .size(ButtonSize::Large)
+                        .variant(ButtonVariant::Primary)
+                        .on_press(|| {})
+                        .build()
+                )
+        )
+}
+
+fn input_examples() -> impl Element {
+    Column::new()
+        .s(Gap::new().y(SPACING_16))
+        .item(h4("Inputs"))
+        .item(small("Different variants:"))
+        .item(
+            Column::new()
+                .s(Gap::new().y(SPACING_12))
+                .item(
+                    input()
+                        .placeholder("Default input...")
+                        .variant(InputVariant::Default)
+                        .build()
+                )
+                .item(
+                    input()
+                        .placeholder("Error input...")
+                        .variant(InputVariant::Error)
+                        .value("Invalid value")
+                        .build()
+                )
+                .item(
+                    input()
+                        .placeholder("Success input...")
+                        .variant(InputVariant::Success)
+                        .value("Valid value")
+                        .build()
+                )
+        )
+        .item(small("Different sizes:"))
+        .item(
+            Column::new()
+                .s(Gap::new().y(SPACING_12))
+                .item(
+                    input()
+                        .placeholder("Small input...")
+                        .size(InputSize::Small)
+                        .build()
+                )
+                .item(
+                    input()
+                        .placeholder("Medium input...")
+                        .size(InputSize::Medium)
+                        .build()
+                )
+                .item(
+                    input()
+                        .placeholder("Large input...")
+                        .size(InputSize::Large)
+                        .build()
+                )
+        )
+}
+
+fn badge_examples() -> impl Element {
+    Column::new()
+        .s(Gap::new().y(SPACING_16))
+        .item(h4("Badge"))
+        .item(small("Different variants:"))
+        .item(
+            Row::new()
+                .s(Gap::new().x(SPACING_8))
+                .s(Align::new().center_y())
+                .item(badge("Default").variant(BadgeVariant::Default).build())
+                .item(badge("Primary").variant(BadgeVariant::Primary).build())
+                .item(badge("Secondary").variant(BadgeVariant::Secondary).build())
+                .item(badge("Success").variant(BadgeVariant::Success).build())
+                .item(badge("Warning").variant(BadgeVariant::Warning).build())
+                .item(badge("Error").variant(BadgeVariant::Error).build())
+                .item(badge("Outline").variant(BadgeVariant::Outline).build())
+        )
+        .item(small("Different sizes:"))
+        .item(
+            Row::new()
+                .s(Gap::new().x(SPACING_8))
+                .s(Align::new().center_y())
+                .item(badge("Small").size(BadgeSize::Small).build())
+                .item(badge("Medium").size(BadgeSize::Medium).build())
+                .item(badge("Large").size(BadgeSize::Large).build())
+        )
+        .item(small("Dot badges:"))
+        .item(
+            Row::new()
+                .s(Gap::new().x(SPACING_8))
+                .s(Align::new().center_y())
+                .item(dot_badge().variant(BadgeVariant::Primary).size(BadgeSize::Small).build())
+                .item(dot_badge().variant(BadgeVariant::Success).size(BadgeSize::Medium).build())
+                .item(dot_badge().variant(BadgeVariant::Error).size(BadgeSize::Large).build())
+        )
+}
+
+fn card_examples() -> impl Element {
+    Column::new()
+        .s(Gap::new().y(SPACING_16))
+        .item(h4("Card"))
+        .item(small("Different variants:"))
+        .item(
+            Row::new()
+                .s(Gap::new().x(SPACING_16))
+                .item(card().variant(CardVariant::Default).build())
+                .item(card().variant(CardVariant::Elevated).build())
+                .item(card().variant(CardVariant::Outlined).build())
+                .item(card().variant(CardVariant::Filled).build())
+        )
+        .item(small("Different sizes:"))
+        .item(
+            Row::new()
+                .s(Gap::new().x(SPACING_16))
+                .item(card().size(CardSize::Small).build())
+                .item(card().size(CardSize::Medium).build())
+                .item(card().size(CardSize::Large).build())
+        )
+        .item(small("Clickable card:"))
+        .item(
+            card()
+                .variant(CardVariant::Outlined)
+                .clickable(true)
+                .build()
+        )
+}
+
+fn list_examples() -> impl Element {
+    Column::new()
+        .s(Gap::new().y(SPACING_16))
+        .item(h4("List"))
+        .item(small("Simple list:"))
+        .item(
+            list()
+                .item("First item")
+                .item("Second item")
+                .item("Third item")
+                .build()
+        )
+        .item(small("Another list:"))
+        .item(
+            list()
+                .item("Home")
+                .item("Settings")
+                .item("Profile")
+                .item("About")
+                .build()
+        )
+}
+
+fn avatar_examples() -> impl Element {
+    Column::new()
+        .s(Gap::new().y(SPACING_16))
+        .item(h4("Avatar"))
+        .item(small("Different sizes:"))
+        .item(
+            Row::new()
+                .s(Gap::new().x(SPACING_12))
+                .s(Align::new().center_y())
+                .item(avatar("John Doe").size(AvatarSize::Small).build())
+                .item(avatar("Jane Smith").size(AvatarSize::Medium).build())
+                .item(avatar("Bob Wilson").size(AvatarSize::Large).build())
+                .item(avatar("Alice Brown").size(AvatarSize::XLarge).build())
+        )
+        .item(small("With icons:"))
+        .item(
+            Row::new()
+                .s(Gap::new().x(SPACING_12))
+                .s(Align::new().center_y())
+                .item(avatar("User").icon("👤").size(AvatarSize::Small).build())
+                .item(avatar("Admin").icon("👑").size(AvatarSize::Medium).build())
+                .item(avatar("Guest").icon("👻").size(AvatarSize::Large).build())
+                .item(avatar("Bot").icon("🤖").size(AvatarSize::XLarge).build())
+        )
+        .item(small("Different names:"))
+        .item(
+            Row::new()
+                .s(Gap::new().x(SPACING_12))
+                .s(Align::new().center_y())
+                .item(avatar("A").build())
+                .item(avatar("AB").build())
+                .item(avatar("Alice Bob").build())
+                .item(avatar("Very Long Name").build())
+        )
+}
+
+fn switch_examples() -> impl Element {
+    Column::new()
+        .s(Gap::new().y(SPACING_16))
+        .item(h4("Switch"))
+        .item(small("Different sizes:"))
+        .item(
+            Row::new()
+                .s(Gap::new().x(SPACING_12))
+                .s(Align::new().center_y())
+                .item(switch().size(SwitchSize::Small).build())
+                .item(switch().size(SwitchSize::Medium).build())
+                .item(switch().size(SwitchSize::Large).build())
+        )
+        .item(small("Different states:"))
+        .item(
+            Row::new()
+                .s(Gap::new().x(SPACING_12))
+                .s(Align::new().center_y())
+                .item(switch().checked(false).build())
+                .item(switch().checked(true).build())
+                .item(switch().disabled(true).build())
+                .item(switch().checked(true).disabled(true).build())
+        )
+        .item(small("Interactive (click to toggle):"))
+        .item(
+            Row::new()
+                .s(Gap::new().x(SPACING_12))
+                .s(Align::new().center_y())
+                .item(switch().on_change(|checked| {
+                    // In a real app, you'd update state here
+                }).build())
+                .item(switch().checked(true).on_change(|checked| {
+                    // In a real app, you'd update state here
+                }).build())
+        )
+}
+
+fn checkbox_examples() -> impl Element {
+    Column::new()
+        .s(Gap::new().y(SPACING_16))
+        .item(h4("Checkbox"))
+        .item(small("Different sizes:"))
+        .item(
+            Row::new()
+                .s(Gap::new().x(SPACING_12))
+                .s(Align::new().center_y())
+                .item(checkbox().size(CheckboxSize::Small).build())
+                .item(checkbox().size(CheckboxSize::Medium).build())
+                .item(checkbox().size(CheckboxSize::Large).build())
+        )
+        .item(small("Different states:"))
+        .item(
+            Column::new()
+                .s(Gap::new().y(SPACING_8))
+                .item(checkbox().checked(false).build())
+                .item(checkbox().checked(true).build())
+                .item(checkbox().disabled(true).build())
+                .item(checkbox().checked(true).disabled(true).build())
+        )
+        .item(small("With labels:"))
+        .item(
+            Column::new()
+                .s(Gap::new().y(SPACING_8))
+                .item(checkbox().label("Accept terms and conditions").build())
+                .item(checkbox().label("Subscribe to newsletter").checked(true).build())
+                .item(checkbox().label("Disabled option").disabled(true).build())
+        )
+        .item(small("Interactive (click to toggle):"))
+        .item(
+            Column::new()
+                .s(Gap::new().y(SPACING_8))
+                .item(checkbox().label("Click me!").on_change(|checked| {
+                    // In a real app, you'd update state here
+                }).build())
+                .item(checkbox().label("Or click me!").checked(true).on_change(|checked| {
+                    // In a real app, you'd update state here
+                }).build())
+        )
+}
+
+fn textarea_examples() -> impl Element {
+    Column::new()
+        .s(Gap::new().y(SPACING_16))
+        .item(h4("TextArea"))
+        .item(small("Different sizes:"))
+        .item(
+            Column::new()
+                .s(Gap::new().y(SPACING_12))
+                .item(textarea().size(TextAreaSize::Small).placeholder("Small textarea").build())
+                .item(textarea().size(TextAreaSize::Medium).placeholder("Medium textarea").build())
+                .item(textarea().size(TextAreaSize::Large).placeholder("Large textarea").build())
+        )
+        .item(small("Different states:"))
+        .item(
+            Column::new()
+                .s(Gap::new().y(SPACING_12))
+                .item(textarea().placeholder("Enter your message...").build())
+                .item(textarea().value("This textarea has some content").build())
+                .item(textarea().disabled(true).placeholder("Disabled textarea").build())
+                .item(textarea().required(true).placeholder("Required textarea").build())
+        )
+        .item(small("Different row counts:"))
+        .item(
+            Column::new()
+                .s(Gap::new().y(SPACING_12))
+                .item(textarea().rows(2).placeholder("2 rows").build())
+                .item(textarea().rows(4).placeholder("4 rows").build())
+                .item(textarea().rows(6).placeholder("6 rows").build())
+        )
+        .item(small("Interactive (click to simulate input):"))
+        .item(
+            textarea()
+                .placeholder("Click me to simulate input")
+                .on_change(|text| {
+                    // In a real app, you'd update state here
+                })
+                .build()
+        )
+}
+
+fn kbd_examples() -> impl Element {
+    Column::new()
+        .s(Gap::new().y(SPACING_16))
+        .item(h4("Kbd (Keyboard Shortcuts)"))
+        .item(small("Different sizes:"))
+        .item(
+            Row::new()
+                .s(Gap::new().x(SPACING_8))
+                .s(Align::new().center_y())
+                .item(kbd("Ctrl+C").size(KbdSize::Small).build())
+                .item(kbd("Ctrl+V").size(KbdSize::Medium).build())
+                .item(kbd("Ctrl+Z").size(KbdSize::Large).build())
+        )
+        .item(small("Common shortcuts:"))
+        .item(
+            Row::new()
+                .s(Gap::new().x(SPACING_8))
+                .s(Align::new().center_y())
+                .item(ctrl_c().build())
+                .item(ctrl_v().build())
+                .item(ctrl_s().build())
+                .item(enter().build())
+                .item(escape().build())
+        )
+        .item(small("Arrow keys:"))
+        .item(
+            Row::new()
+                .s(Gap::new().x(SPACING_8))
+                .s(Align::new().center_y())
+                .item(arrow_up().build())
+                .item(arrow_down().build())
+                .item(arrow_left().build())
+                .item(arrow_right().build())
+        )
+        .item(small("Mac shortcuts:"))
+        .item(
+            Row::new()
+                .s(Gap::new().x(SPACING_8))
+                .s(Align::new().center_y())
+                .item(cmd_k().build())
+                .item(cmd_enter().build())
+        )
+        .item(small("Usage example:"))
+        .item(
+            Row::new()
+                .s(Gap::new().x(SPACING_8))
+                .s(Align::new().center_y())
+                .item(paragraph("Press"))
+                .item(kbd("Ctrl+K").build())
+                .item(paragraph("to open command palette"))
+        )
+}
+
+fn accordion_examples() -> impl Element {
+    Column::new()
+        .s(Gap::new().y(SPACING_16))
+        .item(h4("Accordion"))
+        .item(small("Basic accordion:"))
+        .item(
+            accordion()
+                .item(
+                    accordion_item("What is MoonZoon?",
+                        "MoonZoon is a Rust framework for building web applications with a focus on simplicity and performance.")
+                        .expanded(true)
+                )
+                .item(
+                    accordion_item("How does it work?",
+                        "MoonZoon uses WebAssembly to run Rust code in the browser, providing near-native performance.")
+                )
+                .item(
+                    accordion_item("Why choose MoonZoon?",
+                        "Type safety, performance, and a great developer experience make MoonZoon an excellent choice for web development.")
+                )
+                .build()
+        )
+        .item(small("With disabled item:"))
+        .item(
+            accordion()
+                .item(
+                    accordion_item("Available Feature",
+                        "This feature is available and can be expanded.")
+                        .expanded(false)
+                )
+                .item(
+                    accordion_item("Disabled Feature",
+                        "This feature is currently disabled.")
+                        .disabled(true)
+                )
+                .item(
+                    accordion_item("Another Feature",
+                        "This is another available feature with more detailed information about its capabilities.")
+                        .expanded(true)
+                )
+                .build()
+        )
+}
+
+fn select_examples() -> impl Element {
+    Column::new()
+        .s(Gap::new().y(SPACING_16))
+        .item(h4("Select"))
+        .item(small("Different sizes:"))
+        .item(
+            Column::new()
+                .s(Gap::new().y(SPACING_12))
+                .item(
+                    select()
+                        .size(SelectSize::Small)
+                        .placeholder("Small select")
+                        .option(select_option("1", "Option 1"))
+                        .option(select_option("2", "Option 2"))
+                        .build()
+                )
+                .item(
+                    select()
+                        .size(SelectSize::Medium)
+                        .placeholder("Medium select")
+                        .option(select_option("1", "Option 1"))
+                        .option(select_option("2", "Option 2"))
+                        .build()
+                )
+                .item(
+                    select()
+                        .size(SelectSize::Large)
+                        .placeholder("Large select")
+                        .option(select_option("1", "Option 1"))
+                        .option(select_option("2", "Option 2"))
+                        .build()
+                )
+        )
+        .item(small("Different states:"))
+        .item(
+            Column::new()
+                .s(Gap::new().y(SPACING_12))
+                .item(
+                    select()
+                        .placeholder("Choose an option...")
+                        .option(select_option("rust", "Rust"))
+                        .option(select_option("js", "JavaScript"))
+                        .option(select_option("python", "Python"))
+                        .build()
+                )
+                .item(
+                    select()
+                        .selected_value("rust")
+                        .option(select_option("rust", "Rust"))
+                        .option(select_option("js", "JavaScript"))
+                        .option(select_option("python", "Python"))
+                        .build()
+                )
+                .item(
+                    select()
+                        .disabled(true)
+                        .placeholder("Disabled select")
+                        .option(select_option("1", "Option 1"))
+                        .build()
+                )
+                .item(
+                    select()
+                        .required(true)
+                        .placeholder("Required select *")
+                        .option(select_option("1", "Option 1"))
+                        .option(select_option("2", "Option 2"))
+                        .build()
+                )
+        )
+        .item(small("Interactive (click to simulate selection):"))
+        .item(
+            select()
+                .placeholder("Click to select...")
+                .option(select_option("option1", "First Option"))
+                .option(select_option("option2", "Second Option"))
+                .option(select_option("option3", "Third Option"))
+                .on_change(|value| {
+                    // In a real app, you'd update state here
+                })
+                .build()
+        )
+}
+
+fn alert_examples() -> impl Element {
+    Column::new()
+        .s(Gap::new().y(SPACING_16))
+        .item(h4("Alert"))
+        .item(small("Different variants:"))
+        .item(
+            Column::new()
+                .s(Gap::new().y(SPACING_12))
+                .item(info_alert("This is an informational message.").build())
+                .item(success_alert("Operation completed successfully!").build())
+                .item(warning_alert("Please review your input before proceeding.").build())
+                .item(error_alert("An error occurred while processing your request.").build())
+                .item(alert("This is a default alert message.").build())
+        )
+        .item(small("With titles:"))
+        .item(
+            Column::new()
+                .s(Gap::new().y(SPACING_12))
+                .item(
+                    info_alert("Here are some additional details about this feature.")
+                        .title("Information")
+                        .build()
+                )
+                .item(
+                    success_alert("Your changes have been saved to the database.")
+                        .title("Success")
+                        .build()
+                )
+                .item(
+                    warning_alert("This action cannot be undone once confirmed.")
+                        .title("Warning")
+                        .build()
+                )
+                .item(
+                    error_alert("Please check your network connection and try again.")
+                        .title("Error")
+                        .build()
+                )
+        )
+        .item(small("Dismissible alerts:"))
+        .item(
+            Column::new()
+                .s(Gap::new().y(SPACING_12))
+                .item(
+                    info_alert("Click the × to dismiss this alert.")
+                        .title("Dismissible Info")
+                        .dismissible(true)
+                        .on_dismiss(|| {
+                            // In a real app, you'd handle dismissal here
+                        })
+                        .build()
+                )
+                .item(
+                    success_alert("This alert can be closed by the user.")
+                        .dismissible(true)
+                        .on_dismiss(|| {
+                            // In a real app, you'd handle dismissal here
+                        })
+                        .build()
+                )
+        )
+        .item(small("Without icons:"))
+        .item(
+            Column::new()
+                .s(Gap::new().y(SPACING_12))
+                .item(
+                    warning_alert("This alert doesn't show an icon.")
+                        .show_icon(false)
+                        .build()
+                )
+                .item(
+                    error_alert("Clean text-only alert message.")
+                        .show_icon(false)
+                        .title("No Icon")
+                        .build()
+                )
+        )
+}
+
+fn treeview_examples() -> impl Element {
+    Column::new()
+        .s(Gap::new().y(SPACING_16))
+        .item(h4("TreeView"))
+        .item(small("Basic tree structure:"))
+        .item(
+            tree_view()
+                .node(
+                    tree_node("root", "Project Root")
+                        .expanded(true)
+                        .with_children(vec![
+                            tree_node("src", "src")
+                                .expanded(true)
+                                .with_children(vec![
+                                    tree_node("main", "main.rs"),
+                                    tree_node("lib", "lib.rs"),
+                                    tree_node("components", "components")
+                                        .with_children(vec![
+                                            tree_node("button", "button.rs"),
+                                            tree_node("input", "input.rs"),
+                                        ])
+                                ]),
+                            tree_node("tests", "tests")
+                                .with_children(vec![
+                                    tree_node("integration", "integration.rs"),
+                                ]),
+                            tree_node("cargo", "Cargo.toml"),
+                            tree_node("readme", "README.md"),
+                        ])
+                )
+                .build()
+        )
+        .item(small("With selection:"))
+        .item(
+            tree_view()
+                .node(
+                    tree_node("docs", "Documentation")
+                        .expanded(true)
+                        .with_children(vec![
+                            tree_node("api", "API Reference"),
+                            tree_node("guide", "User Guide")
+                                .selected(true),
+                            tree_node("examples", "Examples")
+                                .with_children(vec![
+                                    tree_node("basic", "Basic Usage"),
+                                    tree_node("advanced", "Advanced Features"),
+                                ])
+                        ])
+                )
+                .build()
+        )
+        .item(small("Without icons:"))
+        .item(
+            tree_view()
+                .show_icons(false)
+                .node(
+                    tree_node("config", "Configuration")
+                        .expanded(true)
+                        .with_children(vec![
+                            tree_node("dev", "Development"),
+                            tree_node("prod", "Production"),
+                            tree_node("test", "Testing"),
+                        ])
+                )
+                .build()
+        )
+        .item(small("Interactive (click handlers):"))
+        .item(
+            tree_view()
+                .node(
+                    tree_node("features", "Features")
+                        .expanded(true)
+                        .with_children(vec![
+                            tree_node("auth", "Authentication"),
+                            tree_node("db", "Database"),
+                            tree_node("api", "API Endpoints"),
+                        ])
+                )
+                .on_select(|node_id| {
+                    // In a real app, you'd handle selection here
+                })
+                .on_expand(|node_id, expanded| {
+                    // In a real app, you'd handle expansion here
+                })
+                .build()
+        )
+}
+
+fn fileinput_examples() -> impl Element {
+    Column::new()
+        .s(Gap::new().y(SPACING_16))
+        .item(h4("FileInput"))
+        .item(small("Default file inputs:"))
+        .item(
+            Column::new()
+                .s(Gap::new().y(SPACING_12))
+                .item(
+                    file_input()
+                        .size(FileInputSize::Small)
+                        .placeholder("Small file input")
+                        .build()
+                )
+                .item(
+                    file_input()
+                        .size(FileInputSize::Medium)
+                        .placeholder("Medium file input")
+                        .build()
+                )
+                .item(
+                    file_input()
+                        .size(FileInputSize::Large)
+                        .placeholder("Large file input")
+                        .build()
+                )
+        )
+        .item(small("Button style:"))
+        .item(
+            Row::new()
+                .s(Gap::new().x(SPACING_12))
+                .s(Align::new().center_y())
+                .item(
+                    file_button()
+                        .size(FileInputSize::Small)
+                        .build()
+                )
+                .item(
+                    file_button()
+                        .size(FileInputSize::Medium)
+                        .build()
+                )
+                .item(
+                    file_button()
+                        .size(FileInputSize::Large)
+                        .build()
+                )
+        )
+        .item(small("Dropzone style:"))
+        .item(
+            file_dropzone()
+                .size(FileInputSize::Medium)
+                .placeholder("Drag files here or click to browse")
+                .build()
+        )
+        .item(small("Different file types:"))
+        .item(
+            Column::new()
+                .s(Gap::new().y(SPACING_12))
+                .item(
+                    file_input()
+                        .accept(FileType::Images)
+                        .placeholder("Images only")
+                        .build()
+                )
+                .item(
+                    file_input()
+                        .accept(FileType::Documents)
+                        .placeholder("Documents only")
+                        .build()
+                )
+                .item(
+                    file_input()
+                        .accept(FileType::Custom(vec![".zip".to_string(), ".rar".to_string()]))
+                        .placeholder("Archives only")
+                        .build()
+                )
+        )
+        .item(small("Multiple files and states:"))
+        .item(
+            Column::new()
+                .s(Gap::new().y(SPACING_12))
+                .item(
+                    file_input()
+                        .multiple(true)
+                        .placeholder("Select multiple files")
+                        .build()
+                )
+                .item(
+                    file_input()
+                        .disabled(true)
+                        .placeholder("Disabled file input")
+                        .build()
+                )
+                .item(
+                    file_button()
+                        .disabled(true)
+                        .placeholder("Disabled Button")
+                        .build()
+                )
+        )
+        .item(small("Interactive (click to simulate file selection):"))
+        .item(
+            Column::new()
+                .s(Gap::new().y(SPACING_12))
+                .item(
+                    file_input()
+                        .placeholder("Click to select file")
+                        .on_change(|files| {
+                            // In a real app, you'd handle file selection here
+                        })
+                        .build()
+                )
+                .item(
+                    file_dropzone()
+                        .placeholder("Drop files here or click")
+                        .multiple(true)
+                        .on_change(|files| {
+                            // In a real app, you'd handle file drop here
+                        })
+                        .on_error(|error| {
+                            // In a real app, you'd handle errors here
+                        })
+                        .build()
+                )
+        )
+}
+
+fn typography_examples() -> impl Element {
+    Column::new()
+        .s(Gap::new().y(SPACING_16))
+        .item(h4("Typography"))
+        .item(
+            Column::new()
+                .s(Gap::new().y(SPACING_8))
+                .item(h1("Heading 1"))
+                .item(h2("Heading 2"))
+                .item(h3("Heading 3"))
+                .item(paragraph("This is a paragraph with normal text."))
+                .item(lead("This is lead text that stands out."))
+                .item(small("This is small text for less important information."))
+                .item(code("console.log('Hello, World!')"))
+                .item(muted("This is muted text."))
+        )
+}
+
