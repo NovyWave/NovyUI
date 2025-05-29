@@ -34,44 +34,34 @@
     <!-- Right Side Actions -->
     <div v-if="rightIcon || type === 'password' || (type === 'search' && modelValue)" :style="rightActionsStyle">
       <!-- Clear Button for Search -->
-      <button
+      <Button
         v-if="type === 'search' && modelValue && !disabled"
-        :style="clearButtonStyle"
-        type="button"
-        :aria-label="clearAriaLabel"
+        label=""
+        variant="Ghost"
+        :size="props.size"
+        left-icon="x"
+        :left-icon-aria-label="clearAriaLabel"
+        :style="actionButtonStyle"
         @click="onClear"
         @mousedown.prevent
-      >
-        <Icon
-          name="x"
-          :width="actionIconSize"
-          :height="actionIconSize"
-          :color="iconColor"
-          :aria-hidden="true"
-        />
-      </button>
+      />
 
       <!-- Password Toggle -->
-      <button
+      <Button
         v-if="type === 'password' && !disabled"
-        :style="passwordToggleStyle"
-        type="button"
-        :aria-label="passwordToggleAriaLabel"
+        label=""
+        variant="Ghost"
+        :size="props.size"
+        :left-icon="passwordVisible ? 'eye-off' : 'eye'"
+        :left-icon-aria-label="passwordToggleAriaLabel"
+        :style="actionButtonStyle"
         @click="togglePasswordVisibility"
         @mousedown.prevent
-      >
-        <Icon
-          :name="passwordVisible ? 'eye-off' : 'eye'"
-          :width="actionIconSize"
-          :height="actionIconSize"
-          :color="iconColor"
-          :aria-hidden="true"
-        />
-      </button>
+      />
 
       <!-- Right Icon -->
       <Icon
-        v-if="rightIcon"
+        v-if="rightIcon && !(type === 'search' && modelValue)"
         :name="rightIcon"
         :width="iconSize"
         :height="iconSize"
@@ -84,10 +74,11 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, type CSSProperties } from 'vue';
+import { computed, ref, nextTick, type CSSProperties } from 'vue';
 import { color, spacing, cornerRadius, border, typography, transition, useTheme } from '../tokens';
 import type { IconToken } from '../tokens';
 import Icon from './Icon.vue';
+import Button from './Button.vue';
 
 type InputType = 'text' | 'email' | 'password' | 'search' | 'tel' | 'url' | 'number';
 type Size = 'small' | 'medium' | 'large';
@@ -151,11 +142,7 @@ const iconSize = computed(() => {
   return '18px';
 });
 
-const actionIconSize = computed(() => {
-  if (props.size === 'small') return '14px';
-  if (props.size === 'large') return '18px';
-  return '16px';
-});
+
 
 // Icon color based on state
 const iconColor = computed(() => {
@@ -198,25 +185,50 @@ const onClear = () => {
 };
 
 const togglePasswordVisibility = () => {
+  // Store current cursor position and selection
+  const currentStart = inputRef.value?.selectionStart || 0;
+  const currentEnd = inputRef.value?.selectionEnd || 0;
+
+  // Toggle visibility
   passwordVisible.value = !passwordVisible.value;
-  inputRef.value?.focus();
+
+  // Use requestAnimationFrame to wait for the next frame, then setTimeout for browser updates
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      if (inputRef.value) {
+        inputRef.value.focus();
+        // Try to restore cursor position multiple times if needed
+        const restoreCursor = () => {
+          if (inputRef.value) {
+            inputRef.value.setSelectionRange(currentStart, currentEnd);
+            // Verify the position was set correctly
+            if (inputRef.value.selectionStart !== currentStart) {
+              // If it didn't work, try again after a short delay
+              setTimeout(restoreCursor, 5);
+            }
+          }
+        };
+        restoreCursor();
+      }
+    }, 0);
+  });
 };
 
 // Styles
 const inputContainerStyle = computed<CSSProperties>(() => {
   const size = props.size;
-  let paddingY: string = spacing['8px'];
+  let paddingY: string = spacing['6px'];
   let paddingX: string = spacing['12px'];
-  let minHeight: string = '40px';
+  let minHeight: string = '44px'; // Increased to make medium inputs taller and more comfortable
 
   if (size === 'small') {
     paddingY = spacing['4px'];
     paddingX = spacing['8px'];
-    minHeight = '32px';
+    minHeight = '32px'; // Increased from 28px to compensate for 4px border
   } else if (size === 'large') {
-    paddingY = spacing['12px'];
+    paddingY = spacing['8px'];
     paddingX = spacing['16px'];
-    minHeight = '48px';
+    minHeight = '48px'; // Increased from 44px to compensate for 4px border
   }
 
   const isDark = theme.value === 'dark';
@@ -250,11 +262,12 @@ const inputContainerStyle = computed<CSSProperties>(() => {
     minHeight,
     padding: `${paddingY} ${paddingX}`,
     backgroundColor,
-    border: `${border.width['1px']} ${border.style.solid} ${borderColor}`,
+    border: `${border.width['2px']} ${border.style.solid} ${borderColor}`,
     borderRadius: cornerRadius['4px'],
     transition: transition.normal,
     boxShadow,
     gap: spacing['8px'],
+    boxSizing: 'border-box',
   };
 });
 
@@ -303,6 +316,27 @@ const rightActionsStyle = computed<CSSProperties>(() => ({
   flexShrink: '0',
 }));
 
+// Custom button sizing to match input heights - very conservative to prevent jumping
+const actionButtonStyle = computed<CSSProperties>(() => {
+  const size = props.size;
+  let minHeight: string = '24px'; // Much smaller to prevent jumping
+  let padding: string = '1px 2px';
+
+  if (size === 'small') {
+    minHeight = '16px'; // Much smaller to prevent jumping
+    padding = '0px 1px';
+  } else if (size === 'large') {
+    minHeight = '28px'; // Much smaller to prevent jumping
+    padding = '2px 3px';
+  }
+
+  return {
+    minHeight,
+    height: minHeight,
+    padding,
+  };
+});
+
 const rightIconStyle = computed<CSSProperties>(() => ({
   flexShrink: '0',
   display: 'flex',
@@ -310,44 +344,30 @@ const rightIconStyle = computed<CSSProperties>(() => ({
   justifyContent: 'center',
 }));
 
-const clearButtonStyle = computed<CSSProperties>(() => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  width: '20px',
-  height: '20px',
-  border: 'none',
-  backgroundColor: 'transparent',
-  borderRadius: cornerRadius['2px'],
-  cursor: 'pointer',
-  transition: transition.fast,
-  color: iconColor.value,
-  '&:hover': {
-    backgroundColor: color.neutral['3'].value,
-  },
-}));
 
-const passwordToggleStyle = computed<CSSProperties>(() => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  width: '20px',
-  height: '20px',
-  border: 'none',
-  backgroundColor: 'transparent',
-  borderRadius: cornerRadius['2px'],
-  cursor: 'pointer',
-  transition: transition.fast,
-  color: iconColor.value,
-  '&:hover': {
-    backgroundColor: color.neutral['3'].value,
-  },
-}));
+
+
 </script>
 
 <style scoped>
 .input-with-primary-placeholder::placeholder {
   color: v-bind('color.primary["9"].value');
   opacity: 1;
+}
+
+/* Hide browser's native search input clear button */
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* For Firefox */
+input[type="search"] {
+  -moz-appearance: textfield;
 }
 </style>

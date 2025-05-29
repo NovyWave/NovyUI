@@ -375,7 +375,7 @@ export const icons = [
   'house', 'file', 'folder', 'image', 'cloud-upload', 'cloud-download', 'send', 'message-circle', 'phone', 'mail',
   'zoom-in', 'zoom-out', 'user', 'users', 'settings-2', 'log-in', 'log-out', 'shield', 'shield-off', 'circle-help',
   'octagon-alert', 'bookmark', 'tag', 'bell', 'bell-off', 'calendar-check', 'calendar-x', 'calendar-plus', 'calendar-minus',
-  'chevrons-up', 'chevrons-down', 'chevrons-left', 'chevrons-right',
+  'chevrons-up', 'chevrons-down', 'chevrons-left', 'chevrons-right', 'hash', 'asterisk',
 ] as const;
 
 // --- Icon Utilities ---

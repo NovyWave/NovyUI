@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import Input from './Input.vue';
 import { icons, color, useTheme } from '../tokens.ts';
 
@@ -117,111 +117,218 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {
-    placeholder: 'Enter your name...',
-  },
+  render: (args: Record<string, unknown>) => ({
+    components: { Input },
+    setup() {
+      const value = ref('');
+      return { args, value };
+    },
+    template: `<Input v-bind="args" v-model="value" placeholder="Enter your name..." />`,
+  }),
+  args: {},
 };
 
 export const WithLeftIcon: Story = {
-  args: {
-    leftIcon: 'user',
-    placeholder: 'Enter username...',
-  },
+  render: (args: Record<string, unknown>) => ({
+    components: { Input },
+    setup() {
+      const value = ref('');
+      return { args, value };
+    },
+    template: `<Input v-bind="args" v-model="value" leftIcon="user" placeholder="Enter username..." />`,
+  }),
+  args: {},
 };
 
 export const WithRightIcon: Story = {
-  args: {
-    rightIcon: 'mail',
-    placeholder: 'Enter email...',
-  },
+  render: (args: Record<string, unknown>) => ({
+    components: { Input },
+    setup() {
+      const value = ref('');
+      return { args, value };
+    },
+    template: `<Input v-bind="args" v-model="value" rightIcon="mail" placeholder="Enter email..." />`,
+  }),
+  args: {},
 };
 
 export const Email: Story = {
-  args: {
-    type: 'email',
-    leftIcon: 'mail',
-    placeholder: 'Enter email address...',
-  },
+  render: (args: Record<string, unknown>) => ({
+    components: { Input },
+    setup() {
+      const value = ref('');
+      return { args, value };
+    },
+    template: `<Input v-bind="args" v-model="value" type="email" leftIcon="mail" placeholder="Enter email address..." />`,
+  }),
+  args: {},
 };
 
 export const Password: Story = {
-  args: {
-    type: 'password',
-    leftIcon: 'lock',
-    placeholder: 'Enter password...',
-  },
+  render: (args: Record<string, unknown>) => ({
+    components: { Input },
+    setup() {
+      const value = ref('');
+      return { args, value };
+    },
+    template: `<Input v-bind="args" v-model="value" type="password" leftIcon="lock" placeholder="Enter password..." />`,
+  }),
+  args: {},
 };
 
 export const Search: Story = {
-  args: {
-    type: 'search',
-    leftIcon: 'search',
-    placeholder: 'Search...',
-    modelValue: 'example search',
-  },
+  render: (args: Record<string, unknown>) => ({
+    components: { Input },
+    setup() {
+      const theme = useTheme();
+      const smallSearch = ref('small search');
+      const mediumSearch = ref('medium search');
+      const largeSearch = ref('large search');
+      const labelStyle = computed(() => ({
+        display: 'block',
+        marginBottom: '8px',
+        fontWeight: '600',
+        color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
+      }));
+      return { args, labelStyle, smallSearch, mediumSearch, largeSearch };
+    },
+    template: `
+      <div style="display: flex; flex-direction: column; gap: 24px; max-width: 400px;">
+        <div>
+          <label :style="labelStyle">Small Search</label>
+          <Input
+            v-bind="args"
+            v-model="smallSearch"
+            type="search"
+            size="small"
+            leftIcon="search"
+            placeholder="Small search..."
+          />
+        </div>
+
+        <div>
+          <label :style="labelStyle">Medium Search</label>
+          <Input
+            v-bind="args"
+            v-model="mediumSearch"
+            type="search"
+            size="medium"
+            leftIcon="search"
+            placeholder="Medium search..."
+          />
+        </div>
+
+        <div>
+          <label :style="labelStyle">Large Search</label>
+          <Input
+            v-bind="args"
+            v-model="largeSearch"
+            type="search"
+            size="large"
+            leftIcon="search"
+            placeholder="Large search..."
+          />
+        </div>
+      </div>
+    `,
+  }),
+  args: {},
 };
 
 export const Number: Story = {
-  args: {
-    type: 'number',
-    leftIcon: 'hash',
-    placeholder: 'Enter amount...',
-  },
+  render: (args: Record<string, unknown>) => ({
+    components: { Input },
+    setup() {
+      const value = ref('');
+      return { args, value };
+    },
+    template: `<Input v-bind="args" v-model="value" type="number" leftIcon="hash" placeholder="Enter amount..." />`,
+  }),
+  args: {},
 };
 
 export const Small: Story = {
-  args: {
-    size: 'small',
-    placeholder: 'Small input...',
-  },
+  render: (args: Record<string, unknown>) => ({
+    components: { Input },
+    setup() {
+      const value = ref('');
+      return { args, value };
+    },
+    template: `<Input v-bind="args" v-model="value" size="small" placeholder="Small input..." />`,
+  }),
+  args: {},
 };
 
 export const Large: Story = {
-  args: {
-    size: 'large',
-    placeholder: 'Large input...',
-  },
+  render: (args: Record<string, unknown>) => ({
+    components: { Input },
+    setup() {
+      const value = ref('');
+      return { args, value };
+    },
+    template: `<Input v-bind="args" v-model="value" size="large" placeholder="Large input..." />`,
+  }),
+  args: {},
 };
 
 export const Disabled: Story = {
-  args: {
-    disabled: true,
-    placeholder: 'Disabled input...',
-    leftIcon: 'user',
-  },
+  render: (args: Record<string, unknown>) => ({
+    components: { Input },
+    setup() {
+      const value = ref('');
+      return { args, value };
+    },
+    template: `<Input v-bind="args" v-model="value" disabled leftIcon="user" placeholder="Disabled input..." />`,
+  }),
+  args: {},
 };
 
 export const Readonly: Story = {
-  args: {
-    readonly: true,
-    modelValue: 'Read-only value',
-    leftIcon: 'eye',
-  },
+  render: (args: Record<string, unknown>) => ({
+    components: { Input },
+    setup() {
+      const value = ref('Read-only value');
+      return { args, value };
+    },
+    template: `<Input v-bind="args" v-model="value" readonly leftIcon="eye" />`,
+  }),
+  args: {},
 };
 
 export const Error: Story = {
-  args: {
-    error: true,
-    modelValue: 'Invalid input',
-    leftIcon: 'alert-circle',
-  },
+  render: (args: Record<string, unknown>) => ({
+    components: { Input },
+    setup() {
+      const value = ref('Invalid input');
+      return { args, value };
+    },
+    template: `<Input v-bind="args" v-model="value" error leftIcon="circle-alert" />`,
+  }),
+  args: {},
 };
 
 export const Required: Story = {
-  args: {
-    required: true,
-    placeholder: 'Required field...',
-    leftIcon: 'asterisk',
-  },
+  render: (args: Record<string, unknown>) => ({
+    components: { Input },
+    setup() {
+      const value = ref('');
+      return { args, value };
+    },
+    template: `<Input v-bind="args" v-model="value" required leftIcon="asterisk" placeholder="Required field..." />`,
+  }),
+  args: {},
 };
 
 export const WithBothIcons: Story = {
-  args: {
-    leftIcon: 'user',
-    rightIcon: 'check',
-    placeholder: 'Username...',
-    modelValue: 'john_doe',
-  },
+  render: (args: Record<string, unknown>) => ({
+    components: { Input },
+    setup() {
+      const value = ref('john_doe');
+      return { args, value };
+    },
+    template: `<Input v-bind="args" v-model="value" leftIcon="user" rightIcon="check" placeholder="Username..." />`,
+  }),
+  args: {},
 };
 
 export const ComplexExample: Story = {
@@ -229,13 +336,17 @@ export const ComplexExample: Story = {
     components: { Input },
     setup() {
       const theme = useTheme();
+      const username = ref('');
+      const email = ref('');
+      const password = ref('');
+      const search = ref('smartphones');
       const labelStyle = computed(() => ({
         display: 'block',
         marginBottom: '4px',
         fontWeight: '600',
         color: theme.value === 'dark' ? color.neutral['11'].value : color.neutral['9'].value,
       }));
-      return { args, labelStyle };
+      return { args, labelStyle, username, email, password, search };
     },
     template: `
       <div style="display: flex; flex-direction: column; gap: 16px; max-width: 400px;">
@@ -244,6 +355,7 @@ export const ComplexExample: Story = {
           <Input
             id="username"
             v-bind="args"
+            v-model="username"
             type="text"
             leftIcon="user"
             placeholder="Enter username..."
@@ -255,6 +367,7 @@ export const ComplexExample: Story = {
           <label for="email" :style="labelStyle">Email</label>
           <Input
             id="email"
+            v-model="email"
             type="email"
             leftIcon="mail"
             placeholder="Enter email address..."
@@ -266,6 +379,7 @@ export const ComplexExample: Story = {
           <label for="password" :style="labelStyle">Password</label>
           <Input
             id="password"
+            v-model="password"
             type="password"
             leftIcon="lock"
             placeholder="Enter password..."
@@ -277,11 +391,11 @@ export const ComplexExample: Story = {
           <label for="search" :style="labelStyle">Search</label>
           <Input
             id="search"
+            v-model="search"
             type="search"
             leftIcon="search"
             placeholder="Search products..."
             label-id="search-label"
-            modelValue="smartphones"
           />
         </div>
       </div>
