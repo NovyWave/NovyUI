@@ -56,15 +56,15 @@ pub fn primary_7() -> impl Signal<Item = &'static str> {
 
 pub fn primary_8() -> impl Signal<Item = &'static str> {
     theme().map(|t| match t {
-        Theme::Light => "oklch(50% 0.18 250)",
-        Theme::Dark => "oklch(70% 0.18 250)",
+        Theme::Light => "oklch(45% 0.16 250)",
+        Theme::Dark => "oklch(75% 0.16 250)",
     })
 }
 
 pub fn primary_9() -> impl Signal<Item = &'static str> {
     theme().map(|t| match t {
-        Theme::Light => "oklch(45% 0.20 250)",
-        Theme::Dark => "oklch(75% 0.20 250)",
+        Theme::Light => "oklch(35% 0.14 250)",
+        Theme::Dark => "oklch(85% 0.14 250)",
     })
 }
 
@@ -85,8 +85,8 @@ pub fn neutral_2() -> impl Signal<Item = &'static str> {
 
 pub fn neutral_3() -> impl Signal<Item = &'static str> {
     theme().map(|t| match t {
-        Theme::Light => "oklch(94% 0.025 255)",
-        Theme::Dark => "oklch(18% 0.025 255)",
+        Theme::Light => "oklch(92% 0.045 255)",
+        Theme::Dark => "oklch(30% 0.045 255)",
     })
 }
 
@@ -99,8 +99,8 @@ pub fn neutral_4() -> impl Signal<Item = &'static str> {
 
 pub fn neutral_5() -> impl Signal<Item = &'static str> {
     theme().map(|t| match t {
-        Theme::Light => "oklch(85% 0.025 255)",
-        Theme::Dark => "oklch(28% 0.025 255)",
+        Theme::Light => "oklch(80% 0.07 255)",
+        Theme::Dark => "oklch(60% 0.07 255)",
     })
 }
 
@@ -113,8 +113,8 @@ pub fn neutral_6() -> impl Signal<Item = &'static str> {
 
 pub fn neutral_7() -> impl Signal<Item = &'static str> {
     theme().map(|t| match t {
-        Theme::Light => "oklch(65% 0.025 255)",
-        Theme::Dark => "oklch(48% 0.025 255)",
+        Theme::Light => "oklch(60% 0.11 255)",
+        Theme::Dark => "oklch(80% 0.11 255)",
     })
 }
 
@@ -158,15 +158,22 @@ pub fn neutral_12() -> impl Signal<Item = &'static str> {
 // Error Color Scale - Reactive signals
 pub fn error_7() -> impl Signal<Item = &'static str> {
     theme().map(|t| match t {
-        Theme::Light => "oklch(55% 0.16 15)",
-        Theme::Dark => "oklch(65% 0.16 15)",
+        Theme::Light => "oklch(50% 0.21 30)",
+        Theme::Dark => "oklch(70% 0.21 30)",
+    })
+}
+
+pub fn error_8() -> impl Signal<Item = &'static str> {
+    theme().map(|t| match t {
+        Theme::Light => "oklch(40% 0.21 30)",
+        Theme::Dark => "oklch(80% 0.21 30)",
     })
 }
 
 pub fn error_9() -> impl Signal<Item = &'static str> {
     theme().map(|t| match t {
-        Theme::Light => "oklch(45% 0.20 15)",
-        Theme::Dark => "oklch(75% 0.20 15)",
+        Theme::Light => "oklch(30% 0.18 30)",
+        Theme::Dark => "oklch(88% 0.18 30)",
     })
 }
 

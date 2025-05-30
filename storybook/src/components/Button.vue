@@ -121,7 +121,7 @@ const spinnerStyle = computed(() => {
       document.head.appendChild(style);
     }
   }
-  
+
   return {
     animation: 'spin 1s linear infinite'
   };
@@ -185,9 +185,9 @@ const buttonStyle = computed<CSSProperties>(() => {
     borderStyle = border.style.solid;
     borderWidth = border.width['1px'];
     boxShadow = `${shadow.size[1]} ${shadow.color.neutral}`;
-    background = isDark ? color.neutral['3'].value : color.neutral['1'].value;
+    background = isDark ? color.neutral['3'].value : color.neutral['4'].value;
     if (hovered.value && !props.disabled && !props.loading) {
-      background = isDark ? color.neutral['4'].value : color.neutral['4'].value;
+      background = isDark ? color.neutral['4'].value : color.neutral['5'].value;
       borderColorVar = color.primary['6'].value;
       colorVar = color.primary['8'].value;
     }

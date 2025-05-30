@@ -17,7 +17,12 @@ fn root() -> impl Element {
         .s(Height::screen())    // Height::fill() => Height::screen()
         .s(Scrollbars::both())  // This one is important - enables proper scrolling
         .s(Padding::all(SPACING_32))
-        .s(Background::new().color_signal(neutral_1()))
+        .s(Background::new().color_signal(
+            theme().map(|t| match t {
+                Theme::Light => "oklch(99% 0.025 255)",  // neutral_1 light - same as Storybook
+                Theme::Dark => "oklch(18% 0.035 255)",   // neutral_2 dark - better dark background
+            })
+        ))
         .s(Font::new().family([
             FontFamily::new("Inter"),
             FontFamily::new("system-ui"),
@@ -315,35 +320,6 @@ fn button_examples() -> impl Element {
                     button()
                         .variant(ButtonVariant::Ghost)
                         .loading(true)
-                        .on_press(|| {})
-                        .build()
-                )
-        )
-        .item(small("Disabled buttons:"))
-        .item(
-            Row::new()
-                .s(Gap::new().x(SPACING_12))
-                .item(
-                    button()
-                        .label("Disabled")
-                        .variant(ButtonVariant::Primary)
-                        .disabled(true)
-                        .on_press(|| {})
-                        .build()
-                )
-                .item(
-                    button()
-                        .label("Disabled")
-                        .left_icon("check")
-                        .variant(ButtonVariant::Secondary)
-                        .disabled(true)
-                        .on_press(|| {})
-                        .build()
-                )
-                .item(
-                    button()
-                        .variant(ButtonVariant::Ghost)
-                        .disabled(true)
                         .on_press(|| {})
                         .build()
                 )
