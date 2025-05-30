@@ -95,7 +95,6 @@ fn icon_examples() -> impl Element {
             Row::new()
                 .s(Gap::new().x(SPACING_12))
                 .s(Align::new().center_y())
-                .item(icon("heart").color(IconColor::Current).build())
                 .item(icon("heart").color(IconColor::Primary).build())
                 .item(icon("heart").color(IconColor::Secondary).build())
                 .item(icon("heart").color(IconColor::Success).build())
@@ -128,10 +127,10 @@ fn icon_examples() -> impl Element {
             Row::new()
                 .s(Gap::new().x(SPACING_12))
                 .s(Align::new().center_y())
-                .item(icon("custom").color(IconColor::Custom("#ff6b6b")).build())
-                .item(icon("custom").color(IconColor::Custom("#4ecdc4")).build())
-                .item(icon("custom").color(IconColor::Custom("#45b7d1")).build())
-                .item(icon("custom").color(IconColor::Custom("#f9ca24")).build())
+                .item(icon("star").color(IconColor::Custom("#ff8a80")).build())  // Light red
+                .item(icon("star").color(IconColor::Custom("#80cbc4")).build())  // Light teal
+                .item(icon("star").color(IconColor::Custom("#81c784")).build())  // Light green
+                .item(icon("star").color(IconColor::Custom("#ffb74d")).build())  // Light orange
         )
         .item(small("Usage in context:"))
         .item(

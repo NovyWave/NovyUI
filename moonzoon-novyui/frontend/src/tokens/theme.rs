@@ -17,8 +17,8 @@ static THEME: Lazy<Mutable<Theme>> = Lazy::new(|| {
         .unwrap_or_default();
 
     let initial_theme = match stored_theme.as_str() {
-        "dark" => Theme::Dark,
-        _ => Theme::Light,
+        "light" => Theme::Light,
+        _ => Theme::Dark,  // Default to dark theme for easier debugging
     };
 
     Mutable::new(initial_theme)
