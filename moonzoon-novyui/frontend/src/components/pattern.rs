@@ -1,7 +1,7 @@
 // Pattern Component System
 // Provides background pattern integration using HeroPatterns
 
-use crate::assets;
+// Removed unused assets import since we use direct URLs for patterns
 use crate::tokens::*;
 use crate::components::typography::*;
 use zoon::*;

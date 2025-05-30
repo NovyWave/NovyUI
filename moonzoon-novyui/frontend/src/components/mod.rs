@@ -22,7 +22,14 @@ pub mod pattern;
 
 // Re-export components for easy access
 pub use button::*;
-pub use icon::*;
+pub use icon::{
+    IconName, IconSize, IconColor, IconBuilder,
+    icon, icon_str, icon_name_from_str,
+    chevron_down, chevron_up, chevron_left, chevron_right,
+    search, check, x, plus, minus, eye, eye_off,
+    user, star, heart, settings, refresh_cw
+    // Note: arrow_right is excluded to avoid conflict with kbd::arrow_right
+};
 pub use input::*;
 pub use typography::*;
 pub use badge::*;

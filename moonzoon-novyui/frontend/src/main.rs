@@ -85,21 +85,21 @@ fn icon_examples() -> impl Element {
             Row::new()
                 .s(Gap::new().x(SPACING_12))
                 .s(Align::new().center_y())
-                .item(icon("star").size(IconSize::Small).build())
-                .item(icon("star").size(IconSize::Medium).build())
-                .item(icon("star").size(IconSize::Large).build())
-                .item(icon("star").size(IconSize::XLarge).build())
+                .item(star().size(IconSize::Small).build())
+                .item(star().size(IconSize::Medium).build())
+                .item(star().size(IconSize::Large).build())
+                .item(star().size(IconSize::XLarge).build())
         )
         .item(small("Different colors:"))
         .item(
             Row::new()
                 .s(Gap::new().x(SPACING_12))
                 .s(Align::new().center_y())
-                .item(icon("heart").color(IconColor::Primary).build())
-                .item(icon("heart").color(IconColor::Secondary).build())
-                .item(icon("heart").color(IconColor::Success).build())
-                .item(icon("heart").color(IconColor::Error).build())
-                .item(icon("heart").color(IconColor::Muted).build())
+                .item(heart().color(IconColor::Primary).build())
+                .item(heart().color(IconColor::Secondary).build())
+                .item(heart().color(IconColor::Success).build())
+                .item(heart().color(IconColor::Error).build())
+                .item(heart().color(IconColor::Muted).build())
         )
         .item(small("Common icons:"))
         .item(
@@ -107,7 +107,7 @@ fn icon_examples() -> impl Element {
                 .s(Gap::new().x(SPACING_12))
                 .s(Align::new().center_y())
                 .item(search().build())
-                .item(close().build())
+                .item(x().build())
                 .item(check().build())
                 .item(eye().build())
                 .item(eye_off().build())
@@ -127,18 +127,23 @@ fn icon_examples() -> impl Element {
             Row::new()
                 .s(Gap::new().x(SPACING_12))
                 .s(Align::new().center_y())
-                .item(icon("star").color(IconColor::Custom("#ff8a80")).build())  // Light red
-                .item(icon("star").color(IconColor::Custom("#80cbc4")).build())  // Light teal
-                .item(icon("star").color(IconColor::Custom("#81c784")).build())  // Light green
-                .item(icon("star").color(IconColor::Custom("#ffb74d")).build())  // Light orange
+                .item(star().color(IconColor::Custom("#ff8a80")).build())  // Light red
+                .item(star().color(IconColor::Custom("#80cbc4")).build())  // Light teal
+                .item(star().color(IconColor::Custom("#81c784")).build())  // Light green
+                .item(star().color(IconColor::Custom("#ffb74d")).build())  // Light orange
         )
         .item(small("Usage in context:"))
         .item(
-            Row::new()
-                .s(Gap::new().x(SPACING_8))
-                .s(Align::new().center_y())
-                .item(search().size(IconSize::Small).color(IconColor::Muted).build())
-                .item(paragraph("Search for items"))
+            El::new()
+                .s(Align::new().center_x())
+                .child(
+                    button()
+                        .variant(ButtonVariant::Ghost)
+                        .size(ButtonSize::Medium)
+                        .left_icon("search")
+                        .label("Search for items")
+                        .build()
+                )
         )
 }
 

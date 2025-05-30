@@ -311,14 +311,14 @@ impl ButtonBuilder {
         match (has_left_icon, has_label, has_right_icon) {
             // Icon-only buttons
             (true, false, false) => {
-                icon(self.left_icon.unwrap())
+                icon_str(self.left_icon.unwrap())
                     .size(icon_size)
                     .color(IconColor::Current)
                     .build()
                     .unify()
             }
             (false, false, true) => {
-                icon(self.right_icon.unwrap())
+                icon_str(self.right_icon.unwrap())
                     .size(icon_size)
                     .color(IconColor::Current)
                     .build()
@@ -330,13 +330,13 @@ impl ButtonBuilder {
                     .s(Align::new().center_y())
                     .s(Gap::new().x(SPACING_8))
                     .item(
-                        icon(self.left_icon.unwrap())
+                        icon_str(self.left_icon.unwrap())
                             .size(icon_size)
                             .color(IconColor::Current)
                             .build()
                     )
                     .item(
-                        icon(self.right_icon.unwrap())
+                        icon_str(self.right_icon.unwrap())
                             .size(icon_size)
                             .color(IconColor::Current)
                             .build()
@@ -349,7 +349,7 @@ impl ButtonBuilder {
                     .s(Align::new().center_y())
                     .s(Gap::new().x(SPACING_8))
                     .item(
-                        icon(self.left_icon.unwrap())
+                        icon_str(self.left_icon.unwrap())
                             .size(icon_size)
                             .color(IconColor::Current)
                             .build()
@@ -364,7 +364,7 @@ impl ButtonBuilder {
                     .s(Gap::new().x(SPACING_8))
                     .item(Text::new(self.label.as_ref().unwrap()))
                     .item(
-                        icon(self.right_icon.unwrap())
+                        icon_str(self.right_icon.unwrap())
                             .size(icon_size)
                             .color(IconColor::Current)
                             .build()
@@ -377,14 +377,14 @@ impl ButtonBuilder {
                     .s(Align::new().center_y())
                     .s(Gap::new().x(SPACING_8))
                     .item(
-                        icon(self.left_icon.unwrap())
+                        icon_str(self.left_icon.unwrap())
                             .size(icon_size)
                             .color(IconColor::Current)
                             .build()
                     )
                     .item(Text::new(self.label.as_ref().unwrap()))
                     .item(
-                        icon(self.right_icon.unwrap())
+                        icon_str(self.right_icon.unwrap())
                             .size(icon_size)
                             .color(IconColor::Current)
                             .build()
@@ -424,7 +424,7 @@ impl ButtonBuilder {
                     .map(|factor| Transform::new().rotate(factor * 360.))
             ))
             .child(
-                icon("refresh-cw")
+                refresh_cw()
                     .size(icon_size)
                     .color(IconColor::Current)
                     .build()

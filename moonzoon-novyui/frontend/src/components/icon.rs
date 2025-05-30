@@ -2,8 +2,175 @@
 // Proper SVG implementation matching Vue Storybook version
 
 use crate::tokens::*;
-use crate::assets;
 use zoon::*;
+use futures_signals::signal::{Signal, SignalExt};
+// Removed unused HashMap import since we use include_str! for inline SVG
+
+// Typed icon names matching Vue Storybook exactly
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum IconName {
+    ArrowLeft,
+    UserRound,
+    Search,
+    Check,
+    X,
+    Plus,
+    Minus,
+    Eye,
+    EyeOff,
+    Pencil,
+    Trash,
+    Info,
+    TriangleAlert,
+    CircleAlert,
+    CircleCheck,
+    ChevronDown,
+    ChevronUp,
+    ChevronLeft,
+    ChevronRight,
+    Menu,
+    EllipsisVertical,
+    Ellipsis,
+    Calendar,
+    Clock,
+    Upload,
+    Download,
+    Funnel,
+    Settings,
+    Star,
+    Heart,
+    Lock,
+    LockOpen,
+    RefreshCcw,
+    RefreshCw,
+    ExternalLink,
+    Copy,
+    ArrowRight,
+    ArrowUp,
+    ArrowDown,
+    House,
+    File,
+    Folder,
+    Image,
+    CloudUpload,
+    CloudDownload,
+    Send,
+    MessageCircle,
+    Phone,
+    Mail,
+    ZoomIn,
+    ZoomOut,
+    User,
+    Users,
+    Settings2,
+    LogIn,
+    LogOut,
+    Shield,
+    ShieldOff,
+    CircleHelp,
+    OctagonAlert,
+    Bookmark,
+    Tag,
+    Bell,
+    BellOff,
+    CalendarCheck,
+    CalendarX,
+    CalendarPlus,
+    CalendarMinus,
+    ChevronsUp,
+    ChevronsDown,
+    ChevronsLeft,
+    ChevronsRight,
+    Hash,
+    Asterisk,
+}
+
+impl IconName {
+    pub fn to_kebab_case(self) -> &'static str {
+        match self {
+            IconName::ArrowLeft => "arrow-left",
+            IconName::UserRound => "user-round",
+            IconName::Search => "search",
+            IconName::Check => "check",
+            IconName::X => "x",
+            IconName::Plus => "plus",
+            IconName::Minus => "minus",
+            IconName::Eye => "eye",
+            IconName::EyeOff => "eye-off",
+            IconName::Pencil => "pencil",
+            IconName::Trash => "trash",
+            IconName::Info => "info",
+            IconName::TriangleAlert => "triangle-alert",
+            IconName::CircleAlert => "circle-alert",
+            IconName::CircleCheck => "circle-check",
+            IconName::ChevronDown => "chevron-down",
+            IconName::ChevronUp => "chevron-up",
+            IconName::ChevronLeft => "chevron-left",
+            IconName::ChevronRight => "chevron-right",
+            IconName::Menu => "menu",
+            IconName::EllipsisVertical => "ellipsis-vertical",
+            IconName::Ellipsis => "ellipsis",
+            IconName::Calendar => "calendar",
+            IconName::Clock => "clock",
+            IconName::Upload => "upload",
+            IconName::Download => "download",
+            IconName::Funnel => "funnel",
+            IconName::Settings => "settings",
+            IconName::Star => "star",
+            IconName::Heart => "heart",
+            IconName::Lock => "lock",
+            IconName::LockOpen => "lock-open",
+            IconName::RefreshCcw => "refresh-ccw",
+            IconName::RefreshCw => "refresh-cw",
+            IconName::ExternalLink => "external-link",
+            IconName::Copy => "copy",
+            IconName::ArrowRight => "arrow-right",
+            IconName::ArrowUp => "arrow-up",
+            IconName::ArrowDown => "arrow-down",
+            IconName::House => "house",
+            IconName::File => "file",
+            IconName::Folder => "folder",
+            IconName::Image => "image",
+            IconName::CloudUpload => "cloud-upload",
+            IconName::CloudDownload => "cloud-download",
+            IconName::Send => "send",
+            IconName::MessageCircle => "message-circle",
+            IconName::Phone => "phone",
+            IconName::Mail => "mail",
+            IconName::ZoomIn => "zoom-in",
+            IconName::ZoomOut => "zoom-out",
+            IconName::User => "user",
+            IconName::Users => "users",
+            IconName::Settings2 => "settings-2",
+            IconName::LogIn => "log-in",
+            IconName::LogOut => "log-out",
+            IconName::Shield => "shield",
+            IconName::ShieldOff => "shield-off",
+            IconName::CircleHelp => "circle-help",
+            IconName::OctagonAlert => "octagon-alert",
+            IconName::Bookmark => "bookmark",
+            IconName::Tag => "tag",
+            IconName::Bell => "bell",
+            IconName::BellOff => "bell-off",
+            IconName::CalendarCheck => "calendar-check",
+            IconName::CalendarX => "calendar-x",
+            IconName::CalendarPlus => "calendar-plus",
+            IconName::CalendarMinus => "calendar-minus",
+            IconName::ChevronsUp => "chevrons-up",
+            IconName::ChevronsDown => "chevrons-down",
+            IconName::ChevronsLeft => "chevrons-left",
+            IconName::ChevronsRight => "chevrons-right",
+            IconName::Hash => "hash",
+            IconName::Asterisk => "asterisk",
+        }
+    }
+
+    pub fn get_url(self) -> String {
+        format!("/icons/{}.svg", self.to_kebab_case())
+    }
+}
+
+
 
 // Icon size variants matching design system
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -39,14 +206,14 @@ pub enum IconColor {
 
 // Icon builder for fluent API
 pub struct IconBuilder {
-    name: &'static str,
+    name: IconName,
     size: IconSize,
     color: IconColor,
     aria_label: Option<String>,
 }
 
 impl IconBuilder {
-    pub fn new(name: &'static str) -> Self {
+    pub fn new(name: IconName) -> Self {
         Self {
             name,
             size: IconSize::Medium,
@@ -90,7 +257,7 @@ impl IconBuilder {
             (IconColor::Custom(color), _) => color,
         });
 
-        // Create SVG icon element using proper inline SVG approach
+        // Create SVG icon element using proper SVG loading
         let svg_element = create_svg_icon(self.name, color_signal, size_px);
 
         // Wrap in container with proper accessibility and sizing
@@ -102,90 +269,288 @@ impl IconBuilder {
     }
 }
 
-// SVG icon creation function - matches Vue Storybook approach
-fn create_svg_icon(name: &'static str, color_signal: impl Signal<Item = &'static str> + Unpin + 'static, size_px: u32) -> impl Element {
-    // For now, we'll use a simple approach with fallback icons
-    // This provides immediate functionality while we can enhance with proper SVG loading later
-
-    // Create a fallback element with Unicode icons
-    // IMPORTANT: Unicode characters need font-size to scale properly, not just container size
+// SVG icon creation function with proper inline SVG using include_str! macro
+fn create_svg_icon(name: IconName, color_signal: impl Signal<Item = &'static str> + Unpin + 'static, size_px: u32) -> impl Element {
+    // For stroke-based SVG icons, we need to use inline SVG with currentColor
     El::new()
-        .s(Width::fill())
-        .s(Height::fill())
+        .s(Width::exact(size_px))
+        .s(Height::exact(size_px))
         .s(Align::center())
-        .s(Font::new()
-            .color_signal(color_signal)
-            .size(size_px)  // Set font-size to match container size for proper scaling
+        .child_signal(
+            color_signal.map(move |color| {
+                // Get inline SVG content with proper stroke color
+                let svg_content = get_svg_content(name, size_px);
+
+                RawHtmlEl::new("div")
+                    .style("color", color)
+                    .inner_markup(&svg_content)
+                    .into_element()
+            })
         )
-        .child(Text::new(get_fallback_icon(name)))
+}
+
+// Get inline SVG content using include_str! macro for all 87 icons
+fn get_svg_content(name: IconName, size_px: u32) -> String {
+    let svg_template = match name {
+        IconName::ArrowLeft => include_str!("../../../public/icons/arrow-left.svg"),
+        IconName::UserRound => include_str!("../../../public/icons/user-round.svg"),
+        IconName::Search => include_str!("../../../public/icons/search.svg"),
+        IconName::Check => include_str!("../../../public/icons/check.svg"),
+        IconName::X => include_str!("../../../public/icons/x.svg"),
+        IconName::Plus => include_str!("../../../public/icons/plus.svg"),
+        IconName::Minus => include_str!("../../../public/icons/minus.svg"),
+        IconName::Eye => include_str!("../../../public/icons/eye.svg"),
+        IconName::EyeOff => include_str!("../../../public/icons/eye-off.svg"),
+        IconName::Pencil => include_str!("../../../public/icons/pencil.svg"),
+        IconName::Trash => include_str!("../../../public/icons/trash.svg"),
+        IconName::Info => include_str!("../../../public/icons/info.svg"),
+        IconName::TriangleAlert => include_str!("../../../public/icons/triangle-alert.svg"),
+        IconName::CircleAlert => include_str!("../../../public/icons/circle-alert.svg"),
+        IconName::CircleCheck => include_str!("../../../public/icons/circle-check.svg"),
+        IconName::ChevronDown => include_str!("../../../public/icons/chevron-down.svg"),
+        IconName::ChevronUp => include_str!("../../../public/icons/chevron-up.svg"),
+        IconName::ChevronLeft => include_str!("../../../public/icons/chevron-left.svg"),
+        IconName::ChevronRight => include_str!("../../../public/icons/chevron-right.svg"),
+        IconName::Menu => include_str!("../../../public/icons/menu.svg"),
+        IconName::EllipsisVertical => include_str!("../../../public/icons/ellipsis-vertical.svg"),
+        IconName::Ellipsis => include_str!("../../../public/icons/ellipsis.svg"),
+        IconName::Calendar => include_str!("../../../public/icons/calendar.svg"),
+        IconName::Clock => include_str!("../../../public/icons/clock.svg"),
+        IconName::Upload => include_str!("../../../public/icons/upload.svg"),
+        IconName::Download => include_str!("../../../public/icons/download.svg"),
+        IconName::Funnel => include_str!("../../../public/icons/funnel.svg"),
+        IconName::Settings => include_str!("../../../public/icons/settings.svg"),
+        IconName::Star => include_str!("../../../public/icons/star.svg"),
+        IconName::Heart => include_str!("../../../public/icons/heart.svg"),
+        IconName::Lock => include_str!("../../../public/icons/lock.svg"),
+        IconName::LockOpen => include_str!("../../../public/icons/lock-open.svg"),
+        IconName::RefreshCcw => include_str!("../../../public/icons/refresh-ccw.svg"),
+        IconName::RefreshCw => include_str!("../../../public/icons/refresh-cw.svg"),
+        IconName::ExternalLink => include_str!("../../../public/icons/external-link.svg"),
+        IconName::Copy => include_str!("../../../public/icons/copy.svg"),
+        IconName::ArrowRight => include_str!("../../../public/icons/arrow-right.svg"),
+        IconName::ArrowUp => include_str!("../../../public/icons/arrow-up.svg"),
+        IconName::ArrowDown => include_str!("../../../public/icons/arrow-down.svg"),
+        IconName::House => include_str!("../../../public/icons/house.svg"),
+        IconName::File => include_str!("../../../public/icons/file.svg"),
+        IconName::Folder => include_str!("../../../public/icons/folder.svg"),
+        IconName::Image => include_str!("../../../public/icons/image.svg"),
+        IconName::CloudUpload => include_str!("../../../public/icons/cloud-upload.svg"),
+        IconName::CloudDownload => include_str!("../../../public/icons/cloud-download.svg"),
+        IconName::Send => include_str!("../../../public/icons/send.svg"),
+        IconName::MessageCircle => include_str!("../../../public/icons/message-circle.svg"),
+        IconName::Phone => include_str!("../../../public/icons/phone.svg"),
+        IconName::Mail => include_str!("../../../public/icons/mail.svg"),
+        IconName::ZoomIn => include_str!("../../../public/icons/zoom-in.svg"),
+        IconName::ZoomOut => include_str!("../../../public/icons/zoom-out.svg"),
+        IconName::User => include_str!("../../../public/icons/user.svg"),
+        IconName::Users => include_str!("../../../public/icons/users.svg"),
+        IconName::Settings2 => include_str!("../../../public/icons/settings-2.svg"),
+        IconName::LogIn => include_str!("../../../public/icons/log-in.svg"),
+        IconName::LogOut => include_str!("../../../public/icons/log-out.svg"),
+        IconName::Shield => include_str!("../../../public/icons/shield.svg"),
+        IconName::ShieldOff => include_str!("../../../public/icons/shield-off.svg"),
+        IconName::CircleHelp => include_str!("../../../public/icons/circle-help.svg"),
+        IconName::OctagonAlert => include_str!("../../../public/icons/octagon-alert.svg"),
+        IconName::Bookmark => include_str!("../../../public/icons/bookmark.svg"),
+        IconName::Tag => include_str!("../../../public/icons/tag.svg"),
+        IconName::Bell => include_str!("../../../public/icons/bell.svg"),
+        IconName::BellOff => include_str!("../../../public/icons/bell-off.svg"),
+        IconName::CalendarCheck => include_str!("../../../public/icons/calendar-check.svg"),
+        IconName::CalendarX => include_str!("../../../public/icons/calendar-x.svg"),
+        IconName::CalendarPlus => include_str!("../../../public/icons/calendar-plus.svg"),
+        IconName::CalendarMinus => include_str!("../../../public/icons/calendar-minus.svg"),
+        IconName::ChevronsUp => include_str!("../../../public/icons/chevrons-up.svg"),
+        IconName::ChevronsDown => include_str!("../../../public/icons/chevrons-down.svg"),
+        IconName::ChevronsLeft => include_str!("../../../public/icons/chevrons-left.svg"),
+        IconName::ChevronsRight => include_str!("../../../public/icons/chevrons-right.svg"),
+        IconName::Hash => include_str!("../../../public/icons/hash.svg"),
+        IconName::Asterisk => include_str!("../../../public/icons/asterisk.svg"),
+    };
+
+    // Process the SVG to set proper size and ensure currentColor works
+    process_svg_for_size_and_color(svg_template, size_px)
+}
+
+// Process SVG content to set proper size while preserving currentColor
+fn process_svg_for_size_and_color(svg_content: &str, size_px: u32) -> String {
+    let mut processed = svg_content.to_string();
+
+    // Replace width and height attributes with the desired size
+    // Lucide icons typically have width="24" height="24"
+    processed = processed.replace("width=\"24\"", &format!("width=\"{}\"", size_px));
+    processed = processed.replace("height=\"24\"", &format!("height=\"{}\"", size_px));
+
+    // Ensure stroke="currentColor" is preserved (it should already be in the SVG files)
+    // This allows the icons to inherit the color from the parent element
+
+    processed
 }
 
 
 
-// Get fallback icon character for unknown icons
-fn get_fallback_icon(name: &'static str) -> &'static str {
+
+
+
+
+
+
+// String to IconName conversion for backward compatibility
+pub fn icon_name_from_str(name: &str) -> IconName {
     match name {
-        "chevron-down" => "⌄",
-        "chevron-up" => "⌃",
-        "chevron-left" => "‹",
-        "chevron-right" => "›",
-        "check" => "✓",
-        "x" => "✕",
-        "star" => "★",
-        "heart" => "♥",
-        "user" => "👤",
-        "search" => "🔍",
-        "eye" => "👁",
-        "eye-off" => "🙈",
-        "settings" => "⚙",
-        "info" => "ℹ",
-        "plus" => "+",
-        "minus" => "−",
-        "refresh-cw" => "↻",  // Spinning arrow for loading states
-        "refresh" => "↻",     // Alternative name for refresh icon
-        "loader" => "↻",      // Alternative name for loader icon
-        _ => "?",
+        "arrow-left" => IconName::ArrowLeft,
+        "user-round" => IconName::UserRound,
+        "search" => IconName::Search,
+        "check" => IconName::Check,
+        "x" => IconName::X,
+        "plus" => IconName::Plus,
+        "minus" => IconName::Minus,
+        "eye" => IconName::Eye,
+        "eye-off" => IconName::EyeOff,
+        "pencil" => IconName::Pencil,
+        "trash" => IconName::Trash,
+        "info" => IconName::Info,
+        "triangle-alert" => IconName::TriangleAlert,
+        "circle-alert" => IconName::CircleAlert,
+        "circle-check" => IconName::CircleCheck,
+        "chevron-down" => IconName::ChevronDown,
+        "chevron-up" => IconName::ChevronUp,
+        "chevron-left" => IconName::ChevronLeft,
+        "chevron-right" => IconName::ChevronRight,
+        "menu" => IconName::Menu,
+        "ellipsis-vertical" => IconName::EllipsisVertical,
+        "ellipsis" => IconName::Ellipsis,
+        "calendar" => IconName::Calendar,
+        "clock" => IconName::Clock,
+        "upload" => IconName::Upload,
+        "download" => IconName::Download,
+        "funnel" => IconName::Funnel,
+        "settings" => IconName::Settings,
+        "star" => IconName::Star,
+        "heart" => IconName::Heart,
+        "lock" => IconName::Lock,
+        "lock-open" => IconName::LockOpen,
+        "refresh-ccw" => IconName::RefreshCcw,
+        "refresh-cw" => IconName::RefreshCw,
+        "external-link" => IconName::ExternalLink,
+        "copy" => IconName::Copy,
+        "arrow-right" => IconName::ArrowRight,
+        "arrow-up" => IconName::ArrowUp,
+        "arrow-down" => IconName::ArrowDown,
+        "house" => IconName::House,
+        "file" => IconName::File,
+        "folder" => IconName::Folder,
+        "image" => IconName::Image,
+        "cloud-upload" => IconName::CloudUpload,
+        "cloud-download" => IconName::CloudDownload,
+        "send" => IconName::Send,
+        "message-circle" => IconName::MessageCircle,
+        "phone" => IconName::Phone,
+        "mail" => IconName::Mail,
+        "zoom-in" => IconName::ZoomIn,
+        "zoom-out" => IconName::ZoomOut,
+        "user" => IconName::User,
+        "users" => IconName::Users,
+        "settings-2" => IconName::Settings2,
+        "log-in" => IconName::LogIn,
+        "log-out" => IconName::LogOut,
+        "shield" => IconName::Shield,
+        "shield-off" => IconName::ShieldOff,
+        "circle-help" => IconName::CircleHelp,
+        "octagon-alert" => IconName::OctagonAlert,
+        "bookmark" => IconName::Bookmark,
+        "tag" => IconName::Tag,
+        "bell" => IconName::Bell,
+        "bell-off" => IconName::BellOff,
+        "calendar-check" => IconName::CalendarCheck,
+        "calendar-x" => IconName::CalendarX,
+        "calendar-plus" => IconName::CalendarPlus,
+        "calendar-minus" => IconName::CalendarMinus,
+        "chevrons-up" => IconName::ChevronsUp,
+        "chevrons-down" => IconName::ChevronsDown,
+        "chevrons-left" => IconName::ChevronsLeft,
+        "chevrons-right" => IconName::ChevronsRight,
+        "hash" => IconName::Hash,
+        "asterisk" => IconName::Asterisk,
+        _ => IconName::CircleHelp, // Default fallback
     }
 }
 
 // Convenience functions
-pub fn icon(name: &'static str) -> IconBuilder {
+pub fn icon(name: IconName) -> IconBuilder {
     IconBuilder::new(name)
 }
 
-// Common icon shortcuts
+// String-based icon function for backward compatibility
+pub fn icon_str(name: &str) -> IconBuilder {
+    IconBuilder::new(icon_name_from_str(name))
+}
+
+// Common icon shortcuts matching Vue Storybook exactly
 pub fn chevron_down() -> IconBuilder {
-    IconBuilder::new("chevron-down")
+    IconBuilder::new(IconName::ChevronDown)
 }
 
 pub fn chevron_up() -> IconBuilder {
-    IconBuilder::new("chevron-up")
+    IconBuilder::new(IconName::ChevronUp)
 }
 
 pub fn chevron_left() -> IconBuilder {
-    IconBuilder::new("chevron-left")
+    IconBuilder::new(IconName::ChevronLeft)
 }
 
 pub fn chevron_right() -> IconBuilder {
-    IconBuilder::new("chevron-right")
+    IconBuilder::new(IconName::ChevronRight)
 }
 
 pub fn search() -> IconBuilder {
-    IconBuilder::new("search")
-}
-
-pub fn close() -> IconBuilder {
-    IconBuilder::new("close")
+    IconBuilder::new(IconName::Search)
 }
 
 pub fn check() -> IconBuilder {
-    IconBuilder::new("check")
+    IconBuilder::new(IconName::Check)
+}
+
+pub fn x() -> IconBuilder {
+    IconBuilder::new(IconName::X)
+}
+
+pub fn plus() -> IconBuilder {
+    IconBuilder::new(IconName::Plus)
+}
+
+pub fn minus() -> IconBuilder {
+    IconBuilder::new(IconName::Minus)
 }
 
 pub fn eye() -> IconBuilder {
-    IconBuilder::new("eye")
+    IconBuilder::new(IconName::Eye)
 }
 
 pub fn eye_off() -> IconBuilder {
-    IconBuilder::new("eye-off")
+    IconBuilder::new(IconName::EyeOff)
+}
+
+pub fn user() -> IconBuilder {
+    IconBuilder::new(IconName::User)
+}
+
+pub fn star() -> IconBuilder {
+    IconBuilder::new(IconName::Star)
+}
+
+pub fn heart() -> IconBuilder {
+    IconBuilder::new(IconName::Heart)
+}
+
+pub fn settings() -> IconBuilder {
+    IconBuilder::new(IconName::Settings)
+}
+
+pub fn refresh_cw() -> IconBuilder {
+    IconBuilder::new(IconName::RefreshCw)
+}
+
+pub fn arrow_right() -> IconBuilder {
+    IconBuilder::new(IconName::ArrowRight)
 }
