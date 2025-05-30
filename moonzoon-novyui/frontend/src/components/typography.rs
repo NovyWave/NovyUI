@@ -59,7 +59,7 @@ pub fn paragraph(text: impl Into<String>) -> impl Element {
 pub fn small(text: impl Into<String>) -> impl Element {
     El::new()
         .s(Font::new().size(FONT_SIZE_14))
-        .s(Font::new().color_signal(neutral_6()))
+        .s(Font::new().color_signal(neutral_9()))
         .child(Text::new(text.into()))
 }
 
@@ -86,6 +86,6 @@ pub fn lead(text: impl Into<String>) -> impl Element {
 pub fn muted(text: impl Into<String>) -> impl Element {
     El::new()
         .s(Font::new().size(FONT_SIZE_14))
-        .s(Font::new().color_signal(neutral_6()))
+        .s(Font::new().color_signal(neutral_8()))
         .child(Text::new(text.into()))
 }

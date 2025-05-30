@@ -32,8 +32,8 @@ fn root() -> impl Element {
 fn header() -> impl Element {
     Column::new()
         .s(Gap::new().y(SPACING_16))
-        .item(h1("NovyUI MoonZoon Migration"))
-        .item(paragraph("Phase 1: Foundation components with research-validated patterns"))
+        .item(h1("NovyUI for MoonZoon"))
+        .item(paragraph("Type-safe design system components for MoonZoon"))
 }
 
 fn theme_toggle() -> impl Element {
