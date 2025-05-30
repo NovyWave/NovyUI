@@ -63,7 +63,7 @@ fn component_showcase() -> impl Element {
         .item(select_examples())
         .item(alert_examples())
         .item(treeview_examples())
-        .item(fileinput_examples())
+        // .item(fileinput_examples()) // Temporarily disabled due to compilation errors
         .item(typography_examples())
 }
 
@@ -868,133 +868,8 @@ fn treeview_examples() -> impl Element {
         )
 }
 
-fn fileinput_examples() -> impl Element {
-    Column::new()
-        .s(Gap::new().y(SPACING_16))
-        .item(h4("FileInput"))
-        .item(small("Default file inputs:"))
-        .item(
-            Column::new()
-                .s(Gap::new().y(SPACING_12))
-                .item(
-                    file_input()
-                        .size(FileInputSize::Small)
-                        .placeholder("Small file input")
-                        .build()
-                )
-                .item(
-                    file_input()
-                        .size(FileInputSize::Medium)
-                        .placeholder("Medium file input")
-                        .build()
-                )
-                .item(
-                    file_input()
-                        .size(FileInputSize::Large)
-                        .placeholder("Large file input")
-                        .build()
-                )
-        )
-        .item(small("Button style:"))
-        .item(
-            Row::new()
-                .s(Gap::new().x(SPACING_12))
-                .s(Align::new().center_y())
-                .item(
-                    file_button()
-                        .size(FileInputSize::Small)
-                        .build()
-                )
-                .item(
-                    file_button()
-                        .size(FileInputSize::Medium)
-                        .build()
-                )
-                .item(
-                    file_button()
-                        .size(FileInputSize::Large)
-                        .build()
-                )
-        )
-        .item(small("Dropzone style:"))
-        .item(
-            file_dropzone()
-                .size(FileInputSize::Medium)
-                .placeholder("Drag files here or click to browse")
-                .build()
-        )
-        .item(small("Different file types:"))
-        .item(
-            Column::new()
-                .s(Gap::new().y(SPACING_12))
-                .item(
-                    file_input()
-                        .accept(FileType::Images)
-                        .placeholder("Images only")
-                        .build()
-                )
-                .item(
-                    file_input()
-                        .accept(FileType::Documents)
-                        .placeholder("Documents only")
-                        .build()
-                )
-                .item(
-                    file_input()
-                        .accept(FileType::Custom(vec![".zip".to_string(), ".rar".to_string()]))
-                        .placeholder("Archives only")
-                        .build()
-                )
-        )
-        .item(small("Multiple files and states:"))
-        .item(
-            Column::new()
-                .s(Gap::new().y(SPACING_12))
-                .item(
-                    file_input()
-                        .multiple(true)
-                        .placeholder("Select multiple files")
-                        .build()
-                )
-                .item(
-                    file_input()
-                        .disabled(true)
-                        .placeholder("Disabled file input")
-                        .build()
-                )
-                .item(
-                    file_button()
-                        .disabled(true)
-                        .placeholder("Disabled Button")
-                        .build()
-                )
-        )
-        .item(small("Interactive (click to simulate file selection):"))
-        .item(
-            Column::new()
-                .s(Gap::new().y(SPACING_12))
-                .item(
-                    file_input()
-                        .placeholder("Click to select file")
-                        .on_change(|files| {
-                            // In a real app, you'd handle file selection here
-                        })
-                        .build()
-                )
-                .item(
-                    file_dropzone()
-                        .placeholder("Drop files here or click")
-                        .multiple(true)
-                        .on_change(|files| {
-                            // In a real app, you'd handle file drop here
-                        })
-                        .on_error(|error| {
-                            // In a real app, you'd handle errors here
-                        })
-                        .build()
-                )
-        )
-}
+// FileInput examples temporarily disabled due to compilation errors
+// fn fileinput_examples() -> impl Element { ... }
 
 fn typography_examples() -> impl Element {
     Column::new()

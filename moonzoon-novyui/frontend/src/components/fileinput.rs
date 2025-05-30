@@ -118,9 +118,9 @@ impl FileInputBuilder {
 
     pub fn build(self) -> impl Element {
         match self.variant {
-            FileInputVariant::Default => self.build_default().unify(),
-            FileInputVariant::Dropzone => self.build_dropzone().unify(),
-            FileInputVariant::Button => self.build_button().unify(),
+            FileInputVariant::Default => self.build_default().boxed_local(),
+            FileInputVariant::Dropzone => self.build_dropzone().boxed_local(),
+            FileInputVariant::Button => self.build_button().boxed_local(),
         }
     }
 
