@@ -141,6 +141,9 @@ fn get_fallback_icon(name: &'static str) -> &'static str {
         "info" => "ℹ",
         "plus" => "+",
         "minus" => "−",
+        "refresh-cw" => "↻",  // Spinning arrow for loading states
+        "refresh" => "↻",     // Alternative name for refresh icon
+        "loader" => "↻",      // Alternative name for loader icon
         _ => "?",
     }
 }

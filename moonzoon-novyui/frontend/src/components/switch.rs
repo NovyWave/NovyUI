@@ -79,7 +79,7 @@ impl SwitchBuilder {
     pub fn build(self) -> impl Element {
         let track_width = self.size.track_width();
         let track_height = self.size.track_height();
-        let thumb_size = self.size.thumb_size();
+        let _thumb_size = self.size.thumb_size();
         let track_radius = track_height / 2;
 
         // Simplified switch - just show different background colors for now
