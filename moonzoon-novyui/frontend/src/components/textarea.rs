@@ -93,9 +93,9 @@ impl TextAreaBuilder {
 
     pub fn build(self) -> impl Element {
         let (padding_x, padding_y, font_size) = match self.size {
-            TextAreaSize::Small => (SPACING_8, SPACING_6, FONT_SIZE_SM),
-            TextAreaSize::Medium => (SPACING_12, SPACING_8, FONT_SIZE_BASE),
-            TextAreaSize::Large => (SPACING_16, SPACING_12, FONT_SIZE_LG),
+            TextAreaSize::Small => (SPACING_8, SPACING_6, FONT_SIZE_14),
+            TextAreaSize::Medium => (SPACING_12, SPACING_8, FONT_SIZE_16),
+            TextAreaSize::Large => (SPACING_16, SPACING_12, FONT_SIZE_18),
         };
 
         let border_color = if self.disabled {

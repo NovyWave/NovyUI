@@ -53,7 +53,7 @@ impl AccordionItemBuilder {
                         El::new()
                             .s(Width::fill())
                             .s(Font::new()
-                                .size(FONT_SIZE_BASE)
+                                .size(FONT_SIZE_16)
                                 .color(if self.disabled {
                                     "#9ca3af" // gray-400
                                 } else {
@@ -66,7 +66,7 @@ impl AccordionItemBuilder {
                     .item(
                         El::new()
                             .s(Font::new()
-                                .size(FONT_SIZE_SM)
+                                .size(FONT_SIZE_14)
                                 .color("#6b7280") // gray-500
                             )
                             .child(Text::new(expanded_text))
@@ -83,7 +83,7 @@ impl AccordionItemBuilder {
                             .s(Padding::new().x(SPACING_16).y(SPACING_12))
                             .s(Borders::new().top(Border::new().width(1).color("#e5e7eb"))) // gray-200
                             .s(Font::new()
-                                .size(FONT_SIZE_SM)
+                                .size(FONT_SIZE_14)
                                 .color("#6b7280") // gray-500
                             )
                             .child(Text::new(&self.content))

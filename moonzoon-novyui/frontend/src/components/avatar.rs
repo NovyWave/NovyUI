@@ -83,10 +83,10 @@ impl AvatarBuilder {
                 El::new()
                     .s(Font::new()
                         .size(match self.size {
-                            AvatarSize::Small => FONT_SIZE_XS,
-                            AvatarSize::Medium => FONT_SIZE_SM,
-                            AvatarSize::Large => FONT_SIZE_BASE,
-                            AvatarSize::XLarge => FONT_SIZE_LG,
+                            AvatarSize::Small => FONT_SIZE_12,
+                            AvatarSize::Medium => FONT_SIZE_14,
+                            AvatarSize::Large => FONT_SIZE_16,
+                            AvatarSize::XLarge => FONT_SIZE_18,
                         })
                         .color_signal(neutral_11())
                         .weight(FontWeight::Medium)
@@ -107,10 +107,10 @@ impl AvatarBuilder {
                 El::new()
                     .s(Font::new()
                         .size(match self.size {
-                            AvatarSize::Small => FONT_SIZE_XS,
-                            AvatarSize::Medium => FONT_SIZE_SM,
-                            AvatarSize::Large => FONT_SIZE_BASE,
-                            AvatarSize::XLarge => FONT_SIZE_LG,
+                            AvatarSize::Small => FONT_SIZE_12,
+                            AvatarSize::Medium => FONT_SIZE_14,
+                            AvatarSize::Large => FONT_SIZE_16,
+                            AvatarSize::XLarge => FONT_SIZE_18,
                         })
                         .color_signal(neutral_11())
                         .weight(FontWeight::Medium)
@@ -122,10 +122,10 @@ impl AvatarBuilder {
                 El::new()
                     .s(Font::new()
                         .size(match self.size {
-                            AvatarSize::Small => FONT_SIZE_SM,
-                            AvatarSize::Medium => FONT_SIZE_BASE,
-                            AvatarSize::Large => FONT_SIZE_LG,
-                            AvatarSize::XLarge => FONT_SIZE_XL,
+                            AvatarSize::Small => FONT_SIZE_14,
+                            AvatarSize::Medium => FONT_SIZE_16,
+                            AvatarSize::Large => FONT_SIZE_18,
+                            AvatarSize::XLarge => FONT_SIZE_20,
                         })
                         .color_signal(neutral_9())
                     )

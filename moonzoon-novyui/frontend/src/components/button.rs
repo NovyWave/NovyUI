@@ -96,9 +96,9 @@ impl ButtonBuilder {
 
         // Size-based styling
         let (padding_x, padding_y, font_size) = match self.size {
-            ButtonSize::Small => (SPACING_12, SPACING_6, FONT_SIZE_SM),
-            ButtonSize::Medium => (SPACING_16, SPACING_8, FONT_SIZE_BASE),
-            ButtonSize::Large => (SPACING_20, SPACING_12, FONT_SIZE_LG),
+            ButtonSize::Small => (SPACING_12, SPACING_6, FONT_SIZE_14),
+            ButtonSize::Medium => (SPACING_16, SPACING_8, FONT_SIZE_16),
+            ButtonSize::Large => (SPACING_20, SPACING_12, FONT_SIZE_18),
         };
 
         // Variant-based colors - unified signal approach

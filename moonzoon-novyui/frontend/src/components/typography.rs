@@ -4,76 +4,69 @@
 use crate::tokens::*;
 use zoon::*;
 
-// Heading Components
+// Heading Components - Using proper token names
 pub fn h1(text: impl Into<String>) -> impl Element {
     El::new()
-        .s(text_4xl())
-        .s(font_bold())
+        .s(Font::new().size(FONT_SIZE_36).weight(FontWeight::Bold))
         .s(Font::new().color_signal(neutral_12()))
         .child(Text::new(text.into()))
 }
 
 pub fn h2(text: impl Into<String>) -> impl Element {
     El::new()
-        .s(text_3xl())
-        .s(font_bold())
+        .s(Font::new().size(FONT_SIZE_30).weight(FontWeight::Bold))
         .s(Font::new().color_signal(neutral_12()))
         .child(Text::new(text.into()))
 }
 
 pub fn h3(text: impl Into<String>) -> impl Element {
     El::new()
-        .s(text_2xl())
-        .s(font_semibold())
+        .s(Font::new().size(FONT_SIZE_24).weight(FontWeight::SemiBold))
         .s(Font::new().color_signal(neutral_12()))
         .child(Text::new(text.into()))
 }
 
 pub fn h4(text: impl Into<String>) -> impl Element {
     El::new()
-        .s(text_xl())
-        .s(font_semibold())
+        .s(Font::new().size(FONT_SIZE_20).weight(FontWeight::SemiBold))
         .s(Font::new().color_signal(neutral_12()))
         .child(Text::new(text.into()))
 }
 
 pub fn h5(text: impl Into<String>) -> impl Element {
     El::new()
-        .s(text_lg())
-        .s(font_medium())
+        .s(Font::new().size(FONT_SIZE_18).weight(FontWeight::Medium))
         .s(Font::new().color_signal(neutral_12()))
         .child(Text::new(text.into()))
 }
 
 pub fn h6(text: impl Into<String>) -> impl Element {
     El::new()
-        .s(text_base())
-        .s(font_medium())
+        .s(Font::new().size(FONT_SIZE_16).weight(FontWeight::Medium))
         .s(Font::new().color_signal(neutral_12()))
         .child(Text::new(text.into()))
 }
 
-// Paragraph Component
+// Paragraph Component - Using proper token names
 pub fn paragraph(text: impl Into<String>) -> impl Element {
     El::new()
-        .s(text_base())
+        .s(Font::new().size(FONT_SIZE_16))
         .s(Font::new().color_signal(neutral_11()))
         .child(Text::new(text.into()))
 }
 
-// Small Text Component
+// Small Text Component - Using proper token names
 pub fn small(text: impl Into<String>) -> impl Element {
     El::new()
-        .s(text_sm())
+        .s(Font::new().size(FONT_SIZE_14))
         .s(Font::new().color_signal(neutral_6()))
         .child(Text::new(text.into()))
 }
 
-// Code Component
+// Code Component - Using proper token names
 pub fn code(text: impl Into<String>) -> impl Element {
     El::new()
-        .s(text_sm())
-        .s(font_mono())
+        .s(Font::new().size(FONT_SIZE_14).family([FontFamily::new(FONT_FAMILY_MONO)]))
         .s(Padding::new().x(SPACING_4).y(SPACING_2))
         .s(RoundedCorners::all(4))
         .s(Background::new().color_signal(neutral_2()))
@@ -81,10 +74,10 @@ pub fn code(text: impl Into<String>) -> impl Element {
         .child(Text::new(text.into()))
 }
 
-// Lead Text Component (larger paragraph)
+// Lead Text Component (larger paragraph) - Using proper token names
 pub fn lead(text: impl Into<String>) -> impl Element {
     El::new()
-        .s(text_lg())
+        .s(Font::new().size(FONT_SIZE_18))
         .s(Font::new().color_signal(neutral_11()))
         .child(Text::new(text.into()))
 }
@@ -92,7 +85,7 @@ pub fn lead(text: impl Into<String>) -> impl Element {
 // Muted Text Component
 pub fn muted(text: impl Into<String>) -> impl Element {
     El::new()
-        .s(text_sm())
+        .s(Font::new().size(FONT_SIZE_14))
         .s(Font::new().color_signal(neutral_6()))
         .child(Text::new(text.into()))
 }

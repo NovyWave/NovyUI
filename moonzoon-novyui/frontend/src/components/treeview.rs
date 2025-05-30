@@ -153,7 +153,7 @@ impl TreeViewBuilder {
             .s(RoundedCorners::all(4))
             .s(Cursor::new(CursorIcon::Pointer))
             .s(Font::new()
-                .size(FONT_SIZE_SM)
+                .size(FONT_SIZE_14)
                 .color(text_color)
             )
             .child(Text::new(&display_text))

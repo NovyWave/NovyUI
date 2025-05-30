@@ -31,7 +31,7 @@ impl ListBuilder {
                     .s(Width::fill())
                     .s(Padding::new().x(SPACING_16).y(SPACING_12))
                     .s(Font::new()
-                        .size(FONT_SIZE_BASE)
+                        .size(FONT_SIZE_16)
                         .color_signal(neutral_11())
                     )
                     .child(Text::new(&text))

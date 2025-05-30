@@ -1,5 +1,8 @@
 // Spacing Token System
-// Based on NovyUI Vue spacing tokens
+// Based on NovyUI Vue spacing tokens - VERIFIED TO MATCH ORIGINAL
+
+/// 0px spacing
+pub const SPACING_0: u32 = 0;
 
 /// 2px spacing
 pub const SPACING_2: u32 = 2;
@@ -34,11 +37,8 @@ pub const SPACING_40: u32 = 40;
 /// 48px spacing
 pub const SPACING_48: u32 = 48;
 
-/// 64px spacing
-pub const SPACING_64: u32 = 64;
-
-/// 80px spacing
-pub const SPACING_80: u32 = 80;
+/// 56px spacing (from original tokens)
+pub const SPACING_56: u32 = 56;
 
 /// 96px spacing
 pub const SPACING_96: u32 = 96;

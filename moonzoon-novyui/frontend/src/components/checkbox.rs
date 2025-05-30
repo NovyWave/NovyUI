@@ -113,7 +113,7 @@ impl CheckboxBuilder {
                 .item(
                     El::new()
                         .s(Font::new()
-                            .size(FONT_SIZE_BASE)
+                            .size(FONT_SIZE_16)
                             .color(if self.disabled {
                                 "#9ca3af" // gray-400
                             } else {

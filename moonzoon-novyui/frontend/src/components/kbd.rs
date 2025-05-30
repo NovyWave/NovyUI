@@ -30,9 +30,9 @@ impl KbdBuilder {
 
     pub fn build(self) -> impl Element {
         let (padding_x, padding_y, font_size) = match self.size {
-            KbdSize::Small => (SPACING_6, SPACING_2, FONT_SIZE_XS),
-            KbdSize::Medium => (SPACING_8, SPACING_4, FONT_SIZE_SM),
-            KbdSize::Large => (SPACING_12, SPACING_6, FONT_SIZE_BASE),
+            KbdSize::Small => (SPACING_6, SPACING_2, FONT_SIZE_12),
+            KbdSize::Medium => (SPACING_8, SPACING_4, FONT_SIZE_14),
+            KbdSize::Large => (SPACING_12, SPACING_6, FONT_SIZE_16),
         };
 
         El::new()

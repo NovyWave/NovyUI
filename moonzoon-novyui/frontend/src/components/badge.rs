@@ -55,11 +55,11 @@ impl BadgeBuilder {
     }
 
     pub fn build(self) -> impl Element {
-        // Size-based styling
+        // Size-based styling - Using proper token names
         let (padding_x, padding_y, font_size) = match self.size {
-            BadgeSize::Small => (SPACING_6, SPACING_2, FONT_SIZE_XS),
-            BadgeSize::Medium => (SPACING_8, SPACING_4, FONT_SIZE_SM),
-            BadgeSize::Large => (SPACING_12, SPACING_6, FONT_SIZE_BASE),
+            BadgeSize::Small => (SPACING_6, SPACING_2, FONT_SIZE_12),
+            BadgeSize::Medium => (SPACING_8, SPACING_4, FONT_SIZE_14),
+            BadgeSize::Large => (SPACING_12, SPACING_6, FONT_SIZE_16),
         };
 
         // Variant-based colors - using simple static colors to avoid signal issues

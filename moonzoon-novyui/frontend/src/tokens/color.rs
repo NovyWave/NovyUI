@@ -14,15 +14,36 @@ pub fn primary_1() -> impl Signal<Item = &'static str> {
 
 pub fn primary_2() -> impl Signal<Item = &'static str> {
     theme().map(|t| match t {
-        Theme::Light => "oklch(95% 0.02 250)",
-        Theme::Dark => "oklch(25% 0.02 250)",
+        Theme::Light => "oklch(95% 0.03 250)",
+        Theme::Dark => "oklch(25% 0.03 250)",
     })
 }
 
 pub fn primary_3() -> impl Signal<Item = &'static str> {
     theme().map(|t| match t {
-        Theme::Light => "oklch(90% 0.04 250)",
-        Theme::Dark => "oklch(30% 0.04 250)",
+        Theme::Light => "oklch(90% 0.05 250)",
+        Theme::Dark => "oklch(30% 0.05 250)",
+    })
+}
+
+pub fn primary_4() -> impl Signal<Item = &'static str> {
+    theme().map(|t| match t {
+        Theme::Light => "oklch(85% 0.07 250)",
+        Theme::Dark => "oklch(35% 0.07 250)",
+    })
+}
+
+pub fn primary_5() -> impl Signal<Item = &'static str> {
+    theme().map(|t| match t {
+        Theme::Light => "oklch(75% 0.10 250)",
+        Theme::Dark => "oklch(45% 0.10 250)",
+    })
+}
+
+pub fn primary_6() -> impl Signal<Item = &'static str> {
+    theme().map(|t| match t {
+        Theme::Light => "oklch(65% 0.13 250)",
+        Theme::Dark => "oklch(55% 0.13 250)",
     })
 }
 
@@ -30,6 +51,13 @@ pub fn primary_7() -> impl Signal<Item = &'static str> {
     theme().map(|t| match t {
         Theme::Light => "oklch(55% 0.16 250)",
         Theme::Dark => "oklch(65% 0.16 250)",
+    })
+}
+
+pub fn primary_8() -> impl Signal<Item = &'static str> {
+    theme().map(|t| match t {
+        Theme::Light => "oklch(50% 0.18 250)",
+        Theme::Dark => "oklch(70% 0.18 250)",
     })
 }
 
@@ -57,22 +85,57 @@ pub fn neutral_2() -> impl Signal<Item = &'static str> {
 
 pub fn neutral_3() -> impl Signal<Item = &'static str> {
     theme().map(|t| match t {
-        Theme::Light => "oklch(95% 0.025 255)",
+        Theme::Light => "oklch(94% 0.025 255)",
         Theme::Dark => "oklch(18% 0.025 255)",
+    })
+}
+
+pub fn neutral_4() -> impl Signal<Item = &'static str> {
+    theme().map(|t| match t {
+        Theme::Light => "oklch(90% 0.025 255)",
+        Theme::Dark => "oklch(22% 0.025 255)",
+    })
+}
+
+pub fn neutral_5() -> impl Signal<Item = &'static str> {
+    theme().map(|t| match t {
+        Theme::Light => "oklch(85% 0.025 255)",
+        Theme::Dark => "oklch(28% 0.025 255)",
     })
 }
 
 pub fn neutral_6() -> impl Signal<Item = &'static str> {
     theme().map(|t| match t {
-        Theme::Light => "oklch(70% 0.025 255)",
-        Theme::Dark => "oklch(45% 0.025 255)",
+        Theme::Light => "oklch(75% 0.025 255)",
+        Theme::Dark => "oklch(38% 0.025 255)",
+    })
+}
+
+pub fn neutral_7() -> impl Signal<Item = &'static str> {
+    theme().map(|t| match t {
+        Theme::Light => "oklch(65% 0.025 255)",
+        Theme::Dark => "oklch(48% 0.025 255)",
+    })
+}
+
+pub fn neutral_8() -> impl Signal<Item = &'static str> {
+    theme().map(|t| match t {
+        Theme::Light => "oklch(55% 0.025 255)",
+        Theme::Dark => "oklch(58% 0.025 255)",
     })
 }
 
 pub fn neutral_9() -> impl Signal<Item = &'static str> {
     theme().map(|t| match t {
-        Theme::Light => "oklch(40% 0.025 255)",
-        Theme::Dark => "oklch(70% 0.025 255)",
+        Theme::Light => "oklch(45% 0.025 255)",
+        Theme::Dark => "oklch(68% 0.025 255)",
+    })
+}
+
+pub fn neutral_10() -> impl Signal<Item = &'static str> {
+    theme().map(|t| match t {
+        Theme::Light => "oklch(35% 0.025 255)",
+        Theme::Dark => "oklch(78% 0.025 255)",
     })
 }
 
@@ -82,6 +145,8 @@ pub fn neutral_11() -> impl Signal<Item = &'static str> {
         Theme::Dark => "oklch(85% 0.025 255)",
     })
 }
+
+
 
 pub fn neutral_12() -> impl Signal<Item = &'static str> {
     theme().map(|t| match t {

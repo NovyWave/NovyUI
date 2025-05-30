@@ -108,9 +108,9 @@ impl SelectBuilder {
 
     pub fn build(self) -> impl Element {
         let (padding_x, padding_y, font_size) = match self.size {
-            SelectSize::Small => (SPACING_8, SPACING_6, FONT_SIZE_SM),
-            SelectSize::Medium => (SPACING_12, SPACING_8, FONT_SIZE_BASE),
-            SelectSize::Large => (SPACING_16, SPACING_12, FONT_SIZE_LG),
+            SelectSize::Small => (SPACING_8, SPACING_6, FONT_SIZE_14),
+            SelectSize::Medium => (SPACING_12, SPACING_8, FONT_SIZE_16),
+            SelectSize::Large => (SPACING_16, SPACING_12, FONT_SIZE_18),
         };
 
         let border_color = if self.disabled {
@@ -162,7 +162,7 @@ impl SelectBuilder {
             .item(
                 El::new()
                     .s(Font::new()
-                        .size(FONT_SIZE_SM)
+                        .size(FONT_SIZE_14)
                         .color("#6b7280") // gray-500
                     )
                     .child(Text::new("▼"))

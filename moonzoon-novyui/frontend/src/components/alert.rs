@@ -131,7 +131,7 @@ impl AlertBuilder {
                 El::new()
                     .s(Width::fill())
                     .s(Font::new()
-                        .size(FONT_SIZE_SM)
+                        .size(FONT_SIZE_14)
                         .color(self.variant.text_color())
                     )
                     .child(Text::new(&display_text))
@@ -140,7 +140,7 @@ impl AlertBuilder {
         if self.dismissible {
             let mut dismiss_button = El::new()
                 .s(Font::new()
-                    .size(FONT_SIZE_SM)
+                    .size(FONT_SIZE_14)
                     .color(self.variant.text_color())
                 )
                 .s(Cursor::new(CursorIcon::Pointer))

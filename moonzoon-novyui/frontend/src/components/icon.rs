@@ -2,6 +2,7 @@
 // Enhanced implementation with SVG support and theming
 
 use crate::tokens::*;
+use crate::assets;
 use zoon::*;
 
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -61,6 +62,7 @@ impl IconBuilder {
 
     pub fn build(self) -> impl Element {
         let size_px = self.size.to_px();
+        let icon_url = assets::icon_url(self.name);
 
         // Get color signal based on IconColor - unified approach
         let color = self.color;
@@ -79,23 +81,13 @@ impl IconBuilder {
             (IconColor::Custom(color), _) => color,
         });
 
-        // For now, using a styled placeholder until we implement SVG loading
-        // TODO: Replace with actual SVG icon loading from /public/icons/
+        // Use actual SVG icon from assets - simplified approach for now
         El::new()
             .s(Width::exact(size_px))
             .s(Height::exact(size_px))
-            .s(Font::new()
-                .size(size_px - 2) // Slightly smaller text to fit in box
-                .weight(FontWeight::Medium)
-                .color_signal(color_signal)
-            )
-            .s(Background::new().color_signal(theme().map(|t| match t {
-                Theme::Light => "oklch(95% 0.025 255)",
-                Theme::Dark => "oklch(18% 0.025 255)",
-            })))
-            .s(RoundedCorners::all(2))
-            .s(Align::center())
-            .child(Text::new("⚡")) // Placeholder icon
+            .s(Background::new().url(&icon_url))
+            .s(Font::new().color_signal(color_signal))
+            .child(Text::new("🔗")) // Fallback icon while SVG loading is being implemented
     }
 }
 

@@ -116,11 +116,11 @@ impl InputBuilder {
     pub fn build(self) -> impl Element {
         let (focused, _focused_signal) = Mutable::new_and_signal(false);
 
-        // Size-based styling
+        // Size-based styling - Using proper token names
         let (padding_x, padding_y, font_size) = match self.size {
-            InputSize::Small => (SPACING_12, SPACING_6, FONT_SIZE_SM),
-            InputSize::Medium => (SPACING_16, SPACING_8, FONT_SIZE_BASE),
-            InputSize::Large => (SPACING_20, SPACING_12, FONT_SIZE_LG),
+            InputSize::Small => (SPACING_12, SPACING_6, FONT_SIZE_14),
+            InputSize::Medium => (SPACING_16, SPACING_8, FONT_SIZE_16),
+            InputSize::Large => (SPACING_20, SPACING_12, FONT_SIZE_18),
         };
 
         // Variant-based border colors - using static colors for now

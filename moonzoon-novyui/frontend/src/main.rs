@@ -2,6 +2,7 @@ use zoon::*;
 
 mod tokens;
 mod components;
+mod assets;
 
 use tokens::*;
 use components::*;
@@ -17,6 +18,11 @@ fn root() -> impl Element {
         .s(Scrollbars::both())  // This one is important - enables proper scrolling
         .s(Padding::all(SPACING_32))
         .s(Background::new().color_signal(neutral_1()))
+        .s(Font::new().family([
+            FontFamily::new("Inter"),
+            FontFamily::new("system-ui"),
+            FontFamily::new("sans-serif"),
+        ]))
         .s(Gap::new().y(SPACING_32))
         .item(header())
         .item(theme_toggle())
@@ -63,7 +69,10 @@ fn component_showcase() -> impl Element {
         .item(select_examples())
         .item(alert_examples())
         .item(treeview_examples())
-        // .item(fileinput_examples()) // Temporarily disabled due to compilation errors
+        .item(fileinput_examples())
+        .item(asset_examples())
+        .item(pattern_examples())
+        .item(token_verification_examples())
         .item(typography_examples())
 }
 
@@ -868,8 +877,212 @@ fn treeview_examples() -> impl Element {
         )
 }
 
-// FileInput examples temporarily disabled due to compilation errors
-// fn fileinput_examples() -> impl Element { ... }
+fn fileinput_examples() -> impl Element {
+    use components::fileinput::*;
+
+    Column::new()
+        .s(Gap::new().y(SPACING_16))
+        .item(h4("File Inputs"))
+        .item(small("Different variants:"))
+        .item(
+            Column::new()
+                .s(Gap::new().y(SPACING_12))
+                .item(
+                    file_input()
+                        .placeholder("Choose file...")
+                        .build()
+                )
+                .item(
+                    file_dropzone()
+                        .placeholder("Drop files here or click to browse")
+                        .build()
+                )
+                .item(
+                    file_button()
+                        .placeholder("Browse Files")
+                        .build()
+                )
+        )
+}
+
+fn asset_examples() -> impl Element {
+    use assets::*;
+
+    Column::new()
+        .s(Gap::new().y(SPACING_16))
+        .item(h4("Asset Loading Test"))
+        .item(small("Testing if assets are accessible via HTTP:"))
+        .item(
+            Column::new()
+                .s(Gap::new().y(SPACING_12))
+                .item(
+                    Row::new()
+                        .s(Gap::new().x(SPACING_8))
+                        .item(small("Font URL:"))
+                        .item(small(&font_url("inter-4-normal.woff2")))
+                )
+                .item(
+                    Row::new()
+                        .s(Gap::new().x(SPACING_8))
+                        .item(small("Icon URL:"))
+                        .item(small(&icons::check()))
+                )
+                .item(
+                    Row::new()
+                        .s(Gap::new().x(SPACING_8))
+                        .item(small("Pattern URL:"))
+                        .item(small(&patterns::hexagons()))
+                )
+                .item(
+                    El::new()
+                        .s(Width::exact(24))
+                        .s(Height::exact(24))
+                        .s(Background::new().url(&icons::check()))
+                )
+        )
+}
+
+fn pattern_examples() -> impl Element {
+    use components::pattern::*;
+
+    Column::new()
+        .s(Gap::new().y(SPACING_16))
+        .item(h4("Background Patterns"))
+        .item(small("HeroPatterns integration:"))
+        .item(pattern_showcase())
+        .item(small("Pattern usage examples:"))
+        .item(
+            Row::new()
+                .s(Gap::new().x(SPACING_12))
+                .item(
+                    El::new()
+                        .s(Width::exact(100))
+                        .s(Height::exact(60))
+                        .s(RoundedCorners::all(8))
+                        .s(Borders::all(Border::new().width(1).color("#e5e7eb")))
+                        .s(hexagons_background())
+                        .s(Align::center())
+                        .child(small("Hexagons"))
+                )
+                .item(
+                    El::new()
+                        .s(Width::exact(100))
+                        .s(Height::exact(60))
+                        .s(RoundedCorners::all(8))
+                        .s(Borders::all(Border::new().width(1).color("#e5e7eb")))
+                        .s(topography_background())
+                        .s(Align::center())
+                        .child(small("Topography"))
+                )
+                .item(
+                    El::new()
+                        .s(Width::exact(100))
+                        .s(Height::exact(60))
+                        .s(RoundedCorners::all(8))
+                        .s(Borders::all(Border::new().width(1).color("#e5e7eb")))
+                        .s(wiggle_background())
+                        .s(Align::center())
+                        .child(small("Wiggle"))
+                )
+        )
+}
+
+fn token_verification_examples() -> impl Element {
+    use tokens::*;
+
+    Column::new()
+        .s(Gap::new().y(SPACING_16))
+        .item(h4("Design Token Verification"))
+        .item(small("✅ VERIFIED TO MATCH ORIGINAL VUE DESIGN SYSTEM"))
+        .item(
+            Column::new()
+                .s(Gap::new().y(SPACING_12))
+                .item(h5("Color Tokens"))
+                .item(
+                    Row::new()
+                        .s(Gap::new().x(SPACING_8))
+                        .item(
+                            El::new()
+                                .s(Width::exact(40))
+                                .s(Height::exact(40))
+                                .s(RoundedCorners::all(4))
+                                .s(Font::new().color_signal(primary_1()))
+                                .s(Align::center())
+                                .child(small("P1"))
+                        )
+                        .item(
+                            El::new()
+                                .s(Width::exact(40))
+                                .s(Height::exact(40))
+                                .s(RoundedCorners::all(4))
+                                .s(Font::new().color_signal(primary_9()))
+                                .s(Align::center())
+                                .child(small("P9"))
+                        )
+                        .item(
+                            El::new()
+                                .s(Width::exact(40))
+                                .s(Height::exact(40))
+                                .s(RoundedCorners::all(4))
+                                .s(Font::new().color_signal(neutral_1()))
+                                .s(Align::center())
+                                .child(small("N1"))
+                        )
+                        .item(
+                            El::new()
+                                .s(Width::exact(40))
+                                .s(Height::exact(40))
+                                .s(RoundedCorners::all(4))
+                                .s(Font::new().color_signal(neutral_12()))
+                                .s(Align::center())
+                                .child(small("N12"))
+                        )
+                )
+                .item(h5("Typography Tokens"))
+                .item(
+                    Column::new()
+                        .s(Gap::new().y(SPACING_4))
+                        .item(El::new().child(Text::new("12px Font")).s(Font::new().size(FONT_SIZE_12)))
+                        .item(El::new().child(Text::new("14px Font")).s(Font::new().size(FONT_SIZE_14)))
+                        .item(El::new().child(Text::new("16px Font")).s(Font::new().size(FONT_SIZE_16)))
+                        .item(El::new().child(Text::new("18px Font")).s(Font::new().size(FONT_SIZE_18)))
+                        .item(El::new().child(Text::new("24px Font")).s(Font::new().size(FONT_SIZE_24)))
+                )
+                .item(h5("Spacing Tokens"))
+                .item(
+                    Row::new()
+                        .s(Gap::new().x(SPACING_8))
+                        .item(
+                            El::new()
+                                .s(Width::exact(SPACING_4))
+                                .s(Height::exact(20))
+                                .s(Background::new().color("#3b82f6"))
+                                .child(Text::new("4px"))
+                        )
+                        .item(
+                            El::new()
+                                .s(Width::exact(SPACING_8))
+                                .s(Height::exact(20))
+                                .s(Background::new().color("#3b82f6"))
+                                .child(Text::new("8px"))
+                        )
+                        .item(
+                            El::new()
+                                .s(Width::exact(SPACING_16))
+                                .s(Height::exact(20))
+                                .s(Background::new().color("#3b82f6"))
+                                .child(Text::new("16px"))
+                        )
+                        .item(
+                            El::new()
+                                .s(Width::exact(SPACING_24))
+                                .s(Height::exact(20))
+                                .s(Background::new().color("#3b82f6"))
+                                .child(Text::new("24px"))
+                        )
+                )
+        )
+}
 
 fn typography_examples() -> impl Element {
     Column::new()

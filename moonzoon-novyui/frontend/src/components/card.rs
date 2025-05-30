@@ -104,7 +104,7 @@ impl CardBuilder {
         // Add simple content - using El wrapper for Text to avoid styling issues
         let content = El::new()
             .s(Font::new()
-                .size(FONT_SIZE_BASE)
+                .size(FONT_SIZE_16)
                 .color_signal(neutral_11())
             )
             .child(Text::new("Card Content"));

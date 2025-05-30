@@ -101,7 +101,7 @@ impl SwitchBuilder {
             .s(Background::new().color(background_color))
             .s(Align::center())
             .s(Font::new()
-                .size(FONT_SIZE_XS)
+                .size(FONT_SIZE_12)
                 .color_signal(neutral_11())
                 .weight(FontWeight::Medium)
             )

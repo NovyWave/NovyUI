@@ -17,7 +17,8 @@ pub mod accordion;
 pub mod select;
 pub mod alert;
 pub mod treeview;
-// pub mod fileinput; // Temporarily disabled due to compilation errors
+pub mod fileinput;
+pub mod pattern;
 
 // Re-export components for easy access
 pub use button::*;
@@ -36,4 +37,5 @@ pub use accordion::*;
 pub use select::*;
 pub use alert::*;
 pub use treeview::*;
-// pub use fileinput::*; // Temporarily disabled due to compilation errors
+pub use fileinput::*;
+pub use pattern::*;

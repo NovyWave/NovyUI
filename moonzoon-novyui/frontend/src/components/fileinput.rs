@@ -118,17 +118,17 @@ impl FileInputBuilder {
 
     pub fn build(self) -> impl Element {
         match self.variant {
-            FileInputVariant::Default => self.build_default().boxed_local(),
-            FileInputVariant::Dropzone => self.build_dropzone().boxed_local(),
-            FileInputVariant::Button => self.build_button().boxed_local(),
+            FileInputVariant::Default => self.build_default().unify(),
+            FileInputVariant::Dropzone => self.build_dropzone().unify(),
+            FileInputVariant::Button => self.build_button().unify(),
         }
     }
 
     fn build_default(self) -> impl Element {
         let (padding_x, padding_y, font_size) = match self.size {
-            FileInputSize::Small => (SPACING_8, SPACING_6, FONT_SIZE_SM),
-            FileInputSize::Medium => (SPACING_12, SPACING_8, FONT_SIZE_BASE),
-            FileInputSize::Large => (SPACING_16, SPACING_12, FONT_SIZE_LG),
+            FileInputSize::Small => (SPACING_8, SPACING_6, FONT_SIZE_14),
+            FileInputSize::Medium => (SPACING_12, SPACING_8, FONT_SIZE_16),
+            FileInputSize::Large => (SPACING_16, SPACING_12, FONT_SIZE_18),
         };
 
         let placeholder_text = self.placeholder.unwrap_or_else(|| {
@@ -176,7 +176,7 @@ impl FileInputBuilder {
             .item(
                 El::new()
                     .s(Font::new()
-                        .size(FONT_SIZE_SM)
+                        .size(FONT_SIZE_14)
                         .color("#6b7280") // gray-500
                     )
                     .child(Text::new("📁"))
@@ -198,9 +198,9 @@ impl FileInputBuilder {
 
     fn build_dropzone(self) -> impl Element {
         let (padding, font_size) = match self.size {
-            FileInputSize::Small => (SPACING_16, FONT_SIZE_SM),
-            FileInputSize::Medium => (SPACING_24, FONT_SIZE_BASE),
-            FileInputSize::Large => (SPACING_32, FONT_SIZE_LG),
+            FileInputSize::Small => (SPACING_16, FONT_SIZE_14),
+            FileInputSize::Medium => (SPACING_24, FONT_SIZE_16),
+            FileInputSize::Large => (SPACING_32, FONT_SIZE_18),
         };
 
         let placeholder_text = self.placeholder.unwrap_or_else(|| {
@@ -267,9 +267,9 @@ impl FileInputBuilder {
 
     fn build_button(self) -> impl Element {
         let (padding_x, padding_y, font_size) = match self.size {
-            FileInputSize::Small => (SPACING_12, SPACING_6, FONT_SIZE_SM),
-            FileInputSize::Medium => (SPACING_16, SPACING_8, FONT_SIZE_BASE),
-            FileInputSize::Large => (SPACING_20, SPACING_12, FONT_SIZE_LG),
+            FileInputSize::Small => (SPACING_12, SPACING_6, FONT_SIZE_14),
+            FileInputSize::Medium => (SPACING_16, SPACING_8, FONT_SIZE_16),
+            FileInputSize::Large => (SPACING_20, SPACING_12, FONT_SIZE_18),
         };
 
         let button_text = self.placeholder.unwrap_or_else(|| {
