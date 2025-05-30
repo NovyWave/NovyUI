@@ -83,6 +83,8 @@ pub enum IconName {
     ChevronsRight,
     Hash,
     Asterisk,
+    Moon,
+    Sun,
 }
 
 impl IconName {
@@ -162,6 +164,8 @@ impl IconName {
             IconName::ChevronsRight => "chevrons-right",
             IconName::Hash => "hash",
             IconName::Asterisk => "asterisk",
+            IconName::Moon => "moon",
+            IconName::Sun => "sun",
         }
     }
 
@@ -366,6 +370,8 @@ fn get_svg_content(name: IconName, size_px: u32) -> String {
         IconName::ChevronsRight => include_str!("../../../public/icons/chevrons-right.svg"),
         IconName::Hash => include_str!("../../../public/icons/hash.svg"),
         IconName::Asterisk => include_str!("../../../public/icons/asterisk.svg"),
+        IconName::Moon => include_str!("../../../public/icons/moon.svg"),
+        IconName::Sun => include_str!("../../../public/icons/sun.svg"),
     };
 
     // Process the SVG to set proper size and ensure currentColor works
@@ -472,6 +478,8 @@ pub fn icon_name_from_str(name: &str) -> IconName {
         "chevrons-right" => IconName::ChevronsRight,
         "hash" => IconName::Hash,
         "asterisk" => IconName::Asterisk,
+        "moon" => IconName::Moon,
+        "sun" => IconName::Sun,
         _ => IconName::CircleHelp, // Default fallback
     }
 }
@@ -497,6 +505,14 @@ pub fn chevron_up() -> IconBuilder {
 
 pub fn chevron_left() -> IconBuilder {
     IconBuilder::new(IconName::ChevronLeft)
+}
+
+pub fn moon() -> IconBuilder {
+    IconBuilder::new(IconName::Moon)
+}
+
+pub fn sun() -> IconBuilder {
+    IconBuilder::new(IconName::Sun)
 }
 
 pub fn chevron_right() -> IconBuilder {
