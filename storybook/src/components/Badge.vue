@@ -135,12 +135,12 @@ const variantConfig = computed(() => {
       return {
         background: isDark
           ? `linear-gradient(135deg, ${color.neutral['7'].value} 0%, ${color.neutral['8'].value} 100%)`
-          : `linear-gradient(135deg, ${color.neutral['5'].value} 0%, ${color.neutral['6'].value} 100%)`,
+          : `linear-gradient(135deg, ${color.neutral['6'].value} 0%, ${color.neutral['7'].value} 100%)`,
         textColor: isDark ? color.neutral['1'].value : color.neutral['1'].value,
         borderColor: color.neutral['6'].value,
         hoverBackground: isDark
           ? `linear-gradient(135deg, ${color.neutral['6'].value} 0%, ${color.neutral['7'].value} 100%)`
-          : `linear-gradient(135deg, ${color.neutral['6'].value} 0%, ${color.neutral['7'].value} 100%)`,
+          : `linear-gradient(135deg, ${color.neutral['7'].value} 0%, ${color.neutral['8'].value} 100%)`,
         boxShadow: isDark
           ? '0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3)'
           : '0 4px 6px -1px rgba(0, 0, 0, 0.15), 0 2px 4px -1px rgba(0, 0, 0, 0.1)',
@@ -201,12 +201,12 @@ const variantConfig = computed(() => {
       return {
         background: isDark
           ? `linear-gradient(135deg, ${color.neutral['7'].value} 0%, ${color.neutral['8'].value} 100%)`
-          : `linear-gradient(135deg, ${color.neutral['4'].value} 0%, ${color.neutral['5'].value} 100%)`,
+          : `linear-gradient(135deg, ${color.neutral['5'].value} 0%, ${color.neutral['6'].value} 100%)`,
         textColor: isDark ? color.neutral['1'].value : color.neutral['1'].value,
         borderColor: isDark ? color.neutral['6'].value : color.neutral['5'].value,
         hoverBackground: isDark
           ? `linear-gradient(135deg, ${color.neutral['6'].value} 0%, ${color.neutral['7'].value} 100%)`
-          : `linear-gradient(135deg, ${color.neutral['5'].value} 0%, ${color.neutral['6'].value} 100%)`,
+          : `linear-gradient(135deg, ${color.neutral['6'].value} 0%, ${color.neutral['7'].value} 100%)`,
         boxShadow: isDark
           ? '0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3)'
           : '0 4px 6px -1px rgba(0, 0, 0, 0.15), 0 2px 4px -1px rgba(0, 0, 0, 0.1)',
