@@ -298,6 +298,28 @@ impl InputBuilder {
                 InputState::Disabled => CursorIcon::NotAllowed,
                 _ => CursorIcon::Text,
             }))
+            .s(Shadows::with_signal(
+                theme().map(move |t| {
+                    if matches!(state, InputState::Disabled) {
+                        // No shadows for disabled inputs
+                        vec![]
+                    } else {
+                        // Add inner shadows to create inset appearance (like form fields) - enhanced visibility
+                        match t {
+                            Theme::Light => vec![
+                                Shadow::new().inner().y(2).x(0).blur(4).spread(0).color("rgba(0, 0, 0, 0.12)"),
+                                Shadow::new().inner().y(1).x(0).blur(2).spread(0).color("rgba(0, 0, 0, 0.18)"),
+                                Shadow::new().inner().y(0).x(1).blur(2).spread(0).color("rgba(0, 0, 0, 0.08)"),
+                            ],
+                            Theme::Dark => vec![
+                                Shadow::new().inner().y(-2).x(0).blur(4).spread(0).color("rgba(255, 255, 255, 0.25)"),
+                                Shadow::new().inner().y(-1).x(0).blur(2).spread(0).color("rgba(255, 255, 255, 0.35)"),
+                                Shadow::new().inner().y(0).x(-1).blur(2).spread(0).color("rgba(255, 255, 255, 0.2)"),
+                            ],
+                        }
+                    }
+                })
+            ))
             .update_raw_el(move |raw_el| {
                 if matches!(state, InputState::Disabled) {
                     // Disabled state - use exact Vue opacity: 64%
