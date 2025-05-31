@@ -35,11 +35,16 @@ fn root() -> impl Element {
 }
 
 fn header() -> impl Element {
-    Row::new()
+    Column::new()
         .s(Padding::all(SPACING_32))
-        .s(Gap::both(SPACING_32))
-        .item(header_title())
-        .item(theme_toggle())
+        .s(Gap::new().y(SPACING_24))
+        .item(
+            Row::new()
+                .s(Gap::both(SPACING_32))
+                .item(header_title())
+                .item(theme_toggle())
+        )
+        .item(navigation_bar())
 }
 
 fn header_title() -> impl Element {
@@ -108,6 +113,58 @@ fn theme_button() -> impl Element {
         .on_click(|| toggle_theme())
 }
 
+fn navigation_bar() -> impl Element {
+    let components = vec![
+        ("Accordion", "accordion"),
+        ("Badge", "badge"),
+        ("Buttons", "buttons"),
+        ("Checkbox", "checkbox"),
+        ("Icons", "icons"),
+        ("Inputs", "inputs"),
+        ("Kbd", "kbd"),
+        ("List", "list"),
+        ("Select", "select"),
+        ("Switch", "switch"),
+        ("TextArea", "textarea"),
+        ("TreeView", "treeview"),
+        ("Typography", "typography"),
+    ];
+
+    Row::new()
+        .s(Gap::new().x(SPACING_8).y(SPACING_8))
+        .s(Padding::new().y(SPACING_16))
+        .multiline()
+        .s(Align::new().center_y())
+        .items(components.into_iter().map(|(name, id)| {
+            nav_button(name, id)
+        }))
+}
+
+fn nav_button(name: &str, target_id: &str) -> impl Element {
+    let target_id = target_id.to_string();
+
+    button()
+        .label(name)
+        .variant(ButtonVariant::Ghost)
+        .size(ButtonSize::Small)
+        .on_press(move || {
+            scroll_to_element(&target_id);
+        })
+        .build()
+}
+
+fn scroll_to_element(element_id: &str) {
+    // Use web_sys to scroll to the element
+    if let Some(window) = web_sys::window() {
+        if let Some(document) = window.document() {
+            if let Some(element) = document.get_element_by_id(element_id) {
+                // Use the simpler scroll_into_view method
+                element.scroll_into_view();
+            }
+        }
+    }
+}
+
 fn component_showcase() -> impl Element {
     Column::new()
         .s(Padding::all(SPACING_32))
@@ -115,25 +172,32 @@ fn component_showcase() -> impl Element {
         .s(Scrollbars::both())
         .s(Gap::new().y(SPACING_56))
         .item(h3("Component Showcase"))
-        .item(icon_examples())
-        .item(button_examples())
-        .item(input_examples())
-        .item(badge_examples())
-        // .item(card_examples())      // Temporarily hidden
-        .item(list_examples())
-        // .item(avatar_examples())    // Temporarily hidden
-        .item(switch_examples())
-        .item(checkbox_examples())
-        .item(textarea_examples())
-        .item(kbd_examples())
-        .item(accordion_examples())
-        .item(select_examples())
+        .item(component_section("accordion", accordion_examples()))
         // .item(alert_examples())     // Temporarily hidden
-        .item(treeview_examples())
-        // .item(fileinput_examples())  // Temporarily hidden
         // .item(asset_examples())     // Temporarily hidden
+        // .item(avatar_examples())    // Temporarily hidden
+        .item(component_section("badge", badge_examples()))
+        .item(component_section("buttons", button_examples()))
+        // .item(card_examples())      // Temporarily hidden
+        .item(component_section("checkbox", checkbox_examples()))
+        // .item(fileinput_examples())  // Temporarily hidden
+        .item(component_section("icons", icon_examples()))
+        .item(component_section("inputs", input_examples()))
+        .item(component_section("kbd", kbd_examples()))
+        .item(component_section("list", list_examples()))
         // .item(pattern_examples())   // Temporarily hidden
+        .item(component_section("select", select_examples()))
+        .item(component_section("switch", switch_examples()))
+        .item(component_section("textarea", textarea_examples()))
         // .item(token_examples())     // Temporarily hidden
-        .item(typography_examples())
+        .item(component_section("treeview", treeview_examples()))
+        .item(component_section("typography", typography_examples()))
+}
+
+fn component_section(id: &str, content: impl Element) -> impl Element {
+    El::new()
+        .s(Width::fill())
+        .id(id)
+        .child(content)
 }
 
