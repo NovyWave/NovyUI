@@ -2,6 +2,7 @@ use zoon::*;
 use crate::tokens::*;
 use crate::theme::*;
 use crate::components::icon::{IconBuilder, IconName, IconSize, IconColor};
+use std::rc::Rc;
 
 // Checkbox sizes
 #[derive(Debug, Clone, Copy)]
@@ -105,6 +106,8 @@ impl CheckboxBuilder {
         self
     }
 
+
+
     pub fn build(self) -> impl Element {
         let checked = Mutable::new(matches!(self.state, CheckboxState::Checked));
         let checked_signal = checked.signal();
@@ -158,22 +161,86 @@ impl CheckboxBuilder {
                     theme().map(move |t| {
                         if disabled {
                             match t {
-                                Theme::Light => "oklch(98% 0.14 250)", // neutral_1 light
-                                Theme::Dark => "oklch(25% 0.14 250)", // neutral_4 dark - lighter for visibility
-                            }
-                        } else if checked_state {
-                            match t {
-                                Theme::Light => "oklch(55% 0.22 250)", // primary_7 light
-                                Theme::Dark => "oklch(65% 0.22 250)", // primary_7 dark
+                                Theme::Light => "oklch(95% 0.005 250)", // neutral_2 light - lighter gray, less saturated
+                                Theme::Dark => "oklch(20% 0.005 250)", // darker neutral - less saturated
                             }
                         } else {
-                            match t {
-                                Theme::Light => "oklch(98% 0.14 250)", // neutral_1 light
-                                Theme::Dark => "oklch(25% 0.14 250)", // neutral_4 dark - lighter for visibility
+                            match state {
+                                CheckboxState::Checked => match t {
+                                    Theme::Light => "oklch(55% 0.22 250)", // primary_7 light
+                                    Theme::Dark => "oklch(65% 0.22 250)", // primary_7 dark
+                                },
+                                CheckboxState::Indeterminate => match t {
+                                    Theme::Light => "oklch(100% 0 0)", // pure white for better contrast with indeterminate icon
+                                    Theme::Dark => "oklch(25% 0.14 250)", // neutral_4 dark - keep original
+                                },
+                                CheckboxState::Unchecked => {
+                                    if checked_state {
+                                        // This is a normal checkbox that's checked
+                                        match t {
+                                            Theme::Light => "oklch(55% 0.22 250)", // primary_7 light
+                                            Theme::Dark => "oklch(65% 0.22 250)", // primary_7 dark
+                                        }
+                                    } else {
+                                        // This is a normal checkbox that's unchecked
+                                        match t {
+                                            Theme::Light => "oklch(100% 0 0)", // pure white for consistency
+                                            Theme::Dark => "oklch(25% 0.14 250)", // neutral_4 dark - keep original
+                                        }
+                                    }
+                                },
                             }
                         }
                     })
                 }).flatten()
+            ))
+            .s(Shadows::with_signal(
+                if disabled {
+                    // No shadows for disabled checkboxes
+                    always(vec![]).boxed_local()
+                } else {
+                    // Add shadows based on state and theme
+                    checked_clone2.signal().map(move |checked_state| {
+                        theme().map(move |t| {
+                            match state {
+                                CheckboxState::Indeterminate => {
+                                    // Indeterminate checkboxes get primary shadows like buttons
+                                    match t {
+                                        Theme::Light => vec![
+                                            Shadow::new().y(1).x(0).blur(2).spread(0).color("rgba(59, 130, 246, 0.25)"),
+                                        ],
+                                        Theme::Dark => vec![
+                                            Shadow::new().y(1).x(0).blur(2).spread(0).color("rgba(59, 130, 246, 0.4)"),
+                                        ],
+                                    }
+                                },
+                                _ => {
+                                    if checked_state {
+                                        // Checked checkboxes get primary shadows like buttons
+                                        match t {
+                                            Theme::Light => vec![
+                                                Shadow::new().y(1).x(0).blur(2).spread(0).color("rgba(59, 130, 246, 0.25)"),
+                                            ],
+                                            Theme::Dark => vec![
+                                                Shadow::new().y(1).x(0).blur(2).spread(0).color("rgba(59, 130, 246, 0.4)"),
+                                            ],
+                                        }
+                                    } else {
+                                        // Unchecked checkboxes get subtle neutral shadows
+                                        match t {
+                                            Theme::Light => vec![
+                                                Shadow::new().y(1).x(0).blur(2).spread(0).color("rgba(0, 0, 0, 0.08)"),
+                                            ],
+                                            Theme::Dark => vec![
+                                                Shadow::new().y(1).x(0).blur(2).spread(0).color("rgba(0, 0, 0, 0.3)"),
+                                            ],
+                                        }
+                                    }
+                                },
+                            }
+                        })
+                    }).flatten().boxed_local()
+                }
             ))
             .s(Align::center())
             .s(Cursor::new(if disabled {
@@ -181,6 +248,46 @@ impl CheckboxBuilder {
             } else {
                 CursorIcon::Pointer
             }))
+            .s(Outline::with_signal_self(
+                if disabled {
+                    // No outline for disabled checkboxes
+                    always(None).boxed_local()
+                } else {
+                    focused_signal.map(|is_focused| {
+                        if is_focused {
+                            Some(Outline::inner().width(2).color("oklch(0.7 0.15 250)"))
+                        } else {
+                            None
+                        }
+                    }).boxed_local()
+                }
+            ))
+            .update_raw_el(move |raw_el| {
+                // Make the element focusable
+                if !disabled {
+                    raw_el.attr("tabindex", "0")
+                } else {
+                    raw_el.attr("tabindex", "-1")
+                }
+            })
+            .update_raw_el({
+                let focused_clone = focused.clone();
+                move |raw_el| {
+                    if !disabled {
+                        let focused_for_focus = focused_clone.clone();
+                        let focused_for_blur = focused_clone.clone();
+                        raw_el
+                            .event_handler(move |_: events::Focus| {
+                                focused_for_focus.set(true);
+                            })
+                            .event_handler(move |_: events::Blur| {
+                                focused_for_blur.set(false);
+                            })
+                    } else {
+                        raw_el
+                    }
+                }
+            })
             .child_signal(
                 checked_signal.map(move |is_checked| {
                     match state {
@@ -194,15 +301,20 @@ impl CheckboxBuilder {
 
                             El::new()
                                 .s(Padding::all(2)) // Add padding around the icon
-                                .child(
-                                    IconBuilder::new(IconName::Minus)
-                                        .size(icon_size)
-                                        .color(if disabled {
-                                            IconColor::Muted
-                                        } else {
-                                            IconColor::Custom("oklch(98% 0.14 250)") // White/light color for contrast
-                                        })
-                                        .build()
+                                .child_signal(
+                                    theme().map(move |t| {
+                                        IconBuilder::new(IconName::Minus)
+                                            .size(icon_size)
+                                            .color(if disabled {
+                                                IconColor::Muted
+                                            } else {
+                                                match t {
+                                                    Theme::Light => IconColor::Custom("oklch(55% 0.22 250)"), // Blue color for light theme
+                                                    Theme::Dark => IconColor::Custom("oklch(98% 0.14 250)"), // Light color for dark theme (original)
+                                                }
+                                            })
+                                            .build()
+                                    })
                                 )
                                 .unify()
                         }
@@ -250,7 +362,7 @@ impl CheckboxBuilder {
             // Main row with checkbox and label
             let main_row = Row::new()
                 .s(Gap::new().x(SPACING_8))
-                .s(Align::new().top())
+                .s(Align::new().center_y()) // Center checkbox vertically with the first line of text
                 .item(checkbox_box)
                 .item(
                     Column::new()
