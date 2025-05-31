@@ -1,5 +1,6 @@
 use zoon::*;
 use crate::tokens::*;
+use crate::theme::*;
 
 // Tree node data
 #[derive(Debug, Clone)]
@@ -9,6 +10,8 @@ pub struct TreeNode {
     pub children: Vec<TreeNode>,
     pub expanded: bool,
     pub selected: bool,
+    pub disabled: bool,
+    pub icon: Option<String>,
 }
 
 impl TreeNode {
@@ -19,6 +22,8 @@ impl TreeNode {
             children: Vec::new(),
             expanded: false,
             selected: false,
+            disabled: false,
+            icon: None,
         }
     }
 
@@ -35,6 +40,20 @@ impl TreeNode {
     pub fn selected(mut self, selected: bool) -> Self {
         self.selected = selected;
         self
+    }
+
+    pub fn disabled(mut self, disabled: bool) -> Self {
+        self.disabled = disabled;
+        self
+    }
+
+    pub fn icon(mut self, icon: impl Into<String>) -> Self {
+        self.icon = Some(icon.into());
+        self
+    }
+
+    pub fn has_children(&self) -> bool {
+        !self.children.is_empty()
     }
 }
 
@@ -96,71 +115,143 @@ impl TreeViewBuilder {
 
     pub fn build(self) -> impl Element {
         let nodes = self.nodes;
+        let show_icons = self.show_icons;
+        let indent_size = self.indent_size;
+
         Column::new()
             .s(Width::fill())
             .s(Gap::new().y(SPACING_2))
             .items(
-                nodes.into_iter().map(|node| {
-                    TreeViewBuilder::render_node_static(node, 0, self.show_icons)
+                nodes.into_iter().map(move |node| {
+                    render_tree_node(node, 0, show_icons, indent_size)
                 })
+                .collect::<Vec<_>>()
             )
     }
+}
 
-    fn render_node_static(node: TreeNode, depth: u32, show_icons: bool) -> impl Element {
-        let indent = depth * SPACING_16;
-        let has_children = !node.children.is_empty();
+fn render_tree_node(node: TreeNode, depth: u32, show_icons: bool, indent_size: u32) -> impl Element {
+    let indent = depth * indent_size;
+    let has_children = node.has_children();
+    let disabled = node.disabled;
+    let selected = node.selected;
+    let expanded = node.expanded;
 
-        let expand_icon = if has_children {
-            if node.expanded { "▼" } else { "▶" }
-        } else {
-            " "
-        };
-
-        let node_icon = if show_icons {
-            if has_children {
-                if node.expanded { "📂" } else { "📁" }
+    // Create the main node row
+    let node_row = Row::new()
+        .s(Width::fill())
+        .s(Padding::new().left(indent).x(SPACING_8).y(SPACING_4))
+        .s(Background::new().color_signal(theme().map(move |t| {
+            if selected {
+                match t {
+                    Theme::Light => "oklch(85% 0.22 250)", // primary_3 light
+                    Theme::Dark => "oklch(25% 0.22 250)", // primary_3 dark
+                }
             } else {
-                "📄"
+                "transparent"
             }
+        })))
+        .s(RoundedCorners::all(4))
+        .s(Cursor::new(if disabled {
+            CursorIcon::NotAllowed
         } else {
-            ""
-        };
+            CursorIcon::Pointer
+        }))
+        .s(Align::new().center_y())
+        .s(Gap::new().x(SPACING_4))
+        .item(
+            // Expand/collapse icon
+            El::new()
+                .s(Width::exact(16))
+                .s(Height::exact(16))
+                .s(Align::center())
+                .child(Text::new(if has_children {
+                    if expanded { "▼" } else { "▶" }
+                } else {
+                    ""
+                }))
+                .s(Font::new()
+                    .size(FONT_SIZE_12)
+                    .color_signal(theme().map(move |t| {
+                        if disabled {
+                            match t {
+                                Theme::Light => "oklch(45% 0.14 250)", // neutral_5 light
+                                Theme::Dark => "oklch(55% 0.14 250)", // neutral_5 dark
+                            }
+                        } else {
+                            match t {
+                                Theme::Light => "oklch(65% 0.14 250)", // neutral_6 light
+                                Theme::Dark => "oklch(55% 0.14 250)", // neutral_7 dark
+                            }
+                        }
+                    }))
+                )
+        )
+        .item_signal(always(show_icons).map(move |show| {
+            if show {
+                Some(
+                    El::new()
+                        .child(Text::new(
+                            node.icon.as_deref().unwrap_or_else(|| {
+                                if has_children {
+                                    if expanded { "📂" } else { "📁" }
+                                } else {
+                                    "📄"
+                                }
+                            })
+                        ))
+                        .s(Font::new().size(FONT_SIZE_14))
+                )
+            } else {
+                None
+            }
+        }))
+        .item(
+            El::new()
+                .s(Width::fill())
+                .child(Text::new(&node.label))
+                .s(Font::new()
+                    .size(FONT_SIZE_14)
+                    .weight(FontWeight::Number(FONT_WEIGHT_4))
+                    .color_signal(theme().map(move |t| {
+                        if disabled {
+                            match t {
+                                Theme::Light => "oklch(45% 0.14 250)", // neutral_5 light
+                                Theme::Dark => "oklch(55% 0.14 250)", // neutral_5 dark
+                            }
+                        } else if selected {
+                            match t {
+                                Theme::Light => "oklch(55% 0.22 250)", // primary_7 light
+                                Theme::Dark => "oklch(65% 0.22 250)", // primary_7 dark
+                            }
+                        } else {
+                            match t {
+                                Theme::Light => "oklch(15% 0.14 250)", // neutral_9 light
+                                Theme::Dark => "oklch(95% 0.14 250)", // neutral_11 dark
+                            }
+                        }
+                    }))
+                )
+        )
+        .on_click(move || {
+            if !disabled {
+                // In a real implementation, this would trigger selection/expansion
+            }
+        });
 
-        let background_color = if node.selected {
-            "#e0e7ff" // blue-100
-        } else {
-            "transparent"
-        };
+    // Create the complete node with children
+    let mut items = vec![node_row.unify()];
 
-        let text_color = if node.selected {
-            "#1e40af" // blue-800
-        } else {
-            "#374151" // gray-700
-        };
-
-        // Create display text
-        let display_text = if show_icons {
-            format!("{} {} {}", expand_icon, node_icon, node.label)
-        } else {
-            format!("{} {}", expand_icon, node.label)
-        };
-
-        // Simplified node rendering
-        El::new()
-            .s(Width::fill())
-            .s(Padding::new().left(indent).x(SPACING_8).y(SPACING_4))
-            .s(Background::new().color(background_color))
-            .s(RoundedCorners::all(4))
-            .s(Cursor::new(CursorIcon::Pointer))
-            .s(Font::new()
-                .size(FONT_SIZE_14)
-                .color(text_color)
-            )
-            .child(Text::new(&display_text))
-            .on_click(move || {
-                // In a real implementation, this would trigger selection
-            })
+    // Add children if expanded
+    if expanded && has_children {
+        for child in node.children {
+            items.push(render_tree_node(child, depth + 1, show_icons, indent_size).unify());
+        }
     }
+
+    Column::new()
+        .s(Width::fill())
+        .items(items)
 }
 
 // Convenience functions

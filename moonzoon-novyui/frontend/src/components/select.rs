@@ -1,5 +1,6 @@
 use zoon::*;
 use crate::tokens::*;
+use crate::theme::*;
 
 // Select sizes
 #[derive(Debug, Clone, Copy)]
@@ -41,7 +42,10 @@ pub struct SelectBuilder {
     disabled: bool,
     required: bool,
     searchable: bool,
-    on_change: Option<Box<dyn Fn(String)>>,
+    label: Option<String>,
+    description: Option<String>,
+    error: bool,
+    multiple: bool,
 }
 
 impl SelectBuilder {
@@ -54,7 +58,10 @@ impl SelectBuilder {
             disabled: false,
             required: false,
             searchable: false,
-            on_change: None,
+            label: None,
+            description: None,
+            error: false,
+            multiple: false,
         }
     }
 
@@ -98,95 +105,251 @@ impl SelectBuilder {
         self
     }
 
-    pub fn on_change<F>(mut self, handler: F) -> Self
-    where
-        F: Fn(String) + 'static
-    {
-        self.on_change = Some(Box::new(handler));
+    pub fn label(mut self, label: impl Into<String>) -> Self {
+        self.label = Some(label.into());
+        self
+    }
+
+    pub fn description(mut self, description: impl Into<String>) -> Self {
+        self.description = Some(description.into());
+        self
+    }
+
+    pub fn error(mut self, error: bool) -> Self {
+        self.error = error;
+        self
+    }
+
+    pub fn multiple(mut self, multiple: bool) -> Self {
+        self.multiple = multiple;
         self
     }
 
     pub fn build(self) -> impl Element {
+        let (focused, focused_signal) = Mutable::new_and_signal(false);
+        let selected_value = Mutable::new(self.selected_value.clone());
+        let selected_value_signal = selected_value.signal_cloned();
+
         let (padding_x, padding_y, font_size) = match self.size {
             SelectSize::Small => (SPACING_8, SPACING_6, FONT_SIZE_14),
             SelectSize::Medium => (SPACING_12, SPACING_8, FONT_SIZE_16),
             SelectSize::Large => (SPACING_16, SPACING_12, FONT_SIZE_18),
         };
 
-        let border_color = if self.disabled {
-            "#d1d5db" // gray-300
-        } else {
-            "#e5e7eb" // gray-200
-        };
+        let disabled = self.disabled;
+        let error = self.error;
+        let options = self.options.clone();
+        let placeholder_text = self.placeholder.clone().unwrap_or_else(|| "Select an option...".to_string());
 
-        let background_color = if self.disabled {
-            "#f9fafb" // gray-50
-        } else {
-            "#ffffff" // white
-        };
-
-        let text_color = if self.disabled {
-            "#9ca3af" // gray-400
-        } else {
-            "#374151" // gray-700
-        };
-
-        // Determine display text
-        let display_text = if let Some(selected) = &self.selected_value {
-            // Find the label for the selected value
-            self.options
-                .iter()
-                .find(|opt| opt.value == *selected)
-                .map(|opt| opt.label.clone())
-                .unwrap_or_else(|| selected.clone())
-        } else {
-            self.placeholder.clone().unwrap_or_else(|| "Select an option...".to_string())
-        };
-
-        let mut select = Row::new()
+        // Create the select input
+        let select_input = Row::new()
             .s(Width::fill())
             .s(Padding::new().x(padding_x).y(padding_y))
-            .s(Borders::all(Border::new().width(1).color(border_color)))
+            .s(Borders::all_signal(theme().map(move |t| {
+                let (color, width) = if error {
+                    match t {
+                        Theme::Light => ("oklch(50% 0.21 30)", 2), // error_7 light
+                        Theme::Dark => ("oklch(70% 0.21 30)", 2), // error_7 dark
+                    }
+                } else if disabled {
+                    match t {
+                        Theme::Light => ("oklch(85% 0.14 250)", 1), // neutral_4 light
+                        Theme::Dark => ("oklch(25% 0.14 250)", 1), // neutral_4 dark
+                    }
+                } else {
+                    match t {
+                        Theme::Light => ("oklch(75% 0.14 250)", 1), // neutral_5 light
+                        Theme::Dark => ("oklch(35% 0.14 250)", 1), // neutral_5 dark
+                    }
+                };
+                Border::new().width(width).color(color)
+            })))
             .s(RoundedCorners::all(6))
-            .s(Background::new().color(background_color))
+            .s(Background::new().color_signal(theme().map(move |t| {
+                if disabled {
+                    match t {
+                        Theme::Light => "oklch(98% 0.14 250)", // neutral_1 light
+                        Theme::Dark => "oklch(8% 0.14 250)", // neutral_2 dark
+                    }
+                } else {
+                    match t {
+                        Theme::Light => "oklch(98% 0.14 250)", // neutral_1 light
+                        Theme::Dark => "oklch(8% 0.14 250)", // neutral_2 dark
+                    }
+                }
+            })))
+            .s(Cursor::new(if disabled {
+                CursorIcon::NotAllowed
+            } else {
+                CursorIcon::Pointer
+            }))
             .s(Align::new().center_y())
             .item(
                 El::new()
                     .s(Width::fill())
-                    .s(Font::new()
-                        .size(font_size)
-                        .color(text_color)
+                    .child_signal(
+                        selected_value_signal.map(move |selected| {
+                            let display_text = if let Some(ref value) = selected {
+                                // Find the label for the selected value
+                                options
+                                    .iter()
+                                    .find(|opt| opt.value == *value)
+                                    .map(|opt| opt.label.clone())
+                                    .unwrap_or_else(|| value.clone())
+                            } else {
+                                placeholder_text.clone()
+                            };
+
+                            El::new()
+                                .child(Text::new(&display_text))
+                                .s(Font::new()
+                                    .size(font_size)
+                                    .color_signal(theme().map(move |t| {
+                                        let is_placeholder = selected.is_none();
+                                        if disabled {
+                                            match t {
+                                                Theme::Light => "oklch(45% 0.14 250)", // neutral_5 light
+                                                Theme::Dark => "oklch(55% 0.14 250)", // neutral_5 dark
+                                            }
+                                        } else if is_placeholder {
+                                            match t {
+                                                Theme::Light => "oklch(65% 0.14 250)", // neutral_6 light
+                                                Theme::Dark => "oklch(55% 0.14 250)", // neutral_7 dark
+                                            }
+                                        } else {
+                                            match t {
+                                                Theme::Light => "oklch(15% 0.14 250)", // neutral_9 light
+                                                Theme::Dark => "oklch(95% 0.14 250)", // neutral_11 dark
+                                            }
+                                        }
+                                    }))
+                                )
+                        })
                     )
-                    .child(Text::new(&display_text))
             )
             .item(
                 El::new()
-                    .s(Font::new()
-                        .size(FONT_SIZE_14)
-                        .color("#6b7280") // gray-500
-                    )
                     .child(Text::new("▼"))
-            );
+                    .s(Font::new()
+                        .size(FONT_SIZE_12)
+                        .color_signal(theme().map(move |t| {
+                            if disabled {
+                                match t {
+                                    Theme::Light => "oklch(45% 0.14 250)", // neutral_5 light
+                                    Theme::Dark => "oklch(55% 0.14 250)", // neutral_5 dark
+                                }
+                            } else {
+                                match t {
+                                    Theme::Light => "oklch(65% 0.14 250)", // neutral_6 light
+                                    Theme::Dark => "oklch(55% 0.14 250)", // neutral_7 dark
+                                }
+                            }
+                        }))
+                    )
+            )
+            .on_click({
+                let selected_value = selected_value.clone();
+                let options = self.options.clone();
+                move || {
+                    if !disabled && !options.is_empty() {
+                        // Simple demo: cycle through options
+                        let current = selected_value.get_cloned();
+                        let next_option = if let Some(current_val) = current {
+                            // Find current index and get next
+                            let current_index = options.iter().position(|opt| opt.value == current_val).unwrap_or(0);
+                            let next_index = (current_index + 1) % options.len();
+                            Some(options[next_index].value.clone())
+                        } else {
+                            // Select first option
+                            Some(options[0].value.clone())
+                        };
+                        selected_value.set(next_option);
+                    }
+                }
+            })
+;
 
-        // Add interactivity if not disabled
-        if !self.disabled {
-            select = select.s(Cursor::new(CursorIcon::Pointer));
+        // Build the complete component
+        if let Some(label_text) = &self.label {
+            let mut items = Vec::new();
 
-            if let Some(handler) = self.on_change {
-                // Get first option value for demo
-                let demo_value = self.options.first()
-                    .map(|opt| opt.value.clone())
-                    .unwrap_or_else(|| "demo".to_string());
+            // Label row
+            let label_row = Row::new()
+                .s(Gap::new().x(SPACING_4))
+                .item(
+                    El::new()
+                        .child(Text::new(label_text))
+                        .s(Font::new()
+                            .size(FONT_SIZE_14)
+                            .weight(FontWeight::Number(FONT_WEIGHT_5))
+                            .color_signal(theme().map(move |t| {
+                                if disabled {
+                                    match t {
+                                        Theme::Light => "oklch(45% 0.14 250)", // neutral_5 light
+                                        Theme::Dark => "oklch(55% 0.14 250)", // neutral_5 dark
+                                    }
+                                } else {
+                                    match t {
+                                        Theme::Light => "oklch(15% 0.14 250)", // neutral_9 light
+                                        Theme::Dark => "oklch(95% 0.14 250)", // neutral_11 dark
+                                    }
+                                }
+                            }))
+                        )
+                )
+                .item_signal(always(self.required).map(|required| {
+                    if required {
+                        Some(
+                            El::new()
+                                .child(Text::new("*"))
+                                .s(Font::new()
+                                    .size(FONT_SIZE_14)
+                                    .weight(FontWeight::Number(FONT_WEIGHT_5))
+                                    .color_signal(theme().map(|t| match t {
+                                        Theme::Light => "oklch(50% 0.21 30)", // error_7 light
+                                        Theme::Dark => "oklch(70% 0.21 30)", // error_7 dark
+                                    }))
+                                )
+                        )
+                    } else {
+                        None
+                    }
+                }));
 
-                select = select.on_click(move || {
-                    // In a real implementation, this would open a dropdown
-                    // For now, just trigger with a demo value
-                    handler(demo_value.clone());
-                });
+            items.push(label_row.unify());
+            items.push(select_input.unify());
+
+            // Description
+            if let Some(description) = &self.description {
+                let desc_element = El::new()
+                    .child(Text::new(description))
+                    .s(Font::new()
+                        .size(FONT_SIZE_12)
+                        .weight(FontWeight::Number(FONT_WEIGHT_4))
+                        .color_signal(theme().map(move |t| {
+                            if disabled {
+                                match t {
+                                    Theme::Light => "oklch(45% 0.14 250)", // neutral_5 light
+                                    Theme::Dark => "oklch(55% 0.14 250)", // neutral_5 dark
+                                }
+                            } else {
+                                match t {
+                                    Theme::Light => "oklch(35% 0.14 250)", // neutral_7 light
+                                    Theme::Dark => "oklch(75% 0.14 250)", // neutral_9 dark
+                                }
+                            }
+                        }))
+                    );
+                items.push(desc_element.unify());
             }
-        }
 
-        select
+            Column::new()
+                .s(Gap::new().y(SPACING_4))
+                .items(items)
+                .unify()
+        } else {
+            select_input.unify()
+        }
     }
 }
 

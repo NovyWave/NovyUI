@@ -1,5 +1,6 @@
 use zoon::*;
 use crate::tokens::*;
+use crate::theme::*;
 
 // Switch sizes
 #[derive(Debug, Clone, Copy)]
@@ -33,6 +34,14 @@ impl SwitchSize {
             SwitchSize::Large => 24,
         }
     }
+
+    pub fn font_size(self) -> u32 {
+        match self {
+            SwitchSize::Small => FONT_SIZE_12,
+            SwitchSize::Medium => FONT_SIZE_12,
+            SwitchSize::Large => FONT_SIZE_14,
+        }
+    }
 }
 
 // Switch builder
@@ -40,7 +49,10 @@ pub struct SwitchBuilder {
     size: SwitchSize,
     checked: bool,
     disabled: bool,
-    on_change: Option<Box<dyn Fn(bool)>>,
+    label: Option<String>,
+    description: Option<String>,
+    show_icons: bool,
+    required: bool,
 }
 
 impl SwitchBuilder {
@@ -49,7 +61,10 @@ impl SwitchBuilder {
             size: SwitchSize::Medium,
             checked: false,
             disabled: false,
-            on_change: None,
+            label: None,
+            description: None,
+            show_icons: true,
+            required: false,
         }
     }
 
@@ -68,55 +83,298 @@ impl SwitchBuilder {
         self
     }
 
-    pub fn on_change<F>(mut self, handler: F) -> Self
-    where
-        F: Fn(bool) + 'static
-    {
-        self.on_change = Some(Box::new(handler));
+    pub fn label(mut self, label: impl Into<String>) -> Self {
+        self.label = Some(label.into());
+        self
+    }
+
+    pub fn description(mut self, description: impl Into<String>) -> Self {
+        self.description = Some(description.into());
+        self
+    }
+
+    pub fn show_icons(mut self, show_icons: bool) -> Self {
+        self.show_icons = show_icons;
+        self
+    }
+
+    pub fn required(mut self, required: bool) -> Self {
+        self.required = required;
         self
     }
 
     pub fn build(self) -> impl Element {
+        let checked = Mutable::new(self.checked);
+        let checked_signal = checked.signal();
+        let checked_clone = checked.clone();
+        let focused = Mutable::new(false);
+        let focused_signal = focused.signal();
+
         let track_width = self.size.track_width();
         let track_height = self.size.track_height();
-        let _thumb_size = self.size.thumb_size();
+        let thumb_size = self.size.thumb_size();
+        let font_size = self.size.font_size();
         let track_radius = track_height / 2;
+        let thumb_radius = thumb_size / 2;
+        let disabled = self.disabled;
+        let show_icons = self.show_icons;
 
-        // Simplified switch - just show different background colors for now
-        let background_color = if self.disabled {
-            "#6b7280" // neutral-500
-        } else if self.checked {
-            "#3b82f6" // blue-500
-        } else {
-            "#6b7280" // neutral-500
-        };
+        // Calculate thumb position (2px padding from edges)
+        let thumb_padding = 2;
+        let thumb_travel = track_width - thumb_size - (thumb_padding * 2);
 
-        // Simple text indicator for now
-        let indicator = if self.checked { "ON" } else { "OFF" };
-
-        let mut switch = El::new()
+        // Create the switch track
+        let switch_track = El::new()
             .s(Width::exact(track_width))
             .s(Height::exact(track_height))
             .s(RoundedCorners::all(track_radius))
-            .s(Background::new().color(background_color))
-            .s(Align::center())
-            .s(Font::new()
-                .size(FONT_SIZE_12)
-                .color_signal(neutral_11())
-                .weight(FontWeight::Medium)
+            .s(Cursor::new(if disabled {
+                CursorIcon::NotAllowed
+            } else {
+                CursorIcon::Pointer
+            }))
+            .s(Background::new().color_signal(theme().map(move |t| {
+                let checked_state = checked.get();
+                if disabled {
+                    match t {
+                        Theme::Light => "oklch(85% 0.14 250)", // neutral_4 light
+                        Theme::Dark => "oklch(25% 0.14 250)", // neutral_4 dark
+                    }
+                } else if checked_state {
+                    match t {
+                        Theme::Light => "oklch(55% 0.22 250)", // primary_7 light
+                        Theme::Dark => "oklch(65% 0.22 250)", // primary_7 dark
+                    }
+                } else {
+                    match t {
+                        Theme::Light => "oklch(75% 0.14 250)", // neutral_5 light
+                        Theme::Dark => "oklch(35% 0.14 250)", // neutral_5 dark
+                    }
+                }
+            })))
+            .s(Borders::all_signal(theme().map(move |t| {
+                let focused_state = focused.get();
+                if focused_state && !disabled {
+                    match t {
+                        Theme::Light => Border::new().width(2).color("oklch(55% 0.22 250)"), // primary_7 light
+                        Theme::Dark => Border::new().width(2).color("oklch(65% 0.22 250)"), // primary_7 dark
+                    }
+                } else {
+                    Border::new().width(0).color("transparent")
+                }
+            })))
+            .child(
+                // Combined track with icons and thumb
+                Row::new()
+                    .s(Width::fill())
+                    .s(Height::fill())
+                    .s(Align::new().center_y())
+                    .s(Padding::all(thumb_padding))
+                    .item_signal(checked_signal.map(move |is_checked| {
+                        if is_checked {
+                            // Thumb on the right
+                            Row::new()
+                                .s(Width::fill())
+                                .s(Align::new().center_y())
+                                .item_signal(always(show_icons).map(move |show| {
+                                    if show {
+                                        Some(
+                                            El::new()
+                                                .child(Text::new("✓"))
+                                                .s(Font::new()
+                                                    .size(font_size)
+                                                    .weight(FontWeight::Number(FONT_WEIGHT_6))
+                                                    .color_signal(theme().map(move |t| {
+                                                        if disabled {
+                                                            match t {
+                                                                Theme::Light => "oklch(45% 0.14 250)", // neutral_5 light
+                                                                Theme::Dark => "oklch(55% 0.14 250)", // neutral_5 dark
+                                                            }
+                                                        } else {
+                                                            match t {
+                                                                Theme::Light => "oklch(98% 0.14 250)", // neutral_1 light
+                                                                Theme::Dark => "oklch(8% 0.14 250)", // neutral_2 dark
+                                                            }
+                                                        }
+                                                    }))
+                                                )
+                                        )
+                                    } else {
+                                        None
+                                    }
+                                }))
+                                .item(El::new().s(Width::fill())) // Spacer
+                                .item(
+                                    El::new()
+                                        .s(Width::exact(thumb_size))
+                                        .s(Height::exact(thumb_size))
+                                        .s(RoundedCorners::all(thumb_radius))
+                                        .s(Background::new().color_signal(theme().map(move |t| {
+                                            if disabled {
+                                                match t {
+                                                    Theme::Light => "oklch(65% 0.14 250)", // neutral_6 light
+                                                    Theme::Dark => "oklch(45% 0.14 250)", // neutral_6 dark
+                                                }
+                                            } else {
+                                                match t {
+                                                    Theme::Light => "oklch(98% 0.14 250)", // neutral_1 light
+                                                    Theme::Dark => "oklch(95% 0.14 250)", // neutral_11 dark
+                                                }
+                                            }
+                                        })))
+                                )
+                        } else {
+                            // Thumb on the left
+                            Row::new()
+                                .s(Width::fill())
+                                .s(Align::new().center_y())
+                                .item(
+                                    El::new()
+                                        .s(Width::exact(thumb_size))
+                                        .s(Height::exact(thumb_size))
+                                        .s(RoundedCorners::all(thumb_radius))
+                                        .s(Background::new().color_signal(theme().map(move |t| {
+                                            if disabled {
+                                                match t {
+                                                    Theme::Light => "oklch(65% 0.14 250)", // neutral_6 light
+                                                    Theme::Dark => "oklch(45% 0.14 250)", // neutral_6 dark
+                                                }
+                                            } else {
+                                                match t {
+                                                    Theme::Light => "oklch(98% 0.14 250)", // neutral_1 light
+                                                    Theme::Dark => "oklch(95% 0.14 250)", // neutral_11 dark
+                                                }
+                                            }
+                                        })))
+                                )
+                                .item(El::new().s(Width::fill())) // Spacer
+                                .item_signal(always(show_icons).map(move |show| {
+                                    if show {
+                                        Some(
+                                            El::new()
+                                                .child(Text::new("✕"))
+                                                .s(Font::new()
+                                                    .size(font_size)
+                                                    .weight(FontWeight::Number(FONT_WEIGHT_6))
+                                                    .color_signal(theme().map(move |t| {
+                                                        if disabled {
+                                                            match t {
+                                                                Theme::Light => "oklch(45% 0.14 250)", // neutral_5 light
+                                                                Theme::Dark => "oklch(55% 0.14 250)", // neutral_5 dark
+                                                            }
+                                                        } else {
+                                                            match t {
+                                                                Theme::Light => "oklch(35% 0.14 250)", // neutral_7 light
+                                                                Theme::Dark => "oklch(75% 0.14 250)", // neutral_9 dark
+                                                            }
+                                                        }
+                                                    }))
+                                                )
+                                        )
+                                    } else {
+                                        None
+                                    }
+                                }))
+                        }
+                    }))
             )
-            .child(Text::new(indicator));
+            .on_click({
+                move || {
+                    if !disabled {
+                        checked_clone.update(|current| !current);
+                    }
+                }
+            });
 
-        if !self.disabled {
-            switch = switch.s(Cursor::new(CursorIcon::Pointer));
+        // Build the complete component
+        if let Some(label_text) = &self.label {
+            let mut items = Vec::new();
 
-            if let Some(handler) = self.on_change {
-                let current_checked = self.checked;
-                switch = switch.on_click(move || handler(!current_checked));
-            }
+            // Main row with switch and label
+            let main_row = Row::new()
+                .s(Gap::new().x(SPACING_12))
+                .s(Align::new().top())
+                .item(switch_track)
+                .item(
+                    Column::new()
+                        .s(Gap::new().y(SPACING_2))
+                        .item(
+                            Row::new()
+                                .s(Gap::new().x(SPACING_4))
+                                .item(
+                                    El::new()
+                                        .child(Text::new(label_text))
+                                        .s(Font::new()
+                                            .size(FONT_SIZE_16)
+                                            .weight(FontWeight::Number(FONT_WEIGHT_4))
+                                            .color_signal(theme().map(move |t| {
+                                                if disabled {
+                                                    match t {
+                                                        Theme::Light => "oklch(45% 0.14 250)", // neutral_5 light
+                                                        Theme::Dark => "oklch(55% 0.14 250)", // neutral_5 dark
+                                                    }
+                                                } else {
+                                                    match t {
+                                                        Theme::Light => "oklch(15% 0.14 250)", // neutral_9 light
+                                                        Theme::Dark => "oklch(95% 0.14 250)", // neutral_11 dark
+                                                    }
+                                                }
+                                            }))
+                                        )
+                                )
+                                .item_signal(always(self.required).map(|required| {
+                                    if required {
+                                        Some(
+                                            El::new()
+                                                .child(Text::new("*"))
+                                                .s(Font::new()
+                                                    .size(FONT_SIZE_16)
+                                                    .weight(FontWeight::Number(FONT_WEIGHT_5))
+                                                    .color_signal(theme().map(|t| match t {
+                                                        Theme::Light => "oklch(50% 0.21 30)", // error_7 light
+                                                        Theme::Dark => "oklch(70% 0.21 30)", // error_7 dark
+                                                    }))
+                                                )
+                                        )
+                                    } else {
+                                        None
+                                    }
+                                }))
+                        )
+                        .item_signal(always(self.description.clone()).map(move |desc| {
+                            desc.map(|description| {
+                                El::new()
+                                    .child(Text::new(&description))
+                                    .s(Font::new()
+                                        .size(FONT_SIZE_14)
+                                        .weight(FontWeight::Number(FONT_WEIGHT_4))
+                                        .color_signal(theme().map(move |t| {
+                                            if disabled {
+                                                match t {
+                                                    Theme::Light => "oklch(45% 0.14 250)", // neutral_5 light
+                                                    Theme::Dark => "oklch(55% 0.14 250)", // neutral_5 dark
+                                                }
+                                            } else {
+                                                match t {
+                                                    Theme::Light => "oklch(35% 0.14 250)", // neutral_7 light
+                                                    Theme::Dark => "oklch(75% 0.14 250)", // neutral_9 dark
+                                                }
+                                            }
+                                        }))
+                                    )
+                            })
+                        }))
+                );
+
+            items.push(main_row.unify());
+
+            Column::new()
+                .s(Gap::new().y(SPACING_4))
+                .items(items)
+                .unify()
+        } else {
+            switch_track.unify()
         }
-
-        switch
     }
 }
 
