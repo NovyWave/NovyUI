@@ -193,7 +193,7 @@ impl BadgeBuilder {
 
 
     // Theme-aware color methods with improved contrast (simulating gradient effect)
-    fn get_background_color(&self) -> impl Signal<Item = &'static str> {
+    fn get_background_color(&self) -> impl Signal<Item = &'static str> + use<> {
         let variant = self.variant;
         theme().map(move |t| match (variant, t) {
             // Primary: Light theme uses much darker shade, dark theme uses lighter shade for better contrast
@@ -224,7 +224,7 @@ impl BadgeBuilder {
         })
     }
 
-    fn get_text_color(&self) -> impl Signal<Item = &'static str> {
+    fn get_text_color(&self) -> impl Signal<Item = &'static str> + use<> {
         let variant = self.variant;
         theme().map(move |t| match (variant, t) {
             // In light theme: ALL colored badges use white text on colored backgrounds
@@ -253,7 +253,7 @@ impl BadgeBuilder {
         })
     }
 
-    fn get_border(&self) -> impl Signal<Item = Border> {
+    fn get_border(&self) -> impl Signal<Item = Border> + use<> {
         let variant = self.variant;
         theme().map(move |t| {
             if variant == BadgeVariant::Outline {
@@ -268,7 +268,7 @@ impl BadgeBuilder {
         })
     }
 
-    fn get_shadows(&self) -> impl Signal<Item = Vec<Shadow>> {
+    fn get_shadows(&self) -> impl Signal<Item = Vec<Shadow>> + use<> {
         let variant = self.variant;
         theme().map(move |t| {
             match (variant, t) {
