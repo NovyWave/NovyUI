@@ -281,6 +281,23 @@ impl ButtonBuilder {
                 }.boxed_local()
             ))
             .s(Cursor::new(if is_disabled { CursorIcon::NotAllowed } else { CursorIcon::Pointer }))
+            .s(Shadows::with_signal(
+                if is_disabled {
+                    // No shadows for disabled buttons
+                    always(vec![]).boxed_local()
+                } else {
+                    // Add shadows based on variant and theme
+                    self.get_button_shadows_signal(variant).boxed_local()
+                }
+            ))
+            .update_raw_el(move |raw_el| {
+                // Add underline for Link variant
+                if variant == ButtonVariant::Link {
+                    raw_el.style("text-decoration", "underline")
+                } else {
+                    raw_el.style("text-decoration", "none")
+                }
+            })
             .update_raw_el(move |raw_el| {
                 if is_disabled {
                     // Disabled state - use exact Vue opacity: 64%
@@ -412,6 +429,55 @@ impl ButtonBuilder {
                 Text::new("").unify()
             }
         }
+    }
+
+    fn get_button_shadows_signal(&self, variant: ButtonVariant) -> impl Signal<Item = Vec<Shadow>> + use<> {
+        theme().map(move |t| {
+            match (variant, t) {
+                // Primary buttons get blue-tinted shadows
+                (ButtonVariant::Primary, Theme::Light) => vec![
+                    Shadow::new().y(4).x(0).blur(6).spread(-1).color("rgba(59, 130, 246, 0.25)"),
+                    Shadow::new().y(2).x(0).blur(4).spread(-1).color("rgba(59, 130, 246, 0.15)"),
+                ],
+                (ButtonVariant::Primary, Theme::Dark) => vec![
+                    Shadow::new().y(4).x(0).blur(6).spread(-1).color("rgba(59, 130, 246, 0.4)"),
+                    Shadow::new().y(2).x(0).blur(4).spread(-1).color("rgba(59, 130, 246, 0.25)"),
+                ],
+
+                // Secondary buttons get neutral shadows
+                (ButtonVariant::Secondary, Theme::Light) => vec![
+                    Shadow::new().y(3).x(0).blur(6).spread(-1).color("rgba(0, 0, 0, 0.1)"),
+                    Shadow::new().y(1).x(0).blur(3).spread(-1).color("rgba(0, 0, 0, 0.06)"),
+                ],
+                (ButtonVariant::Secondary, Theme::Dark) => vec![
+                    Shadow::new().y(3).x(0).blur(6).spread(-1).color("rgba(0, 0, 0, 0.5)"),
+                    Shadow::new().y(1).x(0).blur(3).spread(-1).color("rgba(0, 0, 0, 0.3)"),
+                ],
+
+                // Outline buttons get subtle shadows
+                (ButtonVariant::Outline, Theme::Light) => vec![
+                    Shadow::new().y(2).x(0).blur(4).spread(-1).color("rgba(0, 0, 0, 0.08)"),
+                    Shadow::new().y(1).x(0).blur(2).spread(-1).color("rgba(0, 0, 0, 0.04)"),
+                ],
+                (ButtonVariant::Outline, Theme::Dark) => vec![
+                    Shadow::new().y(2).x(0).blur(4).spread(-1).color("rgba(0, 0, 0, 0.4)"),
+                    Shadow::new().y(1).x(0).blur(2).spread(-1).color("rgba(0, 0, 0, 0.25)"),
+                ],
+
+                // Destructive buttons get red-tinted shadows
+                (ButtonVariant::Destructive, Theme::Light) => vec![
+                    Shadow::new().y(4).x(0).blur(6).spread(-1).color("rgba(239, 68, 68, 0.25)"),
+                    Shadow::new().y(2).x(0).blur(4).spread(-1).color("rgba(239, 68, 68, 0.15)"),
+                ],
+                (ButtonVariant::Destructive, Theme::Dark) => vec![
+                    Shadow::new().y(4).x(0).blur(6).spread(-1).color("rgba(239, 68, 68, 0.4)"),
+                    Shadow::new().y(2).x(0).blur(4).spread(-1).color("rgba(239, 68, 68, 0.25)"),
+                ],
+
+                // Ghost and Link buttons get no shadows for minimal appearance
+                (ButtonVariant::Ghost, _) | (ButtonVariant::Link, _) => vec![],
+            }
+        })
     }
 
     fn create_loading_content(
