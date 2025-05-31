@@ -2,7 +2,7 @@ use moon::*;
 
 async fn frontend() -> Frontend {
     Frontend::new()
-        .title("New Project")
+        .title("NovyUI | MoonZoon")
         .append_to_head(include_str!("../favicon.html")) // realfavicongenerator.net
         .append_to_head(
             "
