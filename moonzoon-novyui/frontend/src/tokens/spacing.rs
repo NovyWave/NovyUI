@@ -15,6 +15,7 @@ pub const SPACING_6: u32 = 6;
 
 /// 8px spacing
 pub const SPACING_8: u32 = 8;
+pub const SPACING_10: u32 = 10;
 
 /// 12px spacing
 pub const SPACING_12: u32 = 12;
