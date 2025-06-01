@@ -115,17 +115,17 @@ fn theme_button() -> impl Element {
 
 fn navigation_bar() -> impl Element {
     let components = vec![
-        ("Accordion", "accordion"),
+        // ("Accordion", "accordion"),     // Temporarily hidden
         ("Badge", "badge"),
         ("Buttons", "buttons"),
         ("Checkbox", "checkbox"),
         ("Icons", "icons"),
         ("Inputs", "inputs"),
         ("Kbd", "kbd"),
-        ("List", "list"),
+        // ("List", "list"),               // Temporarily hidden
         ("Select", "select"),
         ("Switch", "switch"),
-        ("TextArea", "textarea"),
+        // ("TextArea", "textarea"),       // Temporarily hidden
         ("TreeView", "treeview"),
         ("Typography", "typography"),
     ];
@@ -172,7 +172,7 @@ fn component_showcase() -> impl Element {
         .s(Scrollbars::both())
         .s(Gap::new().y(SPACING_56))
         .item(h3("Component Showcase"))
-        .item(component_section("accordion", accordion_examples()))
+        // .item(component_section("accordion", accordion_examples()))     // Temporarily hidden
         // .item(alert_examples())     // Temporarily hidden
         // .item(asset_examples())     // Temporarily hidden
         // .item(avatar_examples())    // Temporarily hidden
@@ -184,11 +184,11 @@ fn component_showcase() -> impl Element {
         .item(component_section("icons", icon_examples()))
         .item(component_section("inputs", input_examples()))
         .item(component_section("kbd", kbd_examples()))
-        .item(component_section("list", list_examples()))
+        // .item(component_section("list", list_examples()))              // Temporarily hidden
         // .item(pattern_examples())   // Temporarily hidden
         .item(component_section("select", select_examples()))
         .item(component_section("switch", switch_examples()))
-        .item(component_section("textarea", textarea_examples()))
+        // .item(component_section("textarea", textarea_examples()))      // Temporarily hidden
         // .item(token_examples())     // Temporarily hidden
         .item(component_section("treeview", treeview_examples()))
         .item(component_section("typography", typography_examples()))
