@@ -2,7 +2,7 @@ use zoon::*;
 use crate::tokens::*;
 use crate::components::*;
 use crate::components::icon::IconName;
-use crate::components::switch::LabelPosition;
+// use crate::components::switch::LabelPosition;
 
 
 // Default story - Simple unchecked switch (no label)
@@ -81,7 +81,7 @@ pub fn switch_left_label() -> impl Element {
                 .label("Label on left")
                 .checked(true)
                 .show_icons(false)
-                .label_position(LabelPosition::Left)
+                // .label_position(LabelPosition::Left)
                 .build()
         )
 }

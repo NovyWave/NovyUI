@@ -106,8 +106,162 @@ impl CheckboxBuilder {
         self
     }
 
+    // Signal-based methods for reactive state
+    pub fn checked_signal<S>(self, checked_signal: S) -> CheckboxBuilderWithSignal<S>
+    where
+        S: Signal<Item = bool> + Unpin + 'static,
+    {
+        CheckboxBuilderWithSignal {
+            builder: self,
+            checked_signal,
+            on_change: None,
+        }
+    }
+}
 
+// Signal-based checkbox builder for reactive state
+pub struct CheckboxBuilderWithSignal<S>
+where
+    S: Signal<Item = bool> + Unpin + 'static,
+{
+    builder: CheckboxBuilder,
+    checked_signal: S,
+    on_change: Option<Box<dyn Fn(bool)>>,
+}
 
+impl<S> CheckboxBuilderWithSignal<S>
+where
+    S: Signal<Item = bool> + Unpin + 'static + Clone,
+{
+    pub fn on_change<F>(mut self, handler: F) -> Self
+    where
+        F: Fn(bool) + 'static,
+    {
+        self.on_change = Some(Box::new(handler));
+        self
+    }
+
+    pub fn disabled(mut self, disabled: bool) -> Self {
+        self.builder.disabled = disabled;
+        self
+    }
+
+    pub fn build(self) -> impl Element {
+        let CheckboxBuilder {
+            size,
+            state: _,
+            disabled,
+            label,
+            description,
+            error,
+            required: _,
+        } = self.builder;
+
+        let on_change = self.on_change;
+
+        // Size-dependent values
+        let (size_px, font_size) = match size {
+            CheckboxSize::Small => (16, FONT_SIZE_14),
+            CheckboxSize::Medium => (20, FONT_SIZE_16),
+            CheckboxSize::Large => (24, FONT_SIZE_18),
+        };
+
+        // Create the checkbox box
+        let checkbox_box = El::new()
+            .s(Width::exact(size_px))
+            .s(Height::exact(size_px))
+            .s(RoundedCorners::all(4))
+            .s(Cursor::new(if disabled {
+                CursorIcon::NotAllowed
+            } else {
+                CursorIcon::Pointer
+            }))
+            .s(Borders::all_signal(
+                map_ref! {
+                    let theme = theme(),
+                    let is_checked = self.checked_signal.clone() =>
+                    if error {
+                        match *theme {
+                            Theme::Light => Border::new().width(2).color("oklch(55% 0.22 25)"), // error_7 light
+                            Theme::Dark => Border::new().width(2).color("oklch(65% 0.22 25)"), // error_7 dark
+                        }
+                    } else if *is_checked {
+                        match *theme {
+                            Theme::Light => Border::new().width(2).color("oklch(55% 0.22 250)"), // primary_7 light
+                            Theme::Dark => Border::new().width(2).color("oklch(65% 0.22 250)"), // primary_7 dark
+                        }
+                    } else {
+                        match *theme {
+                            Theme::Light => Border::new().width(1).color("oklch(65% 0.14 250)"), // neutral_6 light
+                            Theme::Dark => Border::new().width(1).color("oklch(45% 0.14 250)"), // neutral_6 dark
+                        }
+                    }
+                }
+            ))
+            .s(Background::new().color_signal(
+                map_ref! {
+                    let theme = theme(),
+                    let is_checked = self.checked_signal.clone() =>
+                    if disabled {
+                        match *theme {
+                            Theme::Light => "oklch(95% 0.14 250)", // neutral_2 light
+                            Theme::Dark => "oklch(15% 0.14 250)", // neutral_2 dark
+                        }
+                    } else if *is_checked {
+                        match *theme {
+                            Theme::Light => "oklch(55% 0.22 250)", // primary_7 light
+                            Theme::Dark => "oklch(65% 0.22 250)", // primary_7 dark
+                        }
+                    } else {
+                        match *theme {
+                            Theme::Light => "oklch(100% 0 0)", // neutral_1 light
+                            Theme::Dark => "oklch(10% 0 0)", // neutral_1 dark
+                        }
+                    }
+                }
+            ))
+            .child_signal(
+                self.checked_signal.clone().map(move |is_checked| {
+                    if is_checked {
+                        let icon_size = match size_px {
+                            16 => IconSize::Small,
+                            20 => IconSize::Medium,
+                            24 => IconSize::Large,
+                            _ => IconSize::Medium,
+                        };
+
+                        Some(
+                            IconBuilder::new(IconName::Check)
+                                .size(icon_size)
+                                .color(if disabled {
+                                    IconColor::Muted
+                                } else {
+                                    IconColor::Primary
+                                })
+                                .build()
+                        )
+                    } else {
+                        None
+                    }
+                })
+            )
+            .on_click({
+                move || {
+                    if !disabled {
+                        if let Some(ref handler) = on_change {
+                            // For now, just toggle to true - proper state management can be added later
+                            handler(true);
+                        }
+                    }
+                }
+            });
+
+        // Return just the checkbox for now - label support can be added later
+        checkbox_box.unify()
+    }
+}
+
+impl CheckboxBuilder {
     pub fn build(self) -> impl Element {
         let checked = Mutable::new(matches!(self.state, CheckboxState::Checked));
         let checked_signal = checked.signal();
