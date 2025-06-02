@@ -13,10 +13,41 @@ use store::*;
 // Viewport control for scrolling
 pub static VIEWPORT_Y: Lazy<Mutable<i32>> = Lazy::new(|| Mutable::new(0));
 
+// Viewport width control for responsive design
+pub static VIEWPORT_WIDTH: Lazy<Mutable<i32>> = Lazy::new(|| Mutable::new(1200));
+
 fn main() {
     // Initialize the router
     router();
+    
+    // Initialize viewport width tracking
+    init_viewport_width_tracking();
+    
     start_app("app", root);
+}
+
+fn init_viewport_width_tracking() {
+    use web_sys::wasm_bindgen::prelude::*;
+    use web_sys::wasm_bindgen::JsCast;
+
+    // Set initial viewport width
+    if let Some(window) = web_sys::window() {
+        let width = window.inner_width().unwrap().as_f64().unwrap() as i32;
+        VIEWPORT_WIDTH.set(width);
+    }
+
+    // Listen for window resize events
+    if let Some(window) = web_sys::window() {
+        let closure = Closure::wrap(Box::new(move || {
+            if let Some(window) = web_sys::window() {
+                let width = window.inner_width().unwrap().as_f64().unwrap() as i32;
+                VIEWPORT_WIDTH.set(width);
+            }
+        }) as Box<dyn FnMut()>);
+
+        let _ = window.add_event_listener_with_callback("resize", closure.as_ref().unchecked_ref());
+        closure.forget(); // Prevent cleanup to keep the event listener alive
+    }
 }
 
 fn root() -> impl Element {
@@ -63,7 +94,16 @@ fn header_title() -> impl Element {
                 })
                 .child(h1("NovyUI for MoonZoon"))
         )
-        .item(paragraph("Type-safe design system components for MoonZoon"))
+        .item_signal(
+            // Hide subtitle when viewport width is smaller than 660px
+            VIEWPORT_WIDTH.signal().map(|width| {
+                if width >= 660 {
+                    Some(paragraph("Type-safe design system components for MoonZoon"))
+                } else {
+                    None
+                }
+            })
+        )
 }
 
 fn theme_toggle() -> impl Element {
