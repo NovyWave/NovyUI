@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovyUI MoonZoon Migration</title>
+    
+    <!-- Font Preloading for Performance -->
+    <link rel="preload" href="/fonts/inter-4-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/inter-5-medium.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/inter-7-bold.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- Font Face Declarations -->
+    <style>
+        /* Inter Font Family */
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url('/fonts/inter-4-normal.woff2') format('woff2');
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            font-style: italic;
+            font-weight: 400;
+            font-display: swap;
+            src: url('/fonts/inter-4-italic-normal.woff2') format('woff2');
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 500;
+            font-display: swap;
+            src: url('/fonts/inter-5-medium.woff2') format('woff2');
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            font-style: italic;
+            font-weight: 500;
+            font-display: swap;
+            src: url('/fonts/inter-5-italic-medium.woff2') format('woff2');
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: url('/fonts/inter-7-bold.woff2') format('woff2');
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            font-style: italic;
+            font-weight: 700;
+            font-display: swap;
+            src: url('/fonts/inter-7-italic-bold.woff2') format('woff2');
+        }
+        
+        /* FiraCode Font Family (Monospace) */
+        @font-face {
+            font-family: 'FiraCode';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url('/fonts/firacode-4-normal.woff2') format('woff2');
+        }
+        
+        @font-face {
+            font-family: 'FiraCode';
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: url('/fonts/firacode-7-bold.woff2') format('woff2');
+        }
+        
+        /* Audiowide Font Family (Display) */
+        @font-face {
+            font-family: 'Audiowide';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url('/fonts/audiowide-4-normal.woff2') format('woff2');
+        }
+        
+        /* Base Styles */
+        * {
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Utility classes for font families */
+        .font-inter {
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+        
+        .font-mono {
+            font-family: 'FiraCode', 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+        }
+        
+        .font-display {
+            font-family: 'Audiowide', system-ui, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+</body>
+</html>

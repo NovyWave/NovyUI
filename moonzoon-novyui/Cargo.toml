@@ -1,8 +1,9 @@
 [workspace]
 members = [
-    "frontend",
-    "backend",
-    "shared",
+    "moonzoon-novyui",
+    "moonzoon-novyui-storybook/frontend",
+    "moonzoon-novyui-storybook/backend",
+    "moonzoon-novyui-storybook/shared",
 ]
 resolver = "2"
 
