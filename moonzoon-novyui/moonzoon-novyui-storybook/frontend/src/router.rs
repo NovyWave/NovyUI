@@ -111,8 +111,10 @@ pub fn navigate_to_component(component: ComponentPage) {
 }
 
 fn scroll_to_top() {
-    // Access the VIEWPORT_Y from main.rs and reset it to 0
-    // This will trigger the viewport_y_signal to scroll to top
-    use crate::VIEWPORT_Y;
-    VIEWPORT_Y.set_neq(0);
+    // Emit ScrollToTop event - following MoonZoon viewport example pattern
+    emit(ScrollToTop);
 }
+
+// Event for scrolling to top
+#[derive(Clone, Copy)]
+pub struct ScrollToTop;

@@ -10,10 +10,17 @@ use stories::*;
 use router::*;
 use store::*;
 
-// Viewport control for scrolling
-pub static VIEWPORT_Y: Lazy<Mutable<i32>> = Lazy::new(|| Mutable::new(0));
+// Viewport control for scrolling - following MoonZoon viewport example pattern
+pub static VIEWPORT_Y: Lazy<Mutable<i32>> = Lazy::new(|| {
+    on(|Viewport { y, .. }| VIEWPORT_Y.set_neq(y));
+    on(|ScrollToTop| VIEWPORT_Y.set_neq(0));
+    Mutable::new(0)
+});
 
 fn main() {
+    // Initialize the viewport control (this sets up the event handlers)
+    Lazy::force(&VIEWPORT_Y);
+
     // Initialize the router
     router();
     start_app("app", root);
@@ -167,6 +174,7 @@ fn main_content() -> impl Element {
         .s(Padding::all(SPACING_32))
         .s(Height::fill())
         .s(Scrollbars::both())
+        .on_viewport_location_change(|_, viewport| emit(viewport))
         .viewport_y_signal(VIEWPORT_Y.signal())
         .child_signal(
             store().current_component.signal().map(|component_page| {
