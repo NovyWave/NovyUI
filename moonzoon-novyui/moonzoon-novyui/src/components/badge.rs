@@ -363,19 +363,19 @@ fn create_badge_icon(icon_name: IconName, size_px: u32) -> impl Element {
 // Get inline SVG content for badge icons with proper sizing
 fn get_svg_content_for_badge(name: IconName, size_px: u32) -> String {
     let svg_template = match name {
-        IconName::Check => include_str!("../../../public/icons/check.svg"),
-        IconName::X => include_str!("../../../public/icons/x.svg"),
-        IconName::TriangleAlert => include_str!("../../../public/icons/triangle-alert.svg"),
-        IconName::CircleAlert => include_str!("../../../public/icons/circle-alert.svg"),
-        IconName::CircleCheck => include_str!("../../../public/icons/circle-check.svg"),
-        IconName::Info => include_str!("../../../public/icons/info.svg"),
-        IconName::Star => include_str!("../../../public/icons/star.svg"),
-        IconName::Heart => include_str!("../../../public/icons/heart.svg"),
-        IconName::Tag => include_str!("../../../public/icons/tag.svg"),
-        IconName::User => include_str!("../../../public/icons/user.svg"),
-        IconName::Settings => include_str!("../../../public/icons/settings.svg"),
+        IconName::Check => include_str!("../../assets/icons/check.svg"),
+        IconName::X => include_str!("../../assets/icons/x.svg"),
+        IconName::TriangleAlert => include_str!("../../assets/icons/triangle-alert.svg"),
+        IconName::CircleAlert => include_str!("../../assets/icons/circle-alert.svg"),
+        IconName::CircleCheck => include_str!("../../assets/icons/circle-check.svg"),
+        IconName::Info => include_str!("../../assets/icons/info.svg"),
+        IconName::Star => include_str!("../../assets/icons/star.svg"),
+        IconName::Heart => include_str!("../../assets/icons/heart.svg"),
+        IconName::Tag => include_str!("../../assets/icons/tag.svg"),
+        IconName::User => include_str!("../../assets/icons/user.svg"),
+        IconName::Settings => include_str!("../../assets/icons/settings.svg"),
         // Add more icons as needed for badges
-        _ => include_str!("../../../public/icons/circle-help.svg"), // Default fallback
+        _ => include_str!("../../assets/icons/circle-help.svg"), // Default fallback
     };
 
     // Process the SVG to set proper size and ensure currentColor works

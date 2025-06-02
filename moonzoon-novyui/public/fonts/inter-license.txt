@@ -1,6 +1,0 @@
-SIL OPEN FONT LICENSE Version 1.1 - Inter
-
-This Font Software is licensed under the SIL Open Font License, Version 1.1.
-Full license text: https://scripts.sil.org/OFL
-
-Copyright 2016 The Inter Project Authors (https://github.com/rsms/inter)
