@@ -13,6 +13,6 @@ publish = false
 rust-version = "1.85"
 
 [workspace.dependencies]
-moon = { git = "https://github.com/MoonZoon/MoonZoon", branch = "main" }
-zoon = { git = "https://github.com/MoonZoon/MoonZoon", branch = "main" }
+moon = { git = "https://github.com/MoonZoon/MoonZoon", rev = "4428421b26fbb8b62670c44d911c9ba4c7f0c11b" }
+zoon = { git = "https://github.com/MoonZoon/MoonZoon", rev = "4428421b26fbb8b62670c44d911c9ba4c7f0c11b" }
 moonzoon-novyui = { path = "../moonzoon-novyui" }

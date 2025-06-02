@@ -1,9 +1,43 @@
 # NovyUI
-NovyUI design system
+> Timeless configurable design system.
+
+_Warning: WIP - don't use yet_
+
+![Checkboxes and Buttons demo](docs/images/checkboxes_and_buttons_demo.gif.gif)
+
+### MoonZoon Storybook
+- **Live: [moonzoon-novyui-storybook.kavik.cz](https://moonzoon-novyui-storybook.kavik.cz/)**
+- NovyUI for Rust fullstack framework [MoonZoon](https://github.com/MoonZoon/MoonZoon)
+- Both Storybook and components are written with NovyUI in Rust
+- Source: [./moonzoon-novyui](moonzoon-novyui)
+
+### Vue Storybook
+- **Live: [vue-novyui-storybook.kavik.cz](https://vue-novyui-storybook.kavik.cz/)**
+- NovyUI Vue/Typescript components
+- Storybook is [Storybook.js](https://github.com/storybookjs/storybook)
+- Source: [./storybook](storybook)
+
+### Boon Storybook
+- NovyUI for programming language [Boon](https://github.com/BoonLang/boon)
+- Both Storybook and components are written with NovyUI in Boon
+
+---
+
+### Timeless?
+
+You'll always need buttons, checkoxes and inputs in your apps. TODO [ best practices, paterns, knowledge, implementations, design files, for both humans and AI, underestamated / hard / boring to create one / blocks/pages neeed to show patterns and learn best practices]
+
+### Configurable?
+
+TODO [ Tooling / variants, my design examples, automatic asset download, pattern to create new custom components ]
+
+---
 
 Questions ▷ martin@kavik.cz
 
-## Contributing
+---
+
+## Contributing [WIP]
 
 To contribute to NovyUI, please validate the documentation and asset files before creating a pull request. This helps keep the design system consistent and implementation-ready.
 

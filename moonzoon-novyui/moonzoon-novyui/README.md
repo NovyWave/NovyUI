@@ -18,7 +18,7 @@ Add this to your `Cargo.toml`:
 ```toml
 [dependencies]
 moonzoon-novyui = { path = "../path/to/moonzoon-novyui" }
-zoon = { git = "https://github.com/MoonZoon/MoonZoon", branch = "main" }
+zoon = { git = "https://github.com/MoonZoon/MoonZoon", rev = "4428421b26fbb8b62670c44d911c9ba4c7f0c11b" }
 ```
 
 Basic usage:
@@ -136,4 +136,4 @@ let background_color = theme().map(|t| match t {
 
 ## License
 
-MIT OR Apache-2.0
+MIT

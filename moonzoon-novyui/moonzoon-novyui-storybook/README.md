@@ -112,4 +112,4 @@ This Storybook is built using the `moonzoon-novyui` component library as a depen
 
 ## License
 
-MIT OR Apache-2.0
+MIT
