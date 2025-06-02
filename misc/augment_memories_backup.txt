@@ -1,0 +1,84 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Browser Automation & Testing
+- User prefers Playwright MCP server for browser automation, console log access, and UI testing with vision mode for visual analysis without screenshots.
+- For screenshots: Use Playwright CLI (npx playwright screenshot --wait-for-timeout=3000 --full-page "URL" output-path.png) or Puppeteer MCP server with screenshot://<name> format, saving to ./browser-output/ directory.
+- User expects complete implementation of all Vue Storybook examples with exact visual and functional parity, using Playwright for reference analysis and visual verification.
+- User prefers standardized Storybook component story layout with section title, description, and individual story frames containing story title and subtitle, using Switch Component Stories as the reference template.
+- User prefers abstracting story template functions to shared modules (src/stories/shared.rs or template.rs) with helper functions like story_title(), story_description(), story_frame() for maintainable Storybook component organization.
+- User prefers Storybook sections with short component names (e.g., 'Badge' not 'Badge Component Stories'), larger section titles, bigger whitespace between sections, and removing 'Component Showcase' title for better visual hierarchy.
+- User prefers having assets in one place and wants to avoid breaking storybook functionality when deciding between placing assets in component library vs storybook.
+
+# Development Environment & Workflow
+- User's environment uses PowerShell as terminal, so write PowerShell-compatible commands instead of bash/Unix commands.
+- User prefers browser developer tools to dynamically inspect and update styles when hot reload isn't working properly.
+- User requires explicit permission before git commits and accurate visual verification of UI changes through browser inspection.
+- User prefers autonomous continuation of work without asking for direction, stopping only when genuinely unable to proceed.
+- User prefers splitting long main.rs files into separate story files following Storybook architecture pattern for better code organization.
+- User prefers fixing layout/positioning issues first before addressing color changes to avoid debugging cycles.
+- User prefers not to receive progress updates and wants to be notified only when features are completely ready for testing.
+- User prefers separating UI component libraries from demonstration/storybook code using Rust workspace structure with clean component crates that have no demo-specific dependencies.
+- User prefers Rust workspace structure to be minimal with only member crates, and component crates like moonzoon-novyui should be self-contained with all assets and dependencies needed to display components properly.
+- User prefers NovyUI Rust workspace to contain only two members: moonzoon-novyui crate and moonzoon-novyui-storybook, with extra folders/files moved to appropriate workspace members.
+- User prefers not adding new dependencies and suggests checking MoonZoon examples for built-in functionality like scroll_to_top before adding external deps.
+- User prefers Rust-only MoonZoon solutions without JavaScript and wants to follow MoonZoon best practices for implementation.
+- Always verify you are in the correct workspace root directory before running any commands to avoid executing operations in wrong locations.
+
+# Design System Preferences
+- User prefers Preline.co and shadcn/ui as design inspiration for UI components, prioritizing functionality over aesthetics when fixing issues.
+- User prefers better contrast in dark theme with systematic approach: use actual color token values, useTheme() hook with computed properties.
+- User prefers typed color tokens over CSS variables for better type safety, and adding specific spacing tokens for fine-grained control.
+- User prefers custom styled elements over browser native UI elements and wants to remove/override native browser styling when it conflicts.
+- User prefers consistent icon thickness/weight across all components with icons changing color on theme switch rather than completely reloading.
+- User prefers dark theme shadows to be more visible and prominent for better contrast and usability.
+- User prefers blue backgrounds over green backgrounds in light theme, but wants dark theme colors to remain unchanged.
+- User prefers using design system tokens like primary_1 instead of pure white colors for better token system consistency.
+- User dislikes cyan color and prefers it to be changed to something more suitable in UI components.
+
+# Component-Specific Requirements
+- User prefers badge components to have pill-like appearance with maximum rounded corners, proper spacing between icons and text, and better positioning.
+- Badge components (excluding Outline variant) should have inner and outer shadows in dark theme to make them appear 'shiny' like in Storybook reference.
+- User prefers switch components to be wider (~47-49px) with reduced inner padding, keyboard focusable with focus rings, and proper track icons that jump between sides based on state.
+- User prefers switch thumbs in light theme to be white or blueish instead of greenish, while preserving dark theme colors.
+- Input/TextArea components should have optional built-in labels, error messages, thicker borders, reduced height, icon support, and clear visual hierarchy for states.
+- User prefers checkbox components to be clickable on both the checkbox and label, with proper indeterminate state handling and shadows inspired by button shadows.
+- User prefers TreeView row highlighting to fill entire width while content is left-aligned, with folder icons only toggling open/close state when clicked.
+- User expects Select components to have complete feature parity with Vue Storybook including dropdown functionality, keyboard navigation, multiple selection, and search/filter capabilities.
+- User prefers Select components to use min-width instead of max-width (320px as default) and wants width to be configurable per Select instance since different content requires different widths, with dropdown not having width constraints.
+- User prefers dropdown menus to have dynamic width that accommodates content rather than fixed width.
+- User prefers using element_below for dropdown menu implementation and suggests ringrev_private repo as inspiration source for dropdown components.
+- User prefers component descriptions to be framework-agnostic and not mention Vue or other specific frameworks in MoonZoon component documentation.
+
+# MoonZoon Framework Preferences
+- User is the MoonZoon framework author and prefers to be asked directly when encountering framework-specific implementation challenges.
+- User prefers MoonZoon components to match Vue Storybook visual styling including focus rings, shadows, and borders for design consistency.
+- User prefers MoonZoon components to have proper keyboard accessibility with focus rings (using FocusIn/FocusOut events) that appear on both keyboard focus AND mouse hover.
+- MoonZoon solutions: use .boxed_local() for multiple signals, .left_either()/.right_either() for two signals, map_ref! macro for signal combinations, Borders::all_signal() for reactive borders.
+- For MoonZoon background height issues, use Height::screen() instead of Height::fill() and add .s(Scrollbars::both()) for proper scrolling.
+- MoonZoon UI patterns: wrap elements in El with Align::center to prevent filling available space, or pass custom styles directly through component builders.
+- MoonZoon components consistently need Align::left() for proper alignment to remove unnecessary whitespace between elements.
+- When implementing MoonZoon component styling, always use theme-conditional logic for all colors with exact OKLCH values from Vue design system tokens.
+- User suggests considering Height::default or no height settings as alternatives to fixed height calculations in MoonZoon components.
+- User prefers MoonZoon routing implementation with URL patterns matching component navigation (e.g., /switch for Switch component) and bidirectional sync between URL and UI state, with examples available in MoonZoon, ringreven_private, and cryptokick repos.
+- In MoonZoon, use .set() instead of .set_neq() when you need to trigger signal updates even if the value hasn't changed (e.g., scrolling to top when already at position 0).
+
+# User Experience (UX)
+- User prefers clicking the main title/logo to navigate back to the root/home page for better UX navigation.
+- User prefers responsive design with header working well above 660px width, ignoring displays narrower than 420px, using Row::new().multiline() for wrapping content, and reducing header height on mobile displays.
+- User prefers implementing responsive design universally in template files rather than per-component, and suggests using Playwright for component testing verification.
