@@ -4,13 +4,19 @@ mod tokens;
 mod components;
 mod assets;
 mod stories;
+mod router;
+mod store;
 
 use tokens::*;
 use components::*;
 use components::icon::{moon, sun};
 use stories::*;
+use router::*;
+use store::*;
 
 fn main() {
+    // Initialize the router
+    router();
     start_app("app", root);
 }
 
@@ -31,7 +37,7 @@ fn root() -> impl Element {
             FontFamily::new("sans-serif"),
         ]))
         .item(header())
-        .item(component_showcase())
+        .item(main_content())
 }
 
 fn header() -> impl Element {
@@ -50,7 +56,14 @@ fn header() -> impl Element {
 fn header_title() -> impl Element {
     Column::new()
         .s(Gap::new().y(SPACING_16))
-        .item(h1("NovyUI for MoonZoon"))
+        .item(
+            El::new()
+                .s(Cursor::new(CursorIcon::Pointer))
+                .on_click(|| {
+                    navigate_to_component(ComponentPage::All);
+                })
+                .child(h1("NovyUI for MoonZoon"))
+        )
         .item(paragraph("Type-safe design system components for MoonZoon"))
 }
 
@@ -115,19 +128,16 @@ fn theme_button() -> impl Element {
 
 fn navigation_bar() -> impl Element {
     let components = vec![
-        // ("Accordion", "accordion"),     // Temporarily hidden
-        ("Badge", "badge"),
-        ("Buttons", "buttons"),
-        ("Checkbox", "checkbox"),
-        ("Icons", "icons"),
-        ("Inputs", "inputs"),
-        ("Kbd", "kbd"),
-        // ("List", "list"),               // Temporarily hidden
-        ("Select", "select"),
-        ("Switch", "switch"),
-        // ("TextArea", "textarea"),       // Temporarily hidden
-        ("TreeView", "treeview"),
-        ("Typography", "typography"),
+        ("Badge", ComponentPage::Badge),
+        ("Buttons", ComponentPage::Button),
+        ("Checkbox", ComponentPage::Checkbox),
+        ("Icons", ComponentPage::Icon),
+        ("Inputs", ComponentPage::Input),
+        ("Kbd", ComponentPage::Kbd),
+        ("Select", ComponentPage::Select),
+        ("Switch", ComponentPage::Switch),
+        ("TreeView", ComponentPage::TreeView),
+        ("Typography", ComponentPage::Typography),
     ];
 
     Row::new()
@@ -135,68 +145,62 @@ fn navigation_bar() -> impl Element {
         .s(Padding::new().y(SPACING_16))
         .multiline()
         .s(Align::new().center_y())
-        .items(components.into_iter().map(|(name, id)| {
-            nav_button(name, id)
+        .items(components.into_iter().map(|(name, component_page)| {
+            nav_button(name, component_page)
         }))
 }
 
-fn nav_button(name: &str, target_id: &str) -> impl Element {
-    let target_id = target_id.to_string();
-
+fn nav_button(name: &str, component_page: ComponentPage) -> impl Element {
     button()
         .label(name)
         .variant(ButtonVariant::Ghost)
         .size(ButtonSize::Small)
         .on_press(move || {
-            scroll_to_element(&target_id);
+            navigate_to_component(component_page);
         })
         .build()
 }
 
-fn scroll_to_element(element_id: &str) {
-    // Use web_sys to scroll to the element
-    if let Some(window) = web_sys::window() {
-        if let Some(document) = window.document() {
-            if let Some(element) = document.get_element_by_id(element_id) {
-                // Use the simpler scroll_into_view method
-                element.scroll_into_view();
-            }
-        }
-    }
-}
 
-fn component_showcase() -> impl Element {
-    Column::new()
+
+fn main_content() -> impl Element {
+    El::new()
         .s(Padding::all(SPACING_32))
         .s(Height::fill())
         .s(Scrollbars::both())
-        .s(Gap::new().y(SPACING_150))
-        // .item(component_section("accordion", accordion_examples()))     // Temporarily hidden
-        // .item(alert_examples())     // Temporarily hidden
-        // .item(asset_examples())     // Temporarily hidden
-        // .item(avatar_examples())    // Temporarily hidden
-        .item(component_section("badge", badge_examples()))
-        .item(component_section("buttons", button_examples()))
-        // .item(card_examples())      // Temporarily hidden
-        .item(component_section("checkbox", checkbox_examples()))
-        // .item(fileinput_examples())  // Temporarily hidden
-        .item(component_section("icons", icon_examples()))
-        .item(component_section("inputs", input_examples()))
-        .item(component_section("kbd", kbd_examples()))
-        // .item(component_section("list", list_examples()))              // Temporarily hidden
-        // .item(pattern_examples())   // Temporarily hidden
-        .item(component_section("select", select_examples()))
-        .item(component_section("switch", switch_examples()))
-        // .item(component_section("textarea", textarea_examples()))      // Temporarily hidden
-        // .item(token_examples())     // Temporarily hidden
-        .item(component_section("treeview", treeview_examples()))
-        .item(component_section("typography", typography_examples()))
+        .child_signal(
+            store().current_component.signal().map(|component_page| {
+                match component_page {
+                    ComponentPage::All => all_components_view().unify(),
+                    ComponentPage::Badge => badge_examples().unify(),
+                    ComponentPage::Button => button_examples().unify(),
+                    ComponentPage::Checkbox => checkbox_examples().unify(),
+                    ComponentPage::Icon => icon_examples().unify(),
+                    ComponentPage::Input => input_examples().unify(),
+                    ComponentPage::Kbd => kbd_examples().unify(),
+                    ComponentPage::Select => select_examples().unify(),
+                    ComponentPage::Switch => switch_examples().unify(),
+                    ComponentPage::TreeView => treeview_examples().unify(),
+                    ComponentPage::Typography => typography_examples().unify(),
+                }
+            })
+        )
 }
 
-fn component_section(id: &str, content: impl Element) -> impl Element {
-    El::new()
-        .s(Width::fill())
-        .id(id)
-        .child(content)
+fn all_components_view() -> impl Element {
+    Column::new()
+        .s(Gap::new().y(SPACING_150))
+        .item(badge_examples())
+        .item(button_examples())
+        .item(checkbox_examples())
+        .item(icon_examples())
+        .item(input_examples())
+        .item(kbd_examples())
+        .item(select_examples())
+        .item(switch_examples())
+        .item(treeview_examples())
+        .item(typography_examples())
 }
+
+
 
