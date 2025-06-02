@@ -111,10 +111,8 @@ pub fn navigate_to_component(component: ComponentPage) {
 }
 
 fn scroll_to_top() {
-    // Emit ScrollToTop event - following MoonZoon viewport example pattern
-    emit(ScrollToTop);
+    // Access the VIEWPORT_Y from main.rs and reset it to 0
+    // Use set() instead of set_neq() to force the update even if value is already 0
+    use crate::VIEWPORT_Y;
+    VIEWPORT_Y.set(0);
 }
-
-// Event for scrolling to top
-#[derive(Clone, Copy)]
-pub struct ScrollToTop;
