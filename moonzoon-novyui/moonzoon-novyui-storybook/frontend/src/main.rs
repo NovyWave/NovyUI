@@ -10,6 +10,9 @@ use stories::*;
 use router::*;
 use store::*;
 
+// Viewport control for scrolling
+pub static VIEWPORT_Y: Lazy<Mutable<i32>> = Lazy::new(|| Mutable::new(0));
+
 fn main() {
     // Initialize the router
     router();
@@ -164,6 +167,7 @@ fn main_content() -> impl Element {
         .s(Padding::all(SPACING_32))
         .s(Height::fill())
         .s(Scrollbars::both())
+        .viewport_y_signal(VIEWPORT_Y.signal())
         .child_signal(
             store().current_component.signal().map(|component_page| {
                 match component_page {
