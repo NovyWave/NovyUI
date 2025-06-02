@@ -4,6 +4,7 @@ use moonzoon_novyui::*;
 
 use crate::components::icon::IconName;
 use crate::stories::template::*;
+use crate::responsive_row;
 // use crate::components::switch::LabelPosition;
 
 
@@ -117,9 +118,7 @@ pub fn switch_with_thumb_icon() -> impl Element {
 
 // Sizes story - Three switches showing different sizes with clickable labels
 pub fn switch_sizes() -> impl Element {
-    Column::new()
-        .s(Gap::new().y(SPACING_24))
-        .s(Align::new().left())
+    responsive_row!()
         .item(
             El::new()
                 .s(Align::new().left())
@@ -158,9 +157,7 @@ pub fn switch_sizes() -> impl Element {
 
 // Sizes With Icons story - All three sizes with both track and thumb icons
 pub fn switch_sizes_with_icons() -> impl Element {
-    Column::new()
-        .s(Gap::new().y(SPACING_24))
-        .s(Align::new().left())
+    responsive_row!()
         .item(
             El::new()
                 .s(Align::new().left())
@@ -209,7 +206,6 @@ pub fn switch_interactive() -> impl Element {
     Column::new()
         .s(Gap::new().y(SPACING_20))
         .s(Align::new().left())
-        .s(Width::exact(400))
         .item(
             El::new()
                 .s(Align::new().left())
@@ -263,7 +259,6 @@ pub fn switch_settings_panel() -> impl Element {
     Column::new()
         .s(Gap::new().y(SPACING_20))
         .s(Padding::all(SPACING_24))
-        .s(Width::exact(400))
         .s(Borders::all_signal(theme().map(|t| match t {
             Theme::Light => Border::new().width(1).color("oklch(85% 0.14 250)"), // neutral_3 light
             Theme::Dark => Border::new().width(1).color("oklch(25% 0.14 250)"), // neutral_4 dark
@@ -406,7 +401,6 @@ pub fn switch_form_integration() -> impl Element {
     Column::new()
         .s(Gap::new().y(SPACING_20))
         .s(Padding::all(SPACING_24))
-        .s(Width::exact(400))
         .s(Borders::all_signal(theme().map(|t| match t {
             Theme::Light => Border::new().width(1).color("oklch(85% 0.14 250)"), // neutral_3 light
             Theme::Dark => Border::new().width(1).color("oklch(25% 0.14 250)"), // neutral_4 dark

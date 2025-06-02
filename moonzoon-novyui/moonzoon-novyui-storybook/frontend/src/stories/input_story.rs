@@ -1,6 +1,7 @@
 use zoon::*;
 use moonzoon_novyui::*;
 use crate::stories::template::*;
+use crate::responsive_row;
 
 pub fn input_examples() -> impl Element {
     Column::new()
@@ -13,9 +14,7 @@ pub fn input_examples() -> impl Element {
 
         // Basic variant stories
         .item(story_section("Basic Variants", "Standard input states including default, error, and valid",
-            Column::new()
-                .s(Gap::new().y(SPACING_12))
-                .s(Width::exact(400))
+            responsive_row!()
                 .item(
                     input()
                         .placeholder("Enter your name...")
@@ -38,9 +37,7 @@ pub fn input_examples() -> impl Element {
 
         // Size stories
         .item(story_section("Sizes", "Three available input sizes for different interface contexts",
-            Column::new()
-                .s(Gap::new().y(SPACING_12))
-                .s(Width::exact(400))
+            responsive_row!()
                 .item(
                     input()
                         .placeholder("Small input...")
@@ -63,9 +60,7 @@ pub fn input_examples() -> impl Element {
 
         // Left icon stories
         .item(story_section("With Left Icons", "Inputs enhanced with contextual left-side icons",
-            Column::new()
-                .s(Gap::new().y(SPACING_12))
-                .s(Width::exact(400))
+            responsive_row!()
                 .item(
                     input()
                         .placeholder("Enter username...")
@@ -90,9 +85,7 @@ pub fn input_examples() -> impl Element {
 
         // Label stories
         .item(story_section("With Labels", "Inputs with built-in labels and validation states",
-            Column::new()
-                .s(Gap::new().y(SPACING_12))
-                .s(Width::exact(400))
+            responsive_row!()
                 .item(
                     input()
                         .label("Full Name")
@@ -116,9 +109,7 @@ pub fn input_examples() -> impl Element {
 
         // Right icon stories
         .item(story_section("With Right Icons", "Inputs with action or status icons on the right side",
-            Column::new()
-                .s(Gap::new().y(SPACING_12))
-                .s(Width::exact(400))
+            responsive_row!()
                 .item(
                     input()
                         .placeholder("Enter amount...")
@@ -142,25 +133,19 @@ pub fn input_examples() -> impl Element {
 
         // Interactive search stories
         .item(story_section("Search with Clear", "Interactive search input with clear button functionality",
-            Column::new()
-                .s(Gap::new().y(SPACING_12))
-                .s(Width::exact(400))
+            responsive_row!()
                 .item(search_input_example())
         ))
 
         // Password stories
         .item(story_section("Password with Toggle", "Password input with visibility toggle and cursor preservation",
-            Column::new()
-                .s(Gap::new().y(SPACING_12))
-                .s(Width::exact(400))
+            responsive_row!()
                 .item(password_input_example())
         ))
 
         // State stories
         .item(story_section("Input States", "Disabled and readonly input states",
-            Column::new()
-                .s(Gap::new().y(SPACING_12))
-                .s(Width::exact(400))
+            responsive_row!()
                 .item(
                     input()
                         .placeholder("Disabled input...")

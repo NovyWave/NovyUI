@@ -1,6 +1,7 @@
 use zoon::*;
 use moonzoon_novyui::*;
 use crate::stories::template::*;
+use crate::responsive_row;
 
 pub fn button_examples() -> impl Element {
     Column::new()
@@ -13,8 +14,7 @@ pub fn button_examples() -> impl Element {
 
         // Basic variant stories
         .item(story_section("Basic Variants", "Primary button variants for different contexts",
-            Row::new()
-                .s(Gap::new().x(SPACING_12))
+            responsive_row!()
                 .item(
                     button()
                         .label("Primary")
@@ -47,8 +47,7 @@ pub fn button_examples() -> impl Element {
 
         // Additional variant stories
         .item(story_section("Additional Variants", "Specialized button variants for specific use cases",
-            Row::new()
-                .s(Gap::new().x(SPACING_12))
+            responsive_row!()
                 .item(
                     button()
                         .label("Link")
@@ -67,8 +66,7 @@ pub fn button_examples() -> impl Element {
 
         // Size stories
         .item(story_section("Sizes", "Three available sizes for different interface contexts",
-            Row::new()
-                .s(Gap::new().x(SPACING_12))
+            responsive_row!()
                 .item(
                     button()
                         .label("Small")
@@ -97,8 +95,7 @@ pub fn button_examples() -> impl Element {
 
         // Icon stories
         .item(story_section("With Icons", "Buttons enhanced with left and right icons",
-            Row::new()
-                .s(Gap::new().x(SPACING_12))
+            responsive_row!()
                 .item(
                     button()
                         .label("Save")
@@ -127,8 +124,7 @@ pub fn button_examples() -> impl Element {
 
         // Disabled stories
         .item(story_section("Disabled", "Buttons in disabled state across different variants",
-            Row::new()
-                .s(Gap::new().x(SPACING_12))
+            responsive_row!()
                 .item(
                     button()
                         .label("Disabled Primary")
@@ -157,8 +153,7 @@ pub fn button_examples() -> impl Element {
 
         // Loading stories
         .item(story_section("Loading", "Buttons showing loading states with spinners",
-            Row::new()
-                .s(Gap::new().x(SPACING_12))
+            responsive_row!()
                 .item(
                     button()
                         .label("Loading...")
@@ -187,8 +182,7 @@ pub fn button_examples() -> impl Element {
 
         // Icon-only stories
         .item(story_section("Icon Only", "Compact buttons with only icons for toolbar usage",
-            Row::new()
-                .s(Gap::new().x(SPACING_12))
+            responsive_row!()
                 .item(
                     button()
                         .left_icon("search")

@@ -1,6 +1,7 @@
 use zoon::*;
 use moonzoon_novyui::*;
 use crate::stories::template::*;
+use crate::responsive_row;
 use std::collections::HashSet;
 
 pub fn treeview_examples() -> impl Element {
@@ -98,8 +99,7 @@ pub fn treeview_examples() -> impl Element {
 
         // Size stories
         .item(story_section("Sizes", "Different tree sizes for various interface contexts",
-            Column::new()
-                .s(Gap::new().y(SPACING_16))
+            responsive_row!()
                 .item(
                     Column::new()
                         .s(Gap::new().y(SPACING_8))
@@ -142,8 +142,7 @@ pub fn treeview_examples() -> impl Element {
 
         // Variant stories
         .item(story_section("Variants", "Different visual styles for various contexts",
-            Column::new()
-                .s(Gap::new().y(SPACING_16))
+            responsive_row!()
                 .item(
                     Column::new()
                         .s(Gap::new().y(SPACING_8))
@@ -319,9 +318,7 @@ fn interactive_treeview_example() -> impl Element {
         ))
         // Control buttons with working TreeView external control
         .item(
-            Row::new()
-                .s(Gap::new().x(SPACING_8))
-                .s(Align::new().left())
+            responsive_row!()
                 .item(
                     button()
                         .label("Expand All")

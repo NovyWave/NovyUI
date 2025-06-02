@@ -1,6 +1,7 @@
 use zoon::*;
 use moonzoon_novyui::*;
 use crate::stories::template::*;
+use crate::responsive_row;
 
 fn removable_badges_demo() -> impl Element {
     use zoon::*;
@@ -10,9 +11,7 @@ fn removable_badges_demo() -> impl Element {
     let badge2_visible = Mutable::new(true);
     let badge3_visible = Mutable::new(true);
 
-    Row::new()
-        .s(Gap::new().x(SPACING_8))
-        .s(Align::new().left())
+    responsive_row!()
         .item_signal(badge1_visible.signal().map(clone!((badge1_visible) move |visible| {
             if visible {
                 Some(
@@ -71,9 +70,7 @@ pub fn badge_examples() -> impl Element {
 
         // Variant stories
         .item(story_section("Variants", "Different badge variants for various use cases",
-            Row::new()
-                .s(Gap::new().x(SPACING_8))
-                .s(Align::new().left())
+            responsive_row!()
                 .item(badge("Default").variant(BadgeVariant::Default).build())
                 .item(badge("Primary").variant(BadgeVariant::Primary).build())
                 .item(badge("Secondary").variant(BadgeVariant::Secondary).build())
@@ -85,9 +82,7 @@ pub fn badge_examples() -> impl Element {
 
         // Size stories
         .item(story_section("Sizes", "Three available sizes for different contexts",
-            Row::new()
-                .s(Gap::new().x(SPACING_8))
-                .s(Align::new().left())
+            responsive_row!()
                 .item(badge("Small").size(BadgeSize::Small).variant(BadgeVariant::Primary).build())
                 .item(badge("Medium").size(BadgeSize::Medium).variant(BadgeVariant::Primary).build())
                 .item(badge("Large").size(BadgeSize::Large).variant(BadgeVariant::Primary).build())
@@ -95,9 +90,7 @@ pub fn badge_examples() -> impl Element {
 
         // Icon stories
         .item(story_section("With Icons", "Badges enhanced with left and right icons",
-            Row::new()
-                .s(Gap::new().x(SPACING_8))
-                .s(Align::new().left())
+            responsive_row!()
                 .item(badge("Success").variant(BadgeVariant::Success).left_icon(IconName::Check).build())
                 .item(badge("Warning").variant(BadgeVariant::Warning).left_icon(IconName::TriangleAlert).build())
                 .item(badge("Error").variant(BadgeVariant::Error).left_icon(IconName::X).build())
@@ -109,9 +102,7 @@ pub fn badge_examples() -> impl Element {
 
         // Status stories
         .item(story_section("Status Badges", "Common status patterns with appropriate icons",
-            Row::new()
-                .s(Gap::new().x(SPACING_8))
-                .s(Align::new().left())
+            responsive_row!()
                 .item(badge("Completed").variant(BadgeVariant::Success).left_icon(IconName::Check).build())
                 .item(badge("Warning").variant(BadgeVariant::Warning).left_icon(IconName::TriangleAlert).build())
                 .item(badge("Error").variant(BadgeVariant::Error).left_icon(IconName::CircleAlert).build())
@@ -121,9 +112,7 @@ pub fn badge_examples() -> impl Element {
 
         // Additional examples
         .item(story_section("Additional Examples", "More badge usage patterns and contexts",
-            Row::new()
-                .s(Gap::new().x(SPACING_8))
-                .s(Align::new().left())
+            responsive_row!()
                 .item(badge("New").variant(BadgeVariant::Primary).build())
                 .item(badge("Beta").variant(BadgeVariant::Warning).build())
                 .item(badge("Deprecated").variant(BadgeVariant::Error).build())

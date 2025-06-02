@@ -1,6 +1,7 @@
 use zoon::*;
 use moonzoon_novyui::*;
 use crate::stories::template::*;
+use crate::responsive_row;
 
 pub fn kbd_examples() -> impl Element {
     Column::new()
@@ -13,9 +14,7 @@ pub fn kbd_examples() -> impl Element {
 
         // Size stories
         .item(story_section("Sizes", "Three available sizes with visual comparison",
-            Row::new()
-                .s(Gap::new().x(SPACING_16))
-                .s(Align::new().left())
+            responsive_row!()
                 .item(El::new().s(Align::new().left()).child(kbd("Ctrl").size(KbdSize::Small).build()))
                 .item(small("Small"))
                 .item(El::new().s(Align::new().left()).child(kbd("Ctrl").size(KbdSize::Medium).build()))
@@ -224,9 +223,7 @@ pub fn kbd_examples() -> impl Element {
 
         // Size comparison stories
         .item(story_section("Size Comparison", "Visual comparison of all sizes",
-            Row::new()
-                .s(Gap::new().x(SPACING_16))
-                .s(Align::new().left())
+            responsive_row!()
                 .item(El::new().s(Align::new().left()).child(kbd("Ctrl+C").size(KbdSize::Small).variant(KbdVariant::Default).build()))
                 .item(El::new().s(Align::new().left()).child(kbd("Ctrl+C").size(KbdSize::Medium).variant(KbdVariant::Default).build()))
                 .item(El::new().s(Align::new().left()).child(kbd("Ctrl+C").size(KbdSize::Large).variant(KbdVariant::Default).build()))
@@ -234,9 +231,7 @@ pub fn kbd_examples() -> impl Element {
 
         // Variant comparison stories
         .item(story_section("Variant Comparison", "Visual comparison of all variants",
-            Row::new()
-                .s(Gap::new().x(SPACING_16))
-                .s(Align::new().left())
+            responsive_row!()
                 .item(El::new().s(Align::new().left()).child(kbd("Enter").variant(KbdVariant::Default).build()))
                 .item(El::new().s(Align::new().left()).child(kbd("Enter").variant(KbdVariant::Outlined).build()))
                 .item(El::new().s(Align::new().left()).child(kbd("Enter").variant(KbdVariant::Solid).build()))

@@ -1,6 +1,7 @@
 use zoon::*;
 use moonzoon_novyui::*;
 use crate::stories::template::*;
+use crate::responsive_row;
 
 pub fn select_examples() -> impl Element {
     Column::new()
@@ -17,6 +18,7 @@ pub fn select_examples() -> impl Element {
             "Basic select with simple string options.",
             select()
                 .placeholder("Select an option...")
+                .min_width(280)
                 .options(vec![
                     "Option 1",
                     "Option 2",
@@ -34,6 +36,7 @@ pub fn select_examples() -> impl Element {
             select()
                 .placeholder("Select an option...")
                 .selected_value("Option 2")
+                .min_width(280)
                 .options(vec![
                     "Option 1",
                     "Option 2",
@@ -50,6 +53,7 @@ pub fn select_examples() -> impl Element {
             "Select using object options with separate values and labels.",
             select()
                 .placeholder("Choose a fruit...")
+                .min_width(280)
                 .options(vec![
                     select_option("apple", "🍎 Apple"),
                     select_option("banana", "🍌 Banana"),
@@ -66,7 +70,7 @@ pub fn select_examples() -> impl Element {
             "Select with country options and emojis.",
             select()
                 .placeholder("Select a country...")
-                .min_width(280) // Wider for country names
+                .min_width(280)
                 .options(create_country_options())
                 .build()
         ))
@@ -79,6 +83,7 @@ pub fn select_examples() -> impl Element {
                 .placeholder("Disabled select")
                 .selected_value("Option 2")
                 .disabled(true)
+                .min_width(280)
                 .options(vec!["Option 1", "Option 2", "Option 3"])
                 .build()
         ))
@@ -87,8 +92,7 @@ pub fn select_examples() -> impl Element {
         .item(story_section(
             "Sizes",
             "Select components in different sizes: small, medium, and large.",
-            Column::new()
-                .s(Gap::new().y(SPACING_16))
+            responsive_row!()
                 .item(
                     Column::new()
                         .s(Gap::new().y(SPACING_4))
@@ -97,6 +101,7 @@ pub fn select_examples() -> impl Element {
                             select()
                                 .size(SelectSize::Small)
                                 .placeholder("Select size...")
+                                .min_width(200)
                                 .options(vec!["Small Option 1", "Small Option 2", "Small Option 3"])
                                 .build()
                         )
@@ -109,6 +114,7 @@ pub fn select_examples() -> impl Element {
                             select()
                                 .size(SelectSize::Medium)
                                 .placeholder("Select size...")
+                                .min_width(200)
                                 .options(vec!["Medium Option 1", "Medium Option 2", "Medium Option 3"])
                                 .build()
                         )
@@ -121,6 +127,7 @@ pub fn select_examples() -> impl Element {
                             select()
                                 .size(SelectSize::Large)
                                 .placeholder("Select size...")
+                                .min_width(200)
                                 .options(vec!["Large Option 1", "Large Option 2", "Large Option 3"])
                                 .build()
                         )
@@ -136,7 +143,7 @@ pub fn select_examples() -> impl Element {
                 .description("Choose your preferred programming language.")
                 .placeholder("Select language...")
                 .selected_value("rust")
-                .min_width(250) // Appropriate width for programming languages
+                .min_width(280)
                 .options(vec![
                     select_option("javascript", "JavaScript"),
                     select_option("typescript", "TypeScript"),
@@ -151,15 +158,14 @@ pub fn select_examples() -> impl Element {
         .item(story_section(
             "Different Widths",
             "Select components with different configurable widths to fit content.",
-            Column::new()
-                .s(Gap::new().y(SPACING_16))
+            responsive_row!()
                 .item(
                     Column::new()
                         .s(Gap::new().y(SPACING_4))
-                        .item(small("Narrow (200px) - For short options"))
+                        .item(small("Narrow - For short options"))
                         .item(
                             select()
-                                .min_width(200)
+                                .min_width(120)
                                 .placeholder("Size...")
                                 .options(vec!["S", "M", "L", "XL"])
                                 .build()
@@ -168,10 +174,11 @@ pub fn select_examples() -> impl Element {
                 .item(
                     Column::new()
                         .s(Gap::new().y(SPACING_4))
-                        .item(small("Medium (320px) - Default width"))
+                        .item(small("Medium - Default width"))
                         .item(
                             select()
                                 .placeholder("Select an option...")
+                                .min_width(200)
                                 .options(vec!["Option 1", "Option 2", "Option 3"])
                                 .build()
                         )
@@ -179,15 +186,15 @@ pub fn select_examples() -> impl Element {
                 .item(
                     Column::new()
                         .s(Gap::new().y(SPACING_4))
-                        .item(small("Wide (400px) - For longer content"))
+                        .item(small("Wide - For longer content"))
                         .item(
                             select()
-                                .min_width(400)
-                                .placeholder("Select a detailed option...")
+                                .min_width(200)
+                                .placeholder("Select detailed option...")
                                 .options(vec![
-                                    "Very detailed option with long description",
-                                    "Another comprehensive choice with more text",
-                                    "Extended option for demonstration purposes"
+                                    "Detailed option with description",
+                                    "Comprehensive choice with text",
+                                    "Extended option for demo"
                                 ])
                                 .build()
                         )

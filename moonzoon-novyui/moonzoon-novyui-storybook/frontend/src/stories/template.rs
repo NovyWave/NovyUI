@@ -22,6 +22,24 @@ impl Default for StoryTemplateConfig {
     }
 }
 
+/// Creates a responsive row that wraps on mobile - use as a macro
+#[macro_export]
+macro_rules! responsive_row {
+    () => {
+        Row::new()
+            .multiline()
+            .s(Gap::new().x(SPACING_8))
+            .s(Gap::new().y(SPACING_8))
+    };
+}
+
+/// Creates a responsive container that wraps any content with responsive behavior
+pub fn responsive_container(content: impl Element) -> impl Element {
+    // For now, just return the content as-is since RawStyle doesn't exist
+    // The responsive behavior will be handled by using responsive_row! macro
+    content
+}
+
 /// Creates a standardized story section with title, description, and content
 pub fn story_section(title: &str, description: &str, content: impl Element) -> impl Element {
     story_section_with_config(title, description, content, StoryTemplateConfig::default())
