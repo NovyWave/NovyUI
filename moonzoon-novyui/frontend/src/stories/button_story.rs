@@ -1,13 +1,19 @@
 use zoon::*;
 use crate::tokens::*;
 use crate::components::*;
+use crate::stories::template::*;
 
 pub fn button_examples() -> impl Element {
     Column::new()
-        .s(Gap::new().y(SPACING_16))
-        .item(h4("Buttons"))
-        .item(small("Basic variants:"))
-        .item(
+        .s(Gap::new().y(SPACING_32))
+        .s(Align::new().left())
+        .item(component_section(
+            "Button",
+            "Interactive buttons with multiple variants, sizes, states, and icon support. Essential for user actions, forms, and navigation throughout the interface."
+        ))
+
+        // Basic variant stories
+        .item(story_section("Basic Variants", "Primary button variants for different contexts",
             Row::new()
                 .s(Gap::new().x(SPACING_12))
                 .item(
@@ -38,9 +44,10 @@ pub fn button_examples() -> impl Element {
                         .on_press(|| {})
                         .build()
                 )
-        )
-        .item(small("Additional variants:"))
-        .item(
+        ))
+
+        // Additional variant stories
+        .item(story_section("Additional Variants", "Specialized button variants for specific use cases",
             Row::new()
                 .s(Gap::new().x(SPACING_12))
                 .item(
@@ -57,9 +64,10 @@ pub fn button_examples() -> impl Element {
                         .on_press(|| {})
                         .build()
                 )
-        )
-        .item(small("Different sizes:"))
-        .item(
+        ))
+
+        // Size stories
+        .item(story_section("Sizes", "Three available sizes for different interface contexts",
             Row::new()
                 .s(Gap::new().x(SPACING_12))
                 .item(
@@ -86,9 +94,10 @@ pub fn button_examples() -> impl Element {
                         .on_press(|| {})
                         .build()
                 )
-        )
-        .item(small("With icons:"))
-        .item(
+        ))
+
+        // Icon stories
+        .item(story_section("With Icons", "Buttons enhanced with left and right icons",
             Row::new()
                 .s(Gap::new().x(SPACING_12))
                 .item(
@@ -115,9 +124,10 @@ pub fn button_examples() -> impl Element {
                         .on_press(|| {})
                         .build()
                 )
-        )
-        .item(small("Disabled buttons:"))
-        .item(
+        ))
+
+        // Disabled stories
+        .item(story_section("Disabled", "Buttons in disabled state across different variants",
             Row::new()
                 .s(Gap::new().x(SPACING_12))
                 .item(
@@ -144,9 +154,10 @@ pub fn button_examples() -> impl Element {
                         .on_press(|| {})
                         .build()
                 )
-        )
-        .item(small("Loading buttons:"))
-        .item(
+        ))
+
+        // Loading stories
+        .item(story_section("Loading", "Buttons showing loading states with spinners",
             Row::new()
                 .s(Gap::new().x(SPACING_12))
                 .item(
@@ -173,9 +184,10 @@ pub fn button_examples() -> impl Element {
                         .on_press(|| {})
                         .build()
                 )
-        )
-        .item(small("Icon-only buttons:"))
-        .item(
+        ))
+
+        // Icon-only stories
+        .item(story_section("Icon Only", "Compact buttons with only icons for toolbar usage",
             Row::new()
                 .s(Gap::new().x(SPACING_12))
                 .item(
@@ -199,5 +211,5 @@ pub fn button_examples() -> impl Element {
                         .on_press(|| {})
                         .build()
                 )
-        )
+        ))
 }

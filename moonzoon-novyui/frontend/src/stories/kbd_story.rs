@@ -1,13 +1,19 @@
 use zoon::*;
 use crate::tokens::*;
 use crate::components::*;
+use crate::stories::template::*;
 
 pub fn kbd_examples() -> impl Element {
     Column::new()
-        .s(Gap::new().y(SPACING_16))
-        .item(h4("Kbd"))
-        .item(small("Different sizes:"))
-        .item(
+        .s(Gap::new().y(SPACING_32))
+        .s(Align::new().left())
+        .item(component_section(
+            "Kbd",
+            "Keyboard key indicators for displaying shortcuts, hotkeys, and key combinations. Essential for documentation, tutorials, and accessibility guidance."
+        ))
+
+        // Size stories
+        .item(story_section("Sizes", "Three available sizes with visual comparison",
             Row::new()
                 .s(Gap::new().x(SPACING_16))
                 .s(Align::new().left())
@@ -17,9 +23,10 @@ pub fn kbd_examples() -> impl Element {
                 .item(small("Medium (default)"))
                 .item(El::new().s(Align::new().left()).child(kbd("Ctrl").size(KbdSize::Large).build()))
                 .item(small("Large"))
-        )
-        .item(small("Different variants:"))
-        .item(
+        ))
+
+        // Variant stories
+        .item(story_section("Variants", "Different visual styles for various contexts",
             Column::new()
                 .s(Gap::new().y(SPACING_8))
                 .item(
@@ -43,9 +50,10 @@ pub fn kbd_examples() -> impl Element {
                         .item(El::new().s(Align::new().left()).child(kbd("Ctrl").variant(KbdVariant::Solid).build()))
                         .item(small("Solid - High contrast style"))
                 )
-        )
-        .item(small("Common shortcuts:"))
-        .item(
+        ))
+
+        // Common shortcuts stories
+        .item(story_section("Common Shortcuts", "Frequently used keyboard shortcuts",
             Column::new()
                 .s(Gap::new().y(SPACING_8))
                 .item(
@@ -90,9 +98,10 @@ pub fn kbd_examples() -> impl Element {
                         .item(El::new().s(Align::new().left()).child(escape().build()))
                         .item(small("Cancel"))
                 )
-        )
-        .item(small("Navigation keys:"))
-        .item(
+        ))
+
+        // Navigation stories
+        .item(story_section("Navigation Keys", "Essential keys for interface navigation",
             Column::new()
                 .s(Gap::new().y(SPACING_8))
                 .item(
@@ -124,9 +133,10 @@ pub fn kbd_examples() -> impl Element {
                         )
                         .item(small("Arrow navigation"))
                 )
-        )
-        .item(small("Mac-specific keys:"))
-        .item(
+        ))
+
+        // Mac-specific stories
+        .item(story_section("Mac-Specific Keys", "macOS command key combinations",
             Column::new()
                 .s(Gap::new().y(SPACING_8))
                 .item(
@@ -143,9 +153,10 @@ pub fn kbd_examples() -> impl Element {
                         .item(El::new().s(Align::new().left()).child(cmd_enter().build()))
                         .item(small("Quick submit"))
                 )
-        )
-        .item(small("Key combinations:"))
-        .item(
+        ))
+
+        // Key combinations stories
+        .item(story_section("Key Combinations", "Complex multi-key shortcuts",
             Column::new()
                 .s(Gap::new().y(SPACING_8))
                 .item(
@@ -169,9 +180,10 @@ pub fn kbd_examples() -> impl Element {
                         .item(El::new().s(Align::new().left()).child(kbd("Ctrl+Alt+Del").build()))
                         .item(small("Task manager"))
                 )
-        )
-        .item(small("Custom keys:"))
-        .item(
+        ))
+
+        // Custom keys stories
+        .item(story_section("Custom Keys", "Function keys and special characters",
             Column::new()
                 .s(Gap::new().y(SPACING_8))
                 .item(
@@ -209,23 +221,25 @@ pub fn kbd_examples() -> impl Element {
                         .item(El::new().s(Align::new().left()).child(kbd("End").build()))
                         .item(small("Go to end"))
                 )
-        )
-        .item(small("Size comparison:"))
-        .item(
+        ))
+
+        // Size comparison stories
+        .item(story_section("Size Comparison", "Visual comparison of all sizes",
             Row::new()
                 .s(Gap::new().x(SPACING_16))
                 .s(Align::new().left())
                 .item(El::new().s(Align::new().left()).child(kbd("Ctrl+C").size(KbdSize::Small).variant(KbdVariant::Default).build()))
                 .item(El::new().s(Align::new().left()).child(kbd("Ctrl+C").size(KbdSize::Medium).variant(KbdVariant::Default).build()))
                 .item(El::new().s(Align::new().left()).child(kbd("Ctrl+C").size(KbdSize::Large).variant(KbdVariant::Default).build()))
-        )
-        .item(small("Variant comparison:"))
-        .item(
+        ))
+
+        // Variant comparison stories
+        .item(story_section("Variant Comparison", "Visual comparison of all variants",
             Row::new()
                 .s(Gap::new().x(SPACING_16))
                 .s(Align::new().left())
                 .item(El::new().s(Align::new().left()).child(kbd("Enter").variant(KbdVariant::Default).build()))
                 .item(El::new().s(Align::new().left()).child(kbd("Enter").variant(KbdVariant::Outlined).build()))
                 .item(El::new().s(Align::new().left()).child(kbd("Enter").variant(KbdVariant::Solid).build()))
-        )
+        ))
 }

@@ -41,8 +41,14 @@ pub const SPACING_48: u32 = 48;
 /// 56px spacing (from original tokens)
 pub const SPACING_56: u32 = 56;
 
+/// 64px spacing
+pub const SPACING_64: u32 = 64;
+
 /// 96px spacing
 pub const SPACING_96: u32 = 96;
 
 /// 128px spacing
 pub const SPACING_128: u32 = 128;
+
+/// 150px spacing
+pub const SPACING_150: u32 = 150;

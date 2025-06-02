@@ -1,6 +1,7 @@
 use zoon::*;
 use crate::tokens::*;
 use crate::components::*;
+use crate::stories::template::*;
 
 fn removable_badges_demo() -> impl Element {
     use zoon::*;
@@ -62,10 +63,15 @@ fn removable_badges_demo() -> impl Element {
 
 pub fn badge_examples() -> impl Element {
     Column::new()
-        .s(Gap::new().y(SPACING_16))
-        .item(h4("Badge"))
-        .item(small("Different variants:"))
-        .item(
+        .s(Gap::new().y(SPACING_32))
+        .s(Align::new().left())
+        .item(component_section(
+            "Badge",
+            "Small status indicators and labels used to highlight information, show counts, or categorize content. Supports various visual styles, sizes, icons, and removable functionality."
+        ))
+
+        // Variant stories
+        .item(story_section("Variants", "Different badge variants for various use cases",
             Row::new()
                 .s(Gap::new().x(SPACING_8))
                 .s(Align::new().left())
@@ -76,18 +82,20 @@ pub fn badge_examples() -> impl Element {
                 .item(badge("Warning").variant(BadgeVariant::Warning).build())
                 .item(badge("Error").variant(BadgeVariant::Error).build())
                 .item(badge("Outline").variant(BadgeVariant::Outline).build())
-        )
-        .item(small("Different sizes:"))
-        .item(
+        ))
+
+        // Size stories
+        .item(story_section("Sizes", "Three available sizes for different contexts",
             Row::new()
                 .s(Gap::new().x(SPACING_8))
                 .s(Align::new().left())
                 .item(badge("Small").size(BadgeSize::Small).variant(BadgeVariant::Primary).build())
                 .item(badge("Medium").size(BadgeSize::Medium).variant(BadgeVariant::Primary).build())
                 .item(badge("Large").size(BadgeSize::Large).variant(BadgeVariant::Primary).build())
-        )
-        .item(small("With icons:"))
-        .item(
+        ))
+
+        // Icon stories
+        .item(story_section("With Icons", "Badges enhanced with left and right icons",
             Row::new()
                 .s(Gap::new().x(SPACING_8))
                 .s(Align::new().left())
@@ -95,11 +103,13 @@ pub fn badge_examples() -> impl Element {
                 .item(badge("Warning").variant(BadgeVariant::Warning).left_icon(IconName::TriangleAlert).build())
                 .item(badge("Error").variant(BadgeVariant::Error).left_icon(IconName::X).build())
                 .item(badge("With Icons").variant(BadgeVariant::Primary).left_icon(IconName::Star).right_icon(IconName::ChevronRight).build())
-        )
-        .item(small("Removable badges:"))
-        .item(removable_badges_demo())
-        .item(small("Status badges:"))
-        .item(
+        ))
+
+        // Removable stories
+        .item(story_section("Removable", "Interactive badges with close functionality", removable_badges_demo()))
+
+        // Status stories
+        .item(story_section("Status Badges", "Common status patterns with appropriate icons",
             Row::new()
                 .s(Gap::new().x(SPACING_8))
                 .s(Align::new().left())
@@ -108,9 +118,10 @@ pub fn badge_examples() -> impl Element {
                 .item(badge("Error").variant(BadgeVariant::Error).left_icon(IconName::CircleAlert).build())
                 .item(badge("Info").variant(BadgeVariant::Primary).left_icon(IconName::Info).build())
                 .item(badge("Draft").variant(BadgeVariant::Default).left_icon(IconName::Pencil).build())
-        )
-        .item(small("Additional examples:"))
-        .item(
+        ))
+
+        // Additional examples
+        .item(story_section("Additional Examples", "More badge usage patterns and contexts",
             Row::new()
                 .s(Gap::new().x(SPACING_8))
                 .s(Align::new().left())
@@ -118,5 +129,5 @@ pub fn badge_examples() -> impl Element {
                 .item(badge("Beta").variant(BadgeVariant::Warning).build())
                 .item(badge("Deprecated").variant(BadgeVariant::Error).build())
                 .item(badge("Stable").variant(BadgeVariant::Success).build())
-        )
+        ))
 }

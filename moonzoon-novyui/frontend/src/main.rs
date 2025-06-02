@@ -170,8 +170,7 @@ fn component_showcase() -> impl Element {
         .s(Padding::all(SPACING_32))
         .s(Height::fill())
         .s(Scrollbars::both())
-        .s(Gap::new().y(SPACING_56))
-        .item(h3("Component Showcase"))
+        .s(Gap::new().y(SPACING_150))
         // .item(component_section("accordion", accordion_examples()))     // Temporarily hidden
         // .item(alert_examples())     // Temporarily hidden
         // .item(asset_examples())     // Temporarily hidden

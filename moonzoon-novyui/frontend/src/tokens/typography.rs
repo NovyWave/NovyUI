@@ -16,6 +16,7 @@ pub const FONT_SIZE_18: u32 = 18;
 pub const FONT_SIZE_20: u32 = 20;
 pub const FONT_SIZE_24: u32 = 24;
 pub const FONT_SIZE_30: u32 = 30;
+pub const FONT_SIZE_32: u32 = 32;
 pub const FONT_SIZE_36: u32 = 36;
 pub const FONT_SIZE_48: u32 = 48;
 

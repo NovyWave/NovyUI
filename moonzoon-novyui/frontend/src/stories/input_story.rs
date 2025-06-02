@@ -1,13 +1,19 @@
 use zoon::*;
 use crate::tokens::*;
 use crate::components::*;
+use crate::stories::template::*;
 
 pub fn input_examples() -> impl Element {
     Column::new()
-        .s(Gap::new().y(SPACING_16))
-        .item(h4("Inputs"))
-        .item(small("Different variants:"))
-        .item(
+        .s(Gap::new().y(SPACING_32))
+        .s(Align::new().left())
+        .item(component_section(
+            "Input",
+            "Versatile text input components with multiple variants, sizes, icons, and validation states. Essential for forms, search, and data entry with full accessibility support."
+        ))
+
+        // Basic variant stories
+        .item(story_section("Basic Variants", "Standard input states including default, error, and valid",
             Column::new()
                 .s(Gap::new().y(SPACING_12))
                 .s(Width::exact(400))
@@ -29,9 +35,10 @@ pub fn input_examples() -> impl Element {
                         .value("Valid value")
                         .build()
                 )
-        )
-        .item(small("Different sizes:"))
-        .item(
+        ))
+
+        // Size stories
+        .item(story_section("Sizes", "Three available input sizes for different interface contexts",
             Column::new()
                 .s(Gap::new().y(SPACING_12))
                 .s(Width::exact(400))
@@ -53,9 +60,10 @@ pub fn input_examples() -> impl Element {
                         .size(InputSize::Large)
                         .build()
                 )
-        )
-        .item(small("With icons:"))
-        .item(
+        ))
+
+        // Left icon stories
+        .item(story_section("With Left Icons", "Inputs enhanced with contextual left-side icons",
             Column::new()
                 .s(Gap::new().y(SPACING_12))
                 .s(Width::exact(400))
@@ -79,9 +87,10 @@ pub fn input_examples() -> impl Element {
                         .input_kind(InputKind::Search)
                         .build()
                 )
-        )
-        .item(small("With labels:"))
-        .item(
+        ))
+
+        // Label stories
+        .item(story_section("With Labels", "Inputs with built-in labels and validation states",
             Column::new()
                 .s(Gap::new().y(SPACING_12))
                 .s(Width::exact(400))
@@ -104,9 +113,10 @@ pub fn input_examples() -> impl Element {
                         .input_kind(InputKind::Email)
                         .build()
                 )
-        )
-        .item(small("With right icons:"))
-        .item(
+        ))
+
+        // Right icon stories
+        .item(story_section("With Right Icons", "Inputs with action or status icons on the right side",
             Column::new()
                 .s(Gap::new().y(SPACING_12))
                 .s(Width::exact(400))
@@ -129,23 +139,26 @@ pub fn input_examples() -> impl Element {
                         .input_kind(InputKind::Url)
                         .build()
                 )
-        )
-        .item(small("Search input with clear button:"))
-        .item(
+        ))
+
+        // Interactive search stories
+        .item(story_section("Search with Clear", "Interactive search input with clear button functionality",
             Column::new()
                 .s(Gap::new().y(SPACING_12))
                 .s(Width::exact(400))
                 .item(search_input_example())
-        )
-        .item(small("Password input with eye toggle:"))
-        .item(
+        ))
+
+        // Password stories
+        .item(story_section("Password with Toggle", "Password input with visibility toggle and cursor preservation",
             Column::new()
                 .s(Gap::new().y(SPACING_12))
                 .s(Width::exact(400))
                 .item(password_input_example())
-        )
-        .item(small("Different states:"))
-        .item(
+        ))
+
+        // State stories
+        .item(story_section("Input States", "Disabled and readonly input states",
             Column::new()
                 .s(Gap::new().y(SPACING_12))
                 .s(Width::exact(400))
@@ -164,7 +177,7 @@ pub fn input_examples() -> impl Element {
                         .left_icon(IconName::Eye)
                         .build()
                 )
-        )
+        ))
 }
 
 // Interactive search input with clear button functionality

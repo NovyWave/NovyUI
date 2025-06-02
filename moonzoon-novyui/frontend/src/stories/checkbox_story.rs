@@ -1,13 +1,19 @@
 use zoon::*;
 use crate::tokens::*;
 use crate::components::*;
+use crate::stories::template::*;
 
 pub fn checkbox_examples() -> impl Element {
     Column::new()
-        .s(Gap::new().y(SPACING_16))
-        .item(h4("Checkbox"))
-        .item(small("Different sizes:"))
-        .item(
+        .s(Gap::new().y(SPACING_32))
+        .s(Align::new().left())
+        .item(component_section(
+            "Checkbox",
+            "Interactive checkboxes with multiple states, sizes, and accessibility features. Essential for forms, settings, and multi-selection interfaces with full keyboard support."
+        ))
+
+        // Size stories
+        .item(story_section("Sizes", "Three available checkbox sizes with dimension labels",
             Row::new()
                 .s(Gap::new().x(SPACING_16))
                 .s(Align::new().left())
@@ -32,9 +38,10 @@ pub fn checkbox_examples() -> impl Element {
                         .item(checkbox().size(CheckboxSize::Large).label("Large").build())
                         .item(small("28px"))
                 )
-        )
-        .item(small("Different states:"))
-        .item(
+        ))
+
+        // State stories
+        .item(story_section("States", "All checkbox states including checked, unchecked, indeterminate, and disabled",
             Column::new()
                 .s(Gap::new().y(SPACING_8))
                 .s(Align::new().left())
@@ -68,9 +75,10 @@ pub fn checkbox_examples() -> impl Element {
                         .s(Align::new().left())
                         .child(checkbox().label("Disabled indeterminate").state(CheckboxState::Indeterminate).disabled(true).build())
                 )
-        )
-        .item(small("With descriptions:"))
-        .item(
+        ))
+
+        // Description stories
+        .item(story_section("With Descriptions", "Checkboxes enhanced with descriptive help text",
             Column::new()
                 .s(Gap::new().y(SPACING_12))
                 .s(Align::new().left())
@@ -106,9 +114,10 @@ pub fn checkbox_examples() -> impl Element {
                                 .build()
                         )
                 )
-        )
-        .item(small("Required and error states:"))
-        .item(
+        ))
+
+        // Required and error stories
+        .item(story_section("Required and Error States", "Checkboxes with validation states for forms",
             Column::new()
                 .s(Gap::new().y(SPACING_12))
                 .s(Align::new().left())
@@ -135,9 +144,10 @@ pub fn checkbox_examples() -> impl Element {
                                 .build()
                         )
                 )
-        )
-        .item(small("Form example:"))
-        .item(
+        ))
+
+        // Form example stories
+        .item(story_section("Form Example", "Account preferences form with grouped checkboxes",
             Column::new()
                 .s(Gap::new().y(SPACING_12))
                 .s(Align::new().left())
@@ -215,9 +225,10 @@ pub fn checkbox_examples() -> impl Element {
                             )
                         )
                 )
-        )
-        .item(small("Select All Pattern:"))
-        .item(select_all_pattern_example())
+        ))
+
+        // Select All Pattern stories
+        .item(story_section("Select All Pattern", "Advanced interactive pattern with signal-based state management", select_all_pattern_example()))
 }
 
 fn select_all_pattern_example() -> impl Element {

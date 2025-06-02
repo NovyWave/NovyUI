@@ -1,3 +1,4 @@
+pub mod template;
 pub mod icon_story;
 pub mod button_story;
 pub mod input_story;
@@ -20,6 +21,7 @@ pub mod token_story;
 pub mod typography_story;
 
 // Re-export all story functions
+pub use template::*;
 pub use icon_story::*;
 pub use button_story::*;
 pub use input_story::*;

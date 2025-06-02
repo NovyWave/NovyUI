@@ -1,18 +1,20 @@
 use zoon::*;
 use crate::tokens::*;
 use crate::components::*;
+use crate::stories::template::*;
 use std::collections::HashSet;
 
 pub fn treeview_examples() -> impl Element {
     Column::new()
-        .s(Gap::new().y(SPACING_24))
-        .item(h2("TreeView Component"))
-        .item(small("TreeView displays hierarchical data in a tree structure with expandable/collapsible nodes."))
+        .s(Gap::new().y(SPACING_32))
+        .s(Align::new().left())
+        .item(component_section(
+            "TreeView",
+            "Hierarchical tree structure component for displaying nested data with expandable/collapsible nodes, checkboxes, and various styling options. Perfect for file explorers, navigation menus, and organizational structures."
+        ))
 
-        // Basic TreeView
-        .item(h3("Basic"))
-        .item(small("Basic TreeView with default settings."))
-        .item(
+        // Basic TreeView stories
+        .item(story_section("Basic", "Simple tree structure with default settings",
             tree_view()
                 .data(vec![
                     tree_view_item("node1", "Documents")
@@ -30,12 +32,10 @@ pub fn treeview_examples() -> impl Element {
                 .default_expanded(vec!["node1".to_string()])
                 .aria_label("File tree")
                 .build()
-        )
+        ))
 
-        // File System Explorer
-        .item(h3("File System Explorer"))
-        .item(small("A file system explorer showing folders and files with appropriate icons and folder/file types."))
-        .item(
+        // File System Explorer stories
+        .item(story_section("File System Explorer", "File system structure with folders and files using appropriate icons",
             tree_view()
                 .data(vec![
                     tree_view_item("src", "src")
@@ -70,12 +70,10 @@ pub fn treeview_examples() -> impl Element {
                 .default_expanded(vec!["src".to_string()])
                 .aria_label("Project file explorer")
                 .build()
-        )
+        ))
 
-        // With Checkboxes
-        .item(h3("With Checkboxes"))
-        .item(small("TreeView with checkboxes for multi-selection."))
-        .item(
+        // With Checkboxes stories
+        .item(story_section("With Checkboxes", "Multi-selection tree with checkbox support",
             tree_view()
                 .data(vec![
                     tree_view_item("permissions", "Permissions")
@@ -97,107 +95,98 @@ pub fn treeview_examples() -> impl Element {
                 .default_selected(vec!["read".to_string(), "auth".to_string()])
                 .aria_label("Permission settings")
                 .build()
-        )
+        ))
 
-        // Small Size
-        .item(h3("Small Size"))
-        .item(small("Compact TreeView with smaller text and spacing."))
-        .item(
-            tree_view()
-                .data(vec![
-                    tree_view_item("config", "Configuration")
-                        .with_children(vec![
-                            tree_view_item("database", "Database"),
-                            tree_view_item("cache", "Cache"),
-                            tree_view_item("logging", "Logging"),
-                        ]),
-                    tree_view_item("security", "Security")
-                        .with_children(vec![
-                            tree_view_item("ssl", "SSL/TLS"),
-                            tree_view_item("cors", "CORS"),
-                        ]),
-                ])
-                .size(TreeViewSize::Small)
-                .default_expanded(vec!["config".to_string()])
-                .aria_label("Small configuration tree")
-                .build()
-        )
+        // Size stories
+        .item(story_section("Sizes", "Different tree sizes for various interface contexts",
+            Column::new()
+                .s(Gap::new().y(SPACING_16))
+                .item(
+                    Column::new()
+                        .s(Gap::new().y(SPACING_8))
+                        .item(small("Small - Compact for dense layouts"))
+                        .item(
+                            tree_view()
+                                .data(vec![
+                                    tree_view_item("config", "Configuration")
+                                        .with_children(vec![
+                                            tree_view_item("database", "Database"),
+                                            tree_view_item("cache", "Cache"),
+                                        ]),
+                                ])
+                                .size(TreeViewSize::Small)
+                                .default_expanded(vec!["config".to_string()])
+                                .aria_label("Small configuration tree")
+                                .build()
+                        )
+                )
+                .item(
+                    Column::new()
+                        .s(Gap::new().y(SPACING_8))
+                        .item(small("Large - Better accessibility"))
+                        .item(
+                            tree_view()
+                                .data(vec![
+                                    tree_view_item("dashboard", "Dashboard")
+                                        .with_children(vec![
+                                            tree_view_item("analytics", "Analytics"),
+                                            tree_view_item("reports", "Reports"),
+                                        ]),
+                                ])
+                                .size(TreeViewSize::Large)
+                                .default_expanded(vec!["dashboard".to_string()])
+                                .aria_label("Large navigation tree")
+                                .build()
+                        )
+                )
+        ))
 
-        // Large Size
-        .item(h3("Large Size"))
-        .item(small("TreeView with larger text and spacing for better accessibility."))
-        .item(
-            tree_view()
-                .data(vec![
-                    tree_view_item("dashboard", "Dashboard")
-                        .with_children(vec![
-                            tree_view_item("analytics", "Analytics"),
-                            tree_view_item("reports", "Reports"),
-                        ]),
-                    tree_view_item("settings", "Settings")
-                        .with_children(vec![
-                            tree_view_item("profile", "Profile"),
-                            tree_view_item("preferences", "Preferences"),
-                        ]),
-                ])
-                .size(TreeViewSize::Large)
-                .default_expanded(vec!["dashboard".to_string()])
-                .aria_label("Large navigation tree")
-                .build()
-        )
+        // Variant stories
+        .item(story_section("Variants", "Different visual styles for various contexts",
+            Column::new()
+                .s(Gap::new().y(SPACING_16))
+                .item(
+                    Column::new()
+                        .s(Gap::new().y(SPACING_8))
+                        .item(small("Bordered - With container border"))
+                        .item(
+                            tree_view()
+                                .data(vec![
+                                    tree_view_item("modules", "Modules")
+                                        .with_children(vec![
+                                            tree_view_item("auth", "Authentication"),
+                                            tree_view_item("payment", "Payment"),
+                                        ]),
+                                ])
+                                .variant(TreeViewVariant::Bordered)
+                                .default_expanded(vec!["modules".to_string()])
+                                .aria_label("Bordered module tree")
+                                .build()
+                        )
+                )
+                .item(
+                    Column::new()
+                        .s(Gap::new().y(SPACING_8))
+                        .item(small("Elevated - With shadow elevation"))
+                        .item(
+                            tree_view()
+                                .data(vec![
+                                    tree_view_item("workspace", "Workspace")
+                                        .with_children(vec![
+                                            tree_view_item("projects", "Projects"),
+                                            tree_view_item("templates", "Templates"),
+                                        ]),
+                                ])
+                                .variant(TreeViewVariant::Elevated)
+                                .default_expanded(vec!["workspace".to_string()])
+                                .aria_label("Elevated workspace tree")
+                                .build()
+                        )
+                )
+        ))
 
-        // Bordered Variant
-        .item(h3("Bordered"))
-        .item(small("TreeView with a border around the container."))
-        .item(
-            tree_view()
-                .data(vec![
-                    tree_view_item("modules", "Modules")
-                        .with_children(vec![
-                            tree_view_item("auth", "Authentication"),
-                            tree_view_item("payment", "Payment"),
-                            tree_view_item("notification", "Notifications"),
-                        ]),
-                    tree_view_item("plugins", "Plugins")
-                        .with_children(vec![
-                            tree_view_item("analytics", "Analytics"),
-                            tree_view_item("seo", "SEO Tools"),
-                        ]),
-                ])
-                .variant(TreeViewVariant::Bordered)
-                .default_expanded(vec!["modules".to_string()])
-                .aria_label("Bordered module tree")
-                .build()
-        )
-
-        // Elevated Variant
-        .item(h3("Elevated"))
-        .item(small("TreeView with shadow elevation for a floating appearance."))
-        .item(
-            tree_view()
-                .data(vec![
-                    tree_view_item("workspace", "Workspace")
-                        .with_children(vec![
-                            tree_view_item("projects", "Projects"),
-                            tree_view_item("templates", "Templates"),
-                            tree_view_item("shared", "Shared"),
-                        ]),
-                    tree_view_item("archive", "Archive")
-                        .with_children(vec![
-                            tree_view_item("2023", "2023"),
-                            tree_view_item("2022", "2022"),
-                        ]),
-                ])
-                .variant(TreeViewVariant::Elevated)
-                .default_expanded(vec!["workspace".to_string()])
-                .aria_label("Elevated workspace tree")
-                .build()
-        )
-
-        // Without Icons
-        .item(h3("Without Icons"))
-        .item(small("TreeView with icons disabled for a cleaner text-only appearance."))
-        .item(
+        // Without Icons stories
+        .item(story_section("Without Icons", "Clean text-only appearance without folder/file icons",
             tree_view()
                 .data(vec![
                     tree_view_item("categories", "Categories")
@@ -206,66 +195,25 @@ pub fn treeview_examples() -> impl Element {
                                 .with_children(vec![
                                     tree_view_item("phones", "Phones"),
                                     tree_view_item("laptops", "Laptops"),
-                                    tree_view_item("tablets", "Tablets"),
                                 ]),
                             tree_view_item("clothing", "Clothing")
                                 .with_children(vec![
                                     tree_view_item("mens", "Men's"),
                                     tree_view_item("womens", "Women's"),
-                                    tree_view_item("kids", "Kids"),
                                 ]),
-                            tree_view_item("books", "Books")
-                                .with_children(vec![
-                                    tree_view_item("fiction", "Fiction"),
-                                    tree_view_item("nonfiction", "Non-Fiction"),
-                                    tree_view_item("technical", "Technical"),
-                                ])
                         ])
                 ])
                 .show_icons(false)
                 .default_expanded(vec!["categories".to_string()])
                 .aria_label("Category tree without icons")
                 .build()
-        )
+        ))
 
-        // Deeply Nested
-        .item(h3("Deeply Nested"))
-        .item(small("TreeView with multiple levels of nesting to test deep hierarchies."))
-        .item(
-            tree_view()
-                .data(vec![
-                    tree_view_item("level1", "Level 1")
-                        .with_children(vec![
-                            tree_view_item("level2a", "Level 2A")
-                                .with_children(vec![
-                                    tree_view_item("level3a", "Level 3A")
-                                        .with_children(vec![
-                                            tree_view_item("level4a", "Level 4A"),
-                                            tree_view_item("level4b", "Level 4B"),
-                                        ]),
-                                    tree_view_item("level3b", "Level 3B"),
-                                ]),
-                            tree_view_item("level2b", "Level 2B")
-                                .with_children(vec![
-                                    tree_view_item("level3c", "Level 3C"),
-                                    tree_view_item("level3d", "Level 3D"),
-                                ]),
-                        ])
-                ])
-                .default_expanded(vec!["level1".to_string(), "level2a".to_string()])
-                .aria_label("Deeply nested tree")
-                .build()
-        )
+        // Interactive stories
+        .item(story_section("Interactive Example", "Advanced example with external state control and action buttons", interactive_treeview_example()))
 
-        // Interactive Example
-        .item(h3("Interactive"))
-        .item(small("Interactive example with control buttons and event logging. Check the browser console to see events."))
-        .item(interactive_treeview_example())
-
-        // With Disabled Items
-        .item(h3("With Disabled Items"))
-        .item(small("TreeView with some items disabled to show different states."))
-        .item(
+        // Disabled items stories
+        .item(story_section("With Disabled Items", "Tree with disabled items to show different states",
             tree_view()
                 .data(vec![
                     tree_view_item("available", "Available Features")
@@ -279,15 +227,11 @@ pub fn treeview_examples() -> impl Element {
                             tree_view_item("advanced", "Advanced Analytics").disabled(true),
                             tree_view_item("enterprise", "Enterprise Support").disabled(true),
                         ]),
-                    tree_view_item("trial", "Trial Features")
-                        .with_children(vec![
-                            tree_view_item("limited", "Limited Access"),
-                        ]),
                 ])
                 .default_expanded(vec!["available".to_string(), "premium".to_string()])
                 .aria_label("Feature tree with disabled items")
                 .build()
-        )
+        ))
 }
 
 fn interactive_treeview_example() -> impl Element {

@@ -38,7 +38,7 @@ pub fn set_theme(new_theme: Theme) {
         Theme::Light => "light",
         Theme::Dark => "dark",
     };
-    local_storage().insert("novyui-theme", theme_str);
+    let _ = local_storage().insert("novyui-theme", theme_str);
 }
 
 /// Get the current theme value (non-reactive)

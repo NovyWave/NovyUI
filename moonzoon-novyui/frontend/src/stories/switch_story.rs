@@ -2,6 +2,7 @@ use zoon::*;
 use crate::tokens::*;
 use crate::components::*;
 use crate::components::icon::IconName;
+use crate::stories::template::*;
 // use crate::components::switch::LabelPosition;
 
 
@@ -533,8 +534,10 @@ pub fn switch_examples() -> impl Element {
     Column::new()
         .s(Gap::new().y(SPACING_32))
         .s(Align::new().left())
-        .item(h4("Switch Component Stories"))
-        .item(small("Interactive toggle switches with customizable sizes, icons, labels, and states. Perfect for settings panels, forms, and user preferences."))
+        .item(component_section(
+            "Switch",
+            "Interactive toggle switches with customizable sizes, icons, labels, and states. Perfect for settings panels, forms, and user preferences."
+        ))
 
         // Basic stories
         .item(story_section("Default", "Simple unchecked switch", switch_default()))
@@ -559,61 +562,4 @@ pub fn switch_examples() -> impl Element {
         .item(story_section("Form Integration", "Switches in form context", switch_form_integration()))
 }
 
-fn story_section(title: &str, description: &str, content: impl Element) -> impl Element {
-    Column::new()
-        .s(Gap::new().y(SPACING_12))
-        .s(Align::new().left())
-        .s(Padding::all(SPACING_16))
-        .s(Borders::all_signal(theme().map(|t| match t {
-            Theme::Light => Border::new().width(1).color("oklch(90% 0.14 250)"), // neutral_3 light
-            Theme::Dark => Border::new().width(1).color("oklch(20% 0.14 250)"), // neutral_4 dark
-        })))
-        .s(RoundedCorners::all(8))
-        .s(Background::new().color_signal(theme().map(|t| match t {
-            Theme::Light => "oklch(98% 0.01 250)", // primary_1 - subtle blue background
-            Theme::Dark => "oklch(20% 0.01 250)", // primary_1 dark - subtle blue background
-        })))
-        .item(
-            Column::new()
-                .s(Gap::new().y(SPACING_4))
-                .s(Align::new().left())
-                .item(
-                    El::new()
-                        .child(Text::new(title))
-                        .s(Font::new()
-                            .size(FONT_SIZE_16)
-                            .weight(FontWeight::Number(FONT_WEIGHT_6))
-                            .color_signal(theme().map(|t| match t {
-                                Theme::Light => "oklch(15% 0.14 250)", // neutral_9 light
-                                Theme::Dark => "oklch(95% 0.14 250)", // neutral_11 dark
-                            }))
-                        )
-                )
-                .item(
-                    El::new()
-                        .child(Text::new(description))
-                        .s(Font::new()
-                            .size(FONT_SIZE_14)
-                            .weight(FontWeight::Number(FONT_WEIGHT_4))
-                            .color_signal(theme().map(|t| match t {
-                                Theme::Light => "oklch(35% 0.14 250)", // neutral_7 light
-                                Theme::Dark => "oklch(75% 0.14 250)", // neutral_9 dark
-                            }))
-                        )
-                )
-        )
-        .item(
-            El::new()
-                .s(Padding::all(SPACING_16))
-                .s(Borders::all_signal(theme().map(|t| match t {
-                    Theme::Light => Border::new().width(1).color("oklch(95% 0.14 250)"), // neutral_2 light
-                    Theme::Dark => Border::new().width(1).color("oklch(15% 0.14 250)"), // neutral_3 dark
-                })))
-                .s(RoundedCorners::all(6))
-                .s(Background::new().color_signal(theme().map(|t| match t {
-                    Theme::Light => "oklch(95% 0.03 250)", // primary_2 - slightly darker blue background
-                    Theme::Dark => "oklch(25% 0.03 250)", // primary_2 dark - slightly darker blue background
-                })))
-                .child(content)
-        )
-}
+

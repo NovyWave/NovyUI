@@ -1,16 +1,16 @@
-// Select Component Stories
-// Complete implementation matching Vue Storybook examples exactly
-
 use zoon::*;
 use crate::tokens::*;
 use crate::components::*;
-use crate::theme::*;
+use crate::stories::template::*;
 
 pub fn select_examples() -> impl Element {
     Column::new()
-        .s(Gap::new().y(SPACING_24))
-        .item(h4("Select Component"))
-        .item(small("Complete Select component with dropdown functionality, search, multiple selection, and full Vue Storybook parity."))
+        .s(Gap::new().y(SPACING_32))
+        .s(Align::new().left())
+        .item(component_section(
+            "Select",
+            "Complete Select component with dropdown functionality, search, multiple selection, and comprehensive feature set. Essential for forms and data selection with keyboard navigation support."
+        ))
 
         // Default Example
         .item(story_section(
@@ -93,11 +93,7 @@ pub fn select_examples() -> impl Element {
                 .item(
                     Column::new()
                         .s(Gap::new().y(SPACING_4))
-                        .item(
-                            El::new()
-                                .child(Text::new("Small"))
-                                .s(Font::new().size(FONT_SIZE_14).weight(FontWeight::Number(FONT_WEIGHT_5)))
-                        )
+                        .item(small("Small"))
                         .item(
                             select()
                                 .size(SelectSize::Small)
@@ -109,11 +105,7 @@ pub fn select_examples() -> impl Element {
                 .item(
                     Column::new()
                         .s(Gap::new().y(SPACING_4))
-                        .item(
-                            El::new()
-                                .child(Text::new("Medium (Default)"))
-                                .s(Font::new().size(FONT_SIZE_14).weight(FontWeight::Number(FONT_WEIGHT_5)))
-                        )
+                        .item(small("Medium (Default)"))
                         .item(
                             select()
                                 .size(SelectSize::Medium)
@@ -125,11 +117,7 @@ pub fn select_examples() -> impl Element {
                 .item(
                     Column::new()
                         .s(Gap::new().y(SPACING_4))
-                        .item(
-                            El::new()
-                                .child(Text::new("Large"))
-                                .s(Font::new().size(FONT_SIZE_14).weight(FontWeight::Number(FONT_WEIGHT_5)))
-                        )
+                        .item(small("Large"))
                         .item(
                             select()
                                 .size(SelectSize::Large)
@@ -169,11 +157,7 @@ pub fn select_examples() -> impl Element {
                 .item(
                     Column::new()
                         .s(Gap::new().y(SPACING_4))
-                        .item(
-                            El::new()
-                                .child(Text::new("Narrow (200px) - For short options"))
-                                .s(Font::new().size(FONT_SIZE_14).weight(FontWeight::Number(FONT_WEIGHT_5)))
-                        )
+                        .item(small("Narrow (200px) - For short options"))
                         .item(
                             select()
                                 .min_width(200)
@@ -185,11 +169,7 @@ pub fn select_examples() -> impl Element {
                 .item(
                     Column::new()
                         .s(Gap::new().y(SPACING_4))
-                        .item(
-                            El::new()
-                                .child(Text::new("Medium (320px) - Default width"))
-                                .s(Font::new().size(FONT_SIZE_14).weight(FontWeight::Number(FONT_WEIGHT_5)))
-                        )
+                        .item(small("Medium (320px) - Default width"))
                         .item(
                             select()
                                 .placeholder("Select an option...")
@@ -200,11 +180,7 @@ pub fn select_examples() -> impl Element {
                 .item(
                     Column::new()
                         .s(Gap::new().y(SPACING_4))
-                        .item(
-                            El::new()
-                                .child(Text::new("Wide (400px) - For longer content"))
-                                .s(Font::new().size(FONT_SIZE_14).weight(FontWeight::Number(FONT_WEIGHT_5)))
-                        )
+                        .item(small("Wide (400px) - For longer content"))
                         .item(
                             select()
                                 .min_width(400)
@@ -236,43 +212,4 @@ fn create_country_options() -> Vec<SelectOption> {
         select_option("in", "🇮🇳 India"),
         select_option("cn", "🇨🇳 China"),
     ]
-}
-
-
-
-
-
-// Helper function for creating story sections
-fn story_section(title: &str, description: &str, content: impl Element) -> impl Element {
-    Column::new()
-        .s(Gap::new().y(SPACING_12))
-        .item(
-            Column::new()
-                .s(Gap::new().y(SPACING_4))
-                .item(
-                    El::new()
-                        .child(Text::new(title))
-                        .s(Font::new()
-                            .size(FONT_SIZE_18)
-                            .weight(FontWeight::Number(FONT_WEIGHT_6))
-                            .color_signal(theme().map(|t| match t {
-                                Theme::Light => "oklch(15% 0.14 250)", // neutral_9 light
-                                Theme::Dark => "oklch(95% 0.14 250)", // neutral_11 dark
-                            }))
-                        )
-                )
-                .item(
-                    El::new()
-                        .child(Text::new(description))
-                        .s(Font::new()
-                            .size(FONT_SIZE_14)
-                            .weight(FontWeight::Number(FONT_WEIGHT_4))
-                            .color_signal(theme().map(|t| match t {
-                                Theme::Light => "oklch(35% 0.14 250)", // neutral_7 light
-                                Theme::Dark => "oklch(75% 0.14 250)", // neutral_9 dark
-                            }))
-                        )
-                )
-        )
-        .item(content)
 }
