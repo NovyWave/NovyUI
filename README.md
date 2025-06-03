@@ -1,39 +1,192 @@
 # NovyUI
-> Timeless configurable design system.
+> A timeless, configurable design system built for modern web applications.
 
-_Warning: WIP - don't use yet_
+_Warning: Work in Progress - Production use not recommended yet_
 
 ![Checkboxes and Buttons demo](docs/images/checkboxes_and_buttons_demo.gif.gif)
 
-### MoonZoon Storybook
-- **Live: [moonzoon-novyui-storybook.kavik.cz](https://moonzoon-novyui-storybook.kavik.cz/)**
-- NovyUI for Rust fullstack framework [MoonZoon](https://github.com/MoonZoon/MoonZoon)
-- Both Storybook and components are written with NovyUI in Rust
-- Source: [./moonzoon-novyui](moonzoon-novyui)
+## Overview
 
-### Vue Storybook
-- **Live: [vue-novyui-storybook.kavik.cz](https://vue-novyui-storybook.kavik.cz/)**
-- NovyUI Vue/Typescript components
-- Storybook is [Storybook.js](https://github.com/storybookjs/storybook)
-- Source: [./storybook](storybook)
+NovyUI is a comprehensive design system that provides consistent, accessible, and highly configurable UI components across multiple frameworks and platforms. Built with a token-based architecture, it ensures design consistency while maintaining flexibility for customization.
 
-### Boon Storybook
-- NovyUI for programming language [Boon](https://github.com/BoonLang/boon)
-- Both Storybook and components are written with NovyUI in Boon
+**Key Features:**
+- 🎨 **Token-based design system** with 15+ design token categories
+- 🔧 **Multi-framework support** (Rust/MoonZoon, Vue/TypeScript, Boon)
+- ♿ **Accessibility-first** approach with WCAG compliance
+- 📱 **Responsive design** patterns and mobile-optimized components
+- 🎯 **Type-safe** implementation across all supported frameworks
+- 🚀 **Production-ready** components, blocks, and page templates
+
+## Live Demos & Implementations
+
+### 🌊 NovyWave (Production Application)
+- **🚀 Real-world usage:** [NovyWave](https://github.com/NovyWave/NovyWave) - A Rust desktop application built with [Tauri](https://tauri.app/) using NovyUI
+- Demonstrates NovyUI components in a production desktop environment
+- Part of the same GitHub organization, showcasing the design system's cross-platform capabilities
+
+### MoonZoon Storybook (Rust)
+- **🌐 Live Demo: [moonzoon-novyui-storybook.kavik.cz](https://moonzoon-novyui-storybook.kavik.cz/)**
+- NovyUI implementation for Rust fullstack framework [MoonZoon](https://github.com/MoonZoon/MoonZoon)
+- Type-safe components written entirely in Rust with NovyUI
+- **Source:** [./moonzoon-novyui](moonzoon-novyui)
+
+### Vue Storybook (TypeScript)
+- **🌐 Live Demo: [vue-novyui-storybook.kavik.cz](https://vue-novyui-storybook.kavik.cz/)**
+- NovyUI Vue 3 + TypeScript component library
+- Built with [Storybook.js](https://github.com/storybookjs/storybook) for component documentation
+- **Source:** [./storybook](storybook)
+
+### Boon Storybook (Coming Soon)
+- NovyUI implementation for programming language [Boon](https://github.com/BoonLang/boon)
+- Components and Storybook written entirely in Boon with NovyUI
+- _Status: In development_
 
 ---
 
-### Timeless?
+## Why NovyUI?
 
-You'll always need buttons, checkoxes and inputs in your apps. TODO [ best practices, paterns, knowledge, implementations, design files, for both humans and AI, underestamated / hard / boring to create one / blocks/pages neeed to show patterns and learn best practices]
+### Timeless Design Philosophy
 
-### Configurable?
+You'll always need buttons, checkboxes, inputs, and navigation in your applications. NovyUI provides:
 
-TODO [ Tooling / variants, my design examples, automatic asset download, pattern to create new custom components ]
+- **🏗️ Essential Building Blocks:** Comprehensive component library covering all fundamental UI patterns
+- **📚 Best Practices Built-In:** Each component follows established UX patterns and accessibility guidelines
+- **🎓 Learning Resources:** Extensive documentation with implementation examples and design rationale
+- **🤖 AI-Friendly:** Structured documentation and token system designed for both human developers and AI assistants
+- **⚡ Time-Saving:** Pre-built, tested components eliminate the tedious work of creating basic UI elements
+- **📐 Design System Knowledge:** Embeds years of design system expertise and industry standards
+
+**Common Pain Points NovyUI Solves:**
+- Inconsistent spacing, colors, and typography across applications
+- Accessibility overlooked or implemented incorrectly
+- Reinventing the wheel for basic UI components
+- Lack of comprehensive documentation and usage examples
+- Difficulty maintaining design consistency across teams and projects
+
+### Configurable Architecture
+
+NovyUI's token-based system provides unparalleled customization flexibility:
+
+- **🎨 Design Tokens:** 15+ token categories (color, spacing, typography, shadows, etc.) for consistent theming
+- **🔧 Component Variants:** Multiple visual styles (primary, secondary, outline, ghost) for each component
+- **📱 Responsive Patterns:** Built-in mobile-first responsive design patterns
+- **🎯 Framework Agnostic:** Consistent design tokens work across Rust, Vue, Boon, and future implementations
+- **📦 Automatic Asset Management:** Scripts automatically download and sync fonts, icons, and pattern assets
+- **🛠️ Custom Component Patterns:** Clear guidelines and templates for creating new components that fit the system
+
+**Tooling & Automation:**
+- Automated asset synchronization (fonts from Google Fonts and other sources, icons from Lucide, patterns from Hero Patterns)
+- Documentation enforcement scripts ensure consistency across all components
+- Template generators for creating new components, blocks, and pages
+- Design file exports for Figma/Penpot integration
+
+### Design Exploration Examples
+
+The following designs demonstrate the visual range possible with NovyUI's configurable token system. Each represents a different aesthetic approach achievable by customizing the design tokens while using the same underlying components:
+
+#### Friendly & Rounded - Approachable Interface
+![Friendly & Rounded Design](docs/images/figma_persons_pro.png)
+*Soft, rounded design with gentle colors and friendly typography - ideal for consumer apps and tools people use daily.*
+
+#### Modern Minimalism - Clean Professional Interface
+![Modern Minimalism Design](docs/images/figma_fastwave.png)
+*Clean, professional design with subtle shadows and modern typography - perfect for business applications.*
+
+#### Neobrutalism - Bold Digital Expression  
+![Neobrutalism Design](docs/images/figma_neobrutalism.png)
+*High-contrast, geometric design with bold colors and sharp edges - showcases how NovyUI tokens can create striking, unconventional interfaces.*
+
+These examples show how the same NovyUI component library can produce dramatically different visual results simply by adjusting design tokens (colors, spacing, corner radius, shadows, typography). The underlying accessibility, functionality, and code quality remain consistent across all variations.
+
+*Note: The above design examples were created in Figma to demonstrate (future) NovyUI's visual flexibility.*
+
+## Getting Started
+
+### Quick Start
+
+1. **Choose Your Framework:**
+   - **Rust/MoonZoon:** See [./moonzoon-novyui](moonzoon-novyui) for installation and usage
+   - **Vue/TypeScript:** See [./storybook](storybook) for npm package and setup
+   - **Boon:** Coming soon
+
+2. **Explore Components:**
+   - Browse the [live demos](#live-demos--implementations) to see all available components
+   - Review component documentation in [./components](components)
+   - Check out pre-built page layouts in [./blocks](blocks) and [./pages](pages)
+
+3. **Customize Your Theme:**
+   - Modify design tokens in [./tokens](tokens) to match your brand
+   - Use the provided tooling to generate and validate your custom theme
+
+### Project Structure
+
+```
+├── components/         # 50+ UI components (Button, Input, Modal, etc.)
+├── blocks/             # 60+ composite UI blocks (Header, Footer, ProductCard, etc.)
+├── pages/              # Complete page templates and layouts
+├── tokens/             # Design tokens (colors, spacing, typography, etc.)
+├── assets/             # Auto-managed fonts, icons, and patterns
+├── scripts/            # Validation and asset management tools
+├── moonzoon-novyui/    # Rust/MoonZoon implementation
+└── storybook/          # Vue/TypeScript implementation
+```
+
+### Design Token Categories
+
+NovyUI uses a comprehensive token system with 15+ categories:
+
+| Category | File | Description |
+|----------|------|-------------|
+| **Colors** | `color.md` | Primary, neutral, semantic colors with light/dark variants |
+| **Spacing** | `spacing.md` | Consistent spacing scale (1-150) for padding, margins, gaps |
+| **Typography** | `typography.md` | Font families, sizes, weights, line heights |
+| **Corner Radius** | `corner-radius.md` | Border radius values for consistent roundness |
+| **Shadows** | `shadow-size.md`, `shadow-color.md` | Drop shadows and elevation system |
+| **Border** | `border-width.md`, `border-style.md` | Border specifications |
+| **Icons** | `icons.md` | Curated icon set from Lucide with semantic naming |
+| **Patterns** | `patterns.md` | Background patterns from Hero Patterns |
+| **Fonts** | `fonts.md` | Inter, FiraCode, and Audiowide font definitions |
+| **Layout** | `width.md`, `z-index.md` | Layout utilities and stacking order |
+| **Theme** | `theme-mapping.md` | Light/dark theme token mappings |
+| **Opacity** | `opacity.md` | Transparency levels for overlays and states |
+
+## What's Included
+
+### 🧩 Components (50+)
+Essential UI building blocks ready for immediate use:
+- **Form Controls:** Button, Input, Checkbox, Select, Switch, FileInput, DatePicker
+- **Data Display:** Badge, Card, DataTable, List, Image, Avatar, Countdown
+- **Navigation:** Breadcrumbs, AnchorNavigation, Command, ContextMenu
+- **Feedback:** Alert, Loading, Dialog, Drawer, HoverCard, Tooltip
+- **Layout:** Grid, Divider, Collapse, Accordion, Affix
+- **Typography:** Headings, Paragraph, Blockquote, Code blocks
+
+### 🏗️ Blocks (60+)
+Pre-composed UI patterns for rapid development:
+- **Layout:** Headers, Footers, Sidebars, Navigation bars, Sticky elements
+- **Content:** Hero sections, Feature sections, Testimonials, Stats, FAQs
+- **E-commerce:** Product cards, Cart, Checkout, Wishlist, Order history
+- **User Management:** Authentication, Profile settings, User roles, Preferences
+- **Communication:** Comments, Chat, Notifications, Contact forms
+- **Data:** Tables, Calendars, File explorers, Activity feeds
+
+### 📄 Pages
+Complete page templates combining blocks and components:
+- Landing pages, Dashboards, Product catalogs, User profiles
+- Documentation sites, Admin panels, E-commerce flows
+- Authentication flows, Settings pages, Error pages
+
+All components, blocks, and pages include:
+- ✅ Comprehensive accessibility features (ARIA, keyboard navigation, focus management)
+- ✅ Responsive design patterns for mobile, tablet, and desktop
+- ✅ Dark/light theme support out of the box
+- ✅ TypeScript definitions and Rust type safety
+- ✅ Detailed documentation with usage examples
+- ✅ Figma/Penpot design file integration
 
 ---
 
-Questions ▷ martin@kavik.cz
+**Questions?** ▷ martin@kavik.cz
 
 ---
 
@@ -80,7 +233,7 @@ deno run --allow-read --allow-write --allow-net scripts/font-asset-enforcer.ts
 ```
 
 This script will:
-- Download and extract the latest Inter and JetBrains Mono font releases if needed
+- Download and extract the latest Inter, FiraCode, and Audiowide font releases if needed
 - Place and rename only the required `.woff2` and `.ttf` files in `/assets/fonts`
 - Remove any orphaned font files not listed in `tokens/fonts.md`
 - Print a ✅ message when all font files are in sync
