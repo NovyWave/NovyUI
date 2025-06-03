@@ -84,6 +84,12 @@ fn my_app() -> impl Element {
 
 ### Running the Storybook
 
+#### Prerequisites
+
+First, install MoonZoon CLI by following the [MoonZoon installation guide](https://github.com/MoonZoon/MoonZoon?tab=readme-ov-file#create--run-project).
+
+#### Running the Storybook
+
 1. Navigate to the storybook directory:
    ```bash
    cd moonzoon-novyui-storybook
@@ -128,29 +134,6 @@ Complete design token system including:
 - **Shadows**: Elevation system with multiple levels
 - **Animation**: Smooth transitions and timing functions
 
-## Development
-
-### Building the Workspace
-
-```bash
-# Build all crates
-cargo build
-
-# Build specific crate
-cargo build -p moonzoon-novyui
-cargo build -p storybook-frontend
-```
-
-### Testing
-
-```bash
-# Run all tests
-cargo test
-
-# Test specific crate
-cargo test -p moonzoon-novyui
-```
-
 ### Contributing
 
 1. Make changes to components in `moonzoon-novyui/src/components/`
@@ -170,4 +153,4 @@ This workspace structure provides:
 
 ## License
 
-MIT OR Apache-2.0
+MIT
