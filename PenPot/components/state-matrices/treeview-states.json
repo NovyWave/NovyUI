@@ -1,0 +1,156 @@
+{
+  "component": "TreeView",
+  "description": "State matrix for TreeView component showing all variant-state combinations",
+  "variants": [
+    "simple",
+    "selectable",
+    "checkable"
+  ],
+  "states": [
+    "collapsed",
+    "expanded",
+    "selected",
+    "hover",
+    "focus"
+  ],
+  "matrix": {
+    "simple": {
+      "collapsed": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.11"
+        ],
+        "description": "simple variant in collapsed state"
+      },
+      "expanded": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.11"
+        ],
+        "description": "simple variant in expanded state"
+      },
+      "selected": {
+        "valid": true,
+        "tokens": [
+          "color.primary.1",
+          "color.primary.7"
+        ],
+        "description": "simple variant in selected state"
+      },
+      "hover": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.2"
+        ],
+        "description": "simple variant in hover state"
+      },
+      "focus": {
+        "valid": true,
+        "tokens": [
+          "shadow.focus"
+        ],
+        "description": "simple variant in focus state"
+      }
+    },
+    "selectable": {
+      "collapsed": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.11"
+        ],
+        "description": "selectable variant in collapsed state"
+      },
+      "expanded": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.11"
+        ],
+        "description": "selectable variant in expanded state"
+      },
+      "selected": {
+        "valid": true,
+        "tokens": [
+          "color.primary.1",
+          "color.primary.7"
+        ],
+        "description": "selectable variant in selected state"
+      },
+      "hover": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.2"
+        ],
+        "description": "selectable variant in hover state"
+      },
+      "focus": {
+        "valid": true,
+        "tokens": [
+          "shadow.focus"
+        ],
+        "description": "selectable variant in focus state"
+      }
+    },
+    "checkable": {
+      "collapsed": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.11"
+        ],
+        "description": "checkable variant in collapsed state"
+      },
+      "expanded": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.11"
+        ],
+        "description": "checkable variant in expanded state"
+      },
+      "selected": {
+        "valid": true,
+        "tokens": [
+          "color.primary.1",
+          "color.primary.7"
+        ],
+        "description": "checkable variant in selected state"
+      },
+      "hover": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.2"
+        ],
+        "description": "checkable variant in hover state"
+      },
+      "focus": {
+        "valid": true,
+        "tokens": [
+          "shadow.focus"
+        ],
+        "description": "checkable variant in focus state"
+      }
+    }
+  },
+  "token_usage": {
+    "unique_tokens": [
+      "color.primary.1",
+      "shadow.focus",
+      "color.primary.7",
+      "color.neutral.11",
+      "color.neutral.2"
+    ],
+    "token_count": 5,
+    "categories": {
+      "colors": [
+        "color.primary.1",
+        "color.primary.7",
+        "color.neutral.11",
+        "color.neutral.2"
+      ],
+      "spacing": [],
+      "typography": [],
+      "effects": [
+        "shadow.focus"
+      ]
+    }
+  },
+  "penpot_components_needed": 15
+}

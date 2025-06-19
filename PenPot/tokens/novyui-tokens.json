@@ -1,0 +1,1114 @@
+{
+  "$schema": "https://tr.designtokens.org/format/",
+  "$extensions": {
+    "penpot": {
+      "source": "NovyUI MoonZoon Implementation",
+      "version": "1.0.0",
+      "migrationDate": "2025-06-19"
+    }
+  },
+  "color": {
+    "primary": {
+      "1": {
+        "$type": "color",
+        "$description": "Primary color step 1",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(98% 0.01 250)"
+        },
+        "dark": {
+          "$value": "oklch(20% 0.01 250)"
+        }
+      },
+      "2": {
+        "$type": "color",
+        "$description": "Primary color step 2",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(96% 0.015 250)"
+        },
+        "dark": {
+          "$value": "oklch(25% 0.015 250)"
+        }
+      },
+      "3": {
+        "$type": "color",
+        "$description": "Primary color step 3",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(94% 0.02 250)"
+        },
+        "dark": {
+          "$value": "oklch(30% 0.02 250)"
+        }
+      },
+      "4": {
+        "$type": "color",
+        "$description": "Primary color step 4",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(92% 0.025 250)"
+        },
+        "dark": {
+          "$value": "oklch(35% 0.025 250)"
+        }
+      },
+      "5": {
+        "$type": "color",
+        "$description": "Primary color step 5",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(88% 0.03 250)"
+        },
+        "dark": {
+          "$value": "oklch(40% 0.03 250)"
+        }
+      },
+      "6": {
+        "$type": "color",
+        "$description": "Primary color step 6",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(82% 0.04 250)"
+        },
+        "dark": {
+          "$value": "oklch(45% 0.04 250)"
+        }
+      },
+      "7": {
+        "$type": "color",
+        "$description": "Primary color step 7",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(76% 0.05 250)"
+        },
+        "dark": {
+          "$value": "oklch(50% 0.05 250)"
+        }
+      },
+      "8": {
+        "$type": "color",
+        "$description": "Primary color step 8",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(68% 0.06 250)"
+        },
+        "dark": {
+          "$value": "oklch(55% 0.06 250)"
+        }
+      },
+      "9": {
+        "$type": "color",
+        "$description": "Primary color step 9",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(60% 0.07 250)"
+        },
+        "dark": {
+          "$value": "oklch(60% 0.07 250)"
+        }
+      },
+      "10": {
+        "$type": "color",
+        "$description": "Primary color step 10",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(52% 0.08 250)"
+        },
+        "dark": {
+          "$value": "oklch(65% 0.08 250)"
+        }
+      },
+      "11": {
+        "$type": "color",
+        "$description": "Primary color step 11",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(44% 0.09 250)"
+        },
+        "dark": {
+          "$value": "oklch(70% 0.09 250)"
+        }
+      },
+      "12": {
+        "$type": "color",
+        "$description": "Primary color step 12",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(36% 0.1 250)"
+        },
+        "dark": {
+          "$value": "oklch(90% 0.1 250)"
+        }
+      }
+    },
+    "neutral": {
+      "1": {
+        "$type": "color",
+        "$description": "Neutral color step 1",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(99% 0 0)"
+        },
+        "dark": {
+          "$value": "oklch(12% 0 0)"
+        }
+      },
+      "2": {
+        "$type": "color",
+        "$description": "Neutral color step 2",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(98% 0 0)"
+        },
+        "dark": {
+          "$value": "oklch(14% 0 0)"
+        }
+      },
+      "3": {
+        "$type": "color",
+        "$description": "Neutral color step 3",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(96% 0 0)"
+        },
+        "dark": {
+          "$value": "oklch(16% 0 0)"
+        }
+      },
+      "4": {
+        "$type": "color",
+        "$description": "Neutral color step 4",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(94% 0 0)"
+        },
+        "dark": {
+          "$value": "oklch(18% 0 0)"
+        }
+      },
+      "5": {
+        "$type": "color",
+        "$description": "Neutral color step 5",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(92% 0 0)"
+        },
+        "dark": {
+          "$value": "oklch(22% 0 0)"
+        }
+      },
+      "6": {
+        "$type": "color",
+        "$description": "Neutral color step 6",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(88% 0 0)"
+        },
+        "dark": {
+          "$value": "oklch(28% 0 0)"
+        }
+      },
+      "7": {
+        "$type": "color",
+        "$description": "Neutral color step 7",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(82% 0 0)"
+        },
+        "dark": {
+          "$value": "oklch(36% 0 0)"
+        }
+      },
+      "8": {
+        "$type": "color",
+        "$description": "Neutral color step 8",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(72% 0 0)"
+        },
+        "dark": {
+          "$value": "oklch(46% 0 0)"
+        }
+      },
+      "9": {
+        "$type": "color",
+        "$description": "Neutral color step 9",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(56% 0 0)"
+        },
+        "dark": {
+          "$value": "oklch(56% 0 0)"
+        }
+      },
+      "10": {
+        "$type": "color",
+        "$description": "Neutral color step 10",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(48% 0 0)"
+        },
+        "dark": {
+          "$value": "oklch(64% 0 0)"
+        }
+      },
+      "11": {
+        "$type": "color",
+        "$description": "Neutral color step 11",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(24% 0 0)"
+        },
+        "dark": {
+          "$value": "oklch(88% 0 0)"
+        }
+      },
+      "12": {
+        "$type": "color",
+        "$description": "Neutral color step 12",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(12% 0 0)"
+        },
+        "dark": {
+          "$value": "oklch(96% 0 0)"
+        }
+      }
+    },
+    "success": {
+      "1": {
+        "$type": "color",
+        "$description": "Success color step 1",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(98% 0.01 150)"
+        },
+        "dark": {
+          "$value": "oklch(18% 0.01 150)"
+        }
+      },
+      "7": {
+        "$type": "color",
+        "$description": "Success color step 7",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(68% 0.12 150)"
+        },
+        "dark": {
+          "$value": "oklch(48% 0.12 150)"
+        }
+      },
+      "11": {
+        "$type": "color",
+        "$description": "Success color step 11",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(36% 0.15 150)"
+        },
+        "dark": {
+          "$value": "oklch(72% 0.15 150)"
+        }
+      }
+    },
+    "warning": {
+      "1": {
+        "$type": "color",
+        "$description": "Warning color step 1",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(98% 0.01 80)"
+        },
+        "dark": {
+          "$value": "oklch(18% 0.01 80)"
+        }
+      },
+      "7": {
+        "$type": "color",
+        "$description": "Warning color step 7",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(76% 0.12 80)"
+        },
+        "dark": {
+          "$value": "oklch(56% 0.12 80)"
+        }
+      },
+      "11": {
+        "$type": "color",
+        "$description": "Warning color step 11",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(44% 0.15 80)"
+        },
+        "dark": {
+          "$value": "oklch(80% 0.15 80)"
+        }
+      }
+    },
+    "error": {
+      "1": {
+        "$type": "color",
+        "$description": "Error color step 1",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(98% 0.01 25)"
+        },
+        "dark": {
+          "$value": "oklch(18% 0.01 25)"
+        }
+      },
+      "7": {
+        "$type": "color",
+        "$description": "Error color step 7",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(68% 0.15 25)"
+        },
+        "dark": {
+          "$value": "oklch(48% 0.15 25)"
+        }
+      },
+      "11": {
+        "$type": "color",
+        "$description": "Error color step 11",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(36% 0.18 25)"
+        },
+        "dark": {
+          "$value": "oklch(72% 0.18 25)"
+        }
+      }
+    },
+    "static": {
+      "transparent": {
+        "$type": "color",
+        "$value": "transparent",
+        "$description": "Static transparent color"
+      },
+      "white": {
+        "$type": "color",
+        "$value": "oklch(100% 0 0)",
+        "$description": "Static white color"
+      },
+      "black": {
+        "$type": "color",
+        "$value": "oklch(0% 0 0)",
+        "$description": "Static black color"
+      }
+    }
+  },
+  "spacing": {
+    "0": {
+      "$type": "dimension",
+      "$value": "0px",
+      "$description": "Spacing value 0 (0px)"
+    },
+    "2": {
+      "$type": "dimension",
+      "$value": "2px",
+      "$description": "Spacing value 2 (2px)"
+    },
+    "4": {
+      "$type": "dimension",
+      "$value": "4px",
+      "$description": "Spacing value 4 (4px)"
+    },
+    "6": {
+      "$type": "dimension",
+      "$value": "6px",
+      "$description": "Spacing value 6 (6px)"
+    },
+    "8": {
+      "$type": "dimension",
+      "$value": "8px",
+      "$description": "Spacing value 8 (8px)"
+    },
+    "10": {
+      "$type": "dimension",
+      "$value": "10px",
+      "$description": "Spacing value 10 (10px)"
+    },
+    "12": {
+      "$type": "dimension",
+      "$value": "12px",
+      "$description": "Spacing value 12 (12px)"
+    },
+    "16": {
+      "$type": "dimension",
+      "$value": "16px",
+      "$description": "Spacing value 16 (16px)"
+    },
+    "20": {
+      "$type": "dimension",
+      "$value": "20px",
+      "$description": "Spacing value 20 (20px)"
+    },
+    "24": {
+      "$type": "dimension",
+      "$value": "24px",
+      "$description": "Spacing value 24 (24px)"
+    },
+    "32": {
+      "$type": "dimension",
+      "$value": "32px",
+      "$description": "Spacing value 32 (32px)"
+    },
+    "40": {
+      "$type": "dimension",
+      "$value": "40px",
+      "$description": "Spacing value 40 (40px)"
+    },
+    "48": {
+      "$type": "dimension",
+      "$value": "48px",
+      "$description": "Spacing value 48 (48px)"
+    },
+    "56": {
+      "$type": "dimension",
+      "$value": "56px",
+      "$description": "Spacing value 56 (56px)"
+    },
+    "64": {
+      "$type": "dimension",
+      "$value": "64px",
+      "$description": "Spacing value 64 (64px)"
+    },
+    "96": {
+      "$type": "dimension",
+      "$value": "96px",
+      "$description": "Spacing value 96 (96px)"
+    },
+    "128": {
+      "$type": "dimension",
+      "$value": "128px",
+      "$description": "Spacing value 128 (128px)"
+    },
+    "150": {
+      "$type": "dimension",
+      "$value": "150px",
+      "$description": "Spacing value 150 (150px)"
+    }
+  },
+  "typography": {
+    "fontFamily": {
+      "sans": {
+        "$type": "fontFamily",
+        "$value": [
+          "Inter",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "sans-serif"
+        ],
+        "$description": "Primary sans-serif font stack"
+      },
+      "mono": {
+        "$type": "fontFamily",
+        "$value": [
+          "Fira Code",
+          "JetBrains Mono",
+          "Consolas",
+          "Monaco",
+          "monospace"
+        ],
+        "$description": "Monospace font stack for code"
+      },
+      "display": {
+        "$type": "fontFamily",
+        "$value": [
+          "Audiowide",
+          "Impact",
+          "Arial Black",
+          "sans-serif"
+        ],
+        "$description": "Display font for headings and emphasis"
+      }
+    },
+    "fontSize": {
+      "12": {
+        "$type": "dimension",
+        "$value": "12px",
+        "$description": "Extra small text"
+      },
+      "14": {
+        "$type": "dimension",
+        "$value": "14px",
+        "$description": "Small text"
+      },
+      "16": {
+        "$type": "dimension",
+        "$value": "16px",
+        "$description": "Base text size"
+      },
+      "18": {
+        "$type": "dimension",
+        "$value": "18px",
+        "$description": "Large text"
+      },
+      "20": {
+        "$type": "dimension",
+        "$value": "20px",
+        "$description": "Extra large text"
+      },
+      "24": {
+        "$type": "dimension",
+        "$value": "24px",
+        "$description": "Small heading"
+      },
+      "30": {
+        "$type": "dimension",
+        "$value": "30px",
+        "$description": "Medium heading"
+      },
+      "32": {
+        "$type": "dimension",
+        "$value": "32px",
+        "$description": "Large heading"
+      },
+      "36": {
+        "$type": "dimension",
+        "$value": "36px",
+        "$description": "Extra large heading"
+      },
+      "48": {
+        "$type": "dimension",
+        "$value": "48px",
+        "$description": "Display heading"
+      }
+    },
+    "fontWeight": {
+      "normal": {
+        "$type": "fontWeight",
+        "$value": 400,
+        "$description": "Normal font weight"
+      },
+      "medium": {
+        "$type": "fontWeight",
+        "$value": 500,
+        "$description": "Medium font weight"
+      },
+      "semibold": {
+        "$type": "fontWeight",
+        "$value": 600,
+        "$description": "Semibold font weight"
+      },
+      "bold": {
+        "$type": "fontWeight",
+        "$value": 700,
+        "$description": "Bold font weight"
+      }
+    },
+    "lineHeight": {
+      "none": {
+        "$type": "number",
+        "$value": 1.0,
+        "$description": "No line height (100%)"
+      },
+      "tight": {
+        "$type": "number",
+        "$value": 1.2,
+        "$description": "Tight line height (120%)"
+      },
+      "normal": {
+        "$type": "number",
+        "$value": 1.4,
+        "$description": "Normal line height (140%)"
+      },
+      "relaxed": {
+        "$type": "number",
+        "$value": 1.6,
+        "$description": "Relaxed line height (160%)"
+      },
+      "loose": {
+        "$type": "number",
+        "$value": 2.0,
+        "$description": "Loose line height (200%)"
+      }
+    },
+    "letterSpacing": {
+      "normal": {
+        "$type": "dimension",
+        "$value": "0em",
+        "$description": "Normal letter spacing"
+      },
+      "wide": {
+        "$type": "dimension",
+        "$value": "0.01em",
+        "$description": "Wide letter spacing (1%)"
+      },
+      "wider": {
+        "$type": "dimension",
+        "$value": "0.02em",
+        "$description": "Wider letter spacing (2%)"
+      }
+    }
+  },
+  "borderRadius": {
+    "none": {
+      "$type": "dimension",
+      "$value": "0px",
+      "$description": "No border radius"
+    },
+    "xs": {
+      "$type": "dimension",
+      "$value": "2px",
+      "$description": "Extra small border radius"
+    },
+    "sm": {
+      "$type": "dimension",
+      "$value": "4px",
+      "$description": "Small border radius"
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": "6px",
+      "$description": "Medium border radius"
+    },
+    "lg": {
+      "$type": "dimension",
+      "$value": "8px",
+      "$description": "Large border radius"
+    },
+    "xl": {
+      "$type": "dimension",
+      "$value": "16px",
+      "$description": "Extra large border radius"
+    },
+    "full": {
+      "$type": "dimension",
+      "$value": "9999px",
+      "$description": "Full/pill border radius"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$type": "shadow",
+      "$value": [
+        {
+          "color": "rgba(0, 0, 0, 0.1)",
+          "offsetX": "0px",
+          "offsetY": "1px",
+          "blur": "2px",
+          "spread": "0px"
+        }
+      ],
+      "$description": "Small shadow"
+    },
+    "md": {
+      "$type": "shadow",
+      "$value": [
+        {
+          "color": "rgba(0, 0, 0, 0.1)",
+          "offsetX": "0px",
+          "offsetY": "2px",
+          "blur": "8px",
+          "spread": "0px"
+        }
+      ],
+      "$description": "Medium shadow"
+    },
+    "lg": {
+      "$type": "shadow",
+      "$value": [
+        {
+          "color": "rgba(0, 0, 0, 0.15)",
+          "offsetX": "0px",
+          "offsetY": "4px",
+          "blur": "16px",
+          "spread": "0px"
+        }
+      ],
+      "$description": "Large shadow"
+    },
+    "focus": {
+      "$type": "shadow",
+      "$value": [
+        {
+          "color": "var(--color-primary-7)",
+          "offsetX": "0px",
+          "offsetY": "0px",
+          "blur": "0px",
+          "spread": "4px"
+        }
+      ],
+      "$description": "Focus ring shadow",
+      "$extensions": {
+        "penpot": {
+          "semantic": "focus-ring",
+          "themeAware": true
+        }
+      }
+    }
+  },
+  "opacity": {
+    "none": {
+      "$type": "number",
+      "$value": 0,
+      "$description": "Completely transparent"
+    },
+    "subtle": {
+      "$type": "number",
+      "$value": 0.04,
+      "$description": "Subtle transparency"
+    },
+    "light": {
+      "$type": "number",
+      "$value": 0.08,
+      "$description": "Light transparency"
+    },
+    "medium": {
+      "$type": "number",
+      "$value": 0.16,
+      "$description": "Medium transparency"
+    },
+    "strong": {
+      "$type": "number",
+      "$value": 0.32,
+      "$description": "Strong transparency"
+    },
+    "hover": {
+      "$type": "number",
+      "$value": 0.64,
+      "$description": "Hover state opacity"
+    },
+    "disabled": {
+      "$type": "number",
+      "$value": 0.64,
+      "$description": "Disabled state opacity"
+    },
+    "focus": {
+      "$type": "number",
+      "$value": 0.8,
+      "$description": "Focus state opacity"
+    },
+    "opaque": {
+      "$type": "number",
+      "$value": 1.0,
+      "$description": "Fully opaque"
+    }
+  },
+  "animation": {
+    "duration": {
+      "fast": {
+        "$type": "duration",
+        "$value": "150ms",
+        "$description": "Fast animation duration"
+      },
+      "normal": {
+        "$type": "duration",
+        "$value": "300ms",
+        "$description": "Normal animation duration"
+      },
+      "slow": {
+        "$type": "duration",
+        "$value": "500ms",
+        "$description": "Slow animation duration"
+      }
+    },
+    "easing": {
+      "ease-out": {
+        "$type": "cubicBezier",
+        "$value": [
+          0.0,
+          0.0,
+          0.2,
+          1.0
+        ],
+        "$description": "Ease out timing function"
+      },
+      "ease-in": {
+        "$type": "cubicBezier",
+        "$value": [
+          0.4,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "$description": "Ease in timing function"
+      },
+      "ease-in-out": {
+        "$type": "cubicBezier",
+        "$value": [
+          0.4,
+          0.0,
+          0.2,
+          1.0
+        ],
+        "$description": "Ease in-out timing function"
+      }
+    }
+  },
+  "borderWidth": {
+    "none": {
+      "$type": "dimension",
+      "$value": "0px",
+      "$description": "No border"
+    },
+    "thin": {
+      "$type": "dimension",
+      "$value": "1px",
+      "$description": "Thin border"
+    },
+    "medium": {
+      "$type": "dimension",
+      "$value": "2px",
+      "$description": "Medium border"
+    },
+    "thick": {
+      "$type": "dimension",
+      "$value": "4px",
+      "$description": "Thick border"
+    }
+  },
+  "semantic": {
+    "component": {
+      "button": {
+        "primary": {
+          "background": {
+            "$type": "color",
+            "$value": "{color.primary.7.light}",
+            "$description": "Primary button background color",
+            "$extensions": {
+              "penpot": {
+                "darkValue": "{color.primary.7.dark}",
+                "component": "button",
+                "variant": "primary"
+              }
+            }
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{color.static.white}",
+            "$description": "Primary button text color"
+          }
+        },
+        "secondary": {
+          "background": {
+            "$type": "color",
+            "$value": "{color.neutral.1.light}",
+            "$description": "Secondary button background color",
+            "$extensions": {
+              "penpot": {
+                "darkValue": "{color.neutral.1.dark}",
+                "component": "button",
+                "variant": "secondary"
+              }
+            }
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{color.neutral.11.light}",
+            "$description": "Secondary button text color",
+            "$extensions": {
+              "penpot": {
+                "darkValue": "{color.neutral.11.dark}"
+              }
+            }
+          }
+        }
+      },
+      "input": {
+        "background": {
+          "$type": "color",
+          "$value": "{color.neutral.1.light}",
+          "$description": "Input field background color",
+          "$extensions": {
+            "penpot": {
+              "darkValue": "{color.neutral.1.dark}",
+              "component": "input"
+            }
+          }
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.neutral.6.light}",
+          "$description": "Input field border color",
+          "$extensions": {
+            "penpot": {
+              "darkValue": "{color.neutral.6.dark}",
+              "state": "default"
+            }
+          }
+        },
+        "borderFocus": {
+          "$type": "color",
+          "$value": "{color.primary.7.light}",
+          "$description": "Input field focus border color",
+          "$extensions": {
+            "penpot": {
+              "darkValue": "{color.primary.7.dark}",
+              "state": "focus"
+            }
+          }
+        }
+      }
+    }
+  }
+}

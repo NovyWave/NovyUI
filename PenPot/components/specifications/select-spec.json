@@ -1,0 +1,181 @@
+{
+  "component": {
+    "name": "Select",
+    "category": "Form",
+    "description": "Dropdown selection component with search and multi-selection capabilities",
+    "complexity": "complex"
+  },
+  "variants": [
+    {
+      "name": "single",
+      "description": "Single selection dropdown",
+      "properties": {
+        "multiple": false
+      },
+      "tokens_used": [
+        "color.neutral.1",
+        "color.neutral.6"
+      ]
+    },
+    {
+      "name": "multiple",
+      "description": "Multi-selection dropdown",
+      "properties": {
+        "multiple": true
+      },
+      "tokens_used": [
+        "color.neutral.1",
+        "color.neutral.6"
+      ]
+    },
+    {
+      "name": "searchable",
+      "description": "Searchable dropdown",
+      "properties": {
+        "searchable": true
+      },
+      "tokens_used": [
+        "color.neutral.1",
+        "color.neutral.6"
+      ]
+    },
+    {
+      "name": "grouped",
+      "description": "Grouped options",
+      "properties": {
+        "grouped": true
+      },
+      "tokens_used": [
+        "color.neutral.1",
+        "color.neutral.6"
+      ]
+    }
+  ],
+  "states": [
+    {
+      "name": "closed",
+      "description": "Closed dropdown state",
+      "visual_changes": [
+        "neutral appearance",
+        "chevron down"
+      ],
+      "tokens_affected": [
+        "color.neutral.1",
+        "color.neutral.6"
+      ]
+    },
+    {
+      "name": "open",
+      "description": "Open dropdown state",
+      "visual_changes": [
+        "dropdown visible",
+        "chevron up"
+      ],
+      "tokens_affected": [
+        "color.primary.7",
+        "shadow.lg"
+      ]
+    },
+    {
+      "name": "focus",
+      "description": "Focused state",
+      "visual_changes": [
+        "focus ring"
+      ],
+      "tokens_affected": [
+        "shadow.focus"
+      ]
+    },
+    {
+      "name": "disabled",
+      "description": "Disabled state",
+      "visual_changes": [
+        "reduced opacity"
+      ],
+      "tokens_affected": [
+        "opacity.disabled"
+      ]
+    },
+    {
+      "name": "loading",
+      "description": "Loading options",
+      "visual_changes": [
+        "loading spinner"
+      ],
+      "tokens_affected": [
+        "color.neutral.8"
+      ]
+    }
+  ],
+  "design_tokens": {
+    "used_tokens": [
+      "color.neutral.1",
+      "color.neutral.6",
+      "color.neutral.11",
+      "color.primary.7",
+      "shadow.lg",
+      "shadow.focus",
+      "borderRadius.md",
+      "spacing.4"
+    ],
+    "token_count": 8
+  },
+  "accessibility": {
+    "features": [
+      "ARIA labels",
+      "keyboard navigation",
+      "screen reader support",
+      "focus management",
+      "option announcements"
+    ],
+    "compliance": "WCAG 2.1 AA"
+  },
+  "interactions": {
+    "primary": [
+      "click to open",
+      "keyboard navigation",
+      "option selection",
+      "search input",
+      "outside click to close"
+    ],
+    "keyboard_support": true,
+    "touch_support": true
+  },
+  "animations": {
+    "transitions": [
+      "dropdown open/close",
+      "option hover",
+      "selection animation",
+      "loading spinner"
+    ],
+    "duration": "150ms-300ms",
+    "easing": "ease-out"
+  },
+  "composition": {
+    "patterns": [
+      "option grouping",
+      "search integration",
+      "multi-selection tags"
+    ],
+    "reusability": "high"
+  },
+  "penpot_migration": {
+    "considerations": [
+      "Create dropdown overlay",
+      "Show option states",
+      "Include chevron icons",
+      "Document keyboard interactions"
+    ],
+    "complexity_rating": "complex",
+    "variant_count": 4,
+    "state_count": 5
+  },
+  "statistics": {
+    "total_variants": 4,
+    "total_states": 5,
+    "tokens_used": 8,
+    "accessibility_features": 5,
+    "interactions": 5,
+    "animations": 4
+  }
+}

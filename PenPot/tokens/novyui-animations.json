@@ -1,0 +1,61 @@
+{
+  "$schema": "https://tr.designtokens.org/format/",
+  "$extensions": {
+    "penpot": {
+      "source": "NovyUI MoonZoon Implementation",
+      "version": "1.0.0",
+      "migrationDate": "2025-06-19"
+    }
+  },
+  "animations": {
+    "duration": {
+      "fast": {
+        "$type": "duration",
+        "$value": "150ms",
+        "$description": "Fast animation duration"
+      },
+      "normal": {
+        "$type": "duration",
+        "$value": "300ms",
+        "$description": "Normal animation duration"
+      },
+      "slow": {
+        "$type": "duration",
+        "$value": "500ms",
+        "$description": "Slow animation duration"
+      }
+    },
+    "easing": {
+      "ease-out": {
+        "$type": "cubicBezier",
+        "$value": [
+          0.0,
+          0.0,
+          0.2,
+          1.0
+        ],
+        "$description": "Ease out timing function"
+      },
+      "ease-in": {
+        "$type": "cubicBezier",
+        "$value": [
+          0.4,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "$description": "Ease in timing function"
+      },
+      "ease-in-out": {
+        "$type": "cubicBezier",
+        "$value": [
+          0.4,
+          0.0,
+          0.2,
+          1.0
+        ],
+        "$description": "Ease in-out timing function"
+      }
+    }
+  }
+}

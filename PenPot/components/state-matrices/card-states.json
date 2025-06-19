@@ -1,0 +1,138 @@
+{
+  "component": "Card",
+  "description": "State matrix for Card component showing all variant-state combinations",
+  "variants": [
+    "default",
+    "outlined",
+    "elevated"
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focused",
+    "loading"
+  ],
+  "matrix": {
+    "default": {
+      "default": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.1",
+          "shadow.sm"
+        ],
+        "description": "default variant in default state"
+      },
+      "hover": {
+        "valid": true,
+        "tokens": [
+          "shadow.md"
+        ],
+        "description": "default variant in hover state"
+      },
+      "focused": {
+        "valid": true,
+        "tokens": [
+          "shadow.focus"
+        ],
+        "description": "default variant in focused state"
+      },
+      "loading": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.2"
+        ],
+        "description": "default variant in loading state"
+      }
+    },
+    "outlined": {
+      "default": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.1",
+          "shadow.sm"
+        ],
+        "description": "outlined variant in default state"
+      },
+      "hover": {
+        "valid": true,
+        "tokens": [
+          "shadow.md"
+        ],
+        "description": "outlined variant in hover state"
+      },
+      "focused": {
+        "valid": true,
+        "tokens": [
+          "shadow.focus"
+        ],
+        "description": "outlined variant in focused state"
+      },
+      "loading": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.2"
+        ],
+        "description": "outlined variant in loading state"
+      }
+    },
+    "elevated": {
+      "default": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.1",
+          "shadow.sm"
+        ],
+        "description": "elevated variant in default state"
+      },
+      "hover": {
+        "valid": true,
+        "tokens": [
+          "shadow.md"
+        ],
+        "description": "elevated variant in hover state"
+      },
+      "focused": {
+        "valid": true,
+        "tokens": [
+          "shadow.focus"
+        ],
+        "description": "elevated variant in focused state"
+      },
+      "loading": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.2"
+        ],
+        "description": "elevated variant in loading state"
+      }
+    }
+  },
+  "token_usage": {
+    "unique_tokens": [
+      "shadow.sm",
+      "shadow.focus",
+      "color.neutral.1",
+      "shadow.md",
+      "color.neutral.2",
+      "color.neutral.6",
+      "shadow.lg"
+    ],
+    "token_count": 7,
+    "categories": {
+      "colors": [
+        "color.neutral.1",
+        "color.neutral.2",
+        "color.neutral.6"
+      ],
+      "spacing": [],
+      "typography": [],
+      "effects": [
+        "shadow.sm",
+        "shadow.focus",
+        "shadow.md",
+        "shadow.lg"
+      ]
+    }
+  },
+  "penpot_components_needed": 12
+}

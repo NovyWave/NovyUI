@@ -1,0 +1,85 @@
+{
+  "overview": {
+    "total_components": 18,
+    "categories": {
+      "Form": 6,
+      "Display": 6,
+      "Navigation": 4,
+      "Layout": 2
+    },
+    "complexity_distribution": {
+      "simple": 8,
+      "medium": 6,
+      "complex": 4
+    }
+  },
+  "statistics": {
+    "total_variants": 75,
+    "total_states": 76,
+    "total_tokens_used": 54,
+    "penpot_components_needed": 313
+  },
+  "migration_complexity": {
+    "simple_components": [
+      "Checkbox",
+      "Typography",
+      "Icon",
+      "Badge",
+      "Avatar",
+      "Card",
+      "Kbd",
+      "Pattern"
+    ],
+    "medium_components": [
+      "Input",
+      "TextArea",
+      "Switch",
+      "Alert",
+      "Button",
+      "List"
+    ],
+    "complex_components": [
+      "Select",
+      "FileInput",
+      "Accordion",
+      "TreeView"
+    ],
+    "high_priority": [
+      "Button",
+      "Input",
+      "Typography",
+      "Icon"
+    ],
+    "challenging_migrations": [
+      "Select",
+      "FileInput",
+      "Accordion",
+      "TreeView"
+    ]
+  },
+  "token_analysis": {
+    "most_used_tokens": [
+      "color.neutral.1",
+      "color.neutral.6",
+      "color.neutral.11",
+      "color.primary.7",
+      "shadow.focus"
+    ],
+    "color_tokens": 96,
+    "spacing_tokens": 18,
+    "typography_tokens": 29
+  },
+  "penpot_considerations": {
+    "variant_workaround_needed": true,
+    "component_organization": "By category and complexity",
+    "naming_convention": "ComponentName-variant-state",
+    "total_penpot_components": 313,
+    "documentation_priority": [
+      "Button",
+      "Input",
+      "Select",
+      "Typography",
+      "Icon"
+    ]
+  }
+}

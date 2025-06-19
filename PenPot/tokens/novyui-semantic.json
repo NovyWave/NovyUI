@@ -1,0 +1,94 @@
+{
+  "$schema": "https://tr.designtokens.org/format/",
+  "$extensions": {
+    "penpot": {
+      "source": "NovyUI MoonZoon Implementation",
+      "version": "1.0.0",
+      "migrationDate": "2025-06-19"
+    }
+  },
+  "semantic": {
+    "component": {
+      "button": {
+        "primary": {
+          "background": {
+            "$type": "color",
+            "$value": "{color.primary.7.light}",
+            "$description": "Primary button background color",
+            "$extensions": {
+              "penpot": {
+                "darkValue": "{color.primary.7.dark}",
+                "component": "button",
+                "variant": "primary"
+              }
+            }
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{color.static.white}",
+            "$description": "Primary button text color"
+          }
+        },
+        "secondary": {
+          "background": {
+            "$type": "color",
+            "$value": "{color.neutral.1.light}",
+            "$description": "Secondary button background color",
+            "$extensions": {
+              "penpot": {
+                "darkValue": "{color.neutral.1.dark}",
+                "component": "button",
+                "variant": "secondary"
+              }
+            }
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{color.neutral.11.light}",
+            "$description": "Secondary button text color",
+            "$extensions": {
+              "penpot": {
+                "darkValue": "{color.neutral.11.dark}"
+              }
+            }
+          }
+        }
+      },
+      "input": {
+        "background": {
+          "$type": "color",
+          "$value": "{color.neutral.1.light}",
+          "$description": "Input field background color",
+          "$extensions": {
+            "penpot": {
+              "darkValue": "{color.neutral.1.dark}",
+              "component": "input"
+            }
+          }
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.neutral.6.light}",
+          "$description": "Input field border color",
+          "$extensions": {
+            "penpot": {
+              "darkValue": "{color.neutral.6.dark}",
+              "state": "default"
+            }
+          }
+        },
+        "borderFocus": {
+          "$type": "color",
+          "$value": "{color.primary.7.light}",
+          "$description": "Input field focus border color",
+          "$extensions": {
+            "penpot": {
+              "darkValue": "{color.primary.7.dark}",
+              "state": "focus"
+            }
+          }
+        }
+      }
+    }
+  }
+}

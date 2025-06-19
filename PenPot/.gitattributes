@@ -1,0 +1,13 @@
+# PenPot Migration Git Attributes
+
+# JSON files should be treated as text and get proper diffs
+*.json text
+
+# Python files
+*.py text
+
+# Markdown files  
+*.md text
+
+# Ensure consistent line endings
+* text=auto

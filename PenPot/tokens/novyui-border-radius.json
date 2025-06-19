@@ -1,0 +1,47 @@
+{
+  "$schema": "https://tr.designtokens.org/format/",
+  "$extensions": {
+    "penpot": {
+      "source": "NovyUI MoonZoon Implementation",
+      "version": "1.0.0",
+      "migrationDate": "2025-06-19"
+    }
+  },
+  "borderradius": {
+    "none": {
+      "$type": "dimension",
+      "$value": "0px",
+      "$description": "No border radius"
+    },
+    "xs": {
+      "$type": "dimension",
+      "$value": "2px",
+      "$description": "Extra small border radius"
+    },
+    "sm": {
+      "$type": "dimension",
+      "$value": "4px",
+      "$description": "Small border radius"
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": "6px",
+      "$description": "Medium border radius"
+    },
+    "lg": {
+      "$type": "dimension",
+      "$value": "8px",
+      "$description": "Large border radius"
+    },
+    "xl": {
+      "$type": "dimension",
+      "$value": "16px",
+      "$description": "Extra large border radius"
+    },
+    "full": {
+      "$type": "dimension",
+      "$value": "9999px",
+      "$description": "Full/pill border radius"
+    }
+  }
+}

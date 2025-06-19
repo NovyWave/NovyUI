@@ -1,0 +1,203 @@
+{
+  "component": "Select",
+  "description": "State matrix for Select component showing all variant-state combinations",
+  "variants": [
+    "single",
+    "multiple",
+    "searchable",
+    "grouped"
+  ],
+  "states": [
+    "closed",
+    "open",
+    "focus",
+    "disabled",
+    "loading"
+  ],
+  "matrix": {
+    "single": {
+      "closed": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.1",
+          "color.neutral.6"
+        ],
+        "description": "single variant in closed state"
+      },
+      "open": {
+        "valid": true,
+        "tokens": [
+          "color.primary.7",
+          "shadow.lg"
+        ],
+        "description": "single variant in open state"
+      },
+      "focus": {
+        "valid": true,
+        "tokens": [
+          "shadow.focus"
+        ],
+        "description": "single variant in focus state"
+      },
+      "disabled": {
+        "valid": true,
+        "tokens": [
+          "opacity.disabled"
+        ],
+        "description": "single variant in disabled state"
+      },
+      "loading": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.8"
+        ],
+        "description": "single variant in loading state"
+      }
+    },
+    "multiple": {
+      "closed": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.1",
+          "color.neutral.6"
+        ],
+        "description": "multiple variant in closed state"
+      },
+      "open": {
+        "valid": true,
+        "tokens": [
+          "color.primary.7",
+          "shadow.lg"
+        ],
+        "description": "multiple variant in open state"
+      },
+      "focus": {
+        "valid": true,
+        "tokens": [
+          "shadow.focus"
+        ],
+        "description": "multiple variant in focus state"
+      },
+      "disabled": {
+        "valid": true,
+        "tokens": [
+          "opacity.disabled"
+        ],
+        "description": "multiple variant in disabled state"
+      },
+      "loading": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.8"
+        ],
+        "description": "multiple variant in loading state"
+      }
+    },
+    "searchable": {
+      "closed": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.1",
+          "color.neutral.6"
+        ],
+        "description": "searchable variant in closed state"
+      },
+      "open": {
+        "valid": true,
+        "tokens": [
+          "color.primary.7",
+          "shadow.lg"
+        ],
+        "description": "searchable variant in open state"
+      },
+      "focus": {
+        "valid": true,
+        "tokens": [
+          "shadow.focus"
+        ],
+        "description": "searchable variant in focus state"
+      },
+      "disabled": {
+        "valid": true,
+        "tokens": [
+          "opacity.disabled"
+        ],
+        "description": "searchable variant in disabled state"
+      },
+      "loading": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.8"
+        ],
+        "description": "searchable variant in loading state"
+      }
+    },
+    "grouped": {
+      "closed": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.1",
+          "color.neutral.6"
+        ],
+        "description": "grouped variant in closed state"
+      },
+      "open": {
+        "valid": true,
+        "tokens": [
+          "color.primary.7",
+          "shadow.lg"
+        ],
+        "description": "grouped variant in open state"
+      },
+      "focus": {
+        "valid": true,
+        "tokens": [
+          "shadow.focus"
+        ],
+        "description": "grouped variant in focus state"
+      },
+      "disabled": {
+        "valid": true,
+        "tokens": [
+          "opacity.disabled"
+        ],
+        "description": "grouped variant in disabled state"
+      },
+      "loading": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.8"
+        ],
+        "description": "grouped variant in loading state"
+      }
+    }
+  },
+  "token_usage": {
+    "unique_tokens": [
+      "shadow.focus",
+      "color.neutral.8",
+      "color.primary.7",
+      "color.neutral.1",
+      "color.neutral.6",
+      "opacity.disabled",
+      "shadow.lg"
+    ],
+    "token_count": 7,
+    "categories": {
+      "colors": [
+        "color.neutral.8",
+        "color.primary.7",
+        "color.neutral.1",
+        "color.neutral.6"
+      ],
+      "spacing": [],
+      "typography": [],
+      "effects": [
+        "shadow.focus",
+        "opacity.disabled",
+        "shadow.lg"
+      ]
+    }
+  },
+  "penpot_components_needed": 20
+}

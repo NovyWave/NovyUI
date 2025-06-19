@@ -1,0 +1,129 @@
+{
+  "component": "Pattern",
+  "description": "State matrix for Pattern component showing all variant-state combinations",
+  "variants": [
+    "hexagons",
+    "jigsaw",
+    "overcast",
+    "topography",
+    "wiggle"
+  ],
+  "states": [
+    "default",
+    "emphasized"
+  ],
+  "matrix": {
+    "hexagons": {
+      "default": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.2",
+          "opacity.subtle"
+        ],
+        "description": "hexagons variant in default state"
+      },
+      "emphasized": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.3",
+          "opacity.light"
+        ],
+        "description": "hexagons variant in emphasized state"
+      }
+    },
+    "jigsaw": {
+      "default": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.2",
+          "opacity.subtle"
+        ],
+        "description": "jigsaw variant in default state"
+      },
+      "emphasized": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.3",
+          "opacity.light"
+        ],
+        "description": "jigsaw variant in emphasized state"
+      }
+    },
+    "overcast": {
+      "default": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.2",
+          "opacity.subtle"
+        ],
+        "description": "overcast variant in default state"
+      },
+      "emphasized": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.3",
+          "opacity.light"
+        ],
+        "description": "overcast variant in emphasized state"
+      }
+    },
+    "topography": {
+      "default": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.2",
+          "opacity.subtle"
+        ],
+        "description": "topography variant in default state"
+      },
+      "emphasized": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.3",
+          "opacity.light"
+        ],
+        "description": "topography variant in emphasized state"
+      }
+    },
+    "wiggle": {
+      "default": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.2",
+          "opacity.subtle"
+        ],
+        "description": "wiggle variant in default state"
+      },
+      "emphasized": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.3",
+          "opacity.light"
+        ],
+        "description": "wiggle variant in emphasized state"
+      }
+    }
+  },
+  "token_usage": {
+    "unique_tokens": [
+      "color.neutral.2",
+      "color.neutral.3",
+      "opacity.light",
+      "opacity.subtle"
+    ],
+    "token_count": 4,
+    "categories": {
+      "colors": [
+        "color.neutral.2",
+        "color.neutral.3"
+      ],
+      "spacing": [],
+      "typography": [],
+      "effects": [
+        "opacity.light",
+        "opacity.subtle"
+      ]
+    }
+  },
+  "penpot_components_needed": 10
+}

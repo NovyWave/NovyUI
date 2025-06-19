@@ -1,0 +1,102 @@
+{
+  "component": "Accordion",
+  "description": "State matrix for Accordion component showing all variant-state combinations",
+  "variants": [
+    "single",
+    "multiple"
+  ],
+  "states": [
+    "collapsed",
+    "expanded",
+    "hover",
+    "focus"
+  ],
+  "matrix": {
+    "single": {
+      "collapsed": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.11"
+        ],
+        "description": "single variant in collapsed state"
+      },
+      "expanded": {
+        "valid": true,
+        "tokens": [
+          "color.primary.7"
+        ],
+        "description": "single variant in expanded state"
+      },
+      "hover": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.2"
+        ],
+        "description": "single variant in hover state"
+      },
+      "focus": {
+        "valid": true,
+        "tokens": [
+          "shadow.focus"
+        ],
+        "description": "single variant in focus state"
+      }
+    },
+    "multiple": {
+      "collapsed": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.11"
+        ],
+        "description": "multiple variant in collapsed state"
+      },
+      "expanded": {
+        "valid": true,
+        "tokens": [
+          "color.primary.7"
+        ],
+        "description": "multiple variant in expanded state"
+      },
+      "hover": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.2"
+        ],
+        "description": "multiple variant in hover state"
+      },
+      "focus": {
+        "valid": true,
+        "tokens": [
+          "shadow.focus"
+        ],
+        "description": "multiple variant in focus state"
+      }
+    }
+  },
+  "token_usage": {
+    "unique_tokens": [
+      "shadow.focus",
+      "color.primary.7",
+      "color.neutral.11",
+      "color.neutral.1",
+      "color.neutral.2",
+      "color.neutral.6"
+    ],
+    "token_count": 6,
+    "categories": {
+      "colors": [
+        "color.primary.7",
+        "color.neutral.11",
+        "color.neutral.1",
+        "color.neutral.2",
+        "color.neutral.6"
+      ],
+      "spacing": [],
+      "typography": [],
+      "effects": [
+        "shadow.focus"
+      ]
+    }
+  },
+  "penpot_components_needed": 8
+}

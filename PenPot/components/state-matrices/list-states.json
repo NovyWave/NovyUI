@@ -1,0 +1,166 @@
+{
+  "component": "List",
+  "description": "State matrix for List component showing all variant-state combinations",
+  "variants": [
+    "unordered",
+    "ordered",
+    "unstyled",
+    "interactive"
+  ],
+  "states": [
+    "default",
+    "hover",
+    "selected",
+    "focus"
+  ],
+  "matrix": {
+    "unordered": {
+      "default": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.11"
+        ],
+        "description": "unordered variant in default state"
+      },
+      "hover": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.2"
+        ],
+        "description": "unordered variant in hover state"
+      },
+      "selected": {
+        "valid": true,
+        "tokens": [
+          "color.primary.1",
+          "color.primary.7"
+        ],
+        "description": "unordered variant in selected state"
+      },
+      "focus": {
+        "valid": true,
+        "tokens": [
+          "shadow.focus"
+        ],
+        "description": "unordered variant in focus state"
+      }
+    },
+    "ordered": {
+      "default": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.11"
+        ],
+        "description": "ordered variant in default state"
+      },
+      "hover": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.2"
+        ],
+        "description": "ordered variant in hover state"
+      },
+      "selected": {
+        "valid": true,
+        "tokens": [
+          "color.primary.1",
+          "color.primary.7"
+        ],
+        "description": "ordered variant in selected state"
+      },
+      "focus": {
+        "valid": true,
+        "tokens": [
+          "shadow.focus"
+        ],
+        "description": "ordered variant in focus state"
+      }
+    },
+    "unstyled": {
+      "default": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.11"
+        ],
+        "description": "unstyled variant in default state"
+      },
+      "hover": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.2"
+        ],
+        "description": "unstyled variant in hover state"
+      },
+      "selected": {
+        "valid": true,
+        "tokens": [
+          "color.primary.1",
+          "color.primary.7"
+        ],
+        "description": "unstyled variant in selected state"
+      },
+      "focus": {
+        "valid": true,
+        "tokens": [
+          "shadow.focus"
+        ],
+        "description": "unstyled variant in focus state"
+      }
+    },
+    "interactive": {
+      "default": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.11"
+        ],
+        "description": "interactive variant in default state"
+      },
+      "hover": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.2"
+        ],
+        "description": "interactive variant in hover state"
+      },
+      "selected": {
+        "valid": true,
+        "tokens": [
+          "color.primary.1",
+          "color.primary.7"
+        ],
+        "description": "interactive variant in selected state"
+      },
+      "focus": {
+        "valid": true,
+        "tokens": [
+          "shadow.focus"
+        ],
+        "description": "interactive variant in focus state"
+      }
+    }
+  },
+  "token_usage": {
+    "unique_tokens": [
+      "color.primary.1",
+      "shadow.focus",
+      "color.primary.7",
+      "color.neutral.11",
+      "color.neutral.2"
+    ],
+    "token_count": 5,
+    "categories": {
+      "colors": [
+        "color.primary.1",
+        "color.primary.7",
+        "color.neutral.11",
+        "color.neutral.2"
+      ],
+      "spacing": [],
+      "typography": [],
+      "effects": [
+        "shadow.focus"
+      ]
+    }
+  },
+  "penpot_components_needed": 16
+}

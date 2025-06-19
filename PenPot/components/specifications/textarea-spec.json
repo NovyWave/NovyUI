@@ -1,0 +1,153 @@
+{
+  "component": {
+    "name": "TextArea",
+    "category": "Form",
+    "description": "Multi-line text input with resize control and character counting",
+    "complexity": "medium"
+  },
+  "variants": [
+    {
+      "name": "default",
+      "description": "Standard textarea",
+      "properties": {
+        "resize": "vertical"
+      },
+      "tokens_used": [
+        "color.neutral.1",
+        "color.neutral.6"
+      ]
+    },
+    {
+      "name": "fixed",
+      "description": "Fixed size textarea",
+      "properties": {
+        "resize": "none"
+      },
+      "tokens_used": [
+        "color.neutral.1",
+        "color.neutral.6"
+      ]
+    },
+    {
+      "name": "auto",
+      "description": "Auto-resizing textarea",
+      "properties": {
+        "resize": "auto"
+      },
+      "tokens_used": [
+        "color.neutral.1",
+        "color.neutral.6"
+      ]
+    }
+  ],
+  "states": [
+    {
+      "name": "default",
+      "description": "Default textarea state",
+      "visual_changes": [
+        "neutral background",
+        "subtle border"
+      ],
+      "tokens_affected": [
+        "color.neutral.1",
+        "color.neutral.6"
+      ]
+    },
+    {
+      "name": "focus",
+      "description": "Focused textarea state",
+      "visual_changes": [
+        "primary border",
+        "focus ring"
+      ],
+      "tokens_affected": [
+        "color.primary.7",
+        "shadow.focus"
+      ]
+    },
+    {
+      "name": "error",
+      "description": "Error validation state",
+      "visual_changes": [
+        "error border"
+      ],
+      "tokens_affected": [
+        "color.error.7"
+      ]
+    },
+    {
+      "name": "disabled",
+      "description": "Disabled textarea state",
+      "visual_changes": [
+        "reduced opacity"
+      ],
+      "tokens_affected": [
+        "opacity.disabled"
+      ]
+    }
+  ],
+  "design_tokens": {
+    "used_tokens": [
+      "color.neutral.1",
+      "color.neutral.6",
+      "color.neutral.11",
+      "color.primary.7",
+      "spacing.4",
+      "borderRadius.md"
+    ],
+    "token_count": 6
+  },
+  "accessibility": {
+    "features": [
+      "ARIA labels",
+      "keyboard navigation",
+      "screen reader support"
+    ],
+    "compliance": "WCAG 2.1 AA"
+  },
+  "interactions": {
+    "primary": [
+      "click to focus",
+      "keyboard input",
+      "resize handle",
+      "scroll"
+    ],
+    "keyboard_support": true,
+    "touch_support": true
+  },
+  "animations": {
+    "transitions": [
+      "focus transition",
+      "border color change",
+      "resize animation"
+    ],
+    "duration": "150ms-300ms",
+    "easing": "ease-out"
+  },
+  "composition": {
+    "patterns": [
+      "form field grouping",
+      "character counter",
+      "label association"
+    ],
+    "reusability": "high"
+  },
+  "penpot_migration": {
+    "considerations": [
+      "Show different resize states",
+      "Document scrolling behavior",
+      "Include character counter"
+    ],
+    "complexity_rating": "medium",
+    "variant_count": 3,
+    "state_count": 4
+  },
+  "statistics": {
+    "total_variants": 3,
+    "total_states": 4,
+    "tokens_used": 6,
+    "accessibility_features": 3,
+    "interactions": 4,
+    "animations": 3
+  }
+}

@@ -1,0 +1,222 @@
+{
+  "component": {
+    "name": "Button",
+    "category": "Navigation",
+    "description": "Primary interactive component with 6 variants and 3 sizes",
+    "complexity": "medium"
+  },
+  "variants": [
+    {
+      "name": "primary",
+      "description": "Primary action button",
+      "properties": {
+        "variant": "primary"
+      },
+      "tokens_used": [
+        "color.primary.7",
+        "color.static.white"
+      ]
+    },
+    {
+      "name": "secondary",
+      "description": "Secondary action button",
+      "properties": {
+        "variant": "secondary"
+      },
+      "tokens_used": [
+        "color.neutral.1",
+        "color.neutral.11",
+        "color.neutral.6"
+      ]
+    },
+    {
+      "name": "outline",
+      "description": "Outlined button",
+      "properties": {
+        "variant": "outline"
+      },
+      "tokens_used": [
+        "color.transparent",
+        "color.primary.7",
+        "color.primary.7"
+      ]
+    },
+    {
+      "name": "ghost",
+      "description": "Ghost button",
+      "properties": {
+        "variant": "ghost"
+      },
+      "tokens_used": [
+        "color.transparent",
+        "color.primary.7"
+      ]
+    },
+    {
+      "name": "link",
+      "description": "Link-styled button",
+      "properties": {
+        "variant": "link"
+      },
+      "tokens_used": [
+        "color.transparent",
+        "color.primary.7"
+      ]
+    },
+    {
+      "name": "destructive",
+      "description": "Destructive action button",
+      "properties": {
+        "variant": "destructive"
+      },
+      "tokens_used": [
+        "color.error.7",
+        "color.static.white"
+      ]
+    }
+  ],
+  "states": [
+    {
+      "name": "default",
+      "description": "Default button state",
+      "visual_changes": [
+        "standard appearance"
+      ],
+      "tokens_affected": [
+        "color.primary.7",
+        "color.static.white"
+      ]
+    },
+    {
+      "name": "hover",
+      "description": "Hover state",
+      "visual_changes": [
+        "darker background"
+      ],
+      "tokens_affected": [
+        "color.primary.8"
+      ]
+    },
+    {
+      "name": "active",
+      "description": "Active/pressed state",
+      "visual_changes": [
+        "pressed appearance"
+      ],
+      "tokens_affected": [
+        "color.primary.9"
+      ]
+    },
+    {
+      "name": "focus",
+      "description": "Focus state",
+      "visual_changes": [
+        "focus ring"
+      ],
+      "tokens_affected": [
+        "shadow.focus"
+      ]
+    },
+    {
+      "name": "disabled",
+      "description": "Disabled state",
+      "visual_changes": [
+        "reduced opacity",
+        "no interaction"
+      ],
+      "tokens_affected": [
+        "opacity.disabled"
+      ]
+    },
+    {
+      "name": "loading",
+      "description": "Loading state",
+      "visual_changes": [
+        "loading spinner"
+      ],
+      "tokens_affected": [
+        "color.neutral.8"
+      ]
+    }
+  ],
+  "design_tokens": {
+    "used_tokens": [
+      "color.primary.7",
+      "color.primary.8",
+      "color.primary.9",
+      "color.neutral.1",
+      "color.neutral.6",
+      "color.neutral.8",
+      "color.neutral.11",
+      "color.error.7",
+      "color.static.white",
+      "shadow.focus",
+      "borderRadius.md",
+      "spacing.4",
+      "spacing.8",
+      "fontSize.14",
+      "fontSize.16",
+      "fontWeight.medium"
+    ],
+    "token_count": 16
+  },
+  "accessibility": {
+    "features": [
+      "ARIA labels",
+      "keyboard navigation",
+      "screen reader support",
+      "focus management",
+      "disabled state"
+    ],
+    "compliance": "WCAG 2.1 AA"
+  },
+  "interactions": {
+    "primary": [
+      "click",
+      "hover",
+      "focus",
+      "keyboard activation",
+      "touch"
+    ],
+    "keyboard_support": true,
+    "touch_support": true
+  },
+  "animations": {
+    "transitions": [
+      "hover transitions",
+      "active press",
+      "loading spinner",
+      "focus ring"
+    ],
+    "duration": "150ms-300ms",
+    "easing": "ease-out"
+  },
+  "composition": {
+    "patterns": [
+      "button groups",
+      "form actions",
+      "navigation",
+      "call-to-action"
+    ],
+    "reusability": "high"
+  },
+  "penpot_migration": {
+    "considerations": [
+      "Create all variants",
+      "Show size options",
+      "Include loading states",
+      "Document interaction states"
+    ],
+    "complexity_rating": "medium",
+    "variant_count": 6,
+    "state_count": 6
+  },
+  "statistics": {
+    "total_variants": 6,
+    "total_states": 6,
+    "tokens_used": 16,
+    "accessibility_features": 5,
+    "interactions": 5,
+    "animations": 4
+  }
+}

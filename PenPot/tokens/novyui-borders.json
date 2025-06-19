@@ -1,0 +1,32 @@
+{
+  "$schema": "https://tr.designtokens.org/format/",
+  "$extensions": {
+    "penpot": {
+      "source": "NovyUI MoonZoon Implementation",
+      "version": "1.0.0",
+      "migrationDate": "2025-06-19"
+    }
+  },
+  "borders": {
+    "none": {
+      "$type": "dimension",
+      "$value": "0px",
+      "$description": "No border"
+    },
+    "thin": {
+      "$type": "dimension",
+      "$value": "1px",
+      "$description": "Thin border"
+    },
+    "medium": {
+      "$type": "dimension",
+      "$value": "2px",
+      "$description": "Medium border"
+    },
+    "thick": {
+      "$type": "dimension",
+      "$value": "4px",
+      "$description": "Thick border"
+    }
+  }
+}

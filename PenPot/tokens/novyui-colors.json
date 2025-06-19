@@ -1,0 +1,567 @@
+{
+  "$schema": "https://tr.designtokens.org/format/",
+  "$extensions": {
+    "penpot": {
+      "source": "NovyUI MoonZoon Implementation",
+      "version": "1.0.0",
+      "migrationDate": "2025-06-19"
+    }
+  },
+  "colors": {
+    "primary": {
+      "1": {
+        "$type": "color",
+        "$description": "Primary color step 1",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(98% 0.01 250)"
+        },
+        "dark": {
+          "$value": "oklch(20% 0.01 250)"
+        }
+      },
+      "2": {
+        "$type": "color",
+        "$description": "Primary color step 2",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(96% 0.015 250)"
+        },
+        "dark": {
+          "$value": "oklch(25% 0.015 250)"
+        }
+      },
+      "3": {
+        "$type": "color",
+        "$description": "Primary color step 3",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(94% 0.02 250)"
+        },
+        "dark": {
+          "$value": "oklch(30% 0.02 250)"
+        }
+      },
+      "4": {
+        "$type": "color",
+        "$description": "Primary color step 4",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(92% 0.025 250)"
+        },
+        "dark": {
+          "$value": "oklch(35% 0.025 250)"
+        }
+      },
+      "5": {
+        "$type": "color",
+        "$description": "Primary color step 5",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(88% 0.03 250)"
+        },
+        "dark": {
+          "$value": "oklch(40% 0.03 250)"
+        }
+      },
+      "6": {
+        "$type": "color",
+        "$description": "Primary color step 6",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(82% 0.04 250)"
+        },
+        "dark": {
+          "$value": "oklch(45% 0.04 250)"
+        }
+      },
+      "7": {
+        "$type": "color",
+        "$description": "Primary color step 7",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(76% 0.05 250)"
+        },
+        "dark": {
+          "$value": "oklch(50% 0.05 250)"
+        }
+      },
+      "8": {
+        "$type": "color",
+        "$description": "Primary color step 8",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(68% 0.06 250)"
+        },
+        "dark": {
+          "$value": "oklch(55% 0.06 250)"
+        }
+      },
+      "9": {
+        "$type": "color",
+        "$description": "Primary color step 9",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(60% 0.07 250)"
+        },
+        "dark": {
+          "$value": "oklch(60% 0.07 250)"
+        }
+      },
+      "10": {
+        "$type": "color",
+        "$description": "Primary color step 10",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(52% 0.08 250)"
+        },
+        "dark": {
+          "$value": "oklch(65% 0.08 250)"
+        }
+      },
+      "11": {
+        "$type": "color",
+        "$description": "Primary color step 11",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(44% 0.09 250)"
+        },
+        "dark": {
+          "$value": "oklch(70% 0.09 250)"
+        }
+      },
+      "12": {
+        "$type": "color",
+        "$description": "Primary color step 12",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(36% 0.1 250)"
+        },
+        "dark": {
+          "$value": "oklch(90% 0.1 250)"
+        }
+      }
+    },
+    "neutral": {
+      "1": {
+        "$type": "color",
+        "$description": "Neutral color step 1",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(99% 0 0)"
+        },
+        "dark": {
+          "$value": "oklch(12% 0 0)"
+        }
+      },
+      "2": {
+        "$type": "color",
+        "$description": "Neutral color step 2",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(98% 0 0)"
+        },
+        "dark": {
+          "$value": "oklch(14% 0 0)"
+        }
+      },
+      "3": {
+        "$type": "color",
+        "$description": "Neutral color step 3",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(96% 0 0)"
+        },
+        "dark": {
+          "$value": "oklch(16% 0 0)"
+        }
+      },
+      "4": {
+        "$type": "color",
+        "$description": "Neutral color step 4",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(94% 0 0)"
+        },
+        "dark": {
+          "$value": "oklch(18% 0 0)"
+        }
+      },
+      "5": {
+        "$type": "color",
+        "$description": "Neutral color step 5",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(92% 0 0)"
+        },
+        "dark": {
+          "$value": "oklch(22% 0 0)"
+        }
+      },
+      "6": {
+        "$type": "color",
+        "$description": "Neutral color step 6",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(88% 0 0)"
+        },
+        "dark": {
+          "$value": "oklch(28% 0 0)"
+        }
+      },
+      "7": {
+        "$type": "color",
+        "$description": "Neutral color step 7",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(82% 0 0)"
+        },
+        "dark": {
+          "$value": "oklch(36% 0 0)"
+        }
+      },
+      "8": {
+        "$type": "color",
+        "$description": "Neutral color step 8",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(72% 0 0)"
+        },
+        "dark": {
+          "$value": "oklch(46% 0 0)"
+        }
+      },
+      "9": {
+        "$type": "color",
+        "$description": "Neutral color step 9",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(56% 0 0)"
+        },
+        "dark": {
+          "$value": "oklch(56% 0 0)"
+        }
+      },
+      "10": {
+        "$type": "color",
+        "$description": "Neutral color step 10",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(48% 0 0)"
+        },
+        "dark": {
+          "$value": "oklch(64% 0 0)"
+        }
+      },
+      "11": {
+        "$type": "color",
+        "$description": "Neutral color step 11",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(24% 0 0)"
+        },
+        "dark": {
+          "$value": "oklch(88% 0 0)"
+        }
+      },
+      "12": {
+        "$type": "color",
+        "$description": "Neutral color step 12",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(12% 0 0)"
+        },
+        "dark": {
+          "$value": "oklch(96% 0 0)"
+        }
+      }
+    },
+    "success": {
+      "1": {
+        "$type": "color",
+        "$description": "Success color step 1",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(98% 0.01 150)"
+        },
+        "dark": {
+          "$value": "oklch(18% 0.01 150)"
+        }
+      },
+      "7": {
+        "$type": "color",
+        "$description": "Success color step 7",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(68% 0.12 150)"
+        },
+        "dark": {
+          "$value": "oklch(48% 0.12 150)"
+        }
+      },
+      "11": {
+        "$type": "color",
+        "$description": "Success color step 11",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(36% 0.15 150)"
+        },
+        "dark": {
+          "$value": "oklch(72% 0.15 150)"
+        }
+      }
+    },
+    "warning": {
+      "1": {
+        "$type": "color",
+        "$description": "Warning color step 1",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(98% 0.01 80)"
+        },
+        "dark": {
+          "$value": "oklch(18% 0.01 80)"
+        }
+      },
+      "7": {
+        "$type": "color",
+        "$description": "Warning color step 7",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(76% 0.12 80)"
+        },
+        "dark": {
+          "$value": "oklch(56% 0.12 80)"
+        }
+      },
+      "11": {
+        "$type": "color",
+        "$description": "Warning color step 11",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(44% 0.15 80)"
+        },
+        "dark": {
+          "$value": "oklch(80% 0.15 80)"
+        }
+      }
+    },
+    "error": {
+      "1": {
+        "$type": "color",
+        "$description": "Error color step 1",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(98% 0.01 25)"
+        },
+        "dark": {
+          "$value": "oklch(18% 0.01 25)"
+        }
+      },
+      "7": {
+        "$type": "color",
+        "$description": "Error color step 7",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(68% 0.15 25)"
+        },
+        "dark": {
+          "$value": "oklch(48% 0.15 25)"
+        }
+      },
+      "11": {
+        "$type": "color",
+        "$description": "Error color step 11",
+        "$extensions": {
+          "penpot": {
+            "colorSpace": "oklch",
+            "themeAware": true
+          }
+        },
+        "light": {
+          "$value": "oklch(36% 0.18 25)"
+        },
+        "dark": {
+          "$value": "oklch(72% 0.18 25)"
+        }
+      }
+    },
+    "static": {
+      "transparent": {
+        "$type": "color",
+        "$value": "transparent",
+        "$description": "Static transparent color"
+      },
+      "white": {
+        "$type": "color",
+        "$value": "oklch(100% 0 0)",
+        "$description": "Static white color"
+      },
+      "black": {
+        "$type": "color",
+        "$value": "oklch(0% 0 0)",
+        "$description": "Static black color"
+      }
+    }
+  }
+}

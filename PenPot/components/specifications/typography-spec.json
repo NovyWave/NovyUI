@@ -1,0 +1,207 @@
+{
+  "component": {
+    "name": "Typography",
+    "category": "Display",
+    "description": "Text rendering component with semantic heading and paragraph styles",
+    "complexity": "simple"
+  },
+  "variants": [
+    {
+      "name": "h1",
+      "description": "Main page heading",
+      "properties": {
+        "tag": "h1",
+        "size": "48px"
+      },
+      "tokens_used": [
+        "fontSize.48",
+        "fontWeight.bold",
+        "fontFamily.sans"
+      ]
+    },
+    {
+      "name": "h2",
+      "description": "Section heading",
+      "properties": {
+        "tag": "h2",
+        "size": "36px"
+      },
+      "tokens_used": [
+        "fontSize.36",
+        "fontWeight.bold",
+        "fontFamily.sans"
+      ]
+    },
+    {
+      "name": "h3",
+      "description": "Subsection heading",
+      "properties": {
+        "tag": "h3",
+        "size": "32px"
+      },
+      "tokens_used": [
+        "fontSize.32",
+        "fontWeight.semibold",
+        "fontFamily.sans"
+      ]
+    },
+    {
+      "name": "h4",
+      "description": "Minor heading",
+      "properties": {
+        "tag": "h4",
+        "size": "24px"
+      },
+      "tokens_used": [
+        "fontSize.24",
+        "fontWeight.semibold",
+        "fontFamily.sans"
+      ]
+    },
+    {
+      "name": "paragraph",
+      "description": "Body text",
+      "properties": {
+        "tag": "p",
+        "size": "16px"
+      },
+      "tokens_used": [
+        "fontSize.16",
+        "fontWeight.normal",
+        "fontFamily.sans"
+      ]
+    },
+    {
+      "name": "small",
+      "description": "Small text",
+      "properties": {
+        "tag": "small",
+        "size": "14px"
+      },
+      "tokens_used": [
+        "fontSize.14",
+        "fontWeight.normal",
+        "fontFamily.sans"
+      ]
+    },
+    {
+      "name": "code",
+      "description": "Inline code",
+      "properties": {
+        "tag": "code",
+        "family": "mono"
+      },
+      "tokens_used": [
+        "fontSize.14",
+        "fontWeight.normal",
+        "fontFamily.mono"
+      ]
+    }
+  ],
+  "states": [
+    {
+      "name": "default",
+      "description": "Default text state",
+      "visual_changes": [
+        "standard contrast"
+      ],
+      "tokens_affected": [
+        "color.neutral.11"
+      ]
+    },
+    {
+      "name": "muted",
+      "description": "Muted text",
+      "visual_changes": [
+        "reduced contrast"
+      ],
+      "tokens_affected": [
+        "color.neutral.8"
+      ]
+    },
+    {
+      "name": "emphasized",
+      "description": "Emphasized text",
+      "visual_changes": [
+        "higher contrast"
+      ],
+      "tokens_affected": [
+        "color.neutral.12"
+      ]
+    }
+  ],
+  "design_tokens": {
+    "used_tokens": [
+      "fontSize.12",
+      "fontSize.14",
+      "fontSize.16",
+      "fontSize.18",
+      "fontSize.20",
+      "fontSize.24",
+      "fontSize.30",
+      "fontSize.32",
+      "fontSize.36",
+      "fontSize.48",
+      "fontWeight.normal",
+      "fontWeight.medium",
+      "fontWeight.semibold",
+      "fontWeight.bold",
+      "fontFamily.sans",
+      "fontFamily.mono",
+      "fontFamily.display",
+      "color.neutral.8",
+      "color.neutral.11",
+      "color.neutral.12"
+    ],
+    "token_count": 20
+  },
+  "accessibility": {
+    "features": [
+      "semantic HTML tags",
+      "proper heading hierarchy",
+      "adequate contrast ratios"
+    ],
+    "compliance": "WCAG 2.1 AA"
+  },
+  "interactions": {
+    "primary": [
+      "selectable text",
+      "copy functionality"
+    ],
+    "keyboard_support": true,
+    "touch_support": true
+  },
+  "animations": {
+    "transitions": [
+      "none (static content)"
+    ],
+    "duration": "150ms-300ms",
+    "easing": "ease-out"
+  },
+  "composition": {
+    "patterns": [
+      "heading hierarchy",
+      "paragraph spacing",
+      "inline code styling"
+    ],
+    "reusability": "high"
+  },
+  "penpot_migration": {
+    "considerations": [
+      "Create text styles",
+      "Set up typography scales",
+      "Include all font weights"
+    ],
+    "complexity_rating": "simple",
+    "variant_count": 7,
+    "state_count": 3
+  },
+  "statistics": {
+    "total_variants": 7,
+    "total_states": 3,
+    "tokens_used": 20,
+    "accessibility_features": 3,
+    "interactions": 2,
+    "animations": 1
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "component": "Avatar",
+  "description": "State matrix for Avatar component showing all variant-state combinations",
+  "variants": [
+    "image",
+    "initials",
+    "icon"
+  ],
+  "states": [
+    "default",
+    "online",
+    "offline",
+    "loading"
+  ],
+  "matrix": {
+    "image": {
+      "default": {
+        "valid": true,
+        "tokens": [
+          "borderRadius.full"
+        ],
+        "description": "image variant in default state"
+      },
+      "online": {
+        "valid": true,
+        "tokens": [
+          "color.success.7"
+        ],
+        "description": "image variant in online state"
+      },
+      "offline": {
+        "valid": true,
+        "tokens": [],
+        "description": "image variant in offline state"
+      },
+      "loading": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.2"
+        ],
+        "description": "image variant in loading state"
+      }
+    },
+    "initials": {
+      "default": {
+        "valid": true,
+        "tokens": [
+          "borderRadius.full"
+        ],
+        "description": "initials variant in default state"
+      },
+      "online": {
+        "valid": true,
+        "tokens": [
+          "color.success.7"
+        ],
+        "description": "initials variant in online state"
+      },
+      "offline": {
+        "valid": true,
+        "tokens": [],
+        "description": "initials variant in offline state"
+      },
+      "loading": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.2"
+        ],
+        "description": "initials variant in loading state"
+      }
+    },
+    "icon": {
+      "default": {
+        "valid": true,
+        "tokens": [
+          "borderRadius.full"
+        ],
+        "description": "icon variant in default state"
+      },
+      "online": {
+        "valid": true,
+        "tokens": [
+          "color.success.7"
+        ],
+        "description": "icon variant in online state"
+      },
+      "offline": {
+        "valid": true,
+        "tokens": [],
+        "description": "icon variant in offline state"
+      },
+      "loading": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.2"
+        ],
+        "description": "icon variant in loading state"
+      }
+    }
+  },
+  "token_usage": {
+    "unique_tokens": [
+      "color.success.7",
+      "color.primary.7",
+      "borderRadius.full",
+      "color.neutral.2",
+      "color.neutral.6",
+      "color.static.white"
+    ],
+    "token_count": 6,
+    "categories": {
+      "colors": [
+        "color.success.7",
+        "color.primary.7",
+        "color.neutral.2",
+        "color.neutral.6",
+        "color.static.white"
+      ],
+      "spacing": [],
+      "typography": [],
+      "effects": [
+        "borderRadius.full"
+      ]
+    }
+  },
+  "penpot_components_needed": 12
+}

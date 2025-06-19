@@ -1,0 +1,70 @@
+{
+  "$schema": "https://tr.designtokens.org/format/",
+  "$extensions": {
+    "penpot": {
+      "source": "NovyUI MoonZoon Implementation",
+      "version": "1.0.0",
+      "migrationDate": "2025-06-19"
+    }
+  },
+  "shadows": {
+    "sm": {
+      "$type": "shadow",
+      "$value": [
+        {
+          "color": "rgba(0, 0, 0, 0.1)",
+          "offsetX": "0px",
+          "offsetY": "1px",
+          "blur": "2px",
+          "spread": "0px"
+        }
+      ],
+      "$description": "Small shadow"
+    },
+    "md": {
+      "$type": "shadow",
+      "$value": [
+        {
+          "color": "rgba(0, 0, 0, 0.1)",
+          "offsetX": "0px",
+          "offsetY": "2px",
+          "blur": "8px",
+          "spread": "0px"
+        }
+      ],
+      "$description": "Medium shadow"
+    },
+    "lg": {
+      "$type": "shadow",
+      "$value": [
+        {
+          "color": "rgba(0, 0, 0, 0.15)",
+          "offsetX": "0px",
+          "offsetY": "4px",
+          "blur": "16px",
+          "spread": "0px"
+        }
+      ],
+      "$description": "Large shadow"
+    },
+    "focus": {
+      "$type": "shadow",
+      "$value": [
+        {
+          "color": "var(--color-primary-7)",
+          "offsetX": "0px",
+          "offsetY": "0px",
+          "blur": "0px",
+          "spread": "4px"
+        }
+      ],
+      "$description": "Focus ring shadow",
+      "$extensions": {
+        "penpot": {
+          "semantic": "focus-ring",
+          "themeAware": true
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "component": "Alert",
+  "description": "State matrix for Alert component showing all variant-state combinations",
+  "variants": [
+    "info",
+    "success",
+    "warning",
+    "error"
+  ],
+  "states": [
+    "visible",
+    "dismissing",
+    "dismissed"
+  ],
+  "matrix": {
+    "info": {
+      "visible": {
+        "valid": true,
+        "tokens": [
+          "opacity.opaque"
+        ],
+        "description": "info variant in visible state"
+      },
+      "dismissing": {
+        "valid": true,
+        "tokens": [
+          "opacity.medium"
+        ],
+        "description": "info variant in dismissing state"
+      },
+      "dismissed": {
+        "valid": true,
+        "tokens": [
+          "opacity.none"
+        ],
+        "description": "info variant in dismissed state"
+      }
+    },
+    "success": {
+      "visible": {
+        "valid": true,
+        "tokens": [
+          "opacity.opaque"
+        ],
+        "description": "success variant in visible state"
+      },
+      "dismissing": {
+        "valid": true,
+        "tokens": [
+          "opacity.medium"
+        ],
+        "description": "success variant in dismissing state"
+      },
+      "dismissed": {
+        "valid": true,
+        "tokens": [
+          "opacity.none"
+        ],
+        "description": "success variant in dismissed state"
+      }
+    },
+    "warning": {
+      "visible": {
+        "valid": true,
+        "tokens": [
+          "opacity.opaque"
+        ],
+        "description": "warning variant in visible state"
+      },
+      "dismissing": {
+        "valid": true,
+        "tokens": [
+          "opacity.medium"
+        ],
+        "description": "warning variant in dismissing state"
+      },
+      "dismissed": {
+        "valid": true,
+        "tokens": [
+          "opacity.none"
+        ],
+        "description": "warning variant in dismissed state"
+      }
+    },
+    "error": {
+      "visible": {
+        "valid": true,
+        "tokens": [
+          "opacity.opaque"
+        ],
+        "description": "error variant in visible state"
+      },
+      "dismissing": {
+        "valid": true,
+        "tokens": [
+          "opacity.medium"
+        ],
+        "description": "error variant in dismissing state"
+      },
+      "dismissed": {
+        "valid": true,
+        "tokens": [
+          "opacity.none"
+        ],
+        "description": "error variant in dismissed state"
+      }
+    }
+  },
+  "token_usage": {
+    "unique_tokens": [
+      "color.success.7",
+      "color.success.11",
+      "opacity.opaque",
+      "color.primary.1",
+      "color.warning.7",
+      "color.primary.7",
+      "opacity.none",
+      "color.primary.11",
+      "opacity.medium",
+      "color.error.1",
+      "color.error.11",
+      "color.warning.11",
+      "color.warning.1",
+      "color.error.7",
+      "color.success.1"
+    ],
+    "token_count": 15,
+    "categories": {
+      "colors": [
+        "color.success.7",
+        "color.success.11",
+        "color.primary.1",
+        "color.warning.7",
+        "color.primary.7",
+        "color.primary.11",
+        "color.error.1",
+        "color.error.11",
+        "color.warning.11",
+        "color.warning.1",
+        "color.error.7",
+        "color.success.1"
+      ],
+      "spacing": [],
+      "typography": [],
+      "effects": [
+        "opacity.opaque",
+        "opacity.none",
+        "opacity.medium"
+      ]
+    }
+  },
+  "penpot_components_needed": 12
+}

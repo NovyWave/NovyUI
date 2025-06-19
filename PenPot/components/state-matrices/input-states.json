@@ -1,0 +1,332 @@
+{
+  "component": "Input",
+  "description": "State matrix for Input component showing all variant-state combinations",
+  "variants": [
+    "text",
+    "email",
+    "password",
+    "search",
+    "number",
+    "tel",
+    "url"
+  ],
+  "states": [
+    "default",
+    "focus",
+    "error",
+    "disabled",
+    "readonly"
+  ],
+  "matrix": {
+    "text": {
+      "default": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.1",
+          "color.neutral.6"
+        ],
+        "description": "text variant in default state"
+      },
+      "focus": {
+        "valid": true,
+        "tokens": [
+          "color.primary.7",
+          "shadow.focus"
+        ],
+        "description": "text variant in focus state"
+      },
+      "error": {
+        "valid": true,
+        "tokens": [
+          "color.error.7",
+          "color.error.11"
+        ],
+        "description": "text variant in error state"
+      },
+      "disabled": {
+        "valid": true,
+        "tokens": [
+          "opacity.disabled"
+        ],
+        "description": "text variant in disabled state"
+      },
+      "readonly": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.8"
+        ],
+        "description": "text variant in readonly state"
+      }
+    },
+    "email": {
+      "default": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.1",
+          "color.neutral.6"
+        ],
+        "description": "email variant in default state"
+      },
+      "focus": {
+        "valid": true,
+        "tokens": [
+          "color.primary.7",
+          "shadow.focus"
+        ],
+        "description": "email variant in focus state"
+      },
+      "error": {
+        "valid": true,
+        "tokens": [
+          "color.error.7",
+          "color.error.11"
+        ],
+        "description": "email variant in error state"
+      },
+      "disabled": {
+        "valid": true,
+        "tokens": [
+          "opacity.disabled"
+        ],
+        "description": "email variant in disabled state"
+      },
+      "readonly": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.8"
+        ],
+        "description": "email variant in readonly state"
+      }
+    },
+    "password": {
+      "default": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.1",
+          "color.neutral.6"
+        ],
+        "description": "password variant in default state"
+      },
+      "focus": {
+        "valid": true,
+        "tokens": [
+          "color.primary.7",
+          "shadow.focus"
+        ],
+        "description": "password variant in focus state"
+      },
+      "error": {
+        "valid": true,
+        "tokens": [
+          "color.error.7",
+          "color.error.11"
+        ],
+        "description": "password variant in error state"
+      },
+      "disabled": {
+        "valid": true,
+        "tokens": [
+          "opacity.disabled"
+        ],
+        "description": "password variant in disabled state"
+      },
+      "readonly": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.8"
+        ],
+        "description": "password variant in readonly state"
+      }
+    },
+    "search": {
+      "default": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.1",
+          "color.neutral.6"
+        ],
+        "description": "search variant in default state"
+      },
+      "focus": {
+        "valid": true,
+        "tokens": [
+          "color.primary.7",
+          "shadow.focus"
+        ],
+        "description": "search variant in focus state"
+      },
+      "error": {
+        "valid": true,
+        "tokens": [
+          "color.error.7",
+          "color.error.11"
+        ],
+        "description": "search variant in error state"
+      },
+      "disabled": {
+        "valid": true,
+        "tokens": [
+          "opacity.disabled"
+        ],
+        "description": "search variant in disabled state"
+      },
+      "readonly": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.8"
+        ],
+        "description": "search variant in readonly state"
+      }
+    },
+    "number": {
+      "default": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.1",
+          "color.neutral.6"
+        ],
+        "description": "number variant in default state"
+      },
+      "focus": {
+        "valid": true,
+        "tokens": [
+          "color.primary.7",
+          "shadow.focus"
+        ],
+        "description": "number variant in focus state"
+      },
+      "error": {
+        "valid": true,
+        "tokens": [
+          "color.error.7",
+          "color.error.11"
+        ],
+        "description": "number variant in error state"
+      },
+      "disabled": {
+        "valid": true,
+        "tokens": [
+          "opacity.disabled"
+        ],
+        "description": "number variant in disabled state"
+      },
+      "readonly": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.8"
+        ],
+        "description": "number variant in readonly state"
+      }
+    },
+    "tel": {
+      "default": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.1",
+          "color.neutral.6"
+        ],
+        "description": "tel variant in default state"
+      },
+      "focus": {
+        "valid": true,
+        "tokens": [
+          "color.primary.7",
+          "shadow.focus"
+        ],
+        "description": "tel variant in focus state"
+      },
+      "error": {
+        "valid": true,
+        "tokens": [
+          "color.error.7",
+          "color.error.11"
+        ],
+        "description": "tel variant in error state"
+      },
+      "disabled": {
+        "valid": true,
+        "tokens": [
+          "opacity.disabled"
+        ],
+        "description": "tel variant in disabled state"
+      },
+      "readonly": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.8"
+        ],
+        "description": "tel variant in readonly state"
+      }
+    },
+    "url": {
+      "default": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.1",
+          "color.neutral.6"
+        ],
+        "description": "url variant in default state"
+      },
+      "focus": {
+        "valid": true,
+        "tokens": [
+          "color.primary.7",
+          "shadow.focus"
+        ],
+        "description": "url variant in focus state"
+      },
+      "error": {
+        "valid": true,
+        "tokens": [
+          "color.error.7",
+          "color.error.11"
+        ],
+        "description": "url variant in error state"
+      },
+      "disabled": {
+        "valid": true,
+        "tokens": [
+          "opacity.disabled"
+        ],
+        "description": "url variant in disabled state"
+      },
+      "readonly": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.8"
+        ],
+        "description": "url variant in readonly state"
+      }
+    }
+  },
+  "token_usage": {
+    "unique_tokens": [
+      "shadow.focus",
+      "color.neutral.8",
+      "color.primary.7",
+      "color.neutral.1",
+      "color.neutral.6",
+      "color.error.11",
+      "opacity.disabled",
+      "color.error.7"
+    ],
+    "token_count": 8,
+    "categories": {
+      "colors": [
+        "color.neutral.8",
+        "color.primary.7",
+        "color.neutral.1",
+        "color.neutral.6",
+        "color.error.11",
+        "color.error.7"
+      ],
+      "spacing": [],
+      "typography": [],
+      "effects": [
+        "shadow.focus",
+        "opacity.disabled"
+      ]
+    }
+  },
+  "penpot_components_needed": 35
+}

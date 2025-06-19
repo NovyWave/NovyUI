@@ -1,0 +1,229 @@
+{
+  "component": "Icon",
+  "description": "State matrix for Icon component showing all variant-state combinations",
+  "variants": [
+    "small",
+    "medium",
+    "large",
+    "xlarge"
+  ],
+  "states": [
+    "default",
+    "muted",
+    "primary",
+    "success",
+    "warning",
+    "error"
+  ],
+  "matrix": {
+    "small": {
+      "default": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.11"
+        ],
+        "description": "small variant in default state"
+      },
+      "muted": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.8"
+        ],
+        "description": "small variant in muted state"
+      },
+      "primary": {
+        "valid": true,
+        "tokens": [
+          "color.primary.7"
+        ],
+        "description": "small variant in primary state"
+      },
+      "success": {
+        "valid": true,
+        "tokens": [
+          "color.success.7"
+        ],
+        "description": "small variant in success state"
+      },
+      "warning": {
+        "valid": true,
+        "tokens": [
+          "color.warning.7"
+        ],
+        "description": "small variant in warning state"
+      },
+      "error": {
+        "valid": true,
+        "tokens": [
+          "color.error.7"
+        ],
+        "description": "small variant in error state"
+      }
+    },
+    "medium": {
+      "default": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.11"
+        ],
+        "description": "medium variant in default state"
+      },
+      "muted": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.8"
+        ],
+        "description": "medium variant in muted state"
+      },
+      "primary": {
+        "valid": true,
+        "tokens": [
+          "color.primary.7"
+        ],
+        "description": "medium variant in primary state"
+      },
+      "success": {
+        "valid": true,
+        "tokens": [
+          "color.success.7"
+        ],
+        "description": "medium variant in success state"
+      },
+      "warning": {
+        "valid": true,
+        "tokens": [
+          "color.warning.7"
+        ],
+        "description": "medium variant in warning state"
+      },
+      "error": {
+        "valid": true,
+        "tokens": [
+          "color.error.7"
+        ],
+        "description": "medium variant in error state"
+      }
+    },
+    "large": {
+      "default": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.11"
+        ],
+        "description": "large variant in default state"
+      },
+      "muted": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.8"
+        ],
+        "description": "large variant in muted state"
+      },
+      "primary": {
+        "valid": true,
+        "tokens": [
+          "color.primary.7"
+        ],
+        "description": "large variant in primary state"
+      },
+      "success": {
+        "valid": true,
+        "tokens": [
+          "color.success.7"
+        ],
+        "description": "large variant in success state"
+      },
+      "warning": {
+        "valid": true,
+        "tokens": [
+          "color.warning.7"
+        ],
+        "description": "large variant in warning state"
+      },
+      "error": {
+        "valid": true,
+        "tokens": [
+          "color.error.7"
+        ],
+        "description": "large variant in error state"
+      }
+    },
+    "xlarge": {
+      "default": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.11"
+        ],
+        "description": "xlarge variant in default state"
+      },
+      "muted": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.8"
+        ],
+        "description": "xlarge variant in muted state"
+      },
+      "primary": {
+        "valid": true,
+        "tokens": [
+          "color.primary.7"
+        ],
+        "description": "xlarge variant in primary state"
+      },
+      "success": {
+        "valid": true,
+        "tokens": [
+          "color.success.7"
+        ],
+        "description": "xlarge variant in success state"
+      },
+      "warning": {
+        "valid": true,
+        "tokens": [
+          "color.warning.7"
+        ],
+        "description": "xlarge variant in warning state"
+      },
+      "error": {
+        "valid": true,
+        "tokens": [
+          "color.error.7"
+        ],
+        "description": "xlarge variant in error state"
+      }
+    }
+  },
+  "token_usage": {
+    "unique_tokens": [
+      "color.success.7",
+      "height.20",
+      "height.16",
+      "width.20",
+      "color.neutral.8",
+      "color.warning.7",
+      "height.32",
+      "color.primary.7",
+      "color.neutral.11",
+      "width.16",
+      "width.24",
+      "height.24",
+      "width.32",
+      "color.error.7"
+    ],
+    "token_count": 14,
+    "categories": {
+      "colors": [
+        "color.success.7",
+        "color.neutral.8",
+        "color.warning.7",
+        "color.primary.7",
+        "color.neutral.11",
+        "color.error.7"
+      ],
+      "spacing": [],
+      "typography": [],
+      "effects": []
+    }
+  },
+  "penpot_components_needed": 24
+}

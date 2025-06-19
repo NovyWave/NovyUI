@@ -35,3 +35,13 @@ screenshots/
 browser-output/
 test-results/
 playwright-report/
+
+# PenPot Migration - Deno cache (optional to ignore)
+# .deno/
+
+# PenPot Migration - Environment and credentials
+PenPot/.env
+PenPot/scripts/.env
+
+# PenPot Migration - Output files (can be regenerated)
+PenPot/output/*.penpot

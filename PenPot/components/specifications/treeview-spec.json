@@ -1,0 +1,164 @@
+{
+  "component": {
+    "name": "TreeView",
+    "category": "Navigation",
+    "description": "Hierarchical data display with expand/collapse functionality and selection",
+    "complexity": "complex"
+  },
+  "variants": [
+    {
+      "name": "simple",
+      "description": "Basic tree structure",
+      "properties": {
+        "selection": false
+      },
+      "tokens_used": [
+        "color.neutral.11"
+      ]
+    },
+    {
+      "name": "selectable",
+      "description": "Tree with selection",
+      "properties": {
+        "selection": true
+      },
+      "tokens_used": [
+        "color.primary.7"
+      ]
+    },
+    {
+      "name": "checkable",
+      "description": "Tree with checkboxes",
+      "properties": {
+        "checkboxes": true
+      },
+      "tokens_used": [
+        "color.primary.7"
+      ]
+    }
+  ],
+  "states": [
+    {
+      "name": "collapsed",
+      "description": "Node collapsed",
+      "visual_changes": [
+        "chevron right",
+        "children hidden"
+      ],
+      "tokens_affected": [
+        "color.neutral.11"
+      ]
+    },
+    {
+      "name": "expanded",
+      "description": "Node expanded",
+      "visual_changes": [
+        "chevron down",
+        "children visible"
+      ],
+      "tokens_affected": [
+        "color.neutral.11"
+      ]
+    },
+    {
+      "name": "selected",
+      "description": "Node selected",
+      "visual_changes": [
+        "highlighted background"
+      ],
+      "tokens_affected": [
+        "color.primary.1",
+        "color.primary.7"
+      ]
+    },
+    {
+      "name": "hover",
+      "description": "Node hover",
+      "visual_changes": [
+        "background highlight"
+      ],
+      "tokens_affected": [
+        "color.neutral.2"
+      ]
+    },
+    {
+      "name": "focus",
+      "description": "Node focused",
+      "visual_changes": [
+        "focus ring"
+      ],
+      "tokens_affected": [
+        "shadow.focus"
+      ]
+    }
+  ],
+  "design_tokens": {
+    "used_tokens": [
+      "color.neutral.1",
+      "color.neutral.2",
+      "color.neutral.11",
+      "color.primary.1",
+      "color.primary.7",
+      "shadow.focus",
+      "spacing.4",
+      "spacing.8"
+    ],
+    "token_count": 8
+  },
+  "accessibility": {
+    "features": [
+      "ARIA tree",
+      "keyboard navigation",
+      "screen reader support",
+      "focus management",
+      "selection announcements"
+    ],
+    "compliance": "WCAG 2.1 AA"
+  },
+  "interactions": {
+    "primary": [
+      "click to expand",
+      "selection",
+      "keyboard navigation",
+      "checkbox interaction"
+    ],
+    "keyboard_support": true,
+    "touch_support": true
+  },
+  "animations": {
+    "transitions": [
+      "expand/collapse",
+      "selection transitions",
+      "hover effects"
+    ],
+    "duration": "150ms-300ms",
+    "easing": "ease-out"
+  },
+  "composition": {
+    "patterns": [
+      "file explorers",
+      "navigation menus",
+      "hierarchical data",
+      "category browsing"
+    ],
+    "reusability": "high"
+  },
+  "penpot_migration": {
+    "considerations": [
+      "Show hierarchy levels",
+      "Include selection states",
+      "Document keyboard navigation"
+    ],
+    "complexity_rating": "complex",
+    "variant_count": 3,
+    "state_count": 5
+  },
+  "statistics": {
+    "total_variants": 3,
+    "total_states": 5,
+    "tokens_used": 8,
+    "accessibility_features": 5,
+    "interactions": 4,
+    "animations": 3
+  }
+}

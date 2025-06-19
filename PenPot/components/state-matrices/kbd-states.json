@@ -1,0 +1,85 @@
+{
+  "component": "Kbd",
+  "description": "State matrix for Kbd component showing all variant-state combinations",
+  "variants": [
+    "single",
+    "combination",
+    "sequence"
+  ],
+  "states": [
+    "default",
+    "pressed"
+  ],
+  "matrix": {
+    "single": {
+      "default": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.2",
+          "color.neutral.11"
+        ],
+        "description": "single variant in default state"
+      },
+      "pressed": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.3"
+        ],
+        "description": "single variant in pressed state"
+      }
+    },
+    "combination": {
+      "default": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.2",
+          "color.neutral.11"
+        ],
+        "description": "combination variant in default state"
+      },
+      "pressed": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.3"
+        ],
+        "description": "combination variant in pressed state"
+      }
+    },
+    "sequence": {
+      "default": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.2",
+          "color.neutral.11"
+        ],
+        "description": "sequence variant in default state"
+      },
+      "pressed": {
+        "valid": true,
+        "tokens": [
+          "color.neutral.3"
+        ],
+        "description": "sequence variant in pressed state"
+      }
+    }
+  },
+  "token_usage": {
+    "unique_tokens": [
+      "color.neutral.2",
+      "color.neutral.3",
+      "color.neutral.11"
+    ],
+    "token_count": 3,
+    "categories": {
+      "colors": [
+        "color.neutral.2",
+        "color.neutral.3",
+        "color.neutral.11"
+      ],
+      "spacing": [],
+      "typography": [],
+      "effects": []
+    }
+  },
+  "penpot_components_needed": 6
+}

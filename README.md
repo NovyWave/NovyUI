@@ -30,11 +30,17 @@ NovyUI is a comprehensive design system that provides consistent, accessible, an
 - Type-safe components written entirely in Rust with NovyUI
 - **Source:** [./moonzoon-novyui](moonzoon-novyui)
 
-### Vue Storybook (TypeScript)
+### Vue Storybook (TypeScript) - LEGACY
 - **🌐 Live Demo: [vue-novyui-storybook.kavik.cz](https://vue-novyui-storybook.kavik.cz/)**
 - NovyUI Vue 3 + TypeScript component library
 - Built with [Storybook.js](https://github.com/storybookjs/storybook) for component documentation
 - **Source:** [./storybook](storybook)
+
+### PenPot Design System - NEW
+- **🎨 Visual Design System:** Complete PenPot design system based on NovyUI MoonZoon implementation
+- **🔄 Token-Driven:** W3C-compliant design tokens with automatic light/dark theme support
+- **📋 Component Library:** 18 core components with 313 variants for comprehensive design coverage
+- **Source:** [./PenPot](PenPot)
 
 ### Boon Storybook (Coming Soon)
 - NovyUI implementation for programming language [Boon](https://github.com/BoonLang/boon)
@@ -127,8 +133,9 @@ These examples show how the same NovyUI component library can produce dramatical
 ├── tokens/             # Design tokens (colors, spacing, typography, etc.)
 ├── assets/             # Auto-managed fonts, icons, and patterns
 ├── scripts/            # Validation and asset management tools
-├── moonzoon-novyui/    # Rust/MoonZoon implementation
-└── storybook/          # Vue/TypeScript implementation
+├── moonzoon-novyui/    # Rust/MoonZoon implementation (PRIMARY)
+├── storybook/          # Vue/TypeScript implementation (LEGACY)
+└── PenPot/             # PenPot design system migration (NEW)
 ```
 
 ### Design Token Categories
@@ -190,13 +197,15 @@ All components, blocks, and pages include:
 
 ---
 
-## Contributing [WIP]
+## Development Commands
+
+### NovyUI Development (Core System)
 
 To contribute to NovyUI, please validate the documentation and asset files before creating a pull request. This helps keep the design system consistent and implementation-ready.
 
 If you don't have Deno installed, you can get it from [deno.com](https://deno.com/).
 
-### Components, Blocks, and Pages markdown enforcement
+#### Components, Blocks, and Pages markdown enforcement
 
 NovyUI documentation is organized by type, with each type listed in its own table of contents file:
 - `pages.md` (pages)
@@ -224,7 +233,7 @@ Each script will:
 - Report any missing or misplaced documentation files
 - Print a ✅ message when the documentation structure is valid
 
-### Font asset enforcement
+#### Font asset enforcement
 
 To ensure all required font files are present and correctly named, run:
 
@@ -238,7 +247,7 @@ This script will:
 - Remove any orphaned font files not listed in `tokens/fonts.md`
 - Print a ✅ message when all font files are in sync
 
-### Icon asset enforcement
+#### Icon asset enforcement
 
 To ensure all required icon files are present, correctly named, and synchronized with Lucide, run:
 
@@ -252,7 +261,7 @@ This script will:
 - Place the icons in `/assets/icons` and remove any orphaned icon files not listed in `tokens/icons.md`
 - Print a ✅ message when all icon files are in sync
 
-### Pattern asset enforcement
+#### Pattern asset enforcement
 
 To ensure all required SVG pattern files are present and correctly named, run:
 
@@ -266,6 +275,48 @@ This script will:
 - Place the SVGs in `/assets/patterns` and remove any orphaned pattern files not listed in `tokens/patterns.md`
 - Ensure the Hero Patterns license file is present
 - Print a ✅ message when all pattern files are in sync
+
+### PenPot Design System Development
+
+The PenPot migration provides a visual design system complement to the code-based NovyUI implementation.
+
+#### Setup PenPot Migration Environment
+
+```sh
+# Install Deno (if not already installed)
+curl -fsSL https://deno.land/install.sh | sh
+
+# Navigate to PenPot directory
+cd PenPot/scripts
+
+# Configure PenPot credentials (optional)
+cp ../.env.template ../.env
+# Edit .env file with your PenPot credentials
+```
+
+#### Regenerate Design Tokens and Component Specifications
+
+```sh
+# Convert NovyUI tokens to W3C-compliant design tokens
+deno run --allow-read --allow-write token-converter.ts
+
+# Generate component specifications and documentation
+deno run --allow-read --allow-write component-analyzer.ts
+
+# Setup PenPot integration and test connection
+deno run --allow-read --allow-net --allow-env penpot-client.ts setup
+```
+
+#### Working with Generated Files
+
+The PenPot migration generates several categories of files:
+
+- **Design Tokens** (`/tokens/*.json`): W3C-compliant design tokens ready for PenPot import
+- **Component Specs** (`/components/specifications/*.json`): Detailed component documentation
+- **State Matrices** (`/components/state-matrices/*.json`): Component state and variant combinations
+- **Migration Guides** (`/components/MIGRATION_GUIDE.md`): Step-by-step migration instructions
+
+All generated files can be safely recreated using the Deno TypeScript scripts above.
 
 ## Documentation Structure Rules
 

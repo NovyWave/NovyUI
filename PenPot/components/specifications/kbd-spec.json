@@ -1,0 +1,138 @@
+{
+  "component": {
+    "name": "Kbd",
+    "category": "Navigation",
+    "description": "Keyboard shortcut display component with platform-specific styling",
+    "complexity": "simple"
+  },
+  "variants": [
+    {
+      "name": "single",
+      "description": "Single key",
+      "properties": {
+        "keys": [
+          "Enter"
+        ]
+      },
+      "tokens_used": [
+        "color.neutral.2",
+        "color.neutral.11"
+      ]
+    },
+    {
+      "name": "combination",
+      "description": "Key combination",
+      "properties": {
+        "keys": [
+          "Ctrl",
+          "S"
+        ]
+      },
+      "tokens_used": [
+        "color.neutral.2",
+        "color.neutral.11"
+      ]
+    },
+    {
+      "name": "sequence",
+      "description": "Key sequence",
+      "properties": {
+        "keys": [
+          "Ctrl",
+          "K",
+          "Ctrl",
+          "S"
+        ]
+      },
+      "tokens_used": [
+        "color.neutral.2",
+        "color.neutral.11"
+      ]
+    }
+  ],
+  "states": [
+    {
+      "name": "default",
+      "description": "Standard keyboard display",
+      "visual_changes": [
+        "raised appearance"
+      ],
+      "tokens_affected": [
+        "color.neutral.2",
+        "color.neutral.11"
+      ]
+    },
+    {
+      "name": "pressed",
+      "description": "Key pressed state",
+      "visual_changes": [
+        "pressed appearance"
+      ],
+      "tokens_affected": [
+        "color.neutral.3"
+      ]
+    }
+  ],
+  "design_tokens": {
+    "used_tokens": [
+      "color.neutral.2",
+      "color.neutral.3",
+      "color.neutral.11",
+      "borderRadius.sm",
+      "spacing.2",
+      "fontSize.12",
+      "fontFamily.mono",
+      "fontWeight.medium"
+    ],
+    "token_count": 8
+  },
+  "accessibility": {
+    "features": [
+      "semantic meaning",
+      "screen reader support"
+    ],
+    "compliance": "WCAG 2.1 AA"
+  },
+  "interactions": {
+    "primary": [
+      "static display",
+      "potentially clickable"
+    ],
+    "keyboard_support": true,
+    "touch_support": true
+  },
+  "animations": {
+    "transitions": [
+      "press animation",
+      "subtle hover"
+    ],
+    "duration": "150ms-300ms",
+    "easing": "ease-out"
+  },
+  "composition": {
+    "patterns": [
+      "help documentation",
+      "tooltip shortcuts",
+      "command palettes"
+    ],
+    "reusability": "high"
+  },
+  "penpot_migration": {
+    "considerations": [
+      "Show key styling",
+      "Include combination layouts",
+      "Document platform differences"
+    ],
+    "complexity_rating": "simple",
+    "variant_count": 3,
+    "state_count": 2
+  },
+  "statistics": {
+    "total_variants": 3,
+    "total_states": 2,
+    "tokens_used": 8,
+    "accessibility_features": 2,
+    "interactions": 2,
+    "animations": 2
+  }
+}
