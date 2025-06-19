@@ -10,6 +10,8 @@ pub mod border;
 pub mod corner_radius;
 pub mod shadow;
 pub mod animation;
+pub mod opacity;
+pub mod focus;
 
 pub use theme::*;
 pub use color::*;
@@ -19,3 +21,5 @@ pub use border::*;
 pub use corner_radius::*;
 pub use shadow::*;
 pub use animation::*;
+pub use opacity::*;
+pub use focus::*;

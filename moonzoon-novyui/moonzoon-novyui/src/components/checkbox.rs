@@ -1,8 +1,6 @@
 use zoon::*;
 use crate::tokens::*;
-use crate::theme::*;
 use crate::components::icon::{IconBuilder, IconName, IconSize, IconColor};
-use std::rc::Rc;
 
 // Checkbox sizes
 #[derive(Debug, Clone, Copy)]

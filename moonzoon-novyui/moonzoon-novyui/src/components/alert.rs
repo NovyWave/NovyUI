@@ -1,5 +1,6 @@
 use zoon::*;
 use crate::tokens::*;
+use crate::tokens::color::*;
 
 // Alert variants
 #[derive(Debug, Clone, Copy)]
@@ -12,33 +13,33 @@ pub enum AlertVariant {
 }
 
 impl AlertVariant {
-    pub fn background_color(self) -> &'static str {
+    pub fn background_color(self) -> impl Signal<Item = &'static str> {
         match self {
-            AlertVariant::Info => "#dbeafe",      // blue-100
-            AlertVariant::Success => "#dcfce7",   // green-100
-            AlertVariant::Warning => "#fef3c7",   // yellow-100
-            AlertVariant::Error => "#fee2e2",     // red-100
-            AlertVariant::Default => "#f3f4f6",   // gray-100
+            AlertVariant::Info => primary_1().boxed_local(),
+            AlertVariant::Success => success_1().boxed_local(),
+            AlertVariant::Warning => warning_1().boxed_local(), 
+            AlertVariant::Error => error_1().boxed_local(),
+            AlertVariant::Default => neutral_2().boxed_local(),
         }
     }
 
-    pub fn border_color(self) -> &'static str {
+    pub fn border_color(self) -> impl Signal<Item = &'static str> {
         match self {
-            AlertVariant::Info => "#3b82f6",      // blue-500
-            AlertVariant::Success => "#10b981",   // green-500
-            AlertVariant::Warning => "#f59e0b",   // yellow-500
-            AlertVariant::Error => "#ef4444",     // red-500
-            AlertVariant::Default => "#6b7280",   // gray-500
+            AlertVariant::Info => primary_7().boxed_local(),
+            AlertVariant::Success => success_7().boxed_local(),
+            AlertVariant::Warning => warning_7().boxed_local(),
+            AlertVariant::Error => error_7().boxed_local(),
+            AlertVariant::Default => neutral_6().boxed_local(),
         }
     }
 
-    pub fn text_color(self) -> &'static str {
+    pub fn text_color(self) -> impl Signal<Item = &'static str> {
         match self {
-            AlertVariant::Info => "#1e40af",      // blue-800
-            AlertVariant::Success => "#065f46",   // green-800
-            AlertVariant::Warning => "#92400e",   // yellow-800
-            AlertVariant::Error => "#991b1b",     // red-800
-            AlertVariant::Default => "#374151",   // gray-700
+            AlertVariant::Info => primary_9().boxed_local(),
+            AlertVariant::Success => success_9().boxed_local(),
+            AlertVariant::Warning => warning_9().boxed_local(),
+            AlertVariant::Error => error_9().boxed_local(),
+            AlertVariant::Default => neutral_10().boxed_local(),
         }
     }
 
@@ -123,16 +124,16 @@ impl AlertBuilder {
             .s(Width::fill())
             .s(Padding::new().x(SPACING_16).y(SPACING_12))
             .s(Gap::new().x(SPACING_12))
-            .s(Borders::new().left(Border::new().width(4).color(self.variant.border_color())))
-            .s(Background::new().color(self.variant.background_color()))
-            .s(RoundedCorners::all(6))
+            .s(Borders::new().left_signal(self.variant.border_color().map(|color| Border::new().width(4).color(color))))
+            .s(Background::new().color_signal(self.variant.background_color()))
+            .s(RoundedCorners::all(CORNER_RADIUS_6))
             .s(Align::new().center_y())
             .item(
                 El::new()
                     .s(Width::fill())
                     .s(Font::new()
                         .size(FONT_SIZE_14)
-                        .color(self.variant.text_color())
+                        .color_signal(self.variant.text_color())
                     )
                     .child(Text::new(&display_text))
             );
@@ -141,7 +142,7 @@ impl AlertBuilder {
             let mut dismiss_button = El::new()
                 .s(Font::new()
                     .size(FONT_SIZE_14)
-                    .color(self.variant.text_color())
+                    .color_signal(self.variant.text_color())
                 )
                 .s(Cursor::new(CursorIcon::Pointer))
                 .child(Text::new(dismiss_text));

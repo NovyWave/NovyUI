@@ -2,6 +2,7 @@
 // Research-validated pattern with MoonZoon styling and animation
 
 use crate::tokens::*;
+use crate::tokens::shadow::*;
 use crate::components::icon::*;
 use zoon::*;
 use futures_signals::signal::always;
@@ -170,56 +171,39 @@ impl ButtonBuilder {
         // Loading buttons should be disabled (like Vue implementation)
         let is_disabled = disabled || loading;
 
-        let bg_color_signal = theme().map(move |t| match (variant, t) {
-            (ButtonVariant::Primary, Theme::Light) => "oklch(55% 0.16 250)",
-            (ButtonVariant::Primary, Theme::Dark) => "oklch(65% 0.16 250)",
-            (ButtonVariant::Secondary, Theme::Light) => "oklch(88% 0.055 255)",
-            (ButtonVariant::Secondary, Theme::Dark) => "oklch(30% 0.045 255)",
-            (ButtonVariant::Outline, _) => "transparent",
-            (ButtonVariant::Ghost, _) => "transparent",
-            (ButtonVariant::Link, _) => "transparent",
-            (ButtonVariant::Destructive, Theme::Light) => "oklch(50% 0.21 30)",
-            (ButtonVariant::Destructive, Theme::Dark) => "oklch(70% 0.21 30)",
-        });
+        let bg_color_signal = match variant {
+            ButtonVariant::Primary => primary_7().boxed_local(),
+            ButtonVariant::Secondary => neutral_4().boxed_local(),
+            ButtonVariant::Outline => always(transparent()).boxed_local(),
+            ButtonVariant::Ghost => always(transparent()).boxed_local(),
+            ButtonVariant::Link => always(transparent()).boxed_local(),
+            ButtonVariant::Destructive => error_7().boxed_local(),
+        };
 
-        let hover_bg_color_signal = theme().map(move |t| match (variant, t) {
-            (ButtonVariant::Primary, Theme::Light) => "oklch(45% 0.16 250)",
-            (ButtonVariant::Primary, Theme::Dark) => "oklch(75% 0.16 250)",
-            (ButtonVariant::Secondary, Theme::Light) => "oklch(80% 0.07 255)",
-            (ButtonVariant::Secondary, Theme::Dark) => "oklch(45% 0.055 255)",
-            (ButtonVariant::Outline, Theme::Light) => "oklch(90% 0.05 250)",
-            (ButtonVariant::Outline, Theme::Dark) => "oklch(30% 0.05 250)",
-            (ButtonVariant::Ghost, Theme::Light) => "oklch(90% 0.05 250)",
-            (ButtonVariant::Ghost, Theme::Dark) => "oklch(30% 0.05 250)",
-            (ButtonVariant::Link, Theme::Light) => "oklch(90% 0.05 250)",
-            (ButtonVariant::Link, Theme::Dark) => "oklch(30% 0.05 250)",
-            (ButtonVariant::Destructive, Theme::Light) => "oklch(40% 0.21 30)",
-            (ButtonVariant::Destructive, Theme::Dark) => "oklch(80% 0.21 30)",
-        });
+        let hover_bg_color_signal = match variant {
+            ButtonVariant::Primary => primary_8().boxed_local(),
+            ButtonVariant::Secondary => neutral_5().boxed_local(),
+            ButtonVariant::Outline => primary_2().boxed_local(),
+            ButtonVariant::Ghost => primary_2().boxed_local(),
+            ButtonVariant::Link => primary_2().boxed_local(),
+            ButtonVariant::Destructive => error_8().boxed_local(),
+        };
 
-        let text_color_signal = theme().map(move |t| match (variant, t) {
-            (ButtonVariant::Primary, Theme::Light) => "oklch(99% 0.025 255)",
-            (ButtonVariant::Primary, Theme::Dark) => "oklch(12% 0.025 255)",
-            (ButtonVariant::Secondary, Theme::Light) => "oklch(55% 0.16 250)",
-            (ButtonVariant::Secondary, Theme::Dark) => "oklch(65% 0.16 250)",
-            (ButtonVariant::Outline, Theme::Light) => "oklch(55% 0.16 250)",
-            (ButtonVariant::Outline, Theme::Dark) => "oklch(65% 0.16 250)",
-            (ButtonVariant::Ghost, Theme::Light) => "oklch(55% 0.16 250)",
-            (ButtonVariant::Ghost, Theme::Dark) => "oklch(65% 0.16 250)",
-            (ButtonVariant::Link, Theme::Light) => "oklch(55% 0.16 250)",
-            (ButtonVariant::Link, Theme::Dark) => "oklch(65% 0.16 250)",
-            (ButtonVariant::Destructive, Theme::Light) => "oklch(99% 0.025 255)",
-            (ButtonVariant::Destructive, Theme::Dark) => "oklch(12% 0.025 255)",
-        });
+        let text_color_signal = match variant {
+            ButtonVariant::Primary => neutral_1().boxed_local(),
+            ButtonVariant::Secondary => primary_7().boxed_local(),
+            ButtonVariant::Outline => primary_7().boxed_local(),
+            ButtonVariant::Ghost => primary_7().boxed_local(),
+            ButtonVariant::Link => primary_7().boxed_local(),
+            ButtonVariant::Destructive => neutral_1().boxed_local(),
+        };
 
         // Border color for Outline and Secondary variants
-        let border_color_signal = theme().map(move |t| match (variant, t) {
-            (ButtonVariant::Outline, Theme::Light) => "oklch(92% 0.045 255)",
-            (ButtonVariant::Outline, Theme::Dark) => "oklch(30% 0.045 255)",
-            (ButtonVariant::Secondary, Theme::Light) => "oklch(92% 0.045 255)", // neutral_3 light
-            (ButtonVariant::Secondary, Theme::Dark) => "oklch(30% 0.045 255)",  // neutral_3 dark
-            _ => "transparent",
-        });
+        let border_color_signal = match variant {
+            ButtonVariant::Outline => neutral_3().boxed_local(),
+            ButtonVariant::Secondary => neutral_3().boxed_local(),
+            _ => always(transparent()).boxed_local(),
+        };
 
         // Create button content with icons and text
         let button_content = self.create_button_content(icon_size);
@@ -228,7 +212,7 @@ impl ButtonBuilder {
 
         Button::new()
             .s(Padding::new().x(padding_x).y(padding_y))
-            .s(RoundedCorners::all(6))
+            .s(RoundedCorners::all(CORNER_RADIUS_6))
             .s(Font::new().size(font_size).weight(FontWeight::Medium))
             .s(transition_colors())
             .s(Background::new().color_signal(
@@ -265,7 +249,7 @@ impl ButtonBuilder {
                     map_ref! {
                         let focused = focused_signal =>
                         if *focused {
-                            Some(Outline::inner().width(2).color("oklch(0.7 0.15 250)"))
+                            Some(Outline::inner().width(FOCUS_RING_WIDTH).color(FOCUS_RING_COLOR_DEFAULT))
                         } else {
                             None
                         }
@@ -300,10 +284,10 @@ impl ButtonBuilder {
             })
             .update_raw_el(move |raw_el| {
                 if is_disabled {
-                    // Disabled state - use exact Vue opacity: 64%
-                    raw_el.style("opacity", "0.64")
+                    // Disabled state - use opacity token
+                    raw_el.style("opacity", OPACITY_DISABLED)
                 } else {
-                    raw_el.style("opacity", "1.0")
+                    raw_el.style("opacity", OPACITY_ENABLED)
                 }
             })
             .on_hovered_change(move |is_hovered| {
@@ -436,42 +420,42 @@ impl ButtonBuilder {
             match (variant, t) {
                 // Primary buttons get blue-tinted shadows
                 (ButtonVariant::Primary, Theme::Light) => vec![
-                    Shadow::new().y(4).x(0).blur(6).spread(-1).color("rgba(59, 130, 246, 0.25)"),
-                    Shadow::new().y(2).x(0).blur(4).spread(-1).color("rgba(59, 130, 246, 0.15)"),
+                    Shadow::new().y(4).x(0).blur(6).spread(-1).color(SHADOW_COLOR_PRIMARY_LIGHT),
+                    Shadow::new().y(2).x(0).blur(4).spread(-1).color(SHADOW_COLOR_NEUTRAL_LIGHT),
                 ],
                 (ButtonVariant::Primary, Theme::Dark) => vec![
-                    Shadow::new().y(4).x(0).blur(6).spread(-1).color("rgba(59, 130, 246, 0.4)"),
-                    Shadow::new().y(2).x(0).blur(4).spread(-1).color("rgba(59, 130, 246, 0.25)"),
+                    Shadow::new().y(4).x(0).blur(6).spread(-1).color(SHADOW_COLOR_PRIMARY_DARK),
+                    Shadow::new().y(2).x(0).blur(4).spread(-1).color(SHADOW_COLOR_PRIMARY_LIGHT),
                 ],
 
                 // Secondary buttons get neutral shadows
                 (ButtonVariant::Secondary, Theme::Light) => vec![
-                    Shadow::new().y(3).x(0).blur(6).spread(-1).color("rgba(0, 0, 0, 0.1)"),
-                    Shadow::new().y(1).x(0).blur(3).spread(-1).color("rgba(0, 0, 0, 0.06)"),
+                    Shadow::new().y(3).x(0).blur(6).spread(-1).color(SHADOW_COLOR_BLACK_MEDIUM),
+                    Shadow::new().y(1).x(0).blur(3).spread(-1).color(SHADOW_COLOR_BLACK_LIGHT),
                 ],
                 (ButtonVariant::Secondary, Theme::Dark) => vec![
-                    Shadow::new().y(3).x(0).blur(6).spread(-1).color("rgba(0, 0, 0, 0.5)"),
-                    Shadow::new().y(1).x(0).blur(3).spread(-1).color("rgba(0, 0, 0, 0.3)"),
+                    Shadow::new().y(3).x(0).blur(6).spread(-1).color(SHADOW_COLOR_BLACK_STRONG),
+                    Shadow::new().y(1).x(0).blur(3).spread(-1).color(SHADOW_COLOR_BLACK_DARK),
                 ],
 
                 // Outline buttons get subtle shadows
                 (ButtonVariant::Outline, Theme::Light) => vec![
-                    Shadow::new().y(2).x(0).blur(4).spread(-1).color("rgba(0, 0, 0, 0.08)"),
-                    Shadow::new().y(1).x(0).blur(2).spread(-1).color("rgba(0, 0, 0, 0.04)"),
+                    Shadow::new().y(2).x(0).blur(4).spread(-1).color(SHADOW_COLOR_BLACK_LIGHT),
+                    Shadow::new().y(1).x(0).blur(2).spread(-1).color(SHADOW_COLOR_BLACK_SUBTLE),
                 ],
                 (ButtonVariant::Outline, Theme::Dark) => vec![
-                    Shadow::new().y(2).x(0).blur(4).spread(-1).color("rgba(0, 0, 0, 0.4)"),
-                    Shadow::new().y(1).x(0).blur(2).spread(-1).color("rgba(0, 0, 0, 0.25)"),
+                    Shadow::new().y(2).x(0).blur(4).spread(-1).color(SHADOW_COLOR_BLACK_STRONG),
+                    Shadow::new().y(1).x(0).blur(2).spread(-1).color(SHADOW_COLOR_BLACK_DARK),
                 ],
 
                 // Destructive buttons get red-tinted shadows
                 (ButtonVariant::Destructive, Theme::Light) => vec![
-                    Shadow::new().y(4).x(0).blur(6).spread(-1).color("rgba(239, 68, 68, 0.25)"),
-                    Shadow::new().y(2).x(0).blur(4).spread(-1).color("rgba(239, 68, 68, 0.15)"),
+                    Shadow::new().y(4).x(0).blur(6).spread(-1).color(SHADOW_COLOR_ERROR_LIGHT),
+                    Shadow::new().y(2).x(0).blur(4).spread(-1).color(SHADOW_COLOR_NEUTRAL_LIGHT),
                 ],
                 (ButtonVariant::Destructive, Theme::Dark) => vec![
-                    Shadow::new().y(4).x(0).blur(6).spread(-1).color("rgba(239, 68, 68, 0.4)"),
-                    Shadow::new().y(2).x(0).blur(4).spread(-1).color("rgba(239, 68, 68, 0.25)"),
+                    Shadow::new().y(4).x(0).blur(6).spread(-1).color(SHADOW_COLOR_ERROR_DARK),
+                    Shadow::new().y(2).x(0).blur(4).spread(-1).color(SHADOW_COLOR_ERROR_LIGHT),
                 ],
 
                 // Ghost and Link buttons get no shadows for minimal appearance

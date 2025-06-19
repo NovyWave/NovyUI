@@ -1,6 +1,5 @@
 use zoon::*;
 use crate::tokens::*;
-use crate::theme::*;
 use crate::components::icon::{IconBuilder, IconName, IconSize, IconColor};
 
 // Switch sizes - Made larger to match Vue Storybook and accommodate icons better

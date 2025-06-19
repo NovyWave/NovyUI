@@ -1,6 +1,5 @@
 use zoon::*;
 use crate::tokens::*;
-use crate::theme::*;
 
 // TextArea sizes
 #[derive(Debug, Clone, Copy)]

@@ -1,7 +1,5 @@
 use zoon::*;
 use crate::tokens::*;
-use crate::theme::*;
-use crate::components::icon::*;
 
 // Accordion item data
 #[derive(Debug, Clone)]

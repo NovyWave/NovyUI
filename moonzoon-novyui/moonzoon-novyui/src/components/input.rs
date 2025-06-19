@@ -247,7 +247,7 @@ impl InputBuilder {
             .s(Padding::new().x(padding_x).y(padding_y))
             .s(Gap::new().x(SPACING_8))
             .s(Align::new().center_y())
-            .s(RoundedCorners::all(4)) // cornerRadius['4px']
+            .s(RoundedCorners::all(CORNER_RADIUS_4)) // cornerRadius['4px']
             .s(transition_colors())
             .s(Background::new().color_signal(
                 theme().map(move |t| match (state, t) {
@@ -322,10 +322,10 @@ impl InputBuilder {
             ))
             .update_raw_el(move |raw_el| {
                 if matches!(state, InputState::Disabled) {
-                    // Disabled state - use exact Vue opacity: 64%
-                    raw_el.style("opacity", "0.64")
+                    // Disabled state - use opacity token
+                    raw_el.style("opacity", OPACITY_DISABLED)
                 } else {
-                    raw_el.style("opacity", "1.0")
+                    raw_el.style("opacity", OPACITY_ENABLED)
                 }
             })
             .item_signal(always(left_icon).map(move |icon_opt| {

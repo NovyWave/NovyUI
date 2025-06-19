@@ -84,15 +84,15 @@ pub fn button() -> impl Element {
 
 // Animation using MoonZoon's animation system
 .s(Transitions::new([
-    Transition::background_color().duration(300),
-    Transition::transform().duration(200)
+    Transition::background_color().duration(animation::DURATION_NORMAL),
+    Transition::transform().duration(animation::DURATION_FAST)
 ]))
 
 // Theme integration
 .s(Background::new().color_signal(
     THEME.signal().map(|theme| match theme {
-        Theme::Light => "oklch(55% 0.16 250)",
-        Theme::Dark => "oklch(65% 0.16 250)",
+        Theme::Light => color::primary_7_light(),
+        Theme::Dark => color::primary_7_dark(),
     })
 ))
 ```
