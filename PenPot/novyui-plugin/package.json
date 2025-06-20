@@ -1,0 +1,20 @@
+{
+  "name": "novyui-penpot-plugin",
+  "version": "0.1.0",
+  "description": "NovyUI Design System importer for PenPot",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"tsc --watch\" \"vite\"",
+    "build": "tsc && vite build",
+    "build:watch": "tsc --watch & vite build --watch",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@penpot/plugin-types": "latest"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "vite": "^5.0.0",
+    "concurrently": "^8.0.0"
+  }
+}

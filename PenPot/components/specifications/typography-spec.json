@@ -33,32 +33,6 @@
       ]
     },
     {
-      "name": "h3",
-      "description": "Subsection heading",
-      "properties": {
-        "tag": "h3",
-        "size": "32px"
-      },
-      "tokens_used": [
-        "fontSize.32",
-        "fontWeight.semibold",
-        "fontFamily.sans"
-      ]
-    },
-    {
-      "name": "h4",
-      "description": "Minor heading",
-      "properties": {
-        "tag": "h4",
-        "size": "24px"
-      },
-      "tokens_used": [
-        "fontSize.24",
-        "fontWeight.semibold",
-        "fontFamily.sans"
-      ]
-    },
-    {
       "name": "paragraph",
       "description": "Body text",
       "properties": {
@@ -67,19 +41,6 @@
       },
       "tokens_used": [
         "fontSize.16",
-        "fontWeight.normal",
-        "fontFamily.sans"
-      ]
-    },
-    {
-      "name": "small",
-      "description": "Small text",
-      "properties": {
-        "tag": "small",
-        "size": "14px"
-      },
-      "tokens_used": [
-        "fontSize.14",
         "fontWeight.normal",
         "fontFamily.sans"
       ]
@@ -118,16 +79,6 @@
       "tokens_affected": [
         "color.neutral.8"
       ]
-    },
-    {
-      "name": "emphasized",
-      "description": "Emphasized text",
-      "visual_changes": [
-        "higher contrast"
-      ],
-      "tokens_affected": [
-        "color.neutral.12"
-      ]
     }
   ],
   "design_tokens": {
@@ -138,7 +89,6 @@
       "fontSize.18",
       "fontSize.20",
       "fontSize.24",
-      "fontSize.30",
       "fontSize.32",
       "fontSize.36",
       "fontSize.48",
@@ -153,7 +103,7 @@
       "color.neutral.11",
       "color.neutral.12"
     ],
-    "token_count": 20
+    "token_count": 19
   },
   "accessibility": {
     "features": [
@@ -193,13 +143,13 @@
       "Include all font weights"
     ],
     "complexity_rating": "simple",
-    "variant_count": 7,
-    "state_count": 3
+    "variant_count": 4,
+    "state_count": 2
   },
   "statistics": {
-    "total_variants": 7,
-    "total_states": 3,
-    "tokens_used": 20,
+    "total_variants": 4,
+    "total_states": 2,
+    "tokens_used": 19,
     "accessibility_features": 3,
     "interactions": 2,
     "animations": 1

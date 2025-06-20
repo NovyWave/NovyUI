@@ -81,36 +81,6 @@
       "tokens_affected": [
         "color.primary.7"
       ]
-    },
-    {
-      "name": "success",
-      "description": "Success state icon",
-      "visual_changes": [
-        "success color"
-      ],
-      "tokens_affected": [
-        "color.success.7"
-      ]
-    },
-    {
-      "name": "warning",
-      "description": "Warning state icon",
-      "visual_changes": [
-        "warning color"
-      ],
-      "tokens_affected": [
-        "color.warning.7"
-      ]
-    },
-    {
-      "name": "error",
-      "description": "Error state icon",
-      "visual_changes": [
-        "error color"
-      ],
-      "tokens_affected": [
-        "color.error.7"
-      ]
     }
   ],
   "design_tokens": {
@@ -167,11 +137,11 @@
     ],
     "complexity_rating": "simple",
     "variant_count": 4,
-    "state_count": 6
+    "state_count": 3
   },
   "statistics": {
     "total_variants": 4,
-    "total_states": 6,
+    "total_states": 3,
     "tokens_used": 6,
     "accessibility_features": 3,
     "interactions": 2,

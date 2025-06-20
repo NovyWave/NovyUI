@@ -43,5 +43,17 @@ playwright-report/
 PenPot/.env
 PenPot/scripts/.env
 
+# PenPot Plugin - Dependencies and builds
+PenPot/novyui-plugin/node_modules/
+PenPot/novyui-plugin/dist/
+PenPot/novyui-plugin/.vite/
+
+# PenPot MCP Environment
+PenPot/mcp-env/
+PenPot/tests/node_modules/
+
 # PenPot Migration - Output files (can be regenerated)
 PenPot/output/*.penpot
+
+# Playwright browser data (persistent sessions)
+.playwright-browser-data/

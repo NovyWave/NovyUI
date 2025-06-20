@@ -18,6 +18,32 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Development Commands
 
+### PenPot Plugin Development
+```bash
+# Navigate to plugin directory
+cd PenPot/novyui-plugin
+
+# Start dev server in background (ALWAYS run in background!)
+npm run dev &
+
+# Build plugin with changes
+npm run build
+
+# Watch mode for continuous development
+npm run build:watch &
+
+# Plugin URL for PenPot installation
+# http://localhost:5173/manifest.json
+
+# IMPORTANT: Kill and restart dev server when changes don't appear
+pkill -f vite && npm run dev &
+
+# TypeScript will catch API errors during build
+npm run build  # Catches non-existent methods like penpot.createFrame()
+```
+
+## Development Commands
+
 ### MoonZoon Development (Primary)
 ```bash
 # Navigate to MoonZoon storybook directory
@@ -195,3 +221,6 @@ Before creating pull requests:
 2. Validate MoonZoon build: `cd moonzoon-novyui/moonzoon-novyui-storybook && mzoon build --release`
 3. Check component accessibility compliance
 4. Ensure design token usage (no hardcoded values)
+
+## Development Workflow Memories
+- remember to run dev servers (e.g. for penpot plugin) in background

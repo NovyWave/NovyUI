@@ -1,0 +1,12 @@
+
+> novyui-penpot-plugin@0.1.0 dev
+> vite --port 5173
+
+
+  VITE v5.4.19  ready in 141 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+10:32:14 PM [vite] page reload plugin.js
+10:32:38 PM [vite] page reload plugin.js
+10:45:47 PM [vite] page reload plugin.js

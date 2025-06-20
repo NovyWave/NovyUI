@@ -53,42 +53,6 @@
         "color.neutral.6",
         "color.primary.7"
       ]
-    },
-    {
-      "name": "number",
-      "description": "Numeric input with step controls",
-      "properties": {
-        "type": "number"
-      },
-      "tokens_used": [
-        "color.neutral.1",
-        "color.neutral.6",
-        "color.primary.7"
-      ]
-    },
-    {
-      "name": "tel",
-      "description": "Telephone input",
-      "properties": {
-        "type": "tel"
-      },
-      "tokens_used": [
-        "color.neutral.1",
-        "color.neutral.6",
-        "color.primary.7"
-      ]
-    },
-    {
-      "name": "url",
-      "description": "URL input with validation",
-      "properties": {
-        "type": "url"
-      },
-      "tokens_used": [
-        "color.neutral.1",
-        "color.neutral.6",
-        "color.primary.7"
-      ]
     }
   ],
   "states": [
@@ -137,17 +101,6 @@
       ],
       "tokens_affected": [
         "opacity.disabled"
-      ]
-    },
-    {
-      "name": "readonly",
-      "description": "Read-only state",
-      "visual_changes": [
-        "neutral styling",
-        "no editing"
-      ],
-      "tokens_affected": [
-        "color.neutral.8"
       ]
     }
   ],
@@ -209,12 +162,12 @@
       "Document validation states"
     ],
     "complexity_rating": "medium",
-    "variant_count": 7,
-    "state_count": 5
+    "variant_count": 4,
+    "state_count": 4
   },
   "statistics": {
-    "total_variants": 7,
-    "total_states": 5,
+    "total_variants": 4,
+    "total_states": 4,
     "tokens_used": 10,
     "accessibility_features": 4,
     "interactions": 4,

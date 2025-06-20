@@ -1,0 +1,1 @@
+{"mcpServers":{"test":{"type":"stdio","command":"npx","args":["@executeautomation/playwright-mcp-server"],"env":{"PLAYWRIGHT_HEADLESS":"false"}}}}
