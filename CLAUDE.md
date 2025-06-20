@@ -35,11 +35,26 @@ npm run build:watch &
 # Plugin URL for PenPot installation
 # http://localhost:5173/manifest.json
 
-# IMPORTANT: Kill and restart dev server when changes don't appear
-pkill -f vite && npm run dev &
+# CRITICAL: Plugin recompilation workflow
+# PROBLEM: Auto-recompilation often breaks, causing old code to run
+# SOLUTION: Always use this exact sequence when changes don't appear:
+
+# 1. Kill ALL processes completely  
+killall node 2>/dev/null; pkill -f vite 2>/dev/null; pkill -f tsc 2>/dev/null
+
+# 2. Manual build to ensure latest code is compiled
+npm run build
+
+# 3. Start dev server in background
+npm run dev > /dev/null 2>&1 &
+
+# 4. Verify the change worked by checking served content:
+curl -s http://localhost:5173/dist/plugin.js | grep "SEARCH_FOR_YOUR_CHANGE"
 
 # TypeScript will catch API errors during build
 npm run build  # Catches non-existent methods like penpot.createFrame()
+
+# NEVER assume auto-recompilation works - always verify manually!
 ```
 
 ## Development Commands

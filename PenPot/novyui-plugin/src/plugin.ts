@@ -1,7 +1,7 @@
 // NovyUI PenPot Plugin - Main Plugin Logic
 // This file has access to the penpot object
 
-import { novyuiTokens } from './novyui-tokens';
+import { novyuiTokensHex } from './novyui-tokens-hex';
 // Types are now in penpot-api.d.ts and loaded automatically by TypeScript
 
 // Plugin initialization
@@ -88,37 +88,56 @@ function importDesignTokens() {
   console.log('🎨 Importing NovyUI Design Tokens...');
   
   try {
-    // Create color swatches for each token
-    const colorTokens = novyuiTokens.color;
+    // Create color swatches for each token - using PenPot-compatible hex values
+    const colorTokens = novyuiTokensHex.color;
     let createdColors = 0;
     let totalIndex = 0;
     
-    // Iterate through color categories (primary, neutral, success, etc.)
+    // First pass: Create all light theme colors
     Object.entries(colorTokens).forEach(([category, scales]: [string, any]) => {
-      // Handle static colors (white, black, transparent)
+      // Handle static colors (white, black, transparent) 
       if (category === 'static') {
-        Object.entries(scales).forEach(([colorName, colorData]: [string, any]) => {
-          if (colorData.$value && colorData.$value !== 'transparent') {
+        Object.entries(scales).forEach(([colorName, colorValue]: [string, any]) => {
+          if (colorValue && colorValue !== 'transparent') {
             const rect = penpot.createRectangle();
             rect.name = `${category}-${colorName}`;
             rect.x = 100 + (totalIndex % 10) * 120;
             rect.y = 100 + Math.floor(totalIndex / 10) * 120;
             rect.resize(100, 100);
-            rect.fills = [{ fillColor: colorData.$value }];
+            rect.fills = [{ fillColor: colorValue }];
             createdColors++;
             totalIndex++;
           }
         });
       } else {
-        // Handle scale-based colors (primary.1, primary.2, etc.)
+        // Handle scale-based colors - LIGHT variants first
         Object.entries(scales).forEach(([scale, scaleData]: [string, any]) => {
-          if (scaleData.light && scaleData.light.$value) {
+          if (scaleData.light) {
             const rect = penpot.createRectangle();
-            rect.name = `${category}-${scale}`;
+            rect.name = `${category}-${scale}-light`;
             rect.x = 100 + (totalIndex % 10) * 120;
             rect.y = 100 + Math.floor(totalIndex / 10) * 120;
             rect.resize(100, 100);
-            rect.fills = [{ fillColor: scaleData.light.$value }];
+            rect.fills = [{ fillColor: scaleData.light }];
+            createdColors++;
+            totalIndex++;
+          }
+        });
+      }
+    });
+    
+    // Second pass: Create all dark theme colors
+    Object.entries(colorTokens).forEach(([category, scales]: [string, any]) => {
+      if (category !== 'static') {
+        // Handle scale-based colors - DARK variants second
+        Object.entries(scales).forEach(([scale, scaleData]: [string, any]) => {
+          if (scaleData.dark) {
+            const rectDark = penpot.createRectangle();
+            rectDark.name = `${category}-${scale}-dark`;
+            rectDark.x = 100 + (totalIndex % 10) * 120;
+            rectDark.y = 100 + Math.floor(totalIndex / 10) * 120;
+            rectDark.resize(100, 100);
+            rectDark.fills = [{ fillColor: scaleData.dark }];
             createdColors++;
             totalIndex++;
           }
@@ -166,10 +185,10 @@ function createTestComponent() {
     button.y = buttonY;
     button.resize(120, 40);
     
-    // Apply NovyUI styling
+    // Apply EXACT NovyUI styling from MoonZoon
     button.borderRadius = 6; // borderRadius.md
     button.fills = [{
-      fillColor: novyuiTokens.color.primary['7'].light.$value || '#3B82F6'
+      fillColor: novyuiTokensHex.color.primary['7'].light || '#3B82F6'
     }];
     
     // Create button text
@@ -183,7 +202,7 @@ function createTestComponent() {
         text.resize(60, 16);
         text.characters = 'Click me';
         text.fills = [{
-          fillColor: novyuiTokens.color.static.white.$value || '#FFFFFF'
+          fillColor: novyuiTokensHex.color.static?.white || '#FFFFFF'
         }];
       }
     }
@@ -268,45 +287,45 @@ function createAllComponents() {
   });
 }
 
-// Apply NovyUI styling based on component type and variant
+// Apply EXACT NovyUI styling based on component type and variant
 function applyComponentStyling(shape: any, componentName: string, variant: string) {
-  const tokens = novyuiTokens;
+  const tokens = novyuiTokensHex;
   
   // Base styling
   shape.borderRadius = 6;
   
-  // Component-specific styling
+  // Component-specific styling with EXACT MoonZoon token values
   switch (componentName) {
     case 'Button':
       if (variant === 'primary') {
-        shape.fills = [{ fillColor: tokens.color.primary['7'].light.$value }];
+        shape.fills = [{ fillColor: tokens.color.primary['7'].light }];
       } else if (variant === 'secondary') {
-        shape.fills = [{ fillColor: tokens.color.neutral['3'].light.$value }];
+        shape.fills = [{ fillColor: tokens.color.neutral['3'].light }];
       } else if (variant === 'outline') {
         shape.fills = [];
         shape.strokes = [{
-          strokeColor: tokens.color.primary['7'].light.$value,
+          strokeColor: tokens.color.primary['7'].light,
           strokeWidth: 2
         }];
       }
       break;
       
     case 'Input':
-      shape.fills = [{ fillColor: tokens.color.static.white.$value }];
+      shape.fills = [{ fillColor: tokens.color.static?.white || '#FFFFFF' }];
       shape.strokes = [{
-        strokeColor: tokens.color.neutral['6'].light.$value,
+        strokeColor: tokens.color.neutral['6'].light || '#64748b',
         strokeWidth: 1
       }];
       break;
       
     case 'Card':
       if (variant === 'elevated') {
-        shape.fills = [{ fillColor: tokens.color.static.white.$value }];
+        shape.fills = [{ fillColor: tokens.color.static?.white || '#FFFFFF' }];
         // Note: Shadows might not be directly settable via plugin API
       } else if (variant === 'outlined') {
-        shape.fills = [{ fillColor: tokens.color.static.white.$value }];
+        shape.fills = [{ fillColor: tokens.color.static?.white || '#FFFFFF' }];
         shape.strokes = [{
-          strokeColor: tokens.color.neutral['4'].light.$value,
+          strokeColor: tokens.color.neutral['4'].light || '#94a3b8',
           strokeWidth: 1
         }];
       }
@@ -316,11 +335,11 @@ function applyComponentStyling(shape: any, componentName: string, variant: strin
       shape.resize(80, 24);
       shape.borderRadius = 12;
       if (variant === 'success') {
-        shape.fills = [{ fillColor: tokens.color.success['7'].light.$value }];
+        shape.fills = [{ fillColor: tokens.color.success?.['7']?.light || '#10b981' }];
       } else if (variant === 'warning') {
-        shape.fills = [{ fillColor: tokens.color.warning['7'].light.$value }];
+        shape.fills = [{ fillColor: tokens.color.warning?.['7']?.light || '#f59e0b' }];
       } else if (variant === 'error') {
-        shape.fills = [{ fillColor: tokens.color.error['7'].light.$value }];
+        shape.fills = [{ fillColor: tokens.color.error?.['7']?.light || '#ef4444' }];
       }
       break;
   }
