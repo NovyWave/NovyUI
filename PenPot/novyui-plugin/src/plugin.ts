@@ -16,8 +16,21 @@ penpot.ui.onMessage((message: any) => {
       testPluginCapabilities();
       break;
     
+    case 'remove-all-tokens':
+      removeAllTokens();
+      break;
+    
+    case 'import-all-tokens':
+      importAllTokensToPenpot();
+      break;
+    
+    case 'create-token-elements':
+      createTokenTestingElements();
+      break;
+    
     case 'import-tokens':
-      importDesignTokens();
+      // Legacy button - now does the same as create-token-elements
+      createTokenTestingElements();
       break;
     
     case 'create-test-component':
@@ -83,15 +96,102 @@ function testPluginCapabilities() {
   console.log('Plugin Capabilities:', capabilities);
 }
 
-// Import NovyUI design tokens
-function importDesignTokens() {
-  console.log('🎨 Importing NovyUI Design Tokens...');
+// Remove all tokens from PenPot
+function removeAllTokens() {
+  console.log('🗑️ Removing all tokens from PenPot...');
   
   try {
-    // Create color swatches for each token - using PenPot-compatible hex values
-    const colorTokens = novyuiTokensHex.color;
-    let createdColors = 0;
+    // Check if PenPot library API is available
+    if (typeof penpot.library !== 'undefined') {
+      // TODO: Implement token removal when PenPot API supports it
+      console.log('Token removal API not yet available in PenPot');
+      penpot.ui.sendMessage({
+        type: 'import-result',
+        data: {
+          success: false,
+          message: 'Token removal is not yet supported by PenPot API'
+        }
+      });
+    } else {
+      penpot.ui.sendMessage({
+        type: 'import-result',
+        data: {
+          success: false,
+          message: 'PenPot library API not available'
+        }
+      });
+    }
+  } catch (error) {
+    penpot.ui.sendMessage({
+      type: 'import-result',
+      data: {
+        success: false,
+        error: (error as Error).message
+      }
+    });
+  }
+}
+
+// Import all tokens to PenPot library (no canvas elements)
+function importAllTokensToPenpot() {
+  console.log('📚 Importing all tokens to PenPot library...');
+  
+  try {
+    // Check if PenPot library API is available
+    if (typeof penpot.library !== 'undefined') {
+      // TODO: Implement actual token library import when PenPot API supports it
+      // For now, we'll log what would be imported
+      const tokens = novyuiTokensHex;
+      
+      console.log('Would import color tokens:', Object.keys(tokens.color).length);
+      console.log('Would import spacing tokens:', Object.keys(tokens.spacing).length);
+      console.log('Would import typography tokens:', Object.keys(tokens.typography).length);
+      console.log('Would import opacity tokens:', Object.keys(tokens.opacity).length);
+      console.log('Would import border tokens:', Object.keys(tokens.border).length);
+      console.log('Would import corner radius tokens:', Object.keys(tokens.cornerRadius).length);
+      console.log('Would import shadow tokens:', Object.keys(tokens.shadow).length);
+      
+      penpot.ui.sendMessage({
+        type: 'import-result',
+        data: {
+          success: false,
+          message: 'Token library import is not yet fully supported by PenPot API. Use "Create Token Testing Elements" instead.'
+        }
+      });
+    } else {
+      penpot.ui.sendMessage({
+        type: 'import-result',
+        data: {
+          success: false,
+          message: 'PenPot library API not available'
+        }
+      });
+    }
+  } catch (error) {
+    penpot.ui.sendMessage({
+      type: 'import-result',
+      data: {
+        success: false,
+        error: (error as Error).message
+      }
+    });
+  }
+}
+
+// Create token testing elements on canvas (using the imported tokens)
+function createTokenTestingElements() {
+  console.log('🎨 Creating token testing elements on canvas...');
+  
+  try {
+    // Import ALL token categories from MoonZoon
+    const tokens = novyuiTokensHex;
+    let totalCreated = 0;
     let totalIndex = 0;
+    
+    // 1. COLORS - Create color swatches for each token
+    console.log('📦 Creating color tokens...');
+    const colorTokens = tokens.color;
+    let createdColors = 0;
     
     // First pass: Create all light theme colors
     Object.entries(colorTokens).forEach(([category, scales]: [string, any]) => {
@@ -145,11 +245,90 @@ function importDesignTokens() {
       }
     });
     
+    totalCreated += createdColors;
+    console.log(`✅ Created ${createdColors} color tokens`);
+    
+    // 2. SPACING - Create spacing reference rectangles
+    console.log('📏 Creating spacing tokens...');
+    let spacingIndex = 0;
+    const spacingY = 100 + Math.floor(totalIndex / 10) * 120 + 200; // Offset below colors
+    Object.entries(tokens.spacing).forEach(([key, value]: [string, any]) => {
+      const rect = penpot.createRectangle();
+      rect.name = `spacing-${key}`;
+      rect.x = 100 + (spacingIndex % 10) * 120;
+      rect.y = spacingY;
+      const size = parseInt(value);
+      rect.resize(Math.max(size, 10), Math.max(size, 10)); // Minimum 10px for visibility
+      rect.fills = [{ fillColor: '#E2E8F0' }];
+      rect.strokes = [{ strokeColor: '#64748B', strokeWidth: 1 }];
+      spacingIndex++;
+      totalCreated++;
+    });
+    console.log(`✅ Created ${Object.keys(tokens.spacing).length} spacing tokens`);
+    
+    // 3. BORDER RADIUS - Create rounded rectangles
+    console.log('🔄 Creating border radius tokens...');
+    let radiusIndex = 0;
+    const radiusY = spacingY + 150;
+    Object.entries(tokens.cornerRadius).forEach(([key, value]: [string, any]) => {
+      const rect = penpot.createRectangle();
+      rect.name = `border-radius-${key}`;
+      rect.x = 100 + (radiusIndex % 10) * 120;
+      rect.y = radiusY;
+      rect.resize(80, 80);
+      rect.fills = [{ fillColor: '#3B82F6' }];
+      rect.borderRadius = key === 'max' ? 40 : parseInt(value); // Cap max at 40px for demo
+      radiusIndex++;
+      totalCreated++;
+    });
+    console.log(`✅ Created ${Object.keys(tokens.cornerRadius).length} border radius tokens`);
+    
+    // 4. OPACITY - Create opacity demonstration rectangles
+    console.log('👻 Creating opacity tokens...');
+    let opacityIndex = 0;
+    const opacityY = radiusY + 150;
+    Object.entries(tokens.opacity).forEach(([key, value]: [string, any]) => {
+      const rect = penpot.createRectangle();
+      rect.name = `opacity-${key}`;
+      rect.x = 100 + (opacityIndex % 10) * 120;
+      rect.y = opacityY;
+      rect.resize(80, 80);
+      rect.fills = [{ fillColor: '#EF4444', fillOpacity: parseFloat(value) } as any];
+      opacityIndex++;
+      totalCreated++;
+    });
+    console.log(`✅ Created ${Object.keys(tokens.opacity).length} opacity tokens`);
+    
+    // 5. TYPOGRAPHY - Create text samples
+    console.log('📝 Creating typography tokens...');
+    let typoIndex = 0;
+    const typoY = opacityY + 150;
+    
+    // Font sizes
+    Object.entries(tokens.typography.fontSize).forEach(([key, value]: [string, any]) => {
+      if (typeof penpot.createText === 'function') {
+        const text = penpot.createText(`Font ${key}px`);
+        if (text) {
+          text.name = `font-size-${key}`;
+          text.x = 100 + (typoIndex % 6) * 150;
+          text.y = typoY + Math.floor(typoIndex / 6) * 60;
+          text.characters = `${key}px Sample`;
+          text.fills = [{ fillColor: '#1F2937' }];
+          if ('fontSize' in text) {
+            (text as any).fontSize = parseInt(value);
+          }
+          typoIndex++;
+          totalCreated++;
+        }
+      }
+    });
+    console.log(`✅ Created ${Object.keys(tokens.typography.fontSize).length} typography tokens`);
+    
     penpot.ui.sendMessage({
       type: 'import-result',
       data: {
         success: true,
-        message: `Created ${createdColors} color swatches from tokens`
+        message: `Created ${totalCreated} design tokens (${createdColors} colors + ${totalCreated - createdColors} other tokens)`
       }
     });
     

@@ -176,16 +176,62 @@ export const novyuiTokensHex = {
       "black": "#000000"
     }
   },
-  "spacing": {},
+  "spacing": {
+    "0": "0px",
+    "2": "2px", 
+    "4": "4px",
+    "6": "6px",
+    "8": "8px",
+    "10": "10px",
+    "12": "12px",
+    "16": "16px",
+    "20": "20px",
+    "24": "24px",
+    "32": "32px",
+    "40": "40px",
+    "48": "48px",
+    "56": "56px",
+    "64": "64px",
+    "96": "96px",
+    "128": "128px",
+    "150": "150px"
+  },
   "typography": {
     "fontFamily": {
       "sans": "'Inter', 'system-ui', 'Segoe UI', 'Arial', sans-serif",
       "mono": "'FiraCode', 'Menlo', 'Monaco', 'Consolas', monospace",
       "display": "'Audiowide', 'system-ui', 'Arial', sans-serif"
     },
-    "fontSize": {},
-    "fontWeight": {},
-    "lineHeight": {}
+    "fontSize": {
+      "12": "12px",
+      "14": "14px", 
+      "16": "16px",
+      "18": "18px",
+      "20": "20px",
+      "24": "24px",
+      "30": "30px",
+      "32": "32px",
+      "36": "36px",
+      "48": "48px"
+    },
+    "fontWeight": {
+      "normal": "400",
+      "medium": "500", 
+      "semibold": "600",
+      "bold": "700"
+    },
+    "lineHeight": {
+      "100": "1.0",
+      "120": "1.2",
+      "140": "1.4", 
+      "160": "1.6",
+      "200": "2.0"
+    },
+    "letterSpacing": {
+      "0": "0%",
+      "1": "1%",
+      "2": "2%"
+    }
   },
   "shadow": {
     "size": {
@@ -221,10 +267,85 @@ export const novyuiTokensHex = {
     },
     "easing": {}
   },
-  "opacity": {},
-  "border": {},
-  "cornerRadius": {},
-  "focus": {}
+  "opacity": {
+    "none": "0",
+    "subtle": "0.04",
+    "light": "0.08", 
+    "medium": "0.16",
+    "strong": "0.32",
+    "hover": "0.64",
+    "focus": "0.8",
+    "opaque": "1",
+    "disabled": "0.64",
+    "enabled": "1"
+  },
+  "border": {
+    "width": {
+      "0": "0px",
+      "1": "1px",
+      "2": "2px", 
+      "4": "4px"
+    },
+    "style": {
+      "solid": "solid",
+      "dashed": "dashed",
+      "dotted": "dotted"
+    }
+  },
+  "cornerRadius": {
+    "0": "0px",
+    "2": "2px",
+    "4": "4px",
+    "6": "6px", 
+    "8": "8px",
+    "16": "16px",
+    "max": "9999px"
+  },
+  "focus": {
+    "ringWidth": "2px",
+    "ringWidthThick": "4px",
+    "ringOffset": "2px"
+  },
+  "sizing": {
+    "icon": {
+      "small": "16px",
+      "medium": "20px",
+      "large": "24px",
+      "xlarge": "32px"
+    },
+    "avatar": {
+      "small": "24px", 
+      "medium": "32px",
+      "large": "40px",
+      "xlarge": "48px"
+    },
+    "switch": {
+      "small": {
+        "trackWidth": "49px",
+        "trackHeight": "24px",
+        "thumbSize": "20px"
+      },
+      "medium": {
+        "trackWidth": "52px", 
+        "trackHeight": "28px",
+        "thumbSize": "24px"
+      },
+      "large": {
+        "trackWidth": "64px",
+        "trackHeight": "32px", 
+        "thumbSize": "28px"
+      }
+    }
+  },
+  "dimensions": {
+    "cardDemo": {
+      "width": "120px",
+      "height": "80px"
+    },
+    "treeIndent": "20px",
+    "textareaLineHeight": "20px",
+    "thumbPadding": "2px"
+  }
 };
 
 export type NovyUITokensHex = typeof novyuiTokensHex;

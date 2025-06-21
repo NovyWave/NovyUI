@@ -30,8 +30,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
       <section class="actions">
         <h2>🎨 Design Tokens</h2>
-        <button id="import-tokens" class="btn btn-primary">
-          Import Color Tokens
+        <button id="remove-all-tokens" class="btn btn-danger">
+          Remove All Tokens
+        </button>
+        <button id="import-all-tokens" class="btn btn-primary">
+          Import All Tokens
+        </button>
+        <button id="create-token-elements" class="btn btn-success">
+          Create Token Testing Elements
         </button>
         <div id="token-result" class="result-box"></div>
       </section>
@@ -58,8 +64,16 @@ document.addEventListener('DOMContentLoaded', () => {
     sendMessage({ type: 'test-capabilities' });
   });
 
-  document.getElementById('import-tokens')?.addEventListener('click', () => {
-    sendMessage({ type: 'import-tokens' });
+  document.getElementById('remove-all-tokens')?.addEventListener('click', () => {
+    sendMessage({ type: 'remove-all-tokens' });
+  });
+
+  document.getElementById('import-all-tokens')?.addEventListener('click', () => {
+    sendMessage({ type: 'import-all-tokens' });
+  });
+
+  document.getElementById('create-token-elements')?.addEventListener('click', () => {
+    sendMessage({ type: 'create-token-elements' });
   });
 
   document.getElementById('create-test')?.addEventListener('click', () => {
