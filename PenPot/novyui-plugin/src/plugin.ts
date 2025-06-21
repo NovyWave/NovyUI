@@ -134,39 +134,25 @@ function removeAllTokens() {
 
 // Import all tokens to PenPot library (no canvas elements)
 function importAllTokensToPenpot() {
-  console.log('📚 Importing all tokens to PenPot library...');
+  console.log('📚 Explaining PenPot token import limitations...');
   
   try {
-    // Check if PenPot library API is available
-    if (typeof penpot.library !== 'undefined') {
-      // TODO: Implement actual token library import when PenPot API supports it
-      // For now, we'll log what would be imported
-      const tokens = novyuiTokensHex;
-      
-      console.log('Would import color tokens:', Object.keys(tokens.color).length);
-      console.log('Would import spacing tokens:', Object.keys(tokens.spacing).length);
-      console.log('Would import typography tokens:', Object.keys(tokens.typography).length);
-      console.log('Would import opacity tokens:', Object.keys(tokens.opacity).length);
-      console.log('Would import border tokens:', Object.keys(tokens.border).length);
-      console.log('Would import corner radius tokens:', Object.keys(tokens.cornerRadius).length);
-      console.log('Would import shadow tokens:', Object.keys(tokens.shadow).length);
-      
-      penpot.ui.sendMessage({
-        type: 'import-result',
-        data: {
-          success: false,
-          message: 'Token library import is not yet fully supported by PenPot API. Use "Create Token Testing Elements" instead.'
-        }
-      });
-    } else {
-      penpot.ui.sendMessage({
-        type: 'import-result',
-        data: {
-          success: false,
-          message: 'PenPot library API not available'
-        }
-      });
-    }
+    penpot.ui.sendMessage({
+      type: 'import-result',
+      data: {
+        success: false,
+        message: `❌ PenPot Plugin API Limitation: Cannot create design token references programmatically. 
+
+🔧 Current Status: PenPot's plugin API for design tokens is still in development.
+
+✅ SOLUTION: Import tokens manually:
+1. Download: /home/martinkavik/repos/NovyUI/PenPot/novyui-penpot-tokens.json
+2. In PenPot: Go to Libraries → Design Tokens → Import → Select the JSON file
+3. This will create actual token references that update when switching themes
+
+📖 Elements created by "Create Token Testing Elements" show token VALUES but are static shapes, not dynamic token references.`
+      }
+    });
   } catch (error) {
     penpot.ui.sendMessage({
       type: 'import-result',
@@ -178,157 +164,394 @@ function importAllTokensToPenpot() {
   }
 }
 
-// Create token testing elements on canvas (using the imported tokens)
+// Create token testing elements on canvas (demonstrating all imported tokens with theme switching)
 function createTokenTestingElements() {
-  console.log('🎨 Creating token testing elements on canvas...');
+  console.log('🎨 Creating comprehensive token testing elements on canvas...');
+  console.log('⚠️  NOTE: These elements show token VALUES but are static shapes.');
+  console.log('🔧 For dynamic token references, import novyui-penpot-tokens.json manually in PenPot.');
   
   try {
-    // Import ALL token categories from MoonZoon
-    const tokens = novyuiTokensHex;
     let totalCreated = 0;
-    let totalIndex = 0;
+    let startX = 100;
+    let currentY = 100;
     
-    // 1. COLORS - Create color swatches for each token
-    console.log('📦 Creating color tokens...');
-    const colorTokens = tokens.color;
-    let createdColors = 0;
-    
-    // First pass: Create all light theme colors
-    Object.entries(colorTokens).forEach(([category, scales]: [string, any]) => {
-      // Handle static colors (white, black, transparent) 
-      if (category === 'static') {
-        Object.entries(scales).forEach(([colorName, colorValue]: [string, any]) => {
-          if (colorValue && colorValue !== 'transparent') {
-            const rect = penpot.createRectangle();
-            rect.name = `${category}-${colorName}`;
-            rect.x = 100 + (totalIndex % 10) * 120;
-            rect.y = 100 + Math.floor(totalIndex / 10) * 120;
-            rect.resize(100, 100);
-            rect.fills = [{ fillColor: colorValue }];
-            createdColors++;
-            totalIndex++;
-          }
-        });
-      } else {
-        // Handle scale-based colors - LIGHT variants first
-        Object.entries(scales).forEach(([scale, scaleData]: [string, any]) => {
-          if (scaleData.light) {
-            const rect = penpot.createRectangle();
-            rect.name = `${category}-${scale}-light`;
-            rect.x = 100 + (totalIndex % 10) * 120;
-            rect.y = 100 + Math.floor(totalIndex / 10) * 120;
-            rect.resize(100, 100);
-            rect.fills = [{ fillColor: scaleData.light }];
-            createdColors++;
-            totalIndex++;
-          }
-        });
+    // Create header with instructions
+    if (typeof penpot.createText === 'function') {
+      const header = penpot.createText('NovyUI Design System Token Demo');
+      if (header) {
+        header.name = 'Token Demo Header';
+        header.x = startX;
+        header.y = currentY;
+        header.characters = 'NovyUI Design System Token Demo';
+        header.fills = [{ fillColor: '#1F2937' }];
+        if ('fontSize' in header) (header as any).fontSize = 24;
+        if ('fontWeight' in header) (header as any).fontWeight = 400;
+        currentY += 60;
+        totalCreated++;
       }
-    });
-    
-    // Second pass: Create all dark theme colors
-    Object.entries(colorTokens).forEach(([category, scales]: [string, any]) => {
-      if (category !== 'static') {
-        // Handle scale-based colors - DARK variants second
-        Object.entries(scales).forEach(([scale, scaleData]: [string, any]) => {
-          if (scaleData.dark) {
-            const rectDark = penpot.createRectangle();
-            rectDark.name = `${category}-${scale}-dark`;
-            rectDark.x = 100 + (totalIndex % 10) * 120;
-            rectDark.y = 100 + Math.floor(totalIndex / 10) * 120;
-            rectDark.resize(100, 100);
-            rectDark.fills = [{ fillColor: scaleData.dark }];
-            createdColors++;
-            totalIndex++;
-          }
-        });
+      
+      const subtitle = penpot.createText('Light Theme Colors → Dark Theme Colors → Spacing → Border Radius → Typography');
+      if (subtitle) {
+        subtitle.name = 'Demo Instructions';
+        subtitle.x = startX;
+        subtitle.y = currentY;
+        subtitle.characters = 'Light Theme Colors → Dark Theme Colors → Spacing → Border Radius → Typography';
+        subtitle.fills = [{ fillColor: '#64748B' }];
+        if ('fontSize' in subtitle) (subtitle as any).fontSize = 14;
+        currentY += 80;
+        totalCreated++;
       }
-    });
+    }
     
-    totalCreated += createdColors;
-    console.log(`✅ Created ${createdColors} color tokens`);
+    // 1. LIGHT THEME COLOR SHOWCASE
+    console.log('🌞 Creating light theme color showcase...');
+    if (typeof penpot.createText === 'function') {
+      const lightHeader = penpot.createText('Light Theme Colors');
+      if (lightHeader) {
+        lightHeader.name = 'Light Theme Header';
+        lightHeader.x = startX;
+        lightHeader.y = currentY;
+        lightHeader.characters = 'Light Theme Colors';
+        lightHeader.fills = [{ fillColor: '#1F2937' }];
+        if ('fontSize' in lightHeader) (lightHeader as any).fontSize = 18;
+        if ('fontWeight' in lightHeader) (lightHeader as any).fontWeight = 400;
+        currentY += 40;
+        totalCreated++;
+      }
+    }
     
-    // 2. SPACING - Create spacing reference rectangles
-    console.log('📏 Creating spacing tokens...');
-    let spacingIndex = 0;
-    const spacingY = 100 + Math.floor(totalIndex / 10) * 120 + 200; // Offset below colors
-    Object.entries(tokens.spacing).forEach(([key, value]: [string, any]) => {
+    const lightColors = [
+      // Primary colors
+      { name: 'primary-1', color: novyuiTokensHex.color.primary[1].light, category: 'Primary' },
+      { name: 'primary-3', color: novyuiTokensHex.color.primary[3].light, category: 'Primary' },
+      { name: 'primary-7', color: novyuiTokensHex.color.primary[7].light, category: 'Primary' },
+      { name: 'primary-9', color: novyuiTokensHex.color.primary[9].light, category: 'Primary' },
+      // Neutral colors  
+      { name: 'neutral-1', color: novyuiTokensHex.color.neutral[1].light, category: 'Neutral' },
+      { name: 'neutral-4', color: novyuiTokensHex.color.neutral[4].light, category: 'Neutral' },
+      { name: 'neutral-7', color: novyuiTokensHex.color.neutral[7].light, category: 'Neutral' },
+      { name: 'neutral-11', color: novyuiTokensHex.color.neutral[11].light, category: 'Neutral' },
+      // Status colors
+      { name: 'success-7', color: novyuiTokensHex.color.success[7].light, category: 'Success' },
+      { name: 'warning-7', color: novyuiTokensHex.color.warning[7].light, category: 'Warning' },
+      { name: 'error-7', color: novyuiTokensHex.color.error[7].light, category: 'Error' },
+      // Semantic colors
+      { name: 'bg-primary', color: novyuiTokensHex.color.neutral[1].light, category: 'Semantic' },
+      { name: 'text-primary', color: novyuiTokensHex.color.neutral[11].light, category: 'Semantic' },
+      { name: 'border-default', color: novyuiTokensHex.color.neutral[4].light, category: 'Semantic' },
+    ];
+    
+    lightColors.forEach((colorData, index) => {
       const rect = penpot.createRectangle();
-      rect.name = `spacing-${key}`;
-      rect.x = 100 + (spacingIndex % 10) * 120;
-      rect.y = spacingY;
-      const size = parseInt(value);
-      rect.resize(Math.max(size, 10), Math.max(size, 10)); // Minimum 10px for visibility
-      rect.fills = [{ fillColor: '#E2E8F0' }];
-      rect.strokes = [{ strokeColor: '#64748B', strokeWidth: 1 }];
-      spacingIndex++;
-      totalCreated++;
-    });
-    console.log(`✅ Created ${Object.keys(tokens.spacing).length} spacing tokens`);
-    
-    // 3. BORDER RADIUS - Create rounded rectangles
-    console.log('🔄 Creating border radius tokens...');
-    let radiusIndex = 0;
-    const radiusY = spacingY + 150;
-    Object.entries(tokens.cornerRadius).forEach(([key, value]: [string, any]) => {
-      const rect = penpot.createRectangle();
-      rect.name = `border-radius-${key}`;
-      rect.x = 100 + (radiusIndex % 10) * 120;
-      rect.y = radiusY;
-      rect.resize(80, 80);
-      rect.fills = [{ fillColor: '#3B82F6' }];
-      rect.borderRadius = key === 'max' ? 40 : parseInt(value); // Cap max at 40px for demo
-      radiusIndex++;
-      totalCreated++;
-    });
-    console.log(`✅ Created ${Object.keys(tokens.cornerRadius).length} border radius tokens`);
-    
-    // 4. OPACITY - Create opacity demonstration rectangles
-    console.log('👻 Creating opacity tokens...');
-    let opacityIndex = 0;
-    const opacityY = radiusY + 150;
-    Object.entries(tokens.opacity).forEach(([key, value]: [string, any]) => {
-      const rect = penpot.createRectangle();
-      rect.name = `opacity-${key}`;
-      rect.x = 100 + (opacityIndex % 10) * 120;
-      rect.y = opacityY;
-      rect.resize(80, 80);
-      rect.fills = [{ fillColor: '#EF4444', fillOpacity: parseFloat(value) } as any];
-      opacityIndex++;
-      totalCreated++;
-    });
-    console.log(`✅ Created ${Object.keys(tokens.opacity).length} opacity tokens`);
-    
-    // 5. TYPOGRAPHY - Create text samples
-    console.log('📝 Creating typography tokens...');
-    let typoIndex = 0;
-    const typoY = opacityY + 150;
-    
-    // Font sizes
-    Object.entries(tokens.typography.fontSize).forEach(([key, value]: [string, any]) => {
+      rect.name = `light-${colorData.name}`;
+      rect.x = startX + (index % 7) * 120;
+      rect.y = currentY + Math.floor(index / 7) * 100;
+      rect.resize(100, 80);
+      rect.fills = [{ fillColor: colorData.color }];
+      rect.strokes = [{ strokeColor: '#CBD5E1', strokeWidth: 1 }];
+      
+      // Add color name label
       if (typeof penpot.createText === 'function') {
-        const text = penpot.createText(`Font ${key}px`);
-        if (text) {
-          text.name = `font-size-${key}`;
-          text.x = 100 + (typoIndex % 6) * 150;
-          text.y = typoY + Math.floor(typoIndex / 6) * 60;
-          text.characters = `${key}px Sample`;
-          text.fills = [{ fillColor: '#1F2937' }];
-          if ('fontSize' in text) {
-            (text as any).fontSize = parseInt(value);
-          }
-          typoIndex++;
+        const label = penpot.createText(colorData.name);
+        if (label) {
+          label.name = `${colorData.name}-label`;
+          label.x = rect.x + 5;
+          label.y = rect.y + 85;
+          label.characters = colorData.name;
+          label.fills = [{ fillColor: '#374151' }];
+          if ('fontSize' in label) (label as any).fontSize = 10;
           totalCreated++;
         }
       }
+      totalCreated++;
     });
-    console.log(`✅ Created ${Object.keys(tokens.typography.fontSize).length} typography tokens`);
+    
+    currentY += Math.ceil(lightColors.length / 7) * 100 + 60;
+    
+    // 2. DARK THEME COLOR SHOWCASE  
+    console.log('🌙 Creating dark theme color showcase...');
+    if (typeof penpot.createText === 'function') {
+      const darkHeader = penpot.createText('Dark Theme Colors');
+      if (darkHeader) {
+        darkHeader.name = 'Dark Theme Header';
+        darkHeader.x = startX;
+        darkHeader.y = currentY;
+        darkHeader.characters = 'Dark Theme Colors';
+        darkHeader.fills = [{ fillColor: '#1F2937' }];
+        if ('fontSize' in darkHeader) (darkHeader as any).fontSize = 18;
+        if ('fontWeight' in darkHeader) (darkHeader as any).fontWeight = 400;
+        currentY += 40;
+        totalCreated++;
+      }
+    }
+    
+    const darkColors = [
+      // Primary colors (inverted)
+      { name: 'primary-1', color: novyuiTokensHex.color.primary[1].dark, category: 'Primary' },
+      { name: 'primary-3', color: novyuiTokensHex.color.primary[3].dark, category: 'Primary' },
+      { name: 'primary-7', color: novyuiTokensHex.color.primary[7].dark, category: 'Primary' },
+      { name: 'primary-9', color: novyuiTokensHex.color.primary[9].dark, category: 'Primary' },
+      // Neutral colors
+      { name: 'neutral-1', color: novyuiTokensHex.color.neutral[1].dark, category: 'Neutral' },
+      { name: 'neutral-4', color: novyuiTokensHex.color.neutral[4].dark, category: 'Neutral' },
+      { name: 'neutral-7', color: novyuiTokensHex.color.neutral[7].dark, category: 'Neutral' },
+      { name: 'neutral-11', color: novyuiTokensHex.color.neutral[11].dark, category: 'Neutral' },
+      // Status colors
+      { name: 'success-7', color: novyuiTokensHex.color.success[7].dark, category: 'Success' },
+      { name: 'warning-7', color: novyuiTokensHex.color.warning[7].dark, category: 'Warning' },
+      { name: 'error-7', color: novyuiTokensHex.color.error[7].dark, category: 'Error' },
+      // Semantic colors
+      { name: 'bg-primary', color: novyuiTokensHex.color.neutral[1].dark, category: 'Semantic' },
+      { name: 'text-primary', color: novyuiTokensHex.color.neutral[11].dark, category: 'Semantic' },
+      { name: 'border-default', color: novyuiTokensHex.color.neutral[4].dark, category: 'Semantic' },
+    ];
+    
+    darkColors.forEach((colorData, index) => {
+      const rect = penpot.createRectangle();
+      rect.name = `dark-${colorData.name}`;
+      rect.x = startX + (index % 7) * 120;
+      rect.y = currentY + Math.floor(index / 7) * 100;
+      rect.resize(100, 80);
+      rect.fills = [{ fillColor: colorData.color }];
+      rect.strokes = [{ strokeColor: '#6B7280', strokeWidth: 1 }];
+      
+      // Add color name label
+      if (typeof penpot.createText === 'function') {
+        const label = penpot.createText(colorData.name);
+        if (label) {
+          label.name = `dark-${colorData.name}-label`;
+          label.x = rect.x + 5;
+          label.y = rect.y + 85;
+          label.characters = colorData.name;
+          label.fills = [{ fillColor: '#9CA3AF' }];
+          if ('fontSize' in label) (label as any).fontSize = 10;
+          totalCreated++;
+        }
+      }
+      totalCreated++;
+    });
+    
+    currentY += Math.ceil(darkColors.length / 7) * 100 + 80;
+    
+    // 3. SPACING DEMONSTRATION
+    console.log('📏 Creating spacing demonstration...');
+    if (typeof penpot.createText === 'function') {
+      const spacingHeader = penpot.createText('Spacing Tokens');
+      if (spacingHeader) {
+        spacingHeader.name = 'Spacing Header';
+        spacingHeader.x = startX;
+        spacingHeader.y = currentY;
+        spacingHeader.characters = 'Spacing Tokens (Visual Size = Token Value)';
+        spacingHeader.fills = [{ fillColor: '#1F2937' }];
+        if ('fontSize' in spacingHeader) (spacingHeader as any).fontSize = 18;
+        if ('fontWeight' in spacingHeader) (spacingHeader as any).fontWeight = 400;
+        currentY += 40;
+        totalCreated++;
+      }
+    }
+    
+    const spacingTokens = [
+      { name: '4', value: parseInt(novyuiTokensHex.spacing[4]) },
+      { name: '8', value: parseInt(novyuiTokensHex.spacing[8]) },
+      { name: '12', value: parseInt(novyuiTokensHex.spacing[12]) },
+      { name: '16', value: parseInt(novyuiTokensHex.spacing[16]) },
+      { name: '24', value: parseInt(novyuiTokensHex.spacing[24]) },
+      { name: '32', value: parseInt(novyuiTokensHex.spacing[32]) },
+      { name: '48', value: parseInt(novyuiTokensHex.spacing[48]) },
+      { name: '64', value: parseInt(novyuiTokensHex.spacing[64]) },
+    ];
+    
+    spacingTokens.forEach((spacing, index) => {
+      const rect = penpot.createRectangle();
+      rect.name = `spacing-${spacing.name}`;
+      rect.x = startX + (index % 8) * 100;
+      rect.y = currentY;
+      rect.resize(Math.max(spacing.value, 8), Math.max(spacing.value, 8));
+      rect.fills = [{ fillColor: '#DBEAFE' }];
+      rect.strokes = [{ strokeColor: '#3B82F6', strokeWidth: 1 }];
+      
+      // Add spacing label
+      if (typeof penpot.createText === 'function') {
+        const label = penpot.createText(`${spacing.name}px`);
+        if (label) {
+          label.name = `spacing-${spacing.name}-label`;
+          label.x = rect.x;
+          label.y = rect.y + spacing.value + 10;
+          label.characters = `${spacing.name}px`;
+          label.fills = [{ fillColor: '#374151' }];
+          if ('fontSize' in label) (label as any).fontSize = 10;
+          totalCreated++;
+        }
+      }
+      totalCreated++;
+    });
+    
+    currentY += 120;
+    
+    // 4. BORDER RADIUS DEMONSTRATION
+    console.log('🔄 Creating border radius demonstration...');
+    if (typeof penpot.createText === 'function') {
+      const radiusHeader = penpot.createText('Border Radius Tokens');
+      if (radiusHeader) {
+        radiusHeader.name = 'Border Radius Header';
+        radiusHeader.x = startX;
+        radiusHeader.y = currentY;
+        radiusHeader.characters = 'Border Radius Tokens';
+        radiusHeader.fills = [{ fillColor: '#1F2937' }];
+        if ('fontSize' in radiusHeader) (radiusHeader as any).fontSize = 18;
+        if ('fontWeight' in radiusHeader) (radiusHeader as any).fontWeight = 400;
+        currentY += 40;
+        totalCreated++;
+      }
+    }
+    
+    const radiusTokens = [
+      { name: 'none (0)', value: parseInt(novyuiTokensHex.cornerRadius[0]) },
+      { name: 'xs (2)', value: parseInt(novyuiTokensHex.cornerRadius[2]) },
+      { name: 'sm (4)', value: parseInt(novyuiTokensHex.cornerRadius[4]) },
+      { name: 'md (6)', value: parseInt(novyuiTokensHex.cornerRadius[6]) },
+      { name: 'lg (8)', value: parseInt(novyuiTokensHex.cornerRadius[8]) },
+      { name: 'xl (16)', value: parseInt(novyuiTokensHex.cornerRadius[16]) },
+      { name: 'full', value: parseInt(novyuiTokensHex.cornerRadius.max) },
+    ];
+    
+    radiusTokens.forEach((radius, index) => {
+      const rect = penpot.createRectangle();
+      rect.name = `border-radius-${radius.name}`;
+      rect.x = startX + (index % 7) * 120;
+      rect.y = currentY;
+      rect.resize(80, 80);
+      rect.fills = [{ fillColor: '#10B981' }];
+      rect.borderRadius = radius.value;
+      
+      // Add radius label
+      if (typeof penpot.createText === 'function') {
+        const label = penpot.createText(radius.name);
+        if (label) {
+          label.name = `radius-${radius.name}-label`;
+          label.x = rect.x + 5;
+          label.y = rect.y + 90;
+          label.characters = radius.name;
+          label.fills = [{ fillColor: '#374151' }];
+          if ('fontSize' in label) (label as any).fontSize = 10;
+          totalCreated++;
+        }
+      }
+      totalCreated++;
+    });
+    
+    currentY += 140;
+    
+    // 5. TYPOGRAPHY DEMONSTRATION
+    console.log('📝 Creating typography demonstration...');
+    if (typeof penpot.createText === 'function') {
+      const typoHeader = penpot.createText('Typography Tokens');
+      if (typoHeader) {
+        typoHeader.name = 'Typography Header';
+        typoHeader.x = startX;
+        typoHeader.y = currentY;
+        typoHeader.characters = 'Typography Tokens';
+        typoHeader.fills = [{ fillColor: '#1F2937' }];
+        if ('fontSize' in typoHeader) (typoHeader as any).fontSize = 18;
+        if ('fontWeight' in typoHeader) (typoHeader as any).fontWeight = 400;
+        currentY += 40;
+        totalCreated++;
+      }
+      
+      const fontSizes = [
+        { name: 'xs', size: parseInt(novyuiTokensHex.typography.fontSize[12]) },
+        { name: 'sm', size: parseInt(novyuiTokensHex.typography.fontSize[14]) },
+        { name: 'base', size: parseInt(novyuiTokensHex.typography.fontSize[16]) },
+        { name: 'lg', size: parseInt(novyuiTokensHex.typography.fontSize[18]) },
+        { name: 'xl', size: parseInt(novyuiTokensHex.typography.fontSize[20]) },
+        { name: '2xl', size: parseInt(novyuiTokensHex.typography.fontSize[24]) },
+        { name: '3xl', size: parseInt(novyuiTokensHex.typography.fontSize[30]) },
+        { name: '4xl', size: parseInt(novyuiTokensHex.typography.fontSize[36]) },
+      ];
+      
+      fontSizes.forEach((font, index) => {
+        const text = penpot.createText(`${font.name} (${font.size}px)`);
+        if (text) {
+          text.name = `font-${font.name}`;
+          text.x = startX;
+          text.y = currentY + (index * 50);
+          text.characters = `${font.name} (${font.size}px) - The quick brown fox jumps`;
+          text.fills = [{ fillColor: '#1F2937' }];
+          if ('fontSize' in text) (text as any).fontSize = font.size;
+          totalCreated++;
+        }
+      });
+      
+      currentY += fontSizes.length * 50 + 60;
+    }
+    
+    // 6. THEME SWITCHING DEMO
+    console.log('🎭 Creating theme switching demonstration...');
+    if (typeof penpot.createText === 'function') {
+      const themeHeader = penpot.createText('Theme Switching Demo');
+      if (themeHeader) {
+        themeHeader.name = 'Theme Demo Header';
+        themeHeader.x = startX;
+        themeHeader.y = currentY;
+        themeHeader.characters = 'Theme Switching Demo - Component Examples';
+        themeHeader.fills = [{ fillColor: '#1F2937' }];
+        if ('fontSize' in themeHeader) (themeHeader as any).fontSize = 18;
+        if ('fontWeight' in themeHeader) (themeHeader as any).fontWeight = 400;
+        currentY += 60;
+        totalCreated++;
+      }
+      
+      // Create sample components using semantic tokens
+      const components = [
+        {
+          name: 'Light Button',
+          bg: novyuiTokensHex.color.neutral[1].light,      // bg.primary light
+          text: novyuiTokensHex.color.neutral[11].light,    // text.primary light
+          border: novyuiTokensHex.color.neutral[4].light   // border.default light
+        },
+        {
+          name: 'Dark Button', 
+          bg: novyuiTokensHex.color.neutral[1].dark,      // bg.primary dark
+          text: novyuiTokensHex.color.neutral[11].dark,    // text.primary dark
+          border: novyuiTokensHex.color.neutral[4].dark   // border.default dark
+        }
+      ];
+      
+      components.forEach((comp, index) => {
+        // Button background
+        const button = penpot.createRectangle();
+        button.name = `${comp.name} Background`;
+        button.x = startX + (index * 200);
+        button.y = currentY;
+        button.resize(150, 40);
+        button.fills = [{ fillColor: comp.bg }];
+        button.strokes = [{ strokeColor: comp.border, strokeWidth: 1 }];
+        button.borderRadius = 6;
+        
+        // Button text
+        const buttonText = penpot.createText(comp.name);
+        if (buttonText) {
+          buttonText.name = `${comp.name} Text`;
+          buttonText.x = button.x + 20;
+          buttonText.y = button.y + 12;
+          buttonText.characters = comp.name;
+          buttonText.fills = [{ fillColor: comp.text }];
+          if ('fontSize' in buttonText) (buttonText as any).fontSize = 14;
+          if ('fontWeight' in buttonText) (buttonText as any).fontWeight = 400;
+          totalCreated++;
+        }
+        
+        totalCreated++;
+      });
+    }
+    
+    console.log(`✅ Created comprehensive token demonstration with ${totalCreated} elements`);
     
     penpot.ui.sendMessage({
       type: 'import-result',
       data: {
         success: true,
-        message: `Created ${totalCreated} design tokens (${createdColors} colors + ${totalCreated - createdColors} other tokens)`
+        message: `Created comprehensive token demo with ${totalCreated} elements showcasing all token categories and theme switching`
       }
     });
     

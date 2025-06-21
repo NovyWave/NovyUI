@@ -239,3 +239,4 @@ Before creating pull requests:
 
 ## Development Workflow Memories
 - remember to run dev servers (e.g. for penpot plugin) in background
+- reload plugin dev server after changing code
