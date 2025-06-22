@@ -39,7 +39,7 @@ export default defineConfig({
   // Plugin build configuration
   build: {
     lib: {
-      entry: 'src/plugin.ts',
+      entry: 'src/plugin.js',
       name: 'plugin',
       fileName: 'plugin',
       formats: ['es']

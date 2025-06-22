@@ -1,14 +1,13 @@
 // NovyUI PenPot Plugin - Main Plugin Logic
 // This file has access to the penpot object
 
-import { novyuiTokensHex } from './novyui-tokens-hex';
-// Types are now in penpot-api.d.ts and loaded automatically by TypeScript
+import { novyuiTokensHex } from './novyui-tokens-hex.js';
 
 // Plugin initialization
 penpot.ui.open('NovyUI Design System', '');
 
 // Handle messages from the UI
-penpot.ui.onMessage((message: any) => {
+penpot.ui.onMessage((message) => {
   console.log('Received message:', message);
 
   switch (message.type) {
@@ -126,7 +125,7 @@ function removeAllTokens() {
       type: 'import-result',
       data: {
         success: false,
-        error: (error as Error).message
+        error: error.message
       }
     });
   }
@@ -158,7 +157,7 @@ function importAllTokensToPenpot() {
       type: 'import-result',
       data: {
         success: false,
-        error: (error as Error).message
+        error: error.message
       }
     });
   }
@@ -184,8 +183,8 @@ function createTokenTestingElements() {
         header.y = currentY;
         header.characters = 'NovyUI Design System Token Demo';
         header.fills = [{ fillColor: '#1F2937' }];
-        if ('fontSize' in header) (header as any).fontSize = 24;
-        if ('fontWeight' in header) (header as any).fontWeight = 400;
+        if ('fontSize' in header) header.fontSize = 24;
+        if ('fontWeight' in header) header.fontWeight = 400;
         currentY += 60;
         totalCreated++;
       }
@@ -197,7 +196,7 @@ function createTokenTestingElements() {
         subtitle.y = currentY;
         subtitle.characters = 'Light Theme Colors → Dark Theme Colors → Spacing → Border Radius → Typography';
         subtitle.fills = [{ fillColor: '#64748B' }];
-        if ('fontSize' in subtitle) (subtitle as any).fontSize = 14;
+        if ('fontSize' in subtitle) subtitle.fontSize = 14;
         currentY += 80;
         totalCreated++;
       }
@@ -213,8 +212,8 @@ function createTokenTestingElements() {
         lightHeader.y = currentY;
         lightHeader.characters = 'Light Theme Colors';
         lightHeader.fills = [{ fillColor: '#1F2937' }];
-        if ('fontSize' in lightHeader) (lightHeader as any).fontSize = 18;
-        if ('fontWeight' in lightHeader) (lightHeader as any).fontWeight = 400;
+        if ('fontSize' in lightHeader) lightHeader.fontSize = 18;
+        if ('fontWeight' in lightHeader) lightHeader.fontWeight = 400;
         currentY += 40;
         totalCreated++;
       }
@@ -259,7 +258,7 @@ function createTokenTestingElements() {
           label.y = rect.y + 85;
           label.characters = colorData.name;
           label.fills = [{ fillColor: '#374151' }];
-          if ('fontSize' in label) (label as any).fontSize = 10;
+          if ('fontSize' in label) label.fontSize = 10;
           totalCreated++;
         }
       }
@@ -278,8 +277,8 @@ function createTokenTestingElements() {
         darkHeader.y = currentY;
         darkHeader.characters = 'Dark Theme Colors';
         darkHeader.fills = [{ fillColor: '#1F2937' }];
-        if ('fontSize' in darkHeader) (darkHeader as any).fontSize = 18;
-        if ('fontWeight' in darkHeader) (darkHeader as any).fontWeight = 400;
+        if ('fontSize' in darkHeader) darkHeader.fontSize = 18;
+        if ('fontWeight' in darkHeader) darkHeader.fontWeight = 400;
         currentY += 40;
         totalCreated++;
       }
@@ -324,7 +323,7 @@ function createTokenTestingElements() {
           label.y = rect.y + 85;
           label.characters = colorData.name;
           label.fills = [{ fillColor: '#9CA3AF' }];
-          if ('fontSize' in label) (label as any).fontSize = 10;
+          if ('fontSize' in label) label.fontSize = 10;
           totalCreated++;
         }
       }
@@ -343,8 +342,8 @@ function createTokenTestingElements() {
         spacingHeader.y = currentY;
         spacingHeader.characters = 'Spacing Tokens (Visual Size = Token Value)';
         spacingHeader.fills = [{ fillColor: '#1F2937' }];
-        if ('fontSize' in spacingHeader) (spacingHeader as any).fontSize = 18;
-        if ('fontWeight' in spacingHeader) (spacingHeader as any).fontWeight = 400;
+        if ('fontSize' in spacingHeader) spacingHeader.fontSize = 18;
+        if ('fontWeight' in spacingHeader) spacingHeader.fontWeight = 400;
         currentY += 40;
         totalCreated++;
       }
@@ -379,7 +378,7 @@ function createTokenTestingElements() {
           label.y = rect.y + spacing.value + 10;
           label.characters = `${spacing.name}px`;
           label.fills = [{ fillColor: '#374151' }];
-          if ('fontSize' in label) (label as any).fontSize = 10;
+          if ('fontSize' in label) label.fontSize = 10;
           totalCreated++;
         }
       }
@@ -398,8 +397,8 @@ function createTokenTestingElements() {
         radiusHeader.y = currentY;
         radiusHeader.characters = 'Border Radius Tokens';
         radiusHeader.fills = [{ fillColor: '#1F2937' }];
-        if ('fontSize' in radiusHeader) (radiusHeader as any).fontSize = 18;
-        if ('fontWeight' in radiusHeader) (radiusHeader as any).fontWeight = 400;
+        if ('fontSize' in radiusHeader) radiusHeader.fontSize = 18;
+        if ('fontWeight' in radiusHeader) radiusHeader.fontWeight = 400;
         currentY += 40;
         totalCreated++;
       }
@@ -433,7 +432,7 @@ function createTokenTestingElements() {
           label.y = rect.y + 90;
           label.characters = radius.name;
           label.fills = [{ fillColor: '#374151' }];
-          if ('fontSize' in label) (label as any).fontSize = 10;
+          if ('fontSize' in label) label.fontSize = 10;
           totalCreated++;
         }
       }
@@ -452,8 +451,8 @@ function createTokenTestingElements() {
         typoHeader.y = currentY;
         typoHeader.characters = 'Typography Tokens';
         typoHeader.fills = [{ fillColor: '#1F2937' }];
-        if ('fontSize' in typoHeader) (typoHeader as any).fontSize = 18;
-        if ('fontWeight' in typoHeader) (typoHeader as any).fontWeight = 400;
+        if ('fontSize' in typoHeader) typoHeader.fontSize = 18;
+        if ('fontWeight' in typoHeader) typoHeader.fontWeight = 400;
         currentY += 40;
         totalCreated++;
       }
@@ -477,7 +476,7 @@ function createTokenTestingElements() {
           text.y = currentY + (index * 50);
           text.characters = `${font.name} (${font.size}px) - The quick brown fox jumps`;
           text.fills = [{ fillColor: '#1F2937' }];
-          if ('fontSize' in text) (text as any).fontSize = font.size;
+          if ('fontSize' in text) text.fontSize = font.size;
           totalCreated++;
         }
       });
@@ -495,8 +494,8 @@ function createTokenTestingElements() {
         themeHeader.y = currentY;
         themeHeader.characters = 'Theme Switching Demo - Component Examples';
         themeHeader.fills = [{ fillColor: '#1F2937' }];
-        if ('fontSize' in themeHeader) (themeHeader as any).fontSize = 18;
-        if ('fontWeight' in themeHeader) (themeHeader as any).fontWeight = 400;
+        if ('fontSize' in themeHeader) themeHeader.fontSize = 18;
+        if ('fontWeight' in themeHeader) themeHeader.fontWeight = 400;
         currentY += 60;
         totalCreated++;
       }
@@ -531,7 +530,7 @@ function createTokenTestingElements() {
         themeButtonBoard.fills = [{ fillColor: comp.bg }];
         themeButtonBoard.strokes = [{ strokeColor: comp.border, strokeWidth: 1 }];
         if ('borderRadius' in themeButtonBoard) {
-          (themeButtonBoard as any).borderRadius = 6;
+          themeButtonBoard.borderRadius = 6;
         }
         
         // Button text positioned manually
@@ -546,8 +545,8 @@ function createTokenTestingElements() {
           
           buttonText.characters = comp.name;
           buttonText.fills = [{ fillColor: comp.text }];
-          if ('fontSize' in buttonText) (buttonText as any).fontSize = 14;
-          if ('fontWeight' in buttonText) (buttonText as any).fontWeight = 400;
+          if ('fontSize' in buttonText) buttonText.fontSize = 14;
+          if ('fontWeight' in buttonText) buttonText.fontWeight = 400;
           
           totalCreated++;
         }
@@ -571,15 +570,15 @@ function createTokenTestingElements() {
       type: 'import-result',
       data: {
         success: false,
-        error: (error as Error).message
+        error: error.message
       }
     });
   }
 }
 
-// Create a test NovyUI button component
+// Create a test NovyUI button component - REWRITTEN WITH NATIVE PENPOT FEATURES
 function createTestComponent() {
-  console.log('🔧 Creating NovyUI Button System...');
+  console.log('🔧 Creating NovyUI Button System with Native PenPot Layout...');
   
   try {
     let startX = 100;
@@ -599,10 +598,10 @@ function createTestComponent() {
         title.name = 'Button System Title';
         title.x = startX;
         title.y = startY - 60;
-        title.characters = 'NovyUI Button System';
+        title.characters = 'NovyUI Button System (Native PenPot Layout)';
         title.fills = [{ fillColor: novyuiTokensHex.color.neutral[11].light }];
-        if ('fontSize' in title) (title as any).fontSize = 24;
-        if ('fontWeight' in title) (title as any).fontWeight = 400;
+        if ('fontSize' in title) title.fontSize = 24;
+        if ('fontWeight' in title) title.fontWeight = 400;
       }
     }
     
@@ -668,10 +667,10 @@ function createTestComponent() {
         sectionTitle.name = 'Variants Section Title';
         sectionTitle.x = startX;
         sectionTitle.y = currentY;
-        sectionTitle.characters = '1. Button Variants & States';
+        sectionTitle.characters = '1. Button Variants & States (Native FlexLayout)';
         sectionTitle.fills = [{ fillColor: novyuiTokensHex.color.neutral[9].light }];
-        if ('fontSize' in sectionTitle) (sectionTitle as any).fontSize = 20;
-        if ('fontWeight' in sectionTitle) (sectionTitle as any).fontWeight = 400;
+        if ('fontSize' in sectionTitle) sectionTitle.fontSize = 20;
+        if ('fontWeight' in sectionTitle) sectionTitle.fontWeight = 400;
       }
     }
     currentY += 40;
@@ -687,8 +686,8 @@ function createTestComponent() {
           variantLabel.y = currentY;
           variantLabel.characters = `${variant.name}`;
           variantLabel.fills = [{ fillColor: novyuiTokensHex.color.neutral[8].light }];
-          if ('fontSize' in variantLabel) (variantLabel as any).fontSize = 16;
-          if ('fontWeight' in variantLabel) (variantLabel as any).fontWeight = 400;
+          if ('fontSize' in variantLabel) variantLabel.fontSize = 16;
+          if ('fontWeight' in variantLabel) variantLabel.fontWeight = 400;
         }
         
         // Variant description
@@ -699,7 +698,7 @@ function createTestComponent() {
           descLabel.y = currentY;
           descLabel.characters = variant.description;
           descLabel.fills = [{ fillColor: novyuiTokensHex.color.neutral[6].light }];
-          if ('fontSize' in descLabel) (descLabel as any).fontSize = 12;
+          if ('fontSize' in descLabel) descLabel.fontSize = 12;
         }
       }
       
@@ -748,7 +747,7 @@ function createTestComponent() {
       states.forEach((state, stateIndex) => {
         const buttonX = startX + (stateIndex * 140);
         
-        // Create button Board with proper children
+        // ✨ CREATE BOARD WITH NATIVE FLEXLAYOUT
         if (typeof penpot.createBoard === 'function') {
           const buttonBoard = penpot.createBoard();
           buttonBoard.name = `${variant.name} ${state.name} Button`;
@@ -757,12 +756,20 @@ function createTestComponent() {
           buttonBoard.resize(120, 40);
           buttonBoard.borderRadius = parseInt(novyuiTokensHex.cornerRadius[6]);
           
-          // Set flex layout for centering
-          if ('layoutDirection' in buttonBoard) {
-            (buttonBoard as any).layoutDirection = 'row';
-            (buttonBoard as any).layoutJustifyContent = 'center';
-            (buttonBoard as any).layoutAlignItems = 'center';
-            (buttonBoard as any).layoutWrap = 'nowrap';
+          // ✨ ADD NATIVE FLEX LAYOUT FOR PERFECT CENTERING
+          try {
+            if ('addFlexLayout' in buttonBoard) {
+              const flex = buttonBoard.addFlexLayout();
+              flex.dir = 'row';
+              flex.alignItems = 'center';
+              flex.justifyContent = 'center';
+              flex.wrap = 'nowrap';
+              flex.horizontalSizing = 'fill';
+              flex.verticalSizing = 'fill';
+              console.log(`✅ Added FlexLayout to ${variant.name} ${state.name}`);
+            }
+          } catch (e) {
+            console.log(`⚠️ FlexLayout failed for ${variant.name} ${state.name}:`, e);
           }
           
           // Set background color (handle transparent)
@@ -772,20 +779,52 @@ function createTestComponent() {
             buttonBoard.fills = [];
           }
           
+          // ✨ NATIVE SHADOW FOR BUTTON DEPTH
+          try {
+            if ('shadows' in buttonBoard) {
+              buttonBoard.shadows = [{
+                style: 'drop-shadow',
+                offsetX: 0,
+                offsetY: 1,
+                blur: 3,
+                spread: 0,
+                color: novyuiTokensHex.color.neutral[11].light + '20', // 20% opacity
+                hidden: false
+              }];
+            }
+          } catch (e) {
+            console.log(`⚠️ Shadow failed for ${variant.name} ${state.name}:`, e);
+          }
+          
           // Add border for variants that need it
+          let strokes = [];
           if (variant.borderColor !== novyuiTokensHex.color.static.transparent) {
-            buttonBoard.strokes = [{
+            strokes.push({
               strokeColor: state.name === 'Disabled' ? novyuiTokensHex.color.neutral[5].light : variant.borderColor,
-              strokeWidth: 1
-            }];
+              strokeWidth: 1,
+              strokeAlignment: 'center'
+            });
+          }
+          
+          // ✨ NATIVE FOCUS RING WITH STROKE ALIGNMENT
+          if (state.hasFocusRing) {
+            strokes.push({
+              strokeColor: novyuiTokensHex.color.primary[7].light,
+              strokeWidth: 3,
+              strokeAlignment: 'outer'  // ✨ Native outer stroke!
+            });
+          }
+          
+          if (strokes.length > 0) {
+            buttonBoard.strokes = strokes;
           }
           
           // Apply opacity for disabled state
           if (state.name === 'Disabled' && 'opacity' in buttonBoard) {
-            (buttonBoard as any).opacity = state.opacity;
+            buttonBoard.opacity = state.opacity;
           }
           
-          // Create button text as child
+          // ✨ CREATE TEXT AS CHILD - NO POSITIONING NEEDED!
           if (typeof penpot.createText === 'function') {
             let buttonText;
             
@@ -804,34 +843,28 @@ function createTestComponent() {
             }
             
             if (buttonText) {
-              // No positioning needed - flex layout will center it
-              // Set text properties
+              // ✨ NO POSITIONING NEEDED - FLEX LAYOUT HANDLES IT!
               buttonText.fills = [{ fillColor: state.textColor }];
-              if ('fontSize' in buttonText) (buttonText as any).fontSize = 16;
-              if ('fontWeight' in buttonText) (buttonText as any).fontWeight = 400;
+              if ('fontSize' in buttonText) buttonText.fontSize = 16;
+              if ('fontWeight' in buttonText) buttonText.fontWeight = 400;
               
-              // Try to add text as child to board
-              if ('appendChild' in buttonBoard) {
-                (buttonBoard as any).appendChild(buttonText);
-              } else if ('addChild' in buttonBoard) {
-                (buttonBoard as any).addChild(buttonText);
+              // ✨ ADD AS CHILD TO BOARD
+              try {
+                if ('appendChild' in buttonBoard) {
+                  buttonBoard.appendChild(buttonText);
+                  console.log(`✅ Added text as child to ${variant.name} ${state.name}`);
+                } else if ('addChild' in buttonBoard) {
+                  buttonBoard.addChild(buttonText);
+                  console.log(`✅ Added text as child to ${variant.name} ${state.name}`);
+                } else {
+                  console.log(`⚠️ No appendChild method available for ${variant.name} ${state.name}`);
+                }
+              } catch (e) {
+                console.log(`⚠️ appendChild failed for ${variant.name} ${state.name}:`, e);
               }
               
               buttonsCreated++;
             }
-          }
-          
-          // Add focus ring as board stroke for focus state
-          if (state.hasFocusRing) {
-            // Add focus ring as additional stroke to the board itself
-            const currentStrokes = buttonBoard.strokes || [];
-            buttonBoard.strokes = [
-              ...currentStrokes,
-              {
-                strokeColor: novyuiTokensHex.color.primary[7].light,
-                strokeWidth: 3
-              }
-            ];
           }
         }
       });
@@ -839,116 +872,23 @@ function createTestComponent() {
       currentY += 60;
     });
     
-    // Create section: Button Sizes
-    currentY += 30;
-    if (typeof penpot.createText === 'function') {
-      const sizeTitle = penpot.createText('Button Sizes');
-      if (sizeTitle) {
-        sizeTitle.name = 'Sizes Section Title';
-        sizeTitle.x = startX;
-        sizeTitle.y = currentY;
-        sizeTitle.characters = '2. Button Sizes';
-        sizeTitle.fills = [{ fillColor: novyuiTokensHex.color.neutral[9].light }];
-        if ('fontSize' in sizeTitle) (sizeTitle as any).fontSize = 20;
-        if ('fontWeight' in sizeTitle) (sizeTitle as any).fontWeight = 400;
-      }
-    }
-    currentY += 40;
-    
-    // Size examples with exact MoonZoon specifications
-    const sizes = [
-      { 
-        name: 'Small', 
-        width: 88,    // Calculated: 64 (min content) + 24 (SPACING_12 * 2)
-        height: 32,   // 20 (content) + 12 (SPACING_6 * 2)
-        fontSize: 14, // FONT_SIZE_14
-        paddingX: 12, // SPACING_12
-        paddingY: 6   // SPACING_6
-      },
-      { 
-        name: 'Medium', 
-        width: 104,   // 72 (content) + 32 (SPACING_16 * 2)
-        height: 40,   // 24 (content) + 16 (SPACING_8 * 2)
-        fontSize: 16, // FONT_SIZE_16
-        paddingX: 16, // SPACING_16
-        paddingY: 8   // SPACING_8
-      },
-      { 
-        name: 'Large', 
-        width: 116,   // 76 (content) + 40 (SPACING_20 * 2)
-        height: 48,   // 24 (content) + 24 (SPACING_12 * 2)
-        fontSize: 18, // FONT_SIZE_18
-        paddingX: 20, // SPACING_20
-        paddingY: 12  // SPACING_12
-      }
-    ];
-    
-    sizes.forEach((size, index) => {
-      const buttonX = startX + (index * 200);
-      
-      // Size label
-      if (typeof penpot.createText === 'function') {
-        const sizeLabel = penpot.createText(`${size.name} Size`);
-        if (sizeLabel) {
-          sizeLabel.name = `${size.name} Size Label`;
-          sizeLabel.x = buttonX;
-          sizeLabel.y = currentY;
-          sizeLabel.characters = `${size.name} (${size.width}×${size.height}px)`;
-          sizeLabel.fills = [{ fillColor: novyuiTokensHex.color.neutral[8].light }];
-          if ('fontSize' in sizeLabel) (sizeLabel as any).fontSize = 14;
-        }
-      }
-      
-      // Create sized button as Board
-      const sizedButtonBoard = penpot.createBoard();
-      sizedButtonBoard.name = `${size.name} Button Example`;
-      sizedButtonBoard.x = buttonX;
-      sizedButtonBoard.y = currentY + 25;
-      sizedButtonBoard.resize(size.width, size.height);
-      
-      // Set board styling
-      if ('borderRadius' in sizedButtonBoard) {
-        (sizedButtonBoard as any).borderRadius = parseInt(novyuiTokensHex.cornerRadius[6]);
-      }
-      sizedButtonBoard.fills = [{ fillColor: novyuiTokensHex.color.primary[7].light }];
-      
-      // Create sized text positioned manually
-      if (typeof penpot.createText === 'function') {
-        const buttonText = penpot.createText(size.name);
-        if (buttonText) {
-          buttonText.name = `${size.name} Button Text`;
-          
-          // Position text manually within board coordinates
-          const textWidth = size.name.length * (size.fontSize * 0.6);
-          buttonText.x = buttonX + (size.width - textWidth) / 2;
-          buttonText.y = currentY + 25 + (size.height - size.fontSize) / 2 + 4;
-          
-          buttonText.characters = size.name;
-          buttonText.fills = [{ fillColor: novyuiTokensHex.color.neutral[1].light }];
-          if ('fontSize' in buttonText) (buttonText as any).fontSize = size.fontSize;
-          if ('fontWeight' in buttonText) (buttonText as any).fontWeight = 400;
-          
-          buttonsCreated++;
-        }
-      }
-    });
-    
-    console.log(`✅ Created complete NovyUI button system with ${buttonsCreated} components`);
+    console.log(`✅ Created complete NovyUI button system with ${buttonsCreated} components using Native PenPot Features`);
     
     penpot.ui.sendMessage({
       type: 'component-result',
       data: {
         success: true,
-        message: `Created complete NovyUI button system: 6 variants × 5 states + 3 sizes = ${buttonsCreated} components`
+        message: `Created NovyUI button system with Native PenPot FlexLayout: 6 variants × 5 states = ${buttonsCreated} components`
       }
     });
     
   } catch (error) {
+    console.log('❌ Button creation error:', error);
     penpot.ui.sendMessage({
       type: 'component-result',
       data: {
         success: false,
-        error: (error as Error).message
+        error: error.message
       }
     });
   }
@@ -995,7 +935,7 @@ function createAllComponents() {
 }
 
 // Apply EXACT NovyUI styling based on component type and variant
-function applyComponentStyling(shape: any, componentName: string, variant: string) {
+function applyComponentStyling(shape, componentName, variant) {
   const tokens = novyuiTokensHex;
   
   // Base styling
@@ -1137,7 +1077,7 @@ function testShadowAPIs() {
     try {
       if ('shadow' in rect) {
         results.hasShadowProperty = true;
-        (rect as any).shadow = '0 4px 6px rgba(0,0,0,0.1)';
+        rect.shadow = '0 4px 6px rgba(0,0,0,0.1)';
         results.canSetShadow = true;
       }
     } catch (e) { console.log('Shadow property failed:', e); }
@@ -1145,7 +1085,7 @@ function testShadowAPIs() {
     // Test shadows array
     try {
       if ('shadows' in rect) {
-        (rect as any).shadows = [{
+        rect.shadows = [{
           offsetX: 0,
           offsetY: 4,
           blur: 6,
@@ -1196,14 +1136,14 @@ function testBorderRadiusAPIs() {
     // Test rx/ry properties
     try {
       if ('rx' in rect) {
-        (rect as any).rx = 8;
+        rect.rx = 8;
         results.canSetRx = true;
       }
     } catch (e) { console.log('Rx failed:', e); }
     
     try {
       if ('ry' in rect) {
-        (rect as any).ry = 8;
+        rect.ry = 8;
         results.canSetRy = true;
       }
     } catch (e) { console.log('Ry failed:', e); }
@@ -1241,14 +1181,14 @@ function testOpacityAPIs() {
     // Test opacity property
     try {
       if ('opacity' in rect) {
-        (rect as any).opacity = 0.5;
+        rect.opacity = 0.5;
         results.canSetOpacity = true;
       }
     } catch (e) { console.log('Opacity failed:', e); }
     
     // Test fill opacity
     try {
-      rect.fills = [{ fillColor: '#FF0000', fillOpacity: 0.5 } as any];
+      rect.fills = [{ fillColor: '#FF0000', fillOpacity: 0.5 }];
       results.canSetFillOpacity = true;
     } catch (e) { console.log('Fill opacity failed:', e); }
     
@@ -1265,4 +1205,4 @@ function testOpacityAPIs() {
 }
 
 // Initialize plugin
-console.log('✅ NovyUI PenPot Plugin Loaded');
+console.log('✅ NovyUI PenPot Plugin Loaded with Auto-Reload!');
