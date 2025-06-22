@@ -1,0 +1,14 @@
+{
+  "name": "NovyUI Design System",
+  "description": "Import NovyUI design tokens and create components in PenPot",
+  "code": "dist/plugin.js",
+  "icon": "icon.svg",
+  "permissions": [
+    "content:read",
+    "content:write",
+    "library:read",
+    "library:write",
+    "user:read",
+    "allow:downloads"
+  ]
+}

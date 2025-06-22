@@ -4,13 +4,14 @@
   "description": "NovyUI Design System importer for PenPot",
   "type": "module",
   "scripts": {
-    "dev": "vite build --watch",
+    "dev": "vite",
     "build": "tsc && vite build",
     "type-check": "tsc --noEmit",
-    "serve": "vite preview"
+    "serve": "node dev-server.js"
   },
   "dependencies": {
-    "@penpot/plugin-types": "latest"
+    "@penpot/plugin-types": "latest",
+    "express": "^4.18.0"
   },
   "devDependencies": {
     "typescript": "^5.0.0",

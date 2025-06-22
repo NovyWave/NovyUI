@@ -12,23 +12,37 @@ A PenPot plugin that recreates the complete NovyUI design system from MoonZoon i
 
 ## 📦 Development Setup
 
-### ✅ **Fixed Auto-Recompilation Workflow**
+### ✅ **HTTPS Development Workflow**
+
+**⚠️ HTTPS Required**: PenPot (https://design.penpot.app) requires plugins to be served over HTTPS to avoid Mixed Content security restrictions.
 
 1. **Install dependencies:**
 ```bash
 npm install
 ```
 
-2. **Start development (auto-recompiles on changes):**
+2. **Generate SSL certificate (first time only):**
+```bash
+openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes -subj "/C=US/ST=Dev/L=Dev/O=Dev/CN=localhost"
+```
+*This creates `cert.pem` and `key.pem` files for HTTPS development.*
+
+3. **Start development (auto-recompiles on changes):**
 ```bash
 npm run dev
 ```
-*This runs `vite build --watch` - no more conflicts!*
+*Runs vite with HTTPS, auto-reload, and CORS support.*
 
-3. **Install in PenPot:**
+4. **Accept the SSL certificate:**
+   - Visit https://localhost:5173/manifest.json in your browser
+   - Click through the "Your connection is not private" warning
+   - Click "Advanced" → "Proceed to localhost (unsafe)"
+   - *This is normal for self-signed certificates in development*
+
+5. **Install in PenPot:**
    - Go to Plugins → Manage Plugins  
    - Click "Install plugin from URL"
-   - Enter: `http://localhost:5173/manifest.json`
+   - Enter: `https://localhost:5173/manifest.json` (**HTTPS required**)
    - Click Install
 
 ### 🔧 **Development Commands**
@@ -116,14 +130,21 @@ npm run build
 
 ## 🔄 Development Workflow
 
-The plugin now features **instant auto-recompilation**:
+The plugin features **instant HTTPS auto-recompilation**:
 
-1. Make changes to `src/plugin.ts` or other files
-2. Vite automatically rebuilds in <2 seconds  
-3. Refresh plugin in PenPot to see changes
-4. TypeScript errors caught during compilation
+1. Start dev server: `npm run dev` (serves HTTPS on port 5173)
+2. Make changes to `src/plugin.ts` or other files
+3. Vite automatically rebuilds in <2 seconds  
+4. Browser auto-reloads with latest changes
+5. TypeScript errors caught during compilation
 
-**No more manual restarts or cache issues!**
+**Benefits:**
+- ✅ **HTTPS**: Works with PenPot's security requirements
+- ✅ **Auto-reload**: No manual refreshing needed
+- ✅ **CORS**: Proper cross-origin headers
+- ✅ **No conflicts**: Single vite process handles everything
+
+**No more manual restarts, CORS errors, or cache issues!**
 
 ## 🤝 Contributing
 

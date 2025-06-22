@@ -568,7 +568,7 @@ function createTokenTestingElements() {
 
 // Create a test NovyUI button component
 function createTestComponent() {
-  console.log('🔧 Creating Complete NovyUI Button System...');
+  console.log('🔧 Creating NovyUI Button System...');
   
   try {
     let startX = 100;
@@ -914,7 +914,7 @@ function createTestComponent() {
       type: 'component-result',
       data: {
         success: true,
-        message: `Created complete NovyUI button system: 6 variants × 5 states + 3 sizes = ${buttonsCreated} components recreated from MoonZoon`
+        message: `Created complete NovyUI button system: 6 variants × 5 states + 3 sizes = ${buttonsCreated} components`
       }
     });
     
