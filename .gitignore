@@ -53,7 +53,7 @@ PenPot/mcp-env/
 PenPot/tests/node_modules/
 
 # PenPot Migration - Output files (can be regenerated)
-PenPot/output/*.penpot
+PenPot/output/
 
 # Playwright browser data (persistent sessions)
 .playwright-browser-data/

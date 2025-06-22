@@ -171,7 +171,7 @@ export const novyuiTokensHex = {
       }
     },
     "static": {
-      "transparent": "transparent",
+      "transparent": "#00000000",
       "white": "#ffffff",
       "black": "#000000"
     }

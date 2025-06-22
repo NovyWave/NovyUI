@@ -35,21 +35,27 @@ npm run build:watch &
 # Plugin URL for PenPot installation
 # http://localhost:5173/manifest.json
 
-# CRITICAL: Plugin recompilation workflow
-# PROBLEM: Auto-recompilation often breaks, causing old code to run
-# SOLUTION: Always use this exact sequence when changes don't appear:
+# CRITICAL: Plugin development workflow - FIXED!
+# ✅ SOLUTION: Simplified development with proper auto-recompilation
 
-# 1. Kill ALL processes completely  
-killall node 2>/dev/null; pkill -f vite 2>/dev/null; pkill -f tsc 2>/dev/null
+# 🎯 Start development (auto-recompiles on file changes):
+cd /home/martinkavik/repos/NovyUI/PenPot/novyui-plugin
+npm run dev
 
-# 2. Manual build to ensure latest code is compiled
+# This now runs: `vite build --watch`
+# - Compiles TypeScript automatically
+# - Watches for file changes and rebuilds instantly  
+# - Outputs to dist/plugin.js (where manifest.json expects it)
+# - No more conflicts between tsc and vite!
+
+# ✅ Manifest URL: http://localhost:5173/manifest.json
+# ✅ Plugin loads from: dist/plugin.js (auto-updated on changes)
+
+# 🔧 Type checking (optional, for catching errors):
+npm run type-check
+
+# 🏗️ Production build:
 npm run build
-
-# 3. Start dev server in background
-npm run dev > /dev/null 2>&1 &
-
-# 4. Verify the change worked by checking served content:
-curl -s http://localhost:5173/dist/plugin.js | grep "SEARCH_FOR_YOUR_CHANGE"
 
 # TypeScript will catch API errors during build
 npm run build  # Catches non-existent methods like penpot.createFrame()

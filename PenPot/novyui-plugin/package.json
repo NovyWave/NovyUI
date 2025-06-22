@@ -4,10 +4,10 @@
   "description": "NovyUI Design System importer for PenPot",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"tsc --watch\" \"vite\"",
+    "dev": "vite build --watch",
     "build": "tsc && vite build",
-    "build:watch": "tsc --watch & vite build --watch",
-    "preview": "vite preview"
+    "type-check": "tsc --noEmit",
+    "serve": "vite preview"
   },
   "dependencies": {
     "@penpot/plugin-types": "latest"

@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <section class="actions">
         <h2>🔧 Components</h2>
         <button id="create-test" class="btn btn-primary">
-          Create Test Button
+          Create Buttons
         </button>
         <button id="create-all" class="btn btn-success">
           Create All Components

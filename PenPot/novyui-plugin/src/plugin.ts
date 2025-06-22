@@ -568,79 +568,359 @@ function createTokenTestingElements() {
 
 // Create a test NovyUI button component
 function createTestComponent() {
-  console.log('🔧 Creating Test NovyUI Button Component...');
+  console.log('🔧 Creating Complete NovyUI Button System...');
   
   try {
-    // Center in viewport first
-    let buttonX = 200;
-    let buttonY = 400;
+    let startX = 100;
+    let startY = 100;
+    
+    // Use viewport center if available
     if (penpot.viewport && penpot.viewport.center) {
       const center = penpot.viewport.center;
-      buttonX = center.x - 60;
-      buttonY = center.y - 20;
+      startX = center.x - 600;
+      startY = center.y - 400;
     }
     
-    // Create button background
-    const button = penpot.createRectangle();
-    button.name = 'Button Background';
-    button.x = buttonX;
-    button.y = buttonY;
-    button.resize(120, 40);
-    
-    // Apply EXACT NovyUI styling from MoonZoon
-    button.borderRadius = 6; // borderRadius.md
-    button.fills = [{
-      fillColor: novyuiTokensHex.color.primary['7'].light || '#3B82F6'
-    }];
-    
-    // Create button text
-    let text = null;
+    // Create main title
     if (typeof penpot.createText === 'function') {
-      text = penpot.createText('Click me');
-      if (text) {
-        text.name = 'Button Text';
-        text.x = buttonX + 30;
-        text.y = buttonY + 12;
-        text.resize(60, 16);
-        text.characters = 'Click me';
-        text.fills = [{
-          fillColor: novyuiTokensHex.color.static?.white || '#FFFFFF'
-        }];
+      const title = penpot.createText('NovyUI Button System');
+      if (title) {
+        title.name = 'Button System Title';
+        title.x = startX;
+        title.y = startY - 60;
+        title.characters = 'NovyUI Button System';
+        title.fills = [{ fillColor: novyuiTokensHex.color.neutral[11].light }];
+        if ('fontSize' in title) (title as any).fontSize = 24;
+        if ('fontWeight' in title) (title as any).fontWeight = 400;
       }
     }
     
-    // Try to group them (if grouping is possible)
-    if (text && typeof penpot.group === 'function') {
-      try {
-        const group = penpot.group([button, text]);
-        console.log('Group created:', group);
-        console.log('Group properties:', Object.getOwnPropertyNames(group));
-        if (group && 'name' in group) {
-          group.name = 'Button Primary';
-          console.log('Group renamed to:', group.name);
-        } else {
-          console.log('Cannot set group name - property not available');
+    let currentY = startY;
+    let buttonsCreated = 0;
+    
+    // All 6 button variants with exact MoonZoon specifications
+    const variants = [
+      {
+        name: 'Primary',
+        bgColor: novyuiTokensHex.color.primary[7].light,        // primary_7()
+        hoverBgColor: novyuiTokensHex.color.primary[8].light,   // primary_8()
+        textColor: novyuiTokensHex.color.neutral[1].light,      // neutral_1()
+        borderColor: novyuiTokensHex.color.static.transparent,  // transparent()
+        description: 'Main action - blue background, white text'
+      },
+      {
+        name: 'Secondary', 
+        bgColor: novyuiTokensHex.color.neutral[4].light,        // neutral_4()
+        hoverBgColor: novyuiTokensHex.color.neutral[5].light,   // neutral_5()
+        textColor: novyuiTokensHex.color.primary[7].light,      // primary_7()
+        borderColor: novyuiTokensHex.color.neutral[3].light,    // neutral_3()
+        description: 'Secondary action - gray background, blue text, border'
+      },
+      {
+        name: 'Outline',
+        bgColor: novyuiTokensHex.color.static.transparent,      // transparent()
+        hoverBgColor: novyuiTokensHex.color.primary[2].light,   // primary_2()
+        textColor: novyuiTokensHex.color.primary[7].light,      // primary_7()
+        borderColor: novyuiTokensHex.color.neutral[3].light,    // neutral_3()
+        description: 'Outlined action - transparent background, blue text, border'
+      },
+      {
+        name: 'Ghost',
+        bgColor: novyuiTokensHex.color.static.transparent,      // transparent()
+        hoverBgColor: novyuiTokensHex.color.primary[2].light,   // primary_2()
+        textColor: novyuiTokensHex.color.primary[7].light,      // primary_7()
+        borderColor: novyuiTokensHex.color.static.transparent,  // transparent()
+        description: 'Minimal action - transparent background, blue text, no border'
+      },
+      {
+        name: 'Link',
+        bgColor: novyuiTokensHex.color.static.transparent,      // transparent()
+        hoverBgColor: novyuiTokensHex.color.primary[2].light,   // primary_2()
+        textColor: novyuiTokensHex.color.primary[7].light,      // primary_7()
+        borderColor: novyuiTokensHex.color.static.transparent,  // transparent()
+        description: 'Link style - transparent background, blue text, underlined'
+      },
+      {
+        name: 'Destructive',
+        bgColor: novyuiTokensHex.color.error[7].light,          // error_7()
+        hoverBgColor: novyuiTokensHex.color.error[8].light,     // error_8()
+        textColor: novyuiTokensHex.color.neutral[1].light,      // neutral_1()
+        borderColor: novyuiTokensHex.color.static.transparent,  // transparent()
+        description: 'Destructive action - red background, white text'
+      }
+    ];
+    
+    // Create section: Button Variants & States
+    if (typeof penpot.createText === 'function') {
+      const sectionTitle = penpot.createText('Button Variants & States');
+      if (sectionTitle) {
+        sectionTitle.name = 'Variants Section Title';
+        sectionTitle.x = startX;
+        sectionTitle.y = currentY;
+        sectionTitle.characters = '1. Button Variants & States';
+        sectionTitle.fills = [{ fillColor: novyuiTokensHex.color.neutral[9].light }];
+        if ('fontSize' in sectionTitle) (sectionTitle as any).fontSize = 20;
+        if ('fontWeight' in sectionTitle) (sectionTitle as any).fontWeight = 400;
+      }
+    }
+    currentY += 40;
+    
+    // Create buttons for each variant with all states
+    variants.forEach((variant) => {
+      // Variant section label
+      if (typeof penpot.createText === 'function') {
+        const variantLabel = penpot.createText(variant.name);
+        if (variantLabel) {
+          variantLabel.name = `${variant.name} Label`;
+          variantLabel.x = startX;
+          variantLabel.y = currentY;
+          variantLabel.characters = `${variant.name}`;
+          variantLabel.fills = [{ fillColor: novyuiTokensHex.color.neutral[8].light }];
+          if ('fontSize' in variantLabel) (variantLabel as any).fontSize = 16;
+          if ('fontWeight' in variantLabel) (variantLabel as any).fontWeight = 400;
         }
-      } catch (e) {
-        console.log('Grouping failed:', e);
+        
+        // Variant description
+        const descLabel = penpot.createText(variant.description);
+        if (descLabel) {
+          descLabel.name = `${variant.name} Description`;
+          descLabel.x = startX + 120;
+          descLabel.y = currentY;
+          descLabel.characters = variant.description;
+          descLabel.fills = [{ fillColor: novyuiTokensHex.color.neutral[6].light }];
+          if ('fontSize' in descLabel) (descLabel as any).fontSize = 12;
+        }
       }
-    } else {
-      console.log('Grouping not available - no text or no group function');
-    }
+      
+      currentY += 25;
+      
+      // All button states: Normal, Hover, Focus, Disabled, Loading
+      const states = [
+        { 
+          name: 'Normal', 
+          bgColor: variant.bgColor, 
+          textColor: variant.textColor,
+          opacity: 1,
+          isLoading: false
+        },
+        { 
+          name: 'Hover', 
+          bgColor: variant.hoverBgColor, 
+          textColor: variant.textColor,
+          opacity: 1,
+          isLoading: false
+        },
+        { 
+          name: 'Focus', 
+          bgColor: variant.bgColor, 
+          textColor: variant.textColor,
+          opacity: 1,
+          hasFocusRing: true,
+          isLoading: false
+        },
+        { 
+          name: 'Disabled', 
+          bgColor: novyuiTokensHex.color.neutral[5].light,  // Disabled uses neutral-5
+          textColor: novyuiTokensHex.color.neutral[7].light, // Disabled text uses neutral-7
+          opacity: parseFloat(novyuiTokensHex.opacity.disabled), // 0.64
+          isLoading: false
+        },
+        { 
+          name: 'Loading', 
+          bgColor: variant.bgColor, 
+          textColor: variant.textColor,
+          opacity: 1,
+          isLoading: true
+        }
+      ];
+      
+      states.forEach((state, stateIndex) => {
+        const buttonX = startX + (stateIndex * 140);
+        
+        // Create button background
+        const button = penpot.createRectangle();
+        button.name = `${variant.name} ${state.name} Button`;
+        button.x = buttonX;
+        button.y = currentY;
+        button.resize(120, 40); // Medium size (SPACING_16, SPACING_8)
+        button.borderRadius = parseInt(novyuiTokensHex.cornerRadius[6]); // CORNER_RADIUS_6
+        
+        // Set background color (handle transparent)
+        if (state.bgColor !== novyuiTokensHex.color.static.transparent) {
+          button.fills = [{ fillColor: state.bgColor }];
+        } else {
+          button.fills = [];
+        }
+        
+        // Add border for variants that need it
+        if (variant.borderColor !== novyuiTokensHex.color.static.transparent) {
+          button.strokes = [{
+            strokeColor: state.name === 'Disabled' ? novyuiTokensHex.color.neutral[5].light : variant.borderColor,
+            strokeWidth: 1
+          }];
+        }
+        
+        // Apply opacity for disabled state
+        if (state.name === 'Disabled' && 'opacity' in button) {
+          (button as any).opacity = state.opacity;
+        }
+        
+        // Add focus ring for focus state
+        if (state.hasFocusRing) {
+          const focusRing = penpot.createRectangle();
+          focusRing.name = `${variant.name} Focus Ring`;
+          focusRing.x = buttonX - 3;
+          focusRing.y = currentY - 3;
+          focusRing.resize(126, 46);
+          focusRing.borderRadius = parseInt(novyuiTokensHex.cornerRadius[8]);
+          focusRing.fills = [];
+          focusRing.strokes = [{
+            strokeColor: novyuiTokensHex.color.primary[7].light,
+            strokeWidth: 2
+          }];
+          if ('opacity' in focusRing) {
+            (focusRing as any).opacity = 0.6;
+          }
+        }
+        
+        // Create button text or loading indicator
+        if (typeof penpot.createText === 'function') {
+          let buttonText;
+          
+          if (state.isLoading) {
+            // Create loading text with spinner indication
+            buttonText = penpot.createText('● Loading');
+            if (buttonText) {
+              buttonText.name = `${variant.name} Loading Text`;
+              buttonText.characters = '● Loading';
+            }
+          } else {
+            buttonText = penpot.createText(state.name);
+            if (buttonText) {
+              buttonText.name = `${variant.name} ${state.name} Text`;
+              buttonText.characters = state.name;
+            }
+          }
+          
+          if (buttonText) {
+            buttonText.x = buttonX + 16; // SPACING_16 padding
+            buttonText.y = currentY + 12; // Centered vertically
+            buttonText.fills = [{ fillColor: state.textColor }];
+            if ('fontSize' in buttonText) (buttonText as any).fontSize = 16; // FONT_SIZE_16
+            if ('fontWeight' in buttonText) (buttonText as any).fontWeight = 400;
+            
+            // Add underline for Link variant
+            if (variant.name === 'Link') {
+              // Note: PenPot doesn't support text-decoration in fills, would need separate underline element
+            }
+            
+            buttonsCreated++;
+          }
+        }
+      });
+      
+      currentY += 60;
+    });
     
-    // TypeScript now properly catches non-existent API methods!
+    // Create section: Button Sizes
+    currentY += 30;
+    if (typeof penpot.createText === 'function') {
+      const sizeTitle = penpot.createText('Button Sizes');
+      if (sizeTitle) {
+        sizeTitle.name = 'Sizes Section Title';
+        sizeTitle.x = startX;
+        sizeTitle.y = currentY;
+        sizeTitle.characters = '2. Button Sizes';
+        sizeTitle.fills = [{ fillColor: novyuiTokensHex.color.neutral[9].light }];
+        if ('fontSize' in sizeTitle) (sizeTitle as any).fontSize = 20;
+        if ('fontWeight' in sizeTitle) (sizeTitle as any).fontWeight = 400;
+      }
+    }
+    currentY += 40;
+    
+    // Size examples with exact MoonZoon specifications
+    const sizes = [
+      { 
+        name: 'Small', 
+        width: 88,    // Calculated: 64 (min content) + 24 (SPACING_12 * 2)
+        height: 32,   // 20 (content) + 12 (SPACING_6 * 2)
+        fontSize: 14, // FONT_SIZE_14
+        paddingX: 12, // SPACING_12
+        paddingY: 6   // SPACING_6
+      },
+      { 
+        name: 'Medium', 
+        width: 104,   // 72 (content) + 32 (SPACING_16 * 2)
+        height: 40,   // 24 (content) + 16 (SPACING_8 * 2)
+        fontSize: 16, // FONT_SIZE_16
+        paddingX: 16, // SPACING_16
+        paddingY: 8   // SPACING_8
+      },
+      { 
+        name: 'Large', 
+        width: 116,   // 76 (content) + 40 (SPACING_20 * 2)
+        height: 48,   // 24 (content) + 24 (SPACING_12 * 2)
+        fontSize: 18, // FONT_SIZE_18
+        paddingX: 20, // SPACING_20
+        paddingY: 12  // SPACING_12
+      }
+    ];
+    
+    sizes.forEach((size, index) => {
+      const buttonX = startX + (index * 200);
+      
+      // Size label
+      if (typeof penpot.createText === 'function') {
+        const sizeLabel = penpot.createText(`${size.name} Size`);
+        if (sizeLabel) {
+          sizeLabel.name = `${size.name} Size Label`;
+          sizeLabel.x = buttonX;
+          sizeLabel.y = currentY;
+          sizeLabel.characters = `${size.name} (${size.width}×${size.height}px)`;
+          sizeLabel.fills = [{ fillColor: novyuiTokensHex.color.neutral[8].light }];
+          if ('fontSize' in sizeLabel) (sizeLabel as any).fontSize = 14;
+        }
+      }
+      
+      // Create sized button
+      const button = penpot.createRectangle();
+      button.name = `${size.name} Button Example`;
+      button.x = buttonX;
+      button.y = currentY + 25;
+      button.resize(size.width, size.height);
+      button.borderRadius = parseInt(novyuiTokensHex.cornerRadius[6]);
+      button.fills = [{ fillColor: novyuiTokensHex.color.primary[7].light }];
+      
+      // Create sized text
+      if (typeof penpot.createText === 'function') {
+        const buttonText = penpot.createText(size.name);
+        if (buttonText) {
+          buttonText.name = `${size.name} Button Text`;
+          buttonText.x = buttonX + size.paddingX;
+          buttonText.y = currentY + 25 + size.paddingY;
+          buttonText.characters = size.name;
+          buttonText.fills = [{ fillColor: novyuiTokensHex.color.neutral[1].light }];
+          if ('fontSize' in buttonText) (buttonText as any).fontSize = size.fontSize;
+          if ('fontWeight' in buttonText) (buttonText as any).fontWeight = 400;
+          
+          buttonsCreated++;
+        }
+      }
+    });
+    
+    console.log(`✅ Created complete NovyUI button system with ${buttonsCreated} components`);
     
     penpot.ui.sendMessage({
       type: 'component-result',
       data: {
         success: true,
-        message: 'Created grouped NovyUI button with background and text'
+        message: `Created complete NovyUI button system: 6 variants × 5 states + 3 sizes = ${buttonsCreated} components recreated from MoonZoon`
       }
     });
     
   } catch (error) {
     penpot.ui.sendMessage({
-      type: 'component-result', 
+      type: 'component-result',
       data: {
         success: false,
         error: (error as Error).message

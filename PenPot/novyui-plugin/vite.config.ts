@@ -1,26 +1,8 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  server: {
-    cors: {
-      origin: '*',
-      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-      allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-      credentials: false
-    },
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With'
-    },
-    hmr: true,
-    watch: {
-      usePolling: true,
-      interval: 100
-    }
-  },
+  // Plugin build configuration
   build: {
-    watch: {},
     lib: {
       entry: 'src/plugin.ts',
       name: 'plugin',
@@ -31,6 +13,16 @@ export default defineConfig({
       output: {
         entryFileNames: 'plugin.js'
       }
-    }
-  }
+    },
+    // Enable watching in dev mode
+    watch: {}
+  },
+  
+  // TypeScript configuration  
+  esbuild: {
+    target: 'es2020'
+  },
+  
+  // Enable verbose logging for debugging
+  logLevel: 'info'
 });
