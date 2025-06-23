@@ -1,8 +1,13 @@
-// NovyUI Plugin UI Interface
+// NovyUI Plugin UI Interface - TypeScript
 // This file handles the plugin's user interface
 
+// Get theme from URL parameters
+const urlParams = new URLSearchParams(window.location.search);
+const theme = urlParams.get('theme') || 'light';
+document.body.setAttribute('data-theme', theme);
+
 // Ensure parent exists and has sendMessage
-const sendMessage = (msg: any) => {
+const sendMessage = (msg: any): void => {
   if (window.parent && typeof window.parent.postMessage === 'function') {
     window.parent.postMessage(msg, '*');
   } else {
@@ -86,10 +91,15 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Handle messages from plugin
-window.addEventListener('message', (event) => {
+window.addEventListener('message', (event: MessageEvent) => {
   const message = event.data;
   
   switch (message.type) {
+    case 'themechange':
+      // Update theme when plugin sends theme change
+      document.body.setAttribute('data-theme', message.theme);
+      break;
+      
     case 'capabilities-result':
       displayCapabilities(message.data);
       break;
@@ -105,7 +115,11 @@ window.addEventListener('message', (event) => {
   }
 });
 
-function displayCapabilities(capabilities: any) {
+interface Capabilities {
+  [key: string]: any;
+}
+
+function displayCapabilities(capabilities: Capabilities): void {
   const resultBox = document.getElementById('capabilities-result');
   if (!resultBox) return;
 
@@ -123,7 +137,13 @@ function displayCapabilities(capabilities: any) {
   `;
 }
 
-function displayResult(elementId: string, result: any) {
+interface ResultData {
+  success: boolean;
+  message?: string;
+  error?: string;
+}
+
+function displayResult(elementId: string, result: ResultData): void {
   const resultBox = document.getElementById(elementId);
   if (!resultBox) return;
 

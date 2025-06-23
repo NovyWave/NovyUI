@@ -48,6 +48,20 @@ PenPot/novyui-plugin/node_modules/
 PenPot/novyui-plugin/dist/
 PenPot/novyui-plugin/.vite/
 
+# PenPot Plugin - Backup files
+PenPot/novyui-plugin-backup-*/
+PenPot/novyui-plugin/*.bak
+PenPot/novyui-plugin/src/*.bak
+
+# PenPot Plugin - Local development certificates (never commit)
+PenPot/novyui-plugin/*.pem
+PenPot/novyui-plugin/*.crt
+PenPot/novyui-plugin/*.key
+
+# PenPot Plugin - Logs
+PenPot/novyui-plugin/*.log
+PenPot/novyui-plugin/logs/
+
 # PenPot MCP Environment
 PenPot/mcp-env/
 PenPot/tests/node_modules/

@@ -1,22 +1,21 @@
 {
   "name": "novyui-penpot-plugin",
+  "private": true,
   "version": "0.1.0",
   "description": "NovyUI Design System importer for PenPot",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"vite build --watch\" \"vite --port 5173\"",
-    "build": "vite build",
-    "type-check": "tsc --noEmit",
-    "serve": "node dev-server.js",
-    "dev:old": "vite"
+    "dev": "vite-live-preview",
+    "build": "tsc && vite build",
+    "generate-certs": "./scripts/generate-dev-certs.sh"
   },
   "dependencies": {
-    "@penpot/plugin-types": "latest",
-    "express": "^4.18.0"
+    "@penpot/plugin-styles": "1.0.0",
+    "@penpot/plugin-types": "1.0.0"
   },
   "devDependencies": {
-    "typescript": "^5.0.0",
-    "vite": "^5.0.0",
-    "concurrently": "^8.0.0"
+    "typescript": "^5.2.2",
+    "vite": "^5.2.0",
+    "vite-live-preview": "^0.2.2"
   }
 }

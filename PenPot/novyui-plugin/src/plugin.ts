@@ -1265,4 +1265,4 @@ function testOpacityAPIs() {
 }
 
 // Initialize plugin
-console.log('✅ NovyUI PenPot Plugin Loaded');
+console.log('✅ NovyUI PenPot Plugin Loaded with Auto-Reload - HTTPS Enabled!');
