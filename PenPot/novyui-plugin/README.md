@@ -83,6 +83,19 @@ PenPot runs on HTTPS, and modern browsers block "mixed content" (HTTPS pages loa
 - Load the plugin in PenPot
 - Avoid CORS and security errors
 - Match production environment behavior
+- Bypass Cloudflare and CDN restrictions that block direct HTTP access
+
+### CORS Configuration
+
+The development server includes CORS headers to allow cross-origin requests from PenPot:
+```javascript
+cors: {
+  origin: "*",           // Allow all origins for development
+  credentials: false     // Disable credentials for security
+}
+```
+
+This configuration is essential for the plugin to load properly in PenPot's iframe environment.
 
 ## 🛠️ Troubleshooting
 
@@ -92,8 +105,17 @@ When first installing the plugin, your browser will warn about the self-signed c
 ### Plugin Not Loading
 1. Ensure the dev server is running (`npm run dev`)
 2. Check that certificates exist (`cert.pem` and `key.pem`)
-3. Try accessing `https://localhost:4400/manifest.json` directly
-4. Check browser console for CORS or certificate errors
+3. **First-time setup**: Open `https://localhost:4400` directly in your browser and accept the self-signed certificate before installing the plugin in PenPot
+4. Try accessing `https://localhost:4400/manifest.json` directly in browser
+5. Check browser console for CORS or certificate errors
+
+### Important: Certificate Acceptance Workflow
+🔒 **Critical Step**: Before installing the plugin in PenPot, you MUST:
+1. Navigate to `https://localhost:4400` directly in your browser 
+2. Accept the self-signed certificate warning ("Advanced" → "Proceed to localhost")
+3. Only then install the plugin in PenPot using the manifest URL
+
+**Why**: Browsers require explicit certificate acceptance for self-signed certificates. PenPot cannot load the plugin if the certificate hasn't been accepted first.
 
 ### Auto-reload Not Working
 - Ensure you're using `npm run dev` (not `npm run build`)
