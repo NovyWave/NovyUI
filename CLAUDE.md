@@ -94,6 +94,245 @@ npm run build  # Catches non-existent methods like penpot.createFrame()
 #   - "\u2060" (word joiner)
 # - Different invisible chars for each board type for uniqueness
 # - No API properties exist to control board label visibility
+
+# CRITICAL: PenPot Component Layout Architecture Pattern
+# This documents the proven approach for creating complex component examples
+# that work well with PenPot's native UI and layout system.
+
+## Component Example Layout Pattern
+
+### 1. **Section Structure** (Top-Level Organization)
+```typescript
+// Main section title (visible custom text)
+const sectionTitle = penpot.createText('1. Component Variants & States');
+sectionTitle.characters = '1. Component Variants & States';
+sectionTitle.fills = [{ fillColor: neutral[9] }];
+sectionTitle.fontSize = 20;
+// Position at currentY, then currentY += 40
+```
+
+### 2. **Variant Row Structure** (For Each Component Variant)
+```typescript
+variants.forEach((variant) => {
+  // A. Variant label (visible custom text above the row)
+  const variantLabel = penpot.createText(variant.name);
+  variantLabel.characters = variant.name; // "Primary", "Secondary", etc.
+  variantLabel.fills = [{ fillColor: neutral[7] }];
+  variantLabel.fontSize = 14;
+  // Position at currentY, then currentY += 25
+  
+  // B. Container board (invisible, manages layout)
+  const container = penpot.createBoard();
+  container.name = "\u200B"; // Invisible Unicode character
+  container.resize(750, 60); // Wide enough for all states
+  container.fills = []; // Transparent
+  
+  // C. Flex layout on container
+  const layout = container.addFlexLayout();
+  layout.dir = "row";
+  layout.alignItems = "center"; 
+  layout.justifyContent = "space-between"; // Even distribution
+  
+  // D. Individual component boards as children
+  states.forEach((state) => {
+    const componentBoard = penpot.createBoard();
+    componentBoard.name = "\u200C"; // Different invisible char
+    componentBoard.resize(120, 40);
+    
+    // E. Component styling
+    componentBoard.fills = [{ fillColor: state.bgColor }];
+    componentBoard.borderRadius = cornerRadius;
+    
+    // F. Text content with flex centering
+    const text = penpot.createText(state.name);
+    const textLayout = componentBoard.addFlexLayout();
+    textLayout.alignItems = "center";
+    textLayout.justifyContent = "center";
+    componentBoard.appendChild(text);
+    
+    // G. Add to container for automatic spacing
+    container.appendChild(componentBoard);
+  });
+  
+  currentY += 60; // Space between variant rows
+});
+```
+
+### 3. **Size/Scale Examples Structure** (For Different Component Sizes)
+```typescript
+sizes.forEach((size, index) => {
+  // A. Size label (visible custom text)
+  const sizeLabel = penpot.createText(size.name);
+  sizeLabel.characters = size.name; // "Small", "Medium", "Large"
+  sizeLabel.x = buttonX; 
+  sizeLabel.y = currentY;
+  
+  // B. Size container (optional, for centering)
+  const sizeContainer = penpot.createBoard();
+  sizeContainer.name = "\u200D"; // Different invisible char
+  sizeContainer.y = currentY + 25; // Below label
+  
+  // C. Individual component board
+  const componentBoard = penpot.createBoard();
+  componentBoard.name = "\u2060"; // Different invisible char
+  componentBoard.resize(size.width, size.height);
+  
+  // D. Component content and styling
+  // ... styling specific to component type
+  
+  sizeContainer.appendChild(componentBoard);
+});
+```
+
+## Key Architecture Principles
+
+### **Hierarchy Levels**
+1. **Section Titles** - Custom text elements for major sections
+2. **Variant Labels** - Custom text elements for each variant row  
+3. **Container Boards** - Invisible boards managing flex layout
+4. **Component Boards** - Individual component instances
+5. **Content Elements** - Text, icons, etc. within components
+
+### **Invisible Board Strategy**
+- Use different Unicode invisible chars for each board type:
+  - `\u200B` (zero-width space) - Variant containers
+  - `\u200C` (zero-width non-joiner) - Individual components  
+  - `\u200D` (zero-width joiner) - Size containers
+  - `\u2060` (word joiner) - Size components
+- This creates unique identifiers while hiding native PenPot labels
+
+### **Layout System Usage**
+- **Container Level**: `space-between` for even distribution of children
+- **Component Level**: `center` + `center` for centering content within components
+- **Always use `addFlexLayout()`** then set properties on returned layout object
+- **Always use `appendChild()`** to add children for layout to work
+
+### **Spacing Strategy**
+- Section spacing: 40px after titles
+- Label spacing: 25px between label and components  
+- Row spacing: 60-80px between variant rows
+- Component sizing: Account for content + padding in resize()
+
+### **Proven Patterns for Other Components**
+- **Input Fields**: Same structure, different states (normal, focus, error, disabled)
+- **Cards**: Container with image + text content as children
+- **Badges**: Small components with text, various colors/styles
+- **Navigation**: Horizontal containers with button/link children
+- **Forms**: Vertical containers with label + input pairs
+
+This architecture ensures:
+✅ Clean visual hierarchy
+✅ No label conflicts with PenPot's native UI  
+✅ Proper responsive layout behavior
+✅ Easy to adapt for any component type
+✅ Consistent spacing and organization
+
+### **Component-Specific Implementation Notes**
+
+#### **Button Variants - Special Cases**
+- **Link Buttons**: Must include visual underline to match MoonZoon implementation
+  ```typescript
+  if (variant.name === 'Link') {
+    // Use column flex layout for text + underline stacking
+    flexLayout.dir = "column";
+    flexLayout.gap = 2; // Minimal gap between text and underline
+    
+    // Create underline rectangle
+    const underline = penpot.createRectangle();
+    underline.resize(textWidth, 1); // 1px height underline
+    underline.fills = [{ fillColor: textColor }]; // Same color as text
+    
+    // Add both text and underline as children
+    buttonBoard.appendChild(buttonText);
+    buttonBoard.appendChild(underline);
+  }
+  ```
+- **All Other Variants**: Use row layout with centered text only
+- **Color Accuracy**: All button colors verified against MoonZoon implementation (100% match after state fixes)
+
+## CRITICAL: Rust-to-PenPot Verification Process
+
+### **The Problem That Must Be Solved**
+Manual component synchronization between Rust NovyUI components and PenPot plugin leads to subtle but critical errors in state handling and styling. A systematic verification process is required.
+
+### **Mandatory Verification Steps**
+
+#### **1. State-by-State Analysis**
+For EVERY component variant, extract from Rust code:
+```typescript
+// Required analysis template for each variant
+{
+  name: 'VariantName',
+  states: {
+    normal: { bgColor: 'exact_token', textColor: 'exact_token', borderColor: 'exact_token' },
+    hover: { bgColor: 'exact_token', textColor: 'exact_token', borderColor: 'exact_token' },
+    active: { bgColor: 'exact_token', textColor: 'exact_token', borderColor: 'exact_token' },
+    focus: { bgColor: 'exact_token', textColor: 'exact_token', borderColor: 'exact_token' },
+    disabled: { bgColor: 'exact_token', textColor: 'exact_token', borderColor: 'exact_token' },
+    loading: { bgColor: 'exact_token', textColor: 'exact_token', borderColor: 'exact_token' }
+  },
+  specialBehavior: ['underline', 'opacity', 'focus-ring', etc.]
+}
+```
+
+#### **2. Critical Error Patterns to Check**
+- **❌ State Background Bleed**: Using `hoverBgColor` for Active state (common error)
+- **❌ Universal Disabled Styling**: Applying same disabled background to all variants
+- **❌ Missing Variant-Specific Logic**: Not handling transparent variants properly
+- **❌ State Contradiction**: Applying backgrounds to variants that should always be transparent
+
+#### **3. Verification Checklist**
+For each component implementation:
+
+```markdown
+- [ ] Normal state uses `variant.bgColor` (not hardcoded)
+- [ ] Hover state uses `variant.hoverBgColor` (correct)
+- [ ] Active state uses `variant.bgColor` (NOT hoverBgColor)
+- [ ] Focus state uses `variant.bgColor` with focus ring
+- [ ] Disabled state respects variant background rules:
+  - [ ] Transparent variants (Link, Ghost, Outline) stay transparent
+  - [ ] Solid variants (Primary, Secondary, Destructive) get neutral background
+- [ ] Loading state uses `variant.bgColor`
+- [ ] Special behaviors implemented (underlines, etc.)
+- [ ] All color values match Rust token references exactly
+```
+
+#### **4. Automated Cross-Reference Tools**
+Future MCP server should provide:
+- **Rust Code Parser**: Extract exact styling from `.rs` component files
+- **Token Validator**: Verify color values match between Rust tokens and hex conversions
+- **State Matrix Generator**: Create complete state × variant matrices for verification
+- **Visual Diff Tool**: Compare PenPot output against Rust component screenshots
+
+#### **5. Error Prevention Rules**
+```typescript
+// NEVER do this - state background bleed
+states.forEach((state) => {
+  const bgColor = state.name === 'Hover' ? variant.hoverBgColor : variant.hoverBgColor; // ❌ WRONG
+});
+
+// ALWAYS do this - state-specific logic
+states.forEach((state) => {
+  const bgColor = (() => {
+    switch(state.name) {
+      case 'Normal': case 'Focus': case 'Loading': return variant.bgColor;
+      case 'Hover': return variant.hoverBgColor; 
+      case 'Active': return variant.bgColor; // NOT hoverBgColor!
+      case 'Disabled': return getDisabledBgColor(variant); // Variant-specific logic
+      default: return variant.bgColor;
+    }
+  })();
+});
+```
+
+### **Link Button Specific Fixes Applied**
+- **Active State**: Fixed to use `transparent` instead of `primary[2]`
+- **Disabled State**: Fixed to use `transparent` instead of gray
+- **Underline**: Added visual underline with column flex layout
+- **State Matrix**: Now 100% matches MoonZoon implementation
+
+### **Future Component Development**
+ALWAYS use this verification process before declaring any component "complete". The cost of manual verification is far less than the cost of user-reported accuracy issues.
 ```
 
 ## Development Commands

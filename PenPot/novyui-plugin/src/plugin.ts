@@ -646,7 +646,7 @@ function createTestComponent() {
       {
         name: 'Link',
         bgColor: novyuiTokensHex.color.static.transparent,      // transparent()
-        hoverBgColor: novyuiTokensHex.color.primary[2].light,   // primary_2()
+        hoverBgColor: novyuiTokensHex.color.static.transparent, // Stay transparent on hover
         textColor: novyuiTokensHex.color.primary[7].light,      // primary_7()
         borderColor: novyuiTokensHex.color.static.transparent,  // transparent()
         description: 'Link style - transparent background, blue text, underlined'
@@ -735,9 +735,13 @@ function createTestComponent() {
             if (variant.name === 'Secondary') {
               return novyuiTokensHex.color.primary[8].light; // Darker blue for better contrast
             }
-            // For outline/ghost/link with light blue hover background, use darker blue
-            if (variant.name === 'Outline' || variant.name === 'Ghost' || variant.name === 'Link') {
+            // For outline/ghost with light blue hover background, use darker blue
+            if (variant.name === 'Outline' || variant.name === 'Ghost') {
               return novyuiTokensHex.color.primary[9].light; // Even darker blue
+            }
+            // For Link buttons, use darker blue text on hover for feedback
+            if (variant.name === 'Link') {
+              return novyuiTokensHex.color.primary[9].light; // Darker blue for hover feedback
             }
             // For primary and destructive, keep original
             return variant.textColor;
@@ -747,17 +751,8 @@ function createTestComponent() {
         },
         { 
           name: 'Active', 
-          bgColor: variant.hoverBgColor, 
-          // Similar contrast adjustments for active state
-          textColor: (() => {
-            if (variant.name === 'Secondary') {
-              return novyuiTokensHex.color.primary[8].light;
-            }
-            if (variant.name === 'Outline' || variant.name === 'Ghost' || variant.name === 'Link') {
-              return novyuiTokensHex.color.primary[9].light;
-            }
-            return variant.textColor;
-          })(),
+          bgColor: variant.bgColor,  // Active state uses normal background, not hover background
+          textColor: variant.textColor, // Active state uses normal text color
           opacity: 1,
           isLoading: false
         },
@@ -771,8 +766,15 @@ function createTestComponent() {
         },
         { 
           name: 'Disabled', 
-          bgColor: novyuiTokensHex.color.neutral[5].light,  // Disabled uses neutral-5
-          textColor: novyuiTokensHex.color.neutral[7].light, // Disabled text uses neutral-7
+          bgColor: (() => {
+            // Link, Ghost, and Outline buttons keep transparent background when disabled
+            if (variant.name === 'Link' || variant.name === 'Ghost' || variant.name === 'Outline') {
+              return variant.bgColor; // Keep original background (transparent)
+            }
+            // Primary, Secondary, and Destructive get neutral background when disabled
+            return novyuiTokensHex.color.neutral[5].light;
+          })(),
+          textColor: novyuiTokensHex.color.neutral[7].light, // All disabled text uses neutral-7
           opacity: parseFloat(novyuiTokensHex.opacity.disabled), // 0.64
           isLoading: false
         },
@@ -799,10 +801,15 @@ function createTestComponent() {
           try {
             flexLayout = buttonBoard.addFlexLayout();
             if (flexLayout) {
-              flexLayout.dir = "row";
+              // Link buttons need column layout for text + underline stacking
+              flexLayout.dir = variant.name === 'Link' ? "column" : "row";
               flexLayout.alignItems = "center";
               flexLayout.justifyContent = "center";
               flexLayout.wrap = "nowrap";
+              // Minimal gap for Link buttons to keep text and underline close
+              if (variant.name === 'Link' && 'gap' in flexLayout) {
+                flexLayout.gap = 2;
+              }
               console.log('Successfully created flex layout on button board');
             }
           } catch (e) {
@@ -853,14 +860,34 @@ function createTestComponent() {
               if ('fontSize' in buttonText) (buttonText as any).fontSize = 16;
               if ('fontWeight' in buttonText) (buttonText as any).fontWeight = 400;
               
-              // Add text as child to button board - flex layout will center it automatically
-              try {
-                buttonBoard.appendChild(buttonText);
-                console.log(`Successfully added ${state.name} text as child to button board`);
-                buttonsCreated++;
-              } catch (e) {
-                console.log(`appendChild failed for ${state.name} text:`, e);
-                buttonsCreated++;
+              // Add visual underline for Link buttons to match MoonZoon implementation
+              if (variant.name === 'Link') {
+                // Create underline using a rectangle shape
+                const underline = penpot.createRectangle();
+                underline.name = `${variant.name} ${state.name} Underline`;
+                underline.resize(buttonText.characters.length * 8, 1); // Approximate text width, 1px height
+                underline.fills = [{ fillColor: state.textColor }]; // Same color as text
+                
+                // Add both text and underline to button
+                try {
+                  buttonBoard.appendChild(buttonText);
+                  buttonBoard.appendChild(underline);
+                  console.log(`Successfully added ${state.name} link text with underline`);
+                  buttonsCreated++;
+                } catch (e) {
+                  console.log(`appendChild failed for ${state.name} link:`, e);
+                  buttonsCreated++;
+                }
+              } else {
+                // Regular buttons without underline
+                try {
+                  buttonBoard.appendChild(buttonText);
+                  console.log(`Successfully added ${state.name} text as child to button board`);
+                  buttonsCreated++;
+                } catch (e) {
+                  console.log(`appendChild failed for ${state.name} text:`, e);
+                  buttonsCreated++;
+                }
               }
             }
           }
