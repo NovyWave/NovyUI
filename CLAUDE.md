@@ -33,7 +33,7 @@ npm run build
 npm run build:watch &
 
 # Plugin URL for PenPot installation
-# http://localhost:5173/manifest.json
+# https://localhost:4400/manifest.json
 
 # CRITICAL: Plugin development workflow - FIXED!
 # ✅ SOLUTION: Simplified development with proper auto-recompilation
@@ -48,7 +48,7 @@ npm run dev
 # - Outputs to dist/plugin.js (where manifest.json expects it)
 # - No more conflicts between tsc and vite!
 
-# ✅ Manifest URL: http://localhost:5173/manifest.json
+# ✅ Manifest URL: https://localhost:4400/manifest.json
 # ✅ Plugin loads from: dist/plugin.js (auto-updated on changes)
 
 # 🔧 Type checking (optional, for catching errors):
@@ -61,6 +61,16 @@ npm run build
 npm run build  # Catches non-existent methods like penpot.createFrame()
 
 # NEVER assume auto-recompilation works - always verify manually!
+
+# IMPORTANT: When killing dev server on port 4400:
+# - Only kill Node.js/npm processes, NOT browser processes
+# - Use: ps aux | grep -E "(node|npm).*4400" to find the right process
+# - Or use: lsof -i:4400 to check what's using the port first
+
+# CRITICAL: manifest.json path configuration
+# - The manifest.json "code" field should ALWAYS be "plugin.js" 
+# - NEVER change it to "dist/plugin.js" - this breaks the plugin loading
+# - The dev server serves from the dist folder, so "plugin.js" is correct
 ```
 
 ## Development Commands

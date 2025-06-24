@@ -717,7 +717,35 @@ function createTestComponent() {
         { 
           name: 'Hover', 
           bgColor: variant.hoverBgColor, 
-          textColor: variant.textColor,
+          // Adjust text color for better contrast in hover state
+          textColor: (() => {
+            // For secondary variant, keep darker blue on gray background
+            if (variant.name === 'Secondary') {
+              return novyuiTokensHex.color.primary[8].light; // Darker blue for better contrast
+            }
+            // For outline/ghost/link with light blue hover background, use darker blue
+            if (variant.name === 'Outline' || variant.name === 'Ghost' || variant.name === 'Link') {
+              return novyuiTokensHex.color.primary[9].light; // Even darker blue
+            }
+            // For primary and destructive, keep original
+            return variant.textColor;
+          })(),
+          opacity: 1,
+          isLoading: false
+        },
+        { 
+          name: 'Active', 
+          bgColor: variant.hoverBgColor, 
+          // Similar contrast adjustments for active state
+          textColor: (() => {
+            if (variant.name === 'Secondary') {
+              return novyuiTokensHex.color.primary[8].light;
+            }
+            if (variant.name === 'Outline' || variant.name === 'Ghost' || variant.name === 'Link') {
+              return novyuiTokensHex.color.primary[9].light;
+            }
+            return variant.textColor;
+          })(),
           opacity: 1,
           isLoading: false
         },
@@ -758,11 +786,37 @@ function createTestComponent() {
           buttonBoard.borderRadius = parseInt(novyuiTokensHex.cornerRadius[6]);
           
           // Set flex layout for centering
-          if ('layoutDirection' in buttonBoard) {
-            (buttonBoard as any).layoutDirection = 'row';
-            (buttonBoard as any).layoutJustifyContent = 'center';
-            (buttonBoard as any).layoutAlignItems = 'center';
-            (buttonBoard as any).layoutWrap = 'nowrap';
+          // Try multiple approaches for layout as PenPot API might vary
+          const layoutProps = {
+            // Standard flex properties
+            layoutDirection: 'row',
+            layoutJustifyContent: 'center',
+            layoutAlignItems: 'center',
+            layoutWrap: 'nowrap',
+            // Alternative property names
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexWrap: 'nowrap',
+            // Grid-based centering
+            display: 'flex',
+            placeItems: 'center',
+            placeContent: 'center'
+          };
+          
+          // Apply all possible layout properties
+          Object.entries(layoutProps).forEach(([prop, value]) => {
+            if (prop in buttonBoard) {
+              (buttonBoard as any)[prop] = value;
+            }
+          });
+          
+          // Also try setting layout type if available
+          if ('layoutType' in buttonBoard) {
+            (buttonBoard as any).layoutType = 'flex';
+          }
+          if ('layout' in buttonBoard) {
+            (buttonBoard as any).layout = 'flex';
           }
           
           // Set background color (handle transparent)
@@ -804,17 +858,59 @@ function createTestComponent() {
             }
             
             if (buttonText) {
-              // No positioning needed - flex layout will center it
               // Set text properties
               buttonText.fills = [{ fillColor: state.textColor }];
               if ('fontSize' in buttonText) (buttonText as any).fontSize = 16;
               if ('fontWeight' in buttonText) (buttonText as any).fontWeight = 400;
               
-              // Try to add text as child to board
+              // Try to add text as child to board with flex layout
+              let textAddedAsChild = false;
               if ('appendChild' in buttonBoard) {
-                (buttonBoard as any).appendChild(buttonText);
+                try {
+                  (buttonBoard as any).appendChild(buttonText);
+                  textAddedAsChild = true;
+                } catch (e) {
+                  console.log('appendChild failed, will use manual positioning');
+                }
               } else if ('addChild' in buttonBoard) {
-                (buttonBoard as any).addChild(buttonText);
+                try {
+                  (buttonBoard as any).addChild(buttonText);
+                  textAddedAsChild = true;
+                } catch (e) {
+                  console.log('addChild failed, will use manual positioning');
+                }
+              }
+              
+              // If text wasn't added as child or flex layout isn't working,
+              // position it manually
+              if (!textAddedAsChild) {
+                // Calculate text width approximation with better accuracy
+                const textContent = state.isLoading ? '● Loading' : state.name;
+                const fontSize = 16;
+                
+                // More accurate character width calculation based on typical font metrics
+                const charWidths: Record<string, number> = {
+                  'N': 0.72, 'o': 0.56, 'r': 0.33, 'm': 0.83, 'a': 0.56, 'l': 0.28,
+                  'H': 0.72, 'v': 0.50, 'e': 0.56, 'A': 0.67, 'c': 0.50, 't': 0.33,
+                  'i': 0.28, 'F': 0.61, 'u': 0.56, 's': 0.50, 'D': 0.72, 'b': 0.56,
+                  'd': 0.56, 'L': 0.56, 'g': 0.56, '●': 0.56, ' ': 0.25,
+                  default: 0.56
+                };
+                
+                // Calculate actual text width
+                let textWidth = 0;
+                for (const char of textContent) {
+                  textWidth += (charWidths[char] || charWidths.default) * fontSize;
+                }
+                
+                const textHeight = fontSize;
+                const buttonWidth = 120;
+                const buttonHeight = 40;
+                
+                // Center text within button with proper baseline adjustment
+                buttonText.x = buttonX + (buttonWidth - textWidth) / 2;
+                // Adjust Y position for proper vertical centering (accounting for text baseline)
+                buttonText.y = currentY + (buttonHeight / 2) + (textHeight * 0.35);
               }
               
               buttonsCreated++;
