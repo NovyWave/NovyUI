@@ -88,11 +88,13 @@ npm run build  # Catches non-existent methods like penpot.createFrame()
 # CRITICAL: PenPot Board Naming for Hidden Labels  
 # - NEVER use empty string board.name = "" - PenPot shows "Board" fallback
 # - Use invisible Unicode characters to hide board labels:
-#   - "\u200B" (zero-width space)
-#   - "\u200C" (zero-width non-joiner) 
-#   - "\u200D" (zero-width joiner)
-#   - "\u2060" (word joiner)
+#   - "\u200B" (zero-width space) - for individual buttons
+#   - "\u200C" (zero-width non-joiner) - for variant containers  
+#   - "\u200D" (zero-width joiner) - for size containers
+#   - "\u2060" (word joiner) - for size buttons
+#   - "\u200B\u200B\u200B" (multiple zero-width spaces) - for theme backgrounds
 # - Different invisible chars for each board type for uniqueness
+# - For persistent "Board" issues, try multiple characters or combinations
 # - No API properties exist to control board label visibility
 
 # CRITICAL: PenPot Component Layout Architecture Pattern

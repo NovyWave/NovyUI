@@ -609,75 +609,153 @@ function createTestComponent() {
     let currentY = startY;
     let buttonsCreated = 0;
     
-    // All 6 button variants with exact MoonZoon specifications
-    const variants = [
-      {
-        name: 'Primary',
-        bgColor: novyuiTokensHex.color.primary[7].light,        // primary_7()
-        hoverBgColor: novyuiTokensHex.color.primary[8].light,   // primary_8()
-        textColor: novyuiTokensHex.color.neutral[1].light,      // neutral_1()
-        borderColor: novyuiTokensHex.color.static.transparent,  // transparent()
-        description: 'Main action - blue background, white text'
+    // Function to generate button variants for a specific theme
+    function getVariantsForTheme(theme: 'light' | 'dark') {
+      if (theme === 'dark') {
+        // Dark theme uses different color approach for better visual contrast
+        return [
+          {
+            name: 'Primary',
+            bgColor: novyuiTokensHex.color.primary[6].light,        // Use light blue for contrast on dark bg
+            hoverBgColor: novyuiTokensHex.color.primary[7].light,   // Darker blue on hover
+            textColor: novyuiTokensHex.color.neutral[1].light,      // White text
+            borderColor: novyuiTokensHex.color.static.transparent,
+          },
+          {
+            name: 'Secondary', 
+            bgColor: novyuiTokensHex.color.neutral[4].dark,         // Dark gray for better contrast
+            hoverBgColor: novyuiTokensHex.color.neutral[5].dark,    // Medium gray on hover  
+            textColor: novyuiTokensHex.color.neutral[11].dark,      // Light gray text for strong contrast
+            borderColor: novyuiTokensHex.color.neutral[6].dark,
+          },
+          {
+            name: 'Outline',
+            bgColor: novyuiTokensHex.color.static.transparent,
+            hoverBgColor: novyuiTokensHex.color.primary[2].dark,    // Dark blue bg on hover
+            textColor: novyuiTokensHex.color.primary[6].light,      // Light blue text
+            borderColor: novyuiTokensHex.color.neutral[6].dark,     // Gray border
+          },
+          {
+            name: 'Ghost',
+            bgColor: novyuiTokensHex.color.static.transparent,
+            hoverBgColor: novyuiTokensHex.color.primary[2].dark,    // Dark blue bg on hover
+            textColor: novyuiTokensHex.color.primary[6].light,      // Light blue text
+            borderColor: novyuiTokensHex.color.static.transparent,
+          },
+          {
+            name: 'Link',
+            bgColor: novyuiTokensHex.color.static.transparent,
+            hoverBgColor: novyuiTokensHex.color.static.transparent,
+            textColor: novyuiTokensHex.color.primary[6].light,      // Light blue text
+            borderColor: novyuiTokensHex.color.static.transparent,
+          },
+          {
+            name: 'Destructive',
+            bgColor: novyuiTokensHex.color.error[7].light,          // Use light red for contrast
+            hoverBgColor: novyuiTokensHex.color.error[8].light,     // Darker red on hover
+            textColor: novyuiTokensHex.color.neutral[1].light,      // White text
+            borderColor: novyuiTokensHex.color.static.transparent,
+          }
+        ];
+      } else {
+        // Light theme uses standard token mapping
+        return [
+          {
+            name: 'Primary',
+            bgColor: novyuiTokensHex.color.primary[7][theme],
+            hoverBgColor: novyuiTokensHex.color.primary[8][theme],
+            textColor: novyuiTokensHex.color.neutral[1][theme],
+            borderColor: novyuiTokensHex.color.static.transparent,
+          },
+          {
+            name: 'Secondary', 
+            bgColor: novyuiTokensHex.color.neutral[4][theme],
+            hoverBgColor: novyuiTokensHex.color.neutral[5][theme],
+            textColor: novyuiTokensHex.color.primary[7][theme],
+            borderColor: novyuiTokensHex.color.neutral[3][theme],
+          },
+          {
+            name: 'Outline',
+            bgColor: novyuiTokensHex.color.static.transparent,
+            hoverBgColor: novyuiTokensHex.color.primary[2][theme],
+            textColor: novyuiTokensHex.color.primary[7][theme],
+            borderColor: novyuiTokensHex.color.neutral[3][theme],
+          },
+          {
+            name: 'Ghost',
+            bgColor: novyuiTokensHex.color.static.transparent,
+            hoverBgColor: novyuiTokensHex.color.primary[2][theme],
+            textColor: novyuiTokensHex.color.primary[7][theme],
+            borderColor: novyuiTokensHex.color.static.transparent,
+          },
+          {
+            name: 'Link',
+            bgColor: novyuiTokensHex.color.static.transparent,
+            hoverBgColor: novyuiTokensHex.color.static.transparent,
+            textColor: novyuiTokensHex.color.primary[7][theme],
+            borderColor: novyuiTokensHex.color.static.transparent,
+          },
+          {
+            name: 'Destructive',
+            bgColor: novyuiTokensHex.color.error[7][theme],
+            hoverBgColor: novyuiTokensHex.color.error[8][theme],
+            textColor: novyuiTokensHex.color.neutral[1][theme],
+            borderColor: novyuiTokensHex.color.static.transparent,
+          }
+        ];
+      }
+    }
+    
+    // Create both Light and Dark theme sections with exact MoonZoon storybook backgrounds
+    const themes: Array<{name: string, key: 'light' | 'dark', bgColor: string}> = [
+      { 
+        name: 'Light Theme', 
+        key: 'light', 
+        bgColor: novyuiTokensHex.color.neutral[1].light  // #fefefe - matches MoonZoon storybook
       },
-      {
-        name: 'Secondary', 
-        bgColor: novyuiTokensHex.color.neutral[4].light,        // neutral_4()
-        hoverBgColor: novyuiTokensHex.color.neutral[5].light,   // neutral_5()
-        textColor: novyuiTokensHex.color.primary[7].light,      // primary_7()
-        borderColor: novyuiTokensHex.color.neutral[3].light,    // neutral_3()
-        description: 'Secondary action - gray background, blue text, border'
-      },
-      {
-        name: 'Outline',
-        bgColor: novyuiTokensHex.color.static.transparent,      // transparent()
-        hoverBgColor: novyuiTokensHex.color.primary[2].light,   // primary_2()
-        textColor: novyuiTokensHex.color.primary[7].light,      // primary_7()
-        borderColor: novyuiTokensHex.color.neutral[3].light,    // neutral_3()
-        description: 'Outlined action - transparent background, blue text, border'
-      },
-      {
-        name: 'Ghost',
-        bgColor: novyuiTokensHex.color.static.transparent,      // transparent()
-        hoverBgColor: novyuiTokensHex.color.primary[2].light,   // primary_2()
-        textColor: novyuiTokensHex.color.primary[7].light,      // primary_7()
-        borderColor: novyuiTokensHex.color.static.transparent,  // transparent()
-        description: 'Minimal action - transparent background, blue text, no border'
-      },
-      {
-        name: 'Link',
-        bgColor: novyuiTokensHex.color.static.transparent,      // transparent()
-        hoverBgColor: novyuiTokensHex.color.static.transparent, // Stay transparent on hover
-        textColor: novyuiTokensHex.color.primary[7].light,      // primary_7()
-        borderColor: novyuiTokensHex.color.static.transparent,  // transparent()
-        description: 'Link style - transparent background, blue text, underlined'
-      },
-      {
-        name: 'Destructive',
-        bgColor: novyuiTokensHex.color.error[7].light,          // error_7()
-        hoverBgColor: novyuiTokensHex.color.error[8].light,     // error_8()
-        textColor: novyuiTokensHex.color.neutral[1].light,      // neutral_1()
-        borderColor: novyuiTokensHex.color.static.transparent,  // transparent()
-        description: 'Destructive action - red background, white text'
+      { 
+        name: 'Dark Theme', 
+        key: 'dark', 
+        bgColor: novyuiTokensHex.color.neutral[2].dark   // #020617 - matches MoonZoon storybook
       }
     ];
     
-    // Create section: Button Variants & States
-    if (typeof penpot.createText === 'function') {
-      const sectionTitle = penpot.createText('Button Variants & States');
-      if (sectionTitle) {
-        sectionTitle.name = 'Variants Section Title';
-        sectionTitle.x = startX;
-        sectionTitle.y = currentY;
-        sectionTitle.characters = '1. Button Variants & States';
-        sectionTitle.fills = [{ fillColor: novyuiTokensHex.color.neutral[9].light }];
-        if ('fontSize' in sectionTitle) (sectionTitle as any).fontSize = 20;
-        if ('fontWeight' in sectionTitle) (sectionTitle as any).fontWeight = 400;
+    themes.forEach((theme, themeIndex) => {
+      // Add theme background board first
+      const themeBackground = penpot.createBoard();
+      themeBackground.name = "\u200B\u200B\u200B"; // Multiple zero-width spaces for uniqueness
+      themeBackground.x = startX - 40;
+      themeBackground.y = currentY;
+      themeBackground.resize(850, 580); // Increased to include title and bottom padding
+      themeBackground.fills = [{ fillColor: theme.bgColor }]; // Full theme background
+      
+      // Add subtle border for better definition
+      if (theme.key === 'light') {
+        themeBackground.strokes = [{ strokeColor: novyuiTokensHex.color.neutral[3].light, strokeWidth: 1 }];
+      } else {
+        themeBackground.strokes = [{ strokeColor: novyuiTokensHex.color.neutral[8].dark, strokeWidth: 1 }];
       }
-    }
-    currentY += 40;
-    
-    // Create buttons for each variant with all states
-    variants.forEach((variant) => {
+      
+      // Create theme section title INSIDE the background
+      if (typeof penpot.createText === 'function') {
+        const themeTitle = penpot.createText(theme.name);
+        if (themeTitle) {
+          themeTitle.name = `${theme.name} Title`;
+          themeTitle.x = startX;
+          themeTitle.y = currentY + 20; // Inside the container
+          themeTitle.characters = `${themeIndex + 1}. Button Variants & States - ${theme.name}`;
+          themeTitle.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[9].dark }];
+          if ('fontSize' in themeTitle) (themeTitle as any).fontSize = 20;
+          if ('fontWeight' in themeTitle) (themeTitle as any).fontWeight = 400;
+        }
+      }
+      
+      currentY += 60; // Space for title inside container
+      
+      const variants = getVariantsForTheme(theme.key);
+      
+      // Create buttons for each variant with all states
+      variants.forEach((variant) => {
       // Add variant label above the button row
       if (typeof penpot.createText === 'function') {
         const variantLabel = penpot.createText(variant.name);
@@ -686,7 +764,7 @@ function createTestComponent() {
           variantLabel.x = startX;
           variantLabel.y = currentY;
           variantLabel.characters = variant.name;
-          variantLabel.fills = [{ fillColor: novyuiTokensHex.color.neutral[7].light }];
+          variantLabel.fills = [{ fillColor: novyuiTokensHex.color.neutral[7][theme.key] }];
           if ('fontSize' in variantLabel) (variantLabel as any).fontSize = 14;
           if ('fontWeight' in variantLabel) (variantLabel as any).fontWeight = 400;
         }
@@ -733,15 +811,15 @@ function createTestComponent() {
           textColor: (() => {
             // For secondary variant, keep darker blue on gray background
             if (variant.name === 'Secondary') {
-              return novyuiTokensHex.color.primary[8].light; // Darker blue for better contrast
+              return novyuiTokensHex.color.primary[8][theme.key]; // Darker blue for better contrast
             }
             // For outline/ghost with light blue hover background, use darker blue
             if (variant.name === 'Outline' || variant.name === 'Ghost') {
-              return novyuiTokensHex.color.primary[9].light; // Even darker blue
+              return novyuiTokensHex.color.primary[9][theme.key]; // Even darker blue
             }
             // For Link buttons, use darker blue text on hover for feedback
             if (variant.name === 'Link') {
-              return novyuiTokensHex.color.primary[9].light; // Darker blue for hover feedback
+              return novyuiTokensHex.color.primary[9][theme.key]; // Darker blue for hover feedback
             }
             // For primary and destructive, keep original
             return variant.textColor;
@@ -772,9 +850,9 @@ function createTestComponent() {
               return variant.bgColor; // Keep original background (transparent)
             }
             // Primary, Secondary, and Destructive get neutral background when disabled
-            return novyuiTokensHex.color.neutral[5].light;
+            return novyuiTokensHex.color.neutral[5][theme.key];
           })(),
-          textColor: novyuiTokensHex.color.neutral[7].light, // All disabled text uses neutral-7
+          textColor: novyuiTokensHex.color.neutral[7][theme.key], // All disabled text uses neutral-7
           opacity: parseFloat(novyuiTokensHex.opacity.disabled), // 0.64
           isLoading: false
         },
@@ -918,7 +996,11 @@ function createTestComponent() {
       currentY += 60;  // Space between variant sections
     });
     
-    // Create section: Button Sizes
+    // Add extra space between themes
+    currentY += 80;
+  });
+    
+    // Create section: Button Sizes (Light Theme Only)
     currentY += 40;  // More space before sizes section
     if (typeof penpot.createText === 'function') {
       const sizeTitle = penpot.createText('Button Sizes');
@@ -926,7 +1008,7 @@ function createTestComponent() {
         sizeTitle.name = 'Sizes Section Title';
         sizeTitle.x = startX;
         sizeTitle.y = currentY;
-        sizeTitle.characters = '2. Button Sizes';
+        sizeTitle.characters = '3. Button Sizes (Light Theme)';
         sizeTitle.fills = [{ fillColor: novyuiTokensHex.color.neutral[9].light }];
         if ('fontSize' in sizeTitle) (sizeTitle as any).fontSize = 20;
         if ('fontWeight' in sizeTitle) (sizeTitle as any).fontWeight = 400;
