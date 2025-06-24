@@ -69,5 +69,8 @@ PenPot/tests/node_modules/
 # PenPot Migration - Output files (can be regenerated)
 PenPot/output/
 
+# MCP Server overrides (personal configuration)
+.mcp.local.json
+
 # Playwright browser data (persistent sessions)
 .playwright-browser-data/

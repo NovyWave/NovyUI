@@ -41,6 +41,26 @@ penpot.ui.onMessage((message: any) => {
       createAllComponents();
       break;
     
+    case 'create-icons':
+      createIconsComponent();
+      break;
+    
+    case 'create-kbd':
+      createKbdComponent();
+      break;
+    
+    case 'create-select':
+      createSelectComponent();
+      break;
+    
+    case 'create-treeview':
+      createTreeViewComponent();
+      break;
+    
+    case 'create-typography':
+      createTypographyComponent();
+      break;
+    
     default:
       console.error('Unknown message type:', message.type);
   }

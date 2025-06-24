@@ -52,6 +52,21 @@ document.addEventListener('DOMContentLoaded', () => {
         <button id="create-test" class="btn btn-primary">
           Create Buttons
         </button>
+        <button id="create-icons" class="btn btn-primary">
+          Create Icons
+        </button>
+        <button id="create-kbd" class="btn btn-primary">
+          Create Kbd
+        </button>
+        <button id="create-select" class="btn btn-primary">
+          Create Select
+        </button>
+        <button id="create-treeview" class="btn btn-primary">
+          Create TreeView
+        </button>
+        <button id="create-typography" class="btn btn-primary">
+          Create Typography
+        </button>
         <button id="create-all" class="btn btn-success">
           Create All Components
         </button>
@@ -87,6 +102,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('create-all')?.addEventListener('click', () => {
     sendMessage({ type: 'create-all-components' });
+  });
+
+  document.getElementById('create-icons')?.addEventListener('click', () => {
+    sendMessage({ type: 'create-icons' });
+  });
+
+  document.getElementById('create-kbd')?.addEventListener('click', () => {
+    sendMessage({ type: 'create-kbd' });
+  });
+
+  document.getElementById('create-select')?.addEventListener('click', () => {
+    sendMessage({ type: 'create-select' });
+  });
+
+  document.getElementById('create-treeview')?.addEventListener('click', () => {
+    sendMessage({ type: 'create-treeview' });
+  });
+
+  document.getElementById('create-typography')?.addEventListener('click', () => {
+    sendMessage({ type: 'create-typography' });
   });
 });
 

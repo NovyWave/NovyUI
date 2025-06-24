@@ -517,6 +517,228 @@ Before creating pull requests:
 3. Check component accessibility compliance
 4. Ensure design token usage (no hardcoded values)
 
+## MCP Server Integration
+
+### Available MCP Servers
+This project uses official MCP servers for enhanced development workflow:
+
+**Configuration**: `.mcp.json` in project root (project-specific scope)
+```json
+{
+  "mcpServers": {
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["@executeautomation/playwright-mcp-server"],
+      "env": {
+        "PLAYWRIGHT_USER_DATA_DIR": "./.playwright-browser-data",
+        "PLAYWRIGHT_HEADLESS": "false",
+        "..."
+      }
+    },
+    "memory": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"],
+      "env": {
+        "MCP_MEMORY_DATA_DIR": "./.mcp-data"
+      }
+    },
+    "sequentialthinking": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sequentialthinking"]
+    }
+  }
+}
+```
+
+### Team Collaboration Setup
+
+#### **For Team Members**
+1. **Clone the repository** to any location on your system
+2. **Run Claude Code from project root**: `cd /your/path/to/NovyUI && claude`
+3. **MCP servers auto-configure** using relative paths to project directories
+
+#### **Shared Resources**
+- **Memory Storage**: `.mcp-data/` (committed to git for team knowledge sharing)
+- **Playwright Data**: `.playwright-browser-data/` (gitignored, each developer has own browser state)
+- **Configuration**: `.mcp.json` (committed, works for all team members)
+
+#### **Cross-Platform Compatibility**
+```bash
+# Works on any system:
+Windows: C:\Users\Alice\repos\NovyUI\.mcp-data
+macOS:   /Users/Bob/projects/NovyUI/.mcp-data  
+Linux:   /home/charlie/code/NovyUI/.mcp-data
+```
+
+#### **Override for Special Cases**
+If a team member needs custom paths, create `.mcp.local.json`:
+```json
+{
+  "mcpServers": {
+    "memory": {
+      "env": {
+        "MCP_MEMORY_DATA_DIR": "/custom/path/memories"
+      }
+    }
+  }
+}
+```
+Add `.mcp.local.json` to `.gitignore` for personal overrides.
+
+### Memory Server Usage Patterns
+
+#### **Store Implementation Patterns**
+```bash
+# Component creation patterns
+create_entities: 
+  - name: "ButtonImplementation" 
+  - type: "ComponentPattern"
+  - observations: ["Uses 850x580px theme containers", "Unicode invisible chars for board names", "Flex layout with center alignment"]
+
+# Color and theme strategies  
+create_entities:
+  - name: "DarkThemeColors"
+  - type: "DesignPattern" 
+  - observations: ["primary[6].light works better than primary[7].dark", "Need higher contrast for visibility", "Test all colors against dark backgrounds"]
+
+# PenPot API workarounds
+create_entities:
+  - name: "PenPotLayoutSystem"
+  - type: "TechnicalPattern"
+  - observations: ["addFlexLayout() then set properties", "appendChild() required for layout", "No pixel positioning - use native layout only"]
+```
+
+#### **Component Relationships**
+```bash
+create_relations:
+  - from: "ButtonImplementation"
+  - to: "IconImplementation" 
+  - relation: "serves as template for"
+
+create_relations:
+  - from: "ThemeContainerPattern"
+  - to: "AllComponents"
+  - relation: "applies to"
+```
+
+#### **Query Stored Knowledge**
+```bash
+# Before implementing new component
+search_nodes: "component implementation"
+search_nodes: "theme container patterns"
+search_nodes: "PenPot layout"
+
+# During troubleshooting
+search_nodes: "dark theme contrast"
+search_nodes: "board naming"
+search_nodes: "flex layout"
+```
+
+### Sequential Thinking Usage Patterns
+
+#### **Component Implementation Process**
+Use sequential thinking for systematic component development:
+
+**Thought 1**: "Analyzing MoonZoon component structure..."
+- Read component .rs file
+- Identify variants, sizes, states
+- Extract color tokens and styling
+
+**Thought 2**: "Designing PenPot equivalent structure..."
+- Plan theme container layout
+- Design variant showcase sections
+- Map Rust tokens to hex colors
+
+**Thought 3**: "Implementing with proper patterns..."
+- Apply Button template structure
+- Use stored memory patterns
+- Implement flex layout correctly
+
+**Thought 4**: "Testing and verification..."
+- Check light/dark themes
+- Verify against storybook
+- Test all states and variants
+
+**Thought 5**: "Storing lessons learned..."
+- Update memory with new patterns
+- Document any issues resolved
+- Add to verification checklist
+
+#### **Complex Problem Solving**
+For challenging implementation decisions:
+- Break down multi-variant components
+- Analyze state interaction complexity  
+- Design systematic testing approaches
+- Explore alternative implementation paths
+- Verify against MoonZoon reference
+
+#### **Error Investigation**
+When components don't render correctly:
+- Systematically check each implementation step
+- Compare against stored successful patterns
+- Identify deviations from proven approaches
+- Test incremental fixes
+- Document solution for future reference
+
+### Productive Usage Guidelines
+
+#### **At Start of Component Implementation**
+1. **Query Memory**: `search_nodes: "component template"`
+2. **Sequential Planning**: Break down component into systematic steps
+3. **Store Intent**: Create entity for new component with planned approach
+
+#### **During Implementation**
+1. **Reference Patterns**: Query memory for similar solved problems
+2. **Document Decisions**: Add observations about what works/doesn't work
+3. **Use Sequential Thinking**: For complex styling or layout decisions
+
+#### **After Implementation**
+1. **Store Success**: Add successful patterns to memory
+2. **Document Lessons**: Update entities with new observations
+3. **Create Relations**: Link new component to existing patterns
+
+#### **Troubleshooting Workflow**
+1. **Search Memory**: `search_nodes: "similar error"` or `search_nodes: "component name"`
+2. **Sequential Analysis**: Break down problem systematically
+3. **Test Solutions**: Apply stored solutions incrementally
+4. **Update Memory**: Add new solution patterns
+
+### Memory Content Strategy
+
+#### **Entity Types to Maintain**
+- **ComponentPattern**: Button, Icon, Kbd, Select, TreeView, Typography
+- **DesignPattern**: ThemeContainer, ColorContrast, LayoutSystem
+- **TechnicalPattern**: PenPotAPI, FlexLayout, BoardNaming
+- **ErrorSolution**: SpecificFixes, Workarounds, DebuggingSteps
+
+#### **Relation Types to Track**
+- "extends pattern from" - Component inheritance
+- "requires" - Dependencies between patterns
+- "conflicts with" - Incompatible approaches  
+- "solved by" - Error to solution mappings
+
+#### **Critical Observations to Store**
+- Working color combinations for light/dark themes
+- Successful PenPot API usage patterns
+- Component state logic that works correctly
+- Layout configurations that render properly
+- Unicode characters that hide board labels effectively
+
+### Integration with Todo Lists
+
+**Workflow**: Use MCP servers to enhance todo tracking:
+1. **Sequential Thinking**: Plan todo breakdown systematically
+2. **Memory Storage**: Store successful todo completion patterns
+3. **Knowledge Query**: Reference previous similar todos for guidance
+
+This integration ensures that every component implementation builds on previous successes and avoids repeating solved problems.
+
 ## Development Workflow Memories
 - remember to run dev servers (e.g. for penpot plugin) in background
 - reload plugin dev server after changing code
+- use MCP memory to store successful patterns
+- apply sequential thinking for complex component decisions
+- query stored knowledge before starting new implementations
