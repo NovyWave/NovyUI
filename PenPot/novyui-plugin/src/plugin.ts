@@ -678,32 +678,44 @@ function createTestComponent() {
     
     // Create buttons for each variant with all states
     variants.forEach((variant) => {
-      // Variant section label
+      // Add variant label above the button row
       if (typeof penpot.createText === 'function') {
         const variantLabel = penpot.createText(variant.name);
         if (variantLabel) {
           variantLabel.name = `${variant.name} Label`;
           variantLabel.x = startX;
           variantLabel.y = currentY;
-          variantLabel.characters = `${variant.name}`;
-          variantLabel.fills = [{ fillColor: novyuiTokensHex.color.neutral[8].light }];
-          if ('fontSize' in variantLabel) (variantLabel as any).fontSize = 16;
+          variantLabel.characters = variant.name;
+          variantLabel.fills = [{ fillColor: novyuiTokensHex.color.neutral[7].light }];
+          if ('fontSize' in variantLabel) (variantLabel as any).fontSize = 14;
           if ('fontWeight' in variantLabel) (variantLabel as any).fontWeight = 400;
-        }
-        
-        // Variant description
-        const descLabel = penpot.createText(variant.description);
-        if (descLabel) {
-          descLabel.name = `${variant.name} Description`;
-          descLabel.x = startX + 120;
-          descLabel.y = currentY;
-          descLabel.characters = variant.description;
-          descLabel.fills = [{ fillColor: novyuiTokensHex.color.neutral[6].light }];
-          if ('fontSize' in descLabel) (descLabel as any).fontSize = 12;
         }
       }
       
-      currentY += 25;
+      currentY += 25; // Space between label and buttons
+      
+      // Create container board for this variant section
+      const variantContainer = penpot.createBoard();
+      variantContainer.name = "\u200B"; // Zero-width space to hide native board title
+      variantContainer.x = startX;
+      variantContainer.y = currentY;
+      variantContainer.resize(750, 60); // Wider and taller to fit all buttons properly
+      variantContainer.fills = []; // Transparent background
+      
+      // Create flex layout for the container with proper gaps
+      let containerLayout: any = null;
+      try {
+        containerLayout = variantContainer.addFlexLayout();
+        if (containerLayout) {
+          containerLayout.dir = "row";
+          containerLayout.alignItems = "center";
+          containerLayout.justifyContent = "space-between"; // Distribute buttons evenly across container
+          containerLayout.wrap = "nowrap";
+          console.log('Created variant container with gap properties');
+        }
+      } catch (e) {
+        console.log('Variant container layout failed:', e);
+      }
       
       // All button states: Normal, Hover, Focus, Disabled, Loading
       const states = [
@@ -773,50 +785,28 @@ function createTestComponent() {
         }
       ];
       
-      states.forEach((state, stateIndex) => {
-        const buttonX = startX + (stateIndex * 140);
-        
-        // Create button Board with proper children
+      states.forEach((state) => {
+        // Create button Board as child of variant container
         if (typeof penpot.createBoard === 'function') {
           const buttonBoard = penpot.createBoard();
-          buttonBoard.name = `${variant.name} ${state.name} Button`;
-          buttonBoard.x = buttonX;
-          buttonBoard.y = currentY;
+          buttonBoard.name = "\u200C"; // Zero-width non-joiner to hide native board title
           buttonBoard.resize(120, 40);
+          // Position will be handled by space-between layout
           buttonBoard.borderRadius = parseInt(novyuiTokensHex.cornerRadius[6]);
           
-          // Set flex layout for centering
-          // Try multiple approaches for layout as PenPot API might vary
-          const layoutProps = {
-            // Standard flex properties
-            layoutDirection: 'row',
-            layoutJustifyContent: 'center',
-            layoutAlignItems: 'center',
-            layoutWrap: 'nowrap',
-            // Alternative property names
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexWrap: 'nowrap',
-            // Grid-based centering
-            display: 'flex',
-            placeItems: 'center',
-            placeContent: 'center'
-          };
-          
-          // Apply all possible layout properties
-          Object.entries(layoutProps).forEach(([prop, value]) => {
-            if (prop in buttonBoard) {
-              (buttonBoard as any)[prop] = value;
+          // Create flex layout on the board for proper centering
+          let flexLayout: any = null;
+          try {
+            flexLayout = buttonBoard.addFlexLayout();
+            if (flexLayout) {
+              flexLayout.dir = "row";
+              flexLayout.alignItems = "center";
+              flexLayout.justifyContent = "center";
+              flexLayout.wrap = "nowrap";
+              console.log('Successfully created flex layout on button board');
             }
-          });
-          
-          // Also try setting layout type if available
-          if ('layoutType' in buttonBoard) {
-            (buttonBoard as any).layoutType = 'flex';
-          }
-          if ('layout' in buttonBoard) {
-            (buttonBoard as any).layout = 'flex';
+          } catch (e) {
+            console.log('addFlexLayout failed:', e);
           }
           
           // Set background color (handle transparent)
@@ -863,57 +853,15 @@ function createTestComponent() {
               if ('fontSize' in buttonText) (buttonText as any).fontSize = 16;
               if ('fontWeight' in buttonText) (buttonText as any).fontWeight = 400;
               
-              // Try to add text as child to board with flex layout
-              let textAddedAsChild = false;
-              if ('appendChild' in buttonBoard) {
-                try {
-                  (buttonBoard as any).appendChild(buttonText);
-                  textAddedAsChild = true;
-                } catch (e) {
-                  console.log('appendChild failed, will use manual positioning');
-                }
-              } else if ('addChild' in buttonBoard) {
-                try {
-                  (buttonBoard as any).addChild(buttonText);
-                  textAddedAsChild = true;
-                } catch (e) {
-                  console.log('addChild failed, will use manual positioning');
-                }
+              // Add text as child to button board - flex layout will center it automatically
+              try {
+                buttonBoard.appendChild(buttonText);
+                console.log(`Successfully added ${state.name} text as child to button board`);
+                buttonsCreated++;
+              } catch (e) {
+                console.log(`appendChild failed for ${state.name} text:`, e);
+                buttonsCreated++;
               }
-              
-              // If text wasn't added as child or flex layout isn't working,
-              // position it manually
-              if (!textAddedAsChild) {
-                // Calculate text width approximation with better accuracy
-                const textContent = state.isLoading ? '● Loading' : state.name;
-                const fontSize = 16;
-                
-                // More accurate character width calculation based on typical font metrics
-                const charWidths: Record<string, number> = {
-                  'N': 0.72, 'o': 0.56, 'r': 0.33, 'm': 0.83, 'a': 0.56, 'l': 0.28,
-                  'H': 0.72, 'v': 0.50, 'e': 0.56, 'A': 0.67, 'c': 0.50, 't': 0.33,
-                  'i': 0.28, 'F': 0.61, 'u': 0.56, 's': 0.50, 'D': 0.72, 'b': 0.56,
-                  'd': 0.56, 'L': 0.56, 'g': 0.56, '●': 0.56, ' ': 0.25,
-                  default: 0.56
-                };
-                
-                // Calculate actual text width
-                let textWidth = 0;
-                for (const char of textContent) {
-                  textWidth += (charWidths[char] || charWidths.default) * fontSize;
-                }
-                
-                const textHeight = fontSize;
-                const buttonWidth = 120;
-                const buttonHeight = 40;
-                
-                // Center text within button with proper baseline adjustment
-                buttonText.x = buttonX + (buttonWidth - textWidth) / 2;
-                // Adjust Y position for proper vertical centering (accounting for text baseline)
-                buttonText.y = currentY + (buttonHeight / 2) + (textHeight * 0.35);
-              }
-              
-              buttonsCreated++;
             }
           }
           
@@ -929,14 +877,22 @@ function createTestComponent() {
               }
             ];
           }
+          
+          // Add button to variant container for automatic layout
+          try {
+            variantContainer.appendChild(buttonBoard);
+            console.log(`Added ${state.name} button to ${variant.name} container`);
+          } catch (e) {
+            console.log(`Failed to add ${state.name} button to container:`, e);
+          }
         }
       });
       
-      currentY += 60;
+      currentY += 60;  // Space between variant sections
     });
     
     // Create section: Button Sizes
-    currentY += 30;
+    currentY += 40;  // More space before sizes section
     if (typeof penpot.createText === 'function') {
       const sizeTitle = penpot.createText('Button Sizes');
       if (sizeTitle) {
@@ -982,24 +938,45 @@ function createTestComponent() {
     sizes.forEach((size, index) => {
       const buttonX = startX + (index * 200);
       
-      // Size label
+      // Add size label above the button
       if (typeof penpot.createText === 'function') {
-        const sizeLabel = penpot.createText(`${size.name} Size`);
+        const sizeLabel = penpot.createText(size.name);
         if (sizeLabel) {
           sizeLabel.name = `${size.name} Size Label`;
           sizeLabel.x = buttonX;
           sizeLabel.y = currentY;
-          sizeLabel.characters = `${size.name} (${size.width}×${size.height}px)`;
-          sizeLabel.fills = [{ fillColor: novyuiTokensHex.color.neutral[8].light }];
+          sizeLabel.characters = size.name;
+          sizeLabel.fills = [{ fillColor: novyuiTokensHex.color.neutral[7].light }];
           if ('fontSize' in sizeLabel) (sizeLabel as any).fontSize = 14;
+          if ('fontWeight' in sizeLabel) (sizeLabel as any).fontWeight = 400;
         }
+      }
+      
+      // Create container board for this size example
+      const sizeContainer = penpot.createBoard();
+      sizeContainer.name = "\u200D"; // Zero-width joiner to hide native board title
+      sizeContainer.x = buttonX;
+      sizeContainer.y = currentY + 25; // Space below the size label
+      sizeContainer.resize(size.width + 20, size.height + 20); // Slightly larger than button
+      sizeContainer.fills = []; // Transparent background
+      
+      // Create flex layout for the size container
+      let sizeContainerLayout: any = null;
+      try {
+        sizeContainerLayout = sizeContainer.addFlexLayout();
+        if (sizeContainerLayout) {
+          sizeContainerLayout.dir = "column";
+          sizeContainerLayout.alignItems = "center";
+          sizeContainerLayout.justifyContent = "center";
+          sizeContainerLayout.wrap = "nowrap";
+        }
+      } catch (e) {
+        console.log('Size container layout failed:', e);
       }
       
       // Create sized button as Board
       const sizedButtonBoard = penpot.createBoard();
-      sizedButtonBoard.name = `${size.name} Button Example`;
-      sizedButtonBoard.x = buttonX;
-      sizedButtonBoard.y = currentY + 25;
+      sizedButtonBoard.name = "\u2060"; // Word joiner to hide native board title
       sizedButtonBoard.resize(size.width, size.height);
       
       // Set board styling
@@ -1008,23 +985,48 @@ function createTestComponent() {
       }
       sizedButtonBoard.fills = [{ fillColor: novyuiTokensHex.color.primary[7].light }];
       
-      // Create sized text positioned manually
+      // Create flex layout for size buttons (same approach as variant buttons)
+      let sizeFlexLayout: any = null;
+      try {
+        sizeFlexLayout = sizedButtonBoard.addFlexLayout();
+        if (sizeFlexLayout) {
+          sizeFlexLayout.dir = "row";
+          sizeFlexLayout.alignItems = "center";
+          sizeFlexLayout.justifyContent = "center";
+          sizeFlexLayout.wrap = "nowrap";
+          console.log('Successfully created flex layout on size button board');
+        }
+      } catch (e) {
+        console.log('Size button addFlexLayout failed:', e);
+      }
+      
+      // Create sized text
       if (typeof penpot.createText === 'function') {
         const buttonText = penpot.createText(size.name);
         if (buttonText) {
           buttonText.name = `${size.name} Button Text`;
-          
-          // Position text manually within board coordinates
-          const textWidth = size.name.length * (size.fontSize * 0.6);
-          buttonText.x = buttonX + (size.width - textWidth) / 2;
-          buttonText.y = currentY + 25 + (size.height - size.fontSize) / 2 + 4;
-          
           buttonText.characters = size.name;
           buttonText.fills = [{ fillColor: novyuiTokensHex.color.neutral[1].light }];
           if ('fontSize' in buttonText) (buttonText as any).fontSize = size.fontSize;
           if ('fontWeight' in buttonText) (buttonText as any).fontWeight = 400;
           
-          buttonsCreated++;
+          // Add text as child to size button board - flex layout will center it automatically
+          try {
+            sizedButtonBoard.appendChild(buttonText);
+            console.log(`Successfully added ${size.name} text as child to size button board`);
+            buttonsCreated++;
+          } catch (e) {
+            console.log(`Size button appendChild failed for ${size.name}:`, e);
+            buttonsCreated++;
+          }
+          
+          // Add button to size container for automatic layout
+          try {
+            sizeContainer.appendChild(sizedButtonBoard);
+            console.log(`Added ${size.name} button to size container`);
+          } catch (e) {
+            console.log(`Failed to add ${size.name} button to container:`, e);
+          }
         }
       }
     });

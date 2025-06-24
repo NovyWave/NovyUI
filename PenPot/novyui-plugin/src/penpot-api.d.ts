@@ -16,7 +16,7 @@ declare global {
     createRectangle: () => PenpotRectangle;
     createEllipse: () => PenpotShape;
     createPath: () => PenpotShape;
-    createBoard: () => PenpotShape;
+    createBoard: () => PenpotBoard;
     createText: (text: string) => PenpotText | null;
     
     // Methods that MAY exist (need to test)
@@ -55,6 +55,23 @@ interface PenpotText extends PenpotShape {
   fontFamily?: string;
   fontSize?: number;
   fontWeight?: number | string;
+}
+
+interface PenpotBoard extends PenpotShape {
+  appendChild: (child: PenpotShape) => void;
+  addFlexLayout: () => PenpotFlexLayout;
+}
+
+interface PenpotFlexLayout {
+  dir: "row" | "column" | "row-reverse" | "column-reverse";
+  wrap: "nowrap" | "wrap" | "wrap-reverse";
+  alignItems: "flex-start" | "flex-end" | "center" | "stretch";
+  justifyContent: "flex-start" | "flex-end" | "center" | "space-between" | "space-around" | "space-evenly";
+  horizontalSizing?: "fill" | "fix";
+  verticalSizing?: "fill" | "fix";
+  gap?: number;
+  columnGap?: number;
+  rowGap?: number;
 }
 
 interface PenpotGroup extends PenpotShape {

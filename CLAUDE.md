@@ -70,7 +70,30 @@ npm run build  # Catches non-existent methods like penpot.createFrame()
 # CRITICAL: manifest.json path configuration
 # - The manifest.json "code" field should ALWAYS be "plugin.js" 
 # - NEVER change it to "dist/plugin.js" - this breaks the plugin loading
-# - The dev server serves from the dist folder, so "plugin.js" is correct
+# - The source file is public/manifest.json (not the root manifest.json)
+# - Vite copies public/manifest.json to dist/manifest.json during build
+# - Fix any "dist/plugin.js" references in public/manifest.json, not dist/manifest.json
+
+# CRITICAL: PenPot Plugin Layout Rules - CORRECTED APPROACH
+# - PenPot boards DO support appendChild() when used with addFlexLayout()
+# - CORRECT APPROACH: 
+#   1. Create board with buttonBoard = penpot.createBoard()
+#   2. Add flex layout: flexLayout = buttonBoard.addFlexLayout()
+#   3. Set layout properties: flexLayout.alignItems = "center", flexLayout.justifyContent = "center"
+#   4. Add text as child: buttonBoard.appendChild(buttonText)
+# - Layout automatically centers the text - no manual positioning needed
+# - Include fallback positioning if appendChild() fails (API limitations)
+# - This matches the PenPot UI behavior shown in user screenshots
+#
+# CRITICAL: PenPot Board Naming for Hidden Labels  
+# - NEVER use empty string board.name = "" - PenPot shows "Board" fallback
+# - Use invisible Unicode characters to hide board labels:
+#   - "\u200B" (zero-width space)
+#   - "\u200C" (zero-width non-joiner) 
+#   - "\u200D" (zero-width joiner)
+#   - "\u2060" (word joiner)
+# - Different invisible chars for each board type for uniqueness
+# - No API properties exist to control board label visibility
 ```
 
 ## Development Commands
