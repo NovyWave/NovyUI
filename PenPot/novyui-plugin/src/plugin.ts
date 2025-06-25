@@ -623,6 +623,7 @@ function createTestComponent() {
         title.fills = [{ fillColor: novyuiTokensHex.color.neutral[11].light }];
         if ('fontSize' in title) (title as any).fontSize = 24;
         if ('fontWeight' in title) (title as any).fontWeight = 400;
+        if ('fontFamily' in title) (title as any).fontFamily = 'Inter';
       }
     }
     
@@ -787,6 +788,7 @@ function createTestComponent() {
           variantLabel.fills = [{ fillColor: novyuiTokensHex.color.neutral[7][theme.key] }];
           if ('fontSize' in variantLabel) (variantLabel as any).fontSize = 14;
           if ('fontWeight' in variantLabel) (variantLabel as any).fontWeight = 400;
+          if ('fontFamily' in variantLabel) (variantLabel as any).fontFamily = 'Inter';
         }
       }
       
@@ -957,6 +959,7 @@ function createTestComponent() {
               buttonText.fills = [{ fillColor: state.textColor }];
               if ('fontSize' in buttonText) (buttonText as any).fontSize = 16;
               if ('fontWeight' in buttonText) (buttonText as any).fontWeight = 400;
+              if ('fontFamily' in buttonText) (buttonText as any).fontFamily = 'Inter';
               
               // Add visual underline for Link buttons to match MoonZoon implementation
               if (variant.name === 'Link') {
@@ -1231,7 +1234,7 @@ function createIconsComponent() {
           themeTitle.characters = `${themeIndex + 1}. Icon Showcase - ${theme.name}`;
           themeTitle.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[9].dark }];
           if ('fontSize' in themeTitle) (themeTitle as any).fontSize = 20;
-          if ('fontWeight' in themeTitle) (themeTitle as any).fontWeight = 600;
+          if ('fontWeight' in themeTitle) (themeTitle as any).fontWeight = 400;
         }
       }
       
@@ -1590,7 +1593,7 @@ function createKbdComponent() {
           themeTitle.characters = `${themeIndex + 1}. Kbd Showcase - ${theme.name}`;
           themeTitle.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[9].dark }];
           if ('fontSize' in themeTitle) (themeTitle as any).fontSize = 20;
-          if ('fontWeight' in themeTitle) (themeTitle as any).fontWeight = 600;
+          if ('fontWeight' in themeTitle) (themeTitle as any).fontWeight = 400;
         }
       }
       
@@ -1677,7 +1680,7 @@ function createKbdComponent() {
             kbdText.characters = 'Ctrl';
             kbdText.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[1].light }];
             if ('fontSize' in kbdText) (kbdText as any).fontSize = size.fontSize;
-            if ('fontFamily' in kbdText) (kbdText as any).fontFamily = novyuiTokensHex.typography.fontFamily.mono;
+            if ('fontFamily' in kbdText) (kbdText as any).fontFamily = 'Fira Code';
             
             try {
               kbdBoard.appendChild(kbdText);
@@ -1806,8 +1809,8 @@ function createKbdComponent() {
             // Use proper text color from style specification
             styleText.fills = [{ fillColor: style.textColor }];
             if ('fontSize' in styleText) (styleText as any).fontSize = 14;
-            if ('fontWeight' in styleText) (styleText as any).fontWeight = 500; // Medium weight
-            if ('fontFamily' in styleText) (styleText as any).fontFamily = novyuiTokensHex.typography.fontFamily.mono;
+            if ('fontWeight' in styleText) (styleText as any).fontWeight = 400; // Regular weight  
+            if ('fontFamily' in styleText) (styleText as any).fontFamily = 'Fira Code';
             
             try {
               styleBoard.appendChild(styleText);
@@ -1908,8 +1911,8 @@ function createKbdComponent() {
             shortcutText.characters = shortcut.keys;
             shortcutText.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[1].light }];
             if ('fontSize' in shortcutText) (shortcutText as any).fontSize = 12;
-            if ('fontWeight' in shortcutText) (shortcutText as any).fontWeight = 500; // Medium weight
-            if ('fontFamily' in shortcutText) (shortcutText as any).fontFamily = novyuiTokensHex.typography.fontFamily.mono;
+            if ('fontWeight' in shortcutText) (shortcutText as any).fontWeight = 400; // Regular weight
+            if ('fontFamily' in shortcutText) (shortcutText as any).fontFamily = 'Fira Code';
             
             try {
               shortcutBoard.appendChild(shortcutText);
@@ -2002,7 +2005,7 @@ function createSelectComponent() {
           themeTitle.characters = `${themeIndex + 1}. Select Showcase - ${theme.name}`;
           themeTitle.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[9].dark }];
           if ('fontSize' in themeTitle) (themeTitle as any).fontSize = 20;
-          if ('fontWeight' in themeTitle) (themeTitle as any).fontWeight = 600;
+          if ('fontWeight' in themeTitle) (themeTitle as any).fontWeight = 400;
         }
       }
       
@@ -2455,7 +2458,7 @@ function createTreeViewComponent() {
           themeTitle.characters = `${themeIndex + 1}. TreeView Showcase - ${theme.name}`;
           themeTitle.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[9].dark }];
           if ('fontSize' in themeTitle) (themeTitle as any).fontSize = 20;
-          if ('fontWeight' in themeTitle) (themeTitle as any).fontWeight = 600;
+          if ('fontWeight' in themeTitle) (themeTitle as any).fontWeight = 400;
         }
       }
       
@@ -2898,7 +2901,7 @@ function createTypographyComponent() {
           themeTitle.characters = `${themeIndex + 1}. Typography Showcase - ${theme.name}`;
           themeTitle.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[9].dark }];
           if ('fontSize' in themeTitle) (themeTitle as any).fontSize = 20;
-          if ('fontWeight' in themeTitle) (themeTitle as any).fontWeight = 600;
+          if ('fontWeight' in themeTitle) (themeTitle as any).fontWeight = 400;
         }
       }
       
@@ -2906,10 +2909,10 @@ function createTypographyComponent() {
       
       // Section 1: Headings (4 levels)
       const headings = [
-        { level: 'H1', text: 'Heading Level 1', fontSize: 48, fontWeight: 700 },
-        { level: 'H2', text: 'Heading Level 2', fontSize: 36, fontWeight: 600 },
-        { level: 'H3', text: 'Heading Level 3', fontSize: 30, fontWeight: 600 },
-        { level: 'H4', text: 'Heading Level 4', fontSize: 24, fontWeight: 500 }
+        { level: 'H1', text: 'Heading Level 1', fontSize: 48, fontWeight: 400 },
+        { level: 'H2', text: 'Heading Level 2', fontSize: 36, fontWeight: 400 },
+        { level: 'H3', text: 'Heading Level 3', fontSize: 30, fontWeight: 400 },
+        { level: 'H4', text: 'Heading Level 4', fontSize: 24, fontWeight: 400 }
       ];
       
       // Headings label
@@ -2978,7 +2981,7 @@ function createTypographyComponent() {
             headingText.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[9].dark }];
             if ('fontSize' in headingText) (headingText as any).fontSize = heading.fontSize;
             if ('fontWeight' in headingText) (headingText as any).fontWeight = heading.fontWeight;
-            if ('fontFamily' in headingText) (headingText as any).fontFamily = novyuiTokensHex.typography.fontFamily.sans;
+            if ('fontFamily' in headingText) (headingText as any).fontFamily = 'Inter';
             
             try {
               headingBoard.appendChild(headingText);
@@ -3073,7 +3076,7 @@ function createTypographyComponent() {
             bodyTextElement.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[8].light : novyuiTokensHex.color.neutral[8].dark }];
             if ('fontSize' in bodyTextElement) (bodyTextElement as any).fontSize = bodyText.fontSize;
             if ('fontWeight' in bodyTextElement) (bodyTextElement as any).fontWeight = bodyText.fontWeight;
-            if ('fontFamily' in bodyTextElement) (bodyTextElement as any).fontFamily = novyuiTokensHex.typography.fontFamily.sans;
+            if ('fontFamily' in bodyTextElement) (bodyTextElement as any).fontFamily = 'Inter';
             
             try {
               bodyBoard.appendChild(bodyTextElement);
@@ -3169,7 +3172,7 @@ function createTypographyComponent() {
             
             // Apply special styling based on type
             let textColor;
-            let fontFamily = novyuiTokensHex.typography.fontFamily.sans;
+            let fontFamily = 'Inter';
             
             switch (specialText.special) {
               case 'link':
@@ -3180,7 +3183,7 @@ function createTypographyComponent() {
                 break;
               case 'mono':
                 textColor = theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[9].dark;
-                fontFamily = novyuiTokensHex.typography.fontFamily.mono;
+                fontFamily = 'Fira Code';
                 break;
               default:
                 textColor = theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[9].dark;
@@ -3369,7 +3372,7 @@ function testTypographyAPIs() {
       // Try setting font weight (use numeric values)
       try {
         if ('fontWeight' in text) {
-          text.fontWeight = 600; // Use numeric instead of 'bold'
+          text.fontWeight = 400; // Use numeric instead of 'bold'
           results.canSetFontWeight = true;
         }
       } catch (e) { console.log('FontWeight failed:', e); }
