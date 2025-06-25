@@ -547,7 +547,7 @@ This project uses official MCP servers for enhanced development workflow:
     "sequentialthinking": {
       "type": "stdio",
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-sequentialthinking"]
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"]
     }
   }
 }

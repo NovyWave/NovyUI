@@ -1181,6 +1181,2057 @@ function createTestComponent() {
   }
 }
 
+// Create Icons component showcase
+function createIconsComponent() {
+  try {
+    console.log('🎨 Creating Icons component showcase...');
+    
+    const startX = 100;
+    const startY = 100;
+    let currentY = startY;
+    let iconsCreated = 0;
+    
+    // Create both Light and Dark theme sections with exact Button pattern
+    const themes: Array<{name: string, key: 'light' | 'dark', bgColor: string}> = [
+      { 
+        name: 'Light Theme', 
+        key: 'light', 
+        bgColor: novyuiTokensHex.color.neutral[1].light  // #fefefe
+      },
+      { 
+        name: 'Dark Theme', 
+        key: 'dark', 
+        bgColor: novyuiTokensHex.color.neutral[2].dark   // #020617
+      }
+    ];
+    
+    themes.forEach((theme, themeIndex) => {
+      // Add theme background board first
+      const themeBackground = penpot.createBoard();
+      themeBackground.name = "\u200B\u200B\u200B"; // Multiple zero-width spaces for uniqueness
+      themeBackground.x = startX - 40;
+      themeBackground.y = currentY;
+      themeBackground.resize(850, 580); // Increased to include title and bottom padding
+      themeBackground.fills = [{ fillColor: theme.bgColor }]; // Full theme background
+      
+      // Add subtle border for better definition
+      if (theme.key === 'light') {
+        themeBackground.strokes = [{ strokeColor: novyuiTokensHex.color.neutral[3].light, strokeWidth: 1 }];
+      } else {
+        themeBackground.strokes = [{ strokeColor: novyuiTokensHex.color.neutral[8].dark, strokeWidth: 1 }];
+      }
+      
+      // Create theme section title INSIDE the background
+      if (typeof penpot.createText === 'function') {
+        const themeTitle = penpot.createText(theme.name);
+        if (themeTitle) {
+          themeTitle.name = `${theme.name} Title`;
+          themeTitle.x = startX;
+          themeTitle.y = currentY + 20; // Inside the container
+          themeTitle.characters = `${themeIndex + 1}. Icon Showcase - ${theme.name}`;
+          themeTitle.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[9].dark }];
+          if ('fontSize' in themeTitle) (themeTitle as any).fontSize = 20;
+          if ('fontWeight' in themeTitle) (themeTitle as any).fontWeight = 600;
+        }
+      }
+      
+      let sectionY = currentY + 60; // Start sections below title
+      
+      // Section 1: Popular Icons (5 icons)
+      const popularIcons = [
+        { name: 'User', symbol: '👤', label: 'User' },
+        { name: 'Heart', symbol: '♥', label: 'Heart' },
+        { name: 'Star', symbol: '★', label: 'Star' },
+        { name: 'Settings', symbol: '⚙', label: 'Settings' },
+        { name: 'Search', symbol: '🔍', label: 'Search' }
+      ];
+      
+      // Popular Icons label
+      if (typeof penpot.createText === 'function') {
+        const sectionLabel = penpot.createText('Popular Icons');
+        if (sectionLabel) {
+          sectionLabel.name = 'Popular Icons Label';
+          sectionLabel.x = startX;
+          sectionLabel.y = sectionY;
+          sectionLabel.characters = 'Popular Icons';
+          sectionLabel.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark }];
+          if ('fontSize' in sectionLabel) (sectionLabel as any).fontSize = 14;
+          if ('fontWeight' in sectionLabel) (sectionLabel as any).fontWeight = 400;
+        }
+      }
+      
+      sectionY += 25; // Space below label
+      
+      // Create container for popular icons
+      const popularContainer = penpot.createBoard();
+      popularContainer.name = "\u200C"; // Zero-width non-joiner
+      popularContainer.x = startX;
+      popularContainer.y = sectionY;
+      popularContainer.resize(750, 60);
+      popularContainer.fills = []; // Transparent
+      
+      // Add flex layout to container
+      let popularLayout: any = null;
+      try {
+        popularLayout = popularContainer.addFlexLayout();
+        if (popularLayout) {
+          popularLayout.dir = "row";
+          popularLayout.alignItems = "center";
+          popularLayout.justifyContent = "space-between";
+          popularLayout.wrap = "nowrap";
+        }
+      } catch (e) {
+        console.log('Popular icons layout failed:', e);
+      }
+      
+      // Create individual icon boards
+      popularIcons.forEach((icon) => {
+        const iconBoard = penpot.createBoard();
+        iconBoard.name = "\u200D"; // Zero-width joiner
+        iconBoard.resize(120, 40);
+        iconBoard.fills = []; // Transparent background
+        
+        // Add flex layout for centering
+        let iconLayout: any = null;
+        try {
+          iconLayout = iconBoard.addFlexLayout();
+          if (iconLayout) {
+            iconLayout.dir = "row";
+            iconLayout.alignItems = "center";
+            iconLayout.justifyContent = "center";
+            iconLayout.wrap = "nowrap";
+          }
+        } catch (e) {
+          console.log('Icon layout failed:', e);
+        }
+        
+        // Create icon text
+        if (typeof penpot.createText === 'function') {
+          const iconText = penpot.createText(icon.symbol);
+          if (iconText) {
+            iconText.name = `${icon.name} Icon`;
+            iconText.characters = icon.symbol;
+            iconText.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.primary[7].light : novyuiTokensHex.color.primary[6].light }];
+            if ('fontSize' in iconText) (iconText as any).fontSize = 20;
+            
+            try {
+              iconBoard.appendChild(iconText);
+              iconsCreated++;
+            } catch (e) {
+              console.log(`Icon appendChild failed for ${icon.name}:`, e);
+              iconsCreated++;
+            }
+          }
+        }
+        
+        try {
+          popularContainer.appendChild(iconBoard);
+        } catch (e) {
+          console.log(`Failed to add ${icon.name} to container:`, e);
+        }
+      });
+      
+      sectionY += 80; // Space for next section
+      
+      // Section 2: Size Comparison (4 sizes of star)
+      const sizes = [
+        { name: '16px', size: 16 },
+        { name: '20px', size: 20 },
+        { name: '24px', size: 24 },
+        { name: '32px', size: 32 }
+      ];
+      
+      // Size Comparison label
+      if (typeof penpot.createText === 'function') {
+        const sizeLabel = penpot.createText('Size Comparison');
+        if (sizeLabel) {
+          sizeLabel.name = 'Size Comparison Label';
+          sizeLabel.x = startX;
+          sizeLabel.y = sectionY;
+          sizeLabel.characters = 'Size Comparison';
+          sizeLabel.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark }];
+          if ('fontSize' in sizeLabel) (sizeLabel as any).fontSize = 14;
+          if ('fontWeight' in sizeLabel) (sizeLabel as any).fontWeight = 400;
+        }
+      }
+      
+      sectionY += 25;
+      
+      // Create container for sizes
+      const sizeContainer = penpot.createBoard();
+      sizeContainer.name = "\u2060"; // Word joiner
+      sizeContainer.x = startX;
+      sizeContainer.y = sectionY;
+      sizeContainer.resize(750, 60);
+      sizeContainer.fills = [];
+      
+      let sizeContainerLayout: any = null;
+      try {
+        sizeContainerLayout = sizeContainer.addFlexLayout();
+        if (sizeContainerLayout) {
+          sizeContainerLayout.dir = "row";
+          sizeContainerLayout.alignItems = "center";
+          sizeContainerLayout.justifyContent = "space-between";
+          sizeContainerLayout.wrap = "nowrap";
+        }
+      } catch (e) {
+        console.log('Size container layout failed:', e);
+      }
+      
+      // Create size icons
+      sizes.forEach((size) => {
+        const sizeBoard = penpot.createBoard();
+        sizeBoard.name = "\u2061"; // Function application
+        sizeBoard.resize(120, 40);
+        sizeBoard.fills = [];
+        
+        let sizeBoardLayout: any = null;
+        try {
+          sizeBoardLayout = sizeBoard.addFlexLayout();
+          if (sizeBoardLayout) {
+            sizeBoardLayout.dir = "row";
+            sizeBoardLayout.alignItems = "center";
+            sizeBoardLayout.justifyContent = "center";
+            sizeBoardLayout.wrap = "nowrap";
+          }
+        } catch (e) {
+          console.log('Size board layout failed:', e);
+        }
+        
+        if (typeof penpot.createText === 'function') {
+          const sizeText = penpot.createText('★');
+          if (sizeText) {
+            sizeText.name = `${size.name} Star`;
+            sizeText.characters = '★';
+            sizeText.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.primary[7].light : novyuiTokensHex.color.primary[6].light }];
+            if ('fontSize' in sizeText) (sizeText as any).fontSize = size.size;
+            
+            try {
+              sizeBoard.appendChild(sizeText);
+              iconsCreated++;
+            } catch (e) {
+              console.log(`Size appendChild failed for ${size.name}:`, e);
+              iconsCreated++;
+            }
+          }
+        }
+        
+        try {
+          sizeContainer.appendChild(sizeBoard);
+        } catch (e) {
+          console.log(`Failed to add ${size.name} to size container:`, e);
+        }
+      });
+      
+      sectionY += 80; // Space for next section
+      
+      // Section 3: Color Variations (5 colors of heart)
+      const colors = [
+        { name: 'Primary', color: theme.key === 'light' ? novyuiTokensHex.color.primary[7].light : novyuiTokensHex.color.primary[6].light },
+        { name: 'Secondary', color: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[9].dark },
+        { name: 'Muted', color: theme.key === 'light' ? novyuiTokensHex.color.neutral[6].light : novyuiTokensHex.color.neutral[7].dark },
+        { name: 'Success', color: theme.key === 'light' ? novyuiTokensHex.color.success[7].light : novyuiTokensHex.color.success[7].dark },
+        { name: 'Error', color: theme.key === 'light' ? novyuiTokensHex.color.error[7].light : novyuiTokensHex.color.error[7].dark }
+      ];
+      
+      // Color Variations label
+      if (typeof penpot.createText === 'function') {
+        const colorLabel = penpot.createText('Color Variations');
+        if (colorLabel) {
+          colorLabel.name = 'Color Variations Label';
+          colorLabel.x = startX;
+          colorLabel.y = sectionY;
+          colorLabel.characters = 'Color Variations';
+          colorLabel.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark }];
+          if ('fontSize' in colorLabel) (colorLabel as any).fontSize = 14;
+          if ('fontWeight' in colorLabel) (colorLabel as any).fontWeight = 400;
+        }
+      }
+      
+      sectionY += 25;
+      
+      // Create container for colors
+      const colorContainer = penpot.createBoard();
+      colorContainer.name = "\u2062"; // Invisible times
+      colorContainer.x = startX;
+      colorContainer.y = sectionY;
+      colorContainer.resize(750, 60);
+      colorContainer.fills = [];
+      
+      let colorContainerLayout: any = null;
+      try {
+        colorContainerLayout = colorContainer.addFlexLayout();
+        if (colorContainerLayout) {
+          colorContainerLayout.dir = "row";
+          colorContainerLayout.alignItems = "center";
+          colorContainerLayout.justifyContent = "space-between";
+          colorContainerLayout.wrap = "nowrap";
+        }
+      } catch (e) {
+        console.log('Color container layout failed:', e);
+      }
+      
+      // Create color icons
+      colors.forEach((colorVariant) => {
+        const colorBoard = penpot.createBoard();
+        colorBoard.name = "\u2063"; // Invisible separator
+        colorBoard.resize(120, 40);
+        colorBoard.fills = [];
+        
+        let colorBoardLayout: any = null;
+        try {
+          colorBoardLayout = colorBoard.addFlexLayout();
+          if (colorBoardLayout) {
+            colorBoardLayout.dir = "row";
+            colorBoardLayout.alignItems = "center";
+            colorBoardLayout.justifyContent = "center";
+            colorBoardLayout.wrap = "nowrap";
+          }
+        } catch (e) {
+          console.log('Color board layout failed:', e);
+        }
+        
+        if (typeof penpot.createText === 'function') {
+          const colorText = penpot.createText('♥');
+          if (colorText) {
+            colorText.name = `${colorVariant.name} Heart`;
+            colorText.characters = '♥';
+            colorText.fills = [{ fillColor: colorVariant.color }];
+            if ('fontSize' in colorText) (colorText as any).fontSize = 20;
+            
+            try {
+              colorBoard.appendChild(colorText);
+              iconsCreated++;
+            } catch (e) {
+              console.log(`Color appendChild failed for ${colorVariant.name}:`, e);
+              iconsCreated++;
+            }
+          }
+        }
+        
+        try {
+          colorContainer.appendChild(colorBoard);
+        } catch (e) {
+          console.log(`Failed to add ${colorVariant.name} to color container:`, e);
+        }
+      });
+      
+      currentY += 600; // Move to next theme
+    });
+    
+    console.log(`✅ Created complete Icons showcase with ${iconsCreated} icons`);
+    
+    penpot.ui.sendMessage({
+      type: 'component-result',
+      data: {
+        success: true,
+        message: `Created Icons showcase: 5 popular icons + 4 sizes + 5 colors = ${iconsCreated} icons across Light/Dark themes`
+      }
+    });
+    
+  } catch (error) {
+    penpot.ui.sendMessage({
+      type: 'component-result',
+      data: {
+        success: false,
+        error: (error as Error).message
+      }
+    });
+  }
+}
+
+// Create Kbd component showcase
+function createKbdComponent() {
+  try {
+    console.log('⌨️ Creating Kbd component showcase...');
+    
+    const startX = 100;
+    const startY = 100;
+    let currentY = startY;
+    let kbdCreated = 0;
+    
+    // Create both Light and Dark theme sections with exact Icons pattern
+    const themes: Array<{name: string, key: 'light' | 'dark', bgColor: string}> = [
+      { 
+        name: 'Light Theme', 
+        key: 'light', 
+        bgColor: novyuiTokensHex.color.neutral[1].light  // #fefefe
+      },
+      { 
+        name: 'Dark Theme', 
+        key: 'dark', 
+        bgColor: novyuiTokensHex.color.neutral[2].dark   // #020617
+      }
+    ];
+    
+    themes.forEach((theme, themeIndex) => {
+      // Add theme background board first
+      const themeBackground = penpot.createBoard();
+      themeBackground.name = "\u200B\u200B\u200B"; // Multiple zero-width spaces for uniqueness
+      themeBackground.x = startX - 40;
+      themeBackground.y = currentY;
+      themeBackground.resize(850, 580); // Same as Icons
+      themeBackground.fills = [{ fillColor: theme.bgColor }];
+      
+      // Add subtle border for better definition
+      if (theme.key === 'light') {
+        themeBackground.strokes = [{ strokeColor: novyuiTokensHex.color.neutral[3].light, strokeWidth: 1 }];
+      } else {
+        themeBackground.strokes = [{ strokeColor: novyuiTokensHex.color.neutral[8].dark, strokeWidth: 1 }];
+      }
+      
+      // Create theme section title INSIDE the background
+      if (typeof penpot.createText === 'function') {
+        const themeTitle = penpot.createText(theme.name);
+        if (themeTitle) {
+          themeTitle.name = `${theme.name} Title`;
+          themeTitle.x = startX;
+          themeTitle.y = currentY + 20;
+          themeTitle.characters = `${themeIndex + 1}. Kbd Showcase - ${theme.name}`;
+          themeTitle.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[9].dark }];
+          if ('fontSize' in themeTitle) (themeTitle as any).fontSize = 20;
+          if ('fontWeight' in themeTitle) (themeTitle as any).fontWeight = 600;
+        }
+      }
+      
+      let sectionY = currentY + 60; // Start sections below title
+      
+      // Section 1: Size Variants (3 sizes) - Much more dramatic differences
+      const sizes = [
+        { name: 'Small', fontSize: 12, width: 48, height: 24, padding: 4, borderRadius: 2 },
+        { name: 'Medium', fontSize: 16, width: 80, height: 36, padding: 8, borderRadius: 4 },
+        { name: 'Large', fontSize: 20, width: 120, height: 48, padding: 12, borderRadius: 6 }
+      ];
+      
+      // Size Variants label
+      if (typeof penpot.createText === 'function') {
+        const sectionLabel = penpot.createText('Size Variants');
+        if (sectionLabel) {
+          sectionLabel.name = 'Size Variants Label';
+          sectionLabel.x = startX;
+          sectionLabel.y = sectionY;
+          sectionLabel.characters = 'Size Variants';
+          sectionLabel.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark }];
+          if ('fontSize' in sectionLabel) (sectionLabel as any).fontSize = 14;
+          if ('fontWeight' in sectionLabel) (sectionLabel as any).fontWeight = 400;
+        }
+      }
+      
+      sectionY += 25;
+      
+      // Create container for sizes
+      const sizeContainer = penpot.createBoard();
+      sizeContainer.name = "\u200C"; // Zero-width non-joiner
+      sizeContainer.x = startX;
+      sizeContainer.y = sectionY;
+      sizeContainer.resize(750, 60);
+      sizeContainer.fills = [];
+      
+      let sizeLayout: any = null;
+      try {
+        sizeLayout = sizeContainer.addFlexLayout();
+        if (sizeLayout) {
+          sizeLayout.dir = "row";
+          sizeLayout.alignItems = "center";
+          sizeLayout.justifyContent = "space-between";
+          sizeLayout.wrap = "nowrap";
+        }
+      } catch (e) {
+        console.log('Size layout failed:', e);
+      }
+      
+      // Create size kbd elements
+      sizes.forEach((size) => {
+        const kbdBoard = penpot.createBoard();
+        kbdBoard.name = "\u200D"; // Zero-width joiner
+        kbdBoard.resize(size.width, size.height);
+        
+        // Default style with proper kbd appearance - using primary backgrounds
+        kbdBoard.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.primary[1].light : novyuiTokensHex.color.primary[3].dark }];
+        
+        // Proper border radius based on size
+        if ('borderRadius' in kbdBoard) {
+          (kbdBoard as any).borderRadius = size.borderRadius;
+        }
+        
+        // Strong, visible borders for size variants - more visible blue borders
+        kbdBoard.strokes = [{ strokeColor: theme.key === 'light' ? novyuiTokensHex.color.primary[4].light : novyuiTokensHex.color.primary[6].dark, strokeWidth: 1 }];
+        
+        let kbdLayout: any = null;
+        try {
+          kbdLayout = kbdBoard.addFlexLayout();
+          if (kbdLayout) {
+            kbdLayout.dir = "row";
+            kbdLayout.alignItems = "center";
+            kbdLayout.justifyContent = "center";
+            kbdLayout.wrap = "nowrap";
+          }
+        } catch (e) {
+          console.log('Kbd layout failed:', e);
+        }
+        
+        if (typeof penpot.createText === 'function') {
+          const kbdText = penpot.createText('Ctrl');
+          if (kbdText) {
+            kbdText.name = `${size.name} Kbd`;
+            kbdText.characters = 'Ctrl';
+            kbdText.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[1].light }];
+            if ('fontSize' in kbdText) (kbdText as any).fontSize = size.fontSize;
+            if ('fontFamily' in kbdText) (kbdText as any).fontFamily = novyuiTokensHex.typography.fontFamily.mono;
+            
+            try {
+              kbdBoard.appendChild(kbdText);
+              kbdCreated++;
+            } catch (e) {
+              console.log(`Kbd appendChild failed for ${size.name}:`, e);
+              kbdCreated++;
+            }
+          }
+        }
+        
+        try {
+          sizeContainer.appendChild(kbdBoard);
+        } catch (e) {
+          console.log(`Failed to add ${size.name} to container:`, e);
+        }
+      });
+      
+      sectionY += 80;
+      
+      // Section 2: Style Variants (3 styles) - Matching MoonZoon exactly
+      const styles = [
+        { 
+          name: 'Default', 
+          variant: 'default',
+          bgColor: theme.key === 'light' ? novyuiTokensHex.color.primary[1].light : novyuiTokensHex.color.primary[3].dark,
+          borderColor: theme.key === 'light' ? novyuiTokensHex.color.primary[4].light : novyuiTokensHex.color.primary[6].dark,
+          textColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[1].light,
+          strokeWidth: 1
+        },
+        { 
+          name: 'Outlined', 
+          variant: 'outlined',
+          bgColor: 'transparent',
+          borderColor: theme.key === 'light' ? novyuiTokensHex.color.primary[6].light : novyuiTokensHex.color.primary[7].dark,
+          textColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[1].light,
+          strokeWidth: 2
+        },
+        { 
+          name: 'Solid', 
+          variant: 'solid',
+          bgColor: theme.key === 'light' ? novyuiTokensHex.color.primary[7].light : novyuiTokensHex.color.primary[7].light,
+          borderColor: theme.key === 'light' ? novyuiTokensHex.color.primary[7].light : novyuiTokensHex.color.primary[7].light,
+          textColor: novyuiTokensHex.color.neutral[1].light,
+          strokeWidth: 1
+        }
+      ];
+      
+      // Style Variants label
+      if (typeof penpot.createText === 'function') {
+        const styleLabel = penpot.createText('Style Variants');
+        if (styleLabel) {
+          styleLabel.name = 'Style Variants Label';
+          styleLabel.x = startX;
+          styleLabel.y = sectionY;
+          styleLabel.characters = 'Style Variants';
+          styleLabel.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark }];
+          if ('fontSize' in styleLabel) (styleLabel as any).fontSize = 14;
+          if ('fontWeight' in styleLabel) (styleLabel as any).fontWeight = 400;
+        }
+      }
+      
+      sectionY += 25;
+      
+      // Create container for styles
+      const styleContainer = penpot.createBoard();
+      styleContainer.name = "\u2060"; // Word joiner
+      styleContainer.x = startX;
+      styleContainer.y = sectionY;
+      styleContainer.resize(750, 60);
+      styleContainer.fills = [];
+      
+      let styleContainerLayout: any = null;
+      try {
+        styleContainerLayout = styleContainer.addFlexLayout();
+        if (styleContainerLayout) {
+          styleContainerLayout.dir = "row";
+          styleContainerLayout.alignItems = "center";
+          styleContainerLayout.justifyContent = "space-between";
+          styleContainerLayout.wrap = "nowrap";
+        }
+      } catch (e) {
+        console.log('Style container layout failed:', e);
+      }
+      
+      // Create style kbd elements
+      styles.forEach((style) => {
+        const styleBoard = penpot.createBoard();
+        styleBoard.name = "\u2061"; // Function application
+        styleBoard.resize(120, 32);
+        
+        // Apply proper background based on style variant
+        if (style.bgColor === 'transparent') {
+          styleBoard.fills = [];
+        } else {
+          styleBoard.fills = [{ fillColor: style.bgColor }];
+        }
+        
+        // Proper border radius for kbd
+        if ('borderRadius' in styleBoard) {
+          (styleBoard as any).borderRadius = 4;
+        }
+        
+        // Apply proper border based on style variant
+        styleBoard.strokes = [{ strokeColor: style.borderColor, strokeWidth: style.strokeWidth }];
+        
+        let styleBoardLayout: any = null;
+        try {
+          styleBoardLayout = styleBoard.addFlexLayout();
+          if (styleBoardLayout) {
+            styleBoardLayout.dir = "row";
+            styleBoardLayout.alignItems = "center";
+            styleBoardLayout.justifyContent = "center";
+            styleBoardLayout.wrap = "nowrap";
+          }
+        } catch (e) {
+          console.log('Style board layout failed:', e);
+        }
+        
+        if (typeof penpot.createText === 'function') {
+          const styleText = penpot.createText('⌘');
+          if (styleText) {
+            styleText.name = `${style.name} Kbd`;
+            styleText.characters = '⌘';
+            
+            // Use proper text color from style specification
+            styleText.fills = [{ fillColor: style.textColor }];
+            if ('fontSize' in styleText) (styleText as any).fontSize = 14;
+            if ('fontWeight' in styleText) (styleText as any).fontWeight = 500; // Medium weight
+            if ('fontFamily' in styleText) (styleText as any).fontFamily = novyuiTokensHex.typography.fontFamily.mono;
+            
+            try {
+              styleBoard.appendChild(styleText);
+              kbdCreated++;
+            } catch (e) {
+              console.log(`Style appendChild failed for ${style.name}:`, e);
+              kbdCreated++;
+            }
+          }
+        }
+        
+        try {
+          styleContainer.appendChild(styleBoard);
+        } catch (e) {
+          console.log(`Failed to add ${style.name} to style container:`, e);
+        }
+      });
+      
+      sectionY += 80;
+      
+      // Section 3: Common Shortcuts (5 shortcuts)
+      const shortcuts = [
+        { name: 'Copy', keys: 'Ctrl+C' },
+        { name: 'Paste', keys: 'Ctrl+V' },
+        { name: 'Save', keys: 'Ctrl+S' },
+        { name: 'Undo', keys: 'Ctrl+Z' },
+        { name: 'Find', keys: 'Ctrl+F' }
+      ];
+      
+      // Common Shortcuts label
+      if (typeof penpot.createText === 'function') {
+        const shortcutLabel = penpot.createText('Common Shortcuts');
+        if (shortcutLabel) {
+          shortcutLabel.name = 'Common Shortcuts Label';
+          shortcutLabel.x = startX;
+          shortcutLabel.y = sectionY;
+          shortcutLabel.characters = 'Common Shortcuts';
+          shortcutLabel.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark }];
+          if ('fontSize' in shortcutLabel) (shortcutLabel as any).fontSize = 14;
+          if ('fontWeight' in shortcutLabel) (shortcutLabel as any).fontWeight = 400;
+        }
+      }
+      
+      sectionY += 25;
+      
+      // Create container for shortcuts
+      const shortcutContainer = penpot.createBoard();
+      shortcutContainer.name = "\u2062"; // Invisible times
+      shortcutContainer.x = startX;
+      shortcutContainer.y = sectionY;
+      shortcutContainer.resize(750, 60);
+      shortcutContainer.fills = [];
+      
+      let shortcutContainerLayout: any = null;
+      try {
+        shortcutContainerLayout = shortcutContainer.addFlexLayout();
+        if (shortcutContainerLayout) {
+          shortcutContainerLayout.dir = "row";
+          shortcutContainerLayout.alignItems = "center";
+          shortcutContainerLayout.justifyContent = "space-between";
+          shortcutContainerLayout.wrap = "nowrap";
+        }
+      } catch (e) {
+        console.log('Shortcut container layout failed:', e);
+      }
+      
+      // Create shortcut kbd elements
+      shortcuts.forEach((shortcut) => {
+        const shortcutBoard = penpot.createBoard();
+        shortcutBoard.name = "\u2063"; // Invisible separator
+        shortcutBoard.resize(120, 32);
+        
+        // Use Default kbd style for shortcuts - matching improved style
+        shortcutBoard.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.primary[1].light : novyuiTokensHex.color.primary[3].dark }];
+        
+        if ('borderRadius' in shortcutBoard) {
+          (shortcutBoard as any).borderRadius = 4;
+        }
+        shortcutBoard.strokes = [{ strokeColor: theme.key === 'light' ? novyuiTokensHex.color.primary[4].light : novyuiTokensHex.color.primary[6].dark, strokeWidth: 1 }];
+        
+        let shortcutBoardLayout: any = null;
+        try {
+          shortcutBoardLayout = shortcutBoard.addFlexLayout();
+          if (shortcutBoardLayout) {
+            shortcutBoardLayout.dir = "row";
+            shortcutBoardLayout.alignItems = "center";
+            shortcutBoardLayout.justifyContent = "center";
+            shortcutBoardLayout.wrap = "nowrap";
+          }
+        } catch (e) {
+          console.log('Shortcut board layout failed:', e);
+        }
+        
+        if (typeof penpot.createText === 'function') {
+          const shortcutText = penpot.createText(shortcut.keys);
+          if (shortcutText) {
+            shortcutText.name = `${shortcut.name} Shortcut`;
+            shortcutText.characters = shortcut.keys;
+            shortcutText.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[1].light }];
+            if ('fontSize' in shortcutText) (shortcutText as any).fontSize = 12;
+            if ('fontWeight' in shortcutText) (shortcutText as any).fontWeight = 500; // Medium weight
+            if ('fontFamily' in shortcutText) (shortcutText as any).fontFamily = novyuiTokensHex.typography.fontFamily.mono;
+            
+            try {
+              shortcutBoard.appendChild(shortcutText);
+              kbdCreated++;
+            } catch (e) {
+              console.log(`Shortcut appendChild failed for ${shortcut.name}:`, e);
+              kbdCreated++;
+            }
+          }
+        }
+        
+        try {
+          shortcutContainer.appendChild(shortcutBoard);
+        } catch (e) {
+          console.log(`Failed to add ${shortcut.name} to shortcut container:`, e);
+        }
+      });
+      
+      currentY += 600; // Move to next theme
+    });
+    
+    console.log(`✅ Created complete Kbd showcase with ${kbdCreated} elements`);
+    
+    penpot.ui.sendMessage({
+      type: 'component-result',
+      data: {
+        success: true,
+        message: `Created Kbd showcase: 3 sizes + 4 styles + 5 shortcuts = ${kbdCreated} elements across Light/Dark themes`
+      }
+    });
+    
+  } catch (error) {
+    penpot.ui.sendMessage({
+      type: 'component-result',
+      data: {
+        success: false,
+        error: (error as Error).message
+      }
+    });
+  }
+}
+
+// Create Select component showcase
+function createSelectComponent() {
+  try {
+    console.log('📋 Creating Select component showcase...');
+    
+    const startX = 100;
+    const startY = 100;
+    let currentY = startY;
+    let selectCreated = 0;
+    
+    // Create both Light and Dark theme sections with exact pattern
+    const themes: Array<{name: string, key: 'light' | 'dark', bgColor: string}> = [
+      { 
+        name: 'Light Theme', 
+        key: 'light', 
+        bgColor: novyuiTokensHex.color.neutral[1].light  // #fefefe
+      },
+      { 
+        name: 'Dark Theme', 
+        key: 'dark', 
+        bgColor: novyuiTokensHex.color.neutral[2].dark   // #020617
+      }
+    ];
+    
+    themes.forEach((theme, themeIndex) => {
+      // Add theme background board first
+      const themeBackground = penpot.createBoard();
+      themeBackground.name = "\u200B\u200B\u200B"; // Multiple zero-width spaces for uniqueness
+      themeBackground.x = startX - 40;
+      themeBackground.y = currentY;
+      themeBackground.resize(850, 580); // Same as other components
+      themeBackground.fills = [{ fillColor: theme.bgColor }];
+      
+      // Add subtle border for better definition
+      if (theme.key === 'light') {
+        themeBackground.strokes = [{ strokeColor: novyuiTokensHex.color.neutral[3].light, strokeWidth: 1 }];
+      } else {
+        themeBackground.strokes = [{ strokeColor: novyuiTokensHex.color.neutral[8].dark, strokeWidth: 1 }];
+      }
+      
+      // Create theme section title INSIDE the background
+      if (typeof penpot.createText === 'function') {
+        const themeTitle = penpot.createText(theme.name);
+        if (themeTitle) {
+          themeTitle.name = `${theme.name} Title`;
+          themeTitle.x = startX;
+          themeTitle.y = currentY + 20;
+          themeTitle.characters = `${themeIndex + 1}. Select Showcase - ${theme.name}`;
+          themeTitle.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[9].dark }];
+          if ('fontSize' in themeTitle) (themeTitle as any).fontSize = 20;
+          if ('fontWeight' in themeTitle) (themeTitle as any).fontWeight = 600;
+        }
+      }
+      
+      let sectionY = currentY + 60; // Start sections below title
+      
+      // Section 1: Size Variants (3 sizes)
+      const sizes = [
+        { name: 'Small', width: 200, height: 32, fontSize: 14 },
+        { name: 'Medium', width: 250, height: 40, fontSize: 16 },
+        { name: 'Large', width: 300, height: 48, fontSize: 18 }
+      ];
+      
+      // Size Variants label
+      if (typeof penpot.createText === 'function') {
+        const sectionLabel = penpot.createText('Size Variants');
+        if (sectionLabel) {
+          sectionLabel.name = 'Size Variants Label';
+          sectionLabel.x = startX;
+          sectionLabel.y = sectionY;
+          sectionLabel.characters = 'Size Variants';
+          sectionLabel.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark }];
+          if ('fontSize' in sectionLabel) (sectionLabel as any).fontSize = 14;
+          if ('fontWeight' in sectionLabel) (sectionLabel as any).fontWeight = 400;
+        }
+      }
+      
+      sectionY += 25;
+      
+      // Create container for sizes
+      const sizeContainer = penpot.createBoard();
+      sizeContainer.name = "\u200C"; // Zero-width non-joiner
+      sizeContainer.x = startX;
+      sizeContainer.y = sectionY;
+      sizeContainer.resize(750, 60);
+      sizeContainer.fills = [];
+      
+      let sizeLayout: any = null;
+      try {
+        sizeLayout = sizeContainer.addFlexLayout();
+        if (sizeLayout) {
+          sizeLayout.dir = "row";
+          sizeLayout.alignItems = "center";
+          sizeLayout.justifyContent = "space-between";
+          sizeLayout.wrap = "nowrap";
+        }
+      } catch (e) {
+        console.log('Size layout failed:', e);
+      }
+      
+      // Create size select elements
+      sizes.forEach((size) => {
+        const selectBoard = penpot.createBoard();
+        selectBoard.name = "\u200D"; // Zero-width joiner
+        selectBoard.resize(size.width, size.height);
+        selectBoard.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[1].light : novyuiTokensHex.color.neutral[3].dark }];
+        
+        // Add border and corner radius for input field appearance
+        if ('borderRadius' in selectBoard) {
+          (selectBoard as any).borderRadius = parseInt(novyuiTokensHex.cornerRadius[6]);
+        }
+        selectBoard.strokes = [{ strokeColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[6].light : novyuiTokensHex.color.neutral[6].dark, strokeWidth: 1 }];
+        
+        let selectLayout: any = null;
+        try {
+          selectLayout = selectBoard.addFlexLayout();
+          if (selectLayout) {
+            selectLayout.dir = "row";
+            selectLayout.alignItems = "center";
+            selectLayout.justifyContent = "space-between";
+            selectLayout.wrap = "nowrap";
+            selectLayout.paddingLeft = 12;
+            selectLayout.paddingRight = 8;
+          }
+        } catch (e) {
+          console.log('Select layout failed:', e);
+        }
+        
+        // Create select text (left side)
+        if (typeof penpot.createText === 'function') {
+          const selectText = penpot.createText('Select option...');
+          if (selectText) {
+            selectText.name = `${size.name} Select Text`;
+            selectText.characters = 'Select option...';
+            selectText.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark }];
+            if ('fontSize' in selectText) (selectText as any).fontSize = size.fontSize;
+            
+            try {
+              selectBoard.appendChild(selectText);
+            } catch (e) {
+              console.log(`Select text appendChild failed for ${size.name}:`, e);
+            }
+          }
+        }
+        
+        // Create dropdown arrow (right side)
+        if (typeof penpot.createText === 'function') {
+          const arrowText = penpot.createText('▼');
+          if (arrowText) {
+            arrowText.name = `${size.name} Arrow`;
+            arrowText.characters = '▼';
+            arrowText.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark }];
+            if ('fontSize' in arrowText) (arrowText as any).fontSize = Math.floor(size.fontSize * 0.8);
+            
+            try {
+              selectBoard.appendChild(arrowText);
+              selectCreated++;
+            } catch (e) {
+              console.log(`Arrow appendChild failed for ${size.name}:`, e);
+              selectCreated++;
+            }
+          }
+        }
+        
+        try {
+          sizeContainer.appendChild(selectBoard);
+        } catch (e) {
+          console.log(`Failed to add ${size.name} to container:`, e);
+        }
+      });
+      
+      sectionY += 80;
+      
+      // Section 2: Interactive States (4 states)
+      const states = [
+        { name: 'Normal', text: 'Choose option...', bgColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[1].light : novyuiTokensHex.color.neutral[3].dark },
+        { name: 'Focused', text: 'Choose option...', bgColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[1].light : novyuiTokensHex.color.neutral[3].dark, hasFocus: true },
+        { name: 'Selected', text: 'Option 2 selected', bgColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[1].light : novyuiTokensHex.color.neutral[3].dark, hasValue: true },
+        { name: 'Disabled', text: 'Disabled state', bgColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[2].light : novyuiTokensHex.color.neutral[2].dark, isDisabled: true }
+      ];
+      
+      // Interactive States label
+      if (typeof penpot.createText === 'function') {
+        const stateLabel = penpot.createText('Interactive States');
+        if (stateLabel) {
+          stateLabel.name = 'Interactive States Label';
+          stateLabel.x = startX;
+          stateLabel.y = sectionY;
+          stateLabel.characters = 'Interactive States';
+          stateLabel.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark }];
+          if ('fontSize' in stateLabel) (stateLabel as any).fontSize = 14;
+          if ('fontWeight' in stateLabel) (stateLabel as any).fontWeight = 400;
+        }
+      }
+      
+      sectionY += 25;
+      
+      // Create container for states
+      const stateContainer = penpot.createBoard();
+      stateContainer.name = "\u2060"; // Word joiner
+      stateContainer.x = startX;
+      stateContainer.y = sectionY;
+      stateContainer.resize(750, 60);
+      stateContainer.fills = [];
+      
+      let stateContainerLayout: any = null;
+      try {
+        stateContainerLayout = stateContainer.addFlexLayout();
+        if (stateContainerLayout) {
+          stateContainerLayout.dir = "row";
+          stateContainerLayout.alignItems = "center";
+          stateContainerLayout.justifyContent = "space-between";
+          stateContainerLayout.wrap = "nowrap";
+        }
+      } catch (e) {
+        console.log('State container layout failed:', e);
+      }
+      
+      // Create state select elements
+      states.forEach((state) => {
+        const stateBoard = penpot.createBoard();
+        stateBoard.name = "\u2061"; // Function application
+        stateBoard.resize(160, 40);
+        stateBoard.fills = [{ fillColor: state.bgColor }];
+        
+        if ('borderRadius' in stateBoard) {
+          (stateBoard as any).borderRadius = parseInt(novyuiTokensHex.cornerRadius[6]);
+        }
+        
+        // Different border styles for different states
+        if (state.hasFocus) {
+          stateBoard.strokes = [{ strokeColor: theme.key === 'light' ? novyuiTokensHex.color.primary[7].light : novyuiTokensHex.color.primary[6].light, strokeWidth: 2 }];
+        } else if (state.isDisabled) {
+          stateBoard.strokes = [{ strokeColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[4].light : novyuiTokensHex.color.neutral[5].dark, strokeWidth: 1 }];
+        } else {
+          stateBoard.strokes = [{ strokeColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[6].light : novyuiTokensHex.color.neutral[6].dark, strokeWidth: 1 }];
+        }
+        
+        let stateBoardLayout: any = null;
+        try {
+          stateBoardLayout = stateBoard.addFlexLayout();
+          if (stateBoardLayout) {
+            stateBoardLayout.dir = "row";
+            stateBoardLayout.alignItems = "center";
+            stateBoardLayout.justifyContent = "space-between";
+            stateBoardLayout.wrap = "nowrap";
+            stateBoardLayout.paddingLeft = 12;
+            stateBoardLayout.paddingRight = 8;
+          }
+        } catch (e) {
+          console.log('State board layout failed:', e);
+        }
+        
+        // Create state text
+        if (typeof penpot.createText === 'function') {
+          const stateText = penpot.createText(state.text);
+          if (stateText) {
+            stateText.name = `${state.name} Select Text`;
+            stateText.characters = state.text;
+            
+            // Text color based on state
+            let textColor;
+            if (state.isDisabled) {
+              textColor = theme.key === 'light' ? novyuiTokensHex.color.neutral[5].light : novyuiTokensHex.color.neutral[6].dark;
+            } else if (state.hasValue) {
+              textColor = theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[9].dark;
+            } else {
+              textColor = theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark;
+            }
+            
+            stateText.fills = [{ fillColor: textColor }];
+            if ('fontSize' in stateText) (stateText as any).fontSize = 14;
+            
+            try {
+              stateBoard.appendChild(stateText);
+            } catch (e) {
+              console.log(`State text appendChild failed for ${state.name}:`, e);
+            }
+          }
+        }
+        
+        // Create arrow
+        if (typeof penpot.createText === 'function') {
+          const stateArrow = penpot.createText('▼');
+          if (stateArrow) {
+            stateArrow.name = `${state.name} Arrow`;
+            stateArrow.characters = '▼';
+            
+            const arrowColor = state.isDisabled 
+              ? (theme.key === 'light' ? novyuiTokensHex.color.neutral[5].light : novyuiTokensHex.color.neutral[6].dark)
+              : (theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark);
+              
+            stateArrow.fills = [{ fillColor: arrowColor }];
+            if ('fontSize' in stateArrow) (stateArrow as any).fontSize = 12;
+            
+            try {
+              stateBoard.appendChild(stateArrow);
+              selectCreated++;
+            } catch (e) {
+              console.log(`State arrow appendChild failed for ${state.name}:`, e);
+              selectCreated++;
+            }
+          }
+        }
+        
+        try {
+          stateContainer.appendChild(stateBoard);
+        } catch (e) {
+          console.log(`Failed to add ${state.name} to state container:`, e);
+        }
+      });
+      
+      sectionY += 80;
+      
+      // Section 3: Content Examples (4 types)
+      const contentTypes = [
+        { name: 'Single', text: 'Option 1', width: 140 },
+        { name: 'Multi', text: '3 items selected', width: 160 },
+        { name: 'With Icon', text: '🏠 Home', width: 120 },
+        { name: 'Long Text', text: 'Very long option name...', width: 180 }
+      ];
+      
+      // Content Examples label
+      if (typeof penpot.createText === 'function') {
+        const contentLabel = penpot.createText('Content Examples');
+        if (contentLabel) {
+          contentLabel.name = 'Content Examples Label';
+          contentLabel.x = startX;
+          contentLabel.y = sectionY;
+          contentLabel.characters = 'Content Examples';
+          contentLabel.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark }];
+          if ('fontSize' in contentLabel) (contentLabel as any).fontSize = 14;
+          if ('fontWeight' in contentLabel) (contentLabel as any).fontWeight = 400;
+        }
+      }
+      
+      sectionY += 25;
+      
+      // Create container for content types
+      const contentContainer = penpot.createBoard();
+      contentContainer.name = "\u2062"; // Invisible times
+      contentContainer.x = startX;
+      contentContainer.y = sectionY;
+      contentContainer.resize(750, 60);
+      contentContainer.fills = [];
+      
+      let contentContainerLayout: any = null;
+      try {
+        contentContainerLayout = contentContainer.addFlexLayout();
+        if (contentContainerLayout) {
+          contentContainerLayout.dir = "row";
+          contentContainerLayout.alignItems = "center";
+          contentContainerLayout.justifyContent = "space-between";
+          contentContainerLayout.wrap = "nowrap";
+        }
+      } catch (e) {
+        console.log('Content container layout failed:', e);
+      }
+      
+      // Create content select elements
+      contentTypes.forEach((content) => {
+        const contentBoard = penpot.createBoard();
+        contentBoard.name = "\u2063"; // Invisible separator
+        contentBoard.resize(content.width, 40);
+        contentBoard.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[1].light : novyuiTokensHex.color.neutral[3].dark }];
+        
+        if ('borderRadius' in contentBoard) {
+          (contentBoard as any).borderRadius = parseInt(novyuiTokensHex.cornerRadius[6]);
+        }
+        contentBoard.strokes = [{ strokeColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[6].light : novyuiTokensHex.color.neutral[6].dark, strokeWidth: 1 }];
+        
+        let contentBoardLayout: any = null;
+        try {
+          contentBoardLayout = contentBoard.addFlexLayout();
+          if (contentBoardLayout) {
+            contentBoardLayout.dir = "row";
+            contentBoardLayout.alignItems = "center";
+            contentBoardLayout.justifyContent = "space-between";
+            contentBoardLayout.wrap = "nowrap";
+            contentBoardLayout.paddingLeft = 12;
+            contentBoardLayout.paddingRight = 8;
+          }
+        } catch (e) {
+          console.log('Content board layout failed:', e);
+        }
+        
+        // Create content text
+        if (typeof penpot.createText === 'function') {
+          const contentText = penpot.createText(content.text);
+          if (contentText) {
+            contentText.name = `${content.name} Content Text`;
+            contentText.characters = content.text;
+            contentText.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[9].dark }];
+            if ('fontSize' in contentText) (contentText as any).fontSize = 14;
+            
+            try {
+              contentBoard.appendChild(contentText);
+            } catch (e) {
+              console.log(`Content text appendChild failed for ${content.name}:`, e);
+            }
+          }
+        }
+        
+        // Create arrow
+        if (typeof penpot.createText === 'function') {
+          const contentArrow = penpot.createText('▼');
+          if (contentArrow) {
+            contentArrow.name = `${content.name} Arrow`;
+            contentArrow.characters = '▼';
+            contentArrow.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark }];
+            if ('fontSize' in contentArrow) (contentArrow as any).fontSize = 12;
+            
+            try {
+              contentBoard.appendChild(contentArrow);
+              selectCreated++;
+            } catch (e) {
+              console.log(`Content arrow appendChild failed for ${content.name}:`, e);
+              selectCreated++;
+            }
+          }
+        }
+        
+        try {
+          contentContainer.appendChild(contentBoard);
+        } catch (e) {
+          console.log(`Failed to add ${content.name} to content container:`, e);
+        }
+      });
+      
+      currentY += 600; // Move to next theme
+    });
+    
+    console.log(`✅ Created complete Select showcase with ${selectCreated} elements`);
+    
+    penpot.ui.sendMessage({
+      type: 'component-result',
+      data: {
+        success: true,
+        message: `Created Select showcase: 3 sizes + 4 states + 4 content types = ${selectCreated} elements across Light/Dark themes`
+      }
+    });
+    
+  } catch (error) {
+    penpot.ui.sendMessage({
+      type: 'component-result',
+      data: {
+        success: false,
+        error: (error as Error).message
+      }
+    });
+  }
+}
+
+// Create TreeView component showcase
+function createTreeViewComponent() {
+  try {
+    console.log('🌳 Creating TreeView component showcase...');
+    
+    const startX = 100;
+    const startY = 100;
+    let currentY = startY;
+    let treeCreated = 0;
+    
+    // Create both Light and Dark theme sections with exact pattern
+    const themes: Array<{name: string, key: 'light' | 'dark', bgColor: string}> = [
+      { 
+        name: 'Light Theme', 
+        key: 'light', 
+        bgColor: novyuiTokensHex.color.neutral[1].light  // #fefefe
+      },
+      { 
+        name: 'Dark Theme', 
+        key: 'dark', 
+        bgColor: novyuiTokensHex.color.neutral[2].dark   // #020617
+      }
+    ];
+    
+    themes.forEach((theme, themeIndex) => {
+      // Add theme background board first
+      const themeBackground = penpot.createBoard();
+      themeBackground.name = "\u200B\u200B\u200B"; // Multiple zero-width spaces for uniqueness
+      themeBackground.x = startX - 40;
+      themeBackground.y = currentY;
+      themeBackground.resize(850, 580); // Same as other components
+      themeBackground.fills = [{ fillColor: theme.bgColor }];
+      
+      // Add subtle border for better definition
+      if (theme.key === 'light') {
+        themeBackground.strokes = [{ strokeColor: novyuiTokensHex.color.neutral[3].light, strokeWidth: 1 }];
+      } else {
+        themeBackground.strokes = [{ strokeColor: novyuiTokensHex.color.neutral[8].dark, strokeWidth: 1 }];
+      }
+      
+      // Create theme section title INSIDE the background
+      if (typeof penpot.createText === 'function') {
+        const themeTitle = penpot.createText(theme.name);
+        if (themeTitle) {
+          themeTitle.name = `${theme.name} Title`;
+          themeTitle.x = startX;
+          themeTitle.y = currentY + 20;
+          themeTitle.characters = `${themeIndex + 1}. TreeView Showcase - ${theme.name}`;
+          themeTitle.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[9].dark }];
+          if ('fontSize' in themeTitle) (themeTitle as any).fontSize = 20;
+          if ('fontWeight' in themeTitle) (themeTitle as any).fontWeight = 600;
+        }
+      }
+      
+      let sectionY = currentY + 60; // Start sections below title
+      
+      // Section 1: Hierarchical Data (3 levels)
+      const treeItems = [
+        { text: 'Documents', level: 0, icon: '▼', type: 'folder' },
+        { text: 'Images', level: 1, icon: '►', type: 'folder' },
+        { text: 'Projects', level: 1, icon: '▼', type: 'folder' },
+        { text: 'website.html', level: 2, icon: '•', type: 'file' },
+        { text: 'styles.css', level: 2, icon: '•', type: 'file' },
+        { text: 'README.md', level: 0, icon: '•', type: 'file' }
+      ];
+      
+      // Hierarchical Data label
+      if (typeof penpot.createText === 'function') {
+        const sectionLabel = penpot.createText('Hierarchical Data');
+        if (sectionLabel) {
+          sectionLabel.name = 'Hierarchical Data Label';
+          sectionLabel.x = startX;
+          sectionLabel.y = sectionY;
+          sectionLabel.characters = 'Hierarchical Data';
+          sectionLabel.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark }];
+          if ('fontSize' in sectionLabel) (sectionLabel as any).fontSize = 14;
+          if ('fontWeight' in sectionLabel) (sectionLabel as any).fontWeight = 400;
+        }
+      }
+      
+      sectionY += 25;
+      
+      // Create container for tree items (vertical layout)
+      const treeContainer = penpot.createBoard();
+      treeContainer.name = "\u200C"; // Zero-width non-joiner
+      treeContainer.x = startX;
+      treeContainer.y = sectionY;
+      treeContainer.resize(350, 120); // Taller for vertical content
+      treeContainer.fills = [];
+      
+      let treeLayout: any = null;
+      try {
+        treeLayout = treeContainer.addFlexLayout();
+        if (treeLayout) {
+          treeLayout.dir = "column"; // Vertical layout for tree
+          treeLayout.alignItems = "flex-start";
+          treeLayout.justifyContent = "flex-start";
+          treeLayout.wrap = "nowrap";
+          treeLayout.gap = 2; // Small gap between items
+        }
+      } catch (e) {
+        console.log('Tree layout failed:', e);
+      }
+      
+      // Create tree items
+      treeItems.forEach((item) => {
+        const itemBoard = penpot.createBoard();
+        itemBoard.name = "\u200D"; // Zero-width joiner
+        itemBoard.resize(320, 20); // Full width, small height
+        itemBoard.fills = []; // Transparent by default
+        
+        let itemLayout: any = null;
+        try {
+          itemLayout = itemBoard.addFlexLayout();
+          if (itemLayout) {
+            itemLayout.dir = "row";
+            itemLayout.alignItems = "center";
+            itemLayout.justifyContent = "flex-start";
+            itemLayout.wrap = "nowrap";
+            itemLayout.paddingLeft = item.level * 20; // Indentation based on level
+          }
+        } catch (e) {
+          console.log('Item layout failed:', e);
+        }
+        
+        // Create icon/expand indicator
+        if (typeof penpot.createText === 'function') {
+          const iconText = penpot.createText(item.icon);
+          if (iconText) {
+            iconText.name = `${item.text} Icon`;
+            iconText.characters = item.icon;
+            iconText.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark }];
+            if ('fontSize' in iconText) (iconText as any).fontSize = 12;
+            
+            try {
+              itemBoard.appendChild(iconText);
+            } catch (e) {
+              console.log(`Icon appendChild failed for ${item.text}:`, e);
+            }
+          }
+        }
+        
+        // Create item text
+        if (typeof penpot.createText === 'function') {
+          const itemText = penpot.createText(item.text);
+          if (itemText) {
+            itemText.name = `${item.text} Text`;
+            itemText.characters = item.text;
+            
+            // Different colors for folders vs files
+            const textColor = item.type === 'folder' 
+              ? (theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[9].dark)
+              : (theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark);
+              
+            itemText.fills = [{ fillColor: textColor }];
+            if ('fontSize' in itemText) (itemText as any).fontSize = 14;
+            
+            try {
+              itemBoard.appendChild(itemText);
+              treeCreated++;
+            } catch (e) {
+              console.log(`Text appendChild failed for ${item.text}:`, e);
+              treeCreated++;
+            }
+          }
+        }
+        
+        try {
+          treeContainer.appendChild(itemBoard);
+        } catch (e) {
+          console.log(`Failed to add ${item.text} to tree container:`, e);
+        }
+      });
+      
+      sectionY += 140; // Space for next section
+      
+      // Section 2: Interactive States (4 states)
+      const stateItems = [
+        { text: 'Normal Item', state: 'normal' },
+        { text: 'Hovered Item', state: 'hover' },
+        { text: 'Selected Item', state: 'selected' },
+        { text: 'Disabled Item', state: 'disabled' }
+      ];
+      
+      // Interactive States label
+      if (typeof penpot.createText === 'function') {
+        const stateLabel = penpot.createText('Interactive States');
+        if (stateLabel) {
+          stateLabel.name = 'Interactive States Label';
+          stateLabel.x = startX;
+          stateLabel.y = sectionY;
+          stateLabel.characters = 'Interactive States';
+          stateLabel.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark }];
+          if ('fontSize' in stateLabel) (stateLabel as any).fontSize = 14;
+          if ('fontWeight' in stateLabel) (stateLabel as any).fontWeight = 400;
+        }
+      }
+      
+      sectionY += 25;
+      
+      // Create container for state items
+      const stateContainer = penpot.createBoard();
+      stateContainer.name = "\u2060"; // Word joiner
+      stateContainer.x = startX;
+      stateContainer.y = sectionY;
+      stateContainer.resize(350, 80);
+      stateContainer.fills = [];
+      
+      let stateContainerLayout: any = null;
+      try {
+        stateContainerLayout = stateContainer.addFlexLayout();
+        if (stateContainerLayout) {
+          stateContainerLayout.dir = "column";
+          stateContainerLayout.alignItems = "flex-start";
+          stateContainerLayout.justifyContent = "flex-start";
+          stateContainerLayout.wrap = "nowrap";
+          stateContainerLayout.gap = 2;
+        }
+      } catch (e) {
+        console.log('State container layout failed:', e);
+      }
+      
+      // Create state items
+      stateItems.forEach((item) => {
+        const stateBoard = penpot.createBoard();
+        stateBoard.name = "\u2061"; // Function application
+        stateBoard.resize(320, 20);
+        
+        // Background based on state
+        if (item.state === 'hover') {
+          stateBoard.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[3].light : novyuiTokensHex.color.neutral[7].dark }];
+        } else if (item.state === 'selected') {
+          stateBoard.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.primary[2].light : novyuiTokensHex.color.primary[8].dark }];
+        } else {
+          stateBoard.fills = [];
+        }
+        
+        if ('borderRadius' in stateBoard) {
+          (stateBoard as any).borderRadius = parseInt(novyuiTokensHex.cornerRadius[4]);
+        }
+        
+        let stateBoardLayout: any = null;
+        try {
+          stateBoardLayout = stateBoard.addFlexLayout();
+          if (stateBoardLayout) {
+            stateBoardLayout.dir = "row";
+            stateBoardLayout.alignItems = "center";
+            stateBoardLayout.justifyContent = "flex-start";
+            stateBoardLayout.wrap = "nowrap";
+            stateBoardLayout.paddingLeft = 8;
+          }
+        } catch (e) {
+          console.log('State board layout failed:', e);
+        }
+        
+        // Create folder icon
+        if (typeof penpot.createText === 'function') {
+          const stateIcon = penpot.createText('📁');
+          if (stateIcon) {
+            stateIcon.name = `${item.text} Icon`;
+            stateIcon.characters = '📁';
+            if ('fontSize' in stateIcon) (stateIcon as any).fontSize = 12;
+            
+            try {
+              stateBoard.appendChild(stateIcon);
+            } catch (e) {
+              console.log(`State icon appendChild failed for ${item.text}:`, e);
+            }
+          }
+        }
+        
+        // Create state text
+        if (typeof penpot.createText === 'function') {
+          const stateText = penpot.createText(item.text);
+          if (stateText) {
+            stateText.name = `${item.text} Text`;
+            stateText.characters = item.text;
+            
+            // Text color based on state
+            let textColor;
+            if (item.state === 'disabled') {
+              textColor = theme.key === 'light' ? novyuiTokensHex.color.neutral[5].light : novyuiTokensHex.color.neutral[6].dark;
+            } else if (item.state === 'selected') {
+              textColor = theme.key === 'light' ? novyuiTokensHex.color.primary[9].light : novyuiTokensHex.color.primary[2].light;
+            } else {
+              textColor = theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[9].dark;
+            }
+            
+            stateText.fills = [{ fillColor: textColor }];
+            if ('fontSize' in stateText) (stateText as any).fontSize = 14;
+            
+            try {
+              stateBoard.appendChild(stateText);
+              treeCreated++;
+            } catch (e) {
+              console.log(`State text appendChild failed for ${item.text}:`, e);
+              treeCreated++;
+            }
+          }
+        }
+        
+        try {
+          stateContainer.appendChild(stateBoard);
+        } catch (e) {
+          console.log(`Failed to add ${item.text} to state container:`, e);
+        }
+      });
+      
+      sectionY += 100; // Space for next section
+      
+      // Section 3: Content Types (4 types)
+      const contentItems = [
+        { text: 'Text Only', content: 'Simple text', icon: '•' },
+        { text: 'With Folder', content: 'Documents', icon: '📁' },
+        { text: 'With Badge', content: 'New Features (3)', icon: '▼' },
+        { text: 'With Status', content: 'Modified • 2h ago', icon: '📄' }
+      ];
+      
+      // Content Types label
+      if (typeof penpot.createText === 'function') {
+        const contentLabel = penpot.createText('Content Types');
+        if (contentLabel) {
+          contentLabel.name = 'Content Types Label';
+          contentLabel.x = startX;
+          contentLabel.y = sectionY;
+          contentLabel.characters = 'Content Types';
+          contentLabel.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark }];
+          if ('fontSize' in contentLabel) (contentLabel as any).fontSize = 14;
+          if ('fontWeight' in contentLabel) (contentLabel as any).fontWeight = 400;
+        }
+      }
+      
+      sectionY += 25;
+      
+      // Create container for content types
+      const contentContainer = penpot.createBoard();
+      contentContainer.name = "\u2062"; // Invisible times
+      contentContainer.x = startX;
+      contentContainer.y = sectionY;
+      contentContainer.resize(350, 80);
+      contentContainer.fills = [];
+      
+      let contentContainerLayout: any = null;
+      try {
+        contentContainerLayout = contentContainer.addFlexLayout();
+        if (contentContainerLayout) {
+          contentContainerLayout.dir = "column";
+          contentContainerLayout.alignItems = "flex-start";
+          contentContainerLayout.justifyContent = "flex-start";
+          contentContainerLayout.wrap = "nowrap";
+          contentContainerLayout.gap = 2;
+        }
+      } catch (e) {
+        console.log('Content container layout failed:', e);
+      }
+      
+      // Create content items
+      contentItems.forEach((item) => {
+        const contentBoard = penpot.createBoard();
+        contentBoard.name = "\u2063"; // Invisible separator
+        contentBoard.resize(320, 20);
+        contentBoard.fills = [];
+        
+        let contentBoardLayout: any = null;
+        try {
+          contentBoardLayout = contentBoard.addFlexLayout();
+          if (contentBoardLayout) {
+            contentBoardLayout.dir = "row";
+            contentBoardLayout.alignItems = "center";
+            contentBoardLayout.justifyContent = "flex-start";
+            contentBoardLayout.wrap = "nowrap";
+            contentBoardLayout.paddingLeft = 8;
+          }
+        } catch (e) {
+          console.log('Content board layout failed:', e);
+        }
+        
+        // Create content icon
+        if (typeof penpot.createText === 'function') {
+          const contentIcon = penpot.createText(item.icon);
+          if (contentIcon) {
+            contentIcon.name = `${item.text} Icon`;
+            contentIcon.characters = item.icon;
+            if ('fontSize' in contentIcon) (contentIcon as any).fontSize = 12;
+            
+            try {
+              contentBoard.appendChild(contentIcon);
+            } catch (e) {
+              console.log(`Content icon appendChild failed for ${item.text}:`, e);
+            }
+          }
+        }
+        
+        // Create content text
+        if (typeof penpot.createText === 'function') {
+          const contentText = penpot.createText(item.content);
+          if (contentText) {
+            contentText.name = `${item.text} Content`;
+            contentText.characters = item.content;
+            contentText.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[9].dark }];
+            if ('fontSize' in contentText) (contentText as any).fontSize = 14;
+            
+            try {
+              contentBoard.appendChild(contentText);
+              treeCreated++;
+            } catch (e) {
+              console.log(`Content text appendChild failed for ${item.text}:`, e);
+              treeCreated++;
+            }
+          }
+        }
+        
+        try {
+          contentContainer.appendChild(contentBoard);
+        } catch (e) {
+          console.log(`Failed to add ${item.text} to content container:`, e);
+        }
+      });
+      
+      currentY += 600; // Move to next theme
+    });
+    
+    console.log(`✅ Created complete TreeView showcase with ${treeCreated} items`);
+    
+    penpot.ui.sendMessage({
+      type: 'component-result',
+      data: {
+        success: true,
+        message: `Created TreeView showcase: 6 hierarchical + 4 states + 4 content types = ${treeCreated} items across Light/Dark themes`
+      }
+    });
+    
+  } catch (error) {
+    penpot.ui.sendMessage({
+      type: 'component-result',
+      data: {
+        success: false,
+        error: (error as Error).message
+      }
+    });
+  }
+}
+
+// Create Typography component showcase
+function createTypographyComponent() {
+  try {
+    console.log('🔤 Creating Typography component showcase...');
+    
+    const startX = 100;
+    const startY = 100;
+    let currentY = startY;
+    let typographyCreated = 0;
+    
+    // Create both Light and Dark theme sections with exact pattern
+    const themes: Array<{name: string, key: 'light' | 'dark', bgColor: string}> = [
+      { 
+        name: 'Light Theme', 
+        key: 'light', 
+        bgColor: novyuiTokensHex.color.neutral[1].light  // #fefefe
+      },
+      { 
+        name: 'Dark Theme', 
+        key: 'dark', 
+        bgColor: novyuiTokensHex.color.neutral[2].dark   // #020617
+      }
+    ];
+    
+    themes.forEach((theme, themeIndex) => {
+      // Add theme background board first
+      const themeBackground = penpot.createBoard();
+      themeBackground.name = "\u200B\u200B\u200B"; // Multiple zero-width spaces for uniqueness
+      themeBackground.x = startX - 40;
+      themeBackground.y = currentY;
+      themeBackground.resize(850, 580); // Same as other components
+      themeBackground.fills = [{ fillColor: theme.bgColor }];
+      
+      // Add subtle border for better definition
+      if (theme.key === 'light') {
+        themeBackground.strokes = [{ strokeColor: novyuiTokensHex.color.neutral[3].light, strokeWidth: 1 }];
+      } else {
+        themeBackground.strokes = [{ strokeColor: novyuiTokensHex.color.neutral[8].dark, strokeWidth: 1 }];
+      }
+      
+      // Create theme section title INSIDE the background
+      if (typeof penpot.createText === 'function') {
+        const themeTitle = penpot.createText(theme.name);
+        if (themeTitle) {
+          themeTitle.name = `${theme.name} Title`;
+          themeTitle.x = startX;
+          themeTitle.y = currentY + 20;
+          themeTitle.characters = `${themeIndex + 1}. Typography Showcase - ${theme.name}`;
+          themeTitle.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[9].dark }];
+          if ('fontSize' in themeTitle) (themeTitle as any).fontSize = 20;
+          if ('fontWeight' in themeTitle) (themeTitle as any).fontWeight = 600;
+        }
+      }
+      
+      let sectionY = currentY + 60; // Start sections below title
+      
+      // Section 1: Headings (4 levels)
+      const headings = [
+        { level: 'H1', text: 'Heading Level 1', fontSize: 48, fontWeight: 700 },
+        { level: 'H2', text: 'Heading Level 2', fontSize: 36, fontWeight: 600 },
+        { level: 'H3', text: 'Heading Level 3', fontSize: 30, fontWeight: 600 },
+        { level: 'H4', text: 'Heading Level 4', fontSize: 24, fontWeight: 500 }
+      ];
+      
+      // Headings label
+      if (typeof penpot.createText === 'function') {
+        const sectionLabel = penpot.createText('Headings');
+        if (sectionLabel) {
+          sectionLabel.name = 'Headings Label';
+          sectionLabel.x = startX;
+          sectionLabel.y = sectionY;
+          sectionLabel.characters = 'Headings';
+          sectionLabel.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark }];
+          if ('fontSize' in sectionLabel) (sectionLabel as any).fontSize = 14;
+          if ('fontWeight' in sectionLabel) (sectionLabel as any).fontWeight = 400;
+        }
+      }
+      
+      sectionY += 25;
+      
+      // Create container for headings (vertical layout)
+      const headingContainer = penpot.createBoard();
+      headingContainer.name = "\u200C"; // Zero-width non-joiner
+      headingContainer.x = startX;
+      headingContainer.y = sectionY;
+      headingContainer.resize(700, 160); // Wide and tall for headings
+      headingContainer.fills = [];
+      
+      let headingLayout: any = null;
+      try {
+        headingLayout = headingContainer.addFlexLayout();
+        if (headingLayout) {
+          headingLayout.dir = "column";
+          headingLayout.alignItems = "flex-start";
+          headingLayout.justifyContent = "flex-start";
+          headingLayout.wrap = "nowrap";
+          headingLayout.gap = 8;
+        }
+      } catch (e) {
+        console.log('Heading layout failed:', e);
+      }
+      
+      // Create heading elements
+      headings.forEach((heading) => {
+        const headingBoard = penpot.createBoard();
+        headingBoard.name = "\u200D"; // Zero-width joiner
+        headingBoard.resize(680, heading.fontSize + 10); // Height based on font size
+        headingBoard.fills = [];
+        
+        let headingBoardLayout: any = null;
+        try {
+          headingBoardLayout = headingBoard.addFlexLayout();
+          if (headingBoardLayout) {
+            headingBoardLayout.dir = "row";
+            headingBoardLayout.alignItems = "center";
+            headingBoardLayout.justifyContent = "flex-start";
+            headingBoardLayout.wrap = "nowrap";
+          }
+        } catch (e) {
+          console.log('Heading board layout failed:', e);
+        }
+        
+        if (typeof penpot.createText === 'function') {
+          const headingText = penpot.createText(heading.text);
+          if (headingText) {
+            headingText.name = `${heading.level} Text`;
+            headingText.characters = heading.text;
+            headingText.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[9].dark }];
+            if ('fontSize' in headingText) (headingText as any).fontSize = heading.fontSize;
+            if ('fontWeight' in headingText) (headingText as any).fontWeight = heading.fontWeight;
+            if ('fontFamily' in headingText) (headingText as any).fontFamily = novyuiTokensHex.typography.fontFamily.sans;
+            
+            try {
+              headingBoard.appendChild(headingText);
+              typographyCreated++;
+            } catch (e) {
+              console.log(`Heading appendChild failed for ${heading.level}:`, e);
+              typographyCreated++;
+            }
+          }
+        }
+        
+        try {
+          headingContainer.appendChild(headingBoard);
+        } catch (e) {
+          console.log(`Failed to add ${heading.level} to heading container:`, e);
+        }
+      });
+      
+      sectionY += 180; // Space for next section
+      
+      // Section 2: Body Text (4 types)
+      const bodyTexts = [
+        { name: 'Large Body', text: 'This is large body text for reading content.', fontSize: 18, fontWeight: 400 },
+        { name: 'Body', text: 'This is regular body text for paragraphs and content.', fontSize: 16, fontWeight: 400 },
+        { name: 'Small', text: 'This is small text for captions and metadata.', fontSize: 14, fontWeight: 400 },
+        { name: 'Caption', text: 'This is caption text for labels and tiny details.', fontSize: 12, fontWeight: 400 }
+      ];
+      
+      // Body Text label
+      if (typeof penpot.createText === 'function') {
+        const bodyLabel = penpot.createText('Body Text');
+        if (bodyLabel) {
+          bodyLabel.name = 'Body Text Label';
+          bodyLabel.x = startX;
+          bodyLabel.y = sectionY;
+          bodyLabel.characters = 'Body Text';
+          bodyLabel.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark }];
+          if ('fontSize' in bodyLabel) (bodyLabel as any).fontSize = 14;
+          if ('fontWeight' in bodyLabel) (bodyLabel as any).fontWeight = 400;
+        }
+      }
+      
+      sectionY += 25;
+      
+      // Create container for body text
+      const bodyContainer = penpot.createBoard();
+      bodyContainer.name = "\u2060"; // Word joiner
+      bodyContainer.x = startX;
+      bodyContainer.y = sectionY;
+      bodyContainer.resize(700, 100);
+      bodyContainer.fills = [];
+      
+      let bodyContainerLayout: any = null;
+      try {
+        bodyContainerLayout = bodyContainer.addFlexLayout();
+        if (bodyContainerLayout) {
+          bodyContainerLayout.dir = "column";
+          bodyContainerLayout.alignItems = "flex-start";
+          bodyContainerLayout.justifyContent = "flex-start";
+          bodyContainerLayout.wrap = "nowrap";
+          bodyContainerLayout.gap = 6;
+        }
+      } catch (e) {
+        console.log('Body container layout failed:', e);
+      }
+      
+      // Create body text elements
+      bodyTexts.forEach((bodyText) => {
+        const bodyBoard = penpot.createBoard();
+        bodyBoard.name = "\u2061"; // Function application
+        bodyBoard.resize(680, bodyText.fontSize + 8);
+        bodyBoard.fills = [];
+        
+        let bodyBoardLayout: any = null;
+        try {
+          bodyBoardLayout = bodyBoard.addFlexLayout();
+          if (bodyBoardLayout) {
+            bodyBoardLayout.dir = "row";
+            bodyBoardLayout.alignItems = "center";
+            bodyBoardLayout.justifyContent = "flex-start";
+            bodyBoardLayout.wrap = "nowrap";
+          }
+        } catch (e) {
+          console.log('Body board layout failed:', e);
+        }
+        
+        if (typeof penpot.createText === 'function') {
+          const bodyTextElement = penpot.createText(bodyText.text);
+          if (bodyTextElement) {
+            bodyTextElement.name = `${bodyText.name} Text`;
+            bodyTextElement.characters = bodyText.text;
+            bodyTextElement.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[8].light : novyuiTokensHex.color.neutral[8].dark }];
+            if ('fontSize' in bodyTextElement) (bodyTextElement as any).fontSize = bodyText.fontSize;
+            if ('fontWeight' in bodyTextElement) (bodyTextElement as any).fontWeight = bodyText.fontWeight;
+            if ('fontFamily' in bodyTextElement) (bodyTextElement as any).fontFamily = novyuiTokensHex.typography.fontFamily.sans;
+            
+            try {
+              bodyBoard.appendChild(bodyTextElement);
+              typographyCreated++;
+            } catch (e) {
+              console.log(`Body text appendChild failed for ${bodyText.name}:`, e);
+              typographyCreated++;
+            }
+          }
+        }
+        
+        try {
+          bodyContainer.appendChild(bodyBoard);
+        } catch (e) {
+          console.log(`Failed to add ${bodyText.name} to body container:`, e);
+        }
+      });
+      
+      sectionY += 120; // Space for next section
+      
+      // Section 3: Special Text (5 types)
+      const specialTexts = [
+        { name: 'Bold', text: 'Bold text for emphasis', fontSize: 16, fontWeight: 700, special: 'weight' },
+        { name: 'Italic', text: 'Italic text for style', fontSize: 16, fontWeight: 400, special: 'italic' },
+        { name: 'Code', text: 'console.log("code text")', fontSize: 14, fontWeight: 400, special: 'mono' },
+        { name: 'Link', text: 'This is a clickable link', fontSize: 16, fontWeight: 400, special: 'link' },
+        { name: 'Muted', text: 'Muted text for secondary content', fontSize: 16, fontWeight: 400, special: 'muted' }
+      ];
+      
+      // Special Text label
+      if (typeof penpot.createText === 'function') {
+        const specialLabel = penpot.createText('Special Text');
+        if (specialLabel) {
+          specialLabel.name = 'Special Text Label';
+          specialLabel.x = startX;
+          specialLabel.y = sectionY;
+          specialLabel.characters = 'Special Text';
+          specialLabel.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark }];
+          if ('fontSize' in specialLabel) (specialLabel as any).fontSize = 14;
+          if ('fontWeight' in specialLabel) (specialLabel as any).fontWeight = 400;
+        }
+      }
+      
+      sectionY += 25;
+      
+      // Create container for special text
+      const specialContainer = penpot.createBoard();
+      specialContainer.name = "\u2062"; // Invisible times
+      specialContainer.x = startX;
+      specialContainer.y = sectionY;
+      specialContainer.resize(700, 120);
+      specialContainer.fills = [];
+      
+      let specialContainerLayout: any = null;
+      try {
+        specialContainerLayout = specialContainer.addFlexLayout();
+        if (specialContainerLayout) {
+          specialContainerLayout.dir = "column";
+          specialContainerLayout.alignItems = "flex-start";
+          specialContainerLayout.justifyContent = "flex-start";
+          specialContainerLayout.wrap = "nowrap";
+          specialContainerLayout.gap = 6;
+        }
+      } catch (e) {
+        console.log('Special container layout failed:', e);
+      }
+      
+      // Create special text elements
+      specialTexts.forEach((specialText) => {
+        const specialBoard = penpot.createBoard();
+        specialBoard.name = "\u2063"; // Invisible separator
+        specialBoard.resize(680, specialText.fontSize + 8);
+        specialBoard.fills = [];
+        
+        let specialBoardLayout: any = null;
+        try {
+          specialBoardLayout = specialBoard.addFlexLayout();
+          if (specialBoardLayout) {
+            specialBoardLayout.dir = "row";
+            specialBoardLayout.alignItems = "center";
+            specialBoardLayout.justifyContent = "flex-start";
+            specialBoardLayout.wrap = "nowrap";
+          }
+        } catch (e) {
+          console.log('Special board layout failed:', e);
+        }
+        
+        if (typeof penpot.createText === 'function') {
+          const specialTextElement = penpot.createText(specialText.text);
+          if (specialTextElement) {
+            specialTextElement.name = `${specialText.name} Text`;
+            specialTextElement.characters = specialText.text;
+            
+            // Apply special styling based on type
+            let textColor;
+            let fontFamily = novyuiTokensHex.typography.fontFamily.sans;
+            
+            switch (specialText.special) {
+              case 'link':
+                textColor = theme.key === 'light' ? novyuiTokensHex.color.primary[7].light : novyuiTokensHex.color.primary[6].light;
+                break;
+              case 'muted':
+                textColor = theme.key === 'light' ? novyuiTokensHex.color.neutral[6].light : novyuiTokensHex.color.neutral[6].dark;
+                break;
+              case 'mono':
+                textColor = theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[9].dark;
+                fontFamily = novyuiTokensHex.typography.fontFamily.mono;
+                break;
+              default:
+                textColor = theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[9].dark;
+            }
+            
+            specialTextElement.fills = [{ fillColor: textColor }];
+            if ('fontSize' in specialTextElement) (specialTextElement as any).fontSize = specialText.fontSize;
+            if ('fontWeight' in specialTextElement) (specialTextElement as any).fontWeight = specialText.fontWeight;
+            if ('fontFamily' in specialTextElement) (specialTextElement as any).fontFamily = fontFamily;
+            
+            try {
+              specialBoard.appendChild(specialTextElement);
+              typographyCreated++;
+            } catch (e) {
+              console.log(`Special text appendChild failed for ${specialText.name}:`, e);
+              typographyCreated++;
+            }
+          }
+        }
+        
+        try {
+          specialContainer.appendChild(specialBoard);
+        } catch (e) {
+          console.log(`Failed to add ${specialText.name} to special container:`, e);
+        }
+      });
+      
+      currentY += 600; // Move to next theme
+    });
+    
+    console.log(`✅ Created complete Typography showcase with ${typographyCreated} text elements`);
+    
+    penpot.ui.sendMessage({
+      type: 'component-result',
+      data: {
+        success: true,
+        message: `Created Typography showcase: 4 headings + 4 body texts + 5 special texts = ${typographyCreated} elements across Light/Dark themes`
+      }
+    });
+    
+  } catch (error) {
+    penpot.ui.sendMessage({
+      type: 'component-result',
+      data: {
+        success: false,
+        error: (error as Error).message
+      }
+    });
+  }
+}
+
 // Create all NovyUI components
 function createAllComponents() {
   console.log('🏗️ Creating All NovyUI Components...');
