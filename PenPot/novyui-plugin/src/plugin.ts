@@ -597,36 +597,11 @@ function createTokenTestingElements() {
   }
 }
 
-// Create a test NovyUI button component
-function createTestComponent() {
+// Create buttons section as a reusable component
+function createButtonsSection(startX: number, startY: number): number {
   console.log('🔧 Creating NovyUI Button System...');
   
   try {
-    let startX = 100;
-    let startY = 100;
-    
-    // Use viewport center if available
-    if (penpot.viewport && penpot.viewport.center) {
-      const center = penpot.viewport.center;
-      startX = center.x - 600;
-      startY = center.y - 400;
-    }
-    
-    // Create main title
-    if (typeof penpot.createText === 'function') {
-      const title = penpot.createText('NovyUI Button System');
-      if (title) {
-        title.name = 'Button System Title';
-        title.x = startX;
-        title.y = startY - 60;
-        title.characters = 'NovyUI Button System';
-        title.fills = [{ fillColor: novyuiTokensHex.color.neutral[11].light }];
-        if ('fontSize' in title) (title as any).fontSize = 24;
-        if ('fontWeight' in title) (title as any).fontWeight = 400;
-        if ('fontFamily' in title) (title as any).fontFamily = 'Inter';
-      }
-    }
-    
     let currentY = startY;
     let buttonsCreated = 0;
     
@@ -1163,13 +1138,53 @@ function createTestComponent() {
       }
     });
     
-    console.log(`✅ Created complete NovyUI button system with ${buttonsCreated} components`);
+    console.log(`✅ Created buttons section with ${buttonsCreated} components`);
+    return currentY + 100; // Return ending Y position for vertical stacking
+    
+  } catch (error) {
+    console.error('Error creating buttons section:', error);
+    return startY; // Return original Y position if error occurs
+  }
+}
+
+// Create a test NovyUI button component
+function createTestComponent() {
+  console.log('🔧 Creating NovyUI Button System...');
+  
+  try {
+    let startX = 100;
+    let startY = 100;
+    
+    // Use viewport center if available
+    if (penpot.viewport && penpot.viewport.center) {
+      const center = penpot.viewport.center;
+      startX = center.x - 600;
+      startY = center.y - 400;
+    }
+    
+    // Create main title
+    if (typeof penpot.createText === 'function') {
+      const title = penpot.createText('NovyUI Button System');
+      if (title) {
+        title.name = 'Button System Title';
+        title.x = startX;
+        title.y = startY - 60;
+        title.characters = 'NovyUI Button System';
+        title.fills = [{ fillColor: novyuiTokensHex.color.neutral[11].light }];
+        if ('fontSize' in title) (title as any).fontSize = 24;
+        if ('fontWeight' in title) (title as any).fontWeight = 400;
+        if ('fontFamily' in title) (title as any).fontFamily = 'Inter';
+      }
+    }
+
+    // Use the extracted buttons section function
+    createButtonsSection(startX, startY);
     
     penpot.ui.sendMessage({
       type: 'component-result',
       data: {
         success: true,
-        message: `Created complete NovyUI button system: 6 variants × 5 states + 3 sizes = ${buttonsCreated} components`
+        message: `Created complete NovyUI button system using reusable section function`
       }
     });
     
@@ -1182,6 +1197,343 @@ function createTestComponent() {
       }
     });
   }
+}
+
+// Reusable Icons section creation function
+function createIconsSection(startX: number, startY: number): number {
+  let currentY = startY;
+  let iconsCreated = 0;
+  
+  // Create both Light and Dark theme sections with exact Button pattern
+  const themes: Array<{name: string, key: 'light' | 'dark', bgColor: string}> = [
+    { 
+      name: 'Light Theme', 
+      key: 'light', 
+      bgColor: novyuiTokensHex.color.neutral[1].light  // #fefefe
+    },
+    { 
+      name: 'Dark Theme', 
+      key: 'dark', 
+      bgColor: novyuiTokensHex.color.neutral[2].dark   // #020617
+    }
+  ];
+  
+  themes.forEach((theme, themeIndex) => {
+    // Add theme background board first
+    const themeBackground = penpot.createBoard();
+    themeBackground.name = "\u200B\u200B\u200B"; // Multiple zero-width spaces for uniqueness
+    themeBackground.x = startX - 40;
+    themeBackground.y = currentY;
+    themeBackground.resize(850, 580); // Increased to include title and bottom padding
+    themeBackground.fills = [{ fillColor: theme.bgColor }]; // Full theme background
+    
+    // Add subtle border for better definition
+    if (theme.key === 'light') {
+      themeBackground.strokes = [{ strokeColor: novyuiTokensHex.color.neutral[3].light, strokeWidth: 1 }];
+    } else {
+      themeBackground.strokes = [{ strokeColor: novyuiTokensHex.color.neutral[8].dark, strokeWidth: 1 }];
+    }
+    
+    // Create theme section title INSIDE the background
+    if (typeof penpot.createText === 'function') {
+      const themeTitle = penpot.createText(theme.name);
+      if (themeTitle) {
+        themeTitle.name = `${theme.name} Title`;
+        themeTitle.x = startX;
+        themeTitle.y = currentY + 20; // Inside the container
+        themeTitle.characters = `${themeIndex + 1}. Icon Showcase - ${theme.name}`;
+        themeTitle.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[9].dark }];
+        if ('fontSize' in themeTitle) (themeTitle as any).fontSize = 20;
+        if ('fontWeight' in themeTitle) (themeTitle as any).fontWeight = 400;
+      }
+    }
+    
+    let sectionY = currentY + 60; // Start sections below title
+    
+    // Section 1: Popular Icons (5 icons)
+    const popularIcons = [
+      { name: 'User', symbol: '👤', label: 'User' },
+      { name: 'Heart', symbol: '♥', label: 'Heart' },
+      { name: 'Star', symbol: '★', label: 'Star' },
+      { name: 'Settings', symbol: '⚙', label: 'Settings' },
+      { name: 'Search', symbol: '🔍', label: 'Search' }
+    ];
+    
+    // Popular Icons label
+    if (typeof penpot.createText === 'function') {
+      const sectionLabel = penpot.createText('Popular Icons');
+      if (sectionLabel) {
+        sectionLabel.name = 'Popular Icons Label';
+        sectionLabel.x = startX;
+        sectionLabel.y = sectionY;
+        sectionLabel.characters = 'Popular Icons';
+        sectionLabel.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark }];
+        if ('fontSize' in sectionLabel) (sectionLabel as any).fontSize = 14;
+        if ('fontWeight' in sectionLabel) (sectionLabel as any).fontWeight = 400;
+      }
+    }
+    
+    sectionY += 25; // Space below label
+    
+    // Create container for popular icons
+    const popularContainer = penpot.createBoard();
+    popularContainer.name = "\u200C"; // Zero-width non-joiner
+    popularContainer.x = startX;
+    popularContainer.y = sectionY;
+    popularContainer.resize(750, 60);
+    popularContainer.fills = []; // Transparent
+    
+    // Add flex layout to container
+    let popularLayout: any = null;
+    try {
+      popularLayout = popularContainer.addFlexLayout();
+      if (popularLayout) {
+        popularLayout.dir = "row";
+        popularLayout.alignItems = "center";
+        popularLayout.justifyContent = "space-between";
+        popularLayout.wrap = "nowrap";
+      }
+    } catch (e) {
+      console.log('Popular icons layout failed:', e);
+    }
+    
+    // Create individual icon boards
+    popularIcons.forEach((icon) => {
+      const iconBoard = penpot.createBoard();
+      iconBoard.name = "\u200D"; // Zero-width joiner
+      iconBoard.resize(120, 40);
+      iconBoard.fills = []; // Transparent background
+      
+      // Add flex layout for centering
+      let iconLayout: any = null;
+      try {
+        iconLayout = iconBoard.addFlexLayout();
+        if (iconLayout) {
+          iconLayout.dir = "row";
+          iconLayout.alignItems = "center";
+          iconLayout.justifyContent = "center";
+          iconLayout.wrap = "nowrap";
+        }
+      } catch (e) {
+        console.log('Icon layout failed:', e);
+      }
+      
+      // Create icon text
+      if (typeof penpot.createText === 'function') {
+        const iconText = penpot.createText(icon.symbol);
+        if (iconText) {
+          iconText.name = `${icon.name} Icon`;
+          iconText.characters = icon.symbol;
+          iconText.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.primary[7].light : novyuiTokensHex.color.primary[6].light }];
+          if ('fontSize' in iconText) (iconText as any).fontSize = 20;
+          
+          try {
+            iconBoard.appendChild(iconText);
+            iconsCreated++;
+          } catch (e) {
+            console.log(`Icon appendChild failed for ${icon.name}:`, e);
+            iconsCreated++;
+          }
+        }
+      }
+      
+      try {
+        popularContainer.appendChild(iconBoard);
+      } catch (e) {
+        console.log(`Failed to add ${icon.name} to container:`, e);
+      }
+    });
+    
+    sectionY += 80; // Space for next section
+    
+    // Section 2: Size Comparison (4 sizes of star)
+    const sizes = [
+      { name: '16px', size: 16 },
+      { name: '20px', size: 20 },
+      { name: '24px', size: 24 },
+      { name: '32px', size: 32 }
+    ];
+    
+    // Size Comparison label
+    if (typeof penpot.createText === 'function') {
+      const sizeLabel = penpot.createText('Size Comparison');
+      if (sizeLabel) {
+        sizeLabel.name = 'Size Comparison Label';
+        sizeLabel.x = startX;
+        sizeLabel.y = sectionY;
+        sizeLabel.characters = 'Size Comparison';
+        sizeLabel.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark }];
+        if ('fontSize' in sizeLabel) (sizeLabel as any).fontSize = 14;
+        if ('fontWeight' in sizeLabel) (sizeLabel as any).fontWeight = 400;
+      }
+    }
+    
+    sectionY += 25;
+    
+    // Create container for sizes
+    const sizeContainer = penpot.createBoard();
+    sizeContainer.name = "\u2060"; // Word joiner
+    sizeContainer.x = startX;
+    sizeContainer.y = sectionY;
+    sizeContainer.resize(750, 60);
+    sizeContainer.fills = [];
+    
+    let sizeContainerLayout: any = null;
+    try {
+      sizeContainerLayout = sizeContainer.addFlexLayout();
+      if (sizeContainerLayout) {
+        sizeContainerLayout.dir = "row";
+        sizeContainerLayout.alignItems = "center";
+        sizeContainerLayout.justifyContent = "space-between";
+        sizeContainerLayout.wrap = "nowrap";
+      }
+    } catch (e) {
+      console.log('Size container layout failed:', e);
+    }
+    
+    // Create size icons
+    sizes.forEach((size) => {
+      const sizeBoard = penpot.createBoard();
+      sizeBoard.name = "\u2061"; // Function application
+      sizeBoard.resize(120, 40);
+      sizeBoard.fills = [];
+      
+      let sizeBoardLayout: any = null;
+      try {
+        sizeBoardLayout = sizeBoard.addFlexLayout();
+        if (sizeBoardLayout) {
+          sizeBoardLayout.dir = "row";
+          sizeBoardLayout.alignItems = "center";
+          sizeBoardLayout.justifyContent = "center";
+          sizeBoardLayout.wrap = "nowrap";
+        }
+      } catch (e) {
+        console.log('Size board layout failed:', e);
+      }
+      
+      if (typeof penpot.createText === 'function') {
+        const sizeText = penpot.createText('★');
+        if (sizeText) {
+          sizeText.name = `${size.name} Star`;
+          sizeText.characters = '★';
+          sizeText.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.primary[7].light : novyuiTokensHex.color.primary[6].light }];
+          if ('fontSize' in sizeText) (sizeText as any).fontSize = size.size;
+          
+          try {
+            sizeBoard.appendChild(sizeText);
+            iconsCreated++;
+          } catch (e) {
+            console.log(`Size appendChild failed for ${size.name}:`, e);
+            iconsCreated++;
+          }
+        }
+      }
+      
+      try {
+        sizeContainer.appendChild(sizeBoard);
+      } catch (e) {
+        console.log(`Failed to add ${size.name} to size container:`, e);
+      }
+    });
+    
+    sectionY += 80; // Space for next section
+    
+    // Section 3: Color Variations (5 colors of heart)
+    const colors = [
+      { name: 'Primary', color: theme.key === 'light' ? novyuiTokensHex.color.primary[7].light : novyuiTokensHex.color.primary[6].light },
+      { name: 'Secondary', color: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[9].dark },
+      { name: 'Muted', color: theme.key === 'light' ? novyuiTokensHex.color.neutral[6].light : novyuiTokensHex.color.neutral[7].dark },
+      { name: 'Success', color: theme.key === 'light' ? novyuiTokensHex.color.success[7].light : novyuiTokensHex.color.success[7].dark },
+      { name: 'Error', color: theme.key === 'light' ? novyuiTokensHex.color.error[7].light : novyuiTokensHex.color.error[7].dark }
+    ];
+    
+    // Color Variations label
+    if (typeof penpot.createText === 'function') {
+      const colorLabel = penpot.createText('Color Variations');
+      if (colorLabel) {
+        colorLabel.name = 'Color Variations Label';
+        colorLabel.x = startX;
+        colorLabel.y = sectionY;
+        colorLabel.characters = 'Color Variations';
+        colorLabel.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark }];
+        if ('fontSize' in colorLabel) (colorLabel as any).fontSize = 14;
+        if ('fontWeight' in colorLabel) (colorLabel as any).fontWeight = 400;
+      }
+    }
+    
+    sectionY += 25;
+    
+    // Create container for colors
+    const colorContainer = penpot.createBoard();
+    colorContainer.name = "\u2062"; // Invisible times
+    colorContainer.x = startX;
+    colorContainer.y = sectionY;
+    colorContainer.resize(750, 60);
+    colorContainer.fills = [];
+    
+    let colorContainerLayout: any = null;
+    try {
+      colorContainerLayout = colorContainer.addFlexLayout();
+      if (colorContainerLayout) {
+        colorContainerLayout.dir = "row";
+        colorContainerLayout.alignItems = "center";
+        colorContainerLayout.justifyContent = "space-between";
+        colorContainerLayout.wrap = "nowrap";
+      }
+    } catch (e) {
+      console.log('Color container layout failed:', e);
+    }
+    
+    // Create color icons
+    colors.forEach((colorVariant) => {
+      const colorBoard = penpot.createBoard();
+      colorBoard.name = "\u2063"; // Invisible separator
+      colorBoard.resize(120, 40);
+      colorBoard.fills = [];
+      
+      let colorBoardLayout: any = null;
+      try {
+        colorBoardLayout = colorBoard.addFlexLayout();
+        if (colorBoardLayout) {
+          colorBoardLayout.dir = "row";
+          colorBoardLayout.alignItems = "center";
+          colorBoardLayout.justifyContent = "center";
+          colorBoardLayout.wrap = "nowrap";
+        }
+      } catch (e) {
+        console.log('Color board layout failed:', e);
+      }
+      
+      if (typeof penpot.createText === 'function') {
+        const colorText = penpot.createText('♥');
+        if (colorText) {
+          colorText.name = `${colorVariant.name} Heart`;
+          colorText.characters = '♥';
+          colorText.fills = [{ fillColor: colorVariant.color }];
+          if ('fontSize' in colorText) (colorText as any).fontSize = 20;
+          
+          try {
+            colorBoard.appendChild(colorText);
+            iconsCreated++;
+          } catch (e) {
+            console.log(`Color appendChild failed for ${colorVariant.name}:`, e);
+            iconsCreated++;
+          }
+        }
+      }
+      
+      try {
+        colorContainer.appendChild(colorBoard);
+      } catch (e) {
+        console.log(`Failed to add ${colorVariant.name} to color container:`, e);
+      }
+    });
+    
+    currentY += 600; // Move to next theme
+  });
+  
+  console.log(`✅ Created Icons section with ${iconsCreated} icons`);
+  return currentY; // Return ending Y position
 }
 
 // Create Icons component showcase
@@ -1191,344 +1543,15 @@ function createIconsComponent() {
     
     const startX = 100;
     const startY = 100;
-    let currentY = startY;
-    let iconsCreated = 0;
     
-    // Create both Light and Dark theme sections with exact Button pattern
-    const themes: Array<{name: string, key: 'light' | 'dark', bgColor: string}> = [
-      { 
-        name: 'Light Theme', 
-        key: 'light', 
-        bgColor: novyuiTokensHex.color.neutral[1].light  // #fefefe
-      },
-      { 
-        name: 'Dark Theme', 
-        key: 'dark', 
-        bgColor: novyuiTokensHex.color.neutral[2].dark   // #020617
-      }
-    ];
-    
-    themes.forEach((theme, themeIndex) => {
-      // Add theme background board first
-      const themeBackground = penpot.createBoard();
-      themeBackground.name = "\u200B\u200B\u200B"; // Multiple zero-width spaces for uniqueness
-      themeBackground.x = startX - 40;
-      themeBackground.y = currentY;
-      themeBackground.resize(850, 580); // Increased to include title and bottom padding
-      themeBackground.fills = [{ fillColor: theme.bgColor }]; // Full theme background
-      
-      // Add subtle border for better definition
-      if (theme.key === 'light') {
-        themeBackground.strokes = [{ strokeColor: novyuiTokensHex.color.neutral[3].light, strokeWidth: 1 }];
-      } else {
-        themeBackground.strokes = [{ strokeColor: novyuiTokensHex.color.neutral[8].dark, strokeWidth: 1 }];
-      }
-      
-      // Create theme section title INSIDE the background
-      if (typeof penpot.createText === 'function') {
-        const themeTitle = penpot.createText(theme.name);
-        if (themeTitle) {
-          themeTitle.name = `${theme.name} Title`;
-          themeTitle.x = startX;
-          themeTitle.y = currentY + 20; // Inside the container
-          themeTitle.characters = `${themeIndex + 1}. Icon Showcase - ${theme.name}`;
-          themeTitle.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[9].dark }];
-          if ('fontSize' in themeTitle) (themeTitle as any).fontSize = 20;
-          if ('fontWeight' in themeTitle) (themeTitle as any).fontWeight = 400;
-        }
-      }
-      
-      let sectionY = currentY + 60; // Start sections below title
-      
-      // Section 1: Popular Icons (5 icons)
-      const popularIcons = [
-        { name: 'User', symbol: '👤', label: 'User' },
-        { name: 'Heart', symbol: '♥', label: 'Heart' },
-        { name: 'Star', symbol: '★', label: 'Star' },
-        { name: 'Settings', symbol: '⚙', label: 'Settings' },
-        { name: 'Search', symbol: '🔍', label: 'Search' }
-      ];
-      
-      // Popular Icons label
-      if (typeof penpot.createText === 'function') {
-        const sectionLabel = penpot.createText('Popular Icons');
-        if (sectionLabel) {
-          sectionLabel.name = 'Popular Icons Label';
-          sectionLabel.x = startX;
-          sectionLabel.y = sectionY;
-          sectionLabel.characters = 'Popular Icons';
-          sectionLabel.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark }];
-          if ('fontSize' in sectionLabel) (sectionLabel as any).fontSize = 14;
-          if ('fontWeight' in sectionLabel) (sectionLabel as any).fontWeight = 400;
-        }
-      }
-      
-      sectionY += 25; // Space below label
-      
-      // Create container for popular icons
-      const popularContainer = penpot.createBoard();
-      popularContainer.name = "\u200C"; // Zero-width non-joiner
-      popularContainer.x = startX;
-      popularContainer.y = sectionY;
-      popularContainer.resize(750, 60);
-      popularContainer.fills = []; // Transparent
-      
-      // Add flex layout to container
-      let popularLayout: any = null;
-      try {
-        popularLayout = popularContainer.addFlexLayout();
-        if (popularLayout) {
-          popularLayout.dir = "row";
-          popularLayout.alignItems = "center";
-          popularLayout.justifyContent = "space-between";
-          popularLayout.wrap = "nowrap";
-        }
-      } catch (e) {
-        console.log('Popular icons layout failed:', e);
-      }
-      
-      // Create individual icon boards
-      popularIcons.forEach((icon) => {
-        const iconBoard = penpot.createBoard();
-        iconBoard.name = "\u200D"; // Zero-width joiner
-        iconBoard.resize(120, 40);
-        iconBoard.fills = []; // Transparent background
-        
-        // Add flex layout for centering
-        let iconLayout: any = null;
-        try {
-          iconLayout = iconBoard.addFlexLayout();
-          if (iconLayout) {
-            iconLayout.dir = "row";
-            iconLayout.alignItems = "center";
-            iconLayout.justifyContent = "center";
-            iconLayout.wrap = "nowrap";
-          }
-        } catch (e) {
-          console.log('Icon layout failed:', e);
-        }
-        
-        // Create icon text
-        if (typeof penpot.createText === 'function') {
-          const iconText = penpot.createText(icon.symbol);
-          if (iconText) {
-            iconText.name = `${icon.name} Icon`;
-            iconText.characters = icon.symbol;
-            iconText.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.primary[7].light : novyuiTokensHex.color.primary[6].light }];
-            if ('fontSize' in iconText) (iconText as any).fontSize = 20;
-            
-            try {
-              iconBoard.appendChild(iconText);
-              iconsCreated++;
-            } catch (e) {
-              console.log(`Icon appendChild failed for ${icon.name}:`, e);
-              iconsCreated++;
-            }
-          }
-        }
-        
-        try {
-          popularContainer.appendChild(iconBoard);
-        } catch (e) {
-          console.log(`Failed to add ${icon.name} to container:`, e);
-        }
-      });
-      
-      sectionY += 80; // Space for next section
-      
-      // Section 2: Size Comparison (4 sizes of star)
-      const sizes = [
-        { name: '16px', size: 16 },
-        { name: '20px', size: 20 },
-        { name: '24px', size: 24 },
-        { name: '32px', size: 32 }
-      ];
-      
-      // Size Comparison label
-      if (typeof penpot.createText === 'function') {
-        const sizeLabel = penpot.createText('Size Comparison');
-        if (sizeLabel) {
-          sizeLabel.name = 'Size Comparison Label';
-          sizeLabel.x = startX;
-          sizeLabel.y = sectionY;
-          sizeLabel.characters = 'Size Comparison';
-          sizeLabel.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark }];
-          if ('fontSize' in sizeLabel) (sizeLabel as any).fontSize = 14;
-          if ('fontWeight' in sizeLabel) (sizeLabel as any).fontWeight = 400;
-        }
-      }
-      
-      sectionY += 25;
-      
-      // Create container for sizes
-      const sizeContainer = penpot.createBoard();
-      sizeContainer.name = "\u2060"; // Word joiner
-      sizeContainer.x = startX;
-      sizeContainer.y = sectionY;
-      sizeContainer.resize(750, 60);
-      sizeContainer.fills = [];
-      
-      let sizeContainerLayout: any = null;
-      try {
-        sizeContainerLayout = sizeContainer.addFlexLayout();
-        if (sizeContainerLayout) {
-          sizeContainerLayout.dir = "row";
-          sizeContainerLayout.alignItems = "center";
-          sizeContainerLayout.justifyContent = "space-between";
-          sizeContainerLayout.wrap = "nowrap";
-        }
-      } catch (e) {
-        console.log('Size container layout failed:', e);
-      }
-      
-      // Create size icons
-      sizes.forEach((size) => {
-        const sizeBoard = penpot.createBoard();
-        sizeBoard.name = "\u2061"; // Function application
-        sizeBoard.resize(120, 40);
-        sizeBoard.fills = [];
-        
-        let sizeBoardLayout: any = null;
-        try {
-          sizeBoardLayout = sizeBoard.addFlexLayout();
-          if (sizeBoardLayout) {
-            sizeBoardLayout.dir = "row";
-            sizeBoardLayout.alignItems = "center";
-            sizeBoardLayout.justifyContent = "center";
-            sizeBoardLayout.wrap = "nowrap";
-          }
-        } catch (e) {
-          console.log('Size board layout failed:', e);
-        }
-        
-        if (typeof penpot.createText === 'function') {
-          const sizeText = penpot.createText('★');
-          if (sizeText) {
-            sizeText.name = `${size.name} Star`;
-            sizeText.characters = '★';
-            sizeText.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.primary[7].light : novyuiTokensHex.color.primary[6].light }];
-            if ('fontSize' in sizeText) (sizeText as any).fontSize = size.size;
-            
-            try {
-              sizeBoard.appendChild(sizeText);
-              iconsCreated++;
-            } catch (e) {
-              console.log(`Size appendChild failed for ${size.name}:`, e);
-              iconsCreated++;
-            }
-          }
-        }
-        
-        try {
-          sizeContainer.appendChild(sizeBoard);
-        } catch (e) {
-          console.log(`Failed to add ${size.name} to size container:`, e);
-        }
-      });
-      
-      sectionY += 80; // Space for next section
-      
-      // Section 3: Color Variations (5 colors of heart)
-      const colors = [
-        { name: 'Primary', color: theme.key === 'light' ? novyuiTokensHex.color.primary[7].light : novyuiTokensHex.color.primary[6].light },
-        { name: 'Secondary', color: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[9].dark },
-        { name: 'Muted', color: theme.key === 'light' ? novyuiTokensHex.color.neutral[6].light : novyuiTokensHex.color.neutral[7].dark },
-        { name: 'Success', color: theme.key === 'light' ? novyuiTokensHex.color.success[7].light : novyuiTokensHex.color.success[7].dark },
-        { name: 'Error', color: theme.key === 'light' ? novyuiTokensHex.color.error[7].light : novyuiTokensHex.color.error[7].dark }
-      ];
-      
-      // Color Variations label
-      if (typeof penpot.createText === 'function') {
-        const colorLabel = penpot.createText('Color Variations');
-        if (colorLabel) {
-          colorLabel.name = 'Color Variations Label';
-          colorLabel.x = startX;
-          colorLabel.y = sectionY;
-          colorLabel.characters = 'Color Variations';
-          colorLabel.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark }];
-          if ('fontSize' in colorLabel) (colorLabel as any).fontSize = 14;
-          if ('fontWeight' in colorLabel) (colorLabel as any).fontWeight = 400;
-        }
-      }
-      
-      sectionY += 25;
-      
-      // Create container for colors
-      const colorContainer = penpot.createBoard();
-      colorContainer.name = "\u2062"; // Invisible times
-      colorContainer.x = startX;
-      colorContainer.y = sectionY;
-      colorContainer.resize(750, 60);
-      colorContainer.fills = [];
-      
-      let colorContainerLayout: any = null;
-      try {
-        colorContainerLayout = colorContainer.addFlexLayout();
-        if (colorContainerLayout) {
-          colorContainerLayout.dir = "row";
-          colorContainerLayout.alignItems = "center";
-          colorContainerLayout.justifyContent = "space-between";
-          colorContainerLayout.wrap = "nowrap";
-        }
-      } catch (e) {
-        console.log('Color container layout failed:', e);
-      }
-      
-      // Create color icons
-      colors.forEach((colorVariant) => {
-        const colorBoard = penpot.createBoard();
-        colorBoard.name = "\u2063"; // Invisible separator
-        colorBoard.resize(120, 40);
-        colorBoard.fills = [];
-        
-        let colorBoardLayout: any = null;
-        try {
-          colorBoardLayout = colorBoard.addFlexLayout();
-          if (colorBoardLayout) {
-            colorBoardLayout.dir = "row";
-            colorBoardLayout.alignItems = "center";
-            colorBoardLayout.justifyContent = "center";
-            colorBoardLayout.wrap = "nowrap";
-          }
-        } catch (e) {
-          console.log('Color board layout failed:', e);
-        }
-        
-        if (typeof penpot.createText === 'function') {
-          const colorText = penpot.createText('♥');
-          if (colorText) {
-            colorText.name = `${colorVariant.name} Heart`;
-            colorText.characters = '♥';
-            colorText.fills = [{ fillColor: colorVariant.color }];
-            if ('fontSize' in colorText) (colorText as any).fontSize = 20;
-            
-            try {
-              colorBoard.appendChild(colorText);
-              iconsCreated++;
-            } catch (e) {
-              console.log(`Color appendChild failed for ${colorVariant.name}:`, e);
-              iconsCreated++;
-            }
-          }
-        }
-        
-        try {
-          colorContainer.appendChild(colorBoard);
-        } catch (e) {
-          console.log(`Failed to add ${colorVariant.name} to color container:`, e);
-        }
-      });
-      
-      currentY += 600; // Move to next theme
-    });
-    
-    console.log(`✅ Created complete Icons showcase with ${iconsCreated} icons`);
+    // Use the extracted icons section function
+    createIconsSection(startX, startY);
     
     penpot.ui.sendMessage({
       type: 'component-result',
       data: {
         success: true,
-        message: `Created Icons showcase: 5 popular icons + 4 sizes + 5 colors = ${iconsCreated} icons across Light/Dark themes`
+        message: `Created complete NovyUI icon system using reusable section function`
       }
     });
     
@@ -1543,15 +1566,12 @@ function createIconsComponent() {
   }
 }
 
-// Create Kbd component showcase
-function createKbdComponent() {
-  try {
-    console.log('⌨️ Creating Kbd component showcase...');
-    
-    const startX = 100;
-    const startY = 100;
-    let currentY = startY;
-    let kbdCreated = 0;
+// Extract Kbd section as reusable function
+function createKbdSection(startX: number, startY: number): number {
+  let currentY = startY;
+  let kbdCreated = 0;
+  
+  console.log(`⌨️ Creating Kbd section at (${startX}, ${startY})...`);
     
     // Create both Light and Dark theme sections with exact Icons pattern
     const themes: Array<{name: string, key: 'light' | 'dark', bgColor: string}> = [
@@ -1934,13 +1954,26 @@ function createKbdComponent() {
       currentY += 600; // Move to next theme
     });
     
-    console.log(`✅ Created complete Kbd showcase with ${kbdCreated} elements`);
+    console.log(`✅ Created complete Kbd section with ${kbdCreated} elements`);
+    return currentY; // Return ending Y position
+}
+
+// Create Kbd component showcase
+function createKbdComponent() {
+  try {
+    console.log('⌨️ Creating Kbd component showcase...');
+    
+    const startX = 100;
+    const startY = 100;
+    
+    // Use the extracted kbd section function
+    createKbdSection(startX, startY);
     
     penpot.ui.sendMessage({
       type: 'component-result',
       data: {
         success: true,
-        message: `Created Kbd showcase: 3 sizes + 4 styles + 5 shortcuts = ${kbdCreated} elements across Light/Dark themes`
+        message: `Created Kbd showcase using reusable section function`
       }
     });
     
@@ -1955,15 +1988,12 @@ function createKbdComponent() {
   }
 }
 
-// Create Select component showcase
-function createSelectComponent() {
-  try {
-    console.log('📋 Creating Select component showcase...');
-    
-    const startX = 100;
-    const startY = 100;
-    let currentY = startY;
-    let selectCreated = 0;
+// Extract Select section as reusable function
+function createSelectSection(startX: number, startY: number): number {
+  let currentY = startY;
+  let selectCreated = 0;
+  
+  console.log(`📋 Creating Select section at (${startX}, ${startY})...`);
     
     // Create both Light and Dark theme sections with exact pattern
     const themes: Array<{name: string, key: 'light' | 'dark', bgColor: string}> = [
@@ -2414,13 +2444,26 @@ function createSelectComponent() {
       currentY += 600; // Move to next theme
     });
     
-    console.log(`✅ Created complete Select showcase with ${selectCreated} elements`);
+    console.log(`✅ Created complete Select section with ${selectCreated} elements`);
+    return currentY; // Return ending Y position
+}
+
+// Create Select component showcase
+function createSelectComponent() {
+  try {
+    console.log('📋 Creating Select component showcase...');
+    
+    const startX = 100;
+    const startY = 100;
+    
+    // Use the extracted select section function
+    createSelectSection(startX, startY);
     
     penpot.ui.sendMessage({
       type: 'component-result',
       data: {
         success: true,
-        message: `Created Select showcase: 3 sizes + 4 states + 4 content types = ${selectCreated} elements across Light/Dark themes`
+        message: `Created Select showcase using reusable section function`
       }
     });
     
@@ -2435,15 +2478,12 @@ function createSelectComponent() {
   }
 }
 
-// Create TreeView component showcase - Rewritten to match Rust implementation exactly
-function createTreeViewComponent() {
-  try {
-    console.log('🌳 Creating TreeView component showcase...');
-    
-    const startX = 100;
-    const startY = 100;
-    let currentY = startY;
-    let treeCreated = 0;
+// Extract TreeView section as reusable function
+function createTreeViewSection(startX: number, startY: number): number {
+  let currentY = startY;
+  let treeCreated = 0;
+  
+  console.log(`🌳 Creating TreeView section at (${startX}, ${startY})...`);
     
     // Create both Light and Dark theme sections
     const themes: Array<{name: string, key: 'light' | 'dark', bgColor: string}> = [
@@ -2514,7 +2554,7 @@ function createTreeViewComponent() {
           sectionLabel.characters = 'Hierarchical Data';
           sectionLabel.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark }];
           if ('fontSize' in sectionLabel) (sectionLabel as any).fontSize = 14;
-          if ('fontWeight' in sectionLabel) (sectionLabel as any).fontWeight = 500;
+          if ('fontWeight' in sectionLabel) (sectionLabel as any).fontWeight = 400;
         }
       }
       
@@ -2533,8 +2573,8 @@ function createTreeViewComponent() {
         fileSystemLayout = fileSystemContainer.addFlexLayout();
         if (fileSystemLayout) {
           fileSystemLayout.dir = "column";
-          fileSystemLayout.alignItems = "flex-start";
-          fileSystemLayout.justifyContent = "flex-start";
+          fileSystemLayout.alignItems = "start";
+          fileSystemLayout.justifyContent = "start";
           fileSystemLayout.wrap = "nowrap";
           fileSystemLayout.gap = 2; // 2px gap between items as per Rust
         }
@@ -2555,7 +2595,7 @@ function createTreeViewComponent() {
           if (itemLayout) {
             itemLayout.dir = "row";
             itemLayout.alignItems = "center";
-            itemLayout.justifyContent = "flex-start";
+            itemLayout.justifyContent = "start";
             itemLayout.wrap = "nowrap";
             if ('horizontalPadding' in itemLayout) {
               itemLayout.horizontalPadding = 4; // 4px horizontal padding
@@ -2662,7 +2702,7 @@ function createTreeViewComponent() {
           stateLabel.characters = 'Interactive States';
           stateLabel.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark }];
           if ('fontSize' in stateLabel) (stateLabel as any).fontSize = 14;
-          if ('fontWeight' in stateLabel) (stateLabel as any).fontWeight = 500;
+          if ('fontWeight' in stateLabel) (stateLabel as any).fontWeight = 400;
         }
       }
       
@@ -2681,8 +2721,8 @@ function createTreeViewComponent() {
         stateContainerLayout = stateContainer.addFlexLayout();
         if (stateContainerLayout) {
           stateContainerLayout.dir = "column";
-          stateContainerLayout.alignItems = "flex-start";
-          stateContainerLayout.justifyContent = "flex-start";
+          stateContainerLayout.alignItems = "start";
+          stateContainerLayout.justifyContent = "start";
           stateContainerLayout.wrap = "nowrap";
           stateContainerLayout.gap = 2;
         }
@@ -2717,7 +2757,7 @@ function createTreeViewComponent() {
           if (stateBoardLayout) {
             stateBoardLayout.dir = "row";
             stateBoardLayout.alignItems = "center";
-            stateBoardLayout.justifyContent = "flex-start";
+            stateBoardLayout.justifyContent = "start";
             stateBoardLayout.wrap = "nowrap";
             if ('horizontalPadding' in stateBoardLayout) {
               stateBoardLayout.horizontalPadding = 8;
@@ -2804,7 +2844,7 @@ function createTreeViewComponent() {
           contentLabel.characters = 'Content Types';
           contentLabel.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark }];
           if ('fontSize' in contentLabel) (contentLabel as any).fontSize = 14;
-          if ('fontWeight' in contentLabel) (contentLabel as any).fontWeight = 500;
+          if ('fontWeight' in contentLabel) (contentLabel as any).fontWeight = 400;
         }
       }
       
@@ -2823,8 +2863,8 @@ function createTreeViewComponent() {
         contentContainerLayout = contentContainer.addFlexLayout();
         if (contentContainerLayout) {
           contentContainerLayout.dir = "column";
-          contentContainerLayout.alignItems = "flex-start";
-          contentContainerLayout.justifyContent = "flex-start";
+          contentContainerLayout.alignItems = "start";
+          contentContainerLayout.justifyContent = "start";
           contentContainerLayout.wrap = "nowrap";
           contentContainerLayout.gap = 2;
         }
@@ -2845,7 +2885,7 @@ function createTreeViewComponent() {
           if (contentBoardLayout) {
             contentBoardLayout.dir = "row";
             contentBoardLayout.alignItems = "center";
-            contentBoardLayout.justifyContent = "flex-start";
+            contentBoardLayout.justifyContent = "start";
             contentBoardLayout.wrap = "nowrap";
             if ('horizontalPadding' in contentBoardLayout) {
               contentBoardLayout.horizontalPadding = 8;
@@ -2922,13 +2962,26 @@ function createTreeViewComponent() {
       currentY += 720; // Move to next theme
     });
     
-    console.log(`✅ Created complete TreeView showcase with ${treeCreated} items`);
+    console.log(`✅ Created complete TreeView section with ${treeCreated} items`);
+    return currentY; // Return ending Y position
+}
+
+// Create TreeView component showcase
+function createTreeViewComponent() {
+  try {
+    console.log('🌳 Creating TreeView component showcase...');
+    
+    const startX = 100;
+    const startY = 100;
+    
+    // Use the extracted treeview section function
+    createTreeViewSection(startX, startY);
     
     penpot.ui.sendMessage({
       type: 'component-result',
       data: {
         success: true,
-        message: `Created TreeView showcase: File system hierarchy + Interactive states + Content examples = ${treeCreated} items across Light/Dark themes`
+        message: `Created TreeView showcase using reusable section function`
       }
     });
     
@@ -2943,15 +2996,12 @@ function createTreeViewComponent() {
   }
 }
 
-// Create Typography component showcase
-function createTypographyComponent() {
-  try {
-    console.log('🔤 Creating Typography component showcase...');
-    
-    const startX = 100;
-    const startY = 100;
-    let currentY = startY;
-    let typographyCreated = 0;
+// Extract Typography section as reusable function
+function createTypographySection(startX: number, startY: number): number {
+  let currentY = startY;
+  let typographyCreated = 0;
+  
+  console.log(`🔤 Creating Typography section at (${startX}, ${startY})...`);
     
     // Create both Light and Dark theme sections with exact pattern
     const themes: Array<{name: string, key: 'light' | 'dark', bgColor: string}> = [
@@ -3036,8 +3086,8 @@ function createTypographyComponent() {
         headingLayout = headingContainer.addFlexLayout();
         if (headingLayout) {
           headingLayout.dir = "column";
-          headingLayout.alignItems = "flex-start";
-          headingLayout.justifyContent = "flex-start";
+          headingLayout.alignItems = "start";
+          headingLayout.justifyContent = "start";
           headingLayout.wrap = "nowrap";
           headingLayout.gap = 8;
         }
@@ -3058,7 +3108,7 @@ function createTypographyComponent() {
           if (headingBoardLayout) {
             headingBoardLayout.dir = "row";
             headingBoardLayout.alignItems = "center";
-            headingBoardLayout.justifyContent = "flex-start";
+            headingBoardLayout.justifyContent = "start";
             headingBoardLayout.wrap = "nowrap";
           }
         } catch (e) {
@@ -3131,8 +3181,8 @@ function createTypographyComponent() {
         bodyContainerLayout = bodyContainer.addFlexLayout();
         if (bodyContainerLayout) {
           bodyContainerLayout.dir = "column";
-          bodyContainerLayout.alignItems = "flex-start";
-          bodyContainerLayout.justifyContent = "flex-start";
+          bodyContainerLayout.alignItems = "start";
+          bodyContainerLayout.justifyContent = "start";
           bodyContainerLayout.wrap = "nowrap";
           bodyContainerLayout.gap = 6;
         }
@@ -3153,7 +3203,7 @@ function createTypographyComponent() {
           if (bodyBoardLayout) {
             bodyBoardLayout.dir = "row";
             bodyBoardLayout.alignItems = "center";
-            bodyBoardLayout.justifyContent = "flex-start";
+            bodyBoardLayout.justifyContent = "start";
             bodyBoardLayout.wrap = "nowrap";
           }
         } catch (e) {
@@ -3191,7 +3241,7 @@ function createTypographyComponent() {
       
       // Section 3: Special Text (5 types)
       const specialTexts = [
-        { name: 'Bold', text: 'Bold text for emphasis', fontSize: 16, fontWeight: 700, special: 'weight' },
+        { name: 'Bold', text: 'Bold text for emphasis', fontSize: 16, fontWeight: 400, special: 'weight' },
         { name: 'Italic', text: 'Italic text for style', fontSize: 16, fontWeight: 400, special: 'italic' },
         { name: 'Code', text: 'console.log("code text")', fontSize: 14, fontWeight: 400, special: 'mono' },
         { name: 'Link', text: 'This is a clickable link', fontSize: 16, fontWeight: 400, special: 'link' },
@@ -3227,8 +3277,8 @@ function createTypographyComponent() {
         specialContainerLayout = specialContainer.addFlexLayout();
         if (specialContainerLayout) {
           specialContainerLayout.dir = "column";
-          specialContainerLayout.alignItems = "flex-start";
-          specialContainerLayout.justifyContent = "flex-start";
+          specialContainerLayout.alignItems = "start";
+          specialContainerLayout.justifyContent = "start";
           specialContainerLayout.wrap = "nowrap";
           specialContainerLayout.gap = 6;
         }
@@ -3249,7 +3299,7 @@ function createTypographyComponent() {
           if (specialBoardLayout) {
             specialBoardLayout.dir = "row";
             specialBoardLayout.alignItems = "center";
-            specialBoardLayout.justifyContent = "flex-start";
+            specialBoardLayout.justifyContent = "start";
             specialBoardLayout.wrap = "nowrap";
           }
         } catch (e) {
@@ -3306,13 +3356,26 @@ function createTypographyComponent() {
       currentY += 600; // Move to next theme
     });
     
-    console.log(`✅ Created complete Typography showcase with ${typographyCreated} text elements`);
+    console.log(`✅ Created complete Typography section with ${typographyCreated} text elements`);
+    return currentY; // Return ending Y position
+}
+
+// Create Typography component showcase
+function createTypographyComponent() {
+  try {
+    console.log('🔤 Creating Typography component showcase...');
+    
+    const startX = 100;
+    const startY = 100;
+    
+    // Use the extracted typography section function
+    createTypographySection(startX, startY);
     
     penpot.ui.sendMessage({
       type: 'component-result',
       data: {
         success: true,
-        message: `Created Typography showcase: 4 headings + 4 body texts + 5 special texts = ${typographyCreated} elements across Light/Dark themes`
+        message: `Created Typography showcase using reusable section function`
       }
     });
     
@@ -3331,99 +3394,87 @@ function createTypographyComponent() {
 function createAllComponents() {
   console.log('🏗️ Creating All NovyUI Components...');
   
-  const components = [
-    { name: 'Button', variants: ['primary', 'secondary', 'outline'] },
-    { name: 'Input', variants: ['text', 'email', 'password'] },
-    { name: 'Card', variants: ['default', 'elevated', 'outlined'] },
-    { name: 'Badge', variants: ['default', 'success', 'warning', 'error'] },
-    // Add more components as needed
-  ];
-  
-  let created = 0;
-  const startX = 100;
-  const startY = 100;
-  const spacing = 150;
-  
-  components.forEach((component, compIndex) => {
-    component.variants.forEach((variant, varIndex) => {
-      const shape = penpot.createRectangle();
-      shape.name = `${component.name}-${variant}`;
-      shape.x = startX + (varIndex * spacing);
-      shape.y = startY + (compIndex * spacing);
-      shape.resize(120, 40);
-      
-      // Apply variant-specific styling
-      applyComponentStyling(shape, component.name, variant);
-      created++;
-    });
-  });
-  
-  penpot.ui.sendMessage({
-    type: 'batch-result',
-    data: {
-      success: true,
-      message: `Created ${created} component variants`
+  try {
+    let startX = 100;
+    let startY = 100;
+    let currentY = startY;
+    let totalCreated = 0;
+    
+    // Use viewport center if available
+    if (penpot.viewport && penpot.viewport.center) {
+      const center = penpot.viewport.center;
+      startX = center.x - 425; // Center the 850px wide content
+      startY = center.y - 400;
+      currentY = startY;
     }
-  });
-}
-
-// Apply EXACT NovyUI styling based on component type and variant
-function applyComponentStyling(shape: any, componentName: string, variant: string) {
-  const tokens = novyuiTokensHex;
-  
-  // Base styling
-  shape.borderRadius = 6;
-  
-  // Component-specific styling with EXACT MoonZoon token values
-  switch (componentName) {
-    case 'Button':
-      if (variant === 'primary') {
-        shape.fills = [{ fillColor: tokens.color.primary['7'].light }];
-      } else if (variant === 'secondary') {
-        shape.fills = [{ fillColor: tokens.color.neutral['3'].light }];
-      } else if (variant === 'outline') {
-        shape.fills = [];
-        shape.strokes = [{
-          strokeColor: tokens.color.primary['7'].light,
-          strokeWidth: 2
-        }];
+    
+    // Create main title
+    if (typeof penpot.createText === 'function') {
+      const mainTitle = penpot.createText('NovyUI Complete Component System');
+      if (mainTitle) {
+        mainTitle.name = 'All Components Title';
+        mainTitle.x = startX;
+        mainTitle.y = currentY - 60;
+        mainTitle.characters = 'NovyUI Complete Component System';
+        mainTitle.fills = [{ fillColor: novyuiTokensHex.color.neutral[11].light }];
+        if ('fontSize' in mainTitle) (mainTitle as any).fontSize = 32;
+        if ('fontWeight' in mainTitle) (mainTitle as any).fontWeight = 400;
+        if ('fontFamily' in mainTitle) (mainTitle as any).fontFamily = 'Inter';
       }
-      break;
-      
-    case 'Input':
-      shape.fills = [{ fillColor: tokens.color.static?.white || '#FFFFFF' }];
-      shape.strokes = [{
-        strokeColor: tokens.color.neutral['6'].light || '#64748b',
-        strokeWidth: 1
-      }];
-      break;
-      
-    case 'Card':
-      if (variant === 'elevated') {
-        shape.fills = [{ fillColor: tokens.color.static?.white || '#FFFFFF' }];
-        // Note: Shadows might not be directly settable via plugin API
-      } else if (variant === 'outlined') {
-        shape.fills = [{ fillColor: tokens.color.static?.white || '#FFFFFF' }];
-        shape.strokes = [{
-          strokeColor: tokens.color.neutral['4'].light || '#94a3b8',
-          strokeWidth: 1
-        }];
+    }
+    
+    currentY += 20; // Space after title
+    
+    // 1. Button Component
+    const buttonsY = createButtonsSection(startX, currentY);
+    currentY = buttonsY + 50; // Add spacing between components
+    totalCreated++;
+    
+    // 2. Icons Component
+    const iconsY = createIconsSection(startX, currentY);
+    currentY = iconsY + 50;
+    totalCreated++;
+    
+    // 3. Kbd Component
+    const kbdY = createKbdSection(startX, currentY);
+    currentY = kbdY + 50;
+    totalCreated++;
+    
+    // 4. Select Component
+    const selectY = createSelectSection(startX, currentY);
+    currentY = selectY + 50;
+    totalCreated++;
+    
+    // 5. TreeView Component
+    const treeViewY = createTreeViewSection(startX, currentY);
+    currentY = treeViewY + 50;
+    totalCreated++;
+    
+    // 6. Typography Component
+    const typographyY = createTypographySection(startX, currentY);
+    currentY = typographyY + 50;
+    totalCreated++;
+    
+    penpot.ui.sendMessage({
+      type: 'batch-result',
+      data: {
+        success: true,
+        message: `Created all ${totalCreated} component showcases successfully!`
       }
-      break;
-      
-    case 'Badge':
-      shape.resize(80, 24);
-      shape.borderRadius = 12;
-      if (variant === 'success') {
-        shape.fills = [{ fillColor: tokens.color.success?.['7']?.light || '#10b981' }];
-      } else if (variant === 'warning') {
-        shape.fills = [{ fillColor: tokens.color.warning?.['7']?.light || '#f59e0b' }];
-      } else if (variant === 'error') {
-        shape.fills = [{ fillColor: tokens.color.error?.['7']?.light || '#ef4444' }];
+    });
+    
+  } catch (error) {
+    console.error('Error creating all components:', error);
+    penpot.ui.sendMessage({
+      type: 'batch-result',
+      data: {
+        success: false,
+        error: (error as Error).message
       }
-      break;
+    });
   }
 }
+
 
 // Test typography APIs with actual text element
 function testTypographyAPIs() {
