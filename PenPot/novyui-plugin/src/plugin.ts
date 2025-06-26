@@ -2062,11 +2062,12 @@ function createSelectComponent() {
         selectBoard.resize(size.width, size.height);
         selectBoard.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[1].light : novyuiTokensHex.color.neutral[3].dark }];
         
-        // Add border and corner radius for input field appearance
+        // Add border and corner radius for input field appearance - matching Rust implementation
         if ('borderRadius' in selectBoard) {
           (selectBoard as any).borderRadius = parseInt(novyuiTokensHex.cornerRadius[6]);
         }
-        selectBoard.strokes = [{ strokeColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[6].light : novyuiTokensHex.color.neutral[6].dark, strokeWidth: 1 }];
+        // Use neutral_4 border color as in Rust implementation
+        selectBoard.strokes = [{ strokeColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[4].light : novyuiTokensHex.color.neutral[4].dark, strokeWidth: 1 }];
         
         let selectLayout: any = null;
         try {
@@ -2076,8 +2077,14 @@ function createSelectComponent() {
             selectLayout.alignItems = "center";
             selectLayout.justifyContent = "space-between";
             selectLayout.wrap = "nowrap";
-            selectLayout.paddingLeft = 12;
-            selectLayout.paddingRight = 8;
+            // Use proper PenPot API horizontal padding
+            if ('horizontalPadding' in selectLayout) {
+              selectLayout.horizontalPadding = 16;
+            }
+            // Add gap for better spacing between text and arrow
+            if ('gap' in selectLayout) {
+              selectLayout.gap = 8;
+            }
           }
         } catch (e) {
           console.log('Select layout failed:', e);
@@ -2085,10 +2092,10 @@ function createSelectComponent() {
         
         // Create select text (left side)
         if (typeof penpot.createText === 'function') {
-          const selectText = penpot.createText('Select option...');
+          const selectText = penpot.createText('Select an option...');
           if (selectText) {
             selectText.name = `${size.name} Select Text`;
-            selectText.characters = 'Select option...';
+            selectText.characters = 'Select an option...';
             selectText.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark }];
             if ('fontSize' in selectText) (selectText as any).fontSize = size.fontSize;
             
@@ -2130,10 +2137,10 @@ function createSelectComponent() {
       
       // Section 2: Interactive States (4 states)
       const states = [
-        { name: 'Normal', text: 'Choose option...', bgColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[1].light : novyuiTokensHex.color.neutral[3].dark },
-        { name: 'Focused', text: 'Choose option...', bgColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[1].light : novyuiTokensHex.color.neutral[3].dark, hasFocus: true },
+        { name: 'Normal', text: 'Select an option...', bgColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[1].light : novyuiTokensHex.color.neutral[3].dark },
+        { name: 'Focused', text: 'Select an option...', bgColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[1].light : novyuiTokensHex.color.neutral[3].dark, hasFocus: true },
         { name: 'Selected', text: 'Option 2 selected', bgColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[1].light : novyuiTokensHex.color.neutral[3].dark, hasValue: true },
-        { name: 'Disabled', text: 'Disabled state', bgColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[2].light : novyuiTokensHex.color.neutral[2].dark, isDisabled: true }
+        { name: 'Disabled', text: 'Select an option...', bgColor: theme.key === 'light' ? '#ebebeb' : '#2e2e2e', isDisabled: true } // Muted grays without cyan tint
       ];
       
       // Interactive States label
@@ -2184,13 +2191,16 @@ function createSelectComponent() {
           (stateBoard as any).borderRadius = parseInt(novyuiTokensHex.cornerRadius[6]);
         }
         
-        // Different border styles for different states
+        // Different border styles for different states - matching Rust implementation
         if (state.hasFocus) {
+          // Focus state gets primary color border (stronger visual feedback)
           stateBoard.strokes = [{ strokeColor: theme.key === 'light' ? novyuiTokensHex.color.primary[7].light : novyuiTokensHex.color.primary[6].light, strokeWidth: 2 }];
         } else if (state.isDisabled) {
-          stateBoard.strokes = [{ strokeColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[4].light : novyuiTokensHex.color.neutral[5].dark, strokeWidth: 1 }];
+          // Disabled state uses same border as normal (neutral_4)
+          stateBoard.strokes = [{ strokeColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[4].light : novyuiTokensHex.color.neutral[4].dark, strokeWidth: 1 }];
         } else {
-          stateBoard.strokes = [{ strokeColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[6].light : novyuiTokensHex.color.neutral[6].dark, strokeWidth: 1 }];
+          // Normal state uses neutral_4 border (not neutral_6)
+          stateBoard.strokes = [{ strokeColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[4].light : novyuiTokensHex.color.neutral[4].dark, strokeWidth: 1 }];
         }
         
         let stateBoardLayout: any = null;
@@ -2201,8 +2211,14 @@ function createSelectComponent() {
             stateBoardLayout.alignItems = "center";
             stateBoardLayout.justifyContent = "space-between";
             stateBoardLayout.wrap = "nowrap";
-            stateBoardLayout.paddingLeft = 12;
-            stateBoardLayout.paddingRight = 8;
+            // Use proper PenPot API horizontal padding
+            if ('horizontalPadding' in stateBoardLayout) {
+              stateBoardLayout.horizontalPadding = 16;
+            }
+            // Add gap for better spacing between text and arrow
+            if ('gap' in stateBoardLayout) {
+              stateBoardLayout.gap = 8;
+            }
           }
         } catch (e) {
           console.log('State board layout failed:', e);
@@ -2215,13 +2231,16 @@ function createSelectComponent() {
             stateText.name = `${state.name} Select Text`;
             stateText.characters = state.text;
             
-            // Text color based on state
+            // Text color based on state - matching Rust implementation exactly
             let textColor;
             if (state.isDisabled) {
-              textColor = theme.key === 'light' ? novyuiTokensHex.color.neutral[5].light : novyuiTokensHex.color.neutral[6].dark;
+              // Disabled: neutral_6 for both themes
+              textColor = theme.key === 'light' ? novyuiTokensHex.color.neutral[6].light : novyuiTokensHex.color.neutral[6].dark;
             } else if (state.hasValue) {
-              textColor = theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[9].dark;
+              // Selected: neutral_9 (light) / neutral_11 (dark)
+              textColor = theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[11].dark;
             } else {
+              // Normal/Placeholder: neutral_7 for both themes
               textColor = theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark;
             }
             
@@ -2243,8 +2262,9 @@ function createSelectComponent() {
             stateArrow.name = `${state.name} Arrow`;
             stateArrow.characters = '▼';
             
+            // Arrow color matches text color logic from Rust implementation
             const arrowColor = state.isDisabled 
-              ? (theme.key === 'light' ? novyuiTokensHex.color.neutral[5].light : novyuiTokensHex.color.neutral[6].dark)
+              ? (theme.key === 'light' ? novyuiTokensHex.color.neutral[6].light : novyuiTokensHex.color.neutral[6].dark)
               : (theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark);
               
             stateArrow.fills = [{ fillColor: arrowColor }];
@@ -2324,7 +2344,8 @@ function createSelectComponent() {
         if ('borderRadius' in contentBoard) {
           (contentBoard as any).borderRadius = parseInt(novyuiTokensHex.cornerRadius[6]);
         }
-        contentBoard.strokes = [{ strokeColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[6].light : novyuiTokensHex.color.neutral[6].dark, strokeWidth: 1 }];
+        // Use neutral_4 border color as in Rust implementation
+        contentBoard.strokes = [{ strokeColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[4].light : novyuiTokensHex.color.neutral[4].dark, strokeWidth: 1 }];
         
         let contentBoardLayout: any = null;
         try {
@@ -2334,8 +2355,14 @@ function createSelectComponent() {
             contentBoardLayout.alignItems = "center";
             contentBoardLayout.justifyContent = "space-between";
             contentBoardLayout.wrap = "nowrap";
-            contentBoardLayout.paddingLeft = 12;
-            contentBoardLayout.paddingRight = 8;
+            // Use proper PenPot API horizontal padding
+            if ('horizontalPadding' in contentBoardLayout) {
+              contentBoardLayout.horizontalPadding = 16;
+            }
+            // Add gap for better spacing between text and arrow
+            if ('gap' in contentBoardLayout) {
+              contentBoardLayout.gap = 8;
+            }
           }
         } catch (e) {
           console.log('Content board layout failed:', e);
