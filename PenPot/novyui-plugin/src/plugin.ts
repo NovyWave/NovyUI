@@ -2435,7 +2435,7 @@ function createSelectComponent() {
   }
 }
 
-// Create TreeView component showcase
+// Create TreeView component showcase - Rewritten to match Rust implementation exactly
 function createTreeViewComponent() {
   try {
     console.log('🌳 Creating TreeView component showcase...');
@@ -2445,37 +2445,37 @@ function createTreeViewComponent() {
     let currentY = startY;
     let treeCreated = 0;
     
-    // Create both Light and Dark theme sections with exact pattern
+    // Create both Light and Dark theme sections
     const themes: Array<{name: string, key: 'light' | 'dark', bgColor: string}> = [
       { 
         name: 'Light Theme', 
         key: 'light', 
-        bgColor: novyuiTokensHex.color.neutral[1].light  // #fefefe
+        bgColor: novyuiTokensHex.color.neutral[1].light  // White background
       },
       { 
         name: 'Dark Theme', 
         key: 'dark', 
-        bgColor: novyuiTokensHex.color.neutral[2].dark   // #020617
+        bgColor: novyuiTokensHex.color.neutral[1].dark   // Near black background
       }
     ];
     
     themes.forEach((theme, themeIndex) => {
-      // Add theme background board first
+      // Add theme background board
       const themeBackground = penpot.createBoard();
-      themeBackground.name = "\u200B\u200B\u200B"; // Multiple zero-width spaces for uniqueness
+      themeBackground.name = "\u200B\u200B\u200B"; // Multiple zero-width spaces
       themeBackground.x = startX - 40;
       themeBackground.y = currentY;
-      themeBackground.resize(850, 580); // Same as other components
+      themeBackground.resize(850, 700); // Taller for more content
       themeBackground.fills = [{ fillColor: theme.bgColor }];
       
-      // Add subtle border for better definition
+      // Add subtle border for definition
       if (theme.key === 'light') {
-        themeBackground.strokes = [{ strokeColor: novyuiTokensHex.color.neutral[3].light, strokeWidth: 1 }];
+        themeBackground.strokes = [{ strokeColor: novyuiTokensHex.color.neutral[4].light, strokeWidth: 1 }];
       } else {
-        themeBackground.strokes = [{ strokeColor: novyuiTokensHex.color.neutral[8].dark, strokeWidth: 1 }];
+        themeBackground.strokes = [{ strokeColor: novyuiTokensHex.color.neutral[4].dark, strokeWidth: 1 }];
       }
       
-      // Create theme section title INSIDE the background
+      // Create theme section title
       if (typeof penpot.createText === 'function') {
         const themeTitle = penpot.createText(theme.name);
         if (themeTitle) {
@@ -2483,22 +2483,25 @@ function createTreeViewComponent() {
           themeTitle.x = startX;
           themeTitle.y = currentY + 20;
           themeTitle.characters = `${themeIndex + 1}. TreeView Showcase - ${theme.name}`;
-          themeTitle.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[9].dark }];
+          themeTitle.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[11].dark }];
           if ('fontSize' in themeTitle) (themeTitle as any).fontSize = 20;
           if ('fontWeight' in themeTitle) (themeTitle as any).fontWeight = 400;
         }
       }
       
-      let sectionY = currentY + 60; // Start sections below title
+      let sectionY = currentY + 60;
       
-      // Section 1: Hierarchical Data (3 levels)
-      const treeItems = [
-        { text: 'Documents', level: 0, icon: '▼', type: 'folder' },
-        { text: 'Images', level: 1, icon: '►', type: 'folder' },
-        { text: 'Projects', level: 1, icon: '▼', type: 'folder' },
-        { text: 'website.html', level: 2, icon: '•', type: 'file' },
-        { text: 'styles.css', level: 2, icon: '•', type: 'file' },
-        { text: 'README.md', level: 0, icon: '•', type: 'file' }
+      // Section 1: File System Hierarchy - Based on Rust storybook examples
+      const fileSystemItems = [
+        { text: 'src', level: 0, expanded: true, type: 'folder', chevron: '▼' },
+        { text: 'components', level: 1, expanded: true, type: 'folder', chevron: '▼' },
+        { text: 'Button.ts', level: 2, expanded: false, type: 'file', chevron: null },
+        { text: 'Input.ts', level: 2, expanded: false, type: 'file', chevron: null },
+        { text: 'TreeView.ts', level: 2, expanded: false, type: 'file', chevron: null },
+        { text: 'utils', level: 1, expanded: false, type: 'folder', chevron: '►' },
+        { text: 'main.ts', level: 1, expanded: false, type: 'file', chevron: null },
+        { text: 'package.json', level: 0, expanded: false, type: 'file', chevron: null },
+        { text: 'README.md', level: 0, expanded: false, type: 'file', chevron: null }
       ];
       
       // Hierarchical Data label
@@ -2511,40 +2514,40 @@ function createTreeViewComponent() {
           sectionLabel.characters = 'Hierarchical Data';
           sectionLabel.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark }];
           if ('fontSize' in sectionLabel) (sectionLabel as any).fontSize = 14;
-          if ('fontWeight' in sectionLabel) (sectionLabel as any).fontWeight = 400;
+          if ('fontWeight' in sectionLabel) (sectionLabel as any).fontWeight = 500;
         }
       }
       
       sectionY += 25;
       
-      // Create container for tree items (vertical layout)
-      const treeContainer = penpot.createBoard();
-      treeContainer.name = "\u200C"; // Zero-width non-joiner
-      treeContainer.x = startX;
-      treeContainer.y = sectionY;
-      treeContainer.resize(350, 120); // Taller for vertical content
-      treeContainer.fills = [];
+      // Create file system tree container
+      const fileSystemContainer = penpot.createBoard();
+      fileSystemContainer.name = "\u200C"; 
+      fileSystemContainer.x = startX;
+      fileSystemContainer.y = sectionY;
+      fileSystemContainer.resize(400, 180); // Taller for more items
+      fileSystemContainer.fills = [];
       
-      let treeLayout: any = null;
+      let fileSystemLayout: any = null;
       try {
-        treeLayout = treeContainer.addFlexLayout();
-        if (treeLayout) {
-          treeLayout.dir = "column"; // Vertical layout for tree
-          treeLayout.alignItems = "flex-start";
-          treeLayout.justifyContent = "flex-start";
-          treeLayout.wrap = "nowrap";
-          treeLayout.gap = 2; // Small gap between items
+        fileSystemLayout = fileSystemContainer.addFlexLayout();
+        if (fileSystemLayout) {
+          fileSystemLayout.dir = "column";
+          fileSystemLayout.alignItems = "flex-start";
+          fileSystemLayout.justifyContent = "flex-start";
+          fileSystemLayout.wrap = "nowrap";
+          fileSystemLayout.gap = 2; // 2px gap between items as per Rust
         }
       } catch (e) {
-        console.log('Tree layout failed:', e);
+        console.log('File system layout failed:', e);
       }
       
-      // Create tree items
-      treeItems.forEach((item) => {
+      // Create file system tree items
+      fileSystemItems.forEach((item) => {
         const itemBoard = penpot.createBoard();
-        itemBoard.name = "\u200D"; // Zero-width joiner
-        itemBoard.resize(320, 20); // Full width, small height
-        itemBoard.fills = []; // Transparent by default
+        itemBoard.name = "\u200D";
+        itemBoard.resize(380, 28); // 28px height for medium size
+        itemBoard.fills = [];
         
         let itemLayout: any = null;
         try {
@@ -2554,25 +2557,58 @@ function createTreeViewComponent() {
             itemLayout.alignItems = "center";
             itemLayout.justifyContent = "flex-start";
             itemLayout.wrap = "nowrap";
-            itemLayout.paddingLeft = item.level * 20; // Indentation based on level
+            if ('horizontalPadding' in itemLayout) {
+              itemLayout.horizontalPadding = 4; // 4px horizontal padding
+            }
+            itemLayout.gap = 4; // 4px gap between elements
           }
         } catch (e) {
           console.log('Item layout failed:', e);
         }
         
-        // Create icon/expand indicator
-        if (typeof penpot.createText === 'function') {
-          const iconText = penpot.createText(item.icon);
-          if (iconText) {
-            iconText.name = `${item.text} Icon`;
-            iconText.characters = item.icon;
-            iconText.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark }];
-            if ('fontSize' in iconText) (iconText as any).fontSize = 12;
+        // Create indentation spacer
+        if (item.level > 0) {
+          const spacer = penpot.createRectangle();
+          spacer.name = 'Indentation Spacer';
+          spacer.resize(item.level * 20, 1); // 20px per level indentation
+          spacer.fills = []; // Transparent
+          
+          try {
+            itemBoard.appendChild(spacer);
+          } catch (e) {
+            console.log('Spacer appendChild failed:', e);
+          }
+        }
+        
+        // Create expand/collapse chevron (only for folders with children)
+        if (item.chevron && typeof penpot.createText === 'function') {
+          const chevronText = penpot.createText(item.chevron);
+          if (chevronText) {
+            chevronText.name = `${item.text} Chevron`;
+            chevronText.characters = item.chevron;
+            chevronText.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark }];
+            if ('fontSize' in chevronText) (chevronText as any).fontSize = 12;
             
             try {
-              itemBoard.appendChild(iconText);
+              itemBoard.appendChild(chevronText);
             } catch (e) {
-              console.log(`Icon appendChild failed for ${item.text}:`, e);
+              console.log(`Chevron appendChild failed for ${item.text}:`, e);
+            }
+          }
+        }
+        
+        // Create file/folder type icon
+        if (typeof penpot.createText === 'function') {
+          const typeIcon = penpot.createText(item.type === 'folder' ? '📁' : '📄');
+          if (typeIcon) {
+            typeIcon.name = `${item.text} Type Icon`;
+            typeIcon.characters = item.type === 'folder' ? '📁' : '📄';
+            if ('fontSize' in typeIcon) (typeIcon as any).fontSize = 16;
+            
+            try {
+              itemBoard.appendChild(typeIcon);
+            } catch (e) {
+              console.log(`Type icon appendChild failed for ${item.text}:`, e);
             }
           }
         }
@@ -2584,11 +2620,8 @@ function createTreeViewComponent() {
             itemText.name = `${item.text} Text`;
             itemText.characters = item.text;
             
-            // Different colors for folders vs files
-            const textColor = item.type === 'folder' 
-              ? (theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[9].dark)
-              : (theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark);
-              
+            // Text color: normal for all items (neutral_9/neutral_11)
+            const textColor = theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[11].dark;
             itemText.fills = [{ fillColor: textColor }];
             if ('fontSize' in itemText) (itemText as any).fontSize = 14;
             
@@ -2603,15 +2636,15 @@ function createTreeViewComponent() {
         }
         
         try {
-          treeContainer.appendChild(itemBoard);
+          fileSystemContainer.appendChild(itemBoard);
         } catch (e) {
-          console.log(`Failed to add ${item.text} to tree container:`, e);
+          console.log(`Failed to add ${item.text} to file system container:`, e);
         }
       });
       
-      sectionY += 140; // Space for next section
+      sectionY += 200;
       
-      // Section 2: Interactive States (4 states)
+      // Section 2: Interactive States - Based on exact Rust color tokens
       const stateItems = [
         { text: 'Normal Item', state: 'normal' },
         { text: 'Hovered Item', state: 'hover' },
@@ -2629,7 +2662,7 @@ function createTreeViewComponent() {
           stateLabel.characters = 'Interactive States';
           stateLabel.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark }];
           if ('fontSize' in stateLabel) (stateLabel as any).fontSize = 14;
-          if ('fontWeight' in stateLabel) (stateLabel as any).fontWeight = 400;
+          if ('fontWeight' in stateLabel) (stateLabel as any).fontWeight = 500;
         }
       }
       
@@ -2637,10 +2670,10 @@ function createTreeViewComponent() {
       
       // Create container for state items
       const stateContainer = penpot.createBoard();
-      stateContainer.name = "\u2060"; // Word joiner
+      stateContainer.name = "\u2060";
       stateContainer.x = startX;
       stateContainer.y = sectionY;
-      stateContainer.resize(350, 80);
+      stateContainer.resize(400, 120);
       stateContainer.fills = [];
       
       let stateContainerLayout: any = null;
@@ -2657,23 +2690,25 @@ function createTreeViewComponent() {
         console.log('State container layout failed:', e);
       }
       
-      // Create state items
+      // Create state items with exact Rust color implementation
       stateItems.forEach((item) => {
         const stateBoard = penpot.createBoard();
-        stateBoard.name = "\u2061"; // Function application
-        stateBoard.resize(320, 20);
+        stateBoard.name = "\u2061";
+        stateBoard.resize(380, 28);
         
-        // Background based on state
+        // Background based on state - using exact Rust tokens
         if (item.state === 'hover') {
-          stateBoard.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[3].light : novyuiTokensHex.color.neutral[7].dark }];
+          // Hover uses neutral_3 (subtle background)
+          stateBoard.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[3].light : novyuiTokensHex.color.neutral[3].dark }];
         } else if (item.state === 'selected') {
-          stateBoard.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.primary[2].light : novyuiTokensHex.color.primary[8].dark }];
+          // Selected uses neutral_3 with stronger contrast
+          stateBoard.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[3].light : novyuiTokensHex.color.neutral[3].dark }];
         } else {
-          stateBoard.fills = [];
+          stateBoard.fills = []; // Transparent for normal/disabled
         }
         
         if ('borderRadius' in stateBoard) {
-          (stateBoard as any).borderRadius = parseInt(novyuiTokensHex.cornerRadius[4]);
+          (stateBoard as any).borderRadius = 4; // 4px border radius
         }
         
         let stateBoardLayout: any = null;
@@ -2684,7 +2719,10 @@ function createTreeViewComponent() {
             stateBoardLayout.alignItems = "center";
             stateBoardLayout.justifyContent = "flex-start";
             stateBoardLayout.wrap = "nowrap";
-            stateBoardLayout.paddingLeft = 8;
+            if ('horizontalPadding' in stateBoardLayout) {
+              stateBoardLayout.horizontalPadding = 8;
+            }
+            stateBoardLayout.gap = 4;
           }
         } catch (e) {
           console.log('State board layout failed:', e);
@@ -2696,7 +2734,7 @@ function createTreeViewComponent() {
           if (stateIcon) {
             stateIcon.name = `${item.text} Icon`;
             stateIcon.characters = '📁';
-            if ('fontSize' in stateIcon) (stateIcon as any).fontSize = 12;
+            if ('fontSize' in stateIcon) (stateIcon as any).fontSize = 16;
             
             try {
               stateBoard.appendChild(stateIcon);
@@ -2706,21 +2744,24 @@ function createTreeViewComponent() {
           }
         }
         
-        // Create state text
+        // Create state text with exact Rust color tokens
         if (typeof penpot.createText === 'function') {
           const stateText = penpot.createText(item.text);
           if (stateText) {
             stateText.name = `${item.text} Text`;
             stateText.characters = item.text;
             
-            // Text color based on state
+            // Text color based on state - exact Rust implementation
             let textColor;
             if (item.state === 'disabled') {
-              textColor = theme.key === 'light' ? novyuiTokensHex.color.neutral[5].light : novyuiTokensHex.color.neutral[6].dark;
+              // Disabled: neutral_5 for both themes
+              textColor = theme.key === 'light' ? novyuiTokensHex.color.neutral[5].light : novyuiTokensHex.color.neutral[5].dark;
             } else if (item.state === 'selected') {
-              textColor = theme.key === 'light' ? novyuiTokensHex.color.primary[9].light : novyuiTokensHex.color.primary[2].light;
+              // Selected: primary_7 for both themes
+              textColor = theme.key === 'light' ? novyuiTokensHex.color.primary[7].light : novyuiTokensHex.color.primary[7].dark;
             } else {
-              textColor = theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[9].dark;
+              // Normal/Hover: neutral_9/neutral_11
+              textColor = theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[11].dark;
             }
             
             stateText.fills = [{ fillColor: textColor }];
@@ -2743,14 +2784,14 @@ function createTreeViewComponent() {
         }
       });
       
-      sectionY += 100; // Space for next section
+      sectionY += 140;
       
-      // Section 3: Content Types (4 types)
+      // Section 3: Content Examples - Based on Rust storybook
       const contentItems = [
-        { text: 'Text Only', content: 'Simple text', icon: '•' },
-        { text: 'With Folder', content: 'Documents', icon: '📁' },
-        { text: 'With Badge', content: 'New Features (3)', icon: '▼' },
-        { text: 'With Status', content: 'Modified • 2h ago', icon: '📄' }
+        { text: 'Simple text', icon: '📄', description: null },
+        { text: 'Documents', icon: '📁', description: null },
+        { text: 'New Features', icon: '🆕', description: '(3)' },
+        { text: 'Modified', icon: '📝', description: '2h ago' }
       ];
       
       // Content Types label
@@ -2763,7 +2804,7 @@ function createTreeViewComponent() {
           contentLabel.characters = 'Content Types';
           contentLabel.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark }];
           if ('fontSize' in contentLabel) (contentLabel as any).fontSize = 14;
-          if ('fontWeight' in contentLabel) (contentLabel as any).fontWeight = 400;
+          if ('fontWeight' in contentLabel) (contentLabel as any).fontWeight = 500;
         }
       }
       
@@ -2771,10 +2812,10 @@ function createTreeViewComponent() {
       
       // Create container for content types
       const contentContainer = penpot.createBoard();
-      contentContainer.name = "\u2062"; // Invisible times
+      contentContainer.name = "\u2062";
       contentContainer.x = startX;
       contentContainer.y = sectionY;
-      contentContainer.resize(350, 80);
+      contentContainer.resize(400, 120);
       contentContainer.fills = [];
       
       let contentContainerLayout: any = null;
@@ -2794,8 +2835,8 @@ function createTreeViewComponent() {
       // Create content items
       contentItems.forEach((item) => {
         const contentBoard = penpot.createBoard();
-        contentBoard.name = "\u2063"; // Invisible separator
-        contentBoard.resize(320, 20);
+        contentBoard.name = "\u2063";
+        contentBoard.resize(380, 28);
         contentBoard.fills = [];
         
         let contentBoardLayout: any = null;
@@ -2806,7 +2847,10 @@ function createTreeViewComponent() {
             contentBoardLayout.alignItems = "center";
             contentBoardLayout.justifyContent = "flex-start";
             contentBoardLayout.wrap = "nowrap";
-            contentBoardLayout.paddingLeft = 8;
+            if ('horizontalPadding' in contentBoardLayout) {
+              contentBoardLayout.horizontalPadding = 8;
+            }
+            contentBoardLayout.gap = 4;
           }
         } catch (e) {
           console.log('Content board layout failed:', e);
@@ -2818,7 +2862,7 @@ function createTreeViewComponent() {
           if (contentIcon) {
             contentIcon.name = `${item.text} Icon`;
             contentIcon.characters = item.icon;
-            if ('fontSize' in contentIcon) (contentIcon as any).fontSize = 12;
+            if ('fontSize' in contentIcon) (contentIcon as any).fontSize = 16;
             
             try {
               contentBoard.appendChild(contentIcon);
@@ -2830,21 +2874,42 @@ function createTreeViewComponent() {
         
         // Create content text
         if (typeof penpot.createText === 'function') {
-          const contentText = penpot.createText(item.content);
+          const contentText = penpot.createText(item.text);
           if (contentText) {
             contentText.name = `${item.text} Content`;
-            contentText.characters = item.content;
-            contentText.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[9].dark }];
+            contentText.characters = item.text;
+            contentText.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[9].light : novyuiTokensHex.color.neutral[11].dark }];
             if ('fontSize' in contentText) (contentText as any).fontSize = 14;
             
             try {
               contentBoard.appendChild(contentText);
-              treeCreated++;
             } catch (e) {
               console.log(`Content text appendChild failed for ${item.text}:`, e);
+            }
+          }
+        }
+        
+        // Create description if available
+        if (item.description && typeof penpot.createText === 'function') {
+          const descText = penpot.createText(item.description);
+          if (descText) {
+            descText.name = `${item.text} Description`;
+            descText.characters = item.description;
+            descText.fills = [{ fillColor: theme.key === 'light' ? novyuiTokensHex.color.neutral[7].light : novyuiTokensHex.color.neutral[7].dark }];
+            if ('fontSize' in descText) (descText as any).fontSize = 12;
+            
+            try {
+              contentBoard.appendChild(descText);
+              treeCreated++;
+            } catch (e) {
+              console.log(`Description appendChild failed for ${item.text}:`, e);
               treeCreated++;
             }
           }
+        }
+        
+        if (!item.description) {
+          treeCreated++;
         }
         
         try {
@@ -2854,7 +2919,7 @@ function createTreeViewComponent() {
         }
       });
       
-      currentY += 600; // Move to next theme
+      currentY += 720; // Move to next theme
     });
     
     console.log(`✅ Created complete TreeView showcase with ${treeCreated} items`);
@@ -2863,7 +2928,7 @@ function createTreeViewComponent() {
       type: 'component-result',
       data: {
         success: true,
-        message: `Created TreeView showcase: 6 hierarchical + 4 states + 4 content types = ${treeCreated} items across Light/Dark themes`
+        message: `Created TreeView showcase: File system hierarchy + Interactive states + Content examples = ${treeCreated} items across Light/Dark themes`
       }
     });
     
