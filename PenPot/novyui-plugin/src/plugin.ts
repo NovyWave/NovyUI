@@ -4,12 +4,24 @@
 import { novyuiTokensHex } from './novyui-tokens-hex';
 // Types are now in penpot-api.d.ts and loaded automatically by TypeScript
 
+// Debug flag - set to true to enable verbose logging
+// When enabled, shows detailed component creation, layout setup, and API operation logs
+const DEBUG = false;
+
+// Debug logging function - used for verbose development logs
+// Set DEBUG = true above to see detailed component creation progress
+function debugLog(...args: any[]) {
+  if (DEBUG) {
+    console.log(...args);
+  }
+}
+
 // Plugin initialization
 penpot.ui.open('NovyUI Design System', '');
 
 // Handle messages from the UI
 penpot.ui.onMessage((message: any) => {
-  console.log('Received message:', message);
+  debugLog('Received message:', message);
 
   switch (message.type) {
     case 'test-capabilities':
@@ -62,7 +74,10 @@ penpot.ui.onMessage((message: any) => {
       break;
     
     default:
-      console.error('Unknown message type:', message.type);
+      // Ignore success/response messages that don't need handling
+      if (message.type !== 'success' && message.type !== 'response') {
+        console.error('Unknown message type:', message.type);
+      }
   }
 });
 
@@ -786,10 +801,10 @@ function createButtonsSection(startX: number, startY: number): number {
           containerLayout.alignItems = "center";
           containerLayout.justifyContent = "space-between"; // Distribute buttons evenly across container
           containerLayout.wrap = "nowrap";
-          console.log('Created variant container with gap properties');
+          debugLog('Created variant container with gap properties');
         }
       } catch (e) {
-        console.log('Variant container layout failed:', e);
+        debugLog('Variant container layout failed:', e);
       }
       
       // All button states: Normal, Hover, Focus, Disabled, Loading
@@ -885,10 +900,10 @@ function createButtonsSection(startX: number, startY: number): number {
               if (variant.name === 'Link' && 'gap' in flexLayout) {
                 flexLayout.gap = 2;
               }
-              console.log('Successfully created flex layout on button board');
+              debugLog('Successfully created flex layout on button board');
             }
           } catch (e) {
-            console.log('addFlexLayout failed:', e);
+            debugLog('addFlexLayout failed:', e);
           }
           
           // Set background color (handle transparent)
@@ -948,20 +963,20 @@ function createButtonsSection(startX: number, startY: number): number {
                 try {
                   buttonBoard.appendChild(buttonText);
                   buttonBoard.appendChild(underline);
-                  console.log(`Successfully added ${state.name} link text with underline`);
+                  debugLog(`Successfully added ${state.name} link text with underline`);
                   buttonsCreated++;
                 } catch (e) {
-                  console.log(`appendChild failed for ${state.name} link:`, e);
+                  debugLog(`appendChild failed for ${state.name} link:`, e);
                   buttonsCreated++;
                 }
               } else {
                 // Regular buttons without underline
                 try {
                   buttonBoard.appendChild(buttonText);
-                  console.log(`Successfully added ${state.name} text as child to button board`);
+                  debugLog(`Successfully added ${state.name} text as child to button board`);
                   buttonsCreated++;
                 } catch (e) {
-                  console.log(`appendChild failed for ${state.name} text:`, e);
+                  debugLog(`appendChild failed for ${state.name} text:`, e);
                   buttonsCreated++;
                 }
               }
@@ -984,9 +999,9 @@ function createButtonsSection(startX: number, startY: number): number {
           // Add button to variant container for automatic layout
           try {
             variantContainer.appendChild(buttonBoard);
-            console.log(`Added ${state.name} button to ${variant.name} container`);
+            debugLog(`Added ${state.name} button to ${variant.name} container`);
           } catch (e) {
-            console.log(`Failed to add ${state.name} button to container:`, e);
+            debugLog(`Failed to add ${state.name} button to container:`, e);
           }
         }
       });
@@ -1078,7 +1093,7 @@ function createButtonsSection(startX: number, startY: number): number {
           sizeContainerLayout.wrap = "nowrap";
         }
       } catch (e) {
-        console.log('Size container layout failed:', e);
+        debugLog('Size container layout failed:', e);
       }
       
       // Create sized button as Board
@@ -1101,10 +1116,10 @@ function createButtonsSection(startX: number, startY: number): number {
           sizeFlexLayout.alignItems = "center";
           sizeFlexLayout.justifyContent = "center";
           sizeFlexLayout.wrap = "nowrap";
-          console.log('Successfully created flex layout on size button board');
+          debugLog('Successfully created flex layout on size button board');
         }
       } catch (e) {
-        console.log('Size button addFlexLayout failed:', e);
+        debugLog('Size button addFlexLayout failed:', e);
       }
       
       // Create sized text
@@ -1120,19 +1135,19 @@ function createButtonsSection(startX: number, startY: number): number {
           // Add text as child to size button board - flex layout will center it automatically
           try {
             sizedButtonBoard.appendChild(buttonText);
-            console.log(`Successfully added ${size.name} text as child to size button board`);
+            debugLog(`Successfully added ${size.name} text as child to size button board`);
             buttonsCreated++;
           } catch (e) {
-            console.log(`Size button appendChild failed for ${size.name}:`, e);
+            debugLog(`Size button appendChild failed for ${size.name}:`, e);
             buttonsCreated++;
           }
           
           // Add button to size container for automatic layout
           try {
             sizeContainer.appendChild(sizedButtonBoard);
-            console.log(`Added ${size.name} button to size container`);
+            debugLog(`Added ${size.name} button to size container`);
           } catch (e) {
-            console.log(`Failed to add ${size.name} button to container:`, e);
+            debugLog(`Failed to add ${size.name} button to container:`, e);
           }
         }
       }
@@ -1294,7 +1309,7 @@ function createIconsSection(startX: number, startY: number): number {
         popularLayout.wrap = "nowrap";
       }
     } catch (e) {
-      console.log('Popular icons layout failed:', e);
+      debugLog('Popular icons layout failed:', e);
     }
     
     // Create individual icon boards
@@ -1315,7 +1330,7 @@ function createIconsSection(startX: number, startY: number): number {
           iconLayout.wrap = "nowrap";
         }
       } catch (e) {
-        console.log('Icon layout failed:', e);
+        debugLog('Icon layout failed:', e);
       }
       
       // Create icon text
@@ -1331,7 +1346,7 @@ function createIconsSection(startX: number, startY: number): number {
             iconBoard.appendChild(iconText);
             iconsCreated++;
           } catch (e) {
-            console.log(`Icon appendChild failed for ${icon.name}:`, e);
+            debugLog(`Icon appendChild failed for ${icon.name}:`, e);
             iconsCreated++;
           }
         }
@@ -1340,7 +1355,7 @@ function createIconsSection(startX: number, startY: number): number {
       try {
         popularContainer.appendChild(iconBoard);
       } catch (e) {
-        console.log(`Failed to add ${icon.name} to container:`, e);
+        debugLog(`Failed to add ${icon.name} to container:`, e);
       }
     });
     
@@ -1388,7 +1403,7 @@ function createIconsSection(startX: number, startY: number): number {
         sizeContainerLayout.wrap = "nowrap";
       }
     } catch (e) {
-      console.log('Size container layout failed:', e);
+      debugLog('Size container layout failed:', e);
     }
     
     // Create size icons
@@ -1408,7 +1423,7 @@ function createIconsSection(startX: number, startY: number): number {
           sizeBoardLayout.wrap = "nowrap";
         }
       } catch (e) {
-        console.log('Size board layout failed:', e);
+        debugLog('Size board layout failed:', e);
       }
       
       if (typeof penpot.createText === 'function') {
@@ -1423,7 +1438,7 @@ function createIconsSection(startX: number, startY: number): number {
             sizeBoard.appendChild(sizeText);
             iconsCreated++;
           } catch (e) {
-            console.log(`Size appendChild failed for ${size.name}:`, e);
+            debugLog(`Size appendChild failed for ${size.name}:`, e);
             iconsCreated++;
           }
         }
@@ -1432,7 +1447,7 @@ function createIconsSection(startX: number, startY: number): number {
       try {
         sizeContainer.appendChild(sizeBoard);
       } catch (e) {
-        console.log(`Failed to add ${size.name} to size container:`, e);
+        debugLog(`Failed to add ${size.name} to size container:`, e);
       }
     });
     
@@ -1481,7 +1496,7 @@ function createIconsSection(startX: number, startY: number): number {
         colorContainerLayout.wrap = "nowrap";
       }
     } catch (e) {
-      console.log('Color container layout failed:', e);
+      debugLog('Color container layout failed:', e);
     }
     
     // Create color icons
@@ -1501,7 +1516,7 @@ function createIconsSection(startX: number, startY: number): number {
           colorBoardLayout.wrap = "nowrap";
         }
       } catch (e) {
-        console.log('Color board layout failed:', e);
+        debugLog('Color board layout failed:', e);
       }
       
       if (typeof penpot.createText === 'function') {
@@ -1516,7 +1531,7 @@ function createIconsSection(startX: number, startY: number): number {
             colorBoard.appendChild(colorText);
             iconsCreated++;
           } catch (e) {
-            console.log(`Color appendChild failed for ${colorVariant.name}:`, e);
+            debugLog(`Color appendChild failed for ${colorVariant.name}:`, e);
             iconsCreated++;
           }
         }
@@ -1525,7 +1540,7 @@ function createIconsSection(startX: number, startY: number): number {
       try {
         colorContainer.appendChild(colorBoard);
       } catch (e) {
-        console.log(`Failed to add ${colorVariant.name} to color container:`, e);
+        debugLog(`Failed to add ${colorVariant.name} to color container:`, e);
       }
     });
     
@@ -1660,7 +1675,7 @@ function createKbdSection(startX: number, startY: number): number {
           sizeLayout.wrap = "nowrap";
         }
       } catch (e) {
-        console.log('Size layout failed:', e);
+        debugLog('Size layout failed:', e);
       }
       
       // Create size kbd elements
@@ -1690,7 +1705,7 @@ function createKbdSection(startX: number, startY: number): number {
             kbdLayout.wrap = "nowrap";
           }
         } catch (e) {
-          console.log('Kbd layout failed:', e);
+          debugLog('Kbd layout failed:', e);
         }
         
         if (typeof penpot.createText === 'function') {
@@ -1706,7 +1721,7 @@ function createKbdSection(startX: number, startY: number): number {
               kbdBoard.appendChild(kbdText);
               kbdCreated++;
             } catch (e) {
-              console.log(`Kbd appendChild failed for ${size.name}:`, e);
+              debugLog(`Kbd appendChild failed for ${size.name}:`, e);
               kbdCreated++;
             }
           }
@@ -1715,7 +1730,7 @@ function createKbdSection(startX: number, startY: number): number {
         try {
           sizeContainer.appendChild(kbdBoard);
         } catch (e) {
-          console.log(`Failed to add ${size.name} to container:`, e);
+          debugLog(`Failed to add ${size.name} to container:`, e);
         }
       });
       
@@ -1783,7 +1798,7 @@ function createKbdSection(startX: number, startY: number): number {
           styleContainerLayout.wrap = "nowrap";
         }
       } catch (e) {
-        console.log('Style container layout failed:', e);
+        debugLog('Style container layout failed:', e);
       }
       
       // Create style kbd elements
@@ -1817,7 +1832,7 @@ function createKbdSection(startX: number, startY: number): number {
             styleBoardLayout.wrap = "nowrap";
           }
         } catch (e) {
-          console.log('Style board layout failed:', e);
+          debugLog('Style board layout failed:', e);
         }
         
         if (typeof penpot.createText === 'function') {
@@ -1836,7 +1851,7 @@ function createKbdSection(startX: number, startY: number): number {
               styleBoard.appendChild(styleText);
               kbdCreated++;
             } catch (e) {
-              console.log(`Style appendChild failed for ${style.name}:`, e);
+              debugLog(`Style appendChild failed for ${style.name}:`, e);
               kbdCreated++;
             }
           }
@@ -1845,7 +1860,7 @@ function createKbdSection(startX: number, startY: number): number {
         try {
           styleContainer.appendChild(styleBoard);
         } catch (e) {
-          console.log(`Failed to add ${style.name} to style container:`, e);
+          debugLog(`Failed to add ${style.name} to style container:`, e);
         }
       });
       
@@ -1894,7 +1909,7 @@ function createKbdSection(startX: number, startY: number): number {
           shortcutContainerLayout.wrap = "nowrap";
         }
       } catch (e) {
-        console.log('Shortcut container layout failed:', e);
+        debugLog('Shortcut container layout failed:', e);
       }
       
       // Create shortcut kbd elements
@@ -1921,7 +1936,7 @@ function createKbdSection(startX: number, startY: number): number {
             shortcutBoardLayout.wrap = "nowrap";
           }
         } catch (e) {
-          console.log('Shortcut board layout failed:', e);
+          debugLog('Shortcut board layout failed:', e);
         }
         
         if (typeof penpot.createText === 'function') {
@@ -1938,7 +1953,7 @@ function createKbdSection(startX: number, startY: number): number {
               shortcutBoard.appendChild(shortcutText);
               kbdCreated++;
             } catch (e) {
-              console.log(`Shortcut appendChild failed for ${shortcut.name}:`, e);
+              debugLog(`Shortcut appendChild failed for ${shortcut.name}:`, e);
               kbdCreated++;
             }
           }
@@ -1947,7 +1962,7 @@ function createKbdSection(startX: number, startY: number): number {
         try {
           shortcutContainer.appendChild(shortcutBoard);
         } catch (e) {
-          console.log(`Failed to add ${shortcut.name} to shortcut container:`, e);
+          debugLog(`Failed to add ${shortcut.name} to shortcut container:`, e);
         }
       });
       
@@ -2082,7 +2097,7 @@ function createSelectSection(startX: number, startY: number): number {
           sizeLayout.wrap = "nowrap";
         }
       } catch (e) {
-        console.log('Size layout failed:', e);
+        debugLog('Size layout failed:', e);
       }
       
       // Create size select elements
@@ -2117,7 +2132,7 @@ function createSelectSection(startX: number, startY: number): number {
             }
           }
         } catch (e) {
-          console.log('Select layout failed:', e);
+          debugLog('Select layout failed:', e);
         }
         
         // Create select text (left side)
@@ -2132,7 +2147,7 @@ function createSelectSection(startX: number, startY: number): number {
             try {
               selectBoard.appendChild(selectText);
             } catch (e) {
-              console.log(`Select text appendChild failed for ${size.name}:`, e);
+              debugLog(`Select text appendChild failed for ${size.name}:`, e);
             }
           }
         }
@@ -2150,7 +2165,7 @@ function createSelectSection(startX: number, startY: number): number {
               selectBoard.appendChild(arrowText);
               selectCreated++;
             } catch (e) {
-              console.log(`Arrow appendChild failed for ${size.name}:`, e);
+              debugLog(`Arrow appendChild failed for ${size.name}:`, e);
               selectCreated++;
             }
           }
@@ -2159,7 +2174,7 @@ function createSelectSection(startX: number, startY: number): number {
         try {
           sizeContainer.appendChild(selectBoard);
         } catch (e) {
-          console.log(`Failed to add ${size.name} to container:`, e);
+          debugLog(`Failed to add ${size.name} to container:`, e);
         }
       });
       
@@ -2207,7 +2222,7 @@ function createSelectSection(startX: number, startY: number): number {
           stateContainerLayout.wrap = "nowrap";
         }
       } catch (e) {
-        console.log('State container layout failed:', e);
+        debugLog('State container layout failed:', e);
       }
       
       // Create state select elements
@@ -2251,7 +2266,7 @@ function createSelectSection(startX: number, startY: number): number {
             }
           }
         } catch (e) {
-          console.log('State board layout failed:', e);
+          debugLog('State board layout failed:', e);
         }
         
         // Create state text
@@ -2280,7 +2295,7 @@ function createSelectSection(startX: number, startY: number): number {
             try {
               stateBoard.appendChild(stateText);
             } catch (e) {
-              console.log(`State text appendChild failed for ${state.name}:`, e);
+              debugLog(`State text appendChild failed for ${state.name}:`, e);
             }
           }
         }
@@ -2304,7 +2319,7 @@ function createSelectSection(startX: number, startY: number): number {
               stateBoard.appendChild(stateArrow);
               selectCreated++;
             } catch (e) {
-              console.log(`State arrow appendChild failed for ${state.name}:`, e);
+              debugLog(`State arrow appendChild failed for ${state.name}:`, e);
               selectCreated++;
             }
           }
@@ -2313,7 +2328,7 @@ function createSelectSection(startX: number, startY: number): number {
         try {
           stateContainer.appendChild(stateBoard);
         } catch (e) {
-          console.log(`Failed to add ${state.name} to state container:`, e);
+          debugLog(`Failed to add ${state.name} to state container:`, e);
         }
       });
       
@@ -2361,7 +2376,7 @@ function createSelectSection(startX: number, startY: number): number {
           contentContainerLayout.wrap = "nowrap";
         }
       } catch (e) {
-        console.log('Content container layout failed:', e);
+        debugLog('Content container layout failed:', e);
       }
       
       // Create content select elements
@@ -2395,7 +2410,7 @@ function createSelectSection(startX: number, startY: number): number {
             }
           }
         } catch (e) {
-          console.log('Content board layout failed:', e);
+          debugLog('Content board layout failed:', e);
         }
         
         // Create content text
@@ -2410,7 +2425,7 @@ function createSelectSection(startX: number, startY: number): number {
             try {
               contentBoard.appendChild(contentText);
             } catch (e) {
-              console.log(`Content text appendChild failed for ${content.name}:`, e);
+              debugLog(`Content text appendChild failed for ${content.name}:`, e);
             }
           }
         }
@@ -2428,7 +2443,7 @@ function createSelectSection(startX: number, startY: number): number {
               contentBoard.appendChild(contentArrow);
               selectCreated++;
             } catch (e) {
-              console.log(`Content arrow appendChild failed for ${content.name}:`, e);
+              debugLog(`Content arrow appendChild failed for ${content.name}:`, e);
               selectCreated++;
             }
           }
@@ -2437,7 +2452,7 @@ function createSelectSection(startX: number, startY: number): number {
         try {
           contentContainer.appendChild(contentBoard);
         } catch (e) {
-          console.log(`Failed to add ${content.name} to content container:`, e);
+          debugLog(`Failed to add ${content.name} to content container:`, e);
         }
       });
       
@@ -2579,7 +2594,7 @@ function createTreeViewSection(startX: number, startY: number): number {
           fileSystemLayout.gap = 2; // 2px gap between items as per Rust
         }
       } catch (e) {
-        console.log('File system layout failed:', e);
+        debugLog('File system layout failed:', e);
       }
       
       // Create file system tree items
@@ -2603,7 +2618,7 @@ function createTreeViewSection(startX: number, startY: number): number {
             itemLayout.gap = 4; // 4px gap between elements
           }
         } catch (e) {
-          console.log('Item layout failed:', e);
+          debugLog('Item layout failed:', e);
         }
         
         // Create indentation spacer
@@ -2616,7 +2631,7 @@ function createTreeViewSection(startX: number, startY: number): number {
           try {
             itemBoard.appendChild(spacer);
           } catch (e) {
-            console.log('Spacer appendChild failed:', e);
+            debugLog('Spacer appendChild failed:', e);
           }
         }
         
@@ -2632,7 +2647,7 @@ function createTreeViewSection(startX: number, startY: number): number {
             try {
               itemBoard.appendChild(chevronText);
             } catch (e) {
-              console.log(`Chevron appendChild failed for ${item.text}:`, e);
+              debugLog(`Chevron appendChild failed for ${item.text}:`, e);
             }
           }
         }
@@ -2648,7 +2663,7 @@ function createTreeViewSection(startX: number, startY: number): number {
             try {
               itemBoard.appendChild(typeIcon);
             } catch (e) {
-              console.log(`Type icon appendChild failed for ${item.text}:`, e);
+              debugLog(`Type icon appendChild failed for ${item.text}:`, e);
             }
           }
         }
@@ -2669,7 +2684,7 @@ function createTreeViewSection(startX: number, startY: number): number {
               itemBoard.appendChild(itemText);
               treeCreated++;
             } catch (e) {
-              console.log(`Text appendChild failed for ${item.text}:`, e);
+              debugLog(`Text appendChild failed for ${item.text}:`, e);
               treeCreated++;
             }
           }
@@ -2678,7 +2693,7 @@ function createTreeViewSection(startX: number, startY: number): number {
         try {
           fileSystemContainer.appendChild(itemBoard);
         } catch (e) {
-          console.log(`Failed to add ${item.text} to file system container:`, e);
+          debugLog(`Failed to add ${item.text} to file system container:`, e);
         }
       });
       
@@ -2727,7 +2742,7 @@ function createTreeViewSection(startX: number, startY: number): number {
           stateContainerLayout.gap = 2;
         }
       } catch (e) {
-        console.log('State container layout failed:', e);
+        debugLog('State container layout failed:', e);
       }
       
       // Create state items with exact Rust color implementation
@@ -2765,7 +2780,7 @@ function createTreeViewSection(startX: number, startY: number): number {
             stateBoardLayout.gap = 4;
           }
         } catch (e) {
-          console.log('State board layout failed:', e);
+          debugLog('State board layout failed:', e);
         }
         
         // Create folder icon
@@ -2779,7 +2794,7 @@ function createTreeViewSection(startX: number, startY: number): number {
             try {
               stateBoard.appendChild(stateIcon);
             } catch (e) {
-              console.log(`State icon appendChild failed for ${item.text}:`, e);
+              debugLog(`State icon appendChild failed for ${item.text}:`, e);
             }
           }
         }
@@ -2811,7 +2826,7 @@ function createTreeViewSection(startX: number, startY: number): number {
               stateBoard.appendChild(stateText);
               treeCreated++;
             } catch (e) {
-              console.log(`State text appendChild failed for ${item.text}:`, e);
+              debugLog(`State text appendChild failed for ${item.text}:`, e);
               treeCreated++;
             }
           }
@@ -2820,7 +2835,7 @@ function createTreeViewSection(startX: number, startY: number): number {
         try {
           stateContainer.appendChild(stateBoard);
         } catch (e) {
-          console.log(`Failed to add ${item.text} to state container:`, e);
+          debugLog(`Failed to add ${item.text} to state container:`, e);
         }
       });
       
@@ -2869,7 +2884,7 @@ function createTreeViewSection(startX: number, startY: number): number {
           contentContainerLayout.gap = 2;
         }
       } catch (e) {
-        console.log('Content container layout failed:', e);
+        debugLog('Content container layout failed:', e);
       }
       
       // Create content items
@@ -2893,7 +2908,7 @@ function createTreeViewSection(startX: number, startY: number): number {
             contentBoardLayout.gap = 4;
           }
         } catch (e) {
-          console.log('Content board layout failed:', e);
+          debugLog('Content board layout failed:', e);
         }
         
         // Create content icon
@@ -2907,7 +2922,7 @@ function createTreeViewSection(startX: number, startY: number): number {
             try {
               contentBoard.appendChild(contentIcon);
             } catch (e) {
-              console.log(`Content icon appendChild failed for ${item.text}:`, e);
+              debugLog(`Content icon appendChild failed for ${item.text}:`, e);
             }
           }
         }
@@ -2924,7 +2939,7 @@ function createTreeViewSection(startX: number, startY: number): number {
             try {
               contentBoard.appendChild(contentText);
             } catch (e) {
-              console.log(`Content text appendChild failed for ${item.text}:`, e);
+              debugLog(`Content text appendChild failed for ${item.text}:`, e);
             }
           }
         }
@@ -2942,7 +2957,7 @@ function createTreeViewSection(startX: number, startY: number): number {
               contentBoard.appendChild(descText);
               treeCreated++;
             } catch (e) {
-              console.log(`Description appendChild failed for ${item.text}:`, e);
+              debugLog(`Description appendChild failed for ${item.text}:`, e);
               treeCreated++;
             }
           }
@@ -2955,7 +2970,7 @@ function createTreeViewSection(startX: number, startY: number): number {
         try {
           contentContainer.appendChild(contentBoard);
         } catch (e) {
-          console.log(`Failed to add ${item.text} to content container:`, e);
+          debugLog(`Failed to add ${item.text} to content container:`, e);
         }
       });
       
@@ -3092,7 +3107,7 @@ function createTypographySection(startX: number, startY: number): number {
           headingLayout.gap = 8;
         }
       } catch (e) {
-        console.log('Heading layout failed:', e);
+        debugLog('Heading layout failed:', e);
       }
       
       // Create heading elements
@@ -3112,7 +3127,7 @@ function createTypographySection(startX: number, startY: number): number {
             headingBoardLayout.wrap = "nowrap";
           }
         } catch (e) {
-          console.log('Heading board layout failed:', e);
+          debugLog('Heading board layout failed:', e);
         }
         
         if (typeof penpot.createText === 'function') {
@@ -3129,7 +3144,7 @@ function createTypographySection(startX: number, startY: number): number {
               headingBoard.appendChild(headingText);
               typographyCreated++;
             } catch (e) {
-              console.log(`Heading appendChild failed for ${heading.level}:`, e);
+              debugLog(`Heading appendChild failed for ${heading.level}:`, e);
               typographyCreated++;
             }
           }
@@ -3138,7 +3153,7 @@ function createTypographySection(startX: number, startY: number): number {
         try {
           headingContainer.appendChild(headingBoard);
         } catch (e) {
-          console.log(`Failed to add ${heading.level} to heading container:`, e);
+          debugLog(`Failed to add ${heading.level} to heading container:`, e);
         }
       });
       
@@ -3187,7 +3202,7 @@ function createTypographySection(startX: number, startY: number): number {
           bodyContainerLayout.gap = 6;
         }
       } catch (e) {
-        console.log('Body container layout failed:', e);
+        debugLog('Body container layout failed:', e);
       }
       
       // Create body text elements
@@ -3207,7 +3222,7 @@ function createTypographySection(startX: number, startY: number): number {
             bodyBoardLayout.wrap = "nowrap";
           }
         } catch (e) {
-          console.log('Body board layout failed:', e);
+          debugLog('Body board layout failed:', e);
         }
         
         if (typeof penpot.createText === 'function') {
@@ -3224,7 +3239,7 @@ function createTypographySection(startX: number, startY: number): number {
               bodyBoard.appendChild(bodyTextElement);
               typographyCreated++;
             } catch (e) {
-              console.log(`Body text appendChild failed for ${bodyText.name}:`, e);
+              debugLog(`Body text appendChild failed for ${bodyText.name}:`, e);
               typographyCreated++;
             }
           }
@@ -3233,7 +3248,7 @@ function createTypographySection(startX: number, startY: number): number {
         try {
           bodyContainer.appendChild(bodyBoard);
         } catch (e) {
-          console.log(`Failed to add ${bodyText.name} to body container:`, e);
+          debugLog(`Failed to add ${bodyText.name} to body container:`, e);
         }
       });
       
@@ -3283,7 +3298,7 @@ function createTypographySection(startX: number, startY: number): number {
           specialContainerLayout.gap = 6;
         }
       } catch (e) {
-        console.log('Special container layout failed:', e);
+        debugLog('Special container layout failed:', e);
       }
       
       // Create special text elements
@@ -3303,7 +3318,7 @@ function createTypographySection(startX: number, startY: number): number {
             specialBoardLayout.wrap = "nowrap";
           }
         } catch (e) {
-          console.log('Special board layout failed:', e);
+          debugLog('Special board layout failed:', e);
         }
         
         if (typeof penpot.createText === 'function') {
@@ -3340,7 +3355,7 @@ function createTypographySection(startX: number, startY: number): number {
               specialBoard.appendChild(specialTextElement);
               typographyCreated++;
             } catch (e) {
-              console.log(`Special text appendChild failed for ${specialText.name}:`, e);
+              debugLog(`Special text appendChild failed for ${specialText.name}:`, e);
               typographyCreated++;
             }
           }
@@ -3349,7 +3364,7 @@ function createTypographySection(startX: number, startY: number): number {
         try {
           specialContainer.appendChild(specialBoard);
         } catch (e) {
-          console.log(`Failed to add ${specialText.name} to special container:`, e);
+          debugLog(`Failed to add ${specialText.name} to special container:`, e);
         }
       });
       
@@ -3502,7 +3517,7 @@ function testTypographyAPIs() {
           text.fontFamily = 'Inter';
           results.canSetFontFamily = true;
         }
-      } catch (e) { console.log('FontFamily failed:', e); }
+      } catch (e) { debugLog('FontFamily failed:', e); }
       
       // Try setting font size
       try {
@@ -3510,7 +3525,7 @@ function testTypographyAPIs() {
           text.fontSize = 16;
           results.canSetFontSize = true;
         }
-      } catch (e) { console.log('FontSize failed:', e); }
+      } catch (e) { debugLog('FontSize failed:', e); }
       
       // Try setting font weight (use numeric values)
       try {
@@ -3518,13 +3533,13 @@ function testTypographyAPIs() {
           text.fontWeight = 400; // Use numeric instead of 'bold'
           results.canSetFontWeight = true;
         }
-      } catch (e) { console.log('FontWeight failed:', e); }
+      } catch (e) { debugLog('FontWeight failed:', e); }
       
       // Try setting text color via fills
       try {
         text.fills = [{ fillColor: '#333333' }];
         results.canSetTextColor = true;
-      } catch (e) { console.log('TextColor failed:', e); }
+      } catch (e) { debugLog('TextColor failed:', e); }
       
       console.log('Typography Test Results:', results);
       
@@ -3564,7 +3579,7 @@ function testShadowAPIs() {
         (rect as any).shadow = '0 4px 6px rgba(0,0,0,0.1)';
         results.canSetShadow = true;
       }
-    } catch (e) { console.log('Shadow property failed:', e); }
+    } catch (e) { debugLog('Shadow property failed:', e); }
     
     // Test shadows array
     try {
@@ -3578,7 +3593,7 @@ function testShadowAPIs() {
         }];
         results.canSetBoxShadow = true;
       }
-    } catch (e) { console.log('Shadows array failed:', e); }
+    } catch (e) { debugLog('Shadows array failed:', e); }
     
     console.log('Shadow Test Results:', results);
     
@@ -3615,7 +3630,7 @@ function testBorderRadiusAPIs() {
     try {
       rect.borderRadius = 12;
       results.canSetBorderRadius = true;
-    } catch (e) { console.log('BorderRadius failed:', e); }
+    } catch (e) { debugLog('BorderRadius failed:', e); }
     
     // Test rx/ry properties
     try {
@@ -3623,14 +3638,14 @@ function testBorderRadiusAPIs() {
         (rect as any).rx = 8;
         results.canSetRx = true;
       }
-    } catch (e) { console.log('Rx failed:', e); }
+    } catch (e) { debugLog('Rx failed:', e); }
     
     try {
       if ('ry' in rect) {
         (rect as any).ry = 8;
         results.canSetRy = true;
       }
-    } catch (e) { console.log('Ry failed:', e); }
+    } catch (e) { debugLog('Ry failed:', e); }
     
     console.log('Border Radius Test Results:', results);
     
@@ -3668,13 +3683,13 @@ function testOpacityAPIs() {
         (rect as any).opacity = 0.5;
         results.canSetOpacity = true;
       }
-    } catch (e) { console.log('Opacity failed:', e); }
+    } catch (e) { debugLog('Opacity failed:', e); }
     
     // Test fill opacity
     try {
       rect.fills = [{ fillColor: '#FF0000', fillOpacity: 0.5 } as any];
       results.canSetFillOpacity = true;
-    } catch (e) { console.log('Fill opacity failed:', e); }
+    } catch (e) { debugLog('Fill opacity failed:', e); }
     
     console.log('Opacity Test Results:', results);
     
