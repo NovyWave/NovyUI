@@ -48,6 +48,14 @@ document.addEventListener('DOMContentLoaded', () => {
       </section>
 
       <section class="actions">
+        <h2>🌊 NovyWave Interface</h2>
+        <button id="create-novywave" class="btn btn-success">
+          🎨 NovyWave Designs
+        </button>
+        <div id="novywave-result" class="result-box"></div>
+      </section>
+
+      <section class="actions">
         <h2>🔧 Components</h2>
         <button id="create-test" class="btn btn-primary">
           Create Buttons
@@ -66,6 +74,12 @@ document.addEventListener('DOMContentLoaded', () => {
         </button>
         <button id="create-typography" class="btn btn-primary">
           Create Typography
+        </button>
+        <button id="create-input" class="btn btn-primary">
+          Create Input
+        </button>
+        <button id="create-datatable" class="btn btn-primary">
+          Create Data Table
         </button>
         <button id="create-all" class="btn btn-success">
           Create All Components
@@ -123,6 +137,18 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('create-typography')?.addEventListener('click', () => {
     sendMessage({ type: 'create-typography' });
   });
+
+  document.getElementById('create-input')?.addEventListener('click', () => {
+    sendMessage({ type: 'create-input' });
+  });
+
+  document.getElementById('create-datatable')?.addEventListener('click', () => {
+    sendMessage({ type: 'create-datatable' });
+  });
+
+  document.getElementById('create-novywave')?.addEventListener('click', () => {
+    sendMessage({ type: 'create-novywave-interface' });
+  });
 });
 
 // Handle messages from plugin
@@ -146,6 +172,10 @@ window.addEventListener('message', (event: MessageEvent) => {
     case 'component-result':
     case 'batch-result':
       displayResult('component-result', message.data);
+      break;
+      
+    case 'novywave-result':
+      displayResult('novywave-result', message.data);
       break;
   }
 });

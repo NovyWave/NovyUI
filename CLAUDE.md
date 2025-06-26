@@ -742,3 +742,46 @@ This integration ensures that every component implementation builds on previous 
 - use MCP memory to store successful patterns
 - apply sequential thinking for complex component decisions
 - query stored knowledge before starting new implementations
+
+## CRITICAL: MCP Server Usage Reminders
+
+### **ALWAYS Use Sequential Thinking For:**
+- Complex component implementations (>3 steps)
+- Problem analysis and debugging  
+- Breaking down user requirements into actionable tasks
+- Planning implementation approaches before coding
+- Analyzing tradeoffs between different solutions
+
+### **ALWAYS Use Memory Storage For:**
+- Successful component patterns that work
+- Error solutions and workarounds discovered
+- Design decisions and their rationales
+- Plugin architecture patterns
+- Color combinations and theme strategies
+
+### **ALWAYS Query Memory Before:**
+- Starting new component implementations
+- Solving similar problems encountered before
+- Making design decisions
+- Debugging issues that seem familiar
+
+### **Sequential Thinking Examples:**
+```
+Thought 1: "Analyzing the user's screenshot to understand layout requirements..."
+Thought 2: "Comparing current implementation against screenshot accuracy..."
+Thought 3: "Identifying specific issues: waveform pattern, color accuracy, positioning..."
+Thought 4: "Planning systematic fixes: rewrite vs patch approach..."
+```
+
+### **Memory Storage Examples:**
+```typescript
+// Store successful patterns
+create_entities: "NovyWaveInterfaceV2Pattern" 
+observations: ["Uses exact 1440x1024px dimensions", "Custom color palette for accuracy"]
+
+// Store error solutions  
+create_entities: "PenPotPluginCleanupStrategy"
+observations: ["TypeScript warnings don't break builds", "Aggressive code removal can break functionality"]
+```
+
+**Rule: If a task involves >2 decisions or >3 steps, use Sequential Thinking first, then store the successful approach in Memory.**

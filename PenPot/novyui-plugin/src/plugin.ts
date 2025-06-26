@@ -73,6 +73,10 @@ penpot.ui.onMessage((message: any) => {
       createTypographyComponent();
       break;
     
+    case 'create-novywave-interface':
+      createNovyWaveInterface();
+      break;
+    
     default:
       // Ignore success/response messages that don't need handling
       if (message.type !== 'success' && message.type !== 'response') {
@@ -3490,6 +3494,330 @@ function createAllComponents() {
   }
 }
 
+
+// Create NovyWave Interface - Back to Working V1 Approach
+function createNovyWaveInterface() {
+  try {
+    console.log('🌊 Creating NovyWave Interface - V1 Working Approach...');
+    
+    let startX = 100;
+    let startY = 100;
+    
+    // Use viewport center if available
+    if (penpot.viewport && penpot.viewport.center) {
+      const center = penpot.viewport.center;
+      startX = center.x - 600;
+      startY = center.y - 400;
+    }
+    
+    // Create both light and dark versions - like the working button components
+    createNovyWaveSimple(startX, startY, 'Light');
+    createNovyWaveSimple(startX + 1300, startY, 'Dark'); // 1300px apart
+    
+    penpot.ui.sendMessage({
+      type: 'novywave-result',
+      data: {
+        success: true,
+        message: 'Created NovyWave digital waveform viewer interface - Light and Dark themes'
+      }
+    });
+    
+  } catch (error) {
+    console.error('Error creating NovyWave interface:', error);
+    penpot.ui.sendMessage({
+      type: 'novywave-result',
+      data: {
+        success: false,
+        error: (error as Error).message
+      }
+    });
+  }
+}
+
+// Create NovyWave Simple - Using Working Button Pattern
+function createNovyWaveSimple(startX: number, startY: number, theme: string = 'Light') {
+  console.log(`🎨 Creating NovyWave ${theme} using working button pattern...`);
+  
+  const isLight = theme === 'Light';
+  const colors = isLight ? {
+    background: novyuiTokensHex.color.neutral[1].light,
+    sidebar: novyuiTokensHex.color.neutral[2].light,
+    border: novyuiTokensHex.color.neutral[4].light,
+    text: novyuiTokensHex.color.neutral[11].light,
+    textSecondary: novyuiTokensHex.color.neutral[7].light,
+    accent: novyuiTokensHex.color.primary[6].light
+  } : {
+    background: novyuiTokensHex.color.neutral[2].dark,
+    sidebar: novyuiTokensHex.color.neutral[4].dark,
+    border: novyuiTokensHex.color.neutral[6].dark,
+    text: novyuiTokensHex.color.neutral[11].dark,
+    textSecondary: novyuiTokensHex.color.neutral[7].dark,
+    accent: novyuiTokensHex.color.primary[6].dark
+  };
+  
+  // Create title first - like button components do
+  if (typeof penpot.createText === 'function') {
+    const title = penpot.createText(`NovyWave ${theme}`);
+    if (title) {
+      title.name = `NovyWave ${theme} Title`;
+      title.x = startX;
+      title.y = startY - 60;
+      title.characters = `NovyWave ${theme}`;
+      title.fills = [{ fillColor: colors.text }];
+      if ('fontSize' in title) (title as any).fontSize = 24;
+      if ('fontWeight' in title) (title as any).fontWeight = 400;
+    }
+  }
+  
+  // Create main container board
+  const mainBoard = penpot.createBoard();
+  mainBoard.name = `NovyWave ${theme} Main`;
+  mainBoard.x = startX;
+  mainBoard.y = startY;
+  mainBoard.resize(1200, 800);
+  mainBoard.fills = [{ fillColor: colors.background }];
+  
+  // Create Files & Scopes panel (left side)
+  const filesPanel = penpot.createBoard();
+  filesPanel.name = `${theme} Files & Scopes`;
+  filesPanel.x = startX + 20;
+  filesPanel.y = startY + 20;
+  filesPanel.resize(560, 350);
+  filesPanel.fills = [{ fillColor: colors.background }];
+  filesPanel.strokes = [{ strokeColor: colors.border, strokeWidth: 1 }];
+  
+  // Files & Scopes header
+  const filesHeader = penpot.createText('Files & Scopes');
+  if (filesHeader) {
+    filesHeader.name = 'Files & Scopes Header';
+    filesHeader.x = startX + 40;
+    filesHeader.y = startY + 50;
+    filesHeader.characters = 'Files & Scopes';
+    filesHeader.fills = [{ fillColor: colors.text }];
+    if ('fontSize' in filesHeader) (filesHeader as any).fontSize = 14;
+    if ('fontWeight' in filesHeader) (filesHeader as any).fontWeight = 400;
+  }
+  
+  // Load files and Remove All controls
+  const loadFilesText = penpot.createText('⊕ Load files');
+  if (loadFilesText) {
+    loadFilesText.name = 'Load Files Control';
+    loadFilesText.x = startX + 230;
+    loadFilesText.y = startY + 50;
+    loadFilesText.characters = '⊕ Load files';
+    loadFilesText.fills = [{ fillColor: colors.textSecondary }];
+    if ('fontSize' in loadFilesText) (loadFilesText as any).fontSize = 12;
+  }
+  
+  const removeAllText = penpot.createText('✕ Remove All');
+  if (removeAllText) {
+    removeAllText.name = 'Remove All Files';
+    removeAllText.x = startX + 420;
+    removeAllText.y = startY + 50;
+    removeAllText.characters = '✕ Remove All';
+    removeAllText.fills = [{ fillColor: '#ef4444' }]; // Red
+    if ('fontSize' in removeAllText) (removeAllText as any).fontSize = 12;
+  }
+  
+  // File tree items from Figma
+  const files = [
+    '📁 wave_21.fst',
+    '  📁 VexRiscv',
+    '    📦 EmbeddedRiscvJtag_logic_onDebugCmd_dmiDirect_logic',
+    '      📄 inputArea_target_buffercc',
+    '      📄 bufferCC_4',
+    '  📁 integer_RegFilePlugin_logic_refile_fpga',
+    '  📄 reset_buffercc',
+    '📁 simple.vcd'
+  ];
+  
+  files.forEach((file, index) => {
+    const fileText = penpot.createText(file);
+    if (fileText) {
+      fileText.name = `File: ${file}`;
+      fileText.x = startX + 40;
+      fileText.y = startY + 80 + (index * 24);
+      fileText.characters = file;
+      fileText.fills = [{ fillColor: colors.text }];
+      if ('fontSize' in fileText) (fileText as any).fontSize = 12;
+    }
+  });
+  
+  // Create Variables panel (right side)
+  const variablesPanel = penpot.createBoard();
+  variablesPanel.name = `${theme} Variables`;
+  variablesPanel.x = startX + 600;
+  variablesPanel.y = startY + 20;
+  variablesPanel.resize(580, 350);
+  variablesPanel.fills = [{ fillColor: colors.background }];
+  variablesPanel.strokes = [{ strokeColor: colors.border, strokeWidth: 1 }];
+  
+  // Variables header
+  const variablesHeader = penpot.createText('Variables');
+  if (variablesHeader) {
+    variablesHeader.name = 'Variables Header';
+    variablesHeader.x = startX + 620;
+    variablesHeader.y = startY + 50;
+    variablesHeader.characters = 'Variables';
+    variablesHeader.fills = [{ fillColor: colors.text }];
+    if ('fontSize' in variablesHeader) (variablesHeader as any).fontSize = 14;
+    if ('fontWeight' in variablesHeader) (variablesHeader as any).fontWeight = 400;
+  }
+  
+  // Variable search input
+  const searchInput = penpot.createBoard();
+  searchInput.name = 'Variable Search Input';
+  searchInput.x = startX + 920;
+  searchInput.y = startY + 48;
+  searchInput.resize(240, 25);
+  searchInput.fills = [{ fillColor: colors.background }];
+  searchInput.strokes = [{ strokeColor: colors.border, strokeWidth: 1 }];
+  
+  const searchText = penpot.createText('variable_name');
+  if (searchText) {
+    searchText.name = 'Search Placeholder';
+    searchText.x = startX + 930;
+    searchText.y = startY + 57;
+    searchText.characters = 'variable_name';
+    searchText.fills = [{ fillColor: colors.textSecondary }];
+    if ('fontSize' in searchText) (searchText as any).fontSize = 12;
+  }
+  
+  // Variable items from Figma
+  const variables = [
+    { name: 'io_bus_cmd_valid', type: 'Wire 1-bit Input' },
+    { name: 'io_bus_cmd_ready', type: 'Wire 1-bit Output' },
+    { name: 'io_jtag_data', type: 'Wire 1-bit Output' },
+    { name: 'clk', type: 'Wire 1-bit Output' }
+  ];
+  
+  variables.forEach((variable, index) => {
+    const varText = penpot.createText(variable.name);
+    if (varText) {
+      varText.name = `Variable: ${variable.name}`;
+      varText.x = startX + 620;
+      varText.y = startY + 90 + (index * 30);
+      varText.characters = variable.name;
+      varText.fills = [{ fillColor: colors.text }];
+      if ('fontSize' in varText) (varText as any).fontSize = 12;
+    }
+    
+    const typeText = penpot.createText(variable.type);
+    if (typeText) {
+      typeText.name = `Type: ${variable.type}`;
+      typeText.x = startX + 820;
+      typeText.y = startY + 90 + (index * 30);
+      typeText.characters = variable.type;
+      typeText.fills = [{ fillColor: '#3b82f6' }]; // Blue for type
+      if ('fontSize' in typeText) (typeText as any).fontSize = 11;
+    }
+  });
+  
+  // Waveform Viewer Section (Selected Variables)
+  const waveformBoard = penpot.createBoard();
+  waveformBoard.name = `${theme} Selected Variables`;
+  waveformBoard.x = startX + 20;
+  waveformBoard.y = startY + 400;
+  waveformBoard.resize(1160, 300);
+  waveformBoard.fills = [{ fillColor: colors.background }];
+  waveformBoard.strokes = [{ strokeColor: colors.border, strokeWidth: 1 }];
+  
+  // Section header with controls
+  const headerText = penpot.createText('Selected Variables');
+  if (headerText) {
+    headerText.name = 'Selected Variables Header';
+    headerText.x = startX + 40;
+    headerText.y = startY + 420;
+    headerText.characters = 'Selected Variables';
+    headerText.fills = [{ fillColor: colors.text }];
+    if ('fontSize' in headerText) (headerText as any).fontSize = 14;
+    if ('fontWeight' in headerText) (headerText as any).fontWeight = 400;
+  }
+  
+  // "Dock to Right" and "Remove All" controls
+  const dockText = penpot.createText('→ Dock to Right');
+  if (dockText) {
+    dockText.name = 'Dock Control';
+    dockText.x = startX + 600;
+    dockText.y = startY + 420;
+    dockText.characters = '→ Dock to Right';
+    dockText.fills = [{ fillColor: colors.textSecondary }];
+    if ('fontSize' in dockText) (dockText as any).fontSize = 12;
+  }
+  
+  const removeText = penpot.createText('✕ Remove All');
+  if (removeText) {
+    removeText.name = 'Remove All Control';
+    removeText.x = startX + 1050;
+    removeText.y = startY + 420;
+    removeText.characters = '✕ Remove All';
+    removeText.fills = [{ fillColor: '#ef4444' }]; // Red color
+    if ('fontSize' in removeText) (removeText as any).fontSize = 12;
+  }
+  
+  // Signal traces (like the Figma design)
+  const signals = [
+    'LsuPlugin_logic_bus_rsp_payload_error',
+    'LsuPlugin_logic_bus_rsp_payload_data', 
+    'io_writes_0_payload_data',
+    'LsuPlugin_logic_bus_rsp_payload_data',
+    'logic_jtagLogic_dmiStat_value_string',
+    'LsuPlugin_logic_bus_rsp_payload_error'
+  ];
+  
+  signals.forEach((signal, index) => {
+    // Signal name
+    const signalText = penpot.createText(signal);
+    if (signalText) {
+      signalText.name = `Signal: ${signal}`;
+      signalText.x = startX + 40;
+      signalText.y = startY + 460 + (index * 24);
+      signalText.characters = signal;
+      signalText.fills = [{ fillColor: colors.text }];
+      if ('fontSize' in signalText) (signalText as any).fontSize = 11;
+    }
+    
+    // Digital waveform trace (blue and black blocks like Figma)
+    const traceStartX = startX + 350;
+    const traceY = startY + 455 + (index * 24);
+    const segmentWidth = 30;
+    
+    for (let i = 0; i < 25; i++) {
+      const isHigh = Math.random() > 0.4; // Random high/low signal
+      const segment = penpot.createRectangle();
+      segment.name = `Signal Trace ${index}-${i}`;
+      segment.x = traceStartX + (i * segmentWidth);
+      segment.y = traceY;
+      segment.resize(segmentWidth - 1, 18);
+      segment.fills = [{ fillColor: isHigh ? '#3b82f6' : '#1f2937' }]; // Blue for high, dark for low
+    }
+  });
+  
+  // Timeline markers at bottom
+  const timeMarkers = ['0s', '10s', '20s', '30s', '40s', '50s', '60s', '70s', '80s'];
+  timeMarkers.forEach((time, index) => {
+    const markerText = penpot.createText(time);
+    if (markerText) {
+      markerText.name = `Time Marker: ${time}`;
+      markerText.x = startX + 350 + (index * 85);
+      markerText.y = startY + 670;
+      markerText.characters = time;
+      markerText.fills = [{ fillColor: colors.textSecondary }];
+      if ('fontSize' in markerText) (markerText as any).fontSize = 10;
+    }
+  });
+  
+  // Zoom controls at bottom right
+  const zoomText = penpot.createText('100 %');
+  if (zoomText) {
+    zoomText.name = 'Zoom Control';
+    zoomText.x = startX + 1000;
+    zoomText.y = startY + 670;
+    zoomText.characters = '100 %';
+    zoomText.fills = [{ fillColor: colors.text }];
+    if ('fontSize' in zoomText) (zoomText as any).fontSize = 11;
+  }
+}
 
 // Test typography APIs with actual text element
 function testTypographyAPIs() {
