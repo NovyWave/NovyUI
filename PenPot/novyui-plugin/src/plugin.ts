@@ -3510,9 +3510,9 @@ function createNovyWaveInterface() {
       startY = center.y - 400;
     }
     
-    // Create both light and dark versions - like the working button components
+    // Create both light and dark versions positioned vertically to avoid canvas size limits
     createNovyWaveSimple(startX, startY, 'Light');
-    createNovyWaveSimple(startX + 1300, startY, 'Dark'); // 1300px apart
+    createNovyWaveSimple(startX, startY + 1100, 'Dark'); // Positioned vertically below
     
     penpot.ui.sendMessage({
       type: 'novywave-result',
@@ -3534,25 +3534,33 @@ function createNovyWaveInterface() {
   }
 }
 
-// Create NovyWave Simple - Using Working Button Pattern
+// Create NovyWave Polished - Figma-Accurate Version
 function createNovyWaveSimple(startX: number, startY: number, theme: string = 'Light') {
-  console.log(`🎨 Creating NovyWave ${theme} using working button pattern...`);
+  console.log(`🎨 Creating polished NovyWave ${theme} interface...`);
   
   const isLight = theme === 'Light';
   const colors = isLight ? {
-    background: novyuiTokensHex.color.neutral[1].light,
-    sidebar: novyuiTokensHex.color.neutral[2].light,
-    border: novyuiTokensHex.color.neutral[4].light,
-    text: novyuiTokensHex.color.neutral[11].light,
-    textSecondary: novyuiTokensHex.color.neutral[7].light,
-    accent: novyuiTokensHex.color.primary[6].light
+    background: '#ffffff',
+    panelBg: '#fafbfc',
+    sidebar: '#f5f7fa',
+    border: '#e5e7eb',
+    text: '#111827',
+    textSecondary: '#6b7280',
+    accent: '#3b82f6',
+    waveformHigh: '#3b82f6',
+    waveformLow: '#1f2937',
+    error: '#ef4444'
   } : {
-    background: novyuiTokensHex.color.neutral[2].dark,
-    sidebar: novyuiTokensHex.color.neutral[4].dark,
-    border: novyuiTokensHex.color.neutral[6].dark,
-    text: novyuiTokensHex.color.neutral[11].dark,
-    textSecondary: novyuiTokensHex.color.neutral[7].dark,
-    accent: novyuiTokensHex.color.primary[6].dark
+    background: '#1a1f2e',
+    panelBg: '#232937',
+    sidebar: '#2d3444',
+    border: '#374151',
+    text: '#f9fafb',
+    textSecondary: '#9ca3af',
+    accent: '#60a5fa',
+    waveformHigh: '#3b82f6',
+    waveformLow: '#0f172a',
+    error: '#f87171'
   };
   
   // Create title first - like button components do
@@ -3569,21 +3577,21 @@ function createNovyWaveSimple(startX: number, startY: number, theme: string = 'L
     }
   }
   
-  // Create main container board
+  // Create main container board - exact Figma dimensions
   const mainBoard = penpot.createBoard();
   mainBoard.name = `NovyWave ${theme} Main`;
   mainBoard.x = startX;
   mainBoard.y = startY;
-  mainBoard.resize(1200, 800);
+  mainBoard.resize(1440, 1024);
   mainBoard.fills = [{ fillColor: colors.background }];
   
   // Create Files & Scopes panel (left side)
   const filesPanel = penpot.createBoard();
   filesPanel.name = `${theme} Files & Scopes`;
-  filesPanel.x = startX + 20;
-  filesPanel.y = startY + 20;
-  filesPanel.resize(560, 350);
-  filesPanel.fills = [{ fillColor: colors.background }];
+  filesPanel.x = startX;
+  filesPanel.y = startY;
+  filesPanel.resize(560, 460);
+  filesPanel.fills = [{ fillColor: colors.panelBg }];
   filesPanel.strokes = [{ strokeColor: colors.border, strokeWidth: 1 }];
   
   // Files & Scopes header
@@ -3598,15 +3606,26 @@ function createNovyWaveSimple(startX: number, startY: number, theme: string = 'L
     if ('fontWeight' in filesHeader) (filesHeader as any).fontWeight = 400;
   }
   
-  // Load files and Remove All controls
-  const loadFilesText = penpot.createText('⊕ Load files');
+  // Load files button - proper button styling to match Figma exactly
+  const loadFilesButton = penpot.createBoard();
+  loadFilesButton.name = 'Load Files Button';
+  loadFilesButton.x = startX + 230;
+  loadFilesButton.y = startY + 47;
+  loadFilesButton.resize(80, 24);
+  // Light theme: light gray background, Dark theme: medium-dark background  
+  loadFilesButton.fills = [{ fillColor: theme === 'Light' ? '#f1f5f9' : '#475569' }];
+  loadFilesButton.strokes = [{ strokeColor: theme === 'Light' ? '#d1d5db' : '#64748b', strokeWidth: 1 }];
+  if ('borderRadius' in loadFilesButton) (loadFilesButton as any).borderRadius = 4;
+  
+  const loadFilesText = penpot.createText('📁 Load files');
   if (loadFilesText) {
-    loadFilesText.name = 'Load Files Control';
-    loadFilesText.x = startX + 230;
-    loadFilesText.y = startY + 50;
-    loadFilesText.characters = '⊕ Load files';
-    loadFilesText.fills = [{ fillColor: colors.textSecondary }];
-    if ('fontSize' in loadFilesText) (loadFilesText as any).fontSize = 12;
+    loadFilesText.name = 'Load Files Text';
+    loadFilesText.x = startX + 236;
+    loadFilesText.y = startX === 50 ? startY + 54 : startY + 55; // Slight adjustment for centering
+    loadFilesText.characters = '📁 Load files';
+    // Light theme: dark text, Dark theme: light text
+    loadFilesText.fills = [{ fillColor: theme === 'Light' ? '#374151' : '#f9fafb' }];
+    if ('fontSize' in loadFilesText) (loadFilesText as any).fontSize = 11;
   }
   
   const removeAllText = penpot.createText('✕ Remove All');
@@ -3619,25 +3638,39 @@ function createNovyWaveSimple(startX: number, startY: number, theme: string = 'L
     if ('fontSize' in removeAllText) (removeAllText as any).fontSize = 12;
   }
   
-  // File tree items from Figma
+  // File tree items with proper structure
   const files = [
-    '📁 wave_21.fst',
-    '  📁 VexRiscv',
-    '    📦 EmbeddedRiscvJtag_logic_onDebugCmd_dmiDirect_logic',
-    '      📄 inputArea_target_buffercc',
-    '      📄 bufferCC_4',
-    '  📁 integer_RegFilePlugin_logic_refile_fpga',
-    '  📄 reset_buffercc',
-    '📁 simple.vcd'
+    { icon: '📁', name: 'wave_21.fst', level: 0 },
+    { icon: '📁', name: 'VexRiscv', level: 1 },
+    { icon: '📦', name: 'EmbeddedRiscvJtag_logic_onDebugCmd_dmiDirect_logic', level: 2 },
+    { icon: '📄', name: 'inputArea_target_buffercc', level: 3 },
+    { icon: '📄', name: 'bufferCC_4', level: 3 },
+    { icon: '📁', name: 'integer_RegFilePlugin_logic_refile_fpga', level: 1 },
+    { icon: '📄', name: 'reset_buffercc', level: 1 },
+    { icon: '📁', name: 'simple.vcd', level: 0 }
   ];
   
   files.forEach((file, index) => {
-    const fileText = penpot.createText(file);
+    const indent = 20 + (file.level * 20); // Base indent + level indent
+    
+    // File icon
+    const iconText = penpot.createText(file.icon);
+    if (iconText) {
+      iconText.name = `Icon: ${file.name}`;
+      iconText.x = startX + indent;
+      iconText.y = startY + 80 + (index * 26);
+      iconText.characters = file.icon;
+      iconText.fills = [{ fillColor: colors.text }];
+      if ('fontSize' in iconText) (iconText as any).fontSize = 12;
+    }
+    
+    // File name
+    const fileText = penpot.createText(file.name);
     if (fileText) {
-      fileText.name = `File: ${file}`;
-      fileText.x = startX + 40;
-      fileText.y = startY + 80 + (index * 24);
-      fileText.characters = file;
+      fileText.name = `File: ${file.name}`;
+      fileText.x = startX + indent + 20;
+      fileText.y = startY + 80 + (index * 26);
+      fileText.characters = file.name;
       fileText.fills = [{ fillColor: colors.text }];
       if ('fontSize' in fileText) (fileText as any).fontSize = 12;
     }
@@ -3646,40 +3679,51 @@ function createNovyWaveSimple(startX: number, startY: number, theme: string = 'L
   // Create Variables panel (right side)
   const variablesPanel = penpot.createBoard();
   variablesPanel.name = `${theme} Variables`;
-  variablesPanel.x = startX + 600;
-  variablesPanel.y = startY + 20;
-  variablesPanel.resize(580, 350);
-  variablesPanel.fills = [{ fillColor: colors.background }];
+  variablesPanel.x = startX + 560;
+  variablesPanel.y = startY;
+  variablesPanel.resize(880, 460);
+  variablesPanel.fills = [{ fillColor: colors.panelBg }];
   variablesPanel.strokes = [{ strokeColor: colors.border, strokeWidth: 1 }];
   
-  // Variables header
+  // Variables header - aligned with Files & Scopes header
   const variablesHeader = penpot.createText('Variables');
   if (variablesHeader) {
     variablesHeader.name = 'Variables Header';
-    variablesHeader.x = startX + 620;
-    variablesHeader.y = startY + 50;
+    variablesHeader.x = startX + 580;
+    variablesHeader.y = startY + 50; // Aligned with Files & Scopes header
     variablesHeader.characters = 'Variables';
     variablesHeader.fills = [{ fillColor: colors.text }];
     if ('fontSize' in variablesHeader) (variablesHeader as any).fontSize = 14;
     if ('fontWeight' in variablesHeader) (variablesHeader as any).fontWeight = 400;
   }
   
-  // Variable search input
+  // Variable search input with search icon to match Figma
   const searchInput = penpot.createBoard();
   searchInput.name = 'Variable Search Input';
-  searchInput.x = startX + 920;
-  searchInput.y = startY + 48;
-  searchInput.resize(240, 25);
-  searchInput.fills = [{ fillColor: colors.background }];
-  searchInput.strokes = [{ strokeColor: colors.border, strokeWidth: 1 }];
+  searchInput.x = startX + 1150;
+  searchInput.y = startY + 45; // Adjusted to align with header baseline
+  searchInput.resize(270, 28);
+  searchInput.fills = [{ fillColor: theme === 'Light' ? '#f8fafc' : '#1e293b' }];
+  searchInput.strokes = [{ strokeColor: theme === 'Light' ? '#e2e8f0' : '#475569', strokeWidth: 1 }];
+  if ('borderRadius' in searchInput) (searchInput as any).borderRadius = 4;
+  
+  // Search icon
+  const searchIcon = penpot.createText('🔍');
+  if (searchIcon) {
+    searchIcon.name = 'Search Icon';
+    searchIcon.x = startX + 1158;
+    searchIcon.y = startY + 52; // Adjusted for input position
+    searchIcon.characters = '🔍';
+    if ('fontSize' in searchIcon) (searchIcon as any).fontSize = 11;
+  }
   
   const searchText = penpot.createText('variable_name');
   if (searchText) {
     searchText.name = 'Search Placeholder';
-    searchText.x = startX + 930;
-    searchText.y = startY + 57;
+    searchText.x = startX + 1178; // Moved right to accommodate icon
+    searchText.y = startY + 53; // Adjusted for input position
     searchText.characters = 'variable_name';
-    searchText.fills = [{ fillColor: colors.textSecondary }];
+    searchText.fills = [{ fillColor: theme === 'Light' ? '#94a3b8' : '#64748b' }]; // Muted placeholder color
     if ('fontSize' in searchText) (searchText as any).fontSize = 12;
   }
   
@@ -3716,18 +3760,18 @@ function createNovyWaveSimple(startX: number, startY: number, theme: string = 'L
   // Waveform Viewer Section (Selected Variables)
   const waveformBoard = penpot.createBoard();
   waveformBoard.name = `${theme} Selected Variables`;
-  waveformBoard.x = startX + 20;
-  waveformBoard.y = startY + 400;
-  waveformBoard.resize(1160, 300);
-  waveformBoard.fills = [{ fillColor: colors.background }];
+  waveformBoard.x = startX;
+  waveformBoard.y = startY + 460;
+  waveformBoard.resize(1440, 564);
+  waveformBoard.fills = [{ fillColor: colors.panelBg }];
   waveformBoard.strokes = [{ strokeColor: colors.border, strokeWidth: 1 }];
   
   // Section header with controls
   const headerText = penpot.createText('Selected Variables');
   if (headerText) {
     headerText.name = 'Selected Variables Header';
-    headerText.x = startX + 40;
-    headerText.y = startY + 420;
+    headerText.x = startX + 20;
+    headerText.y = startY + 480;
     headerText.characters = 'Selected Variables';
     headerText.fills = [{ fillColor: colors.text }];
     if ('fontSize' in headerText) (headerText as any).fontSize = 14;
@@ -3739,7 +3783,7 @@ function createNovyWaveSimple(startX: number, startY: number, theme: string = 'L
   if (dockText) {
     dockText.name = 'Dock Control';
     dockText.x = startX + 600;
-    dockText.y = startY + 420;
+    dockText.y = startY + 480;
     dockText.characters = '→ Dock to Right';
     dockText.fills = [{ fillColor: colors.textSecondary }];
     if ('fontSize' in dockText) (dockText as any).fontSize = 12;
@@ -3748,10 +3792,10 @@ function createNovyWaveSimple(startX: number, startY: number, theme: string = 'L
   const removeText = penpot.createText('✕ Remove All');
   if (removeText) {
     removeText.name = 'Remove All Control';
-    removeText.x = startX + 1050;
-    removeText.y = startY + 420;
+    removeText.x = startX + 1340;
+    removeText.y = startY + 480;
     removeText.characters = '✕ Remove All';
-    removeText.fills = [{ fillColor: '#ef4444' }]; // Red color
+    removeText.fills = [{ fillColor: colors.error }];
     if ('fontSize' in removeText) (removeText as any).fontSize = 12;
   }
   
@@ -3765,57 +3809,315 @@ function createNovyWaveSimple(startX: number, startY: number, theme: string = 'L
     'LsuPlugin_logic_bus_rsp_payload_error'
   ];
   
+  // Signal values corresponding to Figma design
+  const signalValues = [
+    '0',           // LsuPlugin_logic_bus_rsp_payload_error
+    '1442106624',  // LsuPlugin_logic_bus_rsp_payload_data
+    '0',           // io_writes_0_payload_data
+    '1442106624',  // LsuPlugin_logic_bus_rsp_payload_data
+    'SUCCESS',     // logic_jtagLogic_dmiStat_value_string
+    '0'            // LsuPlugin_logic_bus_rsp_payload_error
+  ];
+
   signals.forEach((signal, index) => {
     // Signal name
     const signalText = penpot.createText(signal);
     if (signalText) {
       signalText.name = `Signal: ${signal}`;
-      signalText.x = startX + 40;
-      signalText.y = startY + 460 + (index * 24);
+      signalText.x = startX + 20;
+      signalText.y = startY + 520 + (index * 30);
       signalText.characters = signal;
       signalText.fills = [{ fillColor: colors.text }];
       if ('fontSize' in signalText) (signalText as any).fontSize = 11;
     }
     
-    // Digital waveform trace (blue and black blocks like Figma)
-    const traceStartX = startX + 350;
-    const traceY = startY + 455 + (index * 24);
-    const segmentWidth = 30;
+    // Signal value with proper styling matching Figma
+    const currentValue = signalValues[index];
     
-    for (let i = 0; i < 25; i++) {
-      const isHigh = Math.random() > 0.4; // Random high/low signal
+    if (currentValue === 'SUCCESS') {
+      // String value with dropdown selector
+      const valueText = penpot.createText(currentValue);
+      if (valueText) {
+        valueText.name = `Value: ${currentValue}`;
+        valueText.x = startX + 320;
+        valueText.y = startY + 520 + (index * 30);
+        valueText.characters = currentValue;
+        valueText.fills = [{ fillColor: colors.accent }];
+        if ('fontSize' in valueText) (valueText as any).fontSize = 10;
+        if ('fontFamily' in valueText) (valueText as any).fontFamily = 'Fira Code';
+      }
+      
+      // Type selector dropdown
+      const typeSelector = penpot.createText('Text ▼');
+      if (typeSelector) {
+        typeSelector.name = 'Value Type Selector';
+        typeSelector.x = startX + 370;
+        typeSelector.y = startY + 520 + (index * 30);
+        typeSelector.characters = 'Text ▼';
+        typeSelector.fills = [{ fillColor: colors.textSecondary }];
+        if ('fontSize' in typeSelector) (typeSelector as any).fontSize = 9;
+      }
+    } else {
+      // Numeric value with input field styling
+      const valueInput = penpot.createBoard();
+      valueInput.name = `Value Input: ${currentValue}`;
+      valueInput.x = startX + 320;
+      valueInput.y = startY + 516 + (index * 30);
+      valueInput.resize(60, 18);
+      valueInput.fills = [{ fillColor: isLight ? '#ffffff' : '#1e293b' }];
+      valueInput.strokes = [{ strokeColor: isLight ? '#e5e7eb' : '#374151', strokeWidth: 1 }];
+      if ('borderRadius' in valueInput) (valueInput as any).borderRadius = 2;
+      
+      const valueText = penpot.createText(currentValue);
+      if (valueText) {
+        valueText.name = `Value: ${currentValue}`;
+        valueText.x = startX + 325;
+        valueText.y = startY + 520 + (index * 30);
+        valueText.characters = currentValue;
+        valueText.fills = [{ fillColor: colors.accent }];
+        if ('fontSize' in valueText) (valueText as any).fontSize = 10;
+        if ('fontFamily' in valueText) (valueText as any).fontFamily = 'Fira Code';
+      }
+    }
+    
+    // Digital waveform trace - denser with smaller segments
+    const traceStartX = startX + 380;
+    const traceY = startY + 514 + (index * 30);
+    const segmentWidth = 12; // Smaller segments for denser traces
+    const traceHeight = 20;
+    
+    // Create more realistic digital signal patterns
+    const patterns = [
+      [1,1,0,0,1,1,1,0,0,0,1,1,0,0,1,1,1,1,0,0,1,0,0,1,1,1,0,0,1,1,0,0,1,1,0,0,1,1,1,0,0,1,1,0,0,1,1,1,0,0,1,1,0,0,1,1,1,0,0,0,1,1,0,0,1,1,1,1,0,0,1,0,0,1,1,1,0,0,1,1],
+      [0,0,1,1,0,0,0,1,1,1,0,0,1,1,0,0,0,0,1,1,0,1,1,0,0,0,1,1,0,0,1,1,0,0,1,1,0,0,0,1,1,0,0,1,1,0,0,0,1,1,0,0,1,1,0,0,0,0,1,1,0,1,1,0,0,0,1,1,0,0],
+      [1,0,1,0,1,1,0,0,1,0,1,0,1,1,0,1,0,1,0,1,1,0,0,1,0,1,0,1,1,0,1,0,1,0,1,1,0,0,1,0,1,0,1,1,0,1,0,1,0,1,1,0,0,1,0,1,0,1,1,0,1,0,1,0,1,1,0,0,1,0],
+      [0,1,0,1,0,0,1,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,1,0,1],
+      [1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0],
+      [0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1]
+    ];
+    
+    const pattern = patterns[index % patterns.length];
+    
+    for (let i = 0; i < 80; i++) {
+      const isHigh = pattern[i % pattern.length];
       const segment = penpot.createRectangle();
       segment.name = `Signal Trace ${index}-${i}`;
       segment.x = traceStartX + (i * segmentWidth);
       segment.y = traceY;
-      segment.resize(segmentWidth - 1, 18);
-      segment.fills = [{ fillColor: isHigh ? '#3b82f6' : '#1f2937' }]; // Blue for high, dark for low
+      segment.resize(segmentWidth - 1, traceHeight);
+      segment.fills = [{ fillColor: isHigh ? colors.waveformHigh : colors.waveformLow }];
     }
   });
   
-  // Timeline markers at bottom
-  const timeMarkers = ['0s', '10s', '20s', '30s', '40s', '50s', '60s', '70s', '80s'];
+  // Timeline scale bar
+  const scaleBar = penpot.createBoard();
+  scaleBar.name = 'Timeline Scale';
+  scaleBar.x = startX;
+  scaleBar.y = startY + 974;
+  scaleBar.resize(1440, 50);
+  scaleBar.fills = [{ fillColor: colors.sidebar }];
+  scaleBar.strokes = [{ strokeColor: colors.border, strokeWidth: 1 }];
+  
+  // Timeline markers - evenly distributed to prevent overlaps
+  const timeMarkers = ['0s', '10s', '20s', '30s', '40s', '50s', '60s', '70s', '80s', '86s'];
+  const timelineWidth = 1140; // Available width for markers (1440 - 300 for margins)
+  const markerSpacing = timelineWidth / (timeMarkers.length - 1); // Even distribution
+  
   timeMarkers.forEach((time, index) => {
     const markerText = penpot.createText(time);
     if (markerText) {
       markerText.name = `Time Marker: ${time}`;
-      markerText.x = startX + 350 + (index * 85);
-      markerText.y = startY + 670;
+      markerText.x = startX + 150 + (index * markerSpacing); // Better starting position
+      markerText.y = startY + 995;
       markerText.characters = time;
       markerText.fills = [{ fillColor: colors.textSecondary }];
       if ('fontSize' in markerText) (markerText as any).fontSize = 10;
     }
   });
   
-  // Zoom controls at bottom right
-  const zoomText = penpot.createText('100 %');
+  // Timeline controls matching Figma exactly - left to right layout
+  
+  // W key (far left - timeline navigation)
+  const wKbdBoard = penpot.createBoard();
+  wKbdBoard.name = 'W Key';
+  wKbdBoard.x = startX + 454;
+  wKbdBoard.y = startY + 990;
+  wKbdBoard.resize(20, 16);
+  wKbdBoard.fills = [{ fillColor: isLight ? '#f1f5f9' : '#334155' }];
+  wKbdBoard.strokes = [{ strokeColor: isLight ? '#d1d5db' : '#475569', strokeWidth: 1 }];
+  if ('borderRadius' in wKbdBoard) (wKbdBoard as any).borderRadius = 3;
+  
+  const wKbdLayout = wKbdBoard.addFlexLayout();
+  if (wKbdLayout) {
+    wKbdLayout.dir = "row";
+    wKbdLayout.alignItems = "center";
+    wKbdLayout.justifyContent = "center";
+  }
+  
+  const wText = penpot.createText('W');
+  if (wText) {
+    wText.name = 'W Key Text';
+    wText.characters = 'W';
+    wText.fills = [{ fillColor: isLight ? '#374151' : '#f9fafb' }];
+    if ('fontSize' in wText) (wText as any).fontSize = 10;
+    if ('fontFamily' in wText) (wText as any).fontFamily = 'Fira Code';
+    wKbdBoard.appendChild(wText);
+  }
+  
+  // Zoom percentage input field
+  const zoomInput = penpot.createBoard();
+  zoomInput.name = 'Zoom Input';
+  zoomInput.x = startX + 485;
+  zoomInput.y = startY + 990;
+  zoomInput.resize(35, 18);
+  zoomInput.fills = [{ fillColor: isLight ? '#ffffff' : '#1e293b' }];
+  zoomInput.strokes = [{ strokeColor: isLight ? '#d1d5db' : '#475569', strokeWidth: 1 }];
+  if ('borderRadius' in zoomInput) (zoomInput as any).borderRadius = 2;
+  
+  const zoomText = penpot.createText('100');
   if (zoomText) {
-    zoomText.name = 'Zoom Control';
-    zoomText.x = startX + 1000;
-    zoomText.y = startY + 670;
-    zoomText.characters = '100 %';
+    zoomText.name = 'Zoom Value';
+    zoomText.x = startX + 495;
+    zoomText.y = startY + 995;
+    zoomText.characters = '100';
     zoomText.fills = [{ fillColor: colors.text }];
-    if ('fontSize' in zoomText) (zoomText as any).fontSize = 11;
+    if ('fontSize' in zoomText) (zoomText as any).fontSize = 10;
+  }
+  
+  // Percent symbol
+  const percentSymbol = penpot.createText('%');
+  if (percentSymbol) {
+    percentSymbol.name = 'Percent Symbol';
+    percentSymbol.x = startX + 530;
+    percentSymbol.y = startY + 995;
+    percentSymbol.characters = '%';
+    percentSymbol.fills = [{ fillColor: colors.textSecondary }];
+    if ('fontSize' in percentSymbol) (percentSymbol as any).fontSize = 11;
+  }
+  
+  // S key (zoom controls)
+  const sKbdBoard = penpot.createBoard();
+  sKbdBoard.name = 'S Key';
+  sKbdBoard.x = startX + 555;
+  sKbdBoard.y = startY + 990;
+  sKbdBoard.resize(20, 16);
+  sKbdBoard.fills = [{ fillColor: isLight ? '#f1f5f9' : '#334155' }];
+  sKbdBoard.strokes = [{ strokeColor: isLight ? '#d1d5db' : '#475569', strokeWidth: 1 }];
+  if ('borderRadius' in sKbdBoard) (sKbdBoard as any).borderRadius = 3;
+  
+  const sKbdLayout = sKbdBoard.addFlexLayout();
+  if (sKbdLayout) {
+    sKbdLayout.dir = "row";
+    sKbdLayout.alignItems = "center";
+    sKbdLayout.justifyContent = "center";
+  }
+  
+  const sText = penpot.createText('S');
+  if (sText) {
+    sText.name = 'S Key Text';
+    sText.characters = 'S';
+    sText.fills = [{ fillColor: isLight ? '#374151' : '#f9fafb' }];
+    if ('fontSize' in sText) (sText as any).fontSize = 10;
+    if ('fontFamily' in sText) (sText as any).fontFamily = 'Fira Code';
+    sKbdBoard.appendChild(sText);
+  }
+  
+  // Navigation controls (right side) - A key, arrows, position input, D key
+  
+  // A key (left navigation)
+  const aKbdBoard = penpot.createBoard();
+  aKbdBoard.name = 'A Key';
+  aKbdBoard.x = startX + 1048;
+  aKbdBoard.y = startY + 990;
+  aKbdBoard.resize(20, 16);
+  aKbdBoard.fills = [{ fillColor: isLight ? '#f1f5f9' : '#334155' }];
+  aKbdBoard.strokes = [{ strokeColor: isLight ? '#d1d5db' : '#475569', strokeWidth: 1 }];
+  if ('borderRadius' in aKbdBoard) (aKbdBoard as any).borderRadius = 3;
+  
+  const aKbdLayout = aKbdBoard.addFlexLayout();
+  if (aKbdLayout) {
+    aKbdLayout.dir = "row";
+    aKbdLayout.alignItems = "center";
+    aKbdLayout.justifyContent = "center";
+  }
+  
+  const aText = penpot.createText('A');
+  if (aText) {
+    aText.name = 'A Key Text';
+    aText.characters = 'A';
+    aText.fills = [{ fillColor: isLight ? '#374151' : '#f9fafb' }];
+    if ('fontSize' in aText) (aText as any).fontSize = 10;
+    if ('fontFamily' in aText) (aText as any).fontFamily = 'Fira Code';
+    aKbdBoard.appendChild(aText);
+  }
+  
+  // Left arrow
+  const leftArrow = penpot.createText('◀');
+  if (leftArrow) {
+    leftArrow.name = 'Left Arrow';
+    leftArrow.x = startX + 1080;
+    leftArrow.y = startY + 995;
+    leftArrow.characters = '◀';
+    leftArrow.fills = [{ fillColor: colors.textSecondary }];
+    if ('fontSize' in leftArrow) (leftArrow as any).fontSize = 10;
+  }
+  
+  // Current position input field (instead of plain text)
+  const positionInput = penpot.createBoard();
+  positionInput.name = 'Position Input';
+  positionInput.x = startX + 1110;
+  positionInput.y = startY + 990;
+  positionInput.resize(70, 18);
+  positionInput.fills = [{ fillColor: isLight ? '#ffffff' : '#1e293b' }];
+  positionInput.strokes = [{ strokeColor: isLight ? '#d1d5db' : '#475569', strokeWidth: 1 }];
+  if ('borderRadius' in positionInput) (positionInput as any).borderRadius = 2;
+  
+  const positionText = penpot.createText('48 / 86 s');
+  if (positionText) {
+    positionText.name = 'Position Text';
+    positionText.x = startX + 1120;
+    positionText.y = startY + 995;
+    positionText.characters = '48 / 86 s';
+    positionText.fills = [{ fillColor: colors.text }];
+    if ('fontSize' in positionText) (positionText as any).fontSize = 9;
+  }
+  
+  // Right arrow
+  const rightArrow = penpot.createText('▶');
+  if (rightArrow) {
+    rightArrow.name = 'Right Arrow';
+    rightArrow.x = startX + 1195;
+    rightArrow.y = startY + 995;
+    rightArrow.characters = '▶';
+    rightArrow.fills = [{ fillColor: colors.textSecondary }];
+    if ('fontSize' in rightArrow) (rightArrow as any).fontSize = 10;
+  }
+  
+  // D key (right navigation)
+  const dKbdBoard = penpot.createBoard();
+  dKbdBoard.name = 'D Key';
+  dKbdBoard.x = startX + 1220;
+  dKbdBoard.y = startY + 990;
+  dKbdBoard.resize(20, 16);
+  dKbdBoard.fills = [{ fillColor: isLight ? '#f1f5f9' : '#334155' }];
+  dKbdBoard.strokes = [{ strokeColor: isLight ? '#d1d5db' : '#475569', strokeWidth: 1 }];
+  if ('borderRadius' in dKbdBoard) (dKbdBoard as any).borderRadius = 3;
+  
+  const dKbdLayout = dKbdBoard.addFlexLayout();
+  if (dKbdLayout) {
+    dKbdLayout.dir = "row";
+    dKbdLayout.alignItems = "center";
+    dKbdLayout.justifyContent = "center";
+  }
+  
+  const dText = penpot.createText('D');
+  if (dText) {
+    dText.name = 'D Key Text';
+    dText.characters = 'D';
+    dText.fills = [{ fillColor: isLight ? '#374151' : '#f9fafb' }];
+    if ('fontSize' in dText) (dText as any).fontSize = 10;
+    if ('fontFamily' in dText) (dText as any).fontFamily = 'Fira Code';
+    dKbdBoard.appendChild(dText);
   }
 }
 
