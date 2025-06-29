@@ -2,6 +2,8 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+**Current Year**: 2025 (Last updated: June 2025)
+
 ## Project Overview
 
 **NovyUI** is a multi-framework design system providing consistent, accessible UI components across Rust/MoonZoon, Vue/TypeScript, and future Boon implementations. The project is currently migrating from Vue to MoonZoon as the primary implementation.
