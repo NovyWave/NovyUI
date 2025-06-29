@@ -1,166 +1,85 @@
-# NovyUI → PenPot Design System Migration
+# NovyUI PenPot Plugin (Experimental)
 
-This directory contains the complete migration of NovyUI design system from MoonZoon to PenPot format.
+**Status**: Working plugin prototype, not production-ready due to missing PenPot features
 
-## Project Structure
+This plugin demonstrates NovyUI design system integration with PenPot, creating 6 core UI components with proper styling and design tokens. While functional, it serves as a proof-of-concept until PenPot implements component variants.
 
-```
-PenPot/
-├── README.md                    # This file
-├── docs/                        # Migration documentation
-│   ├── migration-plan.md        # Detailed migration plan
-│   ├── penpot-format.md         # PenPot file format research
-│   ├── component-mapping.md     # Component migration mapping
-│   └── lessons-learned.md       # Migration insights
-├── tokens/                      # W3C design token JSON files
-│   ├── colors.json             # Color system tokens
-│   ├── typography.json         # Typography tokens
-│   ├── spacing.json            # Spacing and sizing tokens
-│   └── shadows.json            # Shadow and elevation tokens
-├── components/                  # Component specifications
-│   ├── screenshots/            # Component screenshots from storybook
-│   ├── specifications/         # Component spec sheets
-│   └── state-matrices/         # Component state documentation
-├── assets/                     # Exported design assets
-│   ├── icons/                  # 77 Lucide icons in SVG format
-│   ├── fonts/                  # Font files for PenPot
-│   └── patterns/               # Background patterns
-├── scripts/                    # Automation and tooling
-│   ├── token-converter.js      # NovyUI → W3C token converter
-│   ├── component-scraper.js    # Screenshot automation
-│   └── mcp-integration.py      # PenPot MCP automation
-└── output/                     # Generated PenPot files
-    ├── novyui-design-system.penpot
-    └── component-libraries/
-```
+## Current Status (June 29, 2025)
 
-## Migration Status
+### ✅ What Works
+- **NovyUI Plugin**: Creates 6 components (Button, Icon, Kbd, Select, TreeView, Typography) with accurate MoonZoon styling
+- **Design Tokens**: 113 design tokens imported (33 colors, 18 spacing, 25 typography, etc.) with light/dark theme support
+- **Layout System**: Flex layouts with workarounds for padding issues
+- **Live Demo**: Plugin successfully generates components in PenPot
 
-- [x] **Phase 1**: Foundation Setup (Directory structure, MCP setup)
-- [ ] **Phase 2**: Design Token Migration (98 color tokens, typography, spacing)
-- [ ] **Phase 3**: Component Documentation (18 components, 336+ variants)
-- [ ] **Phase 4**: Manual PenPot Creation (Component library, variants)
-- [ ] **Phase 5**: Automation & Integration (MCP automation, sync scripts)
+### 📸 Plugin in Action
 
-## Key Features Being Migrated
+![Components Screenshot](./docs/components_screenshot.png)
+*Plugin interface with generated Button components in light/dark themes*
 
-### Design System Components (18 total)
-- **Form Components**: Input, TextArea, Checkbox, Select, Switch, FileInput
-- **Display Components**: Typography, Icon, Badge, Avatar, Card, Alert
-- **Navigation Components**: Button, Accordion, TreeView, Kbd
-- **Layout Components**: List, Pattern
+![Tokens Screenshot](./docs/tokens_screenshot.png)  
+*Design tokens imported and organized in PenPot*
 
-### Design Tokens (15+ categories)
-- **98 color tokens** (OKLCH color space, light/dark themes)
-- **43 typography combinations** (3 fonts, multiple sizes/weights)
-- **15 spacing tokens** (4px base unit)
-- **Visual tokens** (radii, shadows, opacity, borders)
-- **Animation tokens** (durations, easing functions)
+### 🎬 Demo Video
+https://github.com/user-attachments/assets/3a0bb392-7f21-42cb-8b1f-15c206255fb6
 
-### Assets
-- **77 Lucide icons** in 4 sizes
-- **3 font families** (Inter, FiraCode, Audiowide)
-- **5 background patterns** (Hero Patterns)
+*Full plugin workflow and NovyWave interface creation demonstration*
 
-## Tools & Technologies
+## 🚧 Critical Limitations
 
-- **PenPot MCP Server**: montevive/penpot-mcp for automation
-- **W3C Design Tokens**: Standard-compliant token format
-- **MoonZoon Source**: Primary implementation for component behavior
-- **Live Storybook**: https://moonzoon-novyui-storybook.kavik.cz/
+### 1. **No Component Variants** (Primary Blocker)
+- Requires **313 individual components** instead of 18 components with variants
+- Button alone needs 36 separate components (6 variants × 6 states)
+- Community consensus: ["Component variants were the deciding factor for Figma"](https://github.com/penpot/penpot/discussions/534)
+- **Status**: [Highly requested since 2021](https://community.penpot.app/t/any-update-on-component-variants/6558), no clear timeline
 
-## Setup and Usage
+### 2. **Plugin API Token Limitations**
+- Cannot set token references: `element.fills = [{ fillColor: "{color.primary.7}" }]` doesn't work
+- Must use hardcoded hex colors, breaking dynamic theming
+- No programmatic token management through plugin API
 
-### Prerequisites
-- **Deno** (for TypeScript scripts) - Install from [deno.com](https://deno.com/)
-- PenPot account or self-hosted instance  
-- Git (for cloning and version control)
+### 3. **Layout Issues**
+- Flex layout padding properties don't work consistently
+- Workaround: Transparent spacer rectangles for proper spacing
 
-### Installation
-
-1. **Install Deno** (if not already installed):
-   ```bash
-   # macOS/Linux
-   curl -fsSL https://deno.land/install.sh | sh
-   
-   # Windows (PowerShell)
-   irm https://deno.land/install.ps1 | iex
-   
-   # Or visit https://deno.com/ for other installation methods
-   ```
-
-2. **Navigate to PenPot scripts directory**:
-   ```bash
-   cd PenPot/scripts
-   ```
-
-3. **Configure PenPot credentials** (optional for automation):
-   ```bash
-   cp ../.env.template ../.env
-   # Edit .env file with your PenPot credentials
-   ```
-
-### **🤖 Full Automation**
-
-**Complete PenPot Migration (313 components):**
-```bash
-# Full automated migration pipeline
-deno run --allow-all penpot-automation.ts full
-
-# Or run individual steps:
-deno run --allow-all mcp-server-setup.ts setup     # Setup MCP server
-deno run --allow-all penpot-automation.ts tokens-only      # Import tokens only
-deno run --allow-all penpot-automation.ts components-only  # Create components only
-```
-
-**Visual Figma Design Migration:**
-```bash
-# Migrate single Figma export image  
-deno run --allow-all figma-visual-migration.ts single design.png
-
-# Batch process directory of Figma exports
-deno run --allow-all figma-visual-migration.ts batch ./figma-exports
-```
-
-**Interactive Demo:**
-```bash
-# Try the interactive automation demo
-deno run --allow-all automation-demo.ts
-```
-
-### **📋 Manual Regeneration**
-
-Individual script execution for development:
+## 🚀 Quick Start
 
 ```bash
-# Regenerate design tokens (W3C-compliant JSON files)
-deno run --allow-read --allow-write token-converter.ts
+# 1. Start plugin dev server
+cd PenPot/novyui-plugin
+npm run dev
 
-# Regenerate component specifications and documentation
-deno run --allow-read --allow-write component-analyzer.ts
+# 2. Install plugin in PenPot from:
+https://localhost:4400/manifest.json
 
-# Setup PenPot integration and test connection
-deno run --allow-read --allow-net --allow-env penpot-client.ts setup
-
-# Create new PenPot project
-deno run --allow-read --allow-net --allow-env penpot-client.ts create-project
+# 3. Click "NovyUI Design System" in plugins menu
 ```
 
-### Usage
+## 📦 Implemented Components
 
-1. **View Migration Progress**: Check `docs/migration-plan.md`
-2. **Import Tokens**: Use JSON files in `tokens/` directory
-3. **Reference Components**: See `components/specifications/`
-4. **Use Final Library**: Import `.penpot` files from `output/`
+**Core UI Elements** (6 of 18 total):
+- **Button**: All 6 variants with proper state handling
+- **Icon**: 4 size variants with semantic naming  
+- **Kbd**: Keyboard shortcuts with depth effects
+- **Select**: Dropdown states with chevron animations
+- **TreeView**: Hierarchical structure with indentation
+- **Typography**: Complete type scale with 7 variants
 
-### File Organization
-- `tokens/` - Generated W3C design token JSON files
-- `components/` - Generated component specifications and documentation  
-- `scripts/` - **Deno TypeScript automation tools** (regenerable)
-- `docs/` - Migration guides and documentation
-- `assets/` - Design assets (icons, fonts, patterns)
-- `output/` - Final PenPot files
+**Remaining**: Input, TextArea, Checkbox, Switch, FileInput, Badge, Avatar, Card, Alert, Accordion, List, Pattern
 
-## Contributing
+## 🔮 Future Direction
 
-This migration serves as a template for other design system migrations to PenPot. Contributions to documentation, automation scripts, and PenPot community tools are welcome.
+PenPot is *almost* production-ready for design systems. Waiting for:
+1. **Component Variants** - Primary missing functionality
+2. **Plugin API Token Management** - For programmatic token handling
+3. **Layout Padding Fixes** - For proper flex spacing
+
+**Current Strategy**: Design in Figma, build in MoonZoon, maintain PenPot readiness. Migration will proceed when critical blockers are resolved.
+
+## 📋 Full Report
+
+See [report_29-06-2025.md](./report_29-06-2025.md) for complete technical details, implementation insights, and future roadmap analysis.
+
+---
+
+**Project Structure**: `tokens/` (W3C design tokens) • `novyui-plugin/` (plugin source) • `docs/` (migration documentation) • `assets/` (icons, fonts, patterns)
